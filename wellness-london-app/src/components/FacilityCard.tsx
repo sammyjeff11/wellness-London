@@ -1,0 +1,22 @@
+import type { Facility } from "@/data/facilities";
+
+type FacilityCardProps = {
+  facility: Facility;
+};
+
+export default function FacilityCard({ facility }: FacilityCardProps) {
+  return (
+    <article className="border rounded-xl p-4 hover:shadow-lg transition">
+      <h3 className="font-semibold text-lg mb-2">{facility.name}</h3>
+      <p className="text-sm text-gray-500 mb-4">{facility.description}</p>
+      <a
+        href={facility.website}
+        className="text-sm font-medium underline"
+        target="_blank"
+        rel="noreferrer"
+      >
+        View Details -&gt;
+      </a>
+    </article>
+  );
+}
