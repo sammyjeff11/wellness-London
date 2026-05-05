@@ -28,19 +28,23 @@ export default async function Home() {
       </section>
 
       {/* Listings */}
-      <section className="grid md:grid-cols-3 gap-6 px-6 pb-20">
-        {facilities.map((facility) => (
-          <FacilityCard
-            key={facility.id}
-            facility={{
-              slug: facility.id,
-              name: facility.name,
-              description: facility.description,
-              website: facility.website,
-            }}
-          />
-        ))}
-      </section>
+      <section className="px-6 pb-20">
+  <div className="max-w-6xl mx-auto">
+    <div className="grid md:grid-cols-3 gap-6">
+      {facilities.map((facility) => (
+        <FacilityCard
+          key={facility.id}
+          facility={{
+            slug: facility.id,
+            name: facility.name,
+            description: facility.description,
+            website: facility.website,
+          }}
+        />
+      ))}
+    </div>
+  </div>
+</section>
     </main>
   );
 }
