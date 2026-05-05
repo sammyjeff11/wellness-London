@@ -10,12 +10,10 @@ export default function FacilityCard({ facility }: FacilityCardProps) {
       <h3 className="font-semibold text-lg mb-2">{facility.name}</h3>
       <p className="text-sm text-gray-500 mb-4">{facility.description}</p>
       <a
-        href={facility.website}
+        href={`/facility/${facility.slug}`}
         className="text-sm font-medium underline"
-        target="_blank"
-        rel="noreferrer"
       >
-        View Details -&gt;
+        View Details
       </a>
     </article>
   );
