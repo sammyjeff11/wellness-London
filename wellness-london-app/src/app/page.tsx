@@ -1,7 +1,9 @@
 import FacilityCard from "@/components/FacilityCard";
-import { facilities } from "@/data/facilities";
+import { getFacilities } from "@/lib/airtable";
 
-export default function Home() {
+export default async function Home() {
+  const facilities = await getFacilities();
+
   return (
     <main className="min-h-screen bg-white text-black">
       {/* Header */}
@@ -28,7 +30,15 @@ export default function Home() {
       {/* Listings */}
       <section className="grid md:grid-cols-3 gap-6 px-6 pb-20">
         {facilities.map((facility) => (
-          <FacilityCard key={facility.slug} facility={facility} />
+          <FacilityCard
+            key={facility.id}
+            facility={{
+              slug: facility.id,
+              name: facility.name,
+              description: facility.description,
+              website: facility.website,
+            }}
+          />
         ))}
       </section>
     </main>
