@@ -1,8 +1,13 @@
 import { getFacilities } from "@/lib/airtable";
 
-export default async function FacilityPage({ params }: { params: { id: string } }) {
+type FacilityPageProps = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function FacilityPage({ params }: FacilityPageProps) {
+  const { id } = await params;
   const facilities = await getFacilities();
-  const facility = facilities.find((item) => item.id === params.id);
+  const facility = facilities.find((item) => item.id === id);
 
   if (!facility) {
     return (
@@ -10,6 +15,7 @@ export default async function FacilityPage({ params }: { params: { id: string } 
         <div className="max-w-3xl mx-auto px-6 py-16">
           <h1 className="text-3xl font-bold mb-4">Facility not found</h1>
           <p className="text-gray-600">We could not find this wellness space.</p>
+          <a href="/" className="inline-block mt-6 text-sm font-medium underline">Back to directory</a>
         </div>
       </main>
     );
