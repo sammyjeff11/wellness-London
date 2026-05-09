@@ -73,7 +73,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
-              <span className="text-sm text-[#70695d]">Wellness London</span>
+              <span className="text-sm text-[#70695d]">Well Edit</span>
             </div>
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
