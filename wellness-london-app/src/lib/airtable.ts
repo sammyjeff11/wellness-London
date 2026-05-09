@@ -6,6 +6,7 @@ export type AirtableImage = {
 
 export type AirtableFacility = {
   id: string;
+  slug: string;
   name: string;
   website: string;
   address: string;
@@ -36,6 +37,7 @@ type AirtableRecord = {
   id: string;
   fields: {
     Name?: string;
+    Slug?: string;
     Website?: string;
     Address?: string;
     Phone?: string;
@@ -74,6 +76,15 @@ function normaliseSingle(value: string[] | string | undefined): string {
   return normaliseList(value).join(", ");
 }
 
+function createSlug(value: string): string {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage[] {
   if (!value) return [];
   return value
@@ -86,9 +97,15 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
 }
 
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
+  const name = record.fields.Name || "Unnamed wellness space";
+  const neighbourhood = normaliseSingle(record.fields.Neighbourhood);
+  const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
+  const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
+
   return {
     id: record.id,
-    name: record.fields.Name || "Unnamed wellness space",
+    slug: createSlug(slugSource) || record.id,
+    name,
     website: record.fields.Website || "#",
     address: record.fields.Address || "London",
     phone: record.fields.Phone || "",
@@ -103,8 +120,8 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
-    neighbourhood: normaliseSingle(record.fields.Neighbourhood),
-    areaOfLondon: normaliseSingle(record.fields["Area of London"]),
+    neighbourhood,
+    areaOfLondon,
     instagramLink: record.fields["Instagram Link"] || "",
   };
 }
