@@ -137,6 +137,44 @@ export default async function CryotherapyLondonPage() {
           )}
         </div>
       </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
+            Why cryotherapy is growing in London wellness spaces
+          </h2>
+          <p>Cryotherapy has moved from niche sports recovery into a wider wellness audience across London. The best studios combine clinical professionalism with a calm, premium environment that feels approachable rather than intimidating.</p>
+          <p>Many recovery clubs now include cryotherapy alongside sauna, compression therapy and cold plunge, creating a broader recovery ecosystem rather than a single treatment room.</p>
+          <p>For regular users, consistency matters most. Studios that feel easy to return to, well-managed and thoughtfully designed tend to become part of long-term recovery habits.</p>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose cryotherapy in London</h2>
+          <div className="grid gap-5 md:grid-cols-4">
+            {guidancePoints.map((point) => (
+              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <p className="text-sm leading-6 text-stone-600">{point}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Cryotherapy London FAQs</h2>
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
