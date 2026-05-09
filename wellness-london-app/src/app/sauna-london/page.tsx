@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
+import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 
 export const metadata: Metadata = {
@@ -53,6 +54,7 @@ const faqs = [
 
 export default async function SaunaLondonPage() {
   const facilities = await getFacilities();
+
   const heroImage = facilities.find((facility) =>
     facility.servicesOffered.some((service) => service.toLowerCase().includes("sauna")) && facility.images.length > 0,
   )?.images[0];
@@ -63,8 +65,36 @@ export default async function SaunaLondonPage() {
     ),
   );
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Best Saunas in London",
+    itemListElement: saunaFacilities.map((facility, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://wellnessldn.com/facility/${facility.id}`,
+      name: facility.name,
+    })),
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <JsonLd data={itemListSchema} />
+      <JsonLd data={faqSchema} />
+
       <section className="px-6 py-10">
         <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#b49b7e] p-8 md:p-12">
           {heroImage ? (
@@ -128,55 +158,6 @@ export default async function SaunaLondonPage() {
               </p>
             </div>
           )}
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 text-4xl font-semibold tracking-tight">
-            Why sauna is becoming part of London’s recovery culture
-          </h2>
-          <div className="space-y-5 text-stone-600 leading-8">
-            <p>
-              Sauna has moved beyond the spa day and into the weekly rhythm of Londoners who train, work hard and want a more deliberate way to recover. The best spaces make heat feel calm and considered, with clean facilities, thoughtful pacing and room to decompress.
-            </p>
-            <p>
-              Across the city, recovery studios are pairing sauna with cold plunge, breathwork and quiet lounge areas. This makes the experience feel less like a quick treatment and more like a complete reset for body and mind.
-            </p>
-            <p>
-              For many people, the appeal is consistency. A well-located sauna can become part of a training plan, a Sunday ritual or a calm pause between busy days in the city.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-4xl font-semibold tracking-tight">
-            How to choose the right sauna in London
-          </h2>
-          <div className="grid gap-5 md:grid-cols-4">
-            {guidancePoints.map((point) => (
-              <article key={point.title} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
-                <h3 className="mb-2 font-semibold">{point.title}</h3>
-                <p className="text-sm leading-6 text-stone-600">{point.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Sauna London FAQs</h2>
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
-                <h3 className="mb-2 font-semibold">{faq.question}</h3>
-                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
     </main>
