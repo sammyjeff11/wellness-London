@@ -33,7 +33,7 @@ type FacilityCardProps = {
 };
 
 function displayDate(value?: string) {
-  if (!value || value === "Details not yet confirmed") return "Details not yet confirmed";
+  if (!value || value === "Details not yet confirmed") return "Details pending";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
   return date.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
@@ -43,20 +43,14 @@ function primaryBestFor(facility: FacilityCardFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || facility.description;
 }
 
-function verificationLabel(value?: string) {
-  return value || "Unverified listing";
-}
-
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
-  const services = facility.services?.slice(0, 3) || [];
+  const services = facility.services?.slice(0, 2) || [];
   const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
   const price = facility.priceFrom || facility.priceRange || "Price not listed";
-  const experience = [facility.privateOrShared, facility.premiumLevel, facility.beginnerFriendly === "Yes" ? "Beginner-friendly" : ""]
-    .filter(Boolean)
-    .join(" / ");
+  const experience = facility.privateOrShared || facility.premiumLevel || facility.experienceType?.[0] || "Details pending";
 
   return (
-    <article className="group overflow-hidden rounded-2xl border border-stone-200 bg-[#fffdf8] shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-stone-300/40">
+    <article className="group">
       <Link
         href={`/facility/${facility.slug}`}
         className="block"
@@ -68,82 +62,64 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           page_path: window.location.pathname,
         })}
       >
-        <div className="relative h-60 overflow-hidden bg-stone-200">
+        <div className="relative mb-5 aspect-[4/5] overflow-hidden bg-[#d8cebf]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
               alt={facility.imageAlt || facility.name}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-700 group-hover:scale-105"
+              className="object-cover transition duration-700 group-hover:scale-[1.03]"
             />
           ) : (
-            <div className="flex h-full w-full items-end bg-[#ded6c8] p-5">
-              <span className="text-sm font-medium text-stone-600">
-                Wellness London
-              </span>
+            <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
+              <span className="text-sm text-[#70695d]">Wellness London</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" />
-          <div className="absolute left-4 right-4 top-4 flex items-center justify-between gap-3">
-            <span title="Details checked means publicly available information has been reviewed. Facility verified means the venue has confirmed key details directly." className="rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
-              {verificationLabel(facility.verificationStatus)}
-            </span>
-            {facility.rating ? (
-              <span className="rounded-full bg-[#f8f5ef] px-3 py-1 text-xs font-semibold text-[#211d18]">
-                {facility.rating}
-              </span>
-            ) : null}
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
           {location ? (
-            <p className="absolute bottom-4 left-4 text-xs font-medium uppercase tracking-[0.18em] text-white/90">
+            <p className="absolute bottom-4 left-4 right-4 text-[11px] font-medium uppercase tracking-[0.22em] text-white/90">
               {location}
             </p>
           ) : null}
         </div>
 
-        <div className="p-5">
+        <div>
           <div className="mb-3 flex flex-wrap gap-2">
             {services.map((service) => (
               <span
                 key={service}
-                className="rounded-full border border-stone-200 px-3 py-1 text-xs text-stone-600"
+                className="text-[11px] uppercase tracking-[0.18em] text-[#6f6048]"
               >
                 {service}
               </span>
             ))}
           </div>
 
-          <h3 className="mb-2 text-xl font-semibold tracking-tight text-[#211d18]">
+          <h3 className="mb-3 font-serif text-3xl font-normal leading-tight tracking-normal text-[#29241d]">
             {facility.name}
           </h3>
-          <p className="mb-4 text-sm leading-6 text-stone-600">
-            <span className="font-semibold text-[#211d18]">Best for: </span>
+          <p className="mb-5 text-[15px] leading-7 text-[#70695d]">
             {primaryBestFor(facility)}
           </p>
 
-          <dl className="mb-5 grid gap-3 border-y border-stone-200 py-4 text-xs text-stone-600">
+          <div className="grid gap-2 border-t border-[#d8cebf]/70 pt-4 text-xs text-[#70695d]">
             <div className="flex items-center justify-between gap-4">
-              <dt className="uppercase tracking-[0.16em] text-stone-400">Price from</dt>
-              <dd className="max-w-[65%] truncate text-right font-medium text-[#211d18]">{price}</dd>
+              <span>From</span>
+              <span className="text-right text-[#29241d]">{price}</span>
             </div>
-            {experience ? (
-              <div className="flex items-center justify-between gap-4">
-                <dt className="uppercase tracking-[0.16em] text-stone-400">Experience</dt>
-                <dd className="max-w-[65%] truncate text-right font-medium text-[#211d18]">{experience}</dd>
-              </div>
-            ) : null}
             <div className="flex items-center justify-between gap-4">
-              <dt className="uppercase tracking-[0.16em] text-stone-400">Checked</dt>
-              <dd className="max-w-[65%] truncate text-right font-medium text-[#211d18]">{displayDate(facility.lastCheckedDate)}</dd>
+              <span>Experience</span>
+              <span className="max-w-[65%] truncate text-right text-[#29241d]">{experience}</span>
             </div>
-          </dl>
+            <div className="flex items-center justify-between gap-4">
+              <span>Checked</span>
+              <span className="text-right text-[#29241d]">{displayDate(facility.lastCheckedDate)}</span>
+            </div>
+          </div>
 
-          <div className="flex items-center justify-between text-sm">
-            <span className="font-medium text-[#211d18]">View details</span>
-            <span aria-hidden="true" className="text-stone-500 transition group-hover:translate-x-1">
-              -&gt;
-            </span>
+          <div className="mt-5 text-sm text-[#29241d]">
+            View profile <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">-&gt;</span>
           </div>
         </div>
       </Link>
