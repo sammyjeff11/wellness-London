@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://wellnessldn.com/sitemap.xml",
+    sitemap: "https://welledit.co.uk/sitemap.xml",
   };
 }
