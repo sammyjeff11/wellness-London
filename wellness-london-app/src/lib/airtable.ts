@@ -6,6 +6,7 @@ export type AirtableFacility = {
   phone: string;
   email: string;
   description: string;
+  servicesOffered: string[];
 };
 
 type AirtableRecord = {
@@ -17,8 +18,18 @@ type AirtableRecord = {
     Phone?: string;
     Email?: string;
     Description?: string;
+    "Services Offered"?: string[] | string;
   };
 };
+
+function normaliseServices(value: string[] | string | undefined): string[] {
+  if (!value) return [];
+  if (Array.isArray(value)) return value;
+  return value
+    .split(",")
+    .map((service) => service.trim())
+    .filter(Boolean);
+}
 
 export async function getFacilities(): Promise<AirtableFacility[]> {
   const apiKey = process.env.AIRTABLE_API_KEY;
@@ -54,5 +65,6 @@ export async function getFacilities(): Promise<AirtableFacility[]> {
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",
     description: record.fields.Description || "Premium wellness experience in London",
+    servicesOffered: normaliseServices(record.fields["Services Offered"]),
   }));
 }
