@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import JsonLd from "@/components/JsonLd";
@@ -18,6 +19,11 @@ function InfoPill({ label }: { label: string }) {
   );
 }
 
+function getInstagramHref(value: string) {
+  if (!value) return "";
+  return value.startsWith("http") ? value : `https://instagram.com/${value.replace("@", "")}`;
+}
+
 async function getFacilityBySlug(slug: string) {
   const facilities = await getFacilities();
   return facilities.find((item) => item.slug === slug || item.id === slug);
@@ -35,11 +41,33 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${facility.name} | Wellness London`;
+  const description = facility.editorialSummary || facility.description;
+
   return {
-    title: `${facility.name} | Wellness London`,
-    description: facility.editorialSummary || facility.description,
+    title,
+    description,
     alternates: {
-      canonical: `https://wellnessldn.com/facility/${facility.slug}`,
+      canonical: `/facility/${facility.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/facility/${facility.slug}`,
+      images: facility.images[0]
+        ? [
+            {
+              url: facility.images[0].url,
+              alt: facility.images[0].filename || facility.name,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: facility.images[0] ? [facility.images[0].url] : undefined,
     },
   };
 }
@@ -52,26 +80,29 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     notFound();
   }
 
-  const canonicalUrl = `https://wellnessldn.com/facility/${facility.slug}`;
+  const pageUrl = `https://wellnessldn.com/facility/${facility.slug}`;
   const websiteHref = facility.website && facility.website !== "#" ? facility.website : "";
   const bookingHref = facility.bookingLink || websiteHref;
-  const instagramHref = facility.instagramLink
-    ? facility.instagramLink.startsWith("http")
-      ? facility.instagramLink
-      : `https://instagram.com/${facility.instagramLink.replace("@", "")}`
-    : "";
+  const instagramHref = getInstagramHref(facility.instagramLink);
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
+    "@id": `${pageUrl}#business`,
     name: facility.name,
     description: facility.editorialSummary || facility.description,
-    url: canonicalUrl,
+    url: pageUrl,
     image: facility.images.map((image) => image.url),
-    address: facility.address,
     telephone: facility.phone || undefined,
     email: facility.email || undefined,
     priceRange: facility.overallPriceRange || undefined,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: facility.address,
+      addressLocality: "London",
+      addressCountry: "GB",
+    },
+    areaServed: "London",
     sameAs: [websiteHref, instagramHref].filter(Boolean),
   };
 
@@ -79,20 +110,17 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://wellnessldn.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: facility.name,
-        item: canonicalUrl,
-      },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://wellnessldn.com" },
+      { "@type": "ListItem", position: 2, name: facility.name, item: pageUrl },
     ],
   };
+
+  const profileHighlights = [
+    facility.neighbourhood ? { label: "Neighbourhood", value: facility.neighbourhood } : null,
+    facility.areaOfLondon ? { label: "Area", value: facility.areaOfLondon } : null,
+    facility.overallPriceRange ? { label: "Price range", value: facility.overallPriceRange } : null,
+    facility.accessType ? { label: "Access", value: facility.accessType } : null,
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
@@ -107,13 +135,22 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         <div className="mt-8 grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             {facility.images.length > 0 ? (
-              <img
-                src={facility.images[0].url}
-                alt={facility.name}
-                className="h-[480px] w-full rounded-[2rem] border border-stone-200 object-cover shadow-2xl shadow-stone-300/40"
-              />
+              <div className="relative h-[520px] w-full overflow-hidden rounded-3xl border border-stone-200 shadow-2xl shadow-stone-300/40">
+                <Image
+                  src={facility.images[0].url}
+                  alt={facility.name}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
+                <span className="absolute left-5 top-5 rounded-full border border-white/30 bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                  Curated profile
+                </span>
+              </div>
             ) : (
-              <div className="flex h-[480px] w-full items-end rounded-[2rem] border border-stone-200 bg-[#ded6c8] p-8 text-stone-600">
+              <div className="flex h-[520px] w-full items-end rounded-3xl border border-stone-200 bg-[#ded6c8] p-8 text-stone-600">
                 Wellness London
               </div>
             )}
@@ -121,12 +158,15 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
             {facility.images.length > 1 ? (
               <div className="mt-4 grid grid-cols-4 gap-3">
                 {facility.images.slice(1, 5).map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.url}
-                    alt={image.filename || facility.name}
-                    className="h-24 w-full rounded-2xl border border-stone-200 object-cover"
-                  />
+                  <div key={image.id} className="relative h-24 overflow-hidden rounded-2xl border border-stone-200">
+                    <Image
+                      src={image.url}
+                      alt={image.filename || facility.name}
+                      fill
+                      sizes="25vw"
+                      className="object-cover"
+                    />
+                  </div>
                 ))}
               </div>
             ) : null}
@@ -141,7 +181,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </div>
             ) : null}
 
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-stone-500">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-[#7a643f]">
               {facility.neighbourhood || facility.areaOfLondon || "London"}
             </p>
 
@@ -153,38 +193,19 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               {facility.editorialSummary || facility.description}
             </p>
 
-            <div className="mb-8 grid grid-cols-2 gap-4 text-sm">
-              {facility.neighbourhood ? (
-                <div className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-4">
-                  <p className="mb-1 text-stone-500">Neighbourhood</p>
-                  <p className="font-medium">{facility.neighbourhood}</p>
-                </div>
-              ) : null}
-
-              {facility.areaOfLondon ? (
-                <div className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-4">
-                  <p className="mb-1 text-stone-500">Area</p>
-                  <p className="font-medium">{facility.areaOfLondon}</p>
-                </div>
-              ) : null}
-
-              {facility.overallPriceRange ? (
-                <div className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-4">
-                  <p className="mb-1 text-stone-500">Price Range</p>
-                  <p className="font-medium">{facility.overallPriceRange}</p>
-                </div>
-              ) : null}
-
-              {facility.googleRating ? (
-                <div className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-4">
-                  <p className="mb-1 text-stone-500">Google Rating</p>
-                  <p className="font-medium">{facility.googleRating}</p>
-                </div>
-              ) : null}
-            </div>
+            {profileHighlights.length > 0 ? (
+              <dl className="mb-8 grid grid-cols-2 gap-4 text-sm">
+                {profileHighlights.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-4">
+                    <dt className="mb-1 text-stone-500">{item.label}</dt>
+                    <dd className="font-medium">{item.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            ) : null}
 
             {facility.typeOfExperience.length > 0 ? (
-              <div className="mb-8">
+              <div className="mb-8 rounded-2xl border border-stone-200 bg-[#fffdf8] p-5">
                 <h2 className="mb-3 font-semibold">Best for</h2>
                 <div className="flex flex-wrap gap-2">
                   {facility.typeOfExperience.map((type) => (
@@ -194,44 +215,29 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </div>
             ) : null}
 
-            <div className="mb-8 space-y-3 leading-7 text-stone-700">
-              {facility.address ? <p><strong>Address:</strong> {facility.address}</p> : null}
-              {facility.phone ? <p><strong>Phone:</strong> {facility.phone}</p> : null}
-              {facility.email ? <p><strong>Email:</strong> {facility.email}</p> : null}
-              {facility.openingHours ? <p><strong>Opening Hours:</strong> {facility.openingHours}</p> : null}
-              {facility.accessType ? <p><strong>Access:</strong> {facility.accessType}</p> : null}
+            <div className="mb-8 rounded-2xl border border-stone-200 bg-[#fffdf8] p-5">
+              <h2 className="mb-3 font-semibold">Good to know</h2>
+              <div className="space-y-3 leading-7 text-stone-700">
+                {facility.address ? <p><strong>Address:</strong> {facility.address}</p> : null}
+                {facility.phone ? <p><strong>Phone:</strong> {facility.phone}</p> : null}
+                {facility.email ? <p><strong>Email:</strong> {facility.email}</p> : null}
+                {facility.openingHours ? <p><strong>Opening Hours:</strong> {facility.openingHours}</p> : null}
+              </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
               {bookingHref ? (
-                <a
-                  href={bookingHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex rounded-full bg-[#211d18] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#3a3128]"
-                >
+                <a href={bookingHref} target="_blank" rel="noreferrer" className="inline-flex rounded-full bg-[#211d18] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#3a3128]">
                   Book Now
                 </a>
               ) : null}
-
               {websiteHref ? (
-                <a
-                  href={websiteHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex rounded-full border border-stone-300 bg-[#fffdf8] px-6 py-3 text-sm font-semibold transition hover:shadow-lg"
-                >
+                <a href={websiteHref} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-stone-300 bg-[#fffdf8] px-6 py-3 text-sm font-semibold transition hover:shadow-lg">
                   Visit Website
                 </a>
               ) : null}
-
               {instagramHref ? (
-                <a
-                  href={instagramHref}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex rounded-full border border-stone-300 bg-[#fffdf8] px-6 py-3 text-sm font-semibold transition hover:shadow-lg"
-                >
+                <a href={instagramHref} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-stone-300 bg-[#fffdf8] px-6 py-3 text-sm font-semibold transition hover:shadow-lg">
                   Instagram
                 </a>
               ) : null}
