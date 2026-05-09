@@ -72,7 +72,7 @@ export default async function SaunaLondonPage() {
     itemListElement: saunaFacilities.map((facility, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://wellnessldn.com/facility/${facility.id}`,
+      url: `https://wellnessldn.com/facility/${facility.slug}`,
       name: facility.name,
     })),
   };
@@ -136,7 +136,7 @@ export default async function SaunaLondonPage() {
                 <FacilityCard
                   key={facility.id}
                   facility={{
-                    slug: facility.id,
+                    slug: facility.slug,
                     name: facility.name,
                     description: facility.editorialSummary || facility.description,
                     website: facility.website,
