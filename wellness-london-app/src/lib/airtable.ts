@@ -4,8 +4,18 @@ export type AirtableImage = {
   filename: string;
 };
 
+export type ServiceKey =
+  | "sauna"
+  | "cold-plunge"
+  | "cryotherapy"
+  | "recovery"
+  | "breathwork"
+  | "yoga"
+  | "meditation";
+
 export type AirtableFacility = {
   id: string;
+  slug: string;
   name: string;
   website: string;
   address: string;
@@ -14,6 +24,7 @@ export type AirtableFacility = {
   description: string;
   images: AirtableImage[];
   servicesOffered: string[];
+  serviceKeys: ServiceKey[];
   typeOfExperience: string[];
   accessType: string;
   overallPriceRange: string;
@@ -36,6 +47,7 @@ type AirtableRecord = {
   id: string;
   fields: {
     Name?: string;
+    Slug?: string;
     Website?: string;
     Address?: string;
     Phone?: string;
@@ -85,17 +97,87 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
     }));
 }
 
+function createSlug(value: string, fallback: string): string {
+  const slug = value
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, " and ")
+    .replace(/['']/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+
+  return slug || fallback.toLowerCase();
+}
+
+function normaliseServiceKeys(services: string[]): ServiceKey[] {
+  const keys = new Set<ServiceKey>();
+
+  services.forEach((service) => {
+    const value = service.toLowerCase();
+
+    if (value.includes("sauna") || value.includes("infrared") || value.includes("finnish")) {
+      keys.add("sauna");
+    }
+
+    if (
+      value.includes("cold") ||
+      value.includes("plunge") ||
+      value.includes("ice bath") ||
+      value.includes("ice tub")
+    ) {
+      keys.add("cold-plunge");
+    }
+
+    if (value.includes("cryo")) {
+      keys.add("cryotherapy");
+    }
+
+    if (
+      value.includes("recovery") ||
+      value.includes("compression") ||
+      value.includes("red light") ||
+      value.includes("massage")
+    ) {
+      keys.add("recovery");
+    }
+
+    if (value.includes("breath")) {
+      keys.add("breathwork");
+    }
+
+    if (value.includes("yoga")) {
+      keys.add("yoga");
+    }
+
+    if (value.includes("meditation") || value.includes("sound bath")) {
+      keys.add("meditation");
+    }
+  });
+
+  return Array.from(keys);
+}
+
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
+  const name = record.fields.Name || "Unnamed wellness space";
+  const servicesOffered = normaliseList(record.fields["Services Offered"]);
+  const neighbourhood = normaliseSingle(record.fields.Neighbourhood);
+  const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
+  const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
+
   return {
     id: record.id,
-    name: record.fields.Name || "Unnamed wellness space",
+    slug: createSlug(slugSource, record.id),
+    name,
     website: record.fields.Website || "#",
     address: record.fields.Address || "London",
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",
     description: record.fields.Description || "Premium wellness experience in London",
     images: normaliseImages(record.fields.Images),
-    servicesOffered: normaliseList(record.fields["Services Offered"]),
+    servicesOffered,
+    serviceKeys: normaliseServiceKeys(servicesOffered),
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),
     overallPriceRange: record.fields["Overall Price Range"] || "",
@@ -103,8 +185,8 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
-    neighbourhood: normaliseSingle(record.fields.Neighbourhood),
-    areaOfLondon: normaliseSingle(record.fields["Area of London"]),
+    neighbourhood,
+    areaOfLondon,
     instagramLink: record.fields["Instagram Link"] || "",
   };
 }

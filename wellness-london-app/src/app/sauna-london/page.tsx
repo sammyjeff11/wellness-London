@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
@@ -8,6 +9,9 @@ export const metadata: Metadata = {
   title: "Best Saunas in London | Wellness London",
   description:
     "Discover curated sauna and recovery spaces across London, including premium wellness studios, contrast therapy spaces and recovery facilities.",
+  alternates: {
+    canonical: "/sauna-london",
+  },
 };
 
 const guidancePoints = [
@@ -54,16 +58,8 @@ const faqs = [
 
 export default async function SaunaLondonPage() {
   const facilities = await getFacilities();
-
-  const heroImage = facilities.find((facility) =>
-    facility.servicesOffered.some((service) => service.toLowerCase().includes("sauna")) && facility.images.length > 0,
-  )?.images[0];
-
-  const saunaFacilities = facilities.filter((facility) =>
-    facility.servicesOffered.some((service) =>
-      service.toLowerCase().includes("sauna"),
-    ),
-  );
+  const saunaFacilities = facilities.filter((facility) => facility.serviceKeys.includes("sauna"));
+  const heroImage = saunaFacilities.find((facility) => facility.images.length > 0)?.images[0];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -72,7 +68,7 @@ export default async function SaunaLondonPage() {
     itemListElement: saunaFacilities.map((facility, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: `https://wellnessldn.com/facility/${facility.id}`,
+      url: `https://wellnessldn.com/facility/${facility.slug}`,
       name: facility.name,
     })),
   };
@@ -98,7 +94,14 @@ export default async function SaunaLondonPage() {
       <section className="px-6 py-10">
         <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#b49b7e] p-8 md:p-12">
           {heroImage ? (
-            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+            <Image
+              src={heroImage.url}
+              alt={heroImage.filename}
+              fill
+              priority
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              className="object-cover"
+            />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
           <div className="relative max-w-3xl text-white">
@@ -125,9 +128,11 @@ export default async function SaunaLondonPage() {
               </p>
               <h2 className="text-4xl font-semibold tracking-tight">Sauna spaces</h2>
             </div>
-            <Link href="/cold-plunge-london" className="text-sm font-medium underline">
-              Explore cold plunge
-            </Link>
+            <div className="flex gap-4 text-sm font-medium">
+              <Link href="/" className="underline">Back to directory</Link>
+              <Link href="/cold-plunge-london" className="underline">Explore cold plunge</Link>
+              <Link href="/cryotherapy-london" className="underline">Explore cryotherapy</Link>
+            </div>
           </div>
 
           {saunaFacilities.length > 0 ? (
@@ -136,7 +141,7 @@ export default async function SaunaLondonPage() {
                 <FacilityCard
                   key={facility.id}
                   facility={{
-                    slug: facility.id,
+                    slug: facility.slug,
                     name: facility.name,
                     description: facility.editorialSummary || facility.description,
                     website: facility.website,
@@ -158,6 +163,51 @@ export default async function SaunaLondonPage() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
+            Why sauna is becoming part of London&apos;s recovery culture
+          </h2>
+          <p>
+            Sauna has moved from occasional spa treatment to a regular recovery ritual for many Londoners. The best spaces make heat feel considered rather than rushed, pairing calm design with practical facilities that support genuine downtime.
+          </p>
+          <p>
+            London&apos;s wellness audience is also becoming more precise about recovery. People want studios that combine warmth, breath, cold exposure, showers and reset space in a way that fits around training, work and travel.
+          </p>
+          <p>
+            A strong sauna experience is not only about temperature. It is about atmosphere, cleanliness, booking ease and whether the space feels restorative enough to return to every week.
+          </p>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose the right sauna in London</h2>
+          <div className="grid gap-5 md:grid-cols-4">
+            {guidancePoints.map((point) => (
+              <article key={point.title} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{point.title}</h3>
+                <p className="text-sm leading-6 text-stone-600">{point.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Sauna London FAQs</h2>
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </main>

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import { getFacilities } from "@/lib/airtable";
@@ -29,10 +30,13 @@ export default async function Home() {
       <section className="px-6 py-10 md:py-14">
         <div className="relative mx-auto flex min-h-[560px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#d8d0c2] p-8 md:p-12">
           {heroImage ? (
-            <img
+            <Image
               src={heroImage.url}
               alt={heroImage.filename}
-              className="absolute inset-0 h-full w-full object-cover"
+              fill
+              priority
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              className="object-cover"
             />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
@@ -90,25 +94,41 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {facilities.map((facility) => (
-              <FacilityCard
-                key={facility.id}
-                facility={{
-                  slug: facility.id,
-                  name: facility.name,
-                  description: facility.editorialSummary || facility.description,
-                  website: facility.website,
-                  imageUrl: facility.images[0]?.url,
-                  imageAlt: facility.images[0]?.filename || facility.name,
-                  location: facility.neighbourhood || facility.areaOfLondon,
-                  services: facility.servicesOffered,
-                  priceRange: facility.overallPriceRange,
-                  rating: facility.googleRating,
-                }}
-              />
-            ))}
-          </div>
+          {facilities.length > 0 ? (
+            <div className="grid gap-6 md:grid-cols-3">
+              {facilities.map((facility) => (
+                <FacilityCard
+                  key={facility.id}
+                  facility={{
+                    slug: facility.slug,
+                    name: facility.name,
+                    description: facility.editorialSummary || facility.description,
+                    website: facility.website,
+                    imageUrl: facility.images[0]?.url,
+                    imageAlt: facility.images[0]?.filename || facility.name,
+                    location: facility.neighbourhood || facility.areaOfLondon,
+                    services: facility.servicesOffered,
+                    priceRange: facility.overallPriceRange,
+                    rating: facility.googleRating,
+                  }}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-8 shadow-sm">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+                Directory coming soon
+              </p>
+              <h3 className="mb-3 text-2xl font-semibold tracking-tight">
+                We are refreshing the live listings
+              </h3>
+              <p className="max-w-2xl text-sm leading-6 text-stone-600">
+                The directory is being curated from verified venue data. In the meantime,
+                explore the sauna, cold plunge and cryotherapy guides to understand the
+                kinds of premium recovery spaces Wellness London covers.
+              </p>
+            </div>
+          )}
         </div>
       </section>
     </main>
