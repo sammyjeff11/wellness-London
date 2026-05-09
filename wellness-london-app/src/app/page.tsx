@@ -60,7 +60,7 @@ export default async function Home() {
           <div className="relative flex min-h-[78vh] items-end px-6 py-12 md:px-14 md:py-16">
             <div className="max-w-4xl text-[#fbf8f1]">
               <p className="mb-8 text-[11px] uppercase tracking-[0.3em] text-[#fbf8f1]/75">
-                Wellness London / Curated recovery spaces
+                Well Edit / London recovery spaces
               </p>
               <h1 className="max-w-5xl font-serif text-[4rem] font-normal leading-[0.92] tracking-normal md:text-[7.6rem]">
                 A quieter way to find wellness in London.
@@ -84,7 +84,7 @@ export default async function Home() {
             </h2>
           </div>
           <p className="max-w-2xl text-lg leading-9 text-[#70695d]">
-            Wellness discovery is usually crowded with claims, prices and booking links. Wellness London slows that down, placing each venue in context so you can understand whether it suits your ritual, your budget and your mood.
+            Wellness discovery is usually crowded with claims, prices and booking links. Well Edit slows that down, placing each venue in context so you can understand whether it suits your ritual, your budget and your mood.
           </p>
         </div>
       </section>
@@ -185,7 +185,7 @@ export default async function Home() {
               <p className="text-sm leading-7 text-[#70695d]">
                 The directory is being curated from verified venue data. In the meantime,
                 explore the sauna, cold plunge and cryotherapy guides to understand the
-                kinds of premium recovery spaces Wellness London covers.
+                kinds of premium recovery spaces Well Edit covers.
               </p>
             </div>
           )}
