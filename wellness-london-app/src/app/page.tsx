@@ -9,16 +9,19 @@ const categoryLinks = [
     href: "/sauna-london",
     label: "Saunas",
     description: "Heat-led recovery spaces across the city.",
+    bestFor: "Best for quiet reset.",
   },
   {
     href: "/cold-plunge-london",
     label: "Cold Plunge",
     description: "Ice baths and contrast therapy studios.",
+    bestFor: "Best for focused recovery.",
   },
   {
     href: "/cryotherapy-london",
     label: "Cryotherapy",
     description: "Cold therapy for recovery and performance.",
+    bestFor: "Best for performance-led routines.",
   },
 ];
 
@@ -73,8 +76,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-28">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+      <section className="px-6 py-24 md:py-32">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.18fr_0.72fr_1.1fr] md:items-end">
+          <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">01</p>
           <div>
             <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
               The edit
@@ -89,32 +93,43 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 pb-20 md:pb-28">
-        <div className="mx-auto grid max-w-6xl gap-10 border-y border-[#d8cebf]/70 py-12 md:grid-cols-3">
-          {categoryLinks.map((category) => (
-            <Link
-              key={category.href}
-              href={category.href}
-              className="group block"
-            >
-              <p className="mb-5 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
-                Guide
-              </p>
-              <h2 className="mb-4 font-serif text-4xl font-normal tracking-normal">
-                {category.label}
-              </h2>
-              <p className="max-w-sm text-sm leading-7 text-[#5f574c]">
-                {category.description}
-              </p>
-              <span className="mt-6 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
-                Explore
-              </span>
-            </Link>
-          ))}
+      <section className="bg-[#fbf8f1] px-6 py-20 md:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 flex items-end justify-between gap-8">
+            <div>
+              <p className="mb-5 text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">02</p>
+              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Guides</p>
+              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Choose a route in.</h2>
+            </div>
+          </div>
+
+          <div className="grid gap-8 border-y border-[#d8cebf]/70 py-8 md:grid-cols-3">
+            {categoryLinks.map((category, index) => (
+              <Link
+                key={category.href}
+                href={category.href}
+                className="group block py-5 transition md:pr-8"
+              >
+                <p className="mb-8 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+                  {String(index + 1).padStart(2, "0")} / Guide
+                </p>
+                <h3 className="mb-4 text-3xl font-medium tracking-normal text-[#29241d]">
+                  {category.label}
+                </h3>
+                <p className="mb-3 max-w-sm text-sm leading-7 text-[#5f574c]">
+                  {category.description}
+                </p>
+                <p className="text-sm text-[#29241d]">{category.bestFor}</p>
+                <span className="mt-7 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
+                  Explore
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="px-6 pb-24 md:pb-32">
+      <section className="px-6 py-24 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-[0.95fr_1.05fr] md:items-center">
           <div className="relative min-h-[520px] overflow-hidden bg-[#d8cebf]">
             {heroImage ? (
@@ -128,15 +143,19 @@ export default async function Home() {
             ) : null}
           </div>
           <div>
+            <p className="mb-6 text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">03</p>
             <p className="mb-6 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
               Curation standard
             </p>
             <blockquote className="font-serif text-4xl font-normal leading-tight md:text-6xl">
               “A useful wellness guide should feel as considered as the places it recommends.”
             </blockquote>
-            <div className="mt-10 grid gap-8">
-              {curationStandards.map((standard) => (
-                <article key={standard.title}>
+            <div className="mt-12 grid gap-0 border-y border-[#d8cebf]/70 md:grid-cols-3">
+              {curationStandards.map((standard, index) => (
+                <article key={standard.title} className="border-b border-[#d8cebf]/70 py-6 md:border-b-0 md:border-r md:px-6 md:first:pl-0 md:last:border-r-0">
+                  <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-[#6f6048]">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
                   <h3 className="mb-2 text-sm uppercase tracking-[0.18em] text-[#29241d]">{standard.title}</h3>
                   <p className="max-w-xl text-sm leading-7 text-[#5f574c]">{standard.text}</p>
                 </article>
@@ -146,9 +165,10 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 pb-28">
+      <section className="border-t border-[#d8cebf]/70 px-6 py-24 md:py-32">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-14 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+          <div className="mb-14 grid gap-8 md:grid-cols-[0.18fr_0.72fr_1.1fr] md:items-end">
+            <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">04</p>
             <div>
               <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
                 Directory
@@ -158,6 +178,9 @@ export default async function Home() {
               </h2>
             </div>
             <div className="max-w-xl text-sm leading-7 text-[#5f574c]">
+              <p className="mb-3">
+                Start with the spaces we would compare first.
+              </p>
               <p>
                 {facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories.
               </p>
