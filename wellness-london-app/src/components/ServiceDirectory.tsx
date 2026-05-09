@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
@@ -67,7 +67,7 @@ function primaryBestFor(facility: ServiceDirectoryFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || "Best fit not yet confirmed";
 }
 
-function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: React.ReactNode }) {
+function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
   return (
     <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#70695d]">
       {label}
