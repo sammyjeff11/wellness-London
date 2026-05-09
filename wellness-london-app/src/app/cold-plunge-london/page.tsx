@@ -73,29 +73,20 @@ export default async function ColdPlungeLondonPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:py-32">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.18fr_0.72fr_1.1fr]">
-          <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">01</p>
-          <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Why cold plunge now</h2>
-          <div className="space-y-6 text-lg leading-9 text-[#5f574c]">
-            <p>Cold plunge has become a short, focused ritual for reset and recovery.</p>
-            <p>The best studios make the experience controlled, clean and approachable.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-6 py-20 md:py-24">
+      <section className="bg-[#fbf8f1] px-6 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-14 grid gap-8 md:grid-cols-[0.18fr_0.72fr_1.1fr] md:items-end">
-            <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">02</p>
+          <div className="mb-12 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
             <div>
-              <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Curated listings</p>
-              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">The cold plunge edit</h2>
+              <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">The Well Edit cold plunge selection</p>
+              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Spaces worth comparing first.</h2>
             </div>
-            <div className="flex flex-wrap gap-4 text-sm text-[#5f574c] md:justify-end">
-              <Link href="/" className="underline underline-offset-4">Back to directory</Link>
-              <Link href="/sauna-london" className="underline underline-offset-4">Saunas</Link>
-              <Link href="/cryotherapy-london" className="underline underline-offset-4">Cryotherapy</Link>
+            <div className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
+              <p className="mb-5">Start with the listings, then use the filters to narrow by location, price, access and experience style.</p>
+              <div className="flex flex-wrap gap-4 text-sm">
+                <Link href="/" className="underline underline-offset-4">Back to directory</Link>
+                <Link href="/sauna-london" className="underline underline-offset-4">Saunas</Link>
+                <Link href="/cryotherapy-london" className="underline underline-offset-4">Cryotherapy</Link>
+              </div>
             </div>
           </div>
 
@@ -105,14 +96,10 @@ export default async function ColdPlungeLondonPage() {
 
       <section className="border-y border-[#d8cebf]/70 px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 flex items-end gap-8">
-            <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">03</p>
-            <h2 className="text-3xl font-medium tracking-normal md:text-4xl">How to choose</h2>
-          </div>
+          <h2 className="mb-12 text-3xl font-medium tracking-normal md:text-4xl">How to choose a cold plunge in London</h2>
           <div className="grid gap-10 md:grid-cols-4">
-            {guidancePoints.map((point, index) => (
+            {guidancePoints.map((point) => (
               <article key={point.title}>
-                <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-[#6f6048]">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">{point.title}</h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{point.text}</p>
               </article>
@@ -123,7 +110,6 @@ export default async function ColdPlungeLondonPage() {
 
       <section className="px-6 py-24">
         <div className="mx-auto max-w-3xl">
-          <p className="mb-6 text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">04</p>
           <h2 className="mb-10 text-3xl font-medium tracking-normal md:text-4xl">Cold Plunge London FAQs</h2>
           <div className="space-y-8">
             {faqs.map((faq) => (
