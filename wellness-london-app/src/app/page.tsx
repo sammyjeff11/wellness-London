@@ -24,16 +24,16 @@ const categoryLinks = [
 
 const curationStandards = [
   {
-    title: "Decision value",
-    text: "Cards now surface best-for fit, access style, price cues and trust signals before users open a profile.",
+    title: "Atmosphere",
+    text: "We look for spaces that feel calm, tactile and considered, not simply well-equipped.",
   },
   {
-    title: "Practicality",
-    text: "Location, booking clarity, towels, showers and checked dates matter because recovery has to fit real routines.",
+    title: "Ritual",
+    text: "The strongest listings make recovery feel repeatable: easy to book, easy to understand, easy to return to.",
   },
   {
-    title: "Quality signals",
-    text: "Listings are structured around atmosphere, service mix, premium level and whether details have been checked.",
+    title: "Trust",
+    text: "Profiles separate confirmed details from public-source research, so the recommendation stays honest.",
   },
 ];
 
@@ -43,112 +43,129 @@ export default async function Home() {
   const serviceCount = new Set(facilities.flatMap((facility) => facility.serviceKeys)).size;
 
   return (
-    <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
-      <section className="px-6 py-10 md:py-14">
-        <div className="relative mx-auto flex min-h-[640px] max-w-6xl items-end overflow-hidden rounded-3xl border border-stone-200 bg-[#d8d0c2] p-8 md:p-12">
+    <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <section className="px-5 pt-6 md:px-8 md:pt-8">
+        <div className="relative mx-auto min-h-[78vh] max-w-[1400px] overflow-hidden bg-[#d8cebf]">
           {heroImage ? (
             <Image
               src={heroImage.url}
               alt={heroImage.filename}
               fill
               priority
-              sizes="(min-width: 1152px) 1152px, 100vw"
+              sizes="100vw"
               className="object-cover"
             />
           ) : null}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-black/10" />
-          <div className="relative grid w-full gap-10 text-white lg:grid-cols-[1fr_300px] lg:items-end">
-            <div className="max-w-3xl">
-              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-white/75">
-                Curated London Wellness Directory
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
+          <div className="relative flex min-h-[78vh] items-end px-6 py-12 md:px-14 md:py-16">
+            <div className="max-w-4xl text-[#fbf8f1]">
+              <p className="mb-8 text-[11px] uppercase tracking-[0.3em] text-[#fbf8f1]/75">
+                Wellness London / Curated recovery spaces
               </p>
-              <h1 className="mb-6 max-w-4xl text-5xl font-semibold tracking-tight md:text-7xl">
-                London&apos;s curated guide to premium wellness spaces
+              <h1 className="max-w-5xl font-serif text-[4rem] font-normal leading-[0.92] tracking-normal md:text-[7.6rem]">
+                A quieter way to find wellness in London.
               </h1>
-              <p className="max-w-2xl text-lg leading-8 text-white/85">
-                Compare saunas, cold plunges, cryotherapy and recovery studios by fit, price, access style and the practical details that help you choose with confidence.
+              <p className="mt-8 max-w-xl text-base leading-8 text-[#fbf8f1]/80 md:text-lg">
+                An edited guide to saunas, cold plunges, cryotherapy and recovery studios, chosen for atmosphere, practical detail and the feeling of return.
               </p>
-            </div>
-
-            <div className="grid gap-3 rounded-2xl border border-white/20 bg-white/10 p-5 text-sm backdrop-blur-md">
-              <div className="flex items-center justify-between border-b border-white/20 pb-3">
-                <span className="text-white/70">Live listings</span>
-                <strong className="text-lg">{facilities.length || "Soon"}</strong>
-              </div>
-              <div className="flex items-center justify-between border-b border-white/20 pb-3">
-                <span className="text-white/70">Recovery categories</span>
-                <strong className="text-lg">{serviceCount || 3}</strong>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-white/70">Decision filters</span>
-                <strong className="text-lg">Phase 1</strong>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
+      <section className="px-6 py-20 md:py-28">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+          <div>
+            <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              The edit
+            </p>
+            <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">
+              Less noise. Better choices.
+            </h2>
+          </div>
+          <p className="max-w-2xl text-lg leading-9 text-[#70695d]">
+            Wellness discovery is usually crowded with claims, prices and booking links. Wellness London slows that down, placing each venue in context so you can understand whether it suits your ritual, your budget and your mood.
+          </p>
+        </div>
+      </section>
+
+      <section className="px-6 pb-20 md:pb-28">
+        <div className="mx-auto grid max-w-6xl gap-10 border-y border-[#d8cebf]/70 py-12 md:grid-cols-3">
           {categoryLinks.map((category) => (
             <Link
               key={category.href}
               href={category.href}
-              className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
+              className="group block"
             >
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#7a643f]">
-                Compare
+              <p className="mb-5 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+                Guide
               </p>
-              <h2 className="mb-2 text-2xl font-semibold tracking-tight">
+              <h2 className="mb-4 font-serif text-4xl font-normal tracking-normal">
                 {category.label}
               </h2>
-              <p className="text-sm leading-6 text-stone-600">
+              <p className="max-w-sm text-sm leading-7 text-[#70695d]">
                 {category.description}
               </p>
+              <span className="mt-6 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
+                Explore
+              </span>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="px-6 pb-20">
-        <div className="mx-auto grid max-w-6xl gap-8 border-y border-stone-200 py-14 md:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7a643f]">
-              How we curate
-            </p>
-            <h2 className="text-4xl font-semibold tracking-tight">
-              A directory built around better decisions
-            </h2>
+      <section className="px-6 pb-24 md:pb-32">
+        <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+          <div className="relative min-h-[520px] overflow-hidden bg-[#d8cebf]">
+            {heroImage ? (
+              <Image
+                src={heroImage.url}
+                alt={heroImage.filename}
+                fill
+                sizes="(min-width: 768px) 45vw, 100vw"
+                className="object-cover"
+              />
+            ) : null}
           </div>
-          <div className="grid gap-4 md:grid-cols-3">
-            {curationStandards.map((standard) => (
-              <article key={standard.title} className="rounded-2xl bg-[#fffdf8] p-5 shadow-sm ring-1 ring-stone-200">
-                <h3 className="mb-2 font-semibold">{standard.title}</h3>
-                <p className="text-sm leading-6 text-stone-600">{standard.text}</p>
-              </article>
-            ))}
+          <div>
+            <p className="mb-6 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              Curation standard
+            </p>
+            <blockquote className="font-serif text-4xl font-normal leading-tight md:text-6xl">
+              “A useful wellness guide should feel as considered as the places it recommends.”
+            </blockquote>
+            <div className="mt-10 grid gap-8">
+              {curationStandards.map((standard) => (
+                <article key={standard.title}>
+                  <h3 className="mb-2 text-sm uppercase tracking-[0.18em] text-[#29241d]">{standard.title}</h3>
+                  <p className="max-w-xl text-sm leading-7 text-[#70695d]">{standard.text}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="px-6 pb-24">
+      <section className="px-6 pb-28">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="mb-14 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7a643f]">
+              <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
                 Directory
               </p>
-              <h2 className="text-4xl font-semibold tracking-tight">
+              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">
                 Curated spaces
               </h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-stone-600">
-              Cards now highlight best-for fit, services, rough pricing, access type and when details were last checked.
-            </p>
+            <div className="max-w-xl text-sm leading-7 text-[#70695d]">
+              <p>
+                {facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories, with best-for notes, pricing cues and checked details where available.
+              </p>
+            </div>
           </div>
 
           {facilities.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-3">
+            <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
               {facilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
@@ -158,14 +175,14 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <div className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-8 shadow-sm">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7a643f]">
+            <div className="max-w-2xl bg-[#fbf8f1] p-8">
+              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
                 Directory coming soon
               </p>
-              <h3 className="mb-3 text-2xl font-semibold tracking-tight">
+              <h3 className="mb-4 font-serif text-4xl font-normal tracking-normal">
                 We are refreshing the live listings
               </h3>
-              <p className="max-w-2xl text-sm leading-6 text-stone-600">
+              <p className="text-sm leading-7 text-[#70695d]">
                 The directory is being curated from verified venue data. In the meantime,
                 explore the sauna, cold plunge and cryotherapy guides to understand the
                 kinds of premium recovery spaces Wellness London covers.
