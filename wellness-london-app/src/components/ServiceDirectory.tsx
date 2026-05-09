@@ -130,10 +130,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   }
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
-  const editorPicks = filteredFacilities.filter((facility) => facility.isFeatured).slice(0, 3);
+  const featuredFacilities = filteredFacilities.filter((facility) => facility.isFeatured);
+  const editorPicks = (featuredFacilities.length > 0 ? featuredFacilities : filteredFacilities).slice(0, Math.min(3, filteredFacilities.length));
   const editorPickSlugs = new Set(editorPicks.map((facility) => facility.slug));
   const remainingFacilities = filteredFacilities.filter((facility) => !editorPickSlugs.has(facility.slug));
-  const hasGroups = editorPicks.length > 0 && remainingFacilities.length > 0;
+  const hasGroups = filteredFacilities.length > 3;
 
   if (facilities.length === 0) {
     return (
@@ -200,19 +201,12 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
       {filteredFacilities.length > 0 ? (
         <section className="space-y-16">
-          <div className="max-w-2xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Browse spaces</p>
-            <h3 className="text-3xl font-medium tracking-normal">Start with the most relevant options.</h3>
-          </div>
-
           {hasGroups ? (
             <>
               <div>
-                <div className="mb-8 flex items-end justify-between gap-6 border-b border-[#d8cebf]/70 pb-5">
-                  <div>
-                    <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
-                    <h4 className="text-2xl font-medium tracking-normal">Featured spaces</h4>
-                  </div>
+                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
+                  <h3 className="text-3xl font-medium tracking-normal">The strongest places to start.</h3>
                 </div>
                 <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
                   {editorPicks.map((facility) => (
@@ -223,8 +217,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
               <div>
                 <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
-                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All matches</p>
-                  <h4 className="text-2xl font-medium tracking-normal">More to compare</h4>
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All spaces</p>
+                  <h3 className="text-2xl font-medium tracking-normal">More options to compare</h3>
                 </div>
                 <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
                   {remainingFacilities.map((facility) => (
@@ -234,10 +228,16 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </div>
             </>
           ) : (
-            <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
-              {filteredFacilities.map((facility) => (
-                <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-              ))}
+            <div>
+              <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
+                <h3 className="text-3xl font-medium tracking-normal">Spaces worth considering</h3>
+              </div>
+              <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+                {filteredFacilities.map((facility) => (
+                  <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+                ))}
+              </div>
             </div>
           )}
         </section>
