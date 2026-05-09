@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
@@ -8,13 +9,28 @@ export const metadata: Metadata = {
   title: "Best Cryotherapy in London | Wellness London",
   description:
     "Discover the best cryotherapy studios in London, including luxury recovery clubs, wellness spaces, and premium performance facilities.",
+  alternates: {
+    canonical: "/cryotherapy-london",
+  },
 };
 
 const guidancePoints = [
-  "Check whether the studio offers whole-body cryotherapy, localised treatments or both.",
-  "Look for clear staff guidance, especially if it is your first session.",
-  "Consider whether you want cryotherapy alone or a wider recovery studio setup.",
-  "Compare introductory offers, packages and memberships for regular use.",
+  {
+    title: "Treatment type",
+    text: "Check whether the studio offers whole-body cryotherapy, localised treatments or both before choosing a session.",
+  },
+  {
+    title: "Staff guidance",
+    text: "Look for clear onboarding and calm staff support, especially if it is your first cryotherapy experience.",
+  },
+  {
+    title: "Wider recovery setup",
+    text: "Consider whether you want cryotherapy alone or a fuller recovery studio with sauna, compression or cold plunge nearby.",
+  },
+  {
+    title: "Price and routine",
+    text: "Compare introductory offers, packages and memberships if you expect cryotherapy to become a regular habit.",
+  },
 ];
 
 const faqs = [
@@ -43,9 +59,7 @@ const faqs = [
 export default async function CryotherapyLondonPage() {
   const facilities = await getFacilities();
   const cryotherapyFacilities = facilities.filter((facility) =>
-    facility.servicesOffered.some((service) =>
-      service.toLowerCase().includes("cryo"),
-    ),
+    facility.serviceKeys.includes("cryotherapy"),
   );
   const heroImage = cryotherapyFacilities.find((facility) => facility.images.length > 0)?.images[0];
 
@@ -82,7 +96,14 @@ export default async function CryotherapyLondonPage() {
       <section className="px-6 py-10">
         <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#c9c8c2] p-8 md:p-12">
           {heroImage ? (
-            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+            <Image
+              src={heroImage.url}
+              alt={heroImage.filename || "Premium cryotherapy studio in London"}
+              fill
+              priority
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              className="object-cover"
+            />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
           <div className="relative max-w-3xl text-white">
@@ -93,7 +114,7 @@ export default async function CryotherapyLondonPage() {
               Best Cryotherapy in London
             </h1>
             <p className="max-w-2xl text-lg leading-8 text-white/85">
-              Discover London’s leading cryotherapy studios, wellness clubs and recovery spaces offering performance-focused wellness experiences.
+              Discover London&apos;s leading cryotherapy studios, wellness clubs and recovery spaces offering performance-focused wellness experiences.
             </p>
           </div>
         </div>
@@ -106,7 +127,17 @@ export default async function CryotherapyLondonPage() {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Curated listings</p>
               <h2 className="text-4xl font-semibold tracking-tight">Cryotherapy spaces</h2>
             </div>
-            <Link href="/cold-plunge-london" className="text-sm font-medium underline">Explore cold plunge</Link>
+            <div className="flex flex-wrap gap-4 text-sm font-medium">
+              <Link href="/" className="underline underline-offset-4">
+                Back to directory
+              </Link>
+              <Link href="/sauna-london" className="underline underline-offset-4">
+                Explore saunas
+              </Link>
+              <Link href="/cold-plunge-london" className="underline underline-offset-4">
+                Explore cold plunge
+              </Link>
+            </div>
           </div>
 
           {cryotherapyFacilities.length > 0 ? (
@@ -125,6 +156,7 @@ export default async function CryotherapyLondonPage() {
                     services: facility.servicesOffered,
                     priceRange: facility.overallPriceRange,
                     rating: facility.googleRating,
+                    accessType: facility.accessType,
                   }}
                 />
               ))}
@@ -154,8 +186,9 @@ export default async function CryotherapyLondonPage() {
           <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose cryotherapy in London</h2>
           <div className="grid gap-5 md:grid-cols-4">
             {guidancePoints.map((point) => (
-              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
-                <p className="text-sm leading-6 text-stone-600">{point}</p>
+              <article key={point.title} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{point.title}</h3>
+                <p className="text-sm leading-6 text-stone-600">{point.text}</p>
               </article>
             ))}
           </div>
