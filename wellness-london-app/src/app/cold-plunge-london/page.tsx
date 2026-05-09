@@ -138,6 +138,44 @@ export default async function ColdPlungeLondonPage() {
           )}
         </div>
       </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
+            Why cold plunge has become a London recovery ritual
+          </h2>
+          <p>Cold plunge has become part of the city’s recovery language: short, focused and deliberately uncomfortable in a way that feels clarifying. The best spaces make the experience feel controlled rather than chaotic.</p>
+          <p>Many London studios now frame cold immersion as part of contrast therapy, pairing plunge pools with sauna, breathwork and quiet rest. That broader setting can make the practice easier to approach and more useful as a repeat ritual.</p>
+          <p>For regular users, the appeal is often routine. A well-run cold plunge space can become a reset point between training, work and the pace of the city.</p>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose a cold plunge in London</h2>
+          <div className="grid gap-5 md:grid-cols-4">
+            {guidancePoints.map((point) => (
+              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <p className="text-sm leading-6 text-stone-600">{point}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Cold Plunge London FAQs</h2>
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
