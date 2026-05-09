@@ -95,7 +95,7 @@ export default async function Home() {
               <FacilityCard
                 key={facility.id}
                 facility={{
-                  slug: facility.id,
+                  slug: facility.slug,
                   name: facility.name,
                   description: facility.editorialSummary || facility.description,
                   website: facility.website,
