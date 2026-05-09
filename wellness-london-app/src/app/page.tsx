@@ -8,32 +8,32 @@ const categoryLinks = [
   {
     href: "/sauna-london",
     label: "Saunas",
-    description: "Heat, breath and calm recovery spaces across the city.",
+    description: "Heat-led recovery spaces across the city.",
   },
   {
     href: "/cold-plunge-london",
     label: "Cold Plunge",
-    description: "Contrast therapy and ice bath studios for focused reset.",
+    description: "Ice baths and contrast therapy studios.",
   },
   {
     href: "/cryotherapy-london",
     label: "Cryotherapy",
-    description: "Performance recovery treatments in premium London spaces.",
+    description: "Cold therapy for recovery and performance.",
   },
 ];
 
 const curationStandards = [
   {
     title: "Atmosphere",
-    text: "We look for spaces that feel calm, tactile and considered, not simply well-equipped.",
+    text: "Calm, tactile spaces with a clear point of view.",
   },
   {
     title: "Ritual",
-    text: "The strongest listings make recovery feel repeatable: easy to book, easy to understand, easy to return to.",
+    text: "Easy to book, understand and return to.",
   },
   {
     title: "Trust",
-    text: "Profiles separate confirmed details from public-source research, so the recommendation stays honest.",
+    text: "Clear distinction between checked and unconfirmed details.",
   },
 ];
 
@@ -65,8 +65,8 @@ export default async function Home() {
               <h1 className="max-w-5xl font-serif text-[4rem] font-normal leading-[0.92] tracking-normal md:text-[7.6rem]">
                 A quieter way to find wellness in London.
               </h1>
-              <p className="mt-8 max-w-xl text-base leading-8 text-[#fbf8f1]/80 md:text-lg">
-                An edited guide to saunas, cold plunges, cryotherapy and recovery studios, chosen for atmosphere, practical detail and the feeling of return.
+              <p className="mt-8 max-w-lg text-base leading-8 text-[#fbf8f1]/86 md:text-lg">
+                An edited guide to London recovery spaces.
               </p>
             </div>
           </div>
@@ -83,8 +83,8 @@ export default async function Home() {
               Less noise. Better choices.
             </h2>
           </div>
-          <p className="max-w-2xl text-lg leading-9 text-[#70695d]">
-            Wellness discovery is usually crowded with claims, prices and booking links. Well Edit slows that down, placing each venue in context so you can understand whether it suits your ritual, your budget and your mood.
+          <p className="max-w-xl text-lg leading-9 text-[#5f574c]">
+            Well Edit slows wellness discovery down: fewer claims, clearer context, better places to begin.
           </p>
         </div>
       </section>
@@ -103,7 +103,7 @@ export default async function Home() {
               <h2 className="mb-4 font-serif text-4xl font-normal tracking-normal">
                 {category.label}
               </h2>
-              <p className="max-w-sm text-sm leading-7 text-[#70695d]">
+              <p className="max-w-sm text-sm leading-7 text-[#5f574c]">
                 {category.description}
               </p>
               <span className="mt-6 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
@@ -138,7 +138,7 @@ export default async function Home() {
               {curationStandards.map((standard) => (
                 <article key={standard.title}>
                   <h3 className="mb-2 text-sm uppercase tracking-[0.18em] text-[#29241d]">{standard.title}</h3>
-                  <p className="max-w-xl text-sm leading-7 text-[#70695d]">{standard.text}</p>
+                  <p className="max-w-xl text-sm leading-7 text-[#5f574c]">{standard.text}</p>
                 </article>
               ))}
             </div>
@@ -157,9 +157,9 @@ export default async function Home() {
                 Curated spaces
               </h2>
             </div>
-            <div className="max-w-xl text-sm leading-7 text-[#70695d]">
+            <div className="max-w-xl text-sm leading-7 text-[#5f574c]">
               <p>
-                {facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories, with best-for notes, pricing cues and checked details where available.
+                {facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories.
               </p>
             </div>
           </div>
@@ -179,13 +179,11 @@ export default async function Home() {
               <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
                 Directory coming soon
               </p>
-              <h3 className="mb-4 font-serif text-4xl font-normal tracking-normal">
+              <h3 className="mb-4 text-3xl font-medium tracking-normal">
                 We are refreshing the live listings
               </h3>
-              <p className="text-sm leading-7 text-[#70695d]">
-                The directory is being curated from verified venue data. In the meantime,
-                explore the sauna, cold plunge and cryotherapy guides to understand the
-                kinds of premium recovery spaces Well Edit covers.
+              <p className="text-sm leading-7 text-[#5f574c]">
+                Explore the sauna, cold plunge and cryotherapy guides while the directory is being updated.
               </p>
             </div>
           )}
