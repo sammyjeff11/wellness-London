@@ -56,6 +56,11 @@ type AirtableRecord = {
   };
 };
 
+type AirtableResponse = {
+  records?: AirtableRecord[];
+  offset?: string;
+};
+
 function normaliseList(value: string[] | string | undefined): string[] {
   if (!value) return [];
   if (Array.isArray(value)) return value;
@@ -80,33 +85,8 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
     }));
 }
 
-export async function getFacilities(): Promise<AirtableFacility[]> {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
-
-  if (!apiKey || !baseId) {
-    console.warn("Airtable environment variables are missing. Falling back to no live records.");
-    return [];
-  }
-
-  const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}`;
-
-  const response = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-    },
-    next: { revalidate: 300 },
-  });
-
-  if (!response.ok) {
-    console.error("Failed to fetch Airtable facilities", response.status, response.statusText);
-    return [];
-  }
-
-  const data = (await response.json()) as { records?: AirtableRecord[] };
-
-  return (data.records || []).map((record) => ({
+function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
+  return {
     id: record.id,
     name: record.fields.Name || "Unnamed wellness space",
     website: record.fields.Website || "#",
@@ -126,5 +106,47 @@ export async function getFacilities(): Promise<AirtableFacility[]> {
     neighbourhood: normaliseSingle(record.fields.Neighbourhood),
     areaOfLondon: normaliseSingle(record.fields["Area of London"]),
     instagramLink: record.fields["Instagram Link"] || "",
-  }));
+  };
+}
+
+export async function getFacilities(): Promise<AirtableFacility[]> {
+  const apiKey = process.env.AIRTABLE_API_KEY;
+  const baseId = process.env.AIRTABLE_BASE_ID;
+  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
+
+  if (!apiKey || !baseId) {
+    console.warn("Airtable environment variables are missing. Falling back to no live records.");
+    return [];
+  }
+
+  const records: AirtableRecord[] = [];
+  let offset: string | undefined;
+
+  do {
+    const params = new URLSearchParams({ pageSize: "100" });
+
+    if (offset) {
+      params.set("offset", offset);
+    }
+
+    const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
+
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+      },
+      next: { revalidate: 300 },
+    });
+
+    if (!response.ok) {
+      console.error("Failed to fetch Airtable facilities", response.status, response.statusText);
+      return records.map(mapRecordToFacility);
+    }
+
+    const data = (await response.json()) as AirtableResponse;
+    records.push(...(data.records || []));
+    offset = data.offset;
+  } while (offset);
+
+  return records.map(mapRecordToFacility);
 }

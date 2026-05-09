@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
 
 const pages = [
   {
@@ -22,8 +21,6 @@ const pages = [
 export default function SiteMapPage() {
   return (
     <main className="min-h-screen bg-white text-black">
-      <Navbar />
-
       <div className="max-w-4xl mx-auto px-6 py-16">
         <h1 className="text-5xl font-semibold tracking-tight mb-6">
           Site Map

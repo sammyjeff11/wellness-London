@@ -62,17 +62,6 @@ export default async function SaunaLondonPage() {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      <header className="flex justify-between items-center p-6 border-b">
-        <Link href="/" className="text-xl font-semibold">
-          Wellness London
-        </Link>
-        <nav className="space-x-6 text-sm">
-          <Link href="/sauna-london">Saunas</Link>
-          <Link href="/cold-plunge-london">Cold Plunge</Link>
-          <Link href="/cryotherapy-london">Cryotherapy</Link>
-        </nav>
-      </header>
-
       <section className="text-center py-20 px-6">
         <p className="text-sm font-medium uppercase tracking-wide text-gray-500 mb-3">
           London sauna guide
@@ -93,8 +82,8 @@ export default async function SaunaLondonPage() {
                 Selected from the Wellness London directory.
               </p>
             </div>
-            <Link href="/" className="text-sm font-medium underline">
-              Back to homepage
+            <Link href="/cold-plunge-london" className="text-sm font-medium underline">
+              Explore cold plunge
             </Link>
           </div>
 
