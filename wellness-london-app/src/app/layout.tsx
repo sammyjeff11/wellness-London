@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const siteUrl = new URL("https://wellnessldn.com");
+const siteUrl = new URL("https://welledit.co.uk");
 const siteDescription =
   "Discover curated wellness spaces in London, including saunas, cold plunges, cryotherapy and recovery studios.";
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Wellness London | Curated London Wellness Directory",
+    default: "Well Edit | Curated London Wellness Directory",
     template: "%s",
   },
   description: siteDescription,
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Wellness London | Curated London Wellness Directory",
+    title: "Well Edit | Curated London Wellness Directory",
     description: siteDescription,
     url: "/",
-    siteName: "Wellness London",
+    siteName: "Well Edit",
     locale: "en_GB",
     type: "website",
     images: [
@@ -28,13 +28,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Wellness London",
+        alt: "Well Edit",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wellness London | Curated London Wellness Directory",
+    title: "Well Edit | Curated London Wellness Directory",
     description: siteDescription,
     images: ["/opengraph-image"],
   },
