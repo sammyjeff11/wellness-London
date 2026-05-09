@@ -11,9 +11,7 @@ export const metadata: Metadata = {
   title: "Best Saunas in London | Well Edit",
   description:
     "Discover curated sauna and recovery spaces across London, including premium wellness studios, contrast therapy spaces and recovery facilities.",
-  alternates: {
-    canonical: "/sauna-london",
-  },
+  alternates: { canonical: "/sauna-london" },
 };
 
 const guidancePoints = [
@@ -65,9 +63,7 @@ export default async function SaunaLondonPage() {
 
       <section className="px-5 pt-6 md:px-8 md:pt-8">
         <div className="relative mx-auto flex min-h-[68vh] max-w-[1400px] items-end overflow-hidden bg-[#b49b7e] px-6 py-12 md:px-14 md:py-16">
-          {heroImage ? (
-            <Image src={heroImage.url} alt={heroImage.filename || "Premium sauna space in London"} fill priority sizes="100vw" className="object-cover" />
-          ) : null}
+          {heroImage ? <Image src={heroImage.url} alt={heroImage.filename || "Premium sauna space in London"} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
           <div className="relative max-w-4xl text-[#fbf8f1]">
             <p className="mb-8 text-[11px] uppercase tracking-[0.3em] text-[#fbf8f1]/75">Well Edit / London sauna guide</p>
@@ -77,29 +73,20 @@ export default async function SaunaLondonPage() {
         </div>
       </section>
 
-      <section className="px-6 py-24 md:py-32">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.18fr_0.72fr_1.1fr]">
-          <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">01</p>
-          <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Why sauna now</h2>
-          <div className="space-y-6 text-lg leading-9 text-[#5f574c]">
-            <p>Sauna has moved beyond the spa day and into weekly recovery routines.</p>
-            <p>The best London spaces make heat feel calm, clean and easy to return to.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-6 py-20 md:py-24">
+      <section className="bg-[#fbf8f1] px-6 py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-14 grid gap-8 md:grid-cols-[0.18fr_0.72fr_1.1fr] md:items-end">
-            <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">02</p>
+          <div className="mb-12 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
             <div>
-              <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Curated listings</p>
-              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">The sauna edit</h2>
+              <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">The Well Edit sauna selection</p>
+              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Spaces worth comparing first.</h2>
             </div>
-            <div className="flex flex-wrap gap-4 text-sm text-[#5f574c] md:justify-end">
-              <Link href="/" className="underline underline-offset-4">Back to directory</Link>
-              <Link href="/cold-plunge-london" className="underline underline-offset-4">Cold plunge</Link>
-              <Link href="/cryotherapy-london" className="underline underline-offset-4">Cryotherapy</Link>
+            <div className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
+              <p className="mb-5">Start with the listings, then use the filters to narrow by location, price, access and experience style.</p>
+              <div className="flex flex-wrap gap-4 text-sm">
+                <Link href="/" className="underline underline-offset-4">Back to directory</Link>
+                <Link href="/cold-plunge-london" className="underline underline-offset-4">Cold plunge</Link>
+                <Link href="/cryotherapy-london" className="underline underline-offset-4">Cryotherapy</Link>
+              </div>
             </div>
           </div>
 
@@ -114,14 +101,10 @@ export default async function SaunaLondonPage() {
 
       <section className="border-y border-[#d8cebf]/70 px-6 py-20">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 flex items-end gap-8">
-            <p className="text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">03</p>
-            <h2 className="text-3xl font-medium tracking-normal md:text-4xl">How to choose</h2>
-          </div>
+          <h2 className="mb-12 text-3xl font-medium tracking-normal md:text-4xl">How to choose a sauna in London</h2>
           <div className="grid gap-10 md:grid-cols-4">
-            {guidancePoints.map((point, index) => (
+            {guidancePoints.map((point) => (
               <article key={point.title}>
-                <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-[#6f6048]">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">{point.title}</h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{point.text}</p>
               </article>
@@ -132,7 +115,6 @@ export default async function SaunaLondonPage() {
 
       <section className="px-6 py-24">
         <div className="mx-auto max-w-3xl">
-          <p className="mb-6 text-6xl font-light leading-none text-[#c7bba9] md:text-8xl">04</p>
           <h2 className="mb-10 text-3xl font-medium tracking-normal md:text-4xl">Sauna London FAQs</h2>
           <div className="space-y-8">
             {faqs.map((faq) => (
