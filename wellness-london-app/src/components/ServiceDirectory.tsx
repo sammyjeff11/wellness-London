@@ -69,9 +69,9 @@ function primaryBestFor(facility: ServiceDirectoryFacility) {
 
 function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
   return (
-    <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#70695d]">
+    <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#5f574c]">
       {label}
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-w-0 rounded-none border-0 border-b border-[#cfc5b6] bg-transparent px-0 py-3 text-sm normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#6f6048]">
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-w-0 rounded-none border-0 border-b border-[#bfb3a3] bg-transparent px-0 py-3 text-sm normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#29241d]">
         {children}
       </select>
     </label>
@@ -134,21 +134,21 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   if (facilities.length === 0) {
     return (
       <div className="bg-[#fbf8f1] p-8">
-        <h3 className="mb-2 font-serif text-2xl font-normal">{emptyTitle}</h3>
-        <p className="text-sm leading-6 text-[#70695d]">{emptyText}</p>
+        <h3 className="mb-2 text-2xl font-medium">{emptyTitle}</h3>
+        <p className="text-sm leading-6 text-[#5f574c]">{emptyText}</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-20">
-      <section className="border-y border-[#d8cebf]/70 py-8">
+    <div className="space-y-16">
+      <section className="border-y border-[#d8cebf]/70 py-7">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine the edit</p>
-            <h3 className="font-serif text-4xl font-normal tracking-normal">Find the right fit faster</h3>
+            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine</p>
+            <h3 className="text-2xl font-medium tracking-normal">Find the right fit</h3>
           </div>
-          <p className="text-sm text-[#70695d]">{filteredFacilities.length} of {facilities.length} listings shown</p>
+          <p className="text-sm text-[#5f574c]">{filteredFacilities.length} of {facilities.length} shown</p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-6">
@@ -195,30 +195,30 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       </section>
 
       {filteredFacilities.length > 0 ? (
-        <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
           {filteredFacilities.map((facility) => (
             <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
           ))}
         </div>
       ) : (
         <div className="bg-[#fbf8f1] p-8">
-          <h3 className="mb-2 font-serif text-2xl font-normal">No listings match those filters</h3>
-          <p className="text-sm leading-6 text-[#70695d]">Try clearing one or two filters to compare more options.</p>
+          <h3 className="mb-2 text-2xl font-medium">No listings match those filters</h3>
+          <p className="text-sm leading-6 text-[#5f574c]">Try clearing one or two filters to compare more options.</p>
         </div>
       )}
 
-      <details className="group border-y border-[#d8cebf]/70 py-7">
+      <details className="group border-y border-[#d8cebf]/70 py-6">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[#29241d] marker:hidden">
           <span>
             <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Compare details</span>
-            <span className="font-serif text-4xl font-normal tracking-normal">Open the comparison table</span>
+            <span className="text-2xl font-medium tracking-normal">Open comparison table</span>
           </span>
-          <span className="text-sm text-[#70695d] transition group-open:rotate-45">+</span>
+          <span className="text-sm text-[#5f574c] transition group-open:rotate-45">+</span>
         </summary>
 
         <div className="mt-8 overflow-x-auto border-t border-[#d8cebf]/70 pt-2">
           <table className="w-full min-w-[920px] border-collapse text-left text-sm">
-            <thead className="text-[11px] uppercase tracking-[0.16em] text-[#70695d]">
+            <thead className="text-[11px] uppercase tracking-[0.16em] text-[#5f574c]">
               <tr>
                 <th className="py-5 pr-6">Facility</th>
                 <th className="py-5 pr-6">Area</th>
@@ -232,12 +232,12 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
             <tbody className="divide-y divide-[#d8cebf]/70">
               {filteredFacilities.map((facility) => (
                 <tr key={facility.slug}>
-                  <td className="py-5 pr-6 font-serif text-xl text-[#29241d]">{facility.name}</td>
-                  <td className="py-5 pr-6 text-[#70695d]">{facility.location || "London"}</td>
-                  <td className="py-5 pr-6 text-[#70695d]">{primaryBestFor(facility)}</td>
-                  <td className="py-5 pr-6 text-[#70695d]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
-                  <td className="py-5 pr-6 text-[#70695d]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td>
-                  <td className="py-5 pr-6 text-[#70695d]">{facility.privateOrShared || "Not confirmed"}</td>
+                  <td className="py-5 pr-6 text-base font-medium text-[#29241d]">{facility.name}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]">{facility.location || "London"}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]">{primaryBestFor(facility)}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]">{facility.privateOrShared || "Not confirmed"}</td>
                   <td className="py-5">
                     <Link
                       href={`/facility/${facility.slug}`}
