@@ -67,8 +67,15 @@ function primaryBestFor(facility: ServiceDirectoryFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || "Best fit not yet confirmed";
 }
 
-function optionLabel(value: string) {
-  return value || "Any";
+function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: React.ReactNode }) {
+  return (
+    <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#70695d]">
+      {label}
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-w-0 rounded-none border-0 border-b border-[#cfc5b6] bg-transparent px-0 py-3 text-sm normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#6f6048]">
+        {children}
+      </select>
+    </label>
+  );
 }
 
 export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText }: ServiceDirectoryProps) {
@@ -126,79 +133,61 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   if (facilities.length === 0) {
     return (
-      <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
-        <h3 className="mb-2 text-lg font-semibold">{emptyTitle}</h3>
-        <p className="text-sm text-stone-600">{emptyText}</p>
+      <div className="bg-[#fbf8f1] p-8">
+        <h3 className="mb-2 font-serif text-2xl font-normal">{emptyTitle}</h3>
+        <p className="text-sm leading-6 text-[#70695d]">{emptyText}</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-12">
-      <section className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5 shadow-sm">
-        <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <div className="space-y-20">
+      <section className="border-y border-[#d8cebf]/70 py-8">
+        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#7a643f]">Compare options</p>
-            <h3 className="text-2xl font-semibold tracking-tight">Find the right fit faster</h3>
+            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine the edit</p>
+            <h3 className="font-serif text-4xl font-normal tracking-normal">Find the right fit faster</h3>
           </div>
-          <p className="text-sm text-stone-500">{filteredFacilities.length} of {facilities.length} listings shown</p>
+          <p className="text-sm text-[#70695d]">{filteredFacilities.length} of {facilities.length} listings shown</p>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-6">
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Area
-            <select value={filters.area} onChange={(event) => updateFilter("area", event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="">Any area</option>
-              {areaOptions.map((option) => <option key={option} value={option}>{optionLabel(option)}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Premium
-            <select value={filters.premiumLevel} onChange={(event) => updateFilter("premiumLevel", event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="">Any level</option>
-              {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Experience
-            <select value={filters.experienceType} onChange={(event) => updateFilter("experienceType", event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="">Any type</option>
-              {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Access
-            <select value={filters.privateOrShared} onChange={(event) => updateFilter("privateOrShared", event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="">Any access</option>
-              {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Beginner
-            <select value={filters.beginnerFriendly} onChange={(event) => updateFilter("beginnerFriendly", event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="">Any</option>
-              {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </select>
-          </label>
-          <label className="grid gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-stone-500">
-            Sort
-            <select value={sort} onChange={(event) => setSort(event.target.value)} className="rounded-full border border-stone-200 bg-white px-4 py-3 text-sm normal-case tracking-normal text-[#211d18]">
-              <option value="recommended">Recommended</option>
-              <option value="price-low">Price low to high</option>
-              <option value="premium">Premium/luxury</option>
-              <option value="recently-checked">Recently checked</option>
-            </select>
-          </label>
+        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-6">
+          <FilterSelect label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
+            <option value="">Any area</option>
+            {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
+            <option value="">Any level</option>
+            {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
+            <option value="">Any type</option>
+            {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+            <option value="">Any access</option>
+            {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
+            <option value="">Any</option>
+            {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Sort" value={sort} onChange={setSort}>
+            <option value="recommended">Recommended</option>
+            <option value="price-low">Price low to high</option>
+            <option value="premium">Premium/luxury</option>
+            <option value="recently-checked">Recently checked</option>
+          </FilterSelect>
         </div>
 
         {activeFilters.length > 0 ? (
-          <div className="mt-4 flex flex-wrap items-center gap-2">
+          <div className="mt-6 flex flex-wrap items-center gap-3">
             {activeFilters.map(([key, value]) => (
-              <button key={key} type="button" onClick={() => updateFilter(key as keyof FilterState, "")} className="rounded-full bg-[#211d18] px-3 py-1 text-xs font-medium text-white">
+              <button key={key} type="button" onClick={() => updateFilter(key as keyof FilterState, "")} className="rounded-full bg-[#29241d] px-4 py-2 text-xs text-[#fbf8f1]">
                 {value} x
               </button>
             ))}
-            <button type="button" onClick={clearFilters} className="text-sm font-medium underline underline-offset-4">
+            <button type="button" onClick={clearFilters} className="text-sm text-[#29241d] underline underline-offset-4">
               Clear all
             </button>
           </div>
@@ -206,36 +195,33 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       </section>
 
       <section>
-        <div className="mb-5 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#7a643f]">Comparison table</p>
-            <h3 className="text-2xl font-semibold tracking-tight">Compare before you click</h3>
-          </div>
-          <p className="text-sm text-stone-500">Designed for quick scanning on desktop and mobile.</p>
+        <div className="mb-6 max-w-2xl">
+          <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Comparison notes</p>
+          <h3 className="font-serif text-4xl font-normal tracking-normal">Compare before you click</h3>
         </div>
-        <div className="overflow-x-auto rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] shadow-sm">
+        <div className="overflow-x-auto border-y border-[#d8cebf]/70">
           <table className="w-full min-w-[920px] border-collapse text-left text-sm">
-            <thead className="bg-[#eee7dc] text-xs uppercase tracking-[0.14em] text-stone-500">
+            <thead className="text-[11px] uppercase tracking-[0.16em] text-[#70695d]">
               <tr>
-                <th className="px-4 py-4">Facility</th>
-                <th className="px-4 py-4">Area</th>
-                <th className="px-4 py-4">Best for</th>
-                <th className="px-4 py-4">Price from</th>
-                <th className="px-4 py-4">Experience</th>
-                <th className="px-4 py-4">Private/shared</th>
-                <th className="px-4 py-4">CTA</th>
+                <th className="py-5 pr-6">Facility</th>
+                <th className="py-5 pr-6">Area</th>
+                <th className="py-5 pr-6">Best for</th>
+                <th className="py-5 pr-6">Price from</th>
+                <th className="py-5 pr-6">Experience</th>
+                <th className="py-5 pr-6">Private/shared</th>
+                <th className="py-5">CTA</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-stone-200">
+            <tbody className="divide-y divide-[#d8cebf]/70">
               {filteredFacilities.map((facility) => (
                 <tr key={facility.slug}>
-                  <td className="px-4 py-4 font-semibold">{facility.name}</td>
-                  <td className="px-4 py-4 text-stone-600">{facility.location || "London"}</td>
-                  <td className="px-4 py-4 text-stone-600">{primaryBestFor(facility)}</td>
-                  <td className="px-4 py-4 text-stone-600">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
-                  <td className="px-4 py-4 text-stone-600">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details not yet confirmed"}</td>
-                  <td className="px-4 py-4 text-stone-600">{facility.privateOrShared || "Not confirmed"}</td>
-                  <td className="px-4 py-4">
+                  <td className="py-5 pr-6 font-serif text-xl text-[#29241d]">{facility.name}</td>
+                  <td className="py-5 pr-6 text-[#70695d]">{facility.location || "London"}</td>
+                  <td className="py-5 pr-6 text-[#70695d]">{primaryBestFor(facility)}</td>
+                  <td className="py-5 pr-6 text-[#70695d]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
+                  <td className="py-5 pr-6 text-[#70695d]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td>
+                  <td className="py-5 pr-6 text-[#70695d]">{facility.privateOrShared || "Not confirmed"}</td>
+                  <td className="py-5">
                     <Link
                       href={`/facility/${facility.slug}`}
                       onClick={() => trackEvent("comparison_table_click", {
@@ -245,7 +231,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
                         area: facility.location,
                         page_path: window.location.pathname,
                       })}
-                      className="font-semibold underline underline-offset-4"
+                      className="text-[#29241d] underline underline-offset-4"
                     >
                       View
                     </Link>
@@ -258,15 +244,15 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       </section>
 
       {filteredFacilities.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
           {filteredFacilities.map((facility) => (
             <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
           ))}
         </div>
       ) : (
-        <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
-          <h3 className="mb-2 text-lg font-semibold">No listings match those filters</h3>
-          <p className="text-sm text-stone-600">Try clearing one or two filters to compare more options.</p>
+        <div className="bg-[#fbf8f1] p-8">
+          <h3 className="mb-2 font-serif text-2xl font-normal">No listings match those filters</h3>
+          <p className="text-sm leading-6 text-[#70695d]">Try clearing one or two filters to compare more options.</p>
         </div>
       )}
     </div>
