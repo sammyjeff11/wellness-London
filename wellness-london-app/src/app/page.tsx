@@ -25,8 +25,18 @@ const categoryLinks = [
   },
 ];
 
+function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
+  return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
+}
+
 export default async function Home() {
   const facilities = await getFacilities();
+  const directoryFacilities = facilities.map(toDirectoryFacility);
+  const selectedFacilities = [...directoryFacilities]
+    .sort((a, b) => selectionScore(b) - selectionScore(a))
+    .slice(0, Math.min(3, directoryFacilities.length));
+  const selectedSlugs = new Set(selectedFacilities.map((facility) => facility.slug));
+  const remainingFacilities = directoryFacilities.filter((facility) => !selectedSlugs.has(facility.slug));
   const heroImage = facilities.find((facility) => facility.images.length > 0)?.images[0];
   const serviceCount = new Set(facilities.flatMap((facility) => facility.serviceKeys)).size;
 
@@ -65,14 +75,14 @@ export default async function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-end">
           <div>
             <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-              Featured spaces
+              The Well Edit selection
             </p>
             <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">
-              Start here.
+              Spaces worth starting with.
             </h2>
           </div>
           <div className="max-w-xl text-sm leading-7 text-[#5f574c]">
-            <p className="mb-3">Start with the spaces we would compare first.</p>
+            <p className="mb-3">A short list of places that give the strongest first read of London’s recovery scene.</p>
             <p>{facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories.</p>
           </div>
         </div>
@@ -80,15 +90,41 @@ export default async function Home() {
 
       <section className="px-6 pb-24 md:pb-32">
         <div className="mx-auto max-w-6xl">
-          {facilities.length > 0 ? (
-            <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
-              {facilities.map((facility) => (
-                <FacilityCard
-                  key={facility.id}
-                  facility={toDirectoryFacility(facility)}
-                  source="homepage"
-                />
-              ))}
+          {directoryFacilities.length > 0 ? (
+            <div className="space-y-20">
+              <div>
+                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
+                  <h3 className="text-2xl font-medium tracking-normal">The first places to compare</h3>
+                </div>
+                <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+                  {selectedFacilities.map((facility) => (
+                    <FacilityCard
+                      key={facility.slug}
+                      facility={facility}
+                      source="homepage"
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {remainingFacilities.length > 0 ? (
+                <div>
+                  <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                    <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All spaces</p>
+                    <h3 className="text-2xl font-medium tracking-normal">More places to consider</h3>
+                  </div>
+                  <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+                    {remainingFacilities.map((facility) => (
+                      <FacilityCard
+                        key={facility.slug}
+                        facility={facility}
+                        source="homepage"
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
           ) : (
             <div className="max-w-2xl bg-[#fbf8f1] p-8">
@@ -146,9 +182,9 @@ export default async function Home() {
 
       <section className="px-6 py-16 md:py-20">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-[#d8cebf]/70 pt-8 text-sm leading-7 text-[#5f574c] md:flex-row md:items-start md:justify-between">
-          <p className="text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">How we edit</p>
+          <p className="text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">How we choose</p>
           <p className="max-w-2xl">
-            Well Edit favours calm, practical spaces with clear details, checked where possible and presented without unnecessary noise.
+            We prioritise calm, practical spaces with clear details, useful facilities and enough context to help you decide quickly.
           </p>
         </div>
       </section>
