@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import { getFacilities } from "@/lib/airtable";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 const categoryLinks = [
   {
@@ -23,16 +24,16 @@ const categoryLinks = [
 
 const curationStandards = [
   {
-    title: "Atmosphere",
-    text: "Spaces are considered for calm, privacy, design quality and the feeling of genuine reset.",
-  },
-  {
-    title: "Facilities",
-    text: "Listings prioritise thoughtful recovery setups, from showers and changing rooms to contrast therapy flow.",
+    title: "Decision value",
+    text: "Cards now surface best-for fit, access style, price cues and trust signals before users open a profile.",
   },
   {
     title: "Practicality",
-    text: "Location, booking clarity, access model and price structure all matter for repeat use.",
+    text: "Location, booking clarity, towels, showers and checked dates matter because recovery has to fit real routines.",
+  },
+  {
+    title: "Quality signals",
+    text: "Listings are structured around atmosphere, service mix, premium level and whether details have been checked.",
   },
 ];
 
@@ -65,7 +66,7 @@ export default async function Home() {
                 London&apos;s curated guide to premium wellness spaces
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-white/85">
-                Independently organised saunas, cold plunges, cryotherapy and recovery studios chosen for atmosphere, facilities and thoughtful care.
+                Compare saunas, cold plunges, cryotherapy and recovery studios by fit, price, access style and the practical details that help you choose with confidence.
               </p>
             </div>
 
@@ -79,8 +80,8 @@ export default async function Home() {
                 <strong className="text-lg">{serviceCount || 3}</strong>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-white/70">City focus</span>
-                <strong className="text-lg">London</strong>
+                <span className="text-white/70">Decision filters</span>
+                <strong className="text-lg">Phase 1</strong>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ export default async function Home() {
               className="rounded-2xl border border-stone-200 bg-[#fffdf8] p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
             >
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#7a643f]">
-                Guide
+                Compare
               </p>
               <h2 className="mb-2 text-2xl font-semibold tracking-tight">
                 {category.label}
@@ -116,7 +117,7 @@ export default async function Home() {
               How we curate
             </p>
             <h2 className="text-4xl font-semibold tracking-tight">
-              A directory built around quality, not volume
+              A directory built around better decisions
             </h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -142,7 +143,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-stone-600">
-              Compare London wellness spaces by location, service mix, access type and the details that make a recovery ritual worth repeating.
+              Cards now highlight best-for fit, services, rough pricing, access type and when details were last checked.
             </p>
           </div>
 
@@ -151,19 +152,8 @@ export default async function Home() {
               {facilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
-                  facility={{
-                    slug: facility.slug,
-                    name: facility.name,
-                    description: facility.editorialSummary || facility.description,
-                    website: facility.website,
-                    imageUrl: facility.images[0]?.url,
-                    imageAlt: facility.images[0]?.filename || facility.name,
-                    location: facility.neighbourhood || facility.areaOfLondon,
-                    services: facility.servicesOffered,
-                    priceRange: facility.overallPriceRange,
-                    rating: facility.googleRating,
-                    accessType: facility.accessType,
-                  }}
+                  facility={toDirectoryFacility(facility)}
+                  source="homepage"
                 />
               ))}
             </div>
