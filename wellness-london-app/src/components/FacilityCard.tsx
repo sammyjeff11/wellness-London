@@ -32,13 +32,6 @@ type FacilityCardProps = {
   source?: string;
 };
 
-function displayDate(value?: string) {
-  if (!value || value === "Details not yet confirmed") return "Details pending";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleDateString("en-GB", { month: "short", year: "numeric" });
-}
-
 function primaryBestFor(facility: FacilityCardFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || facility.description;
 }
@@ -47,7 +40,6 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const services = facility.services?.slice(0, 2) || [];
   const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
   const price = facility.priceFrom || facility.priceRange || "Price not listed";
-  const experience = facility.privateOrShared || facility.premiumLevel || facility.experienceType?.[0] || "Details pending";
 
   return (
     <article className="group">
@@ -73,53 +65,34 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
-              <span className="text-sm text-[#70695d]">Well Edit</span>
+              <span className="text-sm text-[#5f574c]">Well Edit</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-transparent" />
           {location ? (
-            <p className="absolute bottom-4 left-4 right-4 text-[11px] font-medium uppercase tracking-[0.22em] text-white/90">
+            <p className="absolute bottom-4 left-4 right-4 text-[11px] font-medium uppercase tracking-[0.2em] text-white/92">
               {location}
             </p>
           ) : null}
         </div>
 
         <div>
-          <div className="mb-3 flex flex-wrap gap-2">
-            {services.map((service) => (
-              <span
-                key={service}
-                className="text-[11px] uppercase tracking-[0.18em] text-[#6f6048]"
-              >
-                {service}
-              </span>
-            ))}
-          </div>
+          {services.length > 0 ? (
+            <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#6f6048]">
+              {services.join(" / ")}
+            </p>
+          ) : null}
 
-          <h3 className="mb-3 font-serif text-3xl font-normal leading-tight tracking-normal text-[#29241d]">
+          <h3 className="mb-3 text-2xl font-medium leading-tight tracking-normal text-[#29241d]">
             {facility.name}
           </h3>
-          <p className="mb-5 text-[15px] leading-7 text-[#70695d]">
+          <p className="mb-4 text-[15px] leading-7 text-[#5f574c]">
             {primaryBestFor(facility)}
           </p>
 
-          <div className="grid gap-2 border-t border-[#d8cebf]/70 pt-4 text-xs text-[#70695d]">
-            <div className="flex items-center justify-between gap-4">
-              <span>From</span>
-              <span className="text-right text-[#29241d]">{price}</span>
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span>Experience</span>
-              <span className="max-w-[65%] truncate text-right text-[#29241d]">{experience}</span>
-            </div>
-            <div className="flex items-center justify-between gap-4">
-              <span>Checked</span>
-              <span className="text-right text-[#29241d]">{displayDate(facility.lastCheckedDate)}</span>
-            </div>
-          </div>
-
-          <div className="mt-5 text-sm text-[#29241d]">
-            View profile <span aria-hidden="true" className="inline-block transition group-hover:translate-x-1">-&gt;</span>
+          <div className="flex items-center justify-between border-t border-[#d8cebf]/80 pt-4 text-sm text-[#5f574c]">
+            <span>{price}</span>
+            <span className="text-[#29241d] underline underline-offset-4">View profile</span>
           </div>
         </div>
       </Link>
