@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const facilityEntries = facilities.map((facility) => ({
-    url: `${baseUrl}/facility/${facility.id}`,
+    url: `${baseUrl}/facility/${facility.slug}`,
     lastModified: defaultLastModified,
     changeFrequency: "monthly" as const,
     priority: 0.6,
