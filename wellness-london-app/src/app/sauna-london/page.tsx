@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import FacilityCard from "@/components/FacilityCard";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
+import ServiceDirectory from "@/components/ServiceDirectory";
 import { getFacilities } from "@/lib/airtable";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
   title: "Best Saunas in London | Wellness London",
@@ -93,6 +95,7 @@ export default async function SaunaLondonPage() {
 
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <AnalyticsPageView eventName="service_page_view" properties={{ service_type: "sauna", page_path: "/sauna-london" }} />
       <JsonLd data={itemListSchema} />
       <JsonLd data={faqSchema} />
 
@@ -131,7 +134,7 @@ export default async function SaunaLondonPage() {
               <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
                 Curated listings
               </p>
-              <h2 className="text-4xl font-semibold tracking-tight">Sauna spaces</h2>
+              <h2 className="text-4xl font-semibold tracking-tight">Compare sauna spaces</h2>
             </div>
             <div className="flex flex-wrap gap-4 text-sm font-medium">
               <Link href="/" className="underline underline-offset-4">
@@ -146,35 +149,12 @@ export default async function SaunaLondonPage() {
             </div>
           </div>
 
-          {saunaFacilities.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-3">
-              {saunaFacilities.map((facility) => (
-                <FacilityCard
-                  key={facility.id}
-                  facility={{
-                    slug: facility.slug,
-                    name: facility.name,
-                    description: facility.editorialSummary || facility.description,
-                    website: facility.website,
-                    imageUrl: facility.images[0]?.url,
-                    imageAlt: facility.images[0]?.filename || facility.name,
-                    location: facility.neighbourhood || facility.areaOfLondon,
-                    services: facility.servicesOffered,
-                    priceRange: facility.overallPriceRange,
-                    rating: facility.googleRating,
-                    accessType: facility.accessType,
-                  }}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
-              <h3 className="mb-2 text-lg font-semibold">No sauna listings yet</h3>
-              <p className="text-sm text-stone-600">
-                We are still curating sauna spaces for this guide. Check back soon for carefully selected London recovery studios.
-              </p>
-            </div>
-          )}
+          <ServiceDirectory
+            facilities={saunaFacilities.map(toDirectoryFacility)}
+            serviceType="sauna"
+            emptyTitle="No sauna listings yet"
+            emptyText="We are still curating sauna spaces for this guide. Check back soon for carefully selected London recovery studios."
+          />
         </div>
       </section>
 
