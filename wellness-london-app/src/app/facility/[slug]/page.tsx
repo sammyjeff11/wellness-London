@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 
 type FacilityPageProps = {
@@ -17,12 +19,22 @@ function InfoPill({ label }: { label: string }) {
   );
 }
 
+function getInstagramHref(value: string) {
+  if (!value) return "";
+  return value.startsWith("http") ? value : `https://instagram.com/${value.replace("@", "")}`;
+}
+
+function parseRating(value: string) {
+  const rating = Number.parseFloat(value);
+  return Number.isFinite(rating) ? rating : undefined;
+}
+
 export async function generateMetadata({
   params,
 }: FacilityPageProps): Promise<Metadata> {
   const { slug } = await params;
   const facilities = await getFacilities();
-  const facility = facilities.find((item) => item.id === slug);
+  const facility = facilities.find((item) => item.slug === slug);
 
   if (!facility) {
     return {
@@ -30,31 +42,84 @@ export async function generateMetadata({
     };
   }
 
+  const title = `${facility.name} | Wellness London`;
+  const description = facility.editorialSummary || facility.description;
+
   return {
-    title: `${facility.name} | Wellness London`,
-    description: facility.editorialSummary || facility.description,
+    title,
+    description,
+    alternates: {
+      canonical: `/facility/${facility.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/facility/${facility.slug}`,
+      images: facility.images[0]
+        ? [
+            {
+              url: facility.images[0].url,
+              alt: facility.images[0].filename || facility.name,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: facility.images[0] ? [facility.images[0].url] : undefined,
+    },
   };
 }
 
 export default async function FacilityPage({ params }: FacilityPageProps) {
   const { slug } = await params;
   const facilities = await getFacilities();
-  const facility = facilities.find((item) => item.id === slug);
+  const facility = facilities.find((item) => item.slug === slug);
 
   if (!facility) {
     notFound();
   }
 
+  const pageUrl = `https://wellnessldn.com/facility/${facility.slug}`;
   const websiteHref = facility.website && facility.website !== "#" ? facility.website : "";
   const bookingHref = facility.bookingLink || websiteHref;
-  const instagramHref = facility.instagramLink
-    ? facility.instagramLink.startsWith("http")
-      ? facility.instagramLink
-      : `https://instagram.com/${facility.instagramLink.replace("@", "")}`
-    : "";
+  const instagramHref = getInstagramHref(facility.instagramLink);
+  const rating = parseRating(facility.googleRating);
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    "@id": `${pageUrl}#business`,
+    name: facility.name,
+    description: facility.editorialSummary || facility.description,
+    url: websiteHref || pageUrl,
+    image: facility.images.map((image) => image.url),
+    telephone: facility.phone || undefined,
+    email: facility.email || undefined,
+    priceRange: facility.overallPriceRange || undefined,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: facility.address,
+      addressLocality: "London",
+      addressCountry: "GB",
+    },
+    areaServed: "London",
+    sameAs: [websiteHref, instagramHref].filter(Boolean),
+    aggregateRating: rating
+      ? {
+          "@type": "AggregateRating",
+          ratingValue: rating,
+          bestRating: 5,
+        }
+      : undefined,
+  };
 
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <JsonLd data={localBusinessSchema} />
+
       <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
         <Link href="/" className="text-sm font-medium underline text-stone-700">
           Back to directory
@@ -63,11 +128,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         <div className="mt-8 grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             {facility.images.length > 0 ? (
-              <img
-                src={facility.images[0].url}
-                alt={facility.name}
-                className="h-[480px] w-full rounded-[2rem] border border-stone-200 object-cover shadow-2xl shadow-stone-300/40"
-              />
+              <div className="relative h-[480px] w-full overflow-hidden rounded-[2rem] border border-stone-200 shadow-2xl shadow-stone-300/40">
+                <Image
+                  src={facility.images[0].url}
+                  alt={facility.name}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 52vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
             ) : (
               <div className="flex h-[480px] w-full items-end rounded-[2rem] border border-stone-200 bg-[#ded6c8] p-8 text-stone-600">
                 Wellness London
@@ -77,12 +147,15 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
             {facility.images.length > 1 ? (
               <div className="mt-4 grid grid-cols-4 gap-3">
                 {facility.images.slice(1, 5).map((image) => (
-                  <img
-                    key={image.id}
-                    src={image.url}
-                    alt={image.filename || facility.name}
-                    className="h-24 w-full rounded-2xl border border-stone-200 object-cover"
-                  />
+                  <div key={image.id} className="relative h-24 overflow-hidden rounded-2xl border border-stone-200">
+                    <Image
+                      src={image.url}
+                      alt={image.filename || facility.name}
+                      fill
+                      sizes="25vw"
+                      className="object-cover"
+                    />
+                  </div>
                 ))}
               </div>
             ) : null}
