@@ -9,6 +9,7 @@ const staticRoutes = [
   { path: "/sauna-london", priority: 0.8 },
   { path: "/cryotherapy-london", priority: 0.8 },
   { path: "/cold-plunge-london", priority: 0.8 },
+  { path: "/journal", priority: 0.5 },
   { path: "/site-map", priority: 0.4 },
 ];
 
