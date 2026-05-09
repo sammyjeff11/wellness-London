@@ -53,6 +53,9 @@ const faqs = [
 
 export default async function SaunaLondonPage() {
   const facilities = await getFacilities();
+  const heroImage = facilities.find((facility) =>
+    facility.servicesOffered.some((service) => service.toLowerCase().includes("sauna")) && facility.images.length > 0,
+  )?.images[0];
 
   const saunaFacilities = facilities.filter((facility) =>
     facility.servicesOffered.some((service) =>
@@ -61,26 +64,36 @@ export default async function SaunaLondonPage() {
   );
 
   return (
-    <main className="min-h-screen bg-white text-black">
-      <section className="text-center py-20 px-6">
-        <p className="text-sm font-medium uppercase tracking-wide text-gray-500 mb-3">
-          London sauna guide
-        </p>
-        <h1 className="text-4xl font-bold mb-4">Best Saunas in London</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          A curated guide to quality sauna and recovery spaces across London,
-          from premium wellness studios to calm contrast therapy destinations.
-        </p>
+    <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <section className="px-6 py-10">
+        <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#b49b7e] p-8 md:p-12">
+          {heroImage ? (
+            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+          <div className="relative max-w-3xl text-white">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-white/75">
+              London sauna guide
+            </p>
+            <h1 className="mb-5 text-5xl font-semibold tracking-tight md:text-6xl">
+              Best Saunas in London
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-white/85">
+              A curated guide to quality sauna and recovery spaces across London,
+              from premium wellness studios to calm contrast therapy destinations.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between gap-4 mb-6">
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">Curated sauna spaces</h2>
-              <p className="text-sm text-gray-500 mt-2">
-                Selected from the Wellness London directory.
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">
+                Curated listings
               </p>
+              <h2 className="text-4xl font-semibold tracking-tight">Sauna spaces</h2>
             </div>
             <Link href="/cold-plunge-london" className="text-sm font-medium underline">
               Explore cold plunge
@@ -88,84 +101,79 @@ export default async function SaunaLondonPage() {
           </div>
 
           {saunaFacilities.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-3">
               {saunaFacilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
                   facility={{
                     slug: facility.id,
                     name: facility.name,
-                    description: facility.description,
+                    description: facility.editorialSummary || facility.description,
                     website: facility.website,
+                    imageUrl: facility.images[0]?.url,
+                    imageAlt: facility.images[0]?.filename || facility.name,
+                    location: facility.neighbourhood || facility.areaOfLondon,
+                    services: facility.servicesOffered,
+                    priceRange: facility.overallPriceRange,
+                    rating: facility.googleRating,
                   }}
                 />
               ))}
             </div>
           ) : (
-            <div className="border rounded-xl p-6">
-              <h3 className="font-semibold text-lg mb-2">
-                No sauna listings yet
-              </h3>
-              <p className="text-sm text-gray-500">
-                We are still curating sauna spaces for this guide. Check back
-                soon for carefully selected London recovery studios.
+            <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
+              <h3 className="mb-2 text-lg font-semibold">No sauna listings yet</h3>
+              <p className="text-sm text-stone-600">
+                We are still curating sauna spaces for this guide. Check back soon for carefully selected London recovery studios.
               </p>
             </div>
           )}
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-6">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight">
             Why sauna is becoming part of London’s recovery culture
           </h2>
-          <div className="space-y-5 text-gray-600 leading-7">
+          <div className="space-y-5 text-stone-600 leading-8">
             <p>
-              Sauna has moved beyond the spa day and into the weekly rhythm of
-              Londoners who train, work hard and want a more deliberate way to
-              recover. The best spaces make heat feel calm and considered, with
-              clean facilities, thoughtful pacing and room to decompress.
+              Sauna has moved beyond the spa day and into the weekly rhythm of Londoners who train, work hard and want a more deliberate way to recover. The best spaces make heat feel calm and considered, with clean facilities, thoughtful pacing and room to decompress.
             </p>
             <p>
-              Across the city, recovery studios are pairing sauna with cold
-              plunge, breathwork and quiet lounge areas. This makes the
-              experience feel less like a quick treatment and more like a
-              complete reset for body and mind.
+              Across the city, recovery studios are pairing sauna with cold plunge, breathwork and quiet lounge areas. This makes the experience feel less like a quick treatment and more like a complete reset for body and mind.
             </p>
             <p>
-              For many people, the appeal is consistency. A well-located sauna
-              can become part of a training plan, a Sunday ritual or a calm
-              pause between busy days in the city.
+              For many people, the appeal is consistency. A well-located sauna can become part of a training plan, a Sunday ritual or a calm pause between busy days in the city.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">
             How to choose the right sauna in London
           </h2>
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid gap-5 md:grid-cols-4">
             {guidancePoints.map((point) => (
-              <article key={point.title} className="border rounded-xl p-4">
-                <h3 className="font-semibold mb-2">{point.title}</h3>
-                <p className="text-sm text-gray-500 leading-6">{point.text}</p>
+              <article key={point.title} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{point.title}</h3>
+                <p className="text-sm leading-6 text-stone-600">{point.text}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">Sauna London FAQs</h2>
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Sauna London FAQs</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (
-              <article key={faq.question} className="border rounded-xl p-4">
-                <h3 className="font-semibold mb-2">{faq.question}</h3>
-                <p className="text-sm text-gray-500 leading-6">{faq.answer}</p>
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
               </article>
             ))}
           </div>

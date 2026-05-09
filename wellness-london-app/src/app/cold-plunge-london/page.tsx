@@ -47,109 +47,101 @@ export default async function ColdPlungeLondonPage() {
       return value.includes("cold") || value.includes("plunge") || value.includes("ice bath");
     }),
   );
+  const heroImage = coldPlungeFacilities.find((facility) => facility.images.length > 0)?.images[0];
 
   return (
-    <main className="min-h-screen bg-white text-black">
-      <section className="text-center py-20 px-6">
-        <p className="text-sm font-medium uppercase tracking-wide text-gray-500 mb-3">
-          London cold plunge guide
-        </p>
-        <h1 className="text-4xl font-bold mb-4">Best Cold Plunge in London</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Explore London’s best cold plunge experiences, including luxury wellness
-          clubs, contrast therapy studios and premium recovery facilities.
-        </p>
+    <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <section className="px-6 py-10">
+        <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#b9c4c0] p-8 md:p-12">
+          {heroImage ? (
+            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+          <div className="relative max-w-3xl text-white">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-white/75">
+              London cold plunge guide
+            </p>
+            <h1 className="mb-5 text-5xl font-semibold tracking-tight md:text-6xl">
+              Best Cold Plunge in London
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-white/85">
+              Explore London’s best cold plunge experiences, including luxury wellness clubs, contrast therapy studios and premium recovery facilities.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between gap-4 mb-6">
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">Curated cold plunge spaces</h2>
-              <p className="text-sm text-gray-500 mt-2">
-                Selected from the Wellness London directory.
-              </p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Curated listings</p>
+              <h2 className="text-4xl font-semibold tracking-tight">Cold plunge spaces</h2>
             </div>
-            <Link href="/sauna-london" className="text-sm font-medium underline">
-              Explore saunas
-            </Link>
+            <Link href="/sauna-london" className="text-sm font-medium underline">Explore saunas</Link>
           </div>
 
           {coldPlungeFacilities.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-3">
               {coldPlungeFacilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
                   facility={{
                     slug: facility.id,
                     name: facility.name,
-                    description: facility.description,
+                    description: facility.editorialSummary || facility.description,
                     website: facility.website,
+                    imageUrl: facility.images[0]?.url,
+                    imageAlt: facility.images[0]?.filename || facility.name,
+                    location: facility.neighbourhood || facility.areaOfLondon,
+                    services: facility.servicesOffered,
+                    priceRange: facility.overallPriceRange,
+                    rating: facility.googleRating,
                   }}
                 />
               ))}
             </div>
           ) : (
-            <div className="border rounded-xl p-6">
-              <h3 className="font-semibold text-lg mb-2">
-                No cold plunge listings yet
-              </h3>
-              <p className="text-sm text-gray-500">
-                We are still curating cold plunge spaces for this guide. Check
-                back soon for carefully selected London recovery studios.
-              </p>
+            <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
+              <h3 className="mb-2 text-lg font-semibold">No cold plunge listings yet</h3>
+              <p className="text-sm text-stone-600">We are still curating cold plunge spaces for this guide. Check back soon for carefully selected London recovery studios.</p>
             </div>
           )}
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto space-y-5 text-gray-600 leading-7">
-          <h2 className="text-3xl font-semibold text-black mb-6">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
             Why cold plunge has become a London recovery ritual
           </h2>
-          <p>
-            Cold plunge has become part of the city’s recovery language: short,
-            focused and deliberately uncomfortable in a way that feels clarifying.
-            The best spaces make the experience feel controlled rather than chaotic.
-          </p>
-          <p>
-            Many London studios now frame cold immersion as part of contrast
-            therapy, pairing plunge pools with sauna, breathwork and quiet rest.
-            That broader setting can make the practice easier to approach and more
-            useful as a repeat ritual.
-          </p>
-          <p>
-            For regular users, the appeal is often routine. A well-run cold plunge
-            space can become a reset point between training, work and the pace of
-            the city.
-          </p>
+          <p>Cold plunge has become part of the city’s recovery language: short, focused and deliberately uncomfortable in a way that feels clarifying. The best spaces make the experience feel controlled rather than chaotic.</p>
+          <p>Many London studios now frame cold immersion as part of contrast therapy, pairing plunge pools with sauna, breathwork and quiet rest. That broader setting can make the practice easier to approach and more useful as a repeat ritual.</p>
+          <p>For regular users, the appeal is often routine. A well-run cold plunge space can become a reset point between training, work and the pace of the city.</p>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">
-            How to choose a cold plunge in London
-          </h2>
-          <div className="grid md:grid-cols-4 gap-6">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose a cold plunge in London</h2>
+          <div className="grid gap-5 md:grid-cols-4">
             {guidancePoints.map((point) => (
-              <article key={point} className="border rounded-xl p-4">
-                <p className="text-sm text-gray-500 leading-6">{point}</p>
+              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <p className="text-sm leading-6 text-stone-600">{point}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">Cold Plunge London FAQs</h2>
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Cold Plunge London FAQs</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (
-              <article key={faq.question} className="border rounded-xl p-4">
-                <h3 className="font-semibold mb-2">{faq.question}</h3>
-                <p className="text-sm text-gray-500 leading-6">{faq.answer}</p>
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
               </article>
             ))}
           </div>

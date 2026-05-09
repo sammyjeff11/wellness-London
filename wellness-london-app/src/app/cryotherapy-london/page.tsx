@@ -46,109 +46,101 @@ export default async function CryotherapyLondonPage() {
       service.toLowerCase().includes("cryo"),
     ),
   );
+  const heroImage = cryotherapyFacilities.find((facility) => facility.images.length > 0)?.images[0];
 
   return (
-    <main className="min-h-screen bg-white text-black">
-      <section className="text-center py-20 px-6">
-        <p className="text-sm font-medium uppercase tracking-wide text-gray-500 mb-3">
-          London cryotherapy guide
-        </p>
-        <h1 className="text-4xl font-bold mb-4">Best Cryotherapy in London</h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          Discover London’s leading cryotherapy studios, wellness clubs and
-          recovery spaces offering performance-focused wellness experiences.
-        </p>
+    <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <section className="px-6 py-10">
+        <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#c9c8c2] p-8 md:p-12">
+          {heroImage ? (
+            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+          ) : null}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
+          <div className="relative max-w-3xl text-white">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-[0.26em] text-white/75">
+              London cryotherapy guide
+            </p>
+            <h1 className="mb-5 text-5xl font-semibold tracking-tight md:text-6xl">
+              Best Cryotherapy in London
+            </h1>
+            <p className="max-w-2xl text-lg leading-8 text-white/85">
+              Discover London’s leading cryotherapy studios, wellness clubs and recovery spaces offering performance-focused wellness experiences.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <section className="px-6 pb-16">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between gap-4 mb-6">
+      <section className="px-6 pb-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <h2 className="text-2xl font-semibold">Curated cryotherapy spaces</h2>
-              <p className="text-sm text-gray-500 mt-2">
-                Selected from the Wellness London directory.
-              </p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Curated listings</p>
+              <h2 className="text-4xl font-semibold tracking-tight">Cryotherapy spaces</h2>
             </div>
-            <Link href="/cold-plunge-london" className="text-sm font-medium underline">
-              Explore cold plunge
-            </Link>
+            <Link href="/cold-plunge-london" className="text-sm font-medium underline">Explore cold plunge</Link>
           </div>
 
           {cryotherapyFacilities.length > 0 ? (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid gap-6 md:grid-cols-3">
               {cryotherapyFacilities.map((facility) => (
                 <FacilityCard
                   key={facility.id}
                   facility={{
                     slug: facility.id,
                     name: facility.name,
-                    description: facility.description,
+                    description: facility.editorialSummary || facility.description,
                     website: facility.website,
+                    imageUrl: facility.images[0]?.url,
+                    imageAlt: facility.images[0]?.filename || facility.name,
+                    location: facility.neighbourhood || facility.areaOfLondon,
+                    services: facility.servicesOffered,
+                    priceRange: facility.overallPriceRange,
+                    rating: facility.googleRating,
                   }}
                 />
               ))}
             </div>
           ) : (
-            <div className="border rounded-xl p-6">
-              <h3 className="font-semibold text-lg mb-2">
-                No cryotherapy listings yet
-              </h3>
-              <p className="text-sm text-gray-500">
-                We are still curating cryotherapy studios for this guide. Check
-                back soon for carefully selected London recovery facilities.
-              </p>
+            <div className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-6">
+              <h3 className="mb-2 text-lg font-semibold">No cryotherapy listings yet</h3>
+              <p className="text-sm text-stone-600">We are still curating cryotherapy studios for this guide. Check back soon for carefully selected London recovery facilities.</p>
             </div>
           )}
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto space-y-5 text-gray-600 leading-7">
-          <h2 className="text-3xl font-semibold text-black mb-6">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
+          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
             Why cryotherapy is part of London’s performance wellness scene
           </h2>
-          <p>
-            Cryotherapy has become a fixture in London’s premium recovery world,
-            sitting between performance, wellness and time-efficient self-care.
-            The strongest studios make the process feel calm, professional and
-            clearly guided.
-          </p>
-          <p>
-            For busy Londoners, the appeal is speed and structure. A cryotherapy
-            session can fit around training, work or travel, especially when the
-            studio also offers complementary recovery treatments.
-          </p>
-          <p>
-            As with any recovery modality, the setting matters. Clear guidance,
-            staff confidence and transparent pricing all help turn a one-off
-            treatment into a reliable wellness habit.
-          </p>
+          <p>Cryotherapy has become a fixture in London’s premium recovery world, sitting between performance, wellness and time-efficient self-care. The strongest studios make the process feel calm, professional and clearly guided.</p>
+          <p>For busy Londoners, the appeal is speed and structure. A cryotherapy session can fit around training, work or travel, especially when the studio also offers complementary recovery treatments.</p>
+          <p>As with any recovery modality, the setting matters. Clear guidance, staff confidence and transparent pricing all help turn a one-off treatment into a reliable wellness habit.</p>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">
-            How to choose cryotherapy in London
-          </h2>
-          <div className="grid md:grid-cols-4 gap-6">
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose cryotherapy in London</h2>
+          <div className="grid gap-5 md:grid-cols-4">
             {guidancePoints.map((point) => (
-              <article key={point} className="border rounded-xl p-4">
-                <p className="text-sm text-gray-500 leading-6">{point}</p>
+              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <p className="text-sm leading-6 text-stone-600">{point}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-6 py-16 border-t">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-8">Cryotherapy London FAQs</h2>
+      <section className="border-t border-stone-200 px-6 py-20">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Cryotherapy London FAQs</h2>
           <div className="space-y-4">
             {faqs.map((faq) => (
-              <article key={faq.question} className="border rounded-xl p-4">
-                <h3 className="font-semibold mb-2">{faq.question}</h3>
-                <p className="text-sm text-gray-500 leading-6">{faq.answer}</p>
+              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
+                <h3 className="mb-2 font-semibold">{faq.question}</h3>
+                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
               </article>
             ))}
           </div>
