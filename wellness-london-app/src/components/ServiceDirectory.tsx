@@ -131,7 +131,9 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
   const featuredFacilities = filteredFacilities.filter((facility) => facility.isFeatured);
-  const editorPicks = (featuredFacilities.length > 0 ? featuredFacilities : filteredFacilities).slice(0, Math.min(3, filteredFacilities.length));
+  const featuredSlugs = new Set(featuredFacilities.map((facility) => facility.slug));
+  const fallbackFacilities = filteredFacilities.filter((facility) => !featuredSlugs.has(facility.slug));
+  const editorPicks = [...featuredFacilities, ...fallbackFacilities].slice(0, Math.min(3, filteredFacilities.length));
   const editorPickSlugs = new Set(editorPicks.map((facility) => facility.slug));
   const remainingFacilities = filteredFacilities.filter((facility) => !editorPickSlugs.has(facility.slug));
   const hasGroups = filteredFacilities.length > 3;
