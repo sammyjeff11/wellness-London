@@ -13,8 +13,8 @@ export default function Image() {
       <div
         style={{
           alignItems: "center",
-          background: "#f8f5ef",
-          color: "#211d18",
+          background: "#f4efe6",
+          color: "#29241d",
           display: "flex",
           height: "100%",
           justifyContent: "center",
@@ -30,13 +30,13 @@ export default function Image() {
             maxWidth: "920px",
           }}
         >
-          <p style={{ fontSize: 28, letterSpacing: 6, margin: 0, textTransform: "uppercase" }}>
-            Curated London Wellness Directory
+          <p style={{ fontSize: 24, letterSpacing: 7, margin: 0, textTransform: "uppercase" }}>
+            London Wellness Guide
           </p>
-          <h1 style={{ fontSize: 96, letterSpacing: -2, lineHeight: 1, margin: 0 }}>
+          <h1 style={{ fontFamily: "Georgia, serif", fontSize: 108, fontWeight: 400, lineHeight: 0.95, margin: 0 }}>
             Well Edit
           </h1>
-          <p style={{ color: "#675f55", fontSize: 34, lineHeight: 1.35, margin: 0 }}>
+          <p style={{ color: "#70695d", fontSize: 34, lineHeight: 1.35, margin: 0 }}>
             Saunas, cold plunges, cryotherapy and recovery studios selected with calm editorial care.
           </p>
         </div>
