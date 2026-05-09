@@ -1,3 +1,9 @@
+export type AirtableImage = {
+  id: string;
+  url: string;
+  filename: string;
+};
+
 export type AirtableFacility = {
   id: string;
   name: string;
@@ -6,7 +12,24 @@ export type AirtableFacility = {
   phone: string;
   email: string;
   description: string;
+  images: AirtableImage[];
   servicesOffered: string[];
+  typeOfExperience: string[];
+  accessType: string;
+  overallPriceRange: string;
+  googleRating: string;
+  bookingLink: string;
+  openingHours: string;
+  editorialSummary: string;
+  neighbourhood: string;
+  areaOfLondon: string;
+  instagramLink: string;
+};
+
+type AirtableAttachment = {
+  id?: string;
+  url?: string;
+  filename?: string;
 };
 
 type AirtableRecord = {
@@ -18,17 +41,43 @@ type AirtableRecord = {
     Phone?: string;
     Email?: string;
     Description?: string;
+    Images?: AirtableAttachment[];
     "Services Offered"?: string[] | string;
+    "Type of Experience"?: string[] | string;
+    "Access Type"?: string[] | string;
+    "Overall Price Range"?: string;
+    "Google Rating"?: string;
+    "Booking Link"?: string;
+    "Opening Hours"?: string;
+    "Editorial Summary"?: string;
+    Neighbourhood?: string[] | string;
+    "Area of London"?: string[] | string;
+    "Instagram Link"?: string;
   };
 };
 
-function normaliseServices(value: string[] | string | undefined): string[] {
+function normaliseList(value: string[] | string | undefined): string[] {
   if (!value) return [];
   if (Array.isArray(value)) return value;
   return value
     .split(",")
-    .map((service) => service.trim())
+    .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function normaliseSingle(value: string[] | string | undefined): string {
+  return normaliseList(value).join(", ");
+}
+
+function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage[] {
+  if (!value) return [];
+  return value
+    .filter((image) => image.url)
+    .map((image) => ({
+      id: image.id || image.url || "",
+      url: image.url || "",
+      filename: image.filename || "Wellness London image",
+    }));
 }
 
 export async function getFacilities(): Promise<AirtableFacility[]> {
@@ -65,6 +114,17 @@ export async function getFacilities(): Promise<AirtableFacility[]> {
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",
     description: record.fields.Description || "Premium wellness experience in London",
-    servicesOffered: normaliseServices(record.fields["Services Offered"]),
+    images: normaliseImages(record.fields.Images),
+    servicesOffered: normaliseList(record.fields["Services Offered"]),
+    typeOfExperience: normaliseList(record.fields["Type of Experience"]),
+    accessType: normaliseSingle(record.fields["Access Type"]),
+    overallPriceRange: record.fields["Overall Price Range"] || "",
+    googleRating: record.fields["Google Rating"] || "",
+    bookingLink: record.fields["Booking Link"] || "",
+    openingHours: record.fields["Opening Hours"] || "",
+    editorialSummary: record.fields["Editorial Summary"] || "",
+    neighbourhood: normaliseSingle(record.fields.Neighbourhood),
+    areaOfLondon: normaliseSingle(record.fields["Area of London"]),
+    instagramLink: record.fields["Instagram Link"] || "",
   }));
 }
