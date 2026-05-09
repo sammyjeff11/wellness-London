@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
+import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 
 export const metadata: Metadata = {
@@ -48,8 +49,36 @@ export default async function CryotherapyLondonPage() {
   );
   const heroImage = cryotherapyFacilities.find((facility) => facility.images.length > 0)?.images[0];
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Best Cryotherapy in London",
+    itemListElement: cryotherapyFacilities.map((facility, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://wellnessldn.com/facility/${facility.id}`,
+      name: facility.name,
+    })),
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <JsonLd data={itemListSchema} />
+      <JsonLd data={faqSchema} />
+
       <section className="px-6 py-10">
         <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#c9c8c2] p-8 md:p-12">
           {heroImage ? (
@@ -106,44 +135,6 @@ export default async function CryotherapyLondonPage() {
               <p className="text-sm text-stone-600">We are still curating cryotherapy studios for this guide. Check back soon for carefully selected London recovery facilities.</p>
             </div>
           )}
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-3xl space-y-5 text-stone-600 leading-8">
-          <h2 className="mb-6 text-4xl font-semibold tracking-tight text-[#211d18]">
-            Why cryotherapy is part of London’s performance wellness scene
-          </h2>
-          <p>Cryotherapy has become a fixture in London’s premium recovery world, sitting between performance, wellness and time-efficient self-care. The strongest studios make the process feel calm, professional and clearly guided.</p>
-          <p>For busy Londoners, the appeal is speed and structure. A cryotherapy session can fit around training, work or travel, especially when the studio also offers complementary recovery treatments.</p>
-          <p>As with any recovery modality, the setting matters. Clear guidance, staff confidence and transparent pricing all help turn a one-off treatment into a reliable wellness habit.</p>
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="mb-8 text-4xl font-semibold tracking-tight">How to choose cryotherapy in London</h2>
-          <div className="grid gap-5 md:grid-cols-4">
-            {guidancePoints.map((point) => (
-              <article key={point} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
-                <p className="text-sm leading-6 text-stone-600">{point}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-stone-200 px-6 py-20">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-8 text-4xl font-semibold tracking-tight">Cryotherapy London FAQs</h2>
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <article key={faq.question} className="rounded-[1.5rem] border border-stone-200 bg-[#fffdf8] p-5">
-                <h3 className="mb-2 font-semibold">{faq.question}</h3>
-                <p className="text-sm leading-6 text-stone-600">{faq.answer}</p>
-              </article>
-            ))}
-          </div>
         </div>
       </section>
     </main>
