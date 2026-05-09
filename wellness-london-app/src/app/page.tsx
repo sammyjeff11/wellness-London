@@ -1,4 +1,5 @@
 import FacilityCard from "@/components/FacilityCard";
+import Navbar from "@/components/Navbar";
 import { getFacilities } from "@/lib/airtable";
 
 export default async function Home() {
@@ -6,17 +7,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-white text-black">
-      {/* Header */}
-      <header className="flex justify-between items-center p-6 border-b">
-        <h1 className="text-xl font-semibold">Wellness London</h1>
-        <nav className="space-x-6 text-sm">
-          <a href="#">Saunas</a>
-          <a href="#">Cold Plunge</a>
-          <a href="#">Cryotherapy</a>
-        </nav>
-      </header>
+      <Navbar />
 
-      {/* Hero */}
       <section className="text-center py-20 px-6">
         <h2 className="text-4xl font-bold mb-4">
           Discover the best wellness spaces in London
@@ -27,24 +19,23 @@ export default async function Home() {
         </p>
       </section>
 
-      {/* Listings */}
       <section className="px-6 pb-20">
-  <div className="max-w-6xl mx-auto">
-    <div className="grid md:grid-cols-3 gap-6">
-      {facilities.map((facility) => (
-        <FacilityCard
-          key={facility.id}
-          facility={{
-            slug: facility.id,
-            name: facility.name,
-            description: facility.description,
-            website: facility.website,
-          }}
-        />
-      ))}
-    </div>
-  </div>
-</section>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6">
+            {facilities.map((facility) => (
+              <FacilityCard
+                key={facility.id}
+                facility={{
+                  slug: facility.id,
+                  name: facility.name,
+                  description: facility.description,
+                  website: facility.website,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
