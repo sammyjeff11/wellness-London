@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export type FacilityCardFacility = {
@@ -25,10 +26,12 @@ export default function FacilityCard({ facility }: FacilityCardProps) {
       <Link href={`/facility/${facility.slug}`} className="block">
         <div className="relative h-56 overflow-hidden bg-stone-200">
           {facility.imageUrl ? (
-            <img
+            <Image
               src={facility.imageUrl}
               alt={facility.imageAlt || facility.name}
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              fill
+              sizes="(min-width: 768px) 33vw, 100vw"
+              className="object-cover transition duration-700 group-hover:scale-105"
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#ded6c8] p-5">
