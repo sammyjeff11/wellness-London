@@ -130,6 +130,10 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   }
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
+  const editorPicks = filteredFacilities.filter((facility) => facility.isFeatured).slice(0, 3);
+  const editorPickSlugs = new Set(editorPicks.map((facility) => facility.slug));
+  const remainingFacilities = filteredFacilities.filter((facility) => !editorPickSlugs.has(facility.slug));
+  const hasGroups = editorPicks.length > 0 && remainingFacilities.length > 0;
 
   if (facilities.length === 0) {
     return (
@@ -141,8 +145,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   }
 
   return (
-    <div className="space-y-16">
-      <section className="border-y border-[#d8cebf]/70 py-7">
+    <div className="space-y-20">
+      <section className="bg-[#eee7da] px-5 py-8 md:px-8 md:py-10">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine</p>
@@ -195,11 +199,48 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       </section>
 
       {filteredFacilities.length > 0 ? (
-        <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
-          {filteredFacilities.map((facility) => (
-            <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-          ))}
-        </div>
+        <section className="space-y-16">
+          <div className="max-w-2xl">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Browse spaces</p>
+            <h3 className="text-3xl font-medium tracking-normal">Start with the most relevant options.</h3>
+          </div>
+
+          {hasGroups ? (
+            <>
+              <div>
+                <div className="mb-8 flex items-end justify-between gap-6 border-b border-[#d8cebf]/70 pb-5">
+                  <div>
+                    <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
+                    <h4 className="text-2xl font-medium tracking-normal">Featured spaces</h4>
+                  </div>
+                </div>
+                <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+                  {editorPicks.map((facility) => (
+                    <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All matches</p>
+                  <h4 className="text-2xl font-medium tracking-normal">More to compare</h4>
+                </div>
+                <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+                  {remainingFacilities.map((facility) => (
+                    <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+              {filteredFacilities.map((facility) => (
+                <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+              ))}
+            </div>
+          )}
+        </section>
       ) : (
         <div className="bg-[#fbf8f1] p-8">
           <h3 className="mb-2 text-2xl font-medium">No listings match those filters</h3>
@@ -207,11 +248,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         </div>
       )}
 
-      <details className="group border-y border-[#d8cebf]/70 py-6">
+      <details className="group bg-[#fbf8f1] px-5 py-7 md:px-8">
         <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[#29241d] marker:hidden">
           <span>
-            <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Compare details</span>
-            <span className="text-2xl font-medium tracking-normal">Open comparison table</span>
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Reference appendix</span>
+            <span className="text-2xl font-medium tracking-normal">Compare details</span>
           </span>
           <span className="text-sm text-[#5f574c] transition group-open:rotate-45">+</span>
         </summary>
