@@ -73,7 +73,7 @@ type AirtableAttachment = {
   filename?: string;
 };
 
-type AirtableFieldValue = string[] | string | number | boolean | undefined;
+type AirtableFieldValue = string[] | string | number | boolean | null | undefined;
 
 type AirtableRecord = {
   id: string;
@@ -163,7 +163,7 @@ type AirtableResponse = {
 };
 
 function normaliseList(value: AirtableFieldValue): string[] {
-  if (value === undefined || value === false || value === null) return [];
+  if (value === undefined || value === null || value === false) return [];
   if (Array.isArray(value)) return value.map(String).filter(Boolean);
   return String(value)
     .split(",")
