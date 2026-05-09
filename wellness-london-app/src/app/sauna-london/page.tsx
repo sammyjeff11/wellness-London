@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
@@ -8,6 +9,9 @@ export const metadata: Metadata = {
   title: "Best Saunas in London | Wellness London",
   description:
     "Discover curated sauna and recovery spaces across London, including premium wellness studios, contrast therapy spaces and recovery facilities.",
+  alternates: {
+    canonical: "/sauna-london",
+  },
 };
 
 const guidancePoints = [
@@ -55,15 +59,12 @@ const faqs = [
 export default async function SaunaLondonPage() {
   const facilities = await getFacilities();
 
-  const heroImage = facilities.find((facility) =>
-    facility.servicesOffered.some((service) => service.toLowerCase().includes("sauna")) && facility.images.length > 0,
-  )?.images[0];
-
   const saunaFacilities = facilities.filter((facility) =>
-    facility.servicesOffered.some((service) =>
-      service.toLowerCase().includes("sauna"),
-    ),
+    facility.serviceKeys.includes("sauna"),
   );
+
+  const heroImage = saunaFacilities.find((facility) => facility.images.length > 0)
+    ?.images[0];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -98,7 +99,14 @@ export default async function SaunaLondonPage() {
       <section className="px-6 py-10">
         <div className="relative mx-auto flex min-h-[460px] max-w-6xl items-end overflow-hidden rounded-[2rem] border border-stone-200 bg-[#b49b7e] p-8 md:p-12">
           {heroImage ? (
-            <img src={heroImage.url} alt={heroImage.filename} className="absolute inset-0 h-full w-full object-cover" />
+            <Image
+              src={heroImage.url}
+              alt={heroImage.filename || "Premium sauna space in London"}
+              fill
+              priority
+              sizes="(min-width: 1152px) 1152px, 100vw"
+              className="object-cover"
+            />
           ) : null}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-black/10" />
           <div className="relative max-w-3xl text-white">
@@ -125,9 +133,17 @@ export default async function SaunaLondonPage() {
               </p>
               <h2 className="text-4xl font-semibold tracking-tight">Sauna spaces</h2>
             </div>
-            <Link href="/cold-plunge-london" className="text-sm font-medium underline">
-              Explore cold plunge
-            </Link>
+            <div className="flex flex-wrap gap-4 text-sm font-medium">
+              <Link href="/" className="underline underline-offset-4">
+                Back to directory
+              </Link>
+              <Link href="/cold-plunge-london" className="underline underline-offset-4">
+                Explore cold plunge
+              </Link>
+              <Link href="/cryotherapy-london" className="underline underline-offset-4">
+                Explore cryotherapy
+              </Link>
+            </div>
           </div>
 
           {saunaFacilities.length > 0 ? (
@@ -146,6 +162,7 @@ export default async function SaunaLondonPage() {
                     services: facility.servicesOffered,
                     priceRange: facility.overallPriceRange,
                     rating: facility.googleRating,
+                    accessType: facility.accessType,
                   }}
                 />
               ))}
@@ -164,7 +181,7 @@ export default async function SaunaLondonPage() {
       <section className="border-t border-stone-200 px-6 py-20">
         <div className="mx-auto max-w-3xl">
           <h2 className="mb-6 text-4xl font-semibold tracking-tight">
-            Why sauna is becoming part of London’s recovery culture
+            Why sauna is becoming part of London&apos;s recovery culture
           </h2>
           <div className="space-y-5 text-stone-600 leading-8">
             <p>
