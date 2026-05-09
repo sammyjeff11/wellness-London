@@ -207,7 +207,7 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
     .map((image) => ({
       id: image.id || image.url || "",
       url: image.url || "",
-      filename: image.filename || "Wellness London image",
+      filename: image.filename || "Well Edit image",
     }));
 }
 
