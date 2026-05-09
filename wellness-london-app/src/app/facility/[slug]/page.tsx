@@ -17,12 +17,16 @@ function InfoPill({ label }: { label: string }) {
   );
 }
 
+async function getFacilityBySlug(slug: string) {
+  const facilities = await getFacilities();
+  return facilities.find((item) => item.slug === slug || item.id === slug);
+}
+
 export async function generateMetadata({
   params,
 }: FacilityPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const facilities = await getFacilities();
-  const facility = facilities.find((item) => item.id === slug);
+  const facility = await getFacilityBySlug(slug);
 
   if (!facility) {
     return {
@@ -33,13 +37,15 @@ export async function generateMetadata({
   return {
     title: `${facility.name} | Wellness London`,
     description: facility.editorialSummary || facility.description,
+    alternates: {
+      canonical: `https://wellnessldn.com/facility/${facility.slug}`,
+    },
   };
 }
 
 export default async function FacilityPage({ params }: FacilityPageProps) {
   const { slug } = await params;
-  const facilities = await getFacilities();
-  const facility = facilities.find((item) => item.id === slug);
+  const facility = await getFacilityBySlug(slug);
 
   if (!facility) {
     notFound();
