@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
-import { facilities } from "@/data/facilities";
+import { getFacilities } from "@/lib/airtable";
 
 export const metadata: Metadata = {
   title: "Best Saunas in London | Wellness London",
   description:
     "Discover curated sauna and recovery spaces across London, including premium wellness studios, contrast therapy spaces and recovery facilities.",
 };
-
-const saunaFacilities = facilities.filter((facility) =>
-  facility.services.includes("Sauna"),
-);
 
 const guidancePoints = [
   {
@@ -55,7 +51,15 @@ const faqs = [
   },
 ];
 
-export default function SaunaLondonPage() {
+export default async function SaunaLondonPage() {
+  const facilities = await getFacilities();
+
+  const saunaFacilities = facilities.filter((facility) =>
+    facility.servicesOffered.some((service) =>
+      service.toLowerCase().includes("sauna"),
+    ),
+  );
+
   return (
     <main className="min-h-screen bg-white text-black">
       <header className="flex justify-between items-center p-6 border-b">
@@ -97,7 +101,15 @@ export default function SaunaLondonPage() {
           {saunaFacilities.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-6">
               {saunaFacilities.map((facility) => (
-                <FacilityCard key={facility.slug} facility={facility} />
+                <FacilityCard
+                  key={facility.id}
+                  facility={{
+                    slug: facility.id,
+                    name: facility.name,
+                    description: facility.description,
+                    website: facility.website,
+                  }}
+                />
               ))}
             </div>
           ) : (
