@@ -194,12 +194,29 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         ) : null}
       </section>
 
-      <section>
-        <div className="mb-6 max-w-2xl">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Comparison notes</p>
-          <h3 className="font-serif text-4xl font-normal tracking-normal">Compare before you click</h3>
+      {filteredFacilities.length > 0 ? (
+        <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+          {filteredFacilities.map((facility) => (
+            <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+          ))}
         </div>
-        <div className="overflow-x-auto border-y border-[#d8cebf]/70">
+      ) : (
+        <div className="bg-[#fbf8f1] p-8">
+          <h3 className="mb-2 font-serif text-2xl font-normal">No listings match those filters</h3>
+          <p className="text-sm leading-6 text-[#70695d]">Try clearing one or two filters to compare more options.</p>
+        </div>
+      )}
+
+      <details className="group border-y border-[#d8cebf]/70 py-7">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[#29241d] marker:hidden">
+          <span>
+            <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Compare details</span>
+            <span className="font-serif text-4xl font-normal tracking-normal">Open the comparison table</span>
+          </span>
+          <span className="text-sm text-[#70695d] transition group-open:rotate-45">+</span>
+        </summary>
+
+        <div className="mt-8 overflow-x-auto border-t border-[#d8cebf]/70 pt-2">
           <table className="w-full min-w-[920px] border-collapse text-left text-sm">
             <thead className="text-[11px] uppercase tracking-[0.16em] text-[#70695d]">
               <tr>
@@ -241,20 +258,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
             </tbody>
           </table>
         </div>
-      </section>
-
-      {filteredFacilities.length > 0 ? (
-        <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
-          {filteredFacilities.map((facility) => (
-            <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-          ))}
-        </div>
-      ) : (
-        <div className="bg-[#fbf8f1] p-8">
-          <h3 className="mb-2 font-serif text-2xl font-normal">No listings match those filters</h3>
-          <p className="text-sm leading-6 text-[#70695d]">Try clearing one or two filters to compare more options.</p>
-        </div>
-      )}
+      </details>
     </div>
   );
 }
