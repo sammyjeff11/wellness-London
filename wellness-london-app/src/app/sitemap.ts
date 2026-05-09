@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
 
-const baseUrl = "https://wellnessldn.com";
+const baseUrl = "https://welledit.co.uk";
 const defaultLastModified = new Date("2026-05-09T00:00:00.000Z");
 
 const staticRoutes = [
