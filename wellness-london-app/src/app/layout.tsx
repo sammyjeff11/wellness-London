@@ -5,13 +5,13 @@ import "./globals.css";
 
 const siteUrl = new URL("https://welledit.co.uk");
 const siteDescription =
-  "Discover curated wellness spaces in London, including saunas, cold plunges, cryotherapy and recovery studios.";
+  "Well Edit is a quiet editorial guide to London wellness spaces, including saunas, cold plunges, cryotherapy and recovery studios.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Well Edit | Curated London Wellness Directory",
+    default: "Well Edit | London Wellness Guide",
     template: "%s",
   },
   description: siteDescription,
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Well Edit | Curated London Wellness Directory",
+    title: "Well Edit | London Wellness Guide",
     description: siteDescription,
     url: "/",
     siteName: "Well Edit",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Well Edit | Curated London Wellness Directory",
+    title: "Well Edit | London Wellness Guide",
     description: siteDescription,
     images: ["/opengraph-image"],
   },
