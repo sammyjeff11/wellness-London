@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 
 type FacilityPageProps = {
@@ -51,6 +52,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     notFound();
   }
 
+  const canonicalUrl = `https://wellnessldn.com/facility/${facility.slug}`;
   const websiteHref = facility.website && facility.website !== "#" ? facility.website : "";
   const bookingHref = facility.bookingLink || websiteHref;
   const instagramHref = facility.instagramLink
@@ -59,8 +61,44 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       : `https://instagram.com/${facility.instagramLink.replace("@", "")}`
     : "";
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    name: facility.name,
+    description: facility.editorialSummary || facility.description,
+    url: canonicalUrl,
+    image: facility.images.map((image) => image.url),
+    address: facility.address,
+    telephone: facility.phone || undefined,
+    email: facility.email || undefined,
+    priceRange: facility.overallPriceRange || undefined,
+    sameAs: [websiteHref, instagramHref].filter(Boolean),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://wellnessldn.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: facility.name,
+        item: canonicalUrl,
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
+      <JsonLd data={localBusinessSchema} />
+      <JsonLd data={breadcrumbSchema} />
+
       <div className="mx-auto max-w-6xl px-6 py-10 md:py-14">
         <Link href="/" className="text-sm font-medium underline text-stone-700">
           Back to directory
