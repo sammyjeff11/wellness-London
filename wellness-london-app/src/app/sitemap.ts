@@ -22,12 +22,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
-  const facilityEntries = facilities.map((facility) => ({
-    url: `${baseUrl}/facility/${facility.id}`,
-    lastModified: defaultLastModified,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+  const facilityEntries = facilities
+    .filter((facility) => facility.slug && (facility.editorialSummary || facility.description))
+    .map((facility) => ({
+      url: `${baseUrl}/facility/${facility.slug}`,
+      lastModified: defaultLastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
 
   return [...routeEntries, ...facilityEntries];
 }
