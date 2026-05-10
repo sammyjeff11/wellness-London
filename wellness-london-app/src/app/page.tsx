@@ -25,21 +25,6 @@ const categoryLinks = [
   },
 ];
 
-const selectionCriteria = [
-  {
-    title: "Clear reason to visit",
-    text: "Each space needs a distinct use case, not just a polished interior.",
-  },
-  {
-    title: "Decision-ready detail",
-    text: "Price, setting and practical facilities should be easy to understand.",
-  },
-  {
-    title: "Atmosphere with substance",
-    text: "The experience has to feel considered, useful and worth returning to.",
-  },
-];
-
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
 }
@@ -87,28 +72,23 @@ export default async function Home() {
 
       <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14 md:py-16">
-          <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16">
+          <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_340px] md:items-end md:gap-14">
             <div>
               <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">
                 The Well Edit selection
               </p>
-              <h2 className="max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">
-                The first places we would shortlist.
+              <h2 className="max-w-4xl font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">
+                Recovery spaces worth your time.
               </h2>
             </div>
 
-            <aside className="max-w-xl lg:justify-self-end">
-              <p className="mb-6 text-lg leading-8 text-[#29241d] sm:text-xl sm:leading-9">
-                A tighter edit for people who want to choose quickly, not compare endlessly.
+            <aside className="max-w-sm md:pb-2">
+              <p className="text-base leading-8 text-[#29241d] sm:text-lg">
+                A concise edit of London spaces with a clear reason to visit.
               </p>
-              <div className="space-y-5 border-t border-[#d8cebf]/70 pt-6">
-                {selectionCriteria.map((item) => (
-                  <div key={item.title} className="grid gap-2 sm:grid-cols-[0.42fr_0.58fr] sm:gap-6">
-                    <h3 className="text-[11px] uppercase tracking-[0.18em] text-[#6f6048]">{item.title}</h3>
-                    <p className="text-sm leading-7 text-[#5f574c]">{item.text}</p>
-                  </div>
-                ))}
-              </div>
+              <p className="mt-5 border-t border-[#d8cebf]/70 pt-5 text-[11px] uppercase leading-5 tracking-[0.18em] text-[#6f6048]">
+                Selected for atmosphere, clarity and practical detail.
+              </p>
             </aside>
           </div>
         </div>
