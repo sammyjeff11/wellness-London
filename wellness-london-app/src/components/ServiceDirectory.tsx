@@ -71,7 +71,7 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
   return (
     <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#5f574c]">
       {label}
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-w-0 rounded-none border-0 border-b border-[#bfb3a3] bg-transparent px-0 py-3 text-sm normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#29241d]">
+      <select value={value} onChange={(event) => onChange(event.target.value)} className="min-w-0 rounded-none border-0 border-b border-[#bfb3a3] bg-transparent px-0 py-3 text-base normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#29241d] sm:text-sm">
         {children}
       </select>
     </label>
@@ -140,20 +140,20 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   if (facilities.length === 0) {
     return (
-      <div className="bg-[#fbf8f1] p-8">
-        <h3 className="mb-2 text-2xl font-medium">{emptyTitle}</h3>
+      <div className="bg-[#fbf8f1] p-6 sm:p-8">
+        <h3 className="mb-2 text-xl font-medium sm:text-2xl">{emptyTitle}</h3>
         <p className="text-sm leading-6 text-[#5f574c]">{emptyText}</p>
       </div>
     );
   }
 
   return (
-    <div className="space-y-20">
-      <section className="bg-[#eee7da] px-5 py-8 md:px-8 md:py-10">
-        <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+    <div className="space-y-14 md:space-y-20">
+      <section className="bg-[#eee7da] px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10">
+        <div className="mb-7 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine</p>
-            <h3 className="text-2xl font-medium tracking-normal">Find the right fit</h3>
+            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3">Refine</p>
+            <h3 className="text-xl font-medium tracking-normal sm:text-2xl">Find the right fit</h3>
           </div>
           <p className="text-sm text-[#5f574c]">{filteredFacilities.length} of {facilities.length} shown</p>
         </div>
@@ -202,15 +202,15 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       </section>
 
       {filteredFacilities.length > 0 ? (
-        <section className="space-y-16">
+        <section className="space-y-14 md:space-y-16">
           {hasGroups ? (
             <>
               <div>
-                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
-                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
-                  <h3 className="text-3xl font-medium tracking-normal">The strongest places to start.</h3>
+                <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor&apos;s picks</p>
+                  <h3 className="text-2xl font-medium tracking-normal sm:text-3xl">The strongest places to start.</h3>
                 </div>
-                <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+                <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
                   {editorPicks.map((facility) => (
                     <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
                   ))}
@@ -218,11 +218,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </div>
 
               <div>
-                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
                   <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All spaces</p>
-                  <h3 className="text-2xl font-medium tracking-normal">More options to compare</h3>
+                  <h3 className="text-xl font-medium tracking-normal sm:text-2xl">More options to compare</h3>
                 </div>
-                <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+                <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
                   {remainingFacilities.map((facility) => (
                     <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
                   ))}
@@ -231,11 +231,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
             </>
           ) : (
             <div>
-              <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+              <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
                 <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
-                <h3 className="text-3xl font-medium tracking-normal">Spaces worth considering</h3>
+                <h3 className="text-2xl font-medium tracking-normal sm:text-3xl">Spaces worth considering</h3>
               </div>
-              <div className="grid gap-x-8 gap-y-14 md:grid-cols-3">
+              <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
                 {filteredFacilities.map((facility) => (
                   <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
                 ))}
@@ -244,23 +244,23 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           )}
         </section>
       ) : (
-        <div className="bg-[#fbf8f1] p-8">
-          <h3 className="mb-2 text-2xl font-medium">No listings match those filters</h3>
+        <div className="bg-[#fbf8f1] p-6 sm:p-8">
+          <h3 className="mb-2 text-xl font-medium sm:text-2xl">No listings match those filters</h3>
           <p className="text-sm leading-6 text-[#5f574c]">Try clearing one or two filters to compare more options.</p>
         </div>
       )}
 
-      <details className="group bg-[#fbf8f1] px-5 py-7 md:px-8">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-[#29241d] marker:hidden">
-          <span>
+      <details className="group bg-[#fbf8f1] px-4 py-6 sm:px-5 sm:py-7 md:px-8">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-[#29241d] marker:hidden">
+          <span className="min-w-0">
             <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Reference appendix</span>
-            <span className="text-2xl font-medium tracking-normal">Compare details</span>
+            <span className="text-xl font-medium tracking-normal sm:text-2xl">Compare details</span>
           </span>
-          <span className="text-sm text-[#5f574c] transition group-open:rotate-45">+</span>
+          <span className="shrink-0 text-sm text-[#5f574c] transition group-open:rotate-45">+</span>
         </summary>
 
-        <div className="mt-8 overflow-x-auto border-t border-[#d8cebf]/70 pt-2">
-          <table className="w-full min-w-[920px] border-collapse text-left text-sm">
+        <div className="mt-6 overflow-x-auto border-t border-[#d8cebf]/70 pt-2 sm:mt-8">
+          <table className="w-full min-w-[860px] border-collapse text-left text-sm sm:min-w-[920px]">
             <thead className="text-[11px] uppercase tracking-[0.16em] text-[#5f574c]">
               <tr>
                 <th className="py-5 pr-6">Facility</th>
