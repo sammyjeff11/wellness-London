@@ -38,9 +38,9 @@ function primaryBestFor(facility: FacilityCardFacility) {
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
-  const featuredServices = services.slice(0, 2).join(" / ");
   const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
   const price = facility.priceFrom || facility.priceRange;
+  const details = [facility.location, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
 
   return (
     <article className="group min-w-0">
@@ -72,36 +72,31 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/28 to-black/8" />
-          <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/42 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/24 to-black/5" />
+          <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/82 via-black/38 to-transparent" />
 
-          <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
+          <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
             {price ? (
-              <span className="inline-flex min-h-8 items-center bg-white/94 px-3 py-1 text-[11px] font-semibold uppercase leading-none tracking-[0.12em] text-[#29241d] shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+              <span className="inline-flex min-h-8 items-center bg-[#f8f5ef]/95 px-3 py-1 text-[11px] font-medium leading-none tracking-[0.08em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm">
                 {price}
               </span>
             ) : (
               <span />
             )}
             {facility.rating ? (
-              <span className="inline-flex min-h-8 items-center bg-[#1d1914]/88 px-3 py-1 text-[11px] font-semibold leading-none text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)] backdrop-blur-sm">
-                Google {facility.rating}
+              <span className="inline-flex min-h-8 items-center bg-[#1d1914]/82 px-3 py-1 text-[11px] font-medium leading-none text-white shadow-[0_12px_28px_rgba(0,0,0,0.2)] backdrop-blur-sm">
+                {facility.rating} Google
               </span>
             ) : null}
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-6">
-            <p className="mb-3 text-[10px] font-semibold uppercase leading-5 tracking-[0.2em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
+            <p className="mb-3 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
               {location || "London"}
             </p>
-            <h3 className="max-w-[92%] text-3xl font-medium leading-[1.05] tracking-normal text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2rem]">
+            <h3 className="max-w-[92%] text-3xl font-medium leading-[1.04] tracking-normal text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2rem]">
               {facility.name}
             </h3>
-            {featuredServices ? (
-              <p className="mt-4 max-w-[92%] text-[11px] font-medium uppercase leading-5 tracking-[0.16em] text-white/78 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.5)]">
-                {featuredServices}
-              </p>
-            ) : null}
           </div>
         </div>
 
@@ -123,36 +118,26 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           ) : null}
 
-          <dl className="mb-5 grid grid-cols-3 gap-4 border-y border-[#d8cebf]/85 py-4 text-sm">
-            <div className="min-w-0">
-              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
-                Area
-              </dt>
-              <dd className="truncate font-medium text-[#29241d]">
-                {facility.location || "London"}
-              </dd>
-            </div>
-            <div>
-              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
-                Price
-              </dt>
-              <dd className="font-medium text-[#29241d]">{price || "Ask"}</dd>
-            </div>
-            <div>
-              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
-                Rating
-              </dt>
-              <dd className="font-medium text-[#29241d]">{facility.rating || "New"}</dd>
-            </div>
-          </dl>
+          {details.length > 0 ? (
+            <p className="mb-5 border-y border-[#d8cebf]/85 py-4 text-sm leading-6 text-[#29241d]">
+              {details.map((detail, index) => (
+                <span key={detail}>
+                  {index > 0 ? <span className="mx-2 text-[#b1a491]">/</span> : null}
+                  <span className="font-medium">{detail}</span>
+                </span>
+              ))}
+            </p>
+          ) : null}
 
           <div className="flex items-center justify-between text-sm">
             <span className="font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
               View profile
             </span>
-            <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
-              Directory pick
-            </span>
+            {facility.verificationStatus ? (
+              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+                {facility.verificationStatus}
+              </span>
+            ) : null}
           </div>
         </div>
       </Link>
