@@ -38,15 +38,15 @@ function primaryBestFor(facility: FacilityCardFacility) {
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
+  const featuredServices = services.slice(0, 2).join(" / ");
   const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
   const price = facility.priceFrom || facility.priceRange;
-  const hasKeyDetails = Boolean(location) || Boolean(price) || Boolean(facility.rating);
 
   return (
-    <article className="group min-w-0 overflow-hidden border border-stone-200 bg-[#fffdf8] shadow-sm transition duration-300 hover:-translate-y-1 hover:border-stone-300 hover:shadow-2xl hover:shadow-stone-300/40">
+    <article className="group min-w-0">
       <Link
         href={`/facility/${facility.slug}`}
-        className="flex h-full min-w-0 flex-col"
+        className="block min-w-0"
         onClick={() =>
           trackEvent("listing_card_click", {
             facility_name: facility.name,
@@ -57,14 +57,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="relative aspect-[4/5] overflow-hidden bg-[#d8cebf]">
+        <div className="relative mb-5 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
               alt={facility.imageAlt || facility.name}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-700 group-hover:scale-[1.03]"
+              className="object-cover transition duration-700 group-hover:scale-[1.025]"
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
@@ -72,90 +72,86 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/10" />
-          <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/85 via-black/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/28 to-black/8" />
+          <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/80 via-black/42 to-transparent" />
 
           <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-3">
             {price ? (
-              <span className="bg-white px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-[#211d18] shadow-lg shadow-black/20">
+              <span className="inline-flex min-h-8 items-center bg-white/94 px-3 py-1 text-[11px] font-semibold uppercase leading-none tracking-[0.12em] text-[#29241d] shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-sm">
                 {price}
               </span>
             ) : (
               <span />
             )}
             {facility.rating ? (
-              <span className="bg-[#211d18] px-3 py-1.5 text-xs font-semibold text-white shadow-lg shadow-black/20">
+              <span className="inline-flex min-h-8 items-center bg-[#1d1914]/88 px-3 py-1 text-[11px] font-semibold leading-none text-white shadow-[0_10px_24px_rgba(0,0,0,0.22)] backdrop-blur-sm">
                 Google {facility.rating}
               </span>
             ) : null}
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-            <p className="mb-2 text-xs font-semibold uppercase leading-5 tracking-[0.18em] text-white/85">
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-6">
+            <p className="mb-3 text-[10px] font-semibold uppercase leading-5 tracking-[0.2em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
               {location || "London"}
             </p>
-            <h3 className="max-w-[92%] text-3xl font-semibold leading-tight tracking-normal text-white drop-shadow-lg">
+            <h3 className="max-w-[92%] text-3xl font-medium leading-[1.05] tracking-normal text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2rem]">
               {facility.name}
             </h3>
+            {featuredServices ? (
+              <p className="mt-4 max-w-[92%] text-[11px] font-medium uppercase leading-5 tracking-[0.16em] text-white/78 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.5)]">
+                {featuredServices}
+              </p>
+            ) : null}
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-5">
-          <p className="mb-4 line-clamp-3 text-[15px] leading-7 text-[#5f574c]">
+        <div className="min-w-0">
+          <p className="mb-5 line-clamp-3 text-[15px] leading-7 text-[#5f574c]">
             {primaryBestFor(facility)}
           </p>
 
           {services.length > 0 ? (
-            <div className="mb-5">
-              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-stone-400">
-                Key services
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {services.map((service) => (
-                  <span
-                    key={service}
-                    className="border border-stone-200 bg-stone-50 px-3 py-1.5 text-xs font-medium text-stone-700"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
+            <div className="mb-5 flex flex-wrap gap-2">
+              {services.map((service) => (
+                <span
+                  key={service}
+                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
+                >
+                  {service}
+                </span>
+              ))}
             </div>
           ) : null}
 
-          {hasKeyDetails ? (
-            <dl className="mb-5 grid grid-cols-3 overflow-hidden border border-stone-200 bg-[#f8f5ef] text-sm">
-              <div className="min-w-0 p-3">
-                <dt className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-stone-400">
-                  Area
-                </dt>
-                <dd className="truncate font-semibold text-[#211d18]">
-                  {facility.location || "London"}
-                </dd>
-              </div>
-              <div className="border-l border-stone-200 p-3">
-                <dt className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-stone-400">
-                  Price
-                </dt>
-                <dd className="font-semibold text-[#211d18]">{price || "Ask"}</dd>
-              </div>
-              <div className="border-l border-stone-200 p-3">
-                <dt className="mb-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-stone-400">
-                  Rating
-                </dt>
-                <dd className="font-semibold text-[#211d18]">
-                  {facility.rating || "New"}
-                </dd>
-              </div>
-            </dl>
-          ) : null}
+          <dl className="mb-5 grid grid-cols-3 gap-4 border-y border-[#d8cebf]/85 py-4 text-sm">
+            <div className="min-w-0">
+              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+                Area
+              </dt>
+              <dd className="truncate font-medium text-[#29241d]">
+                {facility.location || "London"}
+              </dd>
+            </div>
+            <div>
+              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+                Price
+              </dt>
+              <dd className="font-medium text-[#29241d]">{price || "Ask"}</dd>
+            </div>
+            <div>
+              <dt className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+                Rating
+              </dt>
+              <dd className="font-medium text-[#29241d]">{facility.rating || "New"}</dd>
+            </div>
+          </dl>
 
-          <div className="mt-auto flex items-center justify-between border-t border-[#d8cebf]/80 pt-4 text-sm">
-            <span className="font-semibold text-[#29241d] underline underline-offset-4">
+          <div className="flex items-center justify-between text-sm">
+            <span className="font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
               View profile
             </span>
-            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-stone-400">
-              Compare
+            <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+              Directory pick
             </span>
           </div>
         </div>
