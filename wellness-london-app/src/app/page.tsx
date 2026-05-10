@@ -42,8 +42,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-5 pt-6 md:px-8 md:pt-8">
-        <div className="relative mx-auto min-h-[78vh] max-w-[1400px] overflow-hidden bg-[#d8cebf]">
+      <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
+        <div className="relative mx-auto min-h-[66vh] max-w-[1400px] overflow-hidden bg-[#d8cebf] sm:min-h-[78vh]">
           {heroImage ? (
             <Image
               src={heroImage.url}
@@ -54,16 +54,16 @@ export default async function Home() {
               className="object-cover"
             />
           ) : null}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
-          <div className="relative flex min-h-[78vh] items-end px-6 py-12 md:px-14 md:py-16">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
+          <div className="relative flex min-h-[66vh] items-end px-5 py-10 sm:min-h-[78vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
             <div className="max-w-4xl text-[#fbf8f1]">
-              <p className="mb-8 text-[11px] uppercase tracking-[0.3em] text-[#fbf8f1]/75">
+              <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">
                 Well Edit / London recovery spaces
               </p>
-              <h1 className="max-w-5xl font-serif text-[4rem] font-normal leading-[0.92] tracking-normal md:text-[7.6rem]">
+              <h1 className="max-w-5xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7.6rem]">
                 A quieter way to find wellness in London.
               </h1>
-              <p className="mt-8 max-w-lg text-base leading-8 text-[#fbf8f1]/86 md:text-lg">
+              <p className="mt-6 max-w-lg text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">
                 An edited guide to London recovery spaces.
               </p>
             </div>
@@ -71,33 +71,33 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-20 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-end">
+      <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end md:gap-10">
           <div>
-            <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">
               The Well Edit selection
             </p>
-            <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">
+            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">
               Spaces worth starting with.
             </h2>
           </div>
           <div className="max-w-xl text-sm leading-7 text-[#5f574c]">
-            <p className="mb-3">A short list of places that give the strongest first read of London’s recovery scene.</p>
+            <p className="mb-3">A short list of places that give the strongest first read of London&apos;s recovery scene.</p>
             <p>{facilities.length || "Soon"} listings across {serviceCount || 3} recovery categories.</p>
           </div>
         </div>
       </section>
 
-      <section className="px-6 pb-24 md:pb-32">
+      <section className="px-5 pb-20 sm:px-6 md:pb-32">
         <div className="mx-auto max-w-6xl">
           {directoryFacilities.length > 0 ? (
-            <div className="space-y-20">
+            <div className="space-y-16 md:space-y-20">
               <div>
-                <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
-                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor’s picks</p>
-                  <h3 className="text-2xl font-medium tracking-normal">The first places to compare</h3>
+                <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
+                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor&apos;s picks</p>
+                  <h3 className="text-xl font-medium tracking-normal sm:text-2xl">The first places to compare</h3>
                 </div>
-                <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+                <div className="grid gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-x-8">
                   {selectedFacilities.map((facility) => (
                     <FacilityCard
                       key={facility.slug}
@@ -110,11 +110,11 @@ export default async function Home() {
 
               {remainingFacilities.length > 0 ? (
                 <div>
-                  <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
+                  <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
                     <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All spaces</p>
-                    <h3 className="text-2xl font-medium tracking-normal">More places to consider</h3>
+                    <h3 className="text-xl font-medium tracking-normal sm:text-2xl">More places to consider</h3>
                   </div>
-                  <div className="grid gap-x-8 gap-y-16 md:grid-cols-3">
+                  <div className="grid gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-x-8">
                     {remainingFacilities.map((facility) => (
                       <FacilityCard
                         key={facility.slug}
@@ -127,11 +127,11 @@ export default async function Home() {
               ) : null}
             </div>
           ) : (
-            <div className="max-w-2xl bg-[#fbf8f1] p-8">
+            <div className="max-w-2xl bg-[#fbf8f1] p-6 sm:p-8">
               <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
                 Directory coming soon
               </p>
-              <h3 className="mb-4 text-3xl font-medium tracking-normal">
+              <h3 className="mb-4 text-2xl font-medium tracking-normal sm:text-3xl">
                 We are refreshing the live listings
               </h3>
               <p className="text-sm leading-7 text-[#5f574c]">
@@ -142,36 +142,36 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-6 py-20 md:py-24">
+      <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-12 grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+          <div className="mb-10 grid gap-6 md:mb-12 md:grid-cols-[0.85fr_1.15fr] md:items-end">
             <div>
               <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by treatment</p>
-              <h2 className="font-serif text-5xl font-normal leading-tight md:text-7xl">Choose a route in.</h2>
+              <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">Choose a route in.</h2>
             </div>
             <p className="max-w-lg text-sm leading-7 text-[#5f574c] md:justify-self-end">
               Browse first, then narrow by the kind of recovery you want.
             </p>
           </div>
 
-          <div className="grid gap-8 border-y border-[#d8cebf]/70 py-8 md:grid-cols-3">
+          <div className="grid gap-6 border-y border-[#d8cebf]/70 py-6 sm:gap-8 sm:py-8 md:grid-cols-3">
             {categoryLinks.map((category, index) => (
               <Link
                 key={category.href}
                 href={category.href}
-                className="group block py-5 transition md:pr-8"
+                className="group block py-4 transition sm:py-5 md:pr-8"
               >
-                <p className="mb-8 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+                <p className="mb-5 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-8">
                   {String(index + 1).padStart(2, "0")} / Guide
                 </p>
-                <h3 className="mb-4 text-3xl font-medium tracking-normal text-[#29241d]">
+                <h3 className="mb-3 text-2xl font-medium tracking-normal text-[#29241d] sm:mb-4 sm:text-3xl">
                   {category.label}
                 </h3>
                 <p className="mb-3 max-w-sm text-sm leading-7 text-[#5f574c]">
                   {category.description}
                 </p>
                 <p className="text-sm text-[#29241d]">{category.bestFor}</p>
-                <span className="mt-7 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
+                <span className="mt-5 inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1 sm:mt-7">
                   Explore
                 </span>
               </Link>
@@ -180,7 +180,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-16 md:py-20">
+      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-[#d8cebf]/70 pt-8 text-sm leading-7 text-[#5f574c] md:flex-row md:items-start md:justify-between">
           <p className="text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">How we choose</p>
           <p className="max-w-2xl">
