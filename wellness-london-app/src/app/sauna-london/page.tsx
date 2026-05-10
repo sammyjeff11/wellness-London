@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
 import ServiceDirectory from "@/components/ServiceDirectory";
@@ -76,21 +75,10 @@ export default async function SaunaLondonPage() {
       <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 border-y border-[#d8cebf]/70 py-8 sm:py-10 md:mb-12">
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
-              <div className="max-w-3xl">
-                <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">The sauna edit</p>
-                <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">Heat rooms worth seeking out.</h2>
-                <p className="mt-5 max-w-2xl text-base leading-8 text-[#5f574c]">Sauna spaces selected for atmosphere, access and the quality of the recovery ritual.</p>
-              </div>
-
-              <nav aria-label="Related guides" className="flex flex-col gap-3 lg:items-end">
-                <p className="text-[11px] uppercase tracking-[0.2em] text-[#6f6048]">Related guides</p>
-                <div className="flex flex-wrap gap-2">
-                  <Link href="/" className="rounded-full border border-[#cfc5b6] px-4 py-2 text-sm text-[#29241d] transition hover:border-[#29241d] hover:bg-[#f4efe6]">Directory</Link>
-                  <Link href="/cold-plunge-london" className="rounded-full border border-[#cfc5b6] px-4 py-2 text-sm text-[#29241d] transition hover:border-[#29241d] hover:bg-[#f4efe6]">Cold plunge</Link>
-                  <Link href="/cryotherapy-london" className="rounded-full border border-[#cfc5b6] px-4 py-2 text-sm text-[#29241d] transition hover:border-[#29241d] hover:bg-[#f4efe6]">Cryotherapy</Link>
-                </div>
-              </nav>
+            <div className="max-w-4xl">
+              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">The sauna edit</p>
+              <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">Heat rooms worth seeking out.</h2>
+              <p className="mt-5 max-w-2xl text-base leading-8 text-[#5f574c]">Sauna spaces selected for atmosphere, access and the quality of the recovery ritual.</p>
             </div>
           </div>
 
