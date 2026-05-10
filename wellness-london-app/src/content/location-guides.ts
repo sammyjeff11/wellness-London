@@ -5,7 +5,7 @@ export type LocationGuide = {
   intro: string[];
   highlights: { title: string; text: string }[];
   faqs: { question: string; answer: string }[];
-  areas?: string[];
+  areas: string[];
 };
 
 export const centralLondonGuide: LocationGuide = {
