@@ -72,19 +72,12 @@ export default async function Home() {
 
       <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10 sm:pt-12 md:pt-14">
-          <div className="grid gap-6 md:grid-cols-[minmax(0,0.68fr)_minmax(260px,0.32fr)] md:items-end md:gap-12">
-            <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-                The Well Edit selection
-              </p>
-              <h2 className="max-w-3xl font-serif text-4xl font-normal leading-tight tracking-normal sm:text-5xl md:text-6xl">
-                Start with these spaces.
-              </h2>
-            </div>
-            <p className="max-w-md text-sm leading-7 text-[#5f574c] md:justify-self-end">
-              A small edit to help you compare quickly, chosen for atmosphere, useful detail and a clear reason to go.
-            </p>
-          </div>
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            The Well Edit selection
+          </p>
+          <h2 className="max-w-3xl font-serif text-4xl font-normal leading-tight tracking-normal sm:text-5xl md:text-6xl">
+            Start with these spaces.
+          </h2>
         </div>
       </section>
 
