@@ -71,25 +71,17 @@ export default async function Home() {
       </section>
 
       <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14 md:py-16">
-          <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_340px] md:items-end md:gap-14">
-            <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">
-                The Well Edit selection
-              </p>
-              <h2 className="max-w-4xl font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">
-                Recovery spaces worth your time.
-              </h2>
-            </div>
-
-            <aside className="max-w-sm md:pb-2">
-              <p className="text-base leading-8 text-[#29241d] sm:text-lg">
-                A concise edit of London spaces with a clear reason to visit.
-              </p>
-              <p className="mt-5 border-t border-[#d8cebf]/70 pt-5 text-[11px] uppercase leading-5 tracking-[0.18em] text-[#6f6048]">
-                Selected for atmosphere, clarity and practical detail.
-              </p>
-            </aside>
+        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-12 sm:py-16 md:py-20">
+          <div className="max-w-5xl">
+            <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              The Well Edit selection
+            </p>
+            <h2 className="max-w-5xl font-serif text-5xl font-normal leading-[0.94] tracking-normal sm:text-6xl md:text-[6.8rem]">
+              The places we&apos;d book first.
+            </h2>
+            <p className="mt-8 max-w-2xl text-base leading-8 text-[#5f574c] sm:mt-10 sm:text-lg sm:leading-9">
+              A short edit of London recovery spaces chosen for atmosphere, clear details and a real reason to go.
+            </p>
           </div>
         </div>
       </section>
@@ -101,7 +93,7 @@ export default async function Home() {
               <div>
                 <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
                   <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor&apos;s picks</p>
-                  <h3 className="text-xl font-medium tracking-normal sm:text-2xl">Three strong starting points</h3>
+                  <h3 className="text-xl font-medium tracking-normal sm:text-2xl">Start with these three</h3>
                 </div>
                 <div className="grid gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-x-8">
                   {selectedFacilities.map((facility) => (
