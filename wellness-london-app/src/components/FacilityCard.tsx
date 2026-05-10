@@ -42,10 +42,10 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const price = facility.priceFrom || facility.priceRange || "Price not listed";
 
   return (
-    <article className="group">
+    <article className="group min-w-0">
       <Link
         href={`/facility/${facility.slug}`}
-        className="block"
+        className="block min-w-0"
         onClick={() => trackEvent("listing_card_click", {
           facility_name: facility.name,
           facility_slug: facility.slug,
@@ -54,7 +54,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           page_path: window.location.pathname,
         })}
       >
-        <div className="relative mb-5 aspect-[4/5] overflow-hidden bg-[#d8cebf]">
+        <div className="relative mb-4 aspect-[4/3] overflow-hidden bg-[#d8cebf] sm:mb-5 sm:aspect-[4/5]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
@@ -68,29 +68,29 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
               <span className="text-sm text-[#5f574c]">Well Edit</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/52 via-transparent to-transparent" />
           {location ? (
-            <p className="absolute bottom-4 left-4 right-4 text-[11px] font-medium uppercase tracking-[0.2em] text-white/92">
+            <p className="absolute bottom-4 left-4 right-4 text-[10px] font-medium uppercase leading-5 tracking-[0.18em] text-white/92 sm:text-[11px]">
               {location}
             </p>
           ) : null}
         </div>
 
-        <div>
+        <div className="min-w-0">
           {services.length > 0 ? (
-            <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#6f6048]">
+            <p className="mb-3 text-[10px] uppercase leading-5 tracking-[0.16em] text-[#6f6048] sm:text-[11px] sm:tracking-[0.18em]">
               {services.join(" / ")}
             </p>
           ) : null}
 
-          <h3 className="mb-3 text-2xl font-medium leading-tight tracking-normal text-[#29241d]">
+          <h3 className="mb-3 text-xl font-medium leading-tight tracking-normal text-[#29241d] sm:text-2xl">
             {facility.name}
           </h3>
           <p className="mb-4 text-[15px] leading-7 text-[#5f574c]">
             {primaryBestFor(facility)}
           </p>
 
-          <div className="flex items-center justify-between border-t border-[#d8cebf]/80 pt-4 text-sm text-[#5f574c]">
+          <div className="flex flex-col gap-2 border-t border-[#d8cebf]/80 pt-4 text-sm text-[#5f574c] min-[380px]:flex-row min-[380px]:items-center min-[380px]:justify-between">
             <span>{price}</span>
             <span className="text-[#29241d] underline underline-offset-4">View profile</span>
           </div>
