@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
-const siteUrl = new URL("https://welledit.co.uk");
+const siteUrl = new URL(SITE_URL);
 const siteDescription =
   "Well Edit is a quiet editorial guide to London wellness spaces, including saunas, cold plunges, cryotherapy and recovery studios.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
@@ -15,9 +16,6 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description: siteDescription,
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "Well Edit | London Wellness Guide",
     description: siteDescription,
