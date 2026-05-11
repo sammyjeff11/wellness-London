@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
+import { absoluteUrl } from "@/lib/site";
 
-const baseUrl = "https://welledit.co.uk";
 const defaultLastModified = new Date("2026-05-09T00:00:00.000Z");
 
 const staticRoutes = [
@@ -17,7 +17,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const facilities = await getFacilities();
 
   const routeEntries = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
+    url: absoluteUrl(route.path),
     lastModified: defaultLastModified,
     changeFrequency: "weekly" as const,
     priority: route.priority,
@@ -26,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const facilityEntries = facilities
     .filter((facility) => facility.slug && (facility.editorialSummary || facility.description))
     .map((facility) => ({
-      url: `${baseUrl}/facility/${facility.slug}`,
+      url: absoluteUrl(`/facility/${facility.slug}`),
       lastModified: defaultLastModified,
       changeFrequency: "monthly" as const,
       priority: 0.6,
