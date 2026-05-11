@@ -59,6 +59,40 @@ function getSimilarFacilities(facility: AirtableFacility, facilities: AirtableFa
     .map(({ item }) => item);
 }
 
+function hasKnownValue(value?: string) {
+  if (!value) return false;
+  const lower = value.toLowerCase();
+  return !lower.includes("unknown") && !lower.includes("unclear") && !lower.includes("not confirmed") && !lower.includes("details not yet confirmed");
+}
+
+function buildGoodToKnow(facility: AirtableFacility) {
+  const items: string[] = [];
+
+  if (hasKnownValue(facility.bookingRequired)) items.push(facility.bookingRequired);
+  if (hasKnownValue(facility.privateOrShared)) items.push(`${facility.privateOrShared} access.`);
+  if (hasKnownValue(facility.towelsIncluded)) items.push(`Towels: ${facility.towelsIncluded.toLowerCase()}.`);
+  if (hasKnownValue(facility.showersAvailable)) items.push(`Showers: ${facility.showersAvailable.toLowerCase()}.`);
+  if (hasKnownValue(facility.changingRooms)) items.push(`Changing rooms: ${facility.changingRooms.toLowerCase()}.`);
+
+  if (items.length < 3) {
+    items.push("Some practical details are still being checked, so confirm current inclusions with the venue before booking.");
+  }
+
+  return items.slice(0, 5);
+}
+
+function buildExperienceHighlights(facility: AirtableFacility) {
+  const highlights = new Set<string>();
+
+  facility.experienceType.forEach((item) => highlights.add(item));
+  facility.servicesOffered.slice(0, 4).forEach((item) => highlights.add(item));
+  if (hasKnownValue(facility.privateOrShared)) highlights.add(facility.privateOrShared);
+  if (hasKnownValue(facility.beginnerFriendly)) highlights.add(`Beginner-friendly: ${facility.beginnerFriendly}`);
+  if (hasKnownValue(facility.premiumLevel)) highlights.add(facility.premiumLevel);
+
+  return Array.from(highlights).filter(Boolean).slice(0, 8);
+}
+
 async function getFacilityBySlug(slug: string) {
   const facilities = await getFacilities();
   const facility = facilities.find((item) => item.slug === slug || item.id === slug);
@@ -74,7 +108,7 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
   }
 
   const title = `${facility.name} | Well Edit`;
-  const description = facility.editorialVerdict || facility.editorialSummary || facility.description;
+  const description = facility.editorialSummary || facility.description;
 
   return {
     title,
@@ -110,14 +144,17 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const directionsHref = getDirectionsHref(facility);
   const similarFacilities = getSimilarFacilities(facility, facilities);
   const primaryBestFor = facility.bestFor[0] || facility.experienceType[0] || "Best fit not yet confirmed";
-  const verdict = facility.editorialVerdict || facility.editorialSummary || facility.description;
+  const summary = facility.editorialSummary || facility.description;
+  const atmosphere = facility.ambience || "Atmosphere notes are being refined as this profile is updated.";
+  const goodToKnow = buildGoodToKnow(facility);
+  const experienceHighlights = buildExperienceHighlights(facility);
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "HealthAndBeautyBusiness",
     "@id": `${pageUrl}#business`,
     name: facility.name,
-    description: verdict,
+    description: summary,
     url: pageUrl,
     image: facility.images.map((image) => image.url),
     telephone: facility.phone || undefined,
@@ -181,14 +218,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           <div className="grid gap-9 sm:gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:items-end">
             <div className="relative min-h-[52vh] overflow-hidden bg-[#d8cebf] sm:min-h-[68vh]">
               {facility.images[0] ? (
-                <Image
-                  src={facility.images[0].url}
-                  alt={facility.name}
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 56vw, 100vw"
-                  className="object-cover"
-                />
+                <Image src={facility.images[0].url} alt={facility.name} fill priority sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover" />
               ) : (
                 <div className="flex h-full min-h-[52vh] items-end p-6 text-[#70695d] sm:min-h-[68vh] sm:p-8">Well Edit</div>
               )}
@@ -202,15 +232,11 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               <p className="mb-5 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#6f6048] sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">
                 {facility.neighbourhood || facility.areaOfLondon || "London"}
               </p>
-              <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">
-                {facility.name}
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-[#70695d] sm:mt-8 sm:text-xl sm:leading-9">
-                Best for: {primaryBestFor}
-              </p>
-              <div className="mt-6 flex flex-wrap gap-x-3 gap-y-2 text-[10px] uppercase leading-5 tracking-[0.16em] text-[#6f6048] sm:mt-8 sm:text-[11px] sm:tracking-[0.18em]">
-                {facility.servicesOffered.slice(0, 5).map((service) => (
-                  <span key={service}>{service}</span>
+              <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">{facility.name}</h1>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-[#70695d] sm:mt-8 sm:text-xl sm:leading-9">Well suited for: {primaryBestFor}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {experienceHighlights.slice(0, 5).map((highlight) => (
+                  <span key={highlight} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{highlight}</span>
                 ))}
               </div>
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
@@ -233,32 +259,39 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Editorial note</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">The Well Edit view</h2>
+            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Profile context</p>
+            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">What to expect</h2>
           </div>
-          <p className="text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10">{verdict}</p>
+          <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10">
+            <p>{summary}</p>
+            <p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p>
+            <p className="text-sm leading-7 text-[#8a7f70]">This profile is built from public venue information and structured research. First-hand editorial notes will be added after an in-person visit.</p>
+          </div>
         </div>
       </section>
 
       <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 sm:gap-12 lg:grid-cols-[0.95fr_1.05fr]">
           <article>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Quick verdict</p>
-            <h2 className="mb-5 font-serif text-3xl font-normal tracking-normal sm:mb-6 sm:text-4xl">Who this is best suited to</h2>
-            <p className="text-base leading-8 text-[#70695d]">{verdict}</p>
+            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Well suited for</p>
+            <h2 className="mb-5 font-serif text-3xl font-normal tracking-normal sm:mb-6 sm:text-4xl">Who this may work for</h2>
+            {facility.bestFor.length > 0 ? (
+              <ul className="space-y-3 text-base leading-7 text-[#70695d]">
+                {facility.bestFor.slice(0, 5).map((item) => <li key={item}>— {item}</li>)}
+              </ul>
+            ) : (
+              <p className="text-base leading-8 text-[#70695d]">Best-fit notes are still being refined for this profile.</p>
+            )}
           </article>
 
           <article>
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">At a glance</p>
             <dl>
-              <DetailRow label="Best for" value={facility.bestFor.length ? facility.bestFor : primaryBestFor} />
               <DetailRow label="Services" value={facility.servicesOffered} />
               <DetailRow label="Experience" value={facility.experienceType.length ? facility.experienceType : facility.premiumLevel} />
               <DetailRow label="Price from" value={facility.priceFrom} />
               <DetailRow label="Private/shared" value={facility.privateOrShared} />
               <DetailRow label="Booking" value={facility.bookingRequired} />
-              <DetailRow label="Towels" value={facility.towelsIncluded} />
-              <DetailRow label="Showers" value={facility.showersAvailable} />
               <DetailRow label="Beginner-friendly" value={facility.beginnerFriendly} />
               <DetailRow label="Last checked" value={formatDate(facility.lastCheckedDate)} />
             </dl>
@@ -268,16 +301,22 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
       <section className="px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-3">
-          {[
-            `Good option if you want ${facility.servicesOffered.slice(0, 2).join(" and ") || "a recovery session"} in one visit.`,
-            facility.privateOrShared !== "Private/shared not confirmed" ? `${facility.privateOrShared} access helps set expectations before booking.` : "Access details are still being checked, so confirm before booking.",
-            facility.beginnerFriendly === "Yes" ? "Suitable for beginners based on current listing details." : "Beginner suitability should be checked with the venue before booking.",
-          ].map((item) => (
-            <article key={item}>
-              <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Why visit</h3>
-              <p className="text-sm leading-7 text-[#70695d]">{item}</p>
-            </article>
-          ))}
+          <article>
+            <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Experience highlights</h3>
+            <div className="flex flex-wrap gap-2">
+              {experienceHighlights.length > 0 ? experienceHighlights.map((item) => <span key={item} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{item}</span>) : <p className="text-sm leading-7 text-[#70695d]">Highlights are being refined.</p>}
+            </div>
+          </article>
+          <article>
+            <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Atmosphere</h3>
+            <p className="text-sm leading-7 text-[#70695d]">{atmosphere}</p>
+          </article>
+          <article>
+            <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Good to know</h3>
+            <ul className="space-y-2 text-sm leading-7 text-[#70695d]">
+              {goodToKnow.map((item) => <li key={item}>— {item}</li>)}
+            </ul>
+          </article>
         </div>
       </section>
 
@@ -285,11 +324,15 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         <div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Before you go</p>
-            <h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Things to know</h2>
+            <h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Practical details</h2>
           </div>
-          <p className="text-base leading-8 text-[#70695d]">
-            {facility.bookingRequired}. Towels: {facility.towelsIncluded.toLowerCase()}. Showers: {facility.showersAvailable.toLowerCase()}. Changing rooms: {facility.changingRooms.toLowerCase()}. {facility.priceNotes}
-          </p>
+          <dl>
+            <DetailRow label="Towels" value={facility.towelsIncluded} />
+            <DetailRow label="Showers" value={facility.showersAvailable} />
+            <DetailRow label="Changing rooms" value={facility.changingRooms} />
+            <DetailRow label="Relaxation area" value={facility.relaxationArea} />
+            <DetailRow label="Opening hours" value={facility.openingHours} />
+          </dl>
         </div>
       </section>
 
