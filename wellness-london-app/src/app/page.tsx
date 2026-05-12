@@ -110,44 +110,6 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-10 grid gap-6 md:mb-12 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-            <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Start here</p>
-              <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">Choose the recovery route you need.</h2>
-            </div>
-            <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
-              Browse by treatment first, then compare venues by location, price, access, atmosphere and the kind of recovery experience you want.
-            </p>
-          </div>
-
-          <div className="grid gap-5 border-y border-[#d8cebf]/70 py-6 sm:gap-6 sm:py-8 md:grid-cols-3">
-            {categoryLinks.map((category) => (
-              <Link
-                key={category.href}
-                href={category.href}
-                className="group block bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7"
-              >
-                <p className="mb-5 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
-                  {category.kicker}
-                </p>
-                <h3 className="mb-4 text-2xl font-medium tracking-normal text-[#29241d] sm:text-3xl">
-                  {category.label}
-                </h3>
-                <p className="mb-4 max-w-sm text-sm leading-7 text-[#5f574c]">
-                  {category.description}
-                </p>
-                <p className="mb-6 text-sm leading-6 text-[#29241d]">{category.bestFor}</p>
-                <span className="inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
-                  {category.cta}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8 sm:py-10">
           <div className="mb-8 max-w-3xl">
@@ -224,6 +186,44 @@ export default async function Home() {
               </p>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 grid gap-4 md:mb-10 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+            <div>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Browse by service</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Recovery guides.</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
+              Browse by treatment after you have explored the venue directory, with internal links preserved for deeper service research.
+            </p>
+          </div>
+
+          <div className="grid gap-4 border-y border-[#d8cebf]/70 py-5 sm:gap-5 sm:py-6 md:grid-cols-3">
+            {categoryLinks.map((category) => (
+              <Link
+                key={category.href}
+                href={category.href}
+                className="group block border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:bg-[#eee7da] sm:p-6"
+              >
+                <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+                  {category.kicker}
+                </p>
+                <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d] sm:text-2xl">
+                  {category.label}
+                </h3>
+                <p className="mb-4 max-w-sm text-sm leading-7 text-[#5f574c]">
+                  {category.description}
+                </p>
+                <p className="mb-5 text-sm leading-6 text-[#29241d]">{category.bestFor}</p>
+                <span className="inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
+                  {category.cta}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
