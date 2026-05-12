@@ -111,23 +111,6 @@ export default async function Home() {
       </section>
 
       <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8 sm:py-10">
-          <div className="mb-8 max-w-3xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Find by intent</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Not sure where to start?</h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {intentLinks.map((item) => (
-              <Link key={item.title} href={item.href} className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-7">
-                <h3 className="mb-3 text-xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{item.title}</h3>
-                <p className="text-sm leading-7 text-[#5f574c]">{item.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10 sm:pt-12 md:pt-14">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
             The Well Edit selection
@@ -221,6 +204,34 @@ export default async function Home() {
                 <span className="inline-block text-sm text-[#29241d] underline underline-offset-4 transition group-hover:translate-x-1">
                   {category.cta}
                 </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-10 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+          <div className="mb-5 grid gap-3 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+            <div>
+              <p className="mb-2 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Find by intent</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl">Need help choosing?</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
+              Quick routes for visitors who want a specific kind of recovery experience after browsing the directory.
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {intentLinks.map((item) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group block border border-[#d8cebf]/70 bg-[#fbf8f1] p-5 transition hover:bg-[#eee7da]"
+              >
+                <h3 className="mb-2 text-lg font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-6 text-[#5f574c]">{item.text}</p>
               </Link>
             ))}
           </div>
