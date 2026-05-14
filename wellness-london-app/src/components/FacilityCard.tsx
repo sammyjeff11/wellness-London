@@ -47,20 +47,25 @@ function isBroadAreaLabel(value?: string) {
   return value ? broadAreaLabels.has(value.trim().toLowerCase()) : false;
 }
 
-function getPrimaryLocation(facility: FacilityCardFacility) {
+function getNeighbourhoodLabel(facility: FacilityCardFacility) {
   if (facility.neighbourhood) return facility.neighbourhood;
   if (facility.location && !isBroadAreaLabel(facility.location)) return facility.location;
   if (facility.nearestStation) return facility.nearestStation;
-  return facility.areaOfLondon || facility.location || facility.areaGroup || "London";
+  return "London";
+}
+
+function getAreaLabel(facility: FacilityCardFacility) {
+  return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
 }
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
-  const primaryLocation = getPrimaryLocation(facility);
-  const location = [primaryLocation, facility.nearestStation && facility.nearestStation !== primaryLocation ? facility.nearestStation : undefined].filter(Boolean).join(" / ");
-  const locationHref = getLocationHubHref(facility.areaOfLondon || facility.areaGroup || facility.location);
+  const neighbourhoodLabel = getNeighbourhoodLabel(facility);
+  const areaLabel = getAreaLabel(facility);
+  const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" / ");
+  const locationHref = getLocationHubHref(areaLabel);
   const price = facility.priceFrom || facility.priceRange;
-  const details = [primaryLocation, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
+  const details = [areaLabel, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
 
   return (
     <article className="group min-w-0">
@@ -72,7 +77,8 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             facility_name: facility.name,
             facility_slug: facility.slug,
             service_type: source,
-            area: primaryLocation,
+            area: areaLabel,
+            neighbourhood: neighbourhoodLabel,
             page_path: window.location.pathname,
           })
         }
@@ -112,7 +118,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
 
           <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-6">
             <p className="mb-3 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
-              {location || "London"}
+              {overlayLocation || "London"}
             </p>
             <h3 className="max-w-[92%] text-3xl font-medium leading-[1.04] tracking-normal text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2rem]">
               {facility.name}
@@ -154,7 +160,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         {details.length > 0 ? (
           <p className="mb-5 border-y border-[#d8cebf]/85 py-4 text-sm leading-6 text-[#29241d]">
             {details.map((detail, index) => {
-              const href = detail === primaryLocation ? locationHref : null;
+              const href = detail === areaLabel ? locationHref : null;
               return (
                 <span key={detail}>
                   {index > 0 ? <span className="mx-2 text-[#b1a491]">/</span> : null}
