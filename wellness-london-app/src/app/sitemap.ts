@@ -6,6 +6,7 @@ const defaultLastModified = new Date("2026-05-09T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
+  { path: "/recovery-london", priority: 0.9 },
   { path: "/sauna-london", priority: 0.8 },
   { path: "/cryotherapy-london", priority: 0.8 },
   { path: "/cold-plunge-london", priority: 0.8 },
