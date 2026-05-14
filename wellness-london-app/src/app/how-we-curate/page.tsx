@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How We Curate | The Well Edit",
+  title: "How We Curate | Well+ London",
   description:
-    "How The Well Edit selects, reviews and organises London wellness spaces, including saunas, cold plunges, recovery studios and cryotherapy venues.",
+    "How Well+ selects, reviews and organises London wellness spaces, including saunas, cold plunges, recovery studios and cryotherapy venues.",
   alternates: { canonical: "/how-we-curate" },
 };
 
@@ -19,7 +19,7 @@ const criteria = [
   },
   {
     title: "Experience and setting",
-    text: "The Well Edit favours spaces with a clear experience proposition: calm design, thoughtful facilities, strong hospitality, a distinctive recovery concept or a genuinely useful wellness routine.",
+    text: "Well+ favours spaces with a clear experience proposition: calm design, thoughtful facilities, strong hospitality, a distinctive recovery concept or a genuinely useful wellness routine.",
   },
   {
     title: "London relevance",
@@ -37,7 +37,7 @@ export default function HowWeCuratePage() {
             How we curate London wellness spaces.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            The Well Edit is built to make wellness discovery calmer, clearer and more useful. We organise London venues by the details people actually use when deciding where to book: treatment type, setting, facilities, atmosphere, location and suitability.
+            Well+ is built to make wellness discovery calmer, clearer and more useful. We organise London venues by the details people actually use when deciding where to book: treatment type, setting, facilities, atmosphere, location and suitability.
           </p>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default function HowWeCuratePage() {
           </div>
           <div className="space-y-5 text-sm leading-7 text-[#fbf8f1]/76">
             <p>
-              The Well Edit does not provide medical advice, clinical recommendations or treatment claims. Wellness services can feel different from person to person, and users should make choices based on their own health, comfort and professional advice where needed.
+              Well+ does not provide medical advice, clinical recommendations or treatment claims. Wellness services can feel different from person to person, and users should make choices based on their own health, comfort and professional advice where needed.
             </p>
             <p>
               Venue inclusion is editorial and utility-led. If commercial partnerships are introduced, sponsored or featured placements should be clearly labelled so users can separate editorial curation from paid promotion.
