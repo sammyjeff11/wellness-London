@@ -44,6 +44,11 @@ const treatmentLinks = [
 
 const collectionLinks = [
   {
+    href: "/best-sauna-cold-plunge-london",
+    title: "Sauna + cold plunge",
+    text: "A Well+ edit of London spaces where heat, cold and recovery rituals come together.",
+  },
+  {
     href: "/recover",
     title: "For physical recovery",
     text: "Start with sauna, cold plunge, cryotherapy and contrast therapy spaces designed around restoration.",
