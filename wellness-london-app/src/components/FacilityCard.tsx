@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { getLocationHubHref } from "@/lib/location-hubs";
-import { getServiceHubHref } from "@/lib/service-hubs";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -81,16 +80,22 @@ function getAtmosphericDescriptor(facility: FacilityCardFacility) {
   return "Restorative";
 }
 
+function formatServiceLine(services?: string[]) {
+  if (!services || services.length === 0) return "";
+  const visible = services.slice(0, 2).join(" · ");
+  const hiddenCount = Math.max(services.length - 2, 0);
+  return hiddenCount > 0 ? `${visible} · +${hiddenCount}` : visible;
+}
+
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
-  const services = facility.services?.slice(0, 2) || [];
-  const hiddenServiceCount = Math.max((facility.services?.length || 0) - services.length, 0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
   const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" / ");
   const atmosphericDescriptor = getAtmosphericDescriptor(facility);
   const locationHref = getLocationHubHref(areaLabel);
   const price = facility.priceFrom || facility.priceRange;
-  const details = [areaLabel, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
+  const serviceLine = formatServiceLine(facility.services);
+  const summary = primaryBestFor(facility);
 
   return (
     <article className="group min-w-0">
@@ -151,60 +156,22 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
       </Link>
 
       <div className="min-w-0 px-0.5">
-        <p className="mb-7 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
-          {primaryBestFor(facility)}
+        <p className="mb-5 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
+          {summary}
         </p>
 
-        {services.length > 0 ? (
-          <div className="mb-7 flex flex-wrap gap-x-4 gap-y-2">
-            {services.map((service) => {
-              const serviceHref = getServiceHubHref(service);
-
-              return serviceHref ? (
-                <Link
-                  key={service}
-                  href={serviceHref}
-                  className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#7d705f] underline-offset-4 transition hover:text-[#29241d] hover:underline"
-                >
-                  {service}
-                </Link>
-              ) : (
-                <span
-                  key={service}
-                  className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#7d705f]"
-                >
-                  {service}
-                </span>
-              );
-            })}
-
-            {hiddenServiceCount > 0 ? (
-              <span className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#a19380]">
-                +{hiddenServiceCount}
-              </span>
-            ) : null}
-          </div>
-        ) : null}
-
-        {details.length > 0 ? (
-          <p className="border-t border-[#d8cebf]/55 pt-4 text-[13px] leading-6 text-[#6c6153]">
-            {details.map((detail, index) => {
-              const href = detail === areaLabel ? locationHref : null;
-              return (
-                <span key={detail}>
-                  {index > 0 ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
-                  {href ? (
-                    <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
-                      {detail}
-                    </Link>
-                  ) : (
-                    <span>{detail}</span>
-                  )}
-                </span>
-              );
-            })}
+        <div className="space-y-2 border-t border-[#d8cebf]/55 pt-4 text-[13px] leading-6 text-[#6c6153]">
+          {serviceLine ? <p>{serviceLine}</p> : null}
+          <p>
+            <Link href={locationHref || "#"} className={locationHref ? "underline-offset-4 hover:text-[#29241d] hover:underline" : "pointer-events-none"}>
+              {areaLabel}
+            </Link>
+            {price ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
+            {price ? <span>{price}</span> : null}
+            {facility.rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
+            {facility.rating ? <span>{facility.rating} Google</span> : null}
           </p>
-        ) : null}
+        </div>
       </div>
     </article>
   );
