@@ -29,7 +29,6 @@ const luxuryKeywords = [
 function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   const searchable = [
     facility.description,
-    facility.editorialSummary,
     facility.accessType,
     facility.privateOrShared,
     facility.premiumLevel,
