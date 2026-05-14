@@ -8,9 +8,9 @@ import { locationHubLinks } from "@/lib/location-hubs";
 import { pillarPages } from "@/lib/pillar-pages";
 
 export const metadata: Metadata = {
-  title: "The Well Edit | London's Curated Wellness Directory",
+  title: "Well+ London | The London Wellness Edit",
   description:
-    "Discover London's best wellness spaces, including saunas, cold plunges, bathhouses, recovery clubs, cryotherapy and longevity experiences.",
+    "Discover London's best wellness spaces, including saunas, cold plunges, bathhouses, recovery clubs, cryotherapy and longevity experiences with Well+.",
   alternates: { canonical: "/" },
 };
 
@@ -91,7 +91,7 @@ export default async function Home() {
           <div className="relative flex min-h-[66vh] items-end px-5 py-10 sm:min-h-[78vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
             <div className="max-w-5xl text-[#fbf8f1]">
               <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">
-                The Well Edit / London wellness discovery
+                Well+ / The London wellness edit
               </p>
               <h1 className="max-w-5xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7.4rem]">
                 Discover London&apos;s best wellness spaces.
@@ -127,7 +127,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end md:text-base">
-              The Well Edit organises London wellness spaces by intention, helping you move from broad need to the right treatment, venue and experience.
+              Well+ organises London wellness spaces by intention, helping you move from broad need to the right treatment, venue and experience.
             </p>
           </div>
 
