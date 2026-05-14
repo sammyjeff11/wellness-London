@@ -9,6 +9,12 @@ const staticRoutes = [
   { path: "/sauna-london", priority: 0.8 },
   { path: "/cryotherapy-london", priority: 0.8 },
   { path: "/cold-plunge-london", priority: 0.8 },
+  { path: "/contrast-therapy-london", priority: 0.8 },
+  { path: "/central-london-wellness", priority: 0.7 },
+  { path: "/east-london-wellness", priority: 0.7 },
+  { path: "/west-london-wellness", priority: 0.7 },
+  { path: "/north-london-wellness", priority: 0.7 },
+  { path: "/south-london-wellness", priority: 0.7 },
   { path: "/journal", priority: 0.5 },
   { path: "/site-map", priority: 0.4 },
 ];
