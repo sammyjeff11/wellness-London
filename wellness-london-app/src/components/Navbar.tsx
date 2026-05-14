@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-[#f4efe6]/92 backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1400px] flex-col gap-3 px-5 py-4 md:flex-row md:items-center md:justify-between md:gap-6 md:px-8 md:py-5">
         <Link href="/" className="font-serif text-2xl font-normal tracking-normal text-[#29241d] transition hover:text-[#6f6048]">
-          Well Edit
+          Well+
         </Link>
 
         <nav className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[13px] text-[#70695d] md:w-auto md:justify-end md:gap-x-7 md:overflow-visible md:pb-0">
