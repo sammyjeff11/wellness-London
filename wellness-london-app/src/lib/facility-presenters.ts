@@ -14,6 +14,9 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     imageUrl: facility.images[0]?.url,
     imageAlt: facility.images[0]?.filename || facility.name,
     location: getFacilityLocation(facility),
+    neighbourhood: facility.neighbourhood,
+    areaOfLondon: facility.areaOfLondon,
+    areaGroup: facility.areaGroup,
     services: facility.servicesOffered,
     serviceKeys: facility.serviceKeys,
     priceRange: facility.overallPriceRange,
@@ -28,7 +31,6 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     nearestStation: facility.nearestStation,
     lastCheckedDate: facility.lastCheckedDate,
     verificationStatus: facility.verificationStatus,
-    areaGroup: facility.areaGroup,
     isFeatured: facility.isFeatured,
     profileCompletenessScore: facility.profileCompletenessScore,
   };
