@@ -14,9 +14,9 @@ export default function PillarPage({
   const featuredFacilities = facilities.slice(0, 9).map(toDirectoryFacility);
 
   const venuesSection = (
-    <section className="px-5 py-8 sm:px-6 sm:py-14 md:py-20">
+    <section className="px-5 py-2 sm:px-6 sm:py-14 md:py-20">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-6 flex flex-col gap-3 sm:mb-10 md:flex-row md:items-end md:justify-between">
+        <div className="mb-6 hidden flex-col gap-3 sm:mb-10 md:flex md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Curated venues</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
@@ -79,13 +79,15 @@ export default function PillarPage({
 
   return (
     <main className="bg-[#fbf8f1] text-[#29241d]">
-      <section className="px-5 pb-6 pt-8 sm:px-6 sm:py-16 md:py-24">
+      <section className="px-5 pb-0 pt-4 sm:px-6 sm:py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
-          <h1 className="font-serif text-[2.55rem] font-normal leading-[0.98] tracking-[-0.03em] sm:text-6xl md:text-7xl">
+          <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6f6048] sm:mb-5 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
+          <h1 className="max-w-[92%] font-serif text-[1.95rem] font-normal leading-[0.93] tracking-[-0.045em] sm:text-6xl md:text-7xl">
             {pillar.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-[14px] leading-6 text-[#5f574c] sm:mt-8 sm:text-lg sm:leading-8">{pillar.intro}</p>
+          <p className="mt-2 max-w-lg text-[12px] leading-5 text-[#5f574c] sm:mt-8 sm:text-lg sm:leading-8">
+            {pillar.intro}
+          </p>
         </div>
       </section>
 
