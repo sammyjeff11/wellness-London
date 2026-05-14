@@ -1,14 +1,17 @@
 import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
+import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
 
-const defaultLastModified = new Date("2026-05-09T00:00:00.000Z");
+const defaultLastModified = new Date("2026-05-14T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
-  { path: "/recovery-london", priority: 0.9 },
-  { path: "/longevity-london", priority: 0.85 },
-  { path: "/stress-regulation-london", priority: 0.85 },
+  { path: "/explore", priority: 0.95 },
+  ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
+  { path: "/recovery-london", priority: 0.85 },
+  { path: "/longevity-london", priority: 0.75 },
+  { path: "/stress-regulation-london", priority: 0.75 },
   { path: "/sauna-london", priority: 0.8 },
   { path: "/cryotherapy-london", priority: 0.8 },
   { path: "/cold-plunge-london", priority: 0.8 },
@@ -18,6 +21,8 @@ const staticRoutes = [
   { path: "/west-london-wellness", priority: 0.7 },
   { path: "/north-london-wellness", priority: 0.7 },
   { path: "/south-london-wellness", priority: 0.7 },
+  { path: "/how-we-curate", priority: 0.55 },
+  { path: "/editorial-standards", priority: 0.55 },
   { path: "/journal", priority: 0.5 },
   { path: "/site-map", priority: 0.4 },
 ];
