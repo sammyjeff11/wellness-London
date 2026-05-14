@@ -34,16 +34,29 @@ type FacilityCardProps = {
   source?: string;
 };
 
+const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
+
 function primaryBestFor(facility: FacilityCardFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || facility.description;
 }
 
+function isBroadAreaLabel(value?: string) {
+  return value ? broadAreaLabels.has(value.trim().toLowerCase()) : false;
+}
+
+function getPrimaryLocation(facility: FacilityCardFacility) {
+  if (facility.location && !isBroadAreaLabel(facility.location)) return facility.location;
+  if (facility.nearestStation) return facility.nearestStation;
+  return facility.location || "London";
+}
+
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
-  const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
+  const primaryLocation = getPrimaryLocation(facility);
+  const location = [primaryLocation, facility.nearestStation && facility.nearestStation !== primaryLocation ? facility.nearestStation : undefined].filter(Boolean).join(" / ");
   const locationHref = getLocationHubHref(facility.location);
   const price = facility.priceFrom || facility.priceRange;
-  const details = [facility.location, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
+  const details = [primaryLocation, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
 
   return (
     <article className="group min-w-0">
@@ -71,7 +84,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
-              <span className="text-sm text-[#5f574c]">Well Edit</span>
+              <span className="text-sm text-[#5f574c]">Well+</span>
             </div>
           )}
 
