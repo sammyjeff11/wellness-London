@@ -111,6 +111,35 @@ export default async function Home() {
         </div>
       </section>
 
+      <section className="bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
+          <div className="grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
+            <div>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+                Topical wellness guides
+              </p>
+              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
+                Explore deeper wellness topics.
+              </h2>
+            </div>
+
+            <div className="md:justify-self-end">
+              <Link
+                href="/guides/sauna-london-guide"
+                className="group block bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7"
+              >
+                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
+                  The Well Edit Guide to Sauna in London
+                </h3>
+                <p className="max-w-xl text-sm leading-7 text-[#5f574c]">
+                  An evergreen editorial guide connecting sauna culture, heat therapy, contrast therapy and recovery-led wellness in London.
+                </p>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10 sm:pt-12 md:pt-14">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
