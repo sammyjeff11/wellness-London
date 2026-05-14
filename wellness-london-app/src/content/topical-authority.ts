@@ -1,8 +1,16 @@
+export type TopicalAuthorityModality = {
+  name: string;
+  role: string;
+  pages: { href: string; label: string }[];
+};
+
 export type TopicalAuthorityPillar = {
   slug: string;
   name: string;
   purpose: string;
   primaryPage: string;
+  userIntent: string[];
+  modalities: TopicalAuthorityModality[];
   existingPages: { href: string; label: string }[];
   missingPages: string[];
   linkedEntities: string[];
@@ -10,158 +18,269 @@ export type TopicalAuthorityPillar = {
 
 export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
   {
-    slug: "sauna-heat-therapy",
-    name: "Sauna & Heat Therapy",
+    slug: "recovery",
+    name: "Recovery",
     purpose:
-      "Own the London sauna topic from commercial discovery through to evergreen education, covering sauna types, heat rituals, contrast therapy and beginner guidance.",
+      "Own the user outcome of physical and mental recovery in London, with sauna, cold plunge, cryotherapy, contrast therapy and recovery studios treated as supporting modalities rather than standalone pillars.",
     primaryPage: "/guides/sauna-london-guide",
+    userIntent: [
+      "I want to recover after training",
+      "I want to reset my body and mind",
+      "I want to compare recovery treatments",
+      "I want a calm place to unwind",
+    ],
+    modalities: [
+      {
+        name: "Sauna and heat therapy",
+        role: "Heat-led recovery, relaxation, contrast therapy pairing and calmer weekly rituals.",
+        pages: [
+          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/sauna-london", label: "Best Saunas in London" },
+        ],
+      },
+      {
+        name: "Cold plunge and ice baths",
+        role: "Cold exposure, contrast therapy, post-training recovery and guided resilience routines.",
+        pages: [{ href: "/cold-plunge-london", label: "Cold Plunge in London" }],
+      },
+      {
+        name: "Cryotherapy",
+        role: "Short, structured cold-therapy sessions for recovery-led wellness routines.",
+        pages: [{ href: "/cryotherapy-london", label: "Cryotherapy in London" }],
+      },
+      {
+        name: "Contrast therapy",
+        role: "Combined heat and cold exposure for a fuller recovery ritual.",
+        pages: [{ href: "/contrast-therapy-london", label: "Contrast Therapy in London" }],
+      },
+    ],
     existingPages: [
+      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
       { href: "/sauna-london", label: "Best Saunas in London" },
-      { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
-      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
-    ],
-    missingPages: [
-      "Infrared sauna London guide",
-      "Sauna vs steam room",
-      "Sauna etiquette for beginners",
-      "Best sauna and cold plunge experiences in London",
-      "Private sauna rooms in London",
-      "Traditional Finnish sauna in London",
-    ],
-    linkedEntities: [
-      "infrared sauna",
-      "traditional sauna",
-      "Finnish sauna",
-      "steam room",
-      "heat therapy",
-      "contrast therapy",
-      "cold plunge",
-      "recovery routine",
-      "London wellness",
-    ],
-  },
-  {
-    slug: "cold-therapy-recovery",
-    name: "Cold Therapy & Recovery",
-    purpose:
-      "Build authority around cold plunge, ice baths, cryotherapy and recovery-led cold exposure in London.",
-    primaryPage: "/cold-plunge-london",
-    existingPages: [
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
       { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
     ],
     missingPages: [
-      "Cold plunge guide for beginners",
-      "Cold plunge vs cryotherapy",
-      "Ice bath studios in London",
-      "Guided cold exposure in London",
-      "Cold therapy for post-training recovery",
+      "Best recovery studios in London",
+      "Recovery modalities explained",
+      "Sauna vs cold plunge vs cryotherapy",
+      "Beginner recovery routine in London",
+      "Post-workout recovery spaces in London",
+      "Private recovery rooms in London",
     ],
     linkedEntities: [
+      "recovery",
+      "recovery studio",
+      "sauna",
+      "infrared sauna",
       "cold plunge",
       "ice bath",
       "cryotherapy",
-      "cold exposure",
       "contrast therapy",
       "breathwork",
-      "recovery studio",
-      "nervous system regulation",
+      "compression therapy",
+      "red light therapy",
     ],
   },
   {
-    slug: "sleep-nervous-system-recovery",
-    name: "Sleep & Nervous System Recovery",
+    slug: "performance",
+    name: "Performance",
     purpose:
-      "Create informational depth around recovery, downregulation, rest, breathwork, sleep hygiene and calmer wellness routines.",
+      "Create a performance-led content layer for people using wellness spaces to support training, consistency, energy, mobility and readiness.",
     primaryPage: "/journal",
+    userIntent: [
+      "I want to train and recover better",
+      "I want to improve energy and readiness",
+      "I want recovery treatments that support performance",
+      "I want practical wellness routines that fit around exercise",
+    ],
+    modalities: [
+      {
+        name: "Cold therapy",
+        role: "Performance recovery, soreness management, mental resilience and training reset routines.",
+        pages: [
+          { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+          { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+        ],
+      },
+      {
+        name: "Heat therapy",
+        role: "Conditioning support, relaxation, post-training reset and contrast therapy pairing.",
+        pages: [
+          { href: "/sauna-london", label: "Best Saunas in London" },
+          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+        ],
+      },
+    ],
     existingPages: [
-      { href: "/journal", label: "Journal" },
-      { href: "/sauna-london", label: "Saunas in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+      { href: "/sauna-london", label: "Best Saunas in London" },
+    ],
+    missingPages: [
+      "Best wellness spaces for athletes in London",
+      "Post-training recovery guide",
+      "Cold plunge for gym recovery",
+      "Sauna for runners in London",
+      "Recovery routines for busy professionals",
+    ],
+    linkedEntities: [
+      "performance",
+      "post-workout recovery",
+      "training recovery",
+      "readiness",
+      "mobility",
+      "HRV",
+      "sleep quality",
+      "cold exposure",
+      "heat exposure",
+    ],
+  },
+  {
+    slug: "longevity",
+    name: "Longevity",
+    purpose:
+      "Build an evidence-aware longevity layer around sustainable wellness behaviours, recovery science, heat exposure, cold exposure, sleep and modern health optimisation.",
+    primaryPage: "/journal",
+    userIntent: [
+      "I want to build a healthier long-term routine",
+      "I want to understand which wellness treatments matter",
+      "I want longevity-focused wellness spaces",
+      "I want evidence-aware guidance without hype",
+    ],
+    modalities: [
+      {
+        name: "Heat exposure",
+        role: "A longevity-adjacent behaviour that connects sauna, recovery, relaxation and cardiovascular wellness interest.",
+        pages: [
+          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/sauna-london", label: "Best Saunas in London" },
+        ],
+      },
+      {
+        name: "Cold exposure",
+        role: "A modern wellness behaviour often associated with resilience, recovery and routine design.",
+        pages: [{ href: "/cold-plunge-london", label: "Cold Plunge in London" }],
+      },
+      {
+        name: "Recovery technology",
+        role: "Cryotherapy, red light, compression and related modalities used within modern longevity spaces.",
+        pages: [{ href: "/cryotherapy-london", label: "Cryotherapy in London" }],
+      },
+    ],
+    existingPages: [
+      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/sauna-london", label: "Best Saunas in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+    ],
+    missingPages: [
+      "Longevity clinics in London",
+      "Heat therapy and longevity",
+      "Cold exposure and longevity",
+      "Red light therapy London guide",
+      "Sleep optimisation and longevity",
+      "Modern longevity treatments explained",
+    ],
+    linkedEntities: [
+      "longevity",
+      "health optimisation",
+      "heat exposure",
+      "cold exposure",
+      "sleep optimisation",
+      "circadian rhythm",
+      "HRV",
+      "red light therapy",
+      "compression therapy",
+      "recovery science",
+    ],
+  },
+  {
+    slug: "stress-regulation",
+    name: "Stress Regulation",
+    purpose:
+      "Own the calm, nervous-system-led side of wellness: downregulation, rest, sleep, breathwork, relaxation and slower recovery experiences.",
+    primaryPage: "/journal",
+    userIntent: [
+      "I want to feel calmer",
+      "I want to reduce stress",
+      "I want to sleep better",
+      "I want a non-intimidating wellness space",
+    ],
+    modalities: [
+      {
+        name: "Sauna and quiet recovery",
+        role: "Calm heat exposure, private rooms, slower routines and evening recovery rituals.",
+        pages: [
+          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/sauna-london", label: "Best Saunas in London" },
+        ],
+      },
+      {
+        name: "Breath-led cold exposure",
+        role: "Guided cold exposure can sit within resilience, breathwork and nervous-system regulation routines.",
+        pages: [{ href: "/cold-plunge-london", label: "Cold Plunge in London" }],
+      },
+    ],
+    existingPages: [
+      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/sauna-london", label: "Best Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
     ],
     missingPages: [
       "Nervous system regulation guide",
-      "Wellness routines for better sleep",
-      "Sauna and sleep quality",
+      "Best calming wellness spaces in London",
       "Breathwork studios in London",
-      "Evening recovery rituals",
+      "Sauna and sleep quality",
+      "Evening recovery rituals in London",
+      "Wellness spaces for stress relief in London",
     ],
     linkedEntities: [
-      "sleep optimisation",
+      "stress regulation",
       "nervous system regulation",
-      "HRV",
+      "sleep optimisation",
       "breathwork",
       "parasympathetic recovery",
-      "evening routine",
-      "stress recovery",
+      "relaxation",
+      "private sauna",
+      "guided cold exposure",
     ],
   },
   {
-    slug: "luxury-wellness-london",
-    name: "Luxury Wellness in London",
+    slug: "luxury-wellness-experiences",
+    name: "Luxury Wellness Experiences",
     purpose:
-      "Position Well Edit as a premium editorial guide to design-led, high-quality wellness spaces across London.",
+      "Differentiate Well Edit through premium curation, design-led spaces, atmosphere, service quality and high-intent London wellness discovery.",
     primaryPage: "/",
+    userIntent: [
+      "I want somewhere premium",
+      "I want a beautiful wellness experience",
+      "I want to compare luxury wellness spaces",
+      "I want a private or design-led venue",
+    ],
+    modalities: [
+      {
+        name: "Premium recovery spaces",
+        role: "Curated sauna, cold plunge, cryotherapy and recovery spaces with a stronger emphasis on design, service and atmosphere.",
+        pages: [
+          { href: "/sauna-london", label: "Best Saunas in London" },
+          { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+          { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+        ],
+      },
+      {
+        name: "Neighbourhood wellness",
+        role: "Location-led discovery for premium wellness spaces across London.",
+        pages: [
+          { href: "/central-london-wellness", label: "Central London Wellness" },
+          { href: "/west-london-wellness", label: "West London Wellness" },
+          { href: "/east-london-wellness", label: "East London Wellness" },
+        ],
+      },
+    ],
     existingPages: [
       { href: "/", label: "London Wellness Guide" },
-      { href: "/central-london-wellness", label: "Central London Wellness" },
-      { href: "/west-london-wellness", label: "West London Wellness" },
-      { href: "/east-london-wellness", label: "East London Wellness" },
-    ],
-    missingPages: [
-      "Luxury wellness clubs in London",
-      "Private wellness experiences in London",
-      "Best wellness spaces for couples in London",
-      "Design-led wellness studios in London",
-      "Premium recovery studios in London",
-    ],
-    linkedEntities: [
-      "luxury wellness",
-      "London wellness",
-      "boutique wellness studio",
-      "private wellness experience",
-      "members club",
-      "spa",
-      "recovery studio",
-    ],
-  },
-  {
-    slug: "longevity-recovery-science",
-    name: "Longevity & Recovery Science",
-    purpose:
-      "Support commercial wellness pages with accessible explainers on recovery science, longevity practices and evidence-aware routines.",
-    primaryPage: "/journal",
-    existingPages: [
-      { href: "/journal", label: "Journal" },
-      { href: "/cryotherapy-london", label: "Cryotherapy in London" },
-      { href: "/sauna-london", label: "Saunas in London" },
-    ],
-    missingPages: [
-      "Recovery modalities explained",
-      "Heat therapy and longevity",
-      "Cold exposure and recovery",
-      "Red light therapy London guide",
-      "Compression therapy London guide",
-    ],
-    linkedEntities: [
-      "longevity",
-      "recovery science",
-      "heat exposure",
-      "cold exposure",
-      "red light therapy",
-      "compression therapy",
-      "HRV",
-      "circadian rhythm",
-    ],
-  },
-  {
-    slug: "wellness-spaces-experiences",
-    name: "Wellness Spaces & Experiences",
-    purpose:
-      "Create location and intent-led pathways that help users choose venues by atmosphere, access model, facilities and neighbourhood.",
-    primaryPage: "/site-map",
-    existingPages: [
       { href: "/central-london-wellness", label: "Central London Wellness" },
       { href: "/east-london-wellness", label: "East London Wellness" },
       { href: "/west-london-wellness", label: "West London Wellness" },
@@ -169,21 +288,22 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
       { href: "/south-london-wellness", label: "South London Wellness" },
     ],
     missingPages: [
-      "Best recovery studios in London",
-      "Wellness spaces open late in London",
-      "Beginner-friendly wellness spaces in London",
-      "Private recovery rooms in London",
+      "Luxury wellness clubs in London",
+      "Design-led wellness studios in London",
+      "Private wellness experiences in London",
+      "Best wellness spaces for couples in London",
       "Wellness memberships in London",
+      "Premium recovery studios in London",
     ],
     linkedEntities: [
+      "luxury wellness",
+      "London wellness",
+      "boutique wellness studio",
+      "members club",
+      "private wellness experience",
+      "spa",
+      "design-led wellness",
       "recovery studio",
-      "wellness club",
-      "private room",
-      "group session",
-      "guided session",
-      "changing facilities",
-      "showers",
-      "London neighbourhoods",
     ],
   },
 ];
