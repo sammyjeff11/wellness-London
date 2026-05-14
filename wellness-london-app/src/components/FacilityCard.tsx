@@ -58,24 +58,27 @@ function getAreaLabel(facility: FacilityCardFacility) {
   return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
 }
 
-function getEditorialDescriptor(facility: FacilityCardFacility) {
+function getAtmosphericDescriptor(facility: FacilityCardFacility) {
   const searchable = [
     ...(facility.services || []),
     ...(facility.bestFor || []),
     ...(facility.experienceType || []),
+    facility.premiumLevel,
     facility.description,
   ]
     .filter(Boolean)
     .join(" ")
     .toLowerCase();
 
-  if (searchable.includes("bath") || searchable.includes("ritual")) return "Ritual-led";
-  if (searchable.includes("cryo") || searchable.includes("compression")) return "Performance-focused";
-  if (searchable.includes("social") || searchable.includes("group")) return "Social wellness";
-  if (searchable.includes("infrared") || searchable.includes("red light")) return "Design-forward";
-  if (searchable.includes("breathwork") || searchable.includes("meditation")) return "Quiet reset";
+  if (searchable.includes("bath") || searchable.includes("ritual")) return "Immersive";
+  if (searchable.includes("private") || searchable.includes("solo")) return "Private";
+  if (searchable.includes("luxury") || searchable.includes("premium")) return "Refined";
+  if (searchable.includes("clinical") || searchable.includes("cryo") || searchable.includes("compression")) return "Structured";
+  if (searchable.includes("social") || searchable.includes("group")) return "Club-like";
+  if (searchable.includes("infrared") || searchable.includes("red light")) return "Contemporary";
+  if (searchable.includes("breathwork") || searchable.includes("meditation") || searchable.includes("quiet")) return "Quiet";
 
-  return "Curated wellness";
+  return "Restorative";
 }
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
@@ -84,7 +87,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
   const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" / ");
-  const editorialDescriptor = getEditorialDescriptor(facility);
+  const atmosphericDescriptor = getAtmosphericDescriptor(facility);
   const locationHref = getLocationHubHref(areaLabel);
   const price = facility.priceFrom || facility.priceRange;
   const details = [areaLabel, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
@@ -105,7 +108,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
+        <div className="relative mb-7 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
@@ -138,7 +141,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
               {overlayLocation || "London"}
             </p>
             <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#e7dccd]">
-              {editorialDescriptor}
+              {atmosphericDescriptor}
             </p>
             <h3 className="max-w-[92%] text-[2.4rem] font-normal leading-[1] tracking-[-0.03em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.8rem]">
               {facility.name}
@@ -148,12 +151,12 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
       </Link>
 
       <div className="min-w-0 px-0.5">
-        <p className="mb-6 line-clamp-2 max-w-[96%] text-[15px] leading-7 text-[#5f574c]">
+        <p className="mb-7 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
           {primaryBestFor(facility)}
         </p>
 
         {services.length > 0 ? (
-          <div className="mb-6 flex flex-wrap gap-x-4 gap-y-2">
+          <div className="mb-7 flex flex-wrap gap-x-4 gap-y-2">
             {services.map((service) => {
               const serviceHref = getServiceHubHref(service);
 
@@ -161,14 +164,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
                 <Link
                   key={service}
                   href={serviceHref}
-                  className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#6f6048] underline-offset-4 transition hover:text-[#29241d] hover:underline"
+                  className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#7d705f] underline-offset-4 transition hover:text-[#29241d] hover:underline"
                 >
                   {service}
                 </Link>
               ) : (
                 <span
                   key={service}
-                  className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#6f6048]"
+                  className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#7d705f]"
                 >
                   {service}
                 </span>
@@ -176,7 +179,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             })}
 
             {hiddenServiceCount > 0 ? (
-              <span className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#9a8d7c]">
+              <span className="text-[10px] font-medium uppercase leading-none tracking-[0.16em] text-[#a19380]">
                 +{hiddenServiceCount}
               </span>
             ) : null}
@@ -184,7 +187,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         ) : null}
 
         {details.length > 0 ? (
-          <p className="mb-6 border-y border-[#d8cebf]/55 py-4 text-[13px] leading-6 text-[#5f574c]">
+          <p className="border-t border-[#d8cebf]/55 pt-4 text-[13px] leading-6 text-[#6c6153]">
             {details.map((detail, index) => {
               const href = detail === areaLabel ? locationHref : null;
               return (
@@ -202,10 +205,6 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             })}
           </p>
         ) : null}
-
-        <Link href={`/facility/${facility.slug}`} className="inline-flex text-[13px] font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
-          Explore venue
-        </Link>
       </div>
     </article>
   );
