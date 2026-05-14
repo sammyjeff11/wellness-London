@@ -7,21 +7,21 @@ import "./globals.css";
 
 const siteUrl = new URL(SITE_URL);
 const siteDescription =
-  "Well Edit is a quiet editorial guide to London wellness spaces, including saunas, cold plunges, cryotherapy and recovery studios.";
+  "Well+ is the London wellness edit — a curated guide to saunas, cold plunges, cryotherapy, recovery studios and longevity spaces across the capital.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Well Edit | London Wellness Guide",
+    default: "Well+ London | The London Wellness Edit",
     template: "%s",
   },
   description: siteDescription,
   openGraph: {
-    title: "Well Edit | London Wellness Guide",
+    title: "Well+ London | The London Wellness Edit",
     description: siteDescription,
     url: "/",
-    siteName: "Well Edit",
+    siteName: "Well+",
     locale: "en_GB",
     type: "website",
     images: [
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Well Edit",
+        alt: "Well+",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Well Edit | London Wellness Guide",
+    title: "Well+ London | The London Wellness Edit",
     description: siteDescription,
     images: ["/opengraph-image"],
   },
