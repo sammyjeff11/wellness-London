@@ -4,9 +4,11 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
+import TopicalPathways from "@/components/TopicalPathways";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
 import { getFacilities, type AirtableFacility } from "@/lib/airtable";
+import { getFacilityTopicalContext } from "@/lib/facility-topical-mapping";
 import { getLocationHubHref } from "@/lib/location-hubs";
 import { getServiceHubHref } from "@/lib/service-hubs";
 
@@ -165,6 +167,12 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const locationLabel = facility.areaOfLondon || facility.areaGroup || facility.neighbourhood || "London";
   const locationHref = getLocationHubHref(locationLabel);
   const relevantServiceLinks = serviceLinksFromFacility(facility);
+  const topicalContext = getFacilityTopicalContext([
+    ...facility.serviceKeys,
+    ...facility.servicesOffered,
+    ...facility.experienceType,
+    ...facility.bestFor,
+  ]);
   const locationSection = (
     <VenueLocationSection
       name={facility.name}
@@ -270,6 +278,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10"><p>{summary}</p><p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p><p className="text-sm leading-7 text-[#8a7f70]">This profile is built from public venue information and structured research. First-hand editorial notes will be added after an in-person visit.</p></div>
         </div>
       </section>
+
+      <TopicalPathways
+        eyebrow="How this fits"
+        title="Place this venue within the wider wellness ecosystem."
+        introduction="Each venue now connects back into Well Edit’s outcome-led architecture, helping users and search engines understand how the space relates to recovery, longevity and stress regulation."
+        parentTopic={topicalContext.parentTopic}
+        relatedModalities={topicalContext.relatedModalities}
+        relatedOutcomes={topicalContext.relatedOutcomes}
+        relatedLocations={locationHref ? [{ href: locationHref, label: `Wellness in ${locationLabel}`, description: `Explore more wellness and recovery spaces in ${locationLabel}.` }] : []}
+      />
 
       <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 sm:gap-12 lg:grid-cols-[0.95fr_1.05fr]">
