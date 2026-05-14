@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
+import { getLocationHubHref } from "@/lib/location-hubs";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -39,6 +40,7 @@ function primaryBestFor(facility: FacilityCardFacility) {
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
   const location = [facility.location, facility.nearestStation].filter(Boolean).join(" / ");
+  const locationHref = getLocationHubHref(facility.location);
   const price = facility.priceFrom || facility.priceRange;
   const details = [facility.location, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
 
@@ -99,48 +101,57 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </h3>
           </div>
         </div>
+      </Link>
 
-        <div className="min-w-0">
-          <p className="mb-5 line-clamp-3 text-[15px] leading-7 text-[#5f574c]">
-            {primaryBestFor(facility)}
-          </p>
+      <div className="min-w-0">
+        <p className="mb-5 line-clamp-3 text-[15px] leading-7 text-[#5f574c]">
+          {primaryBestFor(facility)}
+        </p>
 
-          {services.length > 0 ? (
-            <div className="mb-5 flex flex-wrap gap-2">
-              {services.map((service) => (
-                <span
-                  key={service}
-                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
-                >
-                  {service}
-                </span>
-              ))}
-            </div>
-          ) : null}
+        {services.length > 0 ? (
+          <div className="mb-5 flex flex-wrap gap-2">
+            {services.map((service) => (
+              <span
+                key={service}
+                className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
+              >
+                {service}
+              </span>
+            ))}
+          </div>
+        ) : null}
 
-          {details.length > 0 ? (
-            <p className="mb-5 border-y border-[#d8cebf]/85 py-4 text-sm leading-6 text-[#29241d]">
-              {details.map((detail, index) => (
+        {details.length > 0 ? (
+          <p className="mb-5 border-y border-[#d8cebf]/85 py-4 text-sm leading-6 text-[#29241d]">
+            {details.map((detail, index) => {
+              const href = detail === facility.location ? locationHref : null;
+              return (
                 <span key={detail}>
                   {index > 0 ? <span className="mx-2 text-[#b1a491]">/</span> : null}
-                  <span className="font-medium">{detail}</span>
+                  {href ? (
+                    <Link href={href} className="font-medium underline-offset-4 hover:underline">
+                      {detail}
+                    </Link>
+                  ) : (
+                    <span className="font-medium">{detail}</span>
+                  )}
                 </span>
-              ))}
-            </p>
-          ) : null}
+              );
+            })}
+          </p>
+        ) : null}
 
-          <div className="flex items-center justify-between text-sm">
-            <span className="font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
-              View profile
+        <Link href={`/facility/${facility.slug}`} className="flex items-center justify-between text-sm">
+          <span className="font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
+            View profile
+          </span>
+          {facility.verificationStatus ? (
+            <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
+              {facility.verificationStatus}
             </span>
-            {facility.verificationStatus ? (
-              <span className="text-[11px] font-medium uppercase tracking-[0.16em] text-[#9a8d7c]">
-                {facility.verificationStatus}
-              </span>
-            ) : null}
-          </div>
-        </div>
-      </Link>
+          ) : null}
+        </Link>
+      </div>
     </article>
   );
 }
