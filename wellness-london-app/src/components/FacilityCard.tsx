@@ -14,6 +14,9 @@ export type FacilityCardFacility = {
   imageUrl?: string;
   imageAlt?: string;
   location?: string;
+  neighbourhood?: string;
+  areaOfLondon?: string;
+  areaGroup?: string;
   services?: string[];
   priceRange?: string;
   rating?: string;
@@ -45,16 +48,17 @@ function isBroadAreaLabel(value?: string) {
 }
 
 function getPrimaryLocation(facility: FacilityCardFacility) {
+  if (facility.neighbourhood) return facility.neighbourhood;
   if (facility.location && !isBroadAreaLabel(facility.location)) return facility.location;
   if (facility.nearestStation) return facility.nearestStation;
-  return facility.location || "London";
+  return facility.areaOfLondon || facility.location || facility.areaGroup || "London";
 }
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const services = facility.services?.slice(0, 4) || [];
   const primaryLocation = getPrimaryLocation(facility);
   const location = [primaryLocation, facility.nearestStation && facility.nearestStation !== primaryLocation ? facility.nearestStation : undefined].filter(Boolean).join(" / ");
-  const locationHref = getLocationHubHref(facility.location);
+  const locationHref = getLocationHubHref(facility.areaOfLondon || facility.areaGroup || facility.location);
   const price = facility.priceFrom || facility.priceRange;
   const details = [primaryLocation, price, facility.rating ? `${facility.rating} Google` : undefined].filter(Boolean);
 
@@ -68,7 +72,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             facility_name: facility.name,
             facility_slug: facility.slug,
             service_type: source,
-            area: facility.location,
+            area: primaryLocation,
             page_path: window.location.pathname,
           })
         }
@@ -150,7 +154,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         {details.length > 0 ? (
           <p className="mb-5 border-y border-[#d8cebf]/85 py-4 text-sm leading-6 text-[#29241d]">
             {details.map((detail, index) => {
-              const href = detail === facility.location ? locationHref : null;
+              const href = detail === primaryLocation ? locationHref : null;
               return (
                 <span key={detail}>
                   {index > 0 ? <span className="mx-2 text-[#b1a491]">/</span> : null}
