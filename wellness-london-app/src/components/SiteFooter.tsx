@@ -8,14 +8,19 @@ const serviceLinks = [
   { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
 ];
 
+const trustLinks = [
+  { href: "/how-we-curate", label: "How We Curate" },
+  { href: "/editorial-standards", label: "Editorial Standards" },
+];
+
 export default function SiteFooter() {
   return (
     <footer className="bg-[#29241d] px-5 py-12 text-[#fbf8f1] sm:px-6 sm:py-16">
-      <div className="mx-auto grid max-w-6xl gap-10 border-t border-[#fbf8f1]/18 pt-10 md:grid-cols-[1.2fr_0.8fr_0.8fr]">
+      <div className="mx-auto grid max-w-6xl gap-10 border-t border-[#fbf8f1]/18 pt-10 md:grid-cols-[1.1fr_0.8fr_0.8fr_0.8fr]">
         <div>
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well Edit</p>
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">The Well Edit</p>
           <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
-            A quiet editorial guide to London wellness spaces, recovery studios, saunas, cold plunges and cryotherapy venues.
+            A curated London wellness directory focused on saunas, recovery clubs, cold plunge, cryotherapy and modern recovery spaces.
           </p>
         </div>
 
@@ -34,6 +39,19 @@ export default function SiteFooter() {
                 Journal
               </Link>
             </li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Footer trust">
+          <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">About</h2>
+          <ul className="space-y-3 text-sm">
+            {trustLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-[#fbf8f1]/82 underline-offset-4 transition hover:text-[#fbf8f1] hover:underline">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
