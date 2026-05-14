@@ -5,9 +5,9 @@ import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
-  title: "Contrast Therapy London | Sauna & Cold Plunge Spaces | Well Edit",
+  title: "Contrast Therapy London | Sauna & Cold Plunge Spaces | Well+",
   description:
-    "Discover contrast therapy in London, including sauna and cold plunge spaces, ice bath studios and recovery-focused wellness venues.",
+    "Discover contrast therapy in London with Well+, including sauna and cold plunge spaces, ice bath studios and recovery-focused wellness venues.",
   alternates: {
     canonical: "/contrast-therapy-london",
   },
@@ -39,7 +39,7 @@ export default async function ContrastTherapyLondonPage() {
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
               <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-                Recovery guide
+                Well+ / Recovery guide
               </p>
               <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
                 Contrast therapy in London.
@@ -51,7 +51,7 @@ export default async function ContrastTherapyLondonPage() {
                 Contrast therapy combines heat and cold exposure through sauna, cold plunge, ice bath and recovery-focused wellness routines.
               </p>
               <p>
-                This guide surfaces London spaces that combine sauna and cold therapy experiences, alongside recovery studios and wellness venues built around contrast exposure.
+                This Well+ guide surfaces London spaces that combine sauna and cold therapy experiences, alongside recovery studios and wellness venues built around contrast exposure.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
                 <Link href="/sauna-london" className="border border-[#d8cebf] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#fbf8f1]">
