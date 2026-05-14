@@ -18,6 +18,7 @@ const serviceLinks = [
 ];
 
 const collectionLinks = [
+  { href: "/best-sauna-cold-plunge-london", label: "Best Sauna + Cold Plunge" },
   { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness" },
 ];
 
