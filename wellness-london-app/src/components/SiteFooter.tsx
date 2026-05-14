@@ -28,9 +28,9 @@ export default function SiteFooter() {
     <footer className="bg-[#29241d] px-5 py-12 text-[#fbf8f1] sm:px-6 sm:py-16">
       <div className="mx-auto grid max-w-7xl gap-10 border-t border-[#fbf8f1]/18 pt-10 md:grid-cols-[1.2fr_0.9fr_0.9fr_0.9fr_0.9fr]">
         <div>
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">The Well Edit</p>
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
           <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
-            A curated London wellness discovery platform organised around recovery, performance, reset, optimisation and longevity.
+            The London wellness edit — a curated guide to recovery, performance, longevity and modern wellbeing across the capital.
           </p>
         </div>
 
