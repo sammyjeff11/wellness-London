@@ -120,7 +120,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const rating = formatRating(facility.rating);
 
   return (
-    <article className="group min-w-0">
+    <article className="group min-w-0 pb-10 sm:pb-0">
       <Link
         href={`/facility/${facility.slug}`}
         className="block min-w-0"
@@ -135,7 +135,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="relative mb-7 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
+        <div className="relative mb-0 aspect-[4/5] overflow-hidden rounded-t-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)] sm:mb-7 sm:rounded-md">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
@@ -177,7 +177,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </Link>
 
-      <div className="min-w-0 px-0.5">
+      <div className="min-w-0 rounded-b-md border-t border-[#ede7dc] bg-[#f7f3ed] px-5 py-6 sm:rounded-none sm:border-t-0 sm:bg-transparent sm:px-0.5 sm:py-0">
         <p className="mb-5 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
           {summary}
         </p>
