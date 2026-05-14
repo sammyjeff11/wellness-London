@@ -70,7 +70,6 @@ function getAtmosphericDescriptor(facility: FacilityCardFacility) {
     .toLowerCase();
 
   if (searchable.includes("bath") || searchable.includes("ritual")) return "Immersive";
-  if (searchable.includes("private") || searchable.includes("solo")) return "Private";
   if (searchable.includes("luxury") || searchable.includes("premium")) return "Refined";
   if (searchable.includes("clinical") || searchable.includes("cryo") || searchable.includes("compression")) return "Structured";
   if (searchable.includes("social") || searchable.includes("group")) return "Club-like";
