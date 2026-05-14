@@ -9,9 +9,9 @@ import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
-  title: "Best Cryotherapy in London | Whole Body & Recovery Studios | Well Edit",
+  title: "Best Cryotherapy in London | Whole Body & Recovery Studios | Well+",
   description:
-    "Discover curated cryotherapy studios in London, including whole-body cryotherapy, recovery clubs and premium wellness spaces.",
+    "Discover curated cryotherapy studios in London with Well+, including whole-body cryotherapy, recovery clubs and premium wellness spaces.",
   alternates: { canonical: "/cryotherapy-london" },
 };
 
@@ -53,7 +53,7 @@ export default async function CryotherapyLondonPage() {
           {heroImage ? <Image src={heroImage.url} alt={heroImage.filename || "Premium cryotherapy studio in London"} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
           <div className="relative max-w-4xl text-[#fbf8f1]">
-            <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/75 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well Edit / London cryotherapy guide</p>
+            <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/75 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / London cryotherapy guide</p>
             <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">Best Cryotherapy in London</h1>
             <p className="mt-6 max-w-lg text-base leading-7 text-[#fbf8f1]/86 sm:mt-8 sm:leading-8 md:text-lg">Whole-body cryotherapy and cold-therapy recovery spaces.</p>
           </div>
