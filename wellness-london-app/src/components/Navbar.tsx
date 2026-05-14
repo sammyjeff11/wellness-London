@@ -1,10 +1,12 @@
 import Link from "next/link";
 
 const navLinks = [
-  { href: "/sauna-london", label: "Saunas" },
-  { href: "/cold-plunge-london", label: "Cold Plunge" },
-  { href: "/cryotherapy-london", label: "Cryotherapy" },
-  { href: "/journal", label: "Journal" },
+  { href: "/explore", label: "Explore" },
+  { href: "/recover", label: "Recover" },
+  { href: "/perform", label: "Perform" },
+  { href: "/reset", label: "Reset" },
+  { href: "/optimise", label: "Optimise" },
+  { href: "/longevity", label: "Longevity" },
 ];
 
 export default function Navbar() {
@@ -15,7 +17,7 @@ export default function Navbar() {
           Well Edit
         </Link>
 
-        <nav className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[13px] text-[#70695d] md:w-auto md:justify-end md:gap-x-8 md:overflow-visible md:pb-0">
+        <nav className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[13px] text-[#70695d] md:w-auto md:justify-end md:gap-x-7 md:overflow-visible md:pb-0">
           {navLinks.map((link) => (
             <Link
               key={link.href}
