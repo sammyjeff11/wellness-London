@@ -98,14 +98,14 @@ function getTitleClassName(name: string) {
   const length = name.length;
 
   if (length > 28) {
-    return "max-w-[84%] text-[1.86rem] font-normal leading-[0.95] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:max-w-[86%] sm:text-[2.12rem]";
+    return "max-w-[86%] text-[1.95rem] font-normal leading-[0.96] tracking-[-0.04em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:max-w-[88%] sm:text-[2.22rem]";
   }
 
   if (length > 18) {
-    return "max-w-[86%] text-[2.08rem] font-normal leading-[0.97] tracking-[-0.04em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:max-w-[88%] sm:text-[2.38rem]";
+    return "max-w-[90%] text-[2.16rem] font-normal leading-[0.98] tracking-[-0.035em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.52rem]";
   }
 
-  return "max-w-[90%] text-[2.38rem] font-normal leading-[0.98] tracking-[-0.035em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.72rem]";
+  return "max-w-[92%] text-[2.45rem] font-normal leading-[1] tracking-[-0.03em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.9rem]";
 }
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
@@ -164,25 +164,21 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-6">
-            <div className="flex min-h-[176px] flex-col justify-end sm:min-h-[188px]">
-              <p className="mb-2 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/78 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
-                {overlayLocation || "London"}
-              </p>
-              <p className="mb-4 text-[10px] uppercase leading-none tracking-[0.2em] text-[#e7dccd]/82">
-                {atmosphericDescriptor}
-              </p>
-              <div className="flex min-h-[88px] items-end sm:min-h-[104px]">
-                <h3 className={getTitleClassName(facility.name)}>
-                  {facility.name}
-                </h3>
-              </div>
-            </div>
+            <p className="mb-2 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
+              {overlayLocation || "London"}
+            </p>
+            <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#e7dccd]">
+              {atmosphericDescriptor}
+            </p>
+            <h3 className={getTitleClassName(facility.name)}>
+              {facility.name}
+            </h3>
           </div>
         </div>
       </Link>
 
       <div className="min-w-0 px-0.5">
-        <p className="mb-5 line-clamp-2 min-h-[3.5rem] max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
+        <p className="mb-5 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
           {summary}
         </p>
 
