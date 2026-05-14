@@ -17,6 +17,10 @@ const serviceLinks = [
   { href: "/recovery-london", label: "Recovery Spaces in London" },
 ];
 
+const collectionLinks = [
+  { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness" },
+];
+
 const trustLinks = [
   { href: "/how-we-curate", label: "How We Curate" },
   { href: "/editorial-standards", label: "Editorial Standards" },
@@ -65,13 +69,20 @@ export default function SiteFooter() {
           </ul>
         </nav>
 
-        <nav aria-label="Footer areas">
+        <nav aria-label="Footer areas and collections">
           <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Areas</h2>
           <ul className="space-y-3 text-sm">
             {locationHubLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-[#fbf8f1]/82 underline-offset-4 transition hover:text-[#fbf8f1] hover:underline">
                   {link.label.replace(" wellness spaces", "").replace(" saunas and recovery studios", "").replace(" recovery spaces", "")}
+                </Link>
+              </li>
+            ))}
+            {collectionLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="text-[#fbf8f1]/82 underline-offset-4 transition hover:text-[#fbf8f1] hover:underline">
+                  {link.label}
                 </Link>
               </li>
             ))}
