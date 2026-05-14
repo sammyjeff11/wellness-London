@@ -81,7 +81,7 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
-        <div className="relative mx-auto min-h-[66vh] max-w-[1400px] overflow-hidden bg-[#d8cebf] sm:min-h-[78vh]">
+        <div className="relative mx-auto min-h-[48vh] max-w-[1400px] overflow-hidden bg-[#d8cebf] sm:min-h-[78vh]">
           {heroImage ? (
             <Image
               src={heroImage.url}
@@ -92,26 +92,26 @@ export default async function Home() {
               className="object-cover"
             />
           ) : null}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/38 to-black/8" />
-          <div className="relative flex min-h-[66vh] items-end px-5 py-10 sm:min-h-[78vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/82 via-black/38 to-black/12 sm:bg-gradient-to-r sm:from-black/78 sm:via-black/38 sm:to-black/8" />
+          <div className="relative flex min-h-[48vh] items-end px-5 py-7 sm:min-h-[78vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
             <div className="max-w-5xl text-[#fbf8f1]">
-              <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">
+              <p className="mb-4 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-5xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7.4rem]">
+              <h1 className="max-w-5xl font-serif text-[3.2rem] font-normal leading-[0.9] tracking-[-0.04em] sm:text-[4rem] sm:leading-[0.92] md:text-[7.4rem]">
                 Discover London&apos;s best wellness spaces.
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">
-                Curated places to recover, perform, reset, optimise and explore longevity — from saunas and cold plunges to recovery clubs and preventative wellness spaces.
+              <p className="mt-4 max-w-xl text-[15px] leading-6 text-[#fbf8f1]/88 sm:mt-8 sm:max-w-2xl sm:text-base sm:leading-8 md:text-lg">
+                Curated places to recover, reset and explore modern wellness across London.
               </p>
-              <div className="mt-8 flex flex-wrap gap-3 sm:mt-10">
-                <Link href="/explore" className="bg-[#fbf8f1] px-5 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
+              <div className="mt-5 flex flex-wrap gap-2 sm:mt-10 sm:gap-3">
+                <Link href="/explore" className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:px-5">
                   Explore the edit
                 </Link>
-                <Link href="/sauna-london" className="border border-[#fbf8f1]/70 px-5 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">
+                <Link href="/sauna-london" className="border border-[#fbf8f1]/70 px-4 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5">
                   Find saunas
                 </Link>
-                <Link href="/cold-plunge-london" className="border border-[#fbf8f1]/70 px-5 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">
+                <Link href="/cold-plunge-london" className="border border-[#fbf8f1]/70 px-4 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5">
                   Find cold plunge
                 </Link>
               </div>
@@ -120,78 +120,12 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
-          <div className="grid gap-6 md:grid-cols-[0.85fr_1.15fr] md:items-end">
-            <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-                Explore by intention
-              </p>
-              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Start with how you want to feel.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end md:text-base">
-              Well+ organises London wellness spaces by intention, helping you move from broad need to the right treatment, venue and experience.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {pillarPages.map((pillar) => (
-              <Link
-                key={pillar.slug}
-                href={pillar.href}
-                className="group flex min-h-[250px] flex-col justify-between bg-[#f4efe6] p-6 transition hover:bg-[#eee7da]"
-              >
-                <div>
-                  <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
-                  <h3 className="mb-4 text-3xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
-                    {pillar.label}
-                  </h3>
-                  <p className="text-sm leading-7 text-[#5f574c]">{pillar.intro}</p>
-                </div>
-                <span className="mt-6 text-sm font-medium text-[#29241d] underline underline-offset-4">Explore {pillar.label.toLowerCase()}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-10">
-          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Popular treatments</p>
-              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Know what you&apos;re looking for?
-              </h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              Fast routes into treatment-led guides for users who already know they want sauna, cold exposure, cryotherapy or recovery spaces.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {treatmentLinks.map((treatment) => (
-              <Link
-                key={treatment.href}
-                href={treatment.href}
-                className="group border border-[#d8cebf] bg-[#fbf8f1] p-5 transition hover:bg-[#eee7da]"
-              >
-                <h3 className="mb-3 text-2xl font-medium group-hover:underline group-hover:underline-offset-4">{treatment.label}</h3>
-                <p className="text-sm leading-7 text-[#5f574c]">{treatment.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {selectedFacilities.length > 0 ? (
-        <section className="px-5 py-12 sm:px-6 md:py-20">
+        <section className="px-5 py-8 sm:px-6 sm:py-14 md:py-20">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-8 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between">
+            <div className="mb-6 flex flex-col gap-3 sm:mb-12 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Editor&apos;s selection</p>
+                <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Editor&apos;s selection</p>
                 <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
                   Featured London wellness venues.
                 </h2>
@@ -200,7 +134,7 @@ export default async function Home() {
                 Explore more curated spaces
               </Link>
             </div>
-            <div className="grid gap-9 md:grid-cols-3">
+            <div className="grid gap-10 sm:gap-12 md:grid-cols-3 md:gap-9">
               {selectedFacilities.map((facility) => (
                 <FacilityCard key={facility.slug} facility={facility} source="homepage_featured" />
               ))}
@@ -208,6 +142,72 @@ export default async function Home() {
           </div>
         </section>
       ) : null}
+
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-6 sm:py-8">
+          <div className="mb-5 flex flex-col gap-2 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">
+                Explore by intention
+              </p>
+              <h2 className="font-serif text-2xl font-normal leading-tight sm:text-4xl md:text-5xl">
+                Start with how you want to feel.
+              </h2>
+            </div>
+            <p className="hidden max-w-2xl text-sm leading-7 text-[#5f574c] sm:block md:justify-self-end md:text-base">
+              Well+ organises London wellness spaces by intention, helping you move from broad need to the right treatment, venue and experience.
+            </p>
+          </div>
+
+          <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-5">
+            {pillarPages.map((pillar) => (
+              <Link
+                key={pillar.slug}
+                href={pillar.href}
+                className="group min-w-[72%] bg-[#f4efe6] p-5 transition hover:bg-[#eee7da] sm:flex sm:min-h-[250px] sm:min-w-0 sm:flex-col sm:justify-between sm:p-6"
+              >
+                <div>
+                  <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#8d7d67] sm:mb-4 sm:tracking-[0.22em]">{pillar.eyebrow}</p>
+                  <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4 sm:mb-4 sm:text-3xl">
+                    {pillar.label}
+                  </h3>
+                  <p className="line-clamp-2 text-xs leading-5 text-[#5f574c] sm:line-clamp-none sm:text-sm sm:leading-7">{pillar.intro}</p>
+                </div>
+                <span className="mt-4 inline-block text-xs font-medium text-[#29241d] underline underline-offset-4 sm:mt-6 sm:text-sm">Explore {pillar.label.toLowerCase()}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#f4efe6] px-5 py-8 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+          <div className="mb-5 flex flex-col gap-2 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Popular treatments</p>
+              <h2 className="font-serif text-2xl font-normal leading-tight sm:text-4xl md:text-5xl">
+                Know what you&apos;re looking for?
+              </h2>
+            </div>
+            <p className="hidden max-w-2xl text-sm leading-7 text-[#5f574c] sm:block md:text-base">
+              Fast routes into treatment-led guides for users who already know they want sauna, cold exposure, cryotherapy or recovery spaces.
+            </p>
+          </div>
+
+          <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-5">
+            {treatmentLinks.map((treatment) => (
+              <Link
+                key={treatment.href}
+                href={treatment.href}
+                className="group min-w-[72%] border border-[#d8cebf] bg-[#fbf8f1] p-5 transition hover:bg-[#eee7da] sm:min-w-0"
+              >
+                <h3 className="mb-2 text-xl font-medium group-hover:underline group-hover:underline-offset-4 sm:mb-3 sm:text-2xl">{treatment.label}</h3>
+                <p className="line-clamp-2 text-xs leading-5 text-[#5f574c] sm:line-clamp-none sm:text-sm sm:leading-7">{treatment.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="bg-[#29241d] px-5 py-12 text-[#fbf8f1] sm:px-6 md:py-18">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-start">
