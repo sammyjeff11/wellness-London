@@ -105,7 +105,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="relative mb-5 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
+        <div className="relative mb-6 aspect-[4/5] overflow-hidden rounded-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
@@ -147,13 +147,13 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </Link>
 
-      <div className="min-w-0">
-        <p className="mb-5 line-clamp-2 text-[15px] leading-7 text-[#5f574c]">
+      <div className="min-w-0 px-0.5">
+        <p className="mb-6 line-clamp-2 max-w-[96%] text-[15px] leading-7 text-[#5f574c]">
           {primaryBestFor(facility)}
         </p>
 
         {services.length > 0 ? (
-          <div className="mb-5 flex flex-wrap gap-2">
+          <div className="mb-6 flex flex-wrap gap-x-4 gap-y-2">
             {services.map((service) => {
               const serviceHref = getServiceHubHref(service);
 
@@ -161,14 +161,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
                 <Link
                   key={service}
                   href={serviceHref}
-                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c] transition hover:bg-[#e3dbcf]"
+                  className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#6f6048] underline-offset-4 transition hover:text-[#29241d] hover:underline"
                 >
                   {service}
                 </Link>
               ) : (
                 <span
                   key={service}
-                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
+                  className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#6f6048]"
                 >
                   {service}
                 </span>
@@ -176,7 +176,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             })}
 
             {hiddenServiceCount > 0 ? (
-              <span className="px-1 py-1.5 text-[11px] font-medium leading-none text-[#7d705f]">
+              <span className="text-[11px] font-medium uppercase leading-none tracking-[0.14em] text-[#9a8d7c]">
                 +{hiddenServiceCount}
               </span>
             ) : null}
@@ -184,14 +184,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         ) : null}
 
         {details.length > 0 ? (
-          <p className="mb-5 border-y border-[#d8cebf]/70 py-4 text-sm leading-6 text-[#4d4439]">
+          <p className="mb-6 border-y border-[#d8cebf]/55 py-4 text-[13px] leading-6 text-[#5f574c]">
             {details.map((detail, index) => {
               const href = detail === areaLabel ? locationHref : null;
               return (
                 <span key={detail}>
-                  {index > 0 ? <span className="mx-2 text-[#c1b3a1]">/</span> : null}
+                  {index > 0 ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
                   {href ? (
-                    <Link href={href} className="underline-offset-4 hover:underline">
+                    <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
                       {detail}
                     </Link>
                   ) : (
@@ -203,10 +203,8 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           </p>
         ) : null}
 
-        <Link href={`/facility/${facility.slug}`} className="flex items-center justify-between text-sm">
-          <span className="font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
-            View profile
-          </span>
+        <Link href={`/facility/${facility.slug}`} className="inline-flex text-[13px] font-medium text-[#29241d] underline underline-offset-4 transition group-hover:text-[#6f6048]">
+          Explore venue
         </Link>
       </div>
     </article>
