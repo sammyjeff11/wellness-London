@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import TopicalPathways from "@/components/TopicalPathways";
 
 export const metadata: Metadata = {
   title: "The Well Edit Guide to Sauna in London | Heat Therapy, Recovery & Contrast Therapy",
@@ -26,37 +26,6 @@ const sections = [
   {
     title: "Recovery-led wellness",
     text: "Sauna is increasingly positioned within wider recovery routines involving breathwork, compression therapy, red light therapy, sleep optimisation and nervous-system regulation.",
-  },
-];
-
-const outcomeLinks = [
-  {
-    href: "/recovery-london",
-    label: "Recovery in London",
-    text: "The parent guide to London recovery spaces, including sauna, cold plunge, cryotherapy and contrast therapy.",
-  },
-  {
-    href: "/sauna-london",
-    label: "Best Saunas in London",
-    text: "Compare curated sauna spaces across London, including infrared, Finnish and contrast therapy studios.",
-  },
-];
-
-const relatedGuides = [
-  {
-    href: "/cold-plunge-london",
-    label: "Cold Plunge in London",
-    text: "Explore ice baths, cold exposure and recovery-focused plunge studios across the city.",
-  },
-  {
-    href: "/cryotherapy-london",
-    label: "Cryotherapy in London",
-    text: "Compare cryotherapy studios, recovery clubs and cold-therapy experiences.",
-  },
-  {
-    href: "/contrast-therapy-london",
-    label: "Contrast Therapy in London",
-    text: "Explore spaces designed around heat-to-cold recovery rituals and guided contrast therapy.",
   },
 ];
 
@@ -112,33 +81,63 @@ export default function SaunaLondonGuidePage() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
-          <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-              Parent topic
-            </p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
-              Sauna sits inside the wider recovery ecosystem.
-            </h2>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-2">
-            {outcomeLinks.map((guide) => (
-              <Link
-                key={guide.href}
-                href={guide.href}
-                className="group block bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-8"
-              >
-                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
-                  {guide.label}
-                </h3>
-                <p className="text-sm leading-7 text-[#5f574c]">{guide.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <TopicalPathways
+        eyebrow="Recovery pathways"
+        title="Sauna sits inside the wider recovery ecosystem."
+        introduction="Sauna is one route into recovery. It connects naturally to cold plunge, cryotherapy, stress regulation and longer-term wellness routines."
+        parentTopic={{
+          href: "/recovery-london",
+          label: "Recovery in London",
+          description:
+            "The parent guide to London recovery spaces, including sauna, cold plunge, cryotherapy and contrast therapy.",
+        }}
+        relatedModalities={[
+          {
+            href: "/sauna-london",
+            label: "Best Saunas in London",
+            description:
+              "Compare curated sauna spaces across London, including infrared, Finnish and contrast therapy studios.",
+          },
+          {
+            href: "/cold-plunge-london",
+            label: "Cold Plunge in London",
+            description:
+              "Explore ice baths, guided cold exposure and recovery-focused plunge studios across the city.",
+          },
+          {
+            href: "/cryotherapy-london",
+            label: "Cryotherapy in London",
+            description:
+              "Compare cryotherapy studios, recovery clubs and structured cold-therapy experiences.",
+          },
+          {
+            href: "/contrast-therapy-london",
+            label: "Contrast Therapy in London",
+            description:
+              "Explore spaces designed around alternating heat and cold recovery rituals.",
+          },
+        ]}
+        relatedOutcomes={[
+          {
+            href: "/recovery-london",
+            label: "Recovery",
+            description:
+              "Heat-led recovery, post-training reset and calmer weekly wellness routines.",
+          },
+          {
+            href: "/journal",
+            label: "Longevity",
+            description:
+              "Longer-term wellness behaviours involving heat exposure, sleep and sustainable recovery habits.",
+          },
+          {
+            href: "/journal",
+            label: "Stress Regulation",
+            description:
+              "Calmer rituals focused on nervous-system recovery, rest and downregulation.",
+          },
+        ]}
+      />
 
       <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
@@ -194,42 +193,6 @@ export default function SaunaLondonGuidePage() {
                 </h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{role.text}</p>
               </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
-          <div className="mb-8 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-            <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-                Related modalities
-              </p>
-              <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
-                Explore the wider recovery ecosystem.
-              </h2>
-            </div>
-
-            <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
-              Sauna is one recovery route. Cold plunge, cryotherapy and contrast therapy may suit different goals, session styles and comfort levels.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {relatedGuides.map((guide) => (
-              <Link
-                key={guide.href}
-                href={guide.href}
-                className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-8"
-              >
-                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
-                  {guide.label}
-                </h3>
-                <p className="text-sm leading-7 text-[#5f574c]">
-                  {guide.text}
-                </p>
-              </Link>
             ))}
           </div>
         </div>
