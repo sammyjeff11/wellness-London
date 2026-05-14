@@ -4,6 +4,7 @@ import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { locationHubLinks } from "@/lib/location-hubs";
 
 export const metadata: Metadata = {
   title: "Well Edit | Curated Sauna, Cold Plunge & Recovery Spaces in London",
@@ -253,6 +254,27 @@ export default async function Home() {
                 The directory is designed around real decision points: treatment type, location, pricing, beginner support, private or shared access, and whether the venue feels right for the recovery routine you want.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+        <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10">
+          <div className="mb-8 grid gap-4 md:grid-cols-[0.8fr_1.2fr] md:items-end">
+            <div>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by area</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">London recovery, by neighbourhood feel.</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
+              Compare the wider wellness scene across Central, East, West, North and South London before choosing a specific space.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {locationHubLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="group block border border-[#d8cebf]/70 bg-[#fbf8f1] p-5 text-sm transition hover:bg-[#eee7da]">
+                <span className="font-medium text-[#29241d] underline-offset-4 group-hover:underline">{link.label}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
