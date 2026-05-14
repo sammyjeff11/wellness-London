@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { getLocationHubHref } from "@/lib/location-hubs";
+import { getServiceHubHref } from "@/lib/service-hubs";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -110,14 +111,26 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
 
         {services.length > 0 ? (
           <div className="mb-5 flex flex-wrap gap-2">
-            {services.map((service) => (
-              <span
-                key={service}
-                className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
-              >
-                {service}
-              </span>
-            ))}
+            {services.map((service) => {
+              const serviceHref = getServiceHubHref(service);
+
+              return serviceHref ? (
+                <Link
+                  key={service}
+                  href={serviceHref}
+                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c] transition hover:bg-[#e3dbcf]"
+                >
+                  {service}
+                </Link>
+              ) : (
+                <span
+                  key={service}
+                  className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]"
+                >
+                  {service}
+                </span>
+              );
+            })}
           </div>
         ) : null}
 
