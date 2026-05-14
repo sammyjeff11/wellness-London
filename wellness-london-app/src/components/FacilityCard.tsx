@@ -86,6 +86,20 @@ function formatServiceLine(services?: string[]) {
   return hiddenCount > 0 ? `${visible} · +${hiddenCount}` : visible;
 }
 
+function getTitleClassName(name: string) {
+  const length = name.length;
+
+  if (length > 28) {
+    return "max-w-[86%] text-[1.95rem] font-normal leading-[0.96] tracking-[-0.04em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:max-w-[88%] sm:text-[2.22rem]";
+  }
+
+  if (length > 18) {
+    return "max-w-[90%] text-[2.16rem] font-normal leading-[0.98] tracking-[-0.035em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.52rem]";
+  }
+
+  return "max-w-[92%] text-[2.45rem] font-normal leading-[1] tracking-[-0.03em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.9rem]";
+}
+
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
@@ -147,7 +161,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#e7dccd]">
               {atmosphericDescriptor}
             </p>
-            <h3 className="max-w-[92%] text-[2.4rem] font-normal leading-[1] tracking-[-0.03em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.8rem]">
+            <h3 className={getTitleClassName(facility.name)}>
               {facility.name}
             </h3>
           </div>
