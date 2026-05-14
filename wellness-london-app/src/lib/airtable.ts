@@ -96,6 +96,11 @@ type AirtableRecord = {
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
     Neighbourhood?: string[] | string;
+    Neighborhood?: string[] | string;
+    "Neighbourhood / Area"?: string[] | string;
+    "Neighbourhood/Area"?: string[] | string;
+    "Neighborhood / Area"?: string[] | string;
+    Location?: string[] | string;
     "Area of London"?: string[] | string;
     "Instagram Link"?: string;
     "Best For"?: AirtableFieldValue;
@@ -207,7 +212,7 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
     .map((image) => ({
       id: image.id || image.url || "",
       url: image.url || "",
-      filename: image.filename || "Well Edit image",
+      filename: image.filename || "Well+ image",
     }));
 }
 
@@ -234,7 +239,7 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
   const servicesOffered = normaliseList(firstDefined(record.fields.Services, record.fields["Services Offered"]));
-  const neighbourhood = normaliseSingle(record.fields.Neighbourhood);
+  const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
   const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
   const experienceType = normaliseList(firstDefined(record.fields["Experience Type"], record.fields.experience_type, record.fields["Type of Experience"]));
