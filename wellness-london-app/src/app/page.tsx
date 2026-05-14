@@ -44,11 +44,6 @@ const treatmentLinks = [
 
 const collectionLinks = [
   {
-    href: "/beginner-friendly-wellness-london",
-    title: "For first-timers",
-    text: "A calmer place to start: beginner-friendly saunas, cold exposure and recovery spaces with clearer onboarding cues.",
-  },
-  {
     href: "/recover",
     title: "For physical recovery",
     text: "Start with sauna, cold plunge, cryotherapy and contrast therapy spaces designed around restoration.",
