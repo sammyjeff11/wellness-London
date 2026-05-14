@@ -4,6 +4,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
+import { getLocationHubHref } from "@/lib/location-hubs";
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
   serviceKeys: string[];
@@ -65,6 +66,19 @@ function checkedTime(value?: string) {
 
 function primaryBestFor(facility: ServiceDirectoryFacility) {
   return facility.bestFor?.[0] || facility.experienceType?.[0] || "Best fit not yet confirmed";
+}
+
+function LocationText({ location }: { location?: string }) {
+  const href = getLocationHubHref(location);
+
+  if (!location) return <>London</>;
+  if (!href) return <>{location}</>;
+
+  return (
+    <Link href={href} className="text-[#29241d] underline-offset-4 hover:underline">
+      {location}
+    </Link>
+  );
 }
 
 function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
@@ -276,7 +290,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               {filteredFacilities.map((facility) => (
                 <tr key={facility.slug}>
                   <td className="py-5 pr-6 text-base font-medium text-[#29241d]">{facility.name}</td>
-                  <td className="py-5 pr-6 text-[#5f574c]">{facility.location || "London"}</td>
+                  <td className="py-5 pr-6 text-[#5f574c]"><LocationText location={facility.location} /></td>
                   <td className="py-5 pr-6 text-[#5f574c]">{primaryBestFor(facility)}</td>
                   <td className="py-5 pr-6 text-[#5f574c]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
                   <td className="py-5 pr-6 text-[#5f574c]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td>
