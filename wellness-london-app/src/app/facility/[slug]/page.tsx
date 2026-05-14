@@ -98,6 +98,24 @@ function buildExperienceHighlights(facility: AirtableFacility) {
   return Array.from(highlights).filter(Boolean).slice(0, 8);
 }
 
+function buildEditorialReasons(facility: AirtableFacility) {
+  const reasons: string[] = [];
+  const primaryService = facility.servicesOffered[0] || "wellness services";
+  const primaryBestFor = facility.bestFor[0] || facility.experienceType[0];
+
+  if (primaryBestFor) reasons.push(`A strong fit for ${primaryBestFor.toLowerCase()}.`);
+  if (hasKnownValue(facility.ambience)) reasons.push(`The atmosphere is described as ${facility.ambience.toLowerCase()}.`);
+  if (hasKnownValue(facility.privateOrShared)) reasons.push(`${facility.privateOrShared} access helps shape the experience.`);
+  if (facility.servicesOffered.length > 1) reasons.push(`Useful service mix: ${facility.servicesOffered.slice(0, 3).join(", ")}.`);
+  if (hasKnownValue(facility.priceFrom)) reasons.push(`Pricing starts from ${facility.priceFrom}.`);
+
+  if (reasons.length < 3) {
+    reasons.push(`Worth considering if you are looking for ${primaryService.toLowerCase()} in ${facility.neighbourhood || facility.areaOfLondon || "London"}.`);
+  }
+
+  return reasons.slice(0, 4);
+}
+
 function serviceLinksFromFacility(facility: AirtableFacility) {
   const uniqueLinks = new Map<string, string>();
 
@@ -164,6 +182,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const atmosphere = facility.ambience || "Atmosphere notes are being refined as this profile is updated.";
   const goodToKnow = buildGoodToKnow(facility);
   const experienceHighlights = buildExperienceHighlights(facility);
+  const editorialReasons = buildEditorialReasons(facility);
   const locationLabel = facility.areaOfLondon || facility.areaGroup || facility.neighbourhood || "London";
   const locationHref = getLocationHubHref(locationLabel);
   const relevantServiceLinks = serviceLinksFromFacility(facility);
@@ -269,6 +288,22 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                 {directionsHref ? <TrackedExternalLink href={directionsHref} eventName="map_click" properties={{ facility_name: facility.name, facility_slug: facility.slug, area: facility.neighbourhood || facility.areaOfLondon, cta_type: "directions" }} className="inline-flex w-full justify-center rounded-full border border-[#cfc5b6] px-6 py-3 text-sm transition hover:border-[#29241d] sm:w-auto">Get directions</TrackedExternalLink> : null}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto grid max-w-6xl gap-8 border-y border-[#d8cebf]/70 py-8 sm:gap-10 sm:py-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
+          <div>
+            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Well+ view</p>
+            <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Why this listing is included</h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {editorialReasons.map((reason) => (
+              <p key={reason} className="border-t border-[#d8cebf]/70 pt-4 text-sm leading-7 text-[#5f574c]">
+                {reason}
+              </p>
+            ))}
           </div>
         </div>
       </section>
