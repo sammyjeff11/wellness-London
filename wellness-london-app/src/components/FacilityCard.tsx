@@ -120,7 +120,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const rating = formatRating(facility.rating);
 
   return (
-    <article className="group min-w-0 pb-10 sm:pb-0">
+    <article className="group min-w-0 pb-14 sm:pb-0">
       <Link
         href={`/facility/${facility.slug}`}
         className="block min-w-0"
@@ -167,7 +167,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             <p className="mb-2 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
               {overlayLocation || "London"}
             </p>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-[#e7dccd]">
+            <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#e7dccd]/80 sm:text-[11px] sm:tracking-[0.18em]">
               {atmosphericDescriptor}
             </p>
             <h3 className={getTitleClassName(facility.name)}>
@@ -177,12 +177,12 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </Link>
 
-      <div className="min-w-0 rounded-b-md border-t border-[#ede7dc] bg-[#f7f3ed] px-5 py-6 sm:rounded-none sm:border-t-0 sm:bg-transparent sm:px-0.5 sm:py-0">
-        <p className="mb-5 line-clamp-2 max-w-[94%] text-[15px] leading-7 text-[#5f574c]">
+      <div className="min-w-0 rounded-b-md border-t border-[#ece5d9]/70 bg-[#f8f4ee] px-5 py-7 sm:rounded-none sm:border-t-0 sm:bg-transparent sm:px-0.5 sm:py-0">
+        <p className="mb-6 max-w-[94%] text-[15px] leading-7 text-[#5f574c] line-clamp-2">
           {summary}
         </p>
 
-        <div className="space-y-2 border-t border-[#d8cebf]/55 pt-4 text-[13px] leading-6 text-[#6c6153]">
+        <div className="space-y-2 border-t border-[#d8cebf]/45 pt-5 text-[13px] leading-6 text-[#6c6153]">
           {serviceLine ? <p>{serviceLine}</p> : null}
           <p>
             <Link href={locationHref || "#"} className={locationHref ? "underline-offset-4 hover:text-[#29241d] hover:underline" : "pointer-events-none"}>
