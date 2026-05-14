@@ -7,6 +7,8 @@ import JsonLd from "@/components/JsonLd";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
 import { getFacilities, type AirtableFacility } from "@/lib/airtable";
+import { getLocationHubHref } from "@/lib/location-hubs";
+import { getServiceHubHref } from "@/lib/service-hubs";
 
 type FacilityPageProps = {
   params: Promise<{
@@ -94,6 +96,17 @@ function buildExperienceHighlights(facility: AirtableFacility) {
   return Array.from(highlights).filter(Boolean).slice(0, 8);
 }
 
+function serviceLinksFromFacility(facility: AirtableFacility) {
+  const uniqueLinks = new Map<string, string>();
+
+  facility.servicesOffered.forEach((service) => {
+    const href = getServiceHubHref(service);
+    if (href) uniqueLinks.set(href, service);
+  });
+
+  return Array.from(uniqueLinks.entries()).map(([href, label]) => ({ href, label }));
+}
+
 async function getFacilityBySlug(slug: string) {
   const facilities = await getFacilities();
   const facility = facilities.find((item) => item.slug === slug || item.id === slug);
@@ -149,6 +162,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const atmosphere = facility.ambience || "Atmosphere notes are being refined as this profile is updated.";
   const goodToKnow = buildGoodToKnow(facility);
   const experienceHighlights = buildExperienceHighlights(facility);
+  const locationLabel = facility.areaOfLondon || facility.areaGroup || facility.neighbourhood || "London";
+  const locationHref = getLocationHubHref(locationLabel);
+  const relevantServiceLinks = serviceLinksFromFacility(facility);
   const locationSection = (
     <VenueLocationSection
       name={facility.name}
@@ -190,8 +206,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://welledit.co.uk" },
-      { "@type": "ListItem", position: 2, name: facility.name, item: pageUrl },
-    ],
+      locationHref ? { "@type": "ListItem", position: 2, name: locationLabel, item: `https://welledit.co.uk${locationHref}` } : undefined,
+      { "@type": "ListItem", position: locationHref ? 3 : 2, name: facility.name, item: pageUrl },
+    ].filter(Boolean),
   };
 
   const faqSchema = {
@@ -213,7 +230,17 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
         <div className="mx-auto max-w-[1400px]">
-          <Link href="/" className="mb-6 inline-block text-sm text-[#70695d] underline underline-offset-4 sm:mb-8">Back to the edit</Link>
+          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[#70695d] sm:mb-8">
+            <Link href="/" className="underline underline-offset-4 hover:text-[#29241d]">The edit</Link>
+            {locationHref ? (
+              <>
+                <span>/</span>
+                <Link href={locationHref} className="underline underline-offset-4 hover:text-[#29241d]">{locationLabel}</Link>
+              </>
+            ) : null}
+            <span>/</span>
+            <span className="text-[#29241d]">{facility.name}</span>
+          </nav>
           <div className="grid gap-9 sm:gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:items-end">
             <div className="relative min-h-[52vh] overflow-hidden bg-[#d8cebf] sm:min-h-[68vh]">
               {facility.images[0] ? <Image src={facility.images[0].url} alt={facility.name} fill priority sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover" /> : <div className="flex h-full min-h-[52vh] items-end p-6 text-[#70695d] sm:min-h-[68vh] sm:p-8">Well Edit</div>}
@@ -224,7 +251,10 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               <p className="mb-5 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#6f6048] sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">{facility.neighbourhood || facility.areaOfLondon || "London"}</p>
               <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">{facility.name}</h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-[#70695d] sm:mt-8 sm:text-xl sm:leading-9">Well suited for: {primaryBestFor}</p>
-              <div className="mt-6 flex flex-wrap gap-2">{experienceHighlights.slice(0, 5).map((highlight) => <span key={highlight} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{highlight}</span>)}</div>
+              <div className="mt-6 flex flex-wrap gap-2">{experienceHighlights.slice(0, 5).map((highlight) => {
+                const serviceHref = getServiceHubHref(highlight);
+                return serviceHref ? <Link key={highlight} href={serviceHref} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c] transition hover:bg-[#e3dbcf]">{highlight}</Link> : <span key={highlight} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{highlight}</span>;
+              })}</div>
               <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
                 {bookingHref ? <TrackedExternalLink href={bookingHref} eventName="listing_cta_click" properties={{ facility_name: facility.name, facility_slug: facility.slug, cta_type: facility.bookingLink ? "book" : "visit_website", area: facility.neighbourhood || facility.areaOfLondon }} className="inline-flex w-full justify-center rounded-full bg-[#29241d] px-6 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#463c31] sm:w-auto">{facility.bookingLink ? "Book" : "Visit website"}</TrackedExternalLink> : null}
                 {directionsHref ? <TrackedExternalLink href={directionsHref} eventName="map_click" properties={{ facility_name: facility.name, facility_slug: facility.slug, area: facility.neighbourhood || facility.areaOfLondon, cta_type: "directions" }} className="inline-flex w-full justify-center rounded-full border border-[#cfc5b6] px-6 py-3 text-sm transition hover:border-[#29241d] sm:w-auto">Get directions</TrackedExternalLink> : null}
@@ -248,7 +278,30 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-3"><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Experience highlights</h3><div className="flex flex-wrap gap-2">{experienceHighlights.length > 0 ? experienceHighlights.map((item) => <span key={item} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{item}</span>) : <p className="text-sm leading-7 text-[#70695d]">Highlights are being refined.</p>}</div></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Atmosphere</h3><p className="text-sm leading-7 text-[#70695d]">{atmosphere}</p></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Good to know</h3><ul className="space-y-2 text-sm leading-7 text-[#70695d]">{goodToKnow.map((item) => <li key={item}>— {item}</li>)}</ul></article></div></section>
+      {relevantServiceLinks.length > 0 ? (
+        <section className="px-5 py-12 sm:px-6 sm:py-16">
+          <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
+            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Also relevant for</p>
+            <div className="flex flex-wrap gap-3">
+              {relevantServiceLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
+                  {link.label} in London
+                </Link>
+              ))}
+              {locationHref ? (
+                <Link href={locationHref} className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
+                  More wellness spaces in {locationLabel}
+                </Link>
+              ) : null}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-3"><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Experience highlights</h3><div className="flex flex-wrap gap-2">{experienceHighlights.length > 0 ? experienceHighlights.map((item) => {
+        const serviceHref = getServiceHubHref(item);
+        return serviceHref ? <Link key={item} href={serviceHref} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c] transition hover:bg-[#e3dbcf]">{item}</Link> : <span key={item} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{item}</span>;
+      }) : <p className="text-sm leading-7 text-[#70695d]">Highlights are being refined.</p>}</div></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Atmosphere</h3><p className="text-sm leading-7 text-[#70695d]">{atmosphere}</p></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Good to know</h3><ul className="space-y-2 text-sm leading-7 text-[#70695d]">{goodToKnow.map((item) => <li key={item}>— {item}</li>)}</ul></article></div></section>
 
       <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Before you go</p><h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Practical details</h2></div><dl><DetailRow label="Towels" value={facility.towelsIncluded} /><DetailRow label="Showers" value={facility.showersAvailable} /><DetailRow label="Changing rooms" value={facility.changingRooms} /><DetailRow label="Relaxation area" value={facility.relaxationArea} /><DetailRow label="Opening hours" value={facility.openingHours} /></dl></div></section>
 
