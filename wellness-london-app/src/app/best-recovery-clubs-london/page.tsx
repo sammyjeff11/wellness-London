@@ -18,7 +18,6 @@ const keywords = ["recovery", "performance", "contrast", "cold", "sauna", "athle
 function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   const searchable = [
     facility.description,
-    facility.editorialSummary,
     ...(facility.services || []),
     ...(facility.bestFor || []),
   ]
