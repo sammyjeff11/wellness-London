@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
+import SiteFooter from "@/components/SiteFooter";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
@@ -47,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-[#f4efe6] text-[#29241d]">
         {gaId && (
           <>
             <Script
@@ -65,7 +66,8 @@ export default function RootLayout({
           </>
         )}
         <Navbar />
-        {children}
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   );
