@@ -120,10 +120,10 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
   const { facility } = await getFacilityBySlug(slug);
 
   if (!facility) {
-    return { title: "Facility not found | Well Edit" };
+    return { title: "Facility not found | Well+" };
   }
 
-  const title = `${facility.name} | Well Edit`;
+  const title = `${facility.name} | Well+ London`;
   const description = facility.editorialSummary || facility.description;
 
   return {
@@ -226,7 +226,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       { "@type": "Question", name: `Is ${facility.name} suitable for beginners?`, acceptedAnswer: { "@type": "Answer", text: facility.beginnerFriendly || "Beginner suitability has not yet been confirmed." } },
       { "@type": "Question", name: `Do I need to book ${facility.name} in advance?`, acceptedAnswer: { "@type": "Answer", text: facility.bookingRequired || "Booking details are not yet confirmed." } },
       { "@type": "Question", name: `Is ${facility.name} private or shared?`, acceptedAnswer: { "@type": "Answer", text: facility.privateOrShared || "Private/shared access is not yet confirmed." } },
-      { "@type": "Question", name: "How are venues selected for The Well Edit?", acceptedAnswer: { "@type": "Answer", text: "Venues are selected based on relevance to recovery and wellness, clarity of offering, user utility, atmosphere, facilities and overall fit within London’s wellness landscape." } },
+      { "@type": "Question", name: "How are venues selected for Well+?", acceptedAnswer: { "@type": "Answer", text: "Venues are selected based on relevance to recovery and wellness, clarity of offering, user utility, atmosphere, facilities and overall fit within London’s wellness landscape." } },
     ],
   };
 
@@ -252,7 +252,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           </nav>
           <div className="grid gap-9 sm:gap-12 lg:grid-cols-[1.06fr_0.94fr] lg:items-end">
             <div className="relative min-h-[52vh] overflow-hidden bg-[#d8cebf] sm:min-h-[68vh]">
-              {facility.images[0] ? <Image src={facility.images[0].url} alt={facility.name} fill priority sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover" /> : <div className="flex h-full min-h-[52vh] items-end p-6 text-[#70695d] sm:min-h-[68vh] sm:p-8">Well Edit</div>}
+              {facility.images[0] ? <Image src={facility.images[0].url} alt={facility.name} fill priority sizes="(min-width: 1024px) 56vw, 100vw" className="object-cover" /> : <div className="flex h-full min-h-[52vh] items-end p-6 text-[#70695d] sm:min-h-[68vh] sm:p-8">Well+</div>}
               <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
               <p className="absolute bottom-5 left-5 right-5 text-[10px] uppercase leading-5 tracking-[0.18em] text-white/88 sm:bottom-6 sm:left-6 sm:right-6 sm:text-[11px] sm:tracking-[0.22em]">{facility.verificationStatus} / Checked {formatDate(facility.lastCheckedDate)}</p>
             </div>
@@ -276,14 +276,14 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-[0.85fr_1.15fr]">
           <div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Profile context</p><h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">What to expect</h2></div>
-          <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10"><p>{summary}</p><p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p><p className="text-sm leading-7 text-[#8a7f70]">This profile combines structured research, public venue information and editorial curation principles designed to help users compare London wellness spaces more effectively.</p></div>
+          <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10"><p>{summary}</p><p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p><p className="text-sm leading-7 text-[#8a7f70]">This profile combines structured research, public venue information and Well+ editorial curation principles designed to help users compare London wellness spaces more effectively.</p></div>
         </div>
       </section>
 
       <TopicalPathways
         eyebrow="How this fits"
         title="Place this venue within the wider wellness ecosystem."
-        introduction="Each venue now connects back into Well Edit’s outcome-led architecture, helping users and search engines understand how the space relates to recovery, longevity and stress regulation."
+        introduction="Each venue now connects back into Well+’s outcome-led architecture, helping users and search engines understand how the space relates to recovery, longevity and stress regulation."
         parentTopic={topicalContext.parentTopic}
         relatedModalities={topicalContext.relatedModalities}
         relatedOutcomes={topicalContext.relatedOutcomes}
@@ -336,7 +336,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
       <section className="border-t border-[#d8cebf]/70 px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Similar places</p><h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Continue the edit</h2></div>{similarFacilities.length > 0 ? <div className="grid gap-5">{similarFacilities.map((item) => <Link key={item.slug} href={`/facility/${item.slug}`} className="group border-t border-[#d8cebf]/70 py-5"><p className="font-serif text-2xl font-normal text-[#29241d] transition group-hover:text-[#6f6048] sm:text-3xl">{item.name}</p><p className="mt-2 text-sm leading-6 text-[#70695d]">{item.neighbourhood || item.areaOfLondon || "London"} / {item.priceFrom || item.overallPriceRange || "Price not listed"}</p></Link>)}</div> : <p className="text-sm leading-7 text-[#70695d]">Similar places will appear here as more profiles are enriched.</p>}</div></section>
 
-      <section className="px-5 pb-16 sm:px-6 sm:pb-24"><div className="mx-auto max-w-3xl"><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">FAQs</p><h2 className="mb-8 font-serif text-4xl font-normal tracking-normal sm:mb-10 sm:text-5xl">Common questions</h2><div className="space-y-7 sm:space-y-8"><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Is this suitable for beginners?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.beginnerFriendly}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Do I need to book?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.bookingRequired}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Are towels and showers available?</h3><p className="text-sm leading-7 text-[#70695d]">Towels: {facility.towelsIncluded}. Showers: {facility.showersAvailable}.</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">How are venues selected for The Well Edit?</h3><p className="text-sm leading-7 text-[#70695d]">Venues are selected based on relevance to recovery and wellness, clarity of offering, user utility, atmosphere, facilities and overall fit within London’s wellness landscape.</p></article></div></div></section>
+      <section className="px-5 pb-16 sm:px-6 sm:pb-24"><div className="mx-auto max-w-3xl"><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">FAQs</p><h2 className="mb-8 font-serif text-4xl font-normal tracking-normal sm:mb-10 sm:text-5xl">Common questions</h2><div className="space-y-7 sm:space-y-8"><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Is this suitable for beginners?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.beginnerFriendly}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Do I need to book?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.bookingRequired}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Are towels and showers available?</h3><p className="text-sm leading-7 text-[#70695d]">Towels: {facility.towelsIncluded}. Showers: {facility.showersAvailable}.</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">How are venues selected for Well+?</h3><p className="text-sm leading-7 text-[#70695d]">Venues are selected based on relevance to recovery and wellness, clarity of offering, user utility, atmosphere, facilities and overall fit within London’s wellness landscape.</p></article></div></div></section>
     </main>
   );
 }
