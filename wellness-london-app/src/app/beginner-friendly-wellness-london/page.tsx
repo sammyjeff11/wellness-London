@@ -23,7 +23,6 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
     ...(facility.bestFor || []),
     ...(facility.experienceType || []),
     ...(facility.services || []),
-    facility.ambience,
   ]
     .filter(Boolean)
     .join(" ")
