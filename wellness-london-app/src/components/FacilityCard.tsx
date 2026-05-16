@@ -83,29 +83,13 @@ function getAtmosphericDescriptor(facility: FacilityCardFacility) {
 
 function formatServiceLine(services?: string[]) {
   if (!services || services.length === 0) return "";
-  const visible = services.slice(0, 2).join(" · ");
-  const hiddenCount = Math.max(services.length - 2, 0);
-  return hiddenCount > 0 ? `${visible} · +${hiddenCount}` : visible;
+  return services.slice(0, 2).join(" · ");
 }
 
 function formatRating(value?: string) {
   if (!value) return "";
   const match = value.match(/\d+(\.\d+)?/);
   return match ? `${match[0]} Google` : value.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
-}
-
-function getTitleClassName(name: string) {
-  const length = name.length;
-
-  if (length > 28) {
-    return "max-w-[86%] text-[1.95rem] font-normal leading-[0.96] tracking-[-0.04em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:max-w-[88%] sm:text-[2.22rem]";
-  }
-
-  if (length > 18) {
-    return "max-w-[90%] text-[2.16rem] font-normal leading-[0.98] tracking-[-0.035em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.52rem]";
-  }
-
-  return "max-w-[92%] text-[2.45rem] font-normal leading-[1] tracking-[-0.03em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] sm:text-[2.9rem]";
 }
 
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
@@ -120,7 +104,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const rating = formatRating(facility.rating);
 
   return (
-    <article className="group min-w-0 pb-14 sm:pb-0">
+    <article className="group min-w-0 overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_22px_55px_rgba(41,36,29,0.06)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_32px_80px_rgba(41,36,29,0.1)]">
       <Link
         href={`/facility/${facility.slug}`}
         className="block min-w-0"
@@ -135,14 +119,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="relative mb-0 aspect-[4/5] overflow-hidden rounded-t-md bg-[#d8cebf] shadow-[0_1px_0_rgba(41,36,29,0.12)] sm:mb-7 sm:rounded-md">
+        <div className="image-grain relative mb-0 aspect-[4/5] overflow-hidden bg-[#d8cebf]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
               alt={facility.imageAlt || facility.name}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-700 group-hover:scale-[1.025]"
+              className="object-cover transition duration-1000 group-hover:scale-[1.03]"
             />
           ) : (
             <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
@@ -150,12 +134,11 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/84 via-black/24 to-black/5" />
-          <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/82 via-black/38 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/30 to-black/10" />
 
-          <div className="absolute left-4 right-4 top-4 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+          <div className="absolute left-5 right-5 top-5 flex items-start justify-between gap-3">
             {price ? (
-              <span className="inline-flex min-h-8 items-center bg-[#f8f5ef]/95 px-3 py-1 text-[11px] font-medium leading-none tracking-[0.08em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.18)] backdrop-blur-sm">
+              <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
                 {price}
               </span>
             ) : (
@@ -163,33 +146,34 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             )}
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-6">
-            <p className="mb-2 text-[10px] font-medium uppercase leading-5 tracking-[0.22em] text-white/82 [text-shadow:0_2px_14px_rgb(0_0_0_/_0.55)] sm:text-[11px]">
+          <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-7">
+            <p className="mb-2 text-[10px] uppercase leading-5 tracking-[0.22em] text-white/72">
               {overlayLocation || "London"}
             </p>
-            <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#e7dccd]/80 sm:text-[11px] sm:tracking-[0.18em]">
-              {atmosphericDescriptor}
-            </p>
-            <h3 className={getTitleClassName(facility.name)}>
+
+            <h3 className="min-h-[5.8rem] max-w-[90%] font-serif text-[2.2rem] font-normal leading-[0.94] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:text-[2.6rem]">
               {facility.name}
             </h3>
+
+            <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-[#e7dccd]/78">
+              {atmosphericDescriptor}
+            </p>
           </div>
         </div>
       </Link>
 
-      <div className="min-w-0 rounded-b-md border-t border-[#ece5d9]/70 bg-[#f8f4ee] px-5 py-7 sm:rounded-none sm:border-t-0 sm:bg-transparent sm:px-0.5 sm:py-0">
-        <p className="mb-6 max-w-[94%] text-[15px] leading-7 text-[#5f574c] line-clamp-2">
+      <div className="px-5 py-6 sm:px-6 sm:py-7">
+        <p className="mb-6 text-[15px] leading-7 text-[#5f574c] line-clamp-2">
           {summary}
         </p>
 
-        <div className="space-y-2 border-t border-[#d8cebf]/45 pt-5 text-[13px] leading-6 text-[#6c6153]">
-          {serviceLine ? <p>{serviceLine}</p> : null}
+        <div className="border-t border-[#d8cebf]/45 pt-4 text-[12px] leading-6 tracking-[0.02em] text-[#756957]">
+          {serviceLine ? <p className="mb-1">{serviceLine}</p> : null}
+
           <p>
             <Link href={locationHref || "#"} className={locationHref ? "underline-offset-4 hover:text-[#29241d] hover:underline" : "pointer-events-none"}>
               {areaLabel}
             </Link>
-            {price ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
-            {price ? <span>{price}</span> : null}
             {rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
             {rating ? <span>{rating}</span> : null}
           </p>
