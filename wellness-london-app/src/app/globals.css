@@ -90,7 +90,8 @@ img {
   box-shadow: 0 28px 70px rgba(41, 36, 29, 0.06);
 }
 
-.image-grain::after {
+.image-grain::after,
+.editorial-image::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -99,6 +100,34 @@ img {
   background-size: 3px 3px;
   mix-blend-mode: soft-light;
   opacity: 0.35;
+}
+
+.editorial-image {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 16%, rgba(251, 248, 241, 0.24), transparent 17rem),
+    linear-gradient(135deg, #d8cebf 0%, #b9ab97 54%, #29241d 100%);
+}
+
+.editorial-image img {
+  filter: saturate(0.78) contrast(1.04) brightness(0.96);
+}
+
+.editorial-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(24, 21, 16, 0.6), rgba(24, 21, 16, 0.08) 52%, rgba(251, 248, 241, 0.08)),
+    radial-gradient(circle at center, transparent 48%, rgba(24, 21, 16, 0.2));
+}
+
+.editorial-image > * {
+  position: relative;
+  z-index: 2;
 }
 
 .fade-in-section {
