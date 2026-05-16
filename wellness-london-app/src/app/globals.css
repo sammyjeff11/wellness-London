@@ -4,9 +4,13 @@
   --background: #f4efe6;
   --foreground: #29241d;
   --paper: #fbf8f1;
+  --paper-soft: #f8f4ee;
   --stone: #d8cebf;
+  --stone-dark: #b9ab97;
   --muted: #5f574c;
   --accent: #6f6048;
+  --ink: #29241d;
+  --charcoal: #181510;
 }
 
 @theme inline {
@@ -23,10 +27,13 @@
 
 html {
   background: var(--background);
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at top left, rgba(216, 206, 191, 0.32), transparent 34rem),
+    var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -37,7 +44,7 @@ h1,
 h2 {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
-  letter-spacing: 0;
+  letter-spacing: -0.035em;
 }
 
 p,
@@ -50,7 +57,51 @@ a {
   text-underline-offset: 5px;
 }
 
+img {
+  max-width: 100%;
+}
+
 ::selection {
   background: #d8cebf;
   color: #29241d;
+}
+
+.editorial-shell {
+  width: min(100% - 2.5rem, 72rem);
+  margin-inline: auto;
+}
+
+.editorial-eyebrow {
+  font-size: 0.68rem;
+  line-height: 1.35;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.editorial-rule {
+  border-color: rgba(216, 206, 191, 0.74);
+}
+
+.editorial-surface {
+  background: color-mix(in srgb, var(--paper) 88%, white 12%);
+  border: 1px solid rgba(216, 206, 191, 0.72);
+  box-shadow: 0 28px 70px rgba(41, 36, 29, 0.06);
+}
+
+.image-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+}
+
+@media (max-width: 640px) {
+  .editorial-shell {
+    width: min(100% - 2rem, 72rem);
+  }
 }
