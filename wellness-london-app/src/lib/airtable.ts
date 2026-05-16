@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 export type AirtableImage = {
   id: string;
   url: string;
@@ -167,6 +169,8 @@ type AirtableResponse = {
   offset?: string;
 };
 
+export const AIRTABLE_REVALIDATE_SECONDS = 60 * 60 * 6;
+
 function normaliseList(value: AirtableFieldValue): string[] {
   if (value === undefined || value === null || value === false) return [];
   if (Array.isArray(value)) return value.map(String).filter(Boolean);
@@ -300,7 +304,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   };
 }
 
-export async function getFacilities(): Promise<AirtableFacility[]> {
+async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
   const apiKey = process.env.AIRTABLE_API_KEY;
   const baseId = process.env.AIRTABLE_BASE_ID;
   const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
@@ -323,10 +327,14 @@ export async function getFacilities(): Promise<AirtableFacility[]> {
     const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
 
     const response = await fetch(url, {
+      cache: "force-cache",
       headers: {
         Authorization: `Bearer ${apiKey}`,
       },
-      next: { revalidate: 300 },
+      next: {
+        revalidate: AIRTABLE_REVALIDATE_SECONDS,
+        tags: ["airtable-facilities"],
+      },
     });
 
     if (!response.ok) {
@@ -341,3 +349,5 @@ export async function getFacilities(): Promise<AirtableFacility[]> {
 
   return records.map(mapRecordToFacility);
 }
+
+export const getFacilities = cache(fetchFacilitiesFromAirtable);
