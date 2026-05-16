@@ -119,24 +119,22 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           })
         }
       >
-        <div className="image-grain relative mb-0 aspect-[4/5] overflow-hidden bg-[#d8cebf]">
+        <div className="editorial-image relative mb-0 aspect-[4/5] overflow-hidden bg-[#d8cebf]">
           {facility.imageUrl ? (
             <Image
               src={facility.imageUrl}
               alt={facility.imageAlt || facility.name}
               fill
               sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-              className="object-cover transition duration-1000 group-hover:scale-[1.03]"
+              className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
             />
           ) : (
-            <div className="flex h-full w-full items-end bg-[#d8cebf] p-5">
-              <span className="text-sm text-[#5f574c]">Well+</span>
+            <div className="absolute inset-0 z-0 flex h-full w-full items-end bg-[linear-gradient(135deg,#d8cebf_0%,#b9ab97_50%,#29241d_100%)] p-5">
+              <span className="text-sm text-[#fbf8f1]/78">Well+</span>
             </div>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/30 to-black/10" />
-
-          <div className="absolute left-5 right-5 top-5 flex items-start justify-between gap-3">
+          <div className="absolute left-5 right-5 top-5 z-10 flex items-start justify-between gap-3">
             {price ? (
               <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
                 {price}
@@ -146,7 +144,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             )}
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-5 text-white sm:p-7">
+          <div className="absolute bottom-0 left-0 right-0 z-10 p-5 text-white sm:p-7">
             <p className="mb-2 text-[10px] uppercase leading-5 tracking-[0.22em] text-white/72">
               {overlayLocation || "London"}
             </p>
