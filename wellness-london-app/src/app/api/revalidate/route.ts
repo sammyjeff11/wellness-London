@@ -21,7 +21,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: false, message: "Unauthorised" }, { status: 401 });
   }
 
-  revalidateTag(AIRTABLE_FACILITIES_TAG);
+  revalidateTag(AIRTABLE_FACILITIES_TAG, "max");
 
   return NextResponse.json({
     ok: true,
