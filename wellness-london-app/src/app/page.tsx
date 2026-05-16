@@ -80,39 +80,42 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-3 pt-3 sm:px-5 md:px-8 md:pt-7">
-        <div className="image-grain relative mx-auto min-h-[58vh] max-w-[1440px] overflow-hidden rounded-[1.6rem] bg-[#d8cebf] sm:min-h-[76vh] md:rounded-[2.2rem]">
-          {heroImage ? (
-            <Image
-              src={heroImage.url}
-              alt={heroImage.filename || "Curated London wellness and recovery space"}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-          ) : null}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/42 to-black/16 sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
-          <div className="relative flex min-h-[58vh] items-end px-5 pb-7 pt-20 sm:min-h-[76vh] sm:px-8 sm:py-12 md:px-16 md:py-16">
-            <div className="max-w-5xl text-[#fbf8f1]">
-              <p className="mb-4 text-[10px] uppercase leading-5 tracking-[0.28em] text-[#fbf8f1]/74 sm:mb-7 sm:text-[11px]">
+      <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-7">
+        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
+          <div className="relative h-[42vh] min-h-[285px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
+            {heroImage ? (
+              <Image
+                src={heroImage.url}
+                alt={heroImage.filename || "Curated London wellness and recovery space"}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-center sm:object-cover"
+              />
+            ) : null}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
+          </div>
+
+          <div className="relative flex flex-col justify-end px-5 pb-6 pt-5 text-[#fbf8f1] sm:min-h-[76vh] sm:px-8 sm:py-12 md:px-16 md:py-16">
+            <div className="max-w-5xl">
+              <p className="mb-3 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-7 sm:text-[11px] sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-5xl font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.055em] sm:text-[4.9rem] md:text-[7.6rem]">
+              <h1 className="max-w-5xl font-serif text-[2.7rem] font-normal leading-[0.9] tracking-[-0.055em] sm:text-[4.9rem] sm:leading-[0.92] md:text-[7.6rem]">
                 London&apos;s curated guide to modern wellness.
               </h1>
-              <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#fbf8f1]/84 sm:mt-7 sm:text-lg sm:leading-8">
+              <p className="mt-4 max-w-[31rem] text-[14px] leading-6 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Discover saunas, bathhouses, cold plunges and recovery spaces with an editorial eye for atmosphere, design and ritual.
               </p>
-              <div className="mt-6 flex flex-wrap gap-2 sm:mt-9 sm:gap-3">
-                <Link href="/explore" className="rounded-full bg-[#fbf8f1] px-5 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
+              <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
+                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-3 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1">
                   Explore the edit
                 </Link>
-                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/55 px-5 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">
+                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-3 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5">
                   Sauna guide
                 </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/25 px-5 py-3 text-sm text-[#fbf8f1]/86 transition hover:border-[#fbf8f1]/70">
-                  Featured venues
+                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-3 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5">
+                  Featured
                 </Link>
               </div>
             </div>
