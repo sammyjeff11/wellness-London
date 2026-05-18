@@ -128,19 +128,6 @@ function serviceLinksFromFacility(facility: AirtableFacility) {
   return Array.from(uniqueLinks.entries()).map(([href, label]) => ({ href, label }));
 }
 
-function EditorialImageBlock({ image, venueName, label, className = "" }: { image?: { url: string; filename?: string }; venueName: string; label: string; className?: string }) {
-  if (!image?.url) return null;
-
-  return (
-    <div className={`editorial-image relative overflow-hidden rounded-[1.15rem] bg-[#d8cebf] ${className}`}>
-      <Image src={image.url} alt={image.filename || `${venueName} ${label}`} fill sizes="(min-width: 1024px) 42vw, 100vw" className="z-0 object-cover" />
-      <div className="editorial-image-overlay" />
-      <div className="editorial-image-grain" />
-      <p className="absolute bottom-4 left-4 z-10 text-[10px] uppercase tracking-[0.2em] text-[#fbf8f1]/76 sm:bottom-5 sm:left-5">{label}</p>
-    </div>
-  );
-}
-
 async function getFacilityBySlug(slug: string) {
   const facilities = await getFacilities();
   const facility = facilities.find((item) => item.slug === slug || item.id === slug);
@@ -200,7 +187,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const locationLabel = facility.areaOfLondon || facility.areaGroup || facility.neighbourhood || "London";
   const locationHref = getLocationHubHref(locationLabel);
   const relevantServiceLinks = serviceLinksFromFacility(facility);
-  const visualImages = facility.images.filter((image) => Boolean(image.url));
   const topicalContext = getFacilityTopicalContext([
     ...facility.serviceKeys,
     ...facility.servicesOffered,
@@ -274,7 +260,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
         <div className="mx-auto max-w-[1400px]">
           <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap items-center gap-2 text-sm text-[#70695d] sm:mb-8">
-            <Link href="/" className="underline underline-offset-4 hover:text-[#29241d]">The edit</Link>
+            <Link href="/" className="underline underline-offset-4 hover:text-[#29241d]">Well+</Link>
             {locationHref ? (
               <>
                 <span>/</span>
@@ -310,17 +296,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       <FacilityGallery images={facility.images} venueName={facility.name} />
 
       <section className="px-5 py-12 sm:px-6 sm:py-18 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.92fr_1.08fr] md:items-center">
-          <EditorialImageBlock image={visualImages[1] || visualImages[0]} venueName={facility.name} label="Atmosphere" className="aspect-[4/5] md:aspect-[5/6]" />
-          <div className="max-w-2xl md:pl-6">
-            <p className="editorial-eyebrow mb-4">Profile context</p>
-            <h2 className="mb-6 font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl md:text-6xl">What to expect</h2>
-            <div className="space-y-5 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10">
-              <p>{summary}</p>
-              <p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p>
-              <p className="text-sm leading-7 text-[#8a7f70]">This profile combines structured research, public venue information and Well+ editorial curation principles designed to help users compare London wellness spaces more effectively.</p>
-            </div>
-          </div>
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.85fr_1.15fr]">
+          <div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Profile context</p><h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">What to expect</h2></div>
+          <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10"><p>{summary}</p><p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p><p className="text-sm leading-7 text-[#8a7f70]">This profile combines structured research, public venue information and Well+ editorial curation principles designed to help users compare London wellness spaces more effectively.</p></div>
         </div>
       </section>
 
@@ -389,13 +367,10 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       }) : <p className="text-sm leading-7 text-[#70695d]">Highlights are being refined.</p>}</div></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Atmosphere</h3><p className="text-sm leading-7 text-[#70695d]">{atmosphere}</p></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Good to know</h3><ul className="space-y-2 text-sm leading-7 text-[#70695d]">{goodToKnow.map((item) => <li key={item}>— {item}</li>)}</ul></article></div></section>
 
       <section className="bg-[#29241d] px-5 py-16 text-[#fbf8f1] sm:px-6 sm:py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[1.08fr_0.92fr] md:items-center">
-          <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">The practical layer</p>
-            <h2 className="mb-6 font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl md:text-6xl">Plan the visit with the details that matter.</h2>
-            <dl className="grid gap-x-8 sm:grid-cols-2"><DetailRow label="Towels" value={facility.towelsIncluded} /><DetailRow label="Showers" value={facility.showersAvailable} /><DetailRow label="Changing rooms" value={facility.changingRooms} /><DetailRow label="Opening hours" value={facility.openingHours} /></dl>
-          </div>
-          <EditorialImageBlock image={visualImages[2] || visualImages[0]} venueName={facility.name} label="Details" className="aspect-[4/5] md:aspect-[5/6]" />
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">The practical layer</p>
+          <h2 className="mb-6 max-w-3xl font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl md:text-6xl">Plan the visit with the details that matter.</h2>
+          <dl className="grid gap-x-8 sm:grid-cols-2 lg:grid-cols-4"><DetailRow label="Towels" value={facility.towelsIncluded} /><DetailRow label="Showers" value={facility.showersAvailable} /><DetailRow label="Changing rooms" value={facility.changingRooms} /><DetailRow label="Opening hours" value={facility.openingHours} /></dl>
         </div>
       </section>
 
