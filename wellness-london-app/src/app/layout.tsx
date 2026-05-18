@@ -21,18 +21,18 @@ const cleanSans = Inter({
 
 const siteUrl = new URL(SITE_URL);
 const siteDescription =
-  "Well+ is the London wellness edit — a curated guide to saunas, cold plunges, cryotherapy, recovery studios and longevity spaces across the capital.";
+  "Well+ is a curated London guide to saunas, cold plunges, cryotherapy, recovery studios and longevity spaces across the capital.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Well+ London | The London Wellness Edit",
+    default: "Well+ London | Curated Wellness Spaces",
     template: "%s",
   },
   description: siteDescription,
   openGraph: {
-    title: "Well+ London | The London Wellness Edit",
+    title: "Well+ London | Curated Wellness Spaces",
     description: siteDescription,
     url: "/",
     siteName: "Well+",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Well+ London | The London Wellness Edit",
+    title: "Well+ London | Curated Wellness Spaces",
     description: siteDescription,
     images: ["/opengraph-image"],
   },
