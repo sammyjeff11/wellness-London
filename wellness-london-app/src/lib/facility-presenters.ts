@@ -13,6 +13,7 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     website: facility.website,
     imageUrl: facility.images[0]?.url,
     imageAlt: facility.images[0]?.filename || facility.name,
+    galleryImages: facility.images.map((image) => ({ url: image.url, filename: image.filename })).filter((image) => Boolean(image.url)),
     location: getFacilityLocation(facility),
     neighbourhood: facility.neighbourhood,
     areaOfLondon: facility.areaOfLondon,
