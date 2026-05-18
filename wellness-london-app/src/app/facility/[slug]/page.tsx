@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
+import FacilityGallery from "@/components/FacilityGallery";
 import JsonLd from "@/components/JsonLd";
 import TopicalPathways from "@/components/TopicalPathways";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
@@ -292,86 +293,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
-        <div className="mx-auto grid max-w-6xl gap-8 border-y border-[#d8cebf]/70 py-8 sm:gap-10 sm:py-10 lg:grid-cols-[0.75fr_1.25fr] lg:items-start">
-          <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Well+ view</p>
-            <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Why this listing is included</h2>
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            {editorialReasons.map((reason) => (
-              <p key={reason} className="border-t border-[#d8cebf]/70 pt-4 text-sm leading-7 text-[#5f574c]">
-                {reason}
-              </p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
-        <div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-[0.85fr_1.15fr]">
-          <div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Profile context</p><h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">What to expect</h2></div>
-          <div className="space-y-6 text-lg leading-8 text-[#70695d] sm:text-xl sm:leading-10"><p>{summary}</p><p className="text-base leading-8 sm:text-lg sm:leading-9">Atmosphere: {atmosphere}</p><p className="text-sm leading-7 text-[#8a7f70]">This profile combines structured research, public venue information and Well+ editorial curation principles designed to help users compare London wellness spaces more effectively.</p></div>
-        </div>
-      </section>
-
-      <TopicalPathways
-        eyebrow="How this fits"
-        title="Place this venue within the wider wellness ecosystem."
-        introduction="Each venue now connects back into Well+’s outcome-led architecture, helping users and search engines understand how the space relates to recovery, longevity and stress regulation."
-        parentTopic={topicalContext.parentTopic}
-        relatedModalities={topicalContext.relatedModalities}
-        relatedOutcomes={topicalContext.relatedOutcomes}
-        relatedLocations={locationHref ? [{ href: locationHref, label: `Wellness in ${locationLabel}`, description: `Explore more wellness and recovery spaces in ${locationLabel}.` }] : []}
-      />
-
-      <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 sm:gap-12 lg:grid-cols-[0.95fr_1.05fr]">
-          <article><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Well suited for</p><h2 className="mb-5 font-serif text-3xl font-normal tracking-normal sm:mb-6 sm:text-4xl">Who this may work for</h2>{facility.bestFor.length > 0 ? <ul className="space-y-3 text-base leading-7 text-[#70695d]">{facility.bestFor.slice(0, 5).map((item) => <li key={item}>— {item}</li>)}</ul> : <p className="text-base leading-8 text-[#70695d]">Best-fit notes are still being refined for this profile.</p>}</article>
-          <article><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">At a glance</p><dl><DetailRow label="Services" value={facility.servicesOffered} /><DetailRow label="Experience" value={facility.experienceType.length ? facility.experienceType : facility.premiumLevel} /><DetailRow label="Price from" value={facility.priceFrom} /><DetailRow label="Private/shared" value={facility.privateOrShared} /><DetailRow label="Booking" value={facility.bookingRequired} /><DetailRow label="Beginner-friendly" value={facility.beginnerFriendly} /><DetailRow label="Last checked" value={formatDate(facility.lastCheckedDate)} /></dl></article>
-        </div>
-      </section>
-
-      {relevantServiceLinks.length > 0 ? (
-        <section className="px-5 py-12 sm:px-6 sm:py-16">
-          <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Continue exploring</p>
-            <div className="flex flex-wrap gap-3">
-              {relevantServiceLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
-                  {link.label} in London
-                </Link>
-              ))}
-              {locationHref ? (
-                <Link href={locationHref} className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
-                  More wellness spaces in {locationLabel}
-                </Link>
-              ) : null}
-              <Link href="/how-we-curate" className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
-                How we curate venues
-              </Link>
-              <Link href="/editorial-standards" className="bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">
-                Editorial standards
-              </Link>
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 md:grid-cols-3"><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Experience highlights</h3><div className="flex flex-wrap gap-2">{experienceHighlights.length > 0 ? experienceHighlights.map((item) => {
-        const serviceHref = getServiceHubHref(item);
-        return serviceHref ? <Link key={item} href={serviceHref} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c] transition hover:bg-[#e3dbcf]">{item}</Link> : <span key={item} className="bg-[#eee8dd] px-3 py-1.5 text-[11px] font-medium leading-none text-[#4e463c]">{item}</span>;
-      }) : <p className="text-sm leading-7 text-[#70695d]">Highlights are being refined.</p>}</div></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Atmosphere</h3><p className="text-sm leading-7 text-[#70695d]">{atmosphere}</p></article><article><h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#29241d]">Good to know</h3><ul className="space-y-2 text-sm leading-7 text-[#70695d]">{goodToKnow.map((item) => <li key={item}>— {item}</li>)}</ul></article></div></section>
-
-      <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Before you go</p><h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Practical details</h2></div><dl><DetailRow label="Towels" value={facility.towelsIncluded} /><DetailRow label="Showers" value={facility.showersAvailable} /><DetailRow label="Changing rooms" value={facility.changingRooms} /><DetailRow label="Relaxation area" value={facility.relaxationArea} /><DetailRow label="Opening hours" value={facility.openingHours} /></dl></div></section>
-
-      <section className="px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[1.1fr_0.9fr]"><article><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Facilities breakdown</p><h2 className="mb-8 font-serif text-4xl font-normal tracking-normal sm:mb-10 sm:text-5xl">What is available</h2><dl><DetailRow label="Sauna" value={facility.serviceKeys.includes("sauna") ? [facility.saunaType.join(", ") || "Type unknown", `Contrast therapy: ${facility.contrastTherapyAvailable}`] : undefined} /><DetailRow label="Cold plunge" value={facility.serviceKeys.includes("cold-plunge") ? [facility.coldPlungeType, `Guided: ${facility.guidedSessionsAvailable}`] : undefined} /><DetailRow label="Cryotherapy" value={facility.serviceKeys.includes("cryotherapy") ? [facility.cryoType, `Booking: ${facility.bookingRequired}`] : undefined} /><DetailRow label="Other services" value={facility.servicesOffered} /></dl></article><article><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Pricing and location</p><h2 className="mb-8 font-serif text-4xl font-normal tracking-normal sm:mb-10 sm:text-5xl">Plan the visit</h2><dl><DetailRow label="Price from" value={facility.priceFrom} /><DetailRow label="Price level" value={facility.premiumLevel} /><DetailRow label="Pricing note" value={facility.priceNotes} /><DetailRow label="Address" value={facility.address} /><DetailRow label="Nearest station" value={facility.nearestStation} /><DetailRow label="Borough" value={facility.borough} /></dl></article></div></section>
-
-      {locationSection}
-
-      <section className="border-t border-[#d8cebf]/70 px-5 py-16 sm:px-6 sm:py-24"><div className="mx-auto grid max-w-6xl gap-8 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr]"><div><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">Similar places</p><h2 className="font-serif text-4xl font-normal tracking-normal sm:text-5xl">Continue the edit</h2></div>{similarFacilities.length > 0 ? <div className="grid gap-5">{similarFacilities.map((item) => <Link key={item.slug} href={`/facility/${item.slug}`} className="group border-t border-[#d8cebf]/70 py-5"><p className="font-serif text-2xl font-normal text-[#29241d] transition group-hover:text-[#6f6048] sm:text-3xl">{item.name}</p><p className="mt-2 text-sm leading-6 text-[#70695d]">{item.neighbourhood || item.areaOfLondon || "London"} / {item.priceFrom || item.overallPriceRange || "Price not listed"}</p></Link>)}</div> : <p className="text-sm leading-7 text-[#70695d]">Similar places will appear here as more profiles are enriched.</p>}</div></section>
-
-      <section className="px-5 pb-16 sm:px-6 sm:pb-24"><div className="mx-auto max-w-3xl"><p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048] sm:mb-5">FAQs</p><h2 className="mb-8 font-serif text-4xl font-normal tracking-normal sm:mb-10 sm:text-5xl">Common questions</h2><div className="space-y-7 sm:space-y-8"><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Is this suitable for beginners?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.beginnerFriendly}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Do I need to book?</h3><p className="text-sm leading-7 text-[#70695d]">{facility.bookingRequired}</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">Are towels and showers available?</h3><p className="text-sm leading-7 text-[#70695d]">Towels: {facility.towelsIncluded}. Showers: {facility.showersAvailable}.</p></article><article className="border-t border-[#d8cebf]/70 pt-6"><h3 className="mb-3 text-lg text-[#29241d]">How are venues selected for Well+?</h3><p className="text-sm leading-7 text-[#70695d]">Venues are selected based on relevance to recovery and wellness, clarity of offering, user utility, atmosphere, facilities and overall fit within London’s wellness landscape.</p></article></div></div></section>
+      <FacilityGallery images={facility.images} venueName={facility.name} />
     </main>
   );
 }
