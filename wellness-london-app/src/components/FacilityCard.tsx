@@ -12,6 +12,7 @@ export type FacilityCardFacility = {
   website?: string;
   imageUrl?: string;
   imageAlt?: string;
+  galleryImages?: { url: string; filename?: string }[];
   location?: string;
   neighbourhood?: string;
   areaOfLondon?: string;
@@ -102,6 +103,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
   const serviceLine = formatServiceLine(facility.services);
   const summary = primaryBestFor(facility);
   const rating = formatRating(facility.rating);
+  const galleryImages = facility.galleryImages?.slice(0, 4) || [];
 
   return (
     <article className="group min-w-0 overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_22px_55px_rgba(41,36,29,0.06)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_32px_80px_rgba(41,36,29,0.1)]">
@@ -134,6 +136,9 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           )}
 
+          <div className="editorial-image-overlay" />
+          <div className="editorial-image-grain" />
+
           <div className="absolute left-5 right-5 top-5 z-10 flex items-start justify-between gap-3">
             {price ? (
               <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
@@ -142,6 +147,12 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             ) : (
               <span />
             )}
+
+            {galleryImages.length > 1 ? (
+              <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
+                {galleryImages.length} views
+              </span>
+            ) : null}
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 z-10 p-5 text-white sm:p-7">
@@ -159,6 +170,26 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           </div>
         </div>
       </Link>
+
+      {galleryImages.length > 1 ? (
+        <div className="-mx-0 flex gap-2 overflow-x-auto border-t border-[#d8cebf]/50 bg-[#f6f1e8] px-3 py-3">
+          {galleryImages.slice(1, 4).map((image, index) => (
+            <div
+              key={`${image.url}-${index}`}
+              className="editorial-image relative aspect-[4/5] min-w-[5.5rem] overflow-hidden rounded-[0.9rem] bg-[#d8cebf] sm:min-w-[6.5rem]"
+            >
+              <Image
+                src={image.url}
+                alt={image.filename || `${facility.name} gallery image ${index + 2}`}
+                fill
+                sizes="120px"
+                className="object-cover"
+              />
+              <div className="editorial-image-overlay opacity-60" />
+            </div>
+          ))}
+        </div>
+      ) : null}
 
       <div className="px-5 py-6 sm:px-6 sm:py-7">
         <p className="mb-6 text-[15px] leading-7 text-[#5f574c] line-clamp-2">
