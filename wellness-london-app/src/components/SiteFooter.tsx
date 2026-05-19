@@ -70,7 +70,7 @@ export default function SiteFooter() {
           </ul>
         </nav>
 
-        <nav aria-label="Footer areas and collections">
+        <nav aria-label="Footer areas">
           <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Areas</h2>
           <ul className="space-y-3 text-sm">
             {locationHubLinks.map((link) => (
@@ -80,6 +80,12 @@ export default function SiteFooter() {
                 </Link>
               </li>
             ))}
+          </ul>
+        </nav>
+
+        <nav aria-label="Footer editorial and collections">
+          <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Editorial</h2>
+          <ul className="space-y-3 text-sm">
             {collectionLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-[#fbf8f1]/82 underline-offset-4 transition hover:text-[#fbf8f1] hover:underline">
@@ -87,12 +93,6 @@ export default function SiteFooter() {
                 </Link>
               </li>
             ))}
-          </ul>
-        </nav>
-
-        <nav aria-label="Footer trust">
-          <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Editorial</h2>
-          <ul className="space-y-3 text-sm">
             {trustLinks.map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="text-[#fbf8f1]/82 underline-offset-4 transition hover:text-[#fbf8f1] hover:underline">
