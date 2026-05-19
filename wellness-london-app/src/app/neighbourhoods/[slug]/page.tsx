@@ -34,7 +34,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
   if (!page) notFound();
 
   const facilities = await getFacilities();
-  const searchTerms = [page.shortTitle, ...page.relatedAreas].map(normalise);
+  const searchTerms = [page.shortTitle].map(normalise);
   const relatedFacilities = facilities
     .map(toDirectoryFacility)
     .filter((facility) => {
@@ -132,17 +132,6 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                   {link.label}
                 </Link>
               ))}
-            </div>
-
-            <div className="mt-8">
-              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Nearby areas</p>
-              <div className="flex flex-wrap gap-2">
-                {page.relatedAreas.map((area) => (
-                  <span key={area} className="rounded-full bg-[#f4efe6] px-3 py-1 text-xs text-[#5f574c]">
-                    {area}
-                  </span>
-                ))}
-              </div>
             </div>
           </div>
         </div>
