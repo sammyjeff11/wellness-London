@@ -71,15 +71,9 @@ function primaryBestFor(facility: ServiceDirectoryFacility) {
 
 function LocationText({ location }: { location?: string }) {
   const href = getLocationHubHref(location);
-
   if (!location) return <>London</>;
   if (!href) return <>{location}</>;
-
-  return (
-    <Link href={href} className="text-[#29241d] underline-offset-4 hover:underline">
-      {location}
-    </Link>
-  );
+  return <Link href={href} className="text-[#29241d] underline-offset-4 hover:underline">{location}</Link>;
 }
 
 function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
@@ -93,50 +87,33 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
   );
 }
 
-function DirectoryImageRoll({ facilities, serviceType }: { facilities: ServiceDirectoryFacility[]; serviceType: string }) {
-  const imageItems = facilities
-    .flatMap((facility) =>
-      (facility.galleryImages || [])
-        .slice(0, 3)
-        .map((image, index) => ({ facility, image, index }))
-    )
-    .filter((item) => Boolean(item.image.url))
-    .slice(0, 12);
-
-  if (imageItems.length < 4) return null;
-
+function MobileFilterPill({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
   return (
-    <section className="rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] px-4 py-5 shadow-[0_22px_55px_rgba(41,36,29,0.04)] sm:px-5 sm:py-6 md:px-7 md:py-8">
+    <label className="relative shrink-0">
+      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm font-medium text-[#29241d]">{value || label}</span>
+      <select aria-label={label} value={value} onChange={(event) => onChange(event.target.value)} className="h-11 max-w-[11rem] appearance-none rounded-full border border-[#d8cebf] bg-[#fbf8f1] pl-4 pr-9 text-sm text-transparent outline-none">
+        {children}
+      </select>
+      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70695d]">⌄</span>
+    </label>
+  );
+}
+
+function DirectoryImageRoll({ facilities, serviceType }: { facilities: ServiceDirectoryFacility[]; serviceType: string }) {
+  const imageItems = facilities.flatMap((facility) => (facility.galleryImages || []).slice(0, 3).map((image, index) => ({ facility, image, index }))).filter((item) => Boolean(item.image.url)).slice(0, 12);
+  if (imageItems.length < 4) return null;
+  return (
+    <section className="hidden rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] px-4 py-5 shadow-[0_22px_55px_rgba(41,36,29,0.04)] sm:px-5 sm:py-6 md:block md:px-7 md:py-8">
       <div className="mb-5 flex flex-col gap-2 sm:mb-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="editorial-eyebrow mb-2">Visual atmosphere</p>
-          <h3 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl">Swipe the mood of the edit.</h3>
-        </div>
+        <div><p className="editorial-eyebrow mb-2">Visual atmosphere</p><h3 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl">Swipe the mood of the edit.</h3></div>
         <p className="max-w-md text-sm leading-6 text-[#70695d]">A quick visual pass across selected spaces before comparing the details below.</p>
       </div>
-
       <div className="-mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
         {imageItems.map(({ facility, image, index }) => (
-          <Link
-            key={`${facility.slug}-${image.url}-${index}`}
-            href={`/facility/${facility.slug}`}
-            onClick={() =>
-              trackEvent("directory_image_roll_click", {
-                facility_name: facility.name,
-                facility_slug: facility.slug,
-                service_type: serviceType,
-                page_path: window.location.pathname,
-              })
-            }
-            className="editorial-image group relative aspect-[4/5] min-w-[74%] snap-start overflow-hidden rounded-[1.05rem] bg-[#d8cebf] sm:min-w-[42%] md:min-w-[30%] lg:min-w-[22%]"
-          >
+          <Link key={`${facility.slug}-${image.url}-${index}`} href={`/facility/${facility.slug}`} onClick={() => trackEvent("directory_image_roll_click", { facility_name: facility.name, facility_slug: facility.slug, service_type: serviceType, page_path: window.location.pathname })} className="editorial-image group relative aspect-[4/5] min-w-[74%] snap-start overflow-hidden rounded-[1.05rem] bg-[#d8cebf] sm:min-w-[42%] md:min-w-[30%] lg:min-w-[22%]">
             <Image src={image.url} alt={image.filename || `${facility.name} image`} fill sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 74vw" className="z-0 object-cover transition duration-700 group-hover:scale-[1.035]" />
-            <div className="editorial-image-overlay" />
-            <div className="editorial-image-grain" />
-            <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-[#fbf8f1]">
-              <p className="mb-1 text-[10px] uppercase tracking-[0.2em] text-[#fbf8f1]/70">{facility.location || facility.areaGroup || "London"}</p>
-              <p className="font-serif text-2xl leading-none tracking-[-0.04em] text-[#fbf8f1]">{facility.name}</p>
-            </div>
+            <div className="editorial-image-overlay" /><div className="editorial-image-grain" />
+            <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-[#fbf8f1]"><p className="mb-1 text-[10px] uppercase tracking-[0.2em] text-[#fbf8f1]/70">{facility.location || facility.areaGroup || "London"}</p><p className="font-serif text-2xl leading-none tracking-[-0.04em] text-[#fbf8f1]">{facility.name}</p></div>
           </Link>
         ))}
       </div>
@@ -147,7 +124,6 @@ function DirectoryImageRoll({ facilities, serviceType }: { facilities: ServiceDi
 export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText }: ServiceDirectoryProps) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [sort, setSort] = useState("recommended");
-
   const areaOptions = uniqueValues(facilities.map((facility) => facility.areaGroup || facility.location));
   const premiumOptions = uniqueValues(facilities.map((facility) => facility.premiumLevel));
   const experienceOptions = uniqueValues(facilities.flatMap((facility) => facility.experienceType || []));
@@ -158,16 +134,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     const result = facilities.filter((facility) => {
       const area = facility.areaGroup || facility.location || "";
       const experiences = facility.experienceType || [];
-
-      return (
-        (!filters.area || area === filters.area) &&
-        (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) &&
-        (!filters.experienceType || experiences.includes(filters.experienceType)) &&
-        (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared) &&
-        (!filters.beginnerFriendly || facility.beginnerFriendly === filters.beginnerFriendly)
-      );
+      return (!filters.area || area === filters.area) && (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) && (!filters.experienceType || experiences.includes(filters.experienceType)) && (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared) && (!filters.beginnerFriendly || facility.beginnerFriendly === filters.beginnerFriendly);
     });
-
     return [...result].sort((a, b) => {
       if (sort === "price-low") return parsePrice(a.priceFrom || a.priceRange) - parsePrice(b.priceFrom || b.priceRange);
       if (sort === "premium") return premiumRank(b.premiumLevel || b.priceRange) - premiumRank(a.premiumLevel || a.priceRange);
@@ -176,24 +144,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     });
   }, [facilities, filters, sort]);
 
-  function updateFilter(key: keyof FilterState, value: string) {
-    setFilters((current) => ({ ...current, [key]: value }));
-    trackEvent(value ? "filter_applied" : "filter_cleared", {
-      filter_name: key,
-      filter_value: value || "cleared",
-      service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
-    });
-  }
-
-  function clearFilters() {
-    setFilters(initialFilters);
-    trackEvent("filter_cleared", {
-      filter_name: "all",
-      service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
-    });
-  }
+  function updateFilter(key: keyof FilterState, value: string) { setFilters((current) => ({ ...current, [key]: value })); trackEvent(value ? "filter_applied" : "filter_cleared", { filter_name: key, filter_value: value || "cleared", service_type: serviceType, page_path: typeof window !== "undefined" ? window.location.pathname : undefined }); }
+  function clearFilters() { setFilters(initialFilters); trackEvent("filter_cleared", { filter_name: "all", service_type: serviceType, page_path: typeof window !== "undefined" ? window.location.pathname : undefined }); }
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
   const featuredFacilities = filteredFacilities.filter((facility) => facility.isFeatured);
@@ -204,172 +156,44 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const remainingFacilities = filteredFacilities.filter((facility) => !editorPickSlugs.has(facility.slug));
   const hasGroups = filteredFacilities.length > 3;
 
-  if (facilities.length === 0) {
-    return (
-      <div className="bg-[#fbf8f1] p-6 sm:p-8">
-        <h3 className="mb-2 text-xl font-medium sm:text-2xl">{emptyTitle}</h3>
-        <p className="text-sm leading-6 text-[#5f574c]">{emptyText}</p>
-      </div>
-    );
-  }
+  if (facilities.length === 0) return <div className="bg-[#fbf8f1] p-6 sm:p-8"><h3 className="mb-2 text-xl font-medium sm:text-2xl">{emptyTitle}</h3><p className="text-sm leading-6 text-[#5f574c]">{emptyText}</p></div>;
+
+  const filterControls = <>
+    <FilterSelect label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}><option value="">Any area</option>{areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}</FilterSelect>
+    <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}><option value="">Any level</option>{premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}</FilterSelect>
+    <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}><option value="">Any type</option>{experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}</FilterSelect>
+    <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}><option value="">Any access</option>{privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}</FilterSelect>
+    <FilterSelect label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}><option value="">Any</option>{beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}</FilterSelect>
+    <FilterSelect label="Sort" value={sort} onChange={setSort}><option value="recommended">Recommended</option><option value="price-low">Price low to high</option><option value="premium">Premium/luxury</option><option value="recently-checked">Recently checked</option></FilterSelect>
+  </>;
 
   return (
-    <div className="space-y-14 md:space-y-20">
-      <section className="bg-[#eee7da] px-4 py-7 sm:px-5 sm:py-8 md:px-8 md:py-10">
-        <div className="mb-7 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3">Refine</p>
-            <h3 className="text-xl font-medium tracking-normal sm:text-2xl">Find the right fit</h3>
+    <div className="space-y-8 md:space-y-20">
+      <section className="md:bg-[#eee7da] md:px-8 md:py-10">
+        <div className="md:hidden">
+          <div className="mb-4 flex items-center justify-between gap-4">
+            <p className="text-sm text-[#5f574c]">{filteredFacilities.length} spaces found</p>
+            {activeFilters.length > 0 ? <button type="button" onClick={clearFilters} className="text-sm text-[#29241d] underline underline-offset-4">Clear</button> : null}
           </div>
-          <p className="text-sm text-[#5f574c]">{filteredFacilities.length} of {facilities.length} shown</p>
+          <div className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-2">
+            <button type="button" onClick={activeFilters.length ? clearFilters : undefined} className="h-11 shrink-0 rounded-full border border-[#d8cebf] bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">Filters{activeFilters.length ? ` ${activeFilters.length}` : ""}</button>
+            <MobileFilterPill label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}><option value="">Area</option>{areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}</MobileFilterPill>
+            <MobileFilterPill label="Type" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}><option value="">Type</option>{experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}</MobileFilterPill>
+            <MobileFilterPill label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}><option value="">Access</option>{privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}</MobileFilterPill>
+            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={setSort}><option value="recommended">Sort</option><option value="price-low">Price</option><option value="premium">Premium</option><option value="recently-checked">Recent</option></MobileFilterPill>
+          </div>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-6">
-          <FilterSelect label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
-            <option value="">Any area</option>
-            {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </FilterSelect>
-          <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
-            <option value="">Any level</option>
-            {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </FilterSelect>
-          <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-            <option value="">Any type</option>
-            {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </FilterSelect>
-          <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-            <option value="">Any access</option>
-            {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </FilterSelect>
-          <FilterSelect label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
-            <option value="">Any</option>
-            {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-          </FilterSelect>
-          <FilterSelect label="Sort" value={sort} onChange={setSort}>
-            <option value="recommended">Recommended</option>
-            <option value="price-low">Price low to high</option>
-            <option value="premium">Premium/luxury</option>
-            <option value="recently-checked">Recently checked</option>
-          </FilterSelect>
+        <div className="hidden md:block">
+          <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between"><div><p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Refine</p><h3 className="text-2xl font-medium tracking-normal">Find the right fit</h3></div><p className="text-sm text-[#5f574c]">{filteredFacilities.length} of {facilities.length} shown</p></div>
+          <div className="grid gap-5 md:grid-cols-3 lg:grid-cols-6">{filterControls}</div>
+          {activeFilters.length > 0 ? <div className="mt-6 flex flex-wrap items-center gap-3">{activeFilters.map(([key, value]) => <button key={key} type="button" onClick={() => updateFilter(key as keyof FilterState, "")} className="rounded-full bg-[#29241d] px-4 py-2 text-xs text-[#fbf8f1]">{value} x</button>)}<button type="button" onClick={clearFilters} className="text-sm text-[#29241d] underline underline-offset-4">Clear all</button></div> : null}
         </div>
-
-        {activeFilters.length > 0 ? (
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            {activeFilters.map(([key, value]) => (
-              <button key={key} type="button" onClick={() => updateFilter(key as keyof FilterState, "")} className="rounded-full bg-[#29241d] px-4 py-2 text-xs text-[#fbf8f1]">
-                {value} x
-              </button>
-            ))}
-            <button type="button" onClick={clearFilters} className="text-sm text-[#29241d] underline underline-offset-4">
-              Clear all
-            </button>
-          </div>
-        ) : null}
       </section>
 
-      {filteredFacilities.length > 0 ? (
-        <section className="space-y-14 md:space-y-16">
-          <DirectoryImageRoll facilities={editorPicks.length ? editorPicks : filteredFacilities} serviceType={serviceType} />
+      {filteredFacilities.length > 0 ? <section className="space-y-8 md:space-y-16"><DirectoryImageRoll facilities={editorPicks.length ? editorPicks : filteredFacilities} serviceType={serviceType} />{hasGroups ? <><div><div className="mb-5 border-b border-[#d8cebf]/70 pb-4 sm:mb-8"><p className="mb-1 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] md:mb-2">Editor&apos;s picks</p><h3 className="text-xl font-medium tracking-normal sm:text-3xl">The strongest places to start.</h3></div><div className="grid gap-y-7 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">{editorPicks.map((facility) => <FacilityCard key={facility.slug} facility={facility} source={serviceType} />)}</div></div><div><div className="mb-5 border-b border-[#d8cebf]/70 pb-4 sm:mb-8"><p className="mb-1 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] md:mb-2">All spaces</p><h3 className="text-lg font-medium tracking-normal sm:text-2xl">More options to compare</h3></div><div className="grid gap-y-7 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">{remainingFacilities.map((facility) => <FacilityCard key={facility.slug} facility={facility} source={serviceType} />)}</div></div></> : <div><div className="mb-5 border-b border-[#d8cebf]/70 pb-4 sm:mb-8"><p className="mb-1 text-[11px] uppercase tracking-[0.22em] text-[#6f6048] md:mb-2">The edit</p><h3 className="text-xl font-medium tracking-normal sm:text-3xl">Spaces worth considering</h3></div><div className="grid gap-y-7 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">{filteredFacilities.map((facility) => <FacilityCard key={facility.slug} facility={facility} source={serviceType} />)}</div></div>}</section> : <div className="bg-[#fbf8f1] p-6 sm:p-8"><h3 className="mb-2 text-xl font-medium sm:text-2xl">No listings match those filters</h3><p className="text-sm leading-6 text-[#5f574c]">Try clearing one or two filters to compare more options.</p></div>}
 
-          {hasGroups ? (
-            <>
-              <div>
-                <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
-                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Editor&apos;s picks</p>
-                  <h3 className="text-2xl font-medium tracking-normal sm:text-3xl">The strongest places to start.</h3>
-                </div>
-                <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
-                  {editorPicks.map((facility) => (
-                    <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
-                  <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">All spaces</p>
-                  <h3 className="text-xl font-medium tracking-normal sm:text-2xl">More options to compare</h3>
-                </div>
-                <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
-                  {remainingFacilities.map((facility) => (
-                    <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-                  ))}
-                </div>
-              </div>
-            </>
-          ) : (
-            <div>
-              <div className="mb-6 border-b border-[#d8cebf]/70 pb-5 sm:mb-8">
-                <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
-                <h3 className="text-2xl font-medium tracking-normal sm:text-3xl">Spaces worth considering</h3>
-              </div>
-              <div className="grid gap-y-12 sm:gap-y-14 md:grid-cols-3 md:gap-x-8">
-                {filteredFacilities.map((facility) => (
-                  <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
-                ))}
-              </div>
-            </div>
-          )}
-        </section>
-      ) : (
-        <div className="bg-[#fbf8f1] p-6 sm:p-8">
-          <h3 className="mb-2 text-xl font-medium sm:text-2xl">No listings match those filters</h3>
-          <p className="text-sm leading-6 text-[#5f574c]">Try clearing one or two filters to compare more options.</p>
-        </div>
-      )}
-
-      <details className="group bg-[#fbf8f1] px-4 py-6 sm:px-5 sm:py-7 md:px-8">
-        <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-[#29241d] marker:hidden">
-          <span className="min-w-0">
-            <span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Reference appendix</span>
-            <span className="text-xl font-medium tracking-normal sm:text-2xl">Compare details</span>
-          </span>
-          <span className="shrink-0 text-sm text-[#5f574c] transition group-open:rotate-45">+</span>
-        </summary>
-
-        <div className="mt-6 overflow-x-auto border-t border-[#d8cebf]/70 pt-2 sm:mt-8">
-          <table className="w-full min-w-[860px] border-collapse text-left text-sm sm:min-w-[920px]">
-            <thead className="text-[11px] uppercase tracking-[0.16em] text-[#5f574c]">
-              <tr>
-                <th className="py-5 pr-6">Facility</th>
-                <th className="py-5 pr-6">Area</th>
-                <th className="py-5 pr-6">Best for</th>
-                <th className="py-5 pr-6">Price from</th>
-                <th className="py-5 pr-6">Experience</th>
-                <th className="py-5 pr-6">Private/shared</th>
-                <th className="py-5">CTA</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#d8cebf]/70">
-              {filteredFacilities.map((facility) => (
-                <tr key={facility.slug}>
-                  <td className="py-5 pr-6 text-base font-medium text-[#29241d]">{facility.name}</td>
-                  <td className="py-5 pr-6 text-[#5f574c]"><LocationText location={facility.location} /></td>
-                  <td className="py-5 pr-6 text-[#5f574c]">{primaryBestFor(facility)}</td>
-                  <td className="py-5 pr-6 text-[#5f574c]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td>
-                  <td className="py-5 pr-6 text-[#5f574c]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td>
-                  <td className="py-5 pr-6 text-[#5f574c]">{facility.privateOrShared || "Not confirmed"}</td>
-                  <td className="py-5">
-                    <Link
-                      href={`/facility/${facility.slug}`}
-                      onClick={() => trackEvent("comparison_table_click", {
-                        facility_name: facility.name,
-                        facility_slug: facility.slug,
-                        service_type: serviceType,
-                        area: facility.location,
-                        page_path: window.location.pathname,
-                      })}
-                      className="text-[#29241d] underline underline-offset-4"
-                    >
-                      View
-                    </Link>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </details>
+      <details className="group hidden bg-[#fbf8f1] px-4 py-6 sm:px-5 sm:py-7 md:block md:px-8"><summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-[#29241d] marker:hidden"><span className="min-w-0"><span className="mb-2 block text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Reference appendix</span><span className="text-xl font-medium tracking-normal sm:text-2xl">Compare details</span></span><span className="shrink-0 text-sm text-[#5f574c] transition group-open:rotate-45">+</span></summary><div className="mt-6 overflow-x-auto border-t border-[#d8cebf]/70 pt-2 sm:mt-8"><table className="w-full min-w-[860px] border-collapse text-left text-sm sm:min-w-[920px]"><thead className="text-[11px] uppercase tracking-[0.16em] text-[#5f574c]"><tr><th className="py-5 pr-6">Facility</th><th className="py-5 pr-6">Area</th><th className="py-5 pr-6">Best for</th><th className="py-5 pr-6">Price from</th><th className="py-5 pr-6">Experience</th><th className="py-5 pr-6">Private/shared</th><th className="py-5">CTA</th></tr></thead><tbody className="divide-y divide-[#d8cebf]/70">{filteredFacilities.map((facility) => <tr key={facility.slug}><td className="py-5 pr-6 text-base font-medium text-[#29241d]">{facility.name}</td><td className="py-5 pr-6 text-[#5f574c]"><LocationText location={facility.location} /></td><td className="py-5 pr-6 text-[#5f574c]">{primaryBestFor(facility)}</td><td className="py-5 pr-6 text-[#5f574c]">{facility.priceFrom || facility.priceRange || "Price not listed"}</td><td className="py-5 pr-6 text-[#5f574c]">{facility.experienceType?.slice(0, 2).join(", ") || facility.premiumLevel || "Details pending"}</td><td className="py-5 pr-6 text-[#5f574c]">{facility.privateOrShared || "Not confirmed"}</td><td className="py-5"><Link href={`/facility/${facility.slug}`} onClick={() => trackEvent("comparison_table_click", { facility_name: facility.name, facility_slug: facility.slug, service_type: serviceType, area: facility.location, page_path: window.location.pathname })} className="text-[#29241d] underline underline-offset-4">View</Link></td></tr>)}</tbody></table></div></details>
     </div>
   );
 }
