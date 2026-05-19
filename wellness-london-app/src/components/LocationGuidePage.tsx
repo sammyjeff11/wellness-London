@@ -50,7 +50,7 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
       <JsonLd data={faqSchema} />
 
       <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14">
+        <div className="mx-auto max-w-6xl border-y border-[#cbbda9] py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
               <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
@@ -70,9 +70,9 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20">
+      <section className="border-y border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10 max-w-3xl">
+          <div className="mb-12 max-w-3xl">
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
               {areaName} recovery culture
             </p>
@@ -81,9 +81,9 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
             </h2>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-3">
             {guide.highlights.map((highlight) => (
-              <article key={highlight.title} className="bg-[#f4efe6] p-6 sm:p-7">
+              <article key={highlight.title} className="border border-[#d8cebf] bg-[#fbf8f1] p-6 shadow-[0_20px_50px_rgba(41,36,29,0.045)] sm:p-7">
                 <h3 className="mb-4 text-xl font-medium tracking-normal">
                   {highlight.title}
                 </h3>
@@ -96,11 +96,15 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-14 sm:px-6 sm:py-20">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
-          <div className="grid gap-6 md:grid-cols-3">
+      <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 border-b border-[#d8cebf] pb-5">
+            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Continue exploring</p>
+            <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related London guides</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-3">
             {relatedGuides.map((relatedGuide) => (
-              <Link key={relatedGuide.href} href={relatedGuide.href} className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-7">
+              <Link key={relatedGuide.href} href={relatedGuide.href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
                 <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
                 <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
                   {relatedGuide.title}
@@ -108,21 +112,23 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
                 <p className="text-sm leading-7 text-[#5f574c]">
                   {relatedGuide.text}
                 </p>
+                <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
-        <div className="mx-auto max-w-3xl">
+      <section className="border-t border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-3xl bg-[#fbf8f1] p-6 shadow-[0_20px_60px_rgba(41,36,29,0.05)] sm:p-8 md:p-10">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
           <h2 className="mb-8 text-2xl font-medium tracking-normal sm:text-3xl md:text-4xl">
             {areaName} Wellness FAQs
           </h2>
 
           <div className="space-y-7 sm:space-y-8">
             {guide.faqs.map((faq) => (
-              <article key={faq.question} className="border-t border-[#d8cebf]/70 pt-6">
+              <article key={faq.question} className="border-t border-[#d8cebf] pt-6">
                 <h3 className="mb-3 text-lg text-[#29241d]">
                   {faq.question}
                 </h3>
