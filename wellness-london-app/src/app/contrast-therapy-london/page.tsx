@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import FacilityCard from "@/components/FacilityCard";
+import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
@@ -12,6 +14,13 @@ export const metadata: Metadata = {
     canonical: "/contrast-therapy-london",
   },
 };
+
+const faqs = [
+  { question: "Where can I find contrast therapy in London?", answer: "Contrast therapy is available in selected London recovery studios, wellness clubs, sauna spaces and cold plunge venues." },
+  { question: "What is contrast therapy?", answer: "Contrast therapy usually involves alternating between heat and cold exposure, commonly sauna and cold plunge or ice bath sessions." },
+  { question: "What should I check before booking contrast therapy?", answer: "Check the heat and cold setup, whether the session is guided, shower and towel provision, changing facilities, pricing and whether beginners are supported." },
+  { question: "Is contrast therapy the same as cold plunge?", answer: "No. Cold plunge is one part of the experience. Contrast therapy normally combines cold exposure with heat exposure, usually sauna." },
+];
 
 function isContrastFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   const services = facility.services?.join(" ").toLowerCase() || "";
@@ -32,8 +41,34 @@ export default async function ContrastTherapyLondonPage() {
     .filter(isContrastFacility)
     .slice(0, 9);
 
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Contrast Therapy London",
+    itemListElement: contrastFacilities.map((facility, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: `https://welledit.co.uk/facility/${facility.slug}`,
+      name: facility.name,
+    })),
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
+    })),
+  };
+
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <AnalyticsPageView eventName="service_page_view" properties={{ service_type: "contrast-therapy", page_path: "/contrast-therapy-london" }} />
+      <JsonLd data={itemListSchema} />
+      <JsonLd data={faqSchema} />
+
       <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
@@ -126,6 +161,20 @@ export default async function ContrastTherapyLondonPage() {
                 facility={facility}
                 source="contrast-therapy"
               />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-16 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-8 text-2xl font-medium tracking-normal sm:mb-10 sm:text-3xl md:text-4xl">Contrast Therapy London FAQs</h2>
+          <div className="space-y-7 sm:space-y-8">
+            {faqs.map((faq) => (
+              <article key={faq.question} className="border-t border-[#d8cebf]/70 pt-6">
+                <h3 className="mb-3 text-lg text-[#29241d]">{faq.question}</h3>
+                <p className="text-sm leading-7 text-[#5f574c]">{faq.answer}</p>
+              </article>
             ))}
           </div>
         </div>
