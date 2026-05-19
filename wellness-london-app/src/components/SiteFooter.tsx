@@ -11,8 +11,10 @@ const pillarLinks = [
 
 const serviceLinks = [
   { href: "/sauna-london", label: "Saunas in London" },
+  { href: "/infrared-sauna-london", label: "Infrared Sauna in London" },
   { href: "/cold-plunge-london", label: "Cold Plunge in London" },
   { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+  { href: "/red-light-therapy-london", label: "Red Light Therapy in London" },
   { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
   { href: "/recovery-london", label: "Recovery Spaces in London" },
 ];
