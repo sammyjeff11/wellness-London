@@ -13,6 +13,17 @@ const pages = [
     ],
   },
   {
+    title: "Neighbourhood guides",
+    links: [
+      { href: "/neighbourhoods", label: "London Wellness Neighbourhoods" },
+      { href: "/neighbourhoods/shoreditch", label: "Wellness in Shoreditch" },
+      { href: "/neighbourhoods/marylebone", label: "Wellness in Marylebone" },
+      { href: "/neighbourhoods/notting-hill", label: "Wellness in Notting Hill" },
+      { href: "/neighbourhoods/soho", label: "Wellness in Soho" },
+      { href: "/neighbourhoods/hampstead", label: "Wellness in Hampstead" },
+    ],
+  },
+  {
     title: "Treatments and services",
     links: [
       { href: "/sauna-london", label: "Saunas in London" },
@@ -54,7 +65,7 @@ export default function SiteMapPage() {
         </h1>
 
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
-          Browse the core sections of The Well Edit, including wellness pillars, treatment-led guides, editorial standards and London wellness categories.
+          Browse the core sections of The Well Edit, including wellness pillars, treatment-led guides, neighbourhood guides and editorial standards.
         </p>
 
         <div className="space-y-12">
