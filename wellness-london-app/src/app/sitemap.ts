@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
+import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
 
@@ -9,6 +10,8 @@ const staticRoutes = [
   { path: "", priority: 1 },
   { path: "/explore", priority: 0.95 },
   ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
+  { path: "/neighbourhoods", priority: 0.82 },
+  ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
   { path: "/longevity-london", priority: 0.75 },
   { path: "/stress-regulation-london", priority: 0.75 },
