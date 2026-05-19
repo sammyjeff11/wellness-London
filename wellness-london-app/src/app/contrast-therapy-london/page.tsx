@@ -70,15 +70,11 @@ export default async function ContrastTherapyLondonPage() {
       <JsonLd data={faqSchema} />
 
       <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
-        <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14">
+        <div className="mx-auto max-w-6xl border-y border-[#cbbda9] py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-                Well+ / Recovery guide
-              </p>
-              <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
-                Contrast therapy in London.
-              </h1>
+              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Well+ / Recovery guide</p>
+              <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">Contrast therapy in London.</h1>
             </div>
 
             <div className="space-y-6 text-base leading-8 text-[#5f574c]">
@@ -89,89 +85,60 @@ export default async function ContrastTherapyLondonPage() {
                 This Well+ guide surfaces London spaces that combine sauna and cold therapy experiences, alongside recovery studios and wellness venues built around contrast exposure.
               </p>
               <div className="flex flex-wrap gap-3 pt-2">
-                <Link href="/sauna-london" className="border border-[#d8cebf] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#fbf8f1]">
-                  Explore saunas
-                </Link>
-                <Link href="/cold-plunge-london" className="border border-[#d8cebf] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#fbf8f1]">
-                  Explore cold plunge
-                </Link>
+                <Link href="/sauna-london" className="border border-[#d8cebf] bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">Explore saunas</Link>
+                <Link href="/cold-plunge-london" className="border border-[#d8cebf] bg-[#fbf8f1] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#eee7da]">Explore cold plunge</Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20">
+      <section className="border-y border-[#cbbda9] bg-[#29241d] px-5 py-16 text-[#fbf8f1] sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-10 max-w-3xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-              Why people use contrast therapy
-            </p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
-              Heat, cold and recovery routines.
-            </h2>
-          </div>
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Why people use it</p>
+          <h2 className="mb-12 max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl">Heat, cold and recovery routines.</h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            <article className="bg-[#f4efe6] p-6 sm:p-7">
-              <h3 className="mb-4 text-xl font-medium tracking-normal">
-                Sauna + cold plunge
-              </h3>
-              <p className="text-sm leading-7 text-[#5f574c]">
-                Many London recovery spaces now combine heat exposure with ice baths or cold plunge circuits.
-              </p>
+          <div className="grid gap-8 sm:gap-10 md:grid-cols-3">
+            <article className="border-t border-[#fbf8f1]/22 pt-5">
+              <h3 className="mb-4 text-xl font-medium tracking-normal">Sauna + cold plunge</h3>
+              <p className="text-sm leading-7 text-[#fbf8f1]/72">Many London recovery spaces now combine heat exposure with ice baths or cold plunge circuits.</p>
             </article>
 
-            <article className="bg-[#f4efe6] p-6 sm:p-7">
-              <h3 className="mb-4 text-xl font-medium tracking-normal">
-                Post-training recovery
-              </h3>
-              <p className="text-sm leading-7 text-[#5f574c]">
-                Contrast therapy is commonly used after training, endurance sessions and physically demanding routines.
-              </p>
+            <article className="border-t border-[#fbf8f1]/22 pt-5">
+              <h3 className="mb-4 text-xl font-medium tracking-normal">Post-training recovery</h3>
+              <p className="text-sm leading-7 text-[#fbf8f1]/72">Contrast therapy is commonly used after training, endurance sessions and physically demanding routines.</p>
             </article>
 
-            <article className="bg-[#f4efe6] p-6 sm:p-7">
-              <h3 className="mb-4 text-xl font-medium tracking-normal">
-                Calm and reset
-              </h3>
-              <p className="text-sm leading-7 text-[#5f574c]">
-                Some spaces focus less on performance and more on slower rituals, relaxation and nervous-system recovery.
-              </p>
+            <article className="border-t border-[#fbf8f1]/22 pt-5">
+              <h3 className="mb-4 text-xl font-medium tracking-normal">Calm and reset</h3>
+              <p className="text-sm leading-7 text-[#fbf8f1]/72">Some spaces focus less on performance and more on slower rituals, relaxation and nervous-system recovery.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
+      <section className="bg-[#f4efe6] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
-            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
-              Contrast therapy spaces
-            </p>
-            <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">
-              Places to explore
-            </h2>
+          <div className="mb-8 border-b border-[#d8cebf] pb-5">
+            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Contrast therapy spaces</p>
+            <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Places to explore</h2>
           </div>
 
           <div className="grid gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-x-8">
             {contrastFacilities.map((facility) => (
-              <FacilityCard
-                key={facility.slug}
-                facility={facility}
-                source="contrast-therapy"
-              />
+              <FacilityCard key={facility.slug} facility={facility} source="contrast-therapy" />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24">
-        <div className="mx-auto max-w-3xl">
+      <section className="border-t border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-3xl bg-[#fbf8f1] p-6 shadow-[0_20px_60px_rgba(41,36,29,0.05)] sm:p-8 md:p-10">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
           <h2 className="mb-8 text-2xl font-medium tracking-normal sm:mb-10 sm:text-3xl md:text-4xl">Contrast Therapy London FAQs</h2>
           <div className="space-y-7 sm:space-y-8">
             {faqs.map((faq) => (
-              <article key={faq.question} className="border-t border-[#d8cebf]/70 pt-6">
+              <article key={faq.question} className="border-t border-[#d8cebf] pt-6">
                 <h3 className="mb-3 text-lg text-[#29241d]">{faq.question}</h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{faq.answer}</p>
               </article>
