@@ -5,6 +5,7 @@ import FacilityCard from "@/components/FacilityCard";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { locationHubLinks } from "@/lib/location-hubs";
+import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 
 export const metadata: Metadata = {
@@ -77,6 +78,7 @@ export default async function Home() {
     .slice(0, Math.min(3, directoryFacilities.length));
   const heroImage = facilities.find((facility) => facility.images.length > 0)?.images[0];
   const featuredAreaLinks = locationHubLinks.slice(0, 5);
+  const featuredNeighbourhoods = neighbourhoodPages.slice(0, 5);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -254,6 +256,33 @@ export default async function Home() {
             <p><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
             <p><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or ritual.</p>
             <p><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 pb-14 sm:px-6 md:pb-18">
+        <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Neighbourhood guides</p>
+              <h2 className="max-w-3xl font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+                Explore London by wellness character.
+              </h2>
+            </div>
+            <Link href="/neighbourhoods" className="w-fit text-sm font-medium underline underline-offset-4">
+              View all neighbourhoods
+            </Link>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {featuredNeighbourhoods.map((area) => (
+              <Link
+                key={area.href}
+                href={area.href}
+                className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]"
+              >
+                {area.shortTitle}
+              </Link>
+            ))}
           </div>
         </div>
       </section>
