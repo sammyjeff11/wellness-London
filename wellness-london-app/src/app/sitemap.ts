@@ -19,6 +19,7 @@ const staticRoutes = [
   { path: "/infrared-sauna-london", priority: 0.8 },
   { path: "/cryotherapy-london", priority: 0.8 },
   { path: "/red-light-therapy-london", priority: 0.8 },
+  { path: "/hbot-london", priority: 0.8 },
   { path: "/cold-plunge-london", priority: 0.8 },
   { path: "/contrast-therapy-london", priority: 0.8 },
   { path: "/central-london-wellness", priority: 0.7 },
