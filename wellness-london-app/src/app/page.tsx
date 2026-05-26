@@ -23,7 +23,7 @@ const treatmentLinks = [
   },
   {
     href: "/cold-plunge-london",
-    label: "Cold Plunge",
+    label: "Cold plunge",
     description: "Cold plunge, ice bath and cold exposure venues across London.",
   },
   {
@@ -33,12 +33,12 @@ const treatmentLinks = [
   },
   {
     href: "/contrast-therapy-london",
-    label: "Contrast Therapy",
+    label: "Contrast therapy",
     description: "Spaces combining heat and cold in one recovery ritual.",
   },
   {
     href: "/recovery-london",
-    label: "Recovery Spaces",
+    label: "Recovery spaces",
     description: "A broader guide to recovery clubs, studios and treatment-led spaces.",
   },
 ];
@@ -47,22 +47,22 @@ const collectionLinks = [
   {
     href: "/best-sauna-cold-plunge-london",
     title: "Sauna + cold plunge",
-    text: "A considered edit of London spaces where heat, cold and recovery rituals come together.",
+    text: "A considered edit of London spaces where heat and cold sit together in one visit.",
   },
   {
-    href: "/recover",
-    title: "Quiet recovery",
-    text: "Restorative spaces for slowing down, switching off and rebuilding capacity.",
+    href: "/contrast-therapy-london",
+    title: "Contrast therapy",
+    text: "Venues built around the rhythm of heat, cold, breath and recovery.",
   },
   {
-    href: "/perform",
-    title: "Performance recovery",
-    text: "Cold exposure, contrast therapy and treatment-led venues that support high-output routines.",
+    href: "/recovery-london",
+    title: "Recovery clubs",
+    text: "Studios and clubs designed around repeat recovery, performance and reset.",
   },
   {
-    href: "/reset",
-    title: "Bathhouse ritual",
-    text: "Immersive spaces where atmosphere, design and recovery feel part of the same experience.",
+    href: "/sauna-london",
+    title: "Design-led saunas",
+    text: "Atmospheric sauna spaces where setting matters as much as the treatment.",
   },
 ];
 
@@ -197,7 +197,7 @@ export default async function Home() {
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Curated collections</p>
             <h2 className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Choose by setting, mood and ritual.
+              Curated edits for how London recovers.
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -225,7 +225,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
-              Fast routes into treatment-led London guides for sauna, cold exposure, cryotherapy and recovery spaces.
+              Fast routes into treatment-led London guides for saunas, cold plunge, cryotherapy and recovery spaces.
             </p>
           </div>
 
@@ -249,7 +249,7 @@ export default async function Home() {
           <div>
             <p className="editorial-eyebrow mb-3">How we curate</p>
             <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
-              More than a list of places.
+              More than a list of venues.
             </h2>
           </div>
           <div className="grid gap-5 text-sm leading-7 text-[#5f574c] sm:grid-cols-3">
@@ -266,7 +266,7 @@ export default async function Home() {
             <div>
               <p className="editorial-eyebrow mb-3">Neighbourhood guides</p>
               <h2 className="max-w-3xl font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
-                Explore London by wellness character.
+                Find recovery spaces by neighbourhood.
               </h2>
             </div>
             <Link href="/neighbourhoods" className="w-fit text-sm font-medium underline underline-offset-4">
@@ -293,7 +293,7 @@ export default async function Home() {
             <p className="editorial-eyebrow mb-3">Browse by area</p>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <h2 className="max-w-3xl font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
-                Find wellness spaces by London location.
+                Find venues by London area.
               </h2>
               <div className="flex flex-wrap gap-3 md:justify-end">
                 {featuredAreaLinks.map((area) => (
