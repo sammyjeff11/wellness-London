@@ -45,24 +45,24 @@ const treatmentLinks = [
 
 const collectionLinks = [
   {
-    href: "/best-sauna-cold-plunge-london",
-    title: "Sauna + cold plunge",
-    text: "A considered edit of London spaces where heat and cold sit together in one visit.",
+    href: "/recover",
+    title: "Quiet recovery",
+    text: "Calm spaces for slowing down, switching off and rebuilding capacity.",
   },
   {
-    href: "/contrast-therapy-london",
-    title: "Contrast therapy",
-    text: "Venues built around the rhythm of heat, cold, breath and recovery.",
+    href: "/perform",
+    title: "Performance recovery",
+    text: "Treatment-led venues for training recovery, cold exposure and high-output routines.",
   },
   {
-    href: "/recovery-london",
-    title: "Recovery clubs",
-    text: "Studios and clubs designed around repeat recovery, performance and reset.",
+    href: "/reset",
+    title: "Bathhouse ritual",
+    text: "Immersive spaces where atmosphere, design and recovery feel part of the same experience.",
   },
   {
-    href: "/sauna-london",
-    title: "Design-led saunas",
-    text: "Atmospheric sauna spaces where setting matters as much as the treatment.",
+    href: "/explore",
+    title: "Private reset",
+    text: "Discreet venues for solo sessions, private rooms and slower restorative treatments.",
   },
 ];
 
@@ -197,7 +197,7 @@ export default async function Home() {
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Curated collections</p>
             <h2 className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Curated edits for how London recovers.
+              Choose by mood, setting or ritual.
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
