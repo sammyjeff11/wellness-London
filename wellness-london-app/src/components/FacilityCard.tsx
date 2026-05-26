@@ -131,7 +131,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             {galleryImages.map((image, index) => (
               <div
                 key={`${image.url}-${index}`}
-                className="editorial-image relative aspect-[4/5] min-w-full snap-center overflow-hidden"
+                className="editorial-image relative aspect-[4/3] min-w-full snap-center overflow-hidden sm:aspect-[4/5]"
               >
                 <Image
                   src={image.url}
@@ -144,7 +144,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
                 <div className="editorial-image-overlay" />
                 <div className="editorial-image-grain" />
 
-                <div className="absolute left-5 right-5 top-5 z-10 flex items-start justify-between gap-3">
+                <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
                   {price ? (
                     <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
                       {price}
@@ -160,16 +160,16 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
                   ) : null}
                 </div>
 
-                <div className="absolute bottom-0 left-0 right-0 z-10 p-5 text-white sm:p-7">
-                  <p className="mb-2 text-[10px] uppercase leading-5 tracking-[0.22em] text-white/72">
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+                  <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]">
                     {overlayLocation || "London"}
                   </p>
 
-                  <h3 className="min-h-[5.8rem] max-w-[90%] font-serif text-[2.2rem] font-normal leading-[0.94] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:text-[2.6rem]">
+                  <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">
                     {facility.name}
                   </h3>
 
-                  <p className="mt-3 text-[10px] uppercase tracking-[0.18em] text-[#e7dccd]/78">
+                  <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">
                     {atmosphericDescriptor}
                   </p>
                 </div>
@@ -179,8 +179,8 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </Link>
 
-      <div className="px-5 py-6 sm:px-6 sm:py-7">
-        <p className="mb-6 text-[15px] leading-7 text-[#5f574c] line-clamp-2">
+      <div className="px-5 py-5 sm:px-6 sm:py-7">
+        <p className="mb-5 text-[14px] leading-6 text-[#5f574c] line-clamp-2 sm:mb-6 sm:text-[15px] sm:leading-7">
           {summary}
         </p>
 
