@@ -82,9 +82,9 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-7">
+      <section className="px-4 pt-3 sm:px-5 md:px-8 md:pt-7">
         <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
-          <div className="relative h-[42vh] min-h-[285px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
+          <div className="relative h-[32vh] min-h-[205px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
             {heroImage ? (
               <Image
                 src={heroImage.url}
@@ -98,25 +98,25 @@ export default async function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
           </div>
 
-          <div className="relative flex flex-col justify-end px-5 pb-6 pt-5 text-[#fbf8f1] sm:min-h-[76vh] sm:px-8 sm:py-12 md:px-16 md:py-16">
+          <div className="relative flex flex-col justify-end px-5 pb-5 pt-4 text-[#fbf8f1] sm:min-h-[76vh] sm:px-8 sm:py-12 md:px-16 md:py-16">
             <div className="max-w-5xl">
-              <p className="mb-3 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-7 sm:text-[11px] sm:tracking-[0.28em]">
+              <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-7 sm:text-[11px] sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-5xl font-serif text-[2.7rem] font-normal leading-[0.9] tracking-[-0.055em] sm:text-[4.9rem] sm:leading-[0.92] md:text-[7.6rem]">
+              <h1 className="max-w-5xl font-serif text-[2.35rem] font-normal leading-[0.92] tracking-[-0.055em] sm:text-[4.9rem] sm:leading-[0.92] md:text-[7.6rem]">
                 London&apos;s curated guide to modern wellness.
               </h1>
-              <p className="mt-4 max-w-[31rem] text-[14px] leading-6 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
+              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Discover saunas, bathhouses, cold plunges and recovery spaces with an editorial eye for atmosphere, design and ritual.
               </p>
-              <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
-                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-3 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1">
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
+                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
                   Explore the edit
                 </Link>
-                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-3 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5">
+                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
                   Sauna guide
                 </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-3 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5">
+                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2.5 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5 sm:py-3">
                   Featured
                 </Link>
               </div>
