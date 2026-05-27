@@ -8,7 +8,15 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
+        hostname: "*.airtableusercontent.com",
+      },
+      {
+        protocol: "https",
         hostname: "**.airtableusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "airtableusercontent.com",
       },
       {
         protocol: "https",
