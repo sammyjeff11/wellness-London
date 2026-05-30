@@ -110,11 +110,14 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
       ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }]
       : [];
 
+  const cardHref = `/facility/${facility.slug}`;
+
   return (
-    <article className="group min-w-0 overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_22px_55px_rgba(41,36,29,0.06)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_32px_80px_rgba(41,36,29,0.1)]">
+    <article className="group relative min-w-0 overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_22px_55px_rgba(41,36,29,0.06)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_32px_80px_rgba(41,36,29,0.1)]">
       <Link
-        href={`/facility/${facility.slug}`}
-        className="block min-w-0"
+        href={cardHref}
+        className="absolute inset-0 z-20"
+        aria-label={`View ${facility.name}`}
         onClick={() =>
           trackEvent("listing_card_click", {
             facility_name: facility.name,
@@ -125,59 +128,70 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             page_path: window.location.pathname,
           })
         }
-      >
-        <div className="relative overflow-hidden bg-[#d8cebf]">
-          <div className="flex snap-x snap-mandatory overflow-x-auto">
-            {galleryImages.map((image, index) => (
-              <div
-                key={`${image.url}-${index}`}
-                className="editorial-image relative aspect-[4/3] min-w-full snap-center overflow-hidden sm:aspect-[4/5]"
-              >
-                <Image
-                  src={image.url}
-                  alt={image.filename || facility.name}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
-                />
+      />
 
-                <div className="editorial-image-overlay" />
-                <div className="editorial-image-grain" />
+      <div className="relative overflow-hidden bg-[#d8cebf]">
+        <div className="flex snap-x snap-mandatory overflow-x-auto">
+          {galleryImages.length > 0 ? galleryImages.map((image, index) => (
+            <div
+              key={`${image.url}-${index}`}
+              className="editorial-image relative aspect-[4/3] min-w-full snap-center overflow-hidden sm:aspect-[4/5]"
+            >
+              <Image
+                src={image.url}
+                alt={image.filename || facility.name}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
+              />
 
-                <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                  {price ? (
-                    <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
-                      {price}
-                    </span>
-                  ) : (
-                    <span />
-                  )}
+              <div className="editorial-image-overlay" />
+              <div className="editorial-image-grain" />
 
-                  {galleryImages.length > 1 ? (
-                    <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
-                      {index + 1} / {galleryImages.length}
-                    </span>
-                  ) : null}
-                </div>
+              <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+                {price ? (
+                  <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">
+                    {price}
+                  </span>
+                ) : (
+                  <span />
+                )}
 
-                <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
-                  <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]">
-                    {overlayLocation || "London"}
-                  </p>
-
-                  <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">
-                    {facility.name}
-                  </h3>
-
-                  <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">
-                    {atmosphericDescriptor}
-                  </p>
-                </div>
+                {galleryImages.length > 1 ? (
+                  <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
+                    {index + 1} / {galleryImages.length}
+                  </span>
+                ) : null}
               </div>
-            ))}
-          </div>
+
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+                <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]">
+                  {overlayLocation || "London"}
+                </p>
+
+                <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">
+                  {facility.name}
+                </h3>
+
+                <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">
+                  {atmosphericDescriptor}
+                </p>
+              </div>
+            </div>
+          )) : (
+            <div className="relative aspect-[4/3] min-w-full bg-[#d8cebf] p-5 sm:aspect-[4/5]">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-7">
+                <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-[#70695d] sm:text-[10px] sm:tracking-[0.22em]">
+                  {overlayLocation || "London"}
+                </p>
+                <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-[#29241d] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">
+                  {facility.name}
+                </h3>
+              </div>
+            </div>
+          )}
         </div>
-      </Link>
+      </div>
 
       <div className="px-5 py-5 sm:px-6 sm:py-7">
         <p className="mb-5 text-[14px] leading-6 text-[#5f574c] line-clamp-2 sm:mb-6 sm:text-[15px] sm:leading-7">
@@ -188,9 +202,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
           {serviceLine ? <p className="mb-1">{serviceLine}</p> : null}
 
           <p>
-            <Link href={locationHref || "#"} className={locationHref ? "underline-offset-4 hover:text-[#29241d] hover:underline" : "pointer-events-none"}>
-              {areaLabel}
-            </Link>
+            <span>{areaLabel}</span>
             {rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
             {rating ? <span>{rating}</span> : null}
           </p>
