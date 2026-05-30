@@ -29,6 +29,12 @@ export type AirtableFacility = {
   images: AirtableImage[];
   servicesOffered: string[];
   serviceKeys: ServiceKey[];
+  activityCategories: string[];
+  activityTagsStandardized: string[];
+  activityDisplayLabels: string[];
+  venueTypeStandardized: string;
+  themeTagsStandardized: string[];
+  bestForStandardized: string[];
   typeOfExperience: string[];
   accessType: string;
   overallPriceRange: string;
@@ -90,6 +96,12 @@ type AirtableRecord = {
     Images?: AirtableAttachment[];
     "Services Offered"?: string[] | string;
     Services?: string[] | string;
+    "Activity Category"?: AirtableFieldValue;
+    "Activity Tags Standardized"?: AirtableFieldValue;
+    "Activity Display Labels"?: AirtableFieldValue;
+    "Venue Type Standardized"?: AirtableFieldValue;
+    "Theme Tags Standardized"?: AirtableFieldValue;
+    "Best For Standardized"?: AirtableFieldValue;
     "Type of Experience"?: string[] | string;
     "Access Type"?: string[] | string;
     "Overall Price Range"?: string;
@@ -226,10 +238,10 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
   services.forEach((service) => {
     const value = service.toLowerCase();
 
-    if (value.includes("sauna") || value.includes("infrared") || value.includes("finnish") || value.includes("steam")) keys.add("sauna");
+    if (value.includes("sauna") || value.includes("infrared") || value.includes("finnish") || value.includes("steam") || value.includes("thermal")) keys.add("sauna");
     if (value.includes("cold") || value.includes("plunge") || value.includes("ice bath") || value.includes("ice tub")) keys.add("cold-plunge");
     if (value.includes("cryo")) keys.add("cryotherapy");
-    if (value.includes("recovery") || value.includes("compression") || value.includes("massage")) keys.add("recovery");
+    if (value.includes("recovery") || value.includes("compression") || value.includes("massage") || value.includes("physiotherapy") || value.includes("stretch")) keys.add("recovery");
     if (value.includes("red light")) keys.add("red-light");
     if (value.includes("hbot") || value.includes("hyperbaric")) keys.add("hbot");
     if (value.includes("breath")) keys.add("breathwork");
@@ -242,12 +254,16 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
 
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
-  const servicesOffered = normaliseList(firstDefined(record.fields.Services, record.fields["Services Offered"]));
+  const activityTagsStandardized = normaliseList(record.fields["Activity Tags Standardized"]);
+  const activityDisplayLabels = normaliseList(record.fields["Activity Display Labels"]);
+  const servicesOffered = normaliseList(firstDefined(record.fields["Activity Display Labels"], record.fields["Activity Tags Standardized"], record.fields.Services, record.fields["Services Offered"]));
+  const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
   const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
   const experienceType = normaliseList(firstDefined(record.fields["Experience Type"], record.fields.experience_type, record.fields["Type of Experience"]));
-  const bestFor = normaliseList(firstDefined(record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
+  const bestForStandardized = normaliseList(record.fields["Best For Standardized"]);
+  const bestFor = normaliseList(firstDefined(record.fields["Best For Standardized"], record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
   const priceFromValue = firstDefined(record.fields["Price From"], record.fields.price_from);
   const overallPriceRange = record.fields["Overall Price Range"] || "";
 
@@ -262,7 +278,13 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     description: record.fields.Description || "Premium wellness experience in London",
     images: normaliseImages(record.fields.Images),
     servicesOffered,
-    serviceKeys: normaliseServiceKeys(servicesOffered),
+    serviceKeys: normaliseServiceKeys(serviceKeySource),
+    activityCategories: normaliseList(record.fields["Activity Category"]),
+    activityTagsStandardized,
+    activityDisplayLabels,
+    venueTypeStandardized: normaliseSingle(record.fields["Venue Type Standardized"]),
+    themeTagsStandardized: normaliseList(record.fields["Theme Tags Standardized"]),
+    bestForStandardized,
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),
     overallPriceRange,
