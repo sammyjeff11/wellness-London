@@ -154,11 +154,10 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
             </div>
           )) : (
             <div className="editorial-image relative aspect-[4/3] min-w-full snap-center overflow-hidden bg-[#d8cebf] sm:aspect-[4/5]">
-              <div className="editorial-image-overlay" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(251,248,241,0.55),transparent_34%),linear-gradient(140deg,rgba(251,248,241,0.18),rgba(41,36,29,0.34))]" />
               <div className="editorial-image-grain" />
               <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
                 {price ? <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.08)] backdrop-blur-sm">{price}</span> : <span />}
-                <span className="inline-flex min-h-8 items-center rounded-full bg-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-[#29241d]/60 backdrop-blur-sm">No photo</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-[#29241d] sm:p-7">
                 <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-[#70695d] sm:text-[10px] sm:tracking-[0.22em]">{overlayLocation || "London"}</p>
