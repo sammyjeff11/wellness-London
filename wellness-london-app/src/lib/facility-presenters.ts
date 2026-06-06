@@ -30,6 +30,7 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     beginnerFriendly: facility.beginnerFriendly,
     premiumLevel: facility.premiumLevel,
     nearestStation: facility.nearestStation,
+    venueType: facility.venueTypeStandardized,
     lastCheckedDate: facility.lastCheckedDate,
     verificationStatus: facility.verificationStatus,
     isFeatured: facility.isFeatured,
