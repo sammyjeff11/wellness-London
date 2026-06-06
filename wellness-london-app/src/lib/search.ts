@@ -1,5 +1,3 @@
-import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
-
 const searchAliases: Record<string, string[]> = {
   lowlu: ["low loo", "lowlou", "low lu", "lulu"],
   "rooftop saunas": ["roof top sauna", "roof top saunas", "rooftop sauna"],
@@ -50,7 +48,27 @@ function levenshtein(a: string, b: string) {
   return dp[a.length][b.length];
 }
 
-function facilitySearchText(facility: ServiceDirectoryFacility) {
+export type VenueSearchFacility = {
+  name: string;
+  description?: string;
+  location?: string;
+  neighbourhood?: string;
+  areaOfLondon?: string;
+  areaGroup?: string;
+  priceRange?: string;
+  priceFrom?: string;
+  premiumLevel?: string;
+  privateOrShared?: string;
+  accessType?: string;
+  venueType?: string;
+  services?: string[];
+  serviceKeys?: string[];
+  bestFor?: string[];
+  experienceType?: string[];
+  nearestStation?: string;
+};
+
+function facilitySearchText(facility: VenueSearchFacility) {
   return normaliseSearch(
     [
       facility.name,
@@ -64,6 +82,8 @@ function facilitySearchText(facility: ServiceDirectoryFacility) {
       facility.premiumLevel,
       facility.privateOrShared,
       facility.accessType,
+      facility.venueType,
+      facility.nearestStation,
       ...(facility.services || []),
       ...(facility.serviceKeys || []),
       ...(facility.bestFor || []),
@@ -74,7 +94,7 @@ function facilitySearchText(facility: ServiceDirectoryFacility) {
   );
 }
 
-export function matchesVenueSearch(facility: ServiceDirectoryFacility, query: string) {
+export function matchesVenueSearch(facility: VenueSearchFacility, query: string) {
   const normalisedQuery = normaliseSearch(query);
   if (!normalisedQuery) return true;
 
