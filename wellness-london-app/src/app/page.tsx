@@ -95,8 +95,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-5 pt-3 sm:px-6 md:pt-7">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
+      <section className="px-4 pt-3 sm:px-5 md:px-8 md:pt-7">
+        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
           <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
             {heroImage ? (
               <Image
@@ -116,10 +116,10 @@ export default async function Home() {
               <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-7 sm:text-[11px] sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-5xl font-serif text-[2.25rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.35rem] sm:leading-[0.93] md:text-[6.25rem]">
+              <h1 className="max-w-5xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.9rem] sm:leading-[0.92] md:text-[7.6rem]">
                 London&apos;s curated guide to modern wellness.
               </h1>
-              <p className="mt-3 max-w-[34rem] text-sm leading-6 text-[#fbf8f1]/84 sm:mt-6 sm:max-w-2xl sm:text-base sm:leading-7">
+              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Find London saunas, cold plunges, recovery studios, spas and clinics — with practical details to help you choose where to book.
               </p>
               <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
@@ -143,7 +143,7 @@ export default async function Home() {
       <section className="px-5 pb-5 pt-1 sm:px-6 sm:pb-10 sm:pt-2">
         <div className="editorial-shell grid gap-4 border-b border-[#d8cebf]/70 pb-7 md:grid-cols-[0.85fr_1.15fr] md:items-end md:pb-10">
           <p className="editorial-eyebrow">A considered London guide</p>
-          <p className="max-w-3xl text-lg leading-7 text-[#4f473c] sm:text-xl sm:leading-8 md:text-2xl md:leading-9">
+          <p className="max-w-3xl text-lg leading-7 text-[#4f473c] sm:text-2xl sm:leading-10">
             Well+ curates spaces by service, venue type, location and use case — so you can compare what is offered, where it is, and what it is genuinely best for.
           </p>
         </div>
@@ -177,11 +177,11 @@ export default async function Home() {
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Wellness goals</p>
-              <h2 className={sectionHeadingClass}>
+              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
                 Start with a goal.
               </h2>
             </div>
-            <p className={sectionLeadClass}>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
               Use these broader guides for recovery, performance, reset, optimisation and longevity before comparing specific services or locations.
             </p>
           </div>
@@ -211,7 +211,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.86fr_1.14fr] md:items-start">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Venue types</p>
-            <h2 className={sectionHeadingClass}>
+            <h2 className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
               Browse by venue type.
             </h2>
           </div>
@@ -259,16 +259,46 @@ export default async function Home() {
         </div>
       </section>
 
+
+      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Use cases</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+                Choose by situation.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              Need a quiet reset, a post-gym recovery stop, a higher-touch spa setting or a clear first visit? Start here.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {useCaseLinks.map((collection) => (
+              <Link
+                key={collection.title}
+                href={collection.href}
+                className="group rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6"
+              >
+                <h3 className="mb-2 text-2xl font-medium tracking-[-0.03em] group-hover:underline group-hover:underline-offset-4">{collection.title}</h3>
+                <p className="text-sm leading-7 text-[#5f574c]">{collection.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#f4efe6] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-9 sm:pb-12">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Services</p>
-              <h2 className={sectionHeadingClass}>
+              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
                 Browse by service.
               </h2>
             </div>
-            <p className={sectionLeadClass}>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
               Fast routes into service-led London guides for sauna, cold plunge, cryotherapy, contrast therapy and recovery treatments.
             </p>
           </div>
