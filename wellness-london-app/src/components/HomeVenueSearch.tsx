@@ -15,8 +15,6 @@ const popularLinks = [
   { href: "/cold-plunge-london", label: "Cold plunge" },
   { href: "/cryotherapy-london", label: "Cryotherapy" },
   { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
-  { href: "/neighbourhoods/marylebone", label: "Marylebone" },
-  { href: "/beginner-friendly-wellness-london", label: "Beginner friendly" },
 ];
 
 function getResultLocation(facility: ServiceDirectoryFacility) {
@@ -50,7 +48,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
 
   return (
     <section className="overflow-hidden px-4 py-4 sm:px-6 sm:py-10">
-      <div className="editorial-shell max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/60 p-3 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-6 md:p-8">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/60 p-3 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-6 md:p-8">
         <div className="grid min-w-0 gap-3 md:grid-cols-[0.74fr_1.26fr] md:items-start md:gap-10">
           <div className="hidden md:block">
             <p className="editorial-eyebrow mb-2">Well+ directory</p>
@@ -63,12 +61,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
           </div>
 
           <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4">
-            <div className="mb-2 flex items-center justify-between gap-3 md:hidden">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Search the directory</p>
-              <Link href="/explore" className="shrink-0 text-xs font-medium underline underline-offset-4">
-                All venues
-              </Link>
-            </div>
+            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67] md:hidden">Search the directory</p>
 
             <label className="block min-w-0">
               <span className="sr-only">Search London wellness venues</span>
@@ -117,14 +110,19 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
               </div>
             ) : null}
 
-            <div className="mt-3 min-w-0 overflow-hidden border-t border-[#d8cebf]/70 pt-3">
-              <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8d7d67] md:hidden">Popular</p>
-              <div className="flex min-w-0 gap-2 overflow-x-auto pb-1">
+            <div className="mt-3 min-w-0 border-t border-[#d8cebf]/70 pt-3">
+              <div className="mb-2 flex items-center justify-between gap-3">
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Popular</p>
+                <Link href="/explore" className="text-xs font-medium underline underline-offset-4">
+                  All venues
+                </Link>
+              </div>
+              <div className="flex min-w-0 flex-wrap gap-2">
                 {popularLinks.map((link) => (
                   <Link
                     key={`${link.href}-${link.label}`}
                     href={link.href}
-                    className="shrink-0 rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4 sm:text-sm"
+                    className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4 sm:text-sm"
                   >
                     {link.label}
                   </Link>
