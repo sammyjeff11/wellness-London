@@ -164,9 +164,9 @@ export default async function Home() {
                 Explore all venues
               </Link>
             </div>
-            <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
+            <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
-                <div key={facility.slug} className="min-w-[74%] snap-start sm:min-w-0">
+                <div key={facility.slug} className="min-w-[88%] snap-start sm:min-w-0">
                   <FacilityCard facility={facility} source="homepage_featured" compact />
                 </div>
               ))}
