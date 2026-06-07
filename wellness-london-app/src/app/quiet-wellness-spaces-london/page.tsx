@@ -117,7 +117,7 @@ export default async function QuietWellnessSpacesPage() {
           </div>
           <div className="space-y-5 text-sm leading-8 text-[#fbf8f1]/78 md:text-base">
             <p>
-              Some of London's best reset spaces are calm because the booking model, room layout and service flow are carefully controlled — not because they are always silent.
+              Some of London&apos;s best reset spaces are calm because the booking model, room layout and service flow are carefully controlled — not because they are always silent.
             </p>
             <p>
               If you are looking for a genuinely restorative experience, check whether the venue is private, guided, membership-led, spa-like or more social before booking.

@@ -10,15 +10,30 @@ type HomeVenueSearchProps = {
   facilities: ServiceDirectoryFacility[];
 };
 
-const quickLinks = [
-  { href: "/sauna-london", label: "Sauna" },
-  { href: "/cold-plunge-london", label: "Cold plunge" },
-  { href: "/cryotherapy-london", label: "Cryotherapy" },
-  { href: "/central-london-wellness", label: "Central London" },
-  { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
-  { href: "/neighbourhoods/marylebone", label: "Marylebone" },
-  { href: "/quiet-wellness-spaces-london", label: "Quiet recovery" },
-  { href: "/beginner-friendly-wellness-london", label: "Beginner friendly" },
+const quickLinkGroups = [
+  {
+    title: "Services",
+    links: [
+      { href: "/sauna-london", label: "Sauna" },
+      { href: "/cold-plunge-london", label: "Cold Plunge" },
+      { href: "/cryotherapy-london", label: "Cryotherapy" },
+    ],
+  },
+  {
+    title: "Locations",
+    links: [
+      { href: "/central-london-wellness", label: "Central London" },
+      { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
+      { href: "/neighbourhoods/marylebone", label: "Marylebone" },
+    ],
+  },
+  {
+    title: "Use cases",
+    links: [
+      { href: "/quiet-wellness-spaces-london", label: "Quiet Recovery" },
+      { href: "/beginner-friendly-wellness-london", label: "Beginner Friendly" },
+    ],
+  },
 ];
 
 function getResultLocation(facility: ServiceDirectoryFacility) {
@@ -65,7 +80,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                 type="search"
                 value={query}
                 onChange={(event) => updateQuery(event.target.value)}
-                placeholder="Search sauna, Shoreditch or a venue"
+                placeholder="Search a service, location or venue name"
                 className="w-full rounded-full border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-3 text-[15px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:px-5"
               />
             </label>
@@ -105,15 +120,22 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
               </div>
             ) : null}
 
-            <div className="-mx-5 mt-3 flex snap-x snap-mandatory scroll-px-5 gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
-              {quickLinks.map((link) => (
-                <Link
-                  key={`${link.href}-${link.label}`}
-                  href={link.href}
-                  className="min-w-max snap-start rounded-full border border-[#d8cebf] bg-[#fbf8f1]/70 px-4 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:text-sm"
-                >
-                  {link.label}
-                </Link>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              {quickLinkGroups.map((group) => (
+                <div key={group.title}>
+                  <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">{group.title}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {group.links.map((link) => (
+                      <Link
+                        key={`${link.href}-${link.label}`}
+                        href={link.href}
+                        className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/70 px-4 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:text-sm"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </div>
