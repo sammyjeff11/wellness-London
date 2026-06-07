@@ -38,6 +38,11 @@ type FacilityCardProps = {
 };
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
+const mediaFrameClass = "editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
+const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
+const mediaLocationClass = "mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]";
+const mediaTitleClass = "max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]";
+const mediaDescriptorClass = "mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]";
 
 function primaryBestFor(facility: FacilityCardFacility) {
   const value = facility.bestFor?.[0] || facility.description;
@@ -143,13 +148,13 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
               <div className="editorial-image-overlay" />
               <div className="editorial-image-grain" />
               <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                {price ? <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.16)] backdrop-blur-sm">{price}</span> : <span />}
+                {price ? <span className={pricePillClass}>{price}</span> : <span />}
                 {galleryImages.length > 1 ? <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">{index + 1} / {galleryImages.length}</span> : null}
               </div>
               <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
-                <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]">{overlayLocation || "London"}</p>
-                <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">{facility.name}</h3>
-                <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">{atmosphericDescriptor}</p>
+                <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
+                <h3 className={mediaTitleClass}>{facility.name}</h3>
+                <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
               </div>
             </div>
           )) : (
@@ -157,7 +162,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
               <div className="editorial-image-grain" />
               <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                {price ? <span className="inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.08)] backdrop-blur-sm">{price}</span> : <span />}
+                {price ? <span className={pricePillClass}>{price}</span> : <span />}
               </div>
               <div className="absolute inset-x-5 top-1/2 z-0 h-px bg-[#fbf8f1]/65" />
               <div className="absolute inset-y-5 left-1/2 z-0 w-px bg-[#fbf8f1]/45" />

@@ -74,6 +74,11 @@ const useCaseLinks = [
   },
 ];
 
+const sectionHeadingClass = "font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-4xl md:text-5xl";
+const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
+const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
+const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
+
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
 }
@@ -90,8 +95,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-5 pt-3 sm:px-6 md:pt-7">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
+      <section className="px-4 pt-3 sm:px-5 md:px-8 md:pt-7">
+        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
           <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
             {heroImage ? (
               <Image
@@ -150,7 +155,7 @@ export default async function Home() {
             <div className="mb-7 flex flex-col gap-4 sm:mb-10 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
-                <h2 className="max-w-3xl font-serif text-4xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
+                <h2 className="max-w-3xl font-serif text-[2.25rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
                   Featured spaces worth starting with.
                 </h2>
               </div>
@@ -190,10 +195,10 @@ export default async function Home() {
               >
                 <div>
                   <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
-                  <h3 className="mb-3 text-2xl font-medium tracking-[-0.03em] group-hover:underline group-hover:underline-offset-4 sm:text-3xl">
+                  <h3 className="mb-2 text-[1.45rem] font-medium leading-tight tracking-[-0.025em] group-hover:underline group-hover:underline-offset-4 sm:text-[1.75rem]">
                     {pillar.label}
                   </h3>
-                  <p className="line-clamp-2 text-xs leading-5 text-[#5f574c] sm:line-clamp-none sm:text-sm sm:leading-7">{pillar.intro}</p>
+                  <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{pillar.intro}</p>
                 </div>
                 <span className="mt-5 inline-block text-xs font-medium text-[#29241d] underline underline-offset-4 sm:text-sm">Explore {pillar.label.toLowerCase()}</span>
               </Link>
@@ -217,8 +222,67 @@ export default async function Home() {
                 href={collection.href}
                 className="group rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:p-6"
               >
+                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
+                <p className="text-sm leading-6 text-[#fbf8f1]/72 sm:leading-7">{collection.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Use cases</p>
+              <h2 className={sectionHeadingClass}>
+                Choose by situation.
+              </h2>
+            </div>
+            <p className={sectionLeadClass}>
+              Need a quiet reset, a post-gym recovery stop, a higher-touch spa setting or a clear first visit? Start here.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {useCaseLinks.map((collection) => (
+              <Link
+                key={collection.title}
+                href={collection.href}
+                className="group rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6"
+              >
+                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
+                <p className={editorialCardTextClass}>{collection.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Use cases</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+                Choose by situation.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              Need a quiet reset, a post-gym recovery stop, a higher-touch spa setting or a clear first visit? Start here.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {useCaseLinks.map((collection) => (
+              <Link
+                key={collection.title}
+                href={collection.href}
+                className="group rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6"
+              >
                 <h3 className="mb-2 text-2xl font-medium tracking-[-0.03em] group-hover:underline group-hover:underline-offset-4">{collection.title}</h3>
-                <p className="text-sm leading-7 text-[#fbf8f1]/72">{collection.text}</p>
+                <p className="text-sm leading-7 text-[#5f574c]">{collection.text}</p>
               </Link>
             ))}
           </div>
@@ -276,8 +340,8 @@ export default async function Home() {
                 href={treatment.href}
                 className="group min-w-[78%] rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
               >
-                <h3 className="mb-3 text-2xl font-medium tracking-[-0.03em] group-hover:underline group-hover:underline-offset-4">{treatment.label}</h3>
-                <p className="line-clamp-2 text-xs leading-5 text-[#5f574c] sm:line-clamp-none sm:text-sm sm:leading-7">{treatment.description}</p>
+                <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
+                <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
               </Link>
             ))}
           </div>
@@ -288,11 +352,11 @@ export default async function Home() {
         <div className="mx-auto grid max-w-6xl gap-8 rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-6 sm:p-8 md:grid-cols-[0.8fr_1.2fr] md:p-10">
           <div>
             <p className="editorial-eyebrow mb-3">How we curate</p>
-            <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+            <h2 className={sectionHeadingClass}>
               More than a list of venues.
             </h2>
           </div>
-          <div className="grid gap-5 text-sm leading-7 text-[#5f574c] sm:grid-cols-3">
+          <div className="grid gap-5 text-sm leading-6 text-[#5f574c] sm:grid-cols-3 sm:leading-7">
             <p><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
             <p><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
             <p><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
@@ -305,7 +369,7 @@ export default async function Home() {
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Neighbourhood guides</p>
-              <h2 className="max-w-3xl font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+              <h2 className={`${sectionHeadingClass} max-w-3xl`}>
                 Find recovery spaces by neighbourhood.
               </h2>
             </div>
@@ -332,7 +396,7 @@ export default async function Home() {
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8">
             <p className="editorial-eyebrow mb-3">Browse by area</p>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <h2 className="max-w-3xl font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+              <h2 className={`${sectionHeadingClass} max-w-3xl`}>
                 Find venues by London area.
               </h2>
               <div className="flex flex-wrap gap-3 md:justify-end">
