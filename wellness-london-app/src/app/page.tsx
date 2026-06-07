@@ -10,7 +10,7 @@ import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 export const metadata: Metadata = {
   title: "Well+ London | The London Wellness Edit",
   description:
-    "Discover London's best wellness spaces, including saunas, cold plunges, bathhouses, recovery clubs, cryotherapy and longevity experiences with Well+.",
+    "Find London wellness venues by service, venue type, location or use case — from saunas and cold plunges to clinics, spas and recovery studios.",
   alternates: { canonical: "/" },
 };
 
@@ -36,10 +36,46 @@ const serviceLinks = [
     description: "Spaces combining heat and cold in one structured recovery session.",
   },
   {
-    href: "/recovery-london",
-    label: "Recovery spaces",
-    description: "A broader guide to recovery clubs, studios and treatment-led spaces.",
+    href: "/red-light-therapy-london",
+    label: "Red light therapy",
+    description: "Technology-led light therapy sessions in recovery, optimisation and clinic settings.",
   },
+  {
+    href: "/hbot-london",
+    label: "HBOT",
+    description: "Hyperbaric oxygen therapy options in specialist recovery and longevity settings.",
+  },
+];
+
+const venueTypeLinks = [
+  {
+    href: "/best-sauna-cold-plunge-london",
+    title: "Bathhouse",
+    text: "Places built around a fuller bathing or thermal circuit rather than a single treatment room.",
+  },
+  {
+    href: "/best-recovery-clubs-london",
+    title: "Recovery Studio",
+    text: "Focused studios for repeatable recovery routines, guided sessions and practical facilities.",
+  },
+  {
+    href: "/longevity-london",
+    title: "Longevity Clinic",
+    text: "Clinic-led settings for preventative, optimisation and healthspan-focused services.",
+  },
+  {
+    href: "/luxury-wellness-spaces-london",
+    title: "Spa",
+    text: "Service-led settings where comfort, privacy and hospitality are part of the booking decision.",
+  },
+];
+
+const locationLinks = [
+  { href: "/central-london-wellness", label: "Central London" },
+  { href: "/east-london-wellness", label: "East London" },
+  { href: "/west-london-wellness", label: "West London" },
+  { href: "/north-london-wellness", label: "North London" },
+  { href: "/south-london-wellness", label: "South London" },
 ];
 
 const useCaseLinks = [
@@ -117,7 +153,7 @@ export default async function Home() {
                 London&apos;s curated guide to modern wellness.
               </h1>
               <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
-                Find London saunas, cold plunges, recovery studios, spas and clinics — with practical details to help you choose where to book.
+                Search by service, venue type, location or use case — with practical details to help you choose where to book.
               </p>
               <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
                 <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
@@ -172,11 +208,11 @@ export default async function Home() {
               </h2>
             </div>
             <p className={sectionLeadClass}>
-              Fast routes into London guides for sauna, cold plunge, cryotherapy, contrast therapy and recovery treatments.
+              Fast routes into service guides for heat, cold, contrast and technology-led treatments.
             </p>
           </div>
 
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-5`}>
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-6`}>
             {serviceLinks.map((treatment) => (
               <Link
                 key={treatment.href}
@@ -195,9 +231,38 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Neighbourhood guides</p>
+              <p className="editorial-eyebrow mb-3">Venue types</p>
+              <h2 className={sectionHeadingClass}>
+                Browse by venue type.
+              </h2>
+            </div>
+            <p className={sectionLeadClass}>
+              Use this route when the setting matters as much as the treatment.
+            </p>
+          </div>
+
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
+            {venueTypeLinks.map((venueType) => (
+              <Link
+                key={venueType.href}
+                href={venueType.href}
+                className={lightCarouselCardClass}
+              >
+                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{venueType.title}</h3>
+                <p className={editorialCardTextClass}>{venueType.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Locations</p>
               <h2 className={`${sectionHeadingClass} max-w-3xl`}>
-                Find recovery spaces by neighbourhood.
+                Browse by location.
               </h2>
             </div>
             <Link href="/neighbourhoods" className="w-fit text-sm font-medium underline underline-offset-4">
@@ -205,13 +270,13 @@ export default async function Home() {
             </Link>
           </div>
           <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-            {featuredNeighbourhoods.map((area) => (
+            {[...locationLinks, ...featuredNeighbourhoods.map((area) => ({ href: area.href, label: area.shortTitle }))].map((area) => (
               <Link
                 key={area.href}
                 href={area.href}
                 className="min-w-max snap-start rounded-full border border-[#d8cebf] px-5 py-2.5 text-sm transition hover:bg-[#f4efe6] sm:min-w-0"
               >
-                {area.shortTitle}
+                {area.label}
               </Link>
             ))}
           </div>

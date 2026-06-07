@@ -50,7 +50,7 @@ export default async function BestRecoveryClubsPage() {
             The best recovery clubs in London.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            A curated guide to London's strongest recovery-led wellness spaces — combining sauna, cold plunge, cryotherapy, compression and performance-focused recovery routines.
+            A curated guide to London&apos;s strongest recovery-led wellness spaces — combining sauna, cold plunge, cryotherapy, compression and performance-focused recovery routines.
           </p>
         </div>
       </section>
@@ -112,7 +112,7 @@ export default async function BestRecoveryClubsPage() {
           </div>
           <div className="space-y-5 text-sm leading-8 text-[#fbf8f1]/78 md:text-base">
             <p>
-              London's strongest recovery clubs are no longer only serving athletes. Many now operate as broader wellness environments for recovery, stress management and repeatable routines.
+              London&apos;s strongest recovery clubs are no longer only serving athletes. Many now operate as broader wellness environments for recovery, stress management and repeatable routines.
             </p>
             <p>
               The most compelling venues tend to combine strong operational flow with thoughtful hospitality, rather than focusing purely on treatment intensity.

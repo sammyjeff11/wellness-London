@@ -134,7 +134,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
       ) : (
         <section className="px-5 pb-14 sm:px-6 sm:pb-20">
           <div className="mx-auto max-w-6xl rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-6">
-            <p className="text-sm leading-7 text-[#5f574c]">We are still validating this operator's London locations.</p>
+            <p className="text-sm leading-7 text-[#5f574c]">We are still validating this operator&apos;s London locations.</p>
           </div>
         </section>
       )}
