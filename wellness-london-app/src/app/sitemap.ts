@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
+import { activityPages } from "@/lib/activity-pages";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
@@ -15,13 +16,7 @@ const staticRoutes = [
   { path: "/recovery-london", priority: 0.85 },
   { path: "/longevity-london", priority: 0.75 },
   { path: "/stress-regulation-london", priority: 0.75 },
-  { path: "/sauna-london", priority: 0.8 },
-  { path: "/infrared-sauna-london", priority: 0.8 },
-  { path: "/cryotherapy-london", priority: 0.8 },
-  { path: "/red-light-therapy-london", priority: 0.8 },
-  { path: "/hbot-london", priority: 0.8 },
-  { path: "/cold-plunge-london", priority: 0.8 },
-  { path: "/contrast-therapy-london", priority: 0.8 },
+  ...activityPages.map((activity) => ({ path: activity.href, priority: 0.8 })),
   { path: "/central-london-wellness", priority: 0.7 },
   { path: "/east-london-wellness", priority: 0.7 },
   { path: "/west-london-wellness", priority: 0.7 },
