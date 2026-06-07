@@ -136,6 +136,12 @@ function formatPrice(value?: string) {
   return trimmed;
 }
 
+function getCardImages(facility: FacilityCardFacility) {
+  const images = facility.galleryImages?.filter((image) => image.url) || [];
+  if (images.length > 0) return images.slice(0, 5);
+  return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
+}
+
 export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
@@ -147,9 +153,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const serviceLine = formatServiceLine(facility.services);
   const summary = primaryBestFor(facility);
   const rating = formatRating(facility.rating);
-
-  const primaryImage = facility.galleryImages?.find((image) => image.url) ||
-    (facility.imageUrl ? { url: facility.imageUrl, filename: facility.imageAlt || facility.name } : undefined);
+  const cardImages = getCardImages(facility);
 
   const cardHref = `/facility/${facility.slug}`;
   const frameClass = compact ? compactMediaFrameClass : mediaFrameClass;
@@ -174,44 +178,53 @@ export default function FacilityCard({ facility, source = "directory", compact =
       />
 
       <div className="relative overflow-hidden bg-[#d8cebf]">
-        <div className="flex snap-x snap-mandatory overflow-x-auto">
-          {primaryImage ? (
-            <div className={frameClass}>
-              <SafeImage
-                src={primaryImage.url}
-                alt={primaryImage.filename || facility.name}
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
-              />
-              <div className="editorial-image-overlay" />
-              <div className="editorial-image-grain" />
-              <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                {price ? <span className={pricePillClass}>{price}</span> : <span />}
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
-                <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-                <h3 className={titleClass}>{facility.name}</h3>
-                <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
-              </div>
+        {cardImages.length > 0 ? (
+          <>
+            <div className="flex snap-x snap-mandatory overflow-x-auto">
+              {cardImages.map((image, index) => (
+                <div key={`${image.url}-${index}`} className={frameClass}>
+                  <SafeImage
+                    src={image.url}
+                    alt={image.filename || facility.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
+                  />
+                  <div className="editorial-image-overlay" />
+                  <div className="editorial-image-grain" />
+                </div>
+              ))}
             </div>
-          ) : (
-            <div className={frameClass}>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
-              <div className="editorial-image-grain" />
-              <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                {price ? <span className={pricePillClass}>{price}</span> : <span />}
-              </div>
-              <div className="absolute inset-x-5 top-1/2 z-0 h-px bg-[#fbf8f1]/65" />
-              <div className="absolute inset-y-5 left-1/2 z-0 w-px bg-[#fbf8f1]/45" />
-              <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#efe6d8]/95 via-[#efe6d8]/70 to-transparent p-4 text-[#29241d] sm:p-7">
-                <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-[#70695d] sm:text-[10px] sm:tracking-[0.22em]">{overlayLocation || "London"}</p>
-                <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-[#29241d] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">{facility.name}</h3>
-                <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#756957] sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">{atmosphericDescriptor}</p>
-              </div>
+            <div className="pointer-events-none absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+              {price ? <span className={pricePillClass}>{price}</span> : <span />}
+              {cardImages.length > 1 ? (
+                <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
+                  1 / {cardImages.length}
+                </span>
+              ) : null}
             </div>
-          )}
-        </div>
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+              <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
+              <h3 className={titleClass}>{facility.name}</h3>
+              <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
+            </div>
+          </>
+        ) : (
+          <div className={frameClass}>
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
+            <div className="editorial-image-grain" />
+            <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+              {price ? <span className={pricePillClass}>{price}</span> : <span />}
+            </div>
+            <div className="absolute inset-x-5 top-1/2 z-0 h-px bg-[#fbf8f1]/65" />
+            <div className="absolute inset-y-5 left-1/2 z-0 w-px bg-[#fbf8f1]/45" />
+            <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#efe6d8]/95 via-[#efe6d8]/70 to-transparent p-4 text-[#29241d] sm:p-7">
+              <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-[#70695d] sm:text-[10px] sm:tracking-[0.22em]">{overlayLocation || "London"}</p>
+              <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-[#29241d] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">{facility.name}</h3>
+              <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#756957] sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">{atmosphericDescriptor}</p>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className={`flex flex-1 flex-col px-5 ${compact ? "py-3 sm:py-5" : "py-4 sm:px-6 sm:py-7"}`}>
