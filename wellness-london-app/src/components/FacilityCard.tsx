@@ -52,13 +52,7 @@ const broadAreaLabels = new Set([
   "west london",
 ]);
 
-const mediaFrameClass = "editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
-const compactMediaFrameClass = "editorial-image relative aspect-[16/9] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
-const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
-const mediaLocationClass = "mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]";
-const mediaTitleClass = "max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]";
-const compactMediaTitleClass = "max-w-[92%] font-serif text-[1.45rem] font-normal leading-[0.98] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:max-w-[90%] sm:text-[2.6rem]";
-const mediaDescriptorClass = "mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]";
+const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 
 function primaryBestFor(facility: FacilityCardFacility) {
   const value = facility.bestFor?.[0] || facility.description;
@@ -81,28 +75,6 @@ function getAreaLabel(facility: FacilityCardFacility) {
   return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
 }
 
-function getAtmosphericDescriptor(facility: FacilityCardFacility) {
-  const searchable = [
-    ...(facility.services || []),
-    ...(facility.bestFor || []),
-    ...(facility.experienceType || []),
-    facility.premiumLevel,
-    facility.description,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  if (searchable.includes("bath") || searchable.includes("ritual")) return "Immersive";
-  if (searchable.includes("luxury") || searchable.includes("premium")) return "Refined";
-  if (searchable.includes("clinical") || searchable.includes("cryo") || searchable.includes("compression")) return "Structured";
-  if (searchable.includes("social") || searchable.includes("group")) return "Club-like";
-  if (searchable.includes("infrared") || searchable.includes("red light")) return "Contemporary";
-  if (searchable.includes("breathwork") || searchable.includes("meditation") || searchable.includes("quiet")) return "Quiet";
-
-  return "Restorative";
-}
-
 function formatServiceLine(services?: string[]) {
   if (!services || services.length === 0) return "";
   return canonicaliseServiceList(services).slice(0, 3).join(" · ");
@@ -111,7 +83,7 @@ function formatServiceLine(services?: string[]) {
 function formatRating(value?: string) {
   if (!value) return "";
   const match = value.match(/\d+(\.\d+)?/);
-  return match ? `${match[0]} Google` : value.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
+  return match ? `${match[0]}` : value.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
 }
 
 function priceScaleFromAmount(amount: number) {
@@ -145,10 +117,9 @@ function getCardImages(facility: FacilityCardFacility) {
 export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
-  const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined]
+  const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined]
     .filter(Boolean)
-    .join(" / ");
-  const atmosphericDescriptor = getAtmosphericDescriptor(facility);
+    .join(" · ");
   const price = formatPrice(facility.priceRange || facility.priceFrom);
   const serviceLine = formatServiceLine(facility.services);
   const summary = primaryBestFor(facility);
@@ -156,8 +127,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const cardImages = getCardImages(facility);
 
   const cardHref = `/facility/${facility.slug}`;
-  const frameClass = compact ? compactMediaFrameClass : mediaFrameClass;
-  const titleClass = compact ? compactMediaTitleClass : mediaTitleClass;
+  const imageAspect = compact ? "aspect-[1.12/1]" : "aspect-[1.18/1]";
 
   const trackCardClick = () =>
     trackEvent("listing_card_click", {
@@ -170,74 +140,57 @@ export default function FacilityCard({ facility, source = "directory", compact =
     });
 
   return (
-    <article className="group relative flex min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_18px_45px_rgba(41,36,29,0.055)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_28px_70px_rgba(41,36,29,0.1)] sm:rounded-[1.4rem]">
-      <div className="relative overflow-hidden bg-[#d8cebf]">
+    <article className="group min-w-0 overflow-hidden bg-transparent">
+      <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
         {cardImages.length > 0 ? (
           <>
-            <div className="flex snap-x snap-mandatory overflow-x-auto">
+            <div className="flex h-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth">
               {cardImages.map((image, index) => (
-                <div key={`${image.url}-${index}`} className={frameClass}>
+                <div key={`${image.url}-${index}`} className="relative h-full min-w-full snap-center overflow-hidden">
                   <SafeImage
                     src={image.url}
                     alt={image.filename || facility.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
+                    className="object-cover transition duration-700 group-hover:scale-[1.025]"
                   />
-                  <div className="editorial-image-overlay" />
-                  <div className="editorial-image-grain" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/8" />
                 </div>
               ))}
             </div>
-            <div className="pointer-events-none absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+            <div className="pointer-events-none absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3">
               {price ? <span className={pricePillClass}>{price}</span> : <span />}
-              {cardImages.length > 1 ? (
-                <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
-                  1 / {cardImages.length}
-                </span>
-              ) : null}
             </div>
-            <Link
-              href={cardHref}
-              aria-label={`View ${facility.name}`}
-              onClick={trackCardClick}
-              className="absolute bottom-0 left-0 right-0 z-10 block p-4 text-white sm:p-7"
-            >
-              <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-              <h3 className={titleClass}>{facility.name}</h3>
-              <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
-            </Link>
+            {cardImages.length > 1 ? (
+              <div className="pointer-events-none absolute bottom-3 left-0 right-0 z-10 flex justify-center gap-1.5">
+                {cardImages.slice(0, 5).map((image, index) => (
+                  <span
+                    key={`${image.url}-dot-${index}`}
+                    className={`h-1.5 w-1.5 rounded-full ${index === 0 ? "bg-white" : "bg-white/55"}`}
+                  />
+                ))}
+              </div>
+            ) : null}
           </>
         ) : (
-          <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${frameClass}`}>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
-            <div className="editorial-image-grain" />
-            <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-              {price ? <span className={pricePillClass}>{price}</span> : <span />}
-            </div>
-            <div className="absolute inset-x-5 top-1/2 z-0 h-px bg-[#fbf8f1]/65" />
-            <div className="absolute inset-y-5 left-1/2 z-0 w-px bg-[#fbf8f1]/45" />
-            <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#efe6d8]/95 via-[#efe6d8]/70 to-transparent p-4 text-[#29241d] sm:p-7">
-              <p className="mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-[#70695d] sm:text-[10px] sm:tracking-[0.22em]">{overlayLocation || "London"}</p>
-              <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-[#29241d] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">{facility.name}</h3>
-              <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#756957] sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">{atmosphericDescriptor}</p>
-            </div>
-          </Link>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]">
+            <div className="absolute inset-x-5 top-1/2 h-px bg-[#fbf8f1]/65" />
+            <div className="absolute inset-y-5 left-1/2 w-px bg-[#fbf8f1]/45" />
+            <div className="absolute left-4 top-4 z-10">{price ? <span className={pricePillClass}>{price}</span> : null}</div>
+          </div>
         )}
       </div>
 
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`flex flex-1 flex-col px-5 ${compact ? "py-3 sm:py-5" : "py-4 sm:px-6 sm:py-7"}`}>
-        <p className={`${compact ? "mb-3 text-[13px] leading-5" : "mb-5 text-[14px] leading-6 sm:mb-6 sm:text-[15px] sm:leading-7"} text-[#5f574c] line-clamp-2`}>
-          {summary}
-        </p>
-        <div className={`${compact ? "pt-3 text-[11px] leading-5" : "pt-4 text-[12px] leading-6"} mt-auto border-t border-[#d8cebf]/45 tracking-[0.02em] text-[#756957]`}>
-          {serviceLine ? <p className="mb-1">{serviceLine}</p> : null}
-          <p>
-            <span>{areaLabel}</span>
-            {rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
-            {rating ? <span>{rating}</span> : null}
-          </p>
+      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="min-w-0 text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">
+            {facility.name}
+          </h3>
+          {rating ? <span className="shrink-0 text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
         </div>
+        <p className="mt-0.5 text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
+        {serviceLine ? <p className="text-[15px] leading-6 text-[#6f6048]">{serviceLine}</p> : null}
+        <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
       </Link>
     </article>
   );
