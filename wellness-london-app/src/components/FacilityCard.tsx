@@ -37,11 +37,19 @@ type FacilityCardProps = {
   source?: string;
 };
 
-const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
-const mediaFrameClass = "editorial-image relative aspect-[16/9] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
-const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
-const mediaLocationClass = "mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]";
-const mediaTitleClass = "max-w-[92%] font-serif text-[1.55rem] font-normal leading-[0.98] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]";
+const broadAreaLabels = new Set([
+  "central",
+  "north",
+  "south",
+  "east",
+  "west",
+  "central london",
+  "north london",
+  "south london",
+  "east london",
+  "west london",
+]);
+
 const mediaFrameClass = "editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
 const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 const mediaLocationClass = "mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]";
@@ -111,7 +119,9 @@ function formatPrice(value?: string) {
 export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
-  const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" / ");
+  const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined]
+    .filter(Boolean)
+    .join(" / ");
   const atmosphericDescriptor = getAtmosphericDescriptor(facility);
   const price = formatPrice(facility.priceFrom || facility.priceRange);
   const serviceLine = formatServiceLine(facility.services);
@@ -146,39 +156,40 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
 
       <div className="relative overflow-hidden bg-[#d8cebf]">
         <div className="flex snap-x snap-mandatory overflow-x-auto">
-          {galleryImages.length > 0 ? galleryImages.map((image, index) => (
-            <div key={`${image.url}-${index}`} className={mediaFrameClass}>
-            <div key={`${image.url}-${index}`} className="editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden sm:aspect-[4/5]">
-              <Image src={image.url} alt={image.filename || facility.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]" />
-              <div className="editorial-image-overlay" />
-              <div className="editorial-image-grain" />
-              <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                {price ? <span className={pricePillClass}>{price}</span> : <span />}
-                {galleryImages.length > 1 ? <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">{index + 1} / {galleryImages.length}</span> : null}
+          {galleryImages.length > 0 ? (
+            galleryImages.map((image, index) => (
+              <div key={`${image.url}-${index}`} className={mediaFrameClass}>
+                <Image
+                  src={image.url}
+                  alt={image.filename || facility.name}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
+                />
+                <div className="editorial-image-overlay" />
+                <div className="editorial-image-grain" />
+                <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+                  {price ? <span className={pricePillClass}>{price}</span> : <span />}
+                  {galleryImages.length > 1 ? (
+                    <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
+                      {index + 1} / {galleryImages.length}
+                    </span>
+                  ) : null}
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+                  <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
+                  <h3 className={mediaTitleClass}>{facility.name}</h3>
+                  <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
+                </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 z-10 p-3.5 text-white sm:p-7">
-              <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
-                <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-                <h3 className={mediaTitleClass}>{facility.name}</h3>
-                <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
-              </div>
-            </div>
-          )) : (
+            ))
+          ) : (
             <div className={`${mediaFrameClass} bg-[#d8cebf]`}>
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.42),transparent_28%),radial-gradient(circle_at_78%_16%,rgba(216,206,191,0.38),transparent_30%),linear-gradient(145deg,rgba(185,171,151,0.92),rgba(111,96,72,0.72)_48%,rgba(41,36,29,0.88))]" />
-              <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(120deg,rgba(251,248,241,0.42)_1px,transparent_1px),linear-gradient(30deg,rgba(251,248,241,0.26)_1px,transparent_1px)] [background-size:26px_26px]" aria-hidden="true" />
-              <div className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#fbf8f1]/18 bg-[#fbf8f1]/5 shadow-[0_0_0_28px_rgba(251,248,241,0.035)]" aria-hidden="true" />
-              <div className="editorial-image-overlay" />
-            <div className="editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden bg-[#d8cebf] sm:aspect-[4/5]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
               <div className="editorial-image-grain" />
               <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
                 {price ? <span className={pricePillClass}>{price}</span> : <span />}
               </div>
-              <div className="absolute bottom-0 left-0 right-0 z-10 p-3.5 text-white sm:p-7">
-                <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-                <h3 className={mediaTitleClass}>{facility.name}</h3>
-                <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
               <div className="absolute inset-x-5 top-1/2 z-0 h-px bg-[#fbf8f1]/65" />
               <div className="absolute inset-y-5 left-1/2 z-0 w-px bg-[#fbf8f1]/45" />
               <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#efe6d8]/95 via-[#efe6d8]/70 to-transparent p-4 text-[#29241d] sm:p-7">
@@ -191,18 +202,17 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col px-4 py-3.5 sm:px-6 sm:py-7">
-        <p className="mb-4 text-[13px] leading-5 text-[#5f574c] line-clamp-2 sm:mb-6 sm:text-[15px] sm:leading-7">
-          {summary}
-        </p>
-        <div className="mt-auto border-t border-[#d8cebf]/45 pt-3 text-[12px] leading-5 sm:pt-4 sm:leading-6 tracking-[0.02em] text-[#756957]">
       <div className="flex flex-1 flex-col px-5 py-4 sm:px-6 sm:py-7">
         <p className="mb-5 text-[14px] leading-6 text-[#5f574c] line-clamp-2 sm:mb-6 sm:text-[15px] sm:leading-7">
           {summary}
         </p>
         <div className="mt-auto border-t border-[#d8cebf]/45 pt-4 text-[12px] leading-6 tracking-[0.02em] text-[#756957]">
           {serviceLine ? <p className="mb-1">{serviceLine}</p> : null}
-          <p><span>{areaLabel}</span>{rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}{rating ? <span>{rating}</span> : null}</p>
+          <p>
+            <span>{areaLabel}</span>
+            {rating ? <span className="mx-2 text-[#c1b3a1]">·</span> : null}
+            {rating ? <span>{rating}</span> : null}
+          </p>
         </div>
       </div>
     </article>
