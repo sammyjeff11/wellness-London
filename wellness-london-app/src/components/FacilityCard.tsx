@@ -35,6 +35,7 @@ export type FacilityCardFacility = {
 type FacilityCardProps = {
   facility: FacilityCardFacility;
   source?: string;
+  compact?: boolean;
 };
 
 const broadAreaLabels = new Set([
@@ -51,9 +52,11 @@ const broadAreaLabels = new Set([
 ]);
 
 const mediaFrameClass = "editorial-image relative aspect-[16/10] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
+const compactMediaFrameClass = "editorial-image relative aspect-[16/9] min-w-full snap-center overflow-hidden sm:aspect-[4/5]";
 const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#f8f5ef]/95 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 const mediaLocationClass = "mb-2 text-[9px] uppercase leading-5 tracking-[0.2em] text-white/72 sm:text-[10px] sm:tracking-[0.22em]";
 const mediaTitleClass = "max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]";
+const compactMediaTitleClass = "max-w-[92%] font-serif text-[1.45rem] font-normal leading-[0.98] tracking-[-0.045em] text-white [text-shadow:0_3px_22px_rgb(0_0_0_/_0.62)] line-clamp-2 sm:max-w-[90%] sm:text-[2.6rem]";
 const mediaDescriptorClass = "mt-2 text-[9px] uppercase tracking-[0.16em] text-[#e7dccd]/78 sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]";
 
 function primaryBestFor(facility: FacilityCardFacility) {
@@ -116,7 +119,7 @@ function formatPrice(value?: string) {
   return value.startsWith("£") ? `From ${value}` : value;
 }
 
-export default function FacilityCard({ facility, source = "directory" }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
   const overlayLocation = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined]
@@ -135,6 +138,8 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
       : [];
 
   const cardHref = `/facility/${facility.slug}`;
+  const frameClass = compact ? compactMediaFrameClass : mediaFrameClass;
+  const titleClass = compact ? compactMediaTitleClass : mediaTitleClass;
 
   return (
     <article className="group relative flex min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_18px_45px_rgba(41,36,29,0.055)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_28px_70px_rgba(41,36,29,0.1)] sm:rounded-[1.4rem]">
@@ -158,7 +163,7 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         <div className="flex snap-x snap-mandatory overflow-x-auto">
           {galleryImages.length > 0 ? (
             galleryImages.map((image, index) => (
-              <div key={`${image.url}-${index}`} className={mediaFrameClass}>
+              <div key={`${image.url}-${index}`} className={frameClass}>
                 <Image
                   src={image.url}
                   alt={image.filename || facility.name}
@@ -178,13 +183,13 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
                   <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-                  <h3 className={mediaTitleClass}>{facility.name}</h3>
+                  <h3 className={titleClass}>{facility.name}</h3>
                   <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
                 </div>
               </div>
             ))
           ) : (
-            <div className={`${mediaFrameClass} bg-[#d8cebf]`}>
+            <div className={frameClass}>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
               <div className="editorial-image-grain" />
               <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
@@ -202,11 +207,11 @@ export default function FacilityCard({ facility, source = "directory" }: Facilit
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col px-5 py-4 sm:px-6 sm:py-7">
-        <p className="mb-5 text-[14px] leading-6 text-[#5f574c] line-clamp-2 sm:mb-6 sm:text-[15px] sm:leading-7">
+      <div className={`flex flex-1 flex-col px-5 ${compact ? "py-3 sm:py-5" : "py-4 sm:px-6 sm:py-7"}`}>
+        <p className={`${compact ? "mb-3 text-[13px] leading-5" : "mb-5 text-[14px] leading-6 sm:mb-6 sm:text-[15px] sm:leading-7"} text-[#5f574c] line-clamp-2`}>
           {summary}
         </p>
-        <div className="mt-auto border-t border-[#d8cebf]/45 pt-4 text-[12px] leading-6 tracking-[0.02em] text-[#756957]">
+        <div className={`${compact ? "pt-3 text-[11px] leading-5" : "pt-4 text-[12px] leading-6"} mt-auto border-t border-[#d8cebf]/45 tracking-[0.02em] text-[#756957]`}>
           {serviceLine ? <p className="mb-1">{serviceLine}</p> : null}
           <p>
             <span>{areaLabel}</span>
