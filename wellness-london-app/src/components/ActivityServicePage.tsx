@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -58,7 +58,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
         <div className="relative mx-auto flex min-h-[58vh] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[68vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
-          {heroImage ? <Image src={heroImage.url} alt={heroImage.filename || `${activity.label} venue in London`} fill priority sizes="100vw" className="object-cover" /> : null}
+          {heroImage ? <SafeImage src={heroImage.url} alt={heroImage.filename || `${activity.label} venue in London`} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
           <div className="relative max-w-4xl text-[#fbf8f1]">
             <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / {activity.eyebrow}</p>

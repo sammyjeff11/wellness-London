@@ -8,19 +8,16 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "*.airtableusercontent.com",
+        hostname: "v5.airtableusercontent.com",
       },
       {
         protocol: "https",
-        hostname: "**.airtableusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "airtableusercontent.com",
+        hostname: "v6.airtableusercontent.com",
       },
       {
         protocol: "https",
         hostname: "dl.airtable.com",
+        pathname: "/.attachments/**",
       },
     ],
   },

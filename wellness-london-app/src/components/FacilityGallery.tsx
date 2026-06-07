@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 
 type FacilityGalleryImage = {
   url: string;
@@ -36,7 +36,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
               key={`${image.url}-${index}`}
               className="editorial-image relative aspect-[4/5] min-w-[86%] snap-center overflow-hidden rounded-[1.15rem] bg-[#d8cebf] sm:aspect-[5/4] sm:min-w-[58%] lg:min-w-[42%]"
             >
-              <Image
+              <SafeImage
                 src={image.url}
                 alt={image.filename || `${venueName} gallery image ${index + 1}`}
                 fill
