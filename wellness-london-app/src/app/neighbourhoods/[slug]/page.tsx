@@ -85,8 +85,8 @@ function getExperienceProfile(page: NonNullable<ReturnType<typeof getNeighbourho
     .filter(Boolean) as string[];
 
   return [
-    { label: "Listed venues", value: `${facilities.length}` },
-    { label: "Strongest signal", value: strongestService },
+    { label: "Matched listings", value: `${facilities.length}` },
+    { label: "Main service signal", value: strongestService },
     { label: "Typical feel", value: page.bestFor.slice(0, 2).join(" · ") },
     { label: "Price signal", value: priceSignals[0] || "Varies by venue" },
     { label: "Good for", value: page.bestFor.slice(0, 3).join(" · ") },
@@ -288,11 +288,11 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
             {serviceCounts.length > 0 ? (
               <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
-                <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Listing signals</p>
+                <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services available at listed venues</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {serviceCounts.map((service) => (
                     <Link key={service.href} href={service.href} className="rounded-[0.9rem] border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]">
-                      {service.count} {service.label} {service.count === 1 ? "venue" : "venues"}
+                      {service.label} available at {service.count} listed venue{service.count === 1 ? "" : "s"}
                     </Link>
                   ))}
                 </div>
@@ -333,10 +333,10 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                 <p className="text-sm leading-7 text-[#5f574c]">{page.summary}</p>
               </div>
               <div>
-                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Are there curated venues in {page.shortTitle}?</h2>
+                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Are there curated listings in {page.shortTitle}?</h2>
                 <p className="text-sm leading-7 text-[#5f574c]">
                   {relatedFacilities.length > 0
-                    ? `Yes — this guide currently highlights ${relatedFacilities.length} venue${relatedFacilities.length === 1 ? "" : "s"} matched to ${page.shortTitle} based on the available location data.`
+                    ? `Yes — this guide currently highlights ${relatedFacilities.length} matched listing${relatedFacilities.length === 1 ? "" : "s"} in ${page.shortTitle} based on the available location data.`
                     : "We are still verifying venues for this area, so the page avoids showing unrelated listings just to fill the space."}
                 </p>
               </div>
