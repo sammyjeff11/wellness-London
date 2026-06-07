@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import { trackEvent } from "@/lib/analytics";
-import { matchesVenueSearch } from "@/lib/search";
+import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 
 type HomeVenueSearchProps = {
   facilities: ServiceDirectoryFacility[];
@@ -49,7 +49,10 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
 
   const results = useMemo(() => {
     if (!trimmedQuery) return [];
-    return facilities.filter((facility) => matchesVenueSearch(facility, trimmedQuery)).slice(0, 4);
+    return facilities
+      .filter((facility) => matchesVenueSearch(facility, trimmedQuery))
+      .sort((a, b) => rankVenueSearch(b, trimmedQuery) - rankVenueSearch(a, trimmedQuery))
+      .slice(0, 6);
   }, [facilities, trimmedQuery]);
 
   function updateQuery(value: string) {
@@ -80,20 +83,21 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                 type="search"
                 value={query}
                 onChange={(event) => updateQuery(event.target.value)}
-                placeholder="Search a service, location or venue name"
-                className="w-full rounded-full border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-3 text-[15px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:px-5"
+                placeholder="Try Othership, Shoreditch or cold plunge"
+                autoComplete="off"
+                className="w-full rounded-[1.1rem] border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-3.5 text-[16px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:rounded-full sm:px-5 sm:text-[15px]"
               />
             </label>
 
             {trimmedQuery ? (
-              <div className="mt-3 rounded-[1rem] border border-[#d8cebf]/80 bg-[#fbf8f1]/82 p-2">
+              <div className="mt-3 rounded-[1.15rem] border border-[#d8cebf]/80 bg-[#fbf8f1]/90 p-2 shadow-[0_18px_45px_rgba(41,36,29,0.06)]">
                 {results.length > 0 ? (
                   <div className="divide-y divide-[#d8cebf]/70">
                     {results.map((facility) => (
                       <Link
                         key={facility.slug}
                         href={`/facility/${facility.slug}`}
-                        className="block rounded-[0.85rem] px-3 py-3 transition hover:bg-[#efe6d8]"
+                        className="block rounded-[0.95rem] px-3 py-3.5 transition hover:bg-[#efe6d8] focus:bg-[#efe6d8] focus:outline-none"
                         onClick={() =>
                           trackEvent("homepage_search_result_click", {
                             facility_name: facility.name,
@@ -111,9 +115,9 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                   </div>
                 ) : (
                   <div className="px-3 py-4">
-                    <p className="text-base font-medium text-[#29241d]">No exact match yet.</p>
+                    <p className="text-base font-medium text-[#29241d]">No close match yet.</p>
                     <p className="mt-1 text-sm leading-6 text-[#5f574c]">
-                      Try a broader service or neighbourhood, or use the quick links below.
+                      Try a shorter venue name, a nearby neighbourhood, or browse by service or location below.
                     </p>
                   </div>
                 )}
