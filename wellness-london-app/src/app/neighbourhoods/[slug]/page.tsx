@@ -61,6 +61,56 @@ function getSupportedRelatedAreas(currentSlug: string, relatedAreas: string[]) {
   });
 }
 
+function getServiceCounts(facilities: ReturnType<typeof toDirectoryFacility>[]) {
+  return serviceLinks
+    .map((service) => {
+      const count = facilities.filter((facility) => {
+        const text = [...(facility.services || []), ...(facility.serviceKeys || []), ...(facility.bestFor || [])]
+          .join(" ")
+          .toLowerCase();
+        return service.keys.some((key) => text.includes(key));
+      }).length;
+
+      return { ...service, count };
+    })
+    .filter((service) => service.count > 0);
+}
+
+function getExperienceProfile(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
+  const serviceCounts = getServiceCounts(facilities);
+  const strongestService = serviceCounts[0]?.label || page.bestFor[0] || "Wellness";
+  const priceSignals = facilities.map((facility) => facility.priceRange || facility.priceFrom).filter(Boolean) as string[];
+  const accessSignals = facilities
+    .flatMap((facility) => [facility.privateOrShared, facility.accessType, ...(facility.experienceType || [])])
+    .filter(Boolean) as string[];
+
+  return [
+    { label: "Listed venues", value: `${facilities.length}` },
+    { label: "Strongest signal", value: strongestService },
+    { label: "Typical feel", value: page.bestFor.slice(0, 2).join(" · ") },
+    { label: "Price signal", value: priceSignals[0] || "Varies by venue" },
+    { label: "Good for", value: page.bestFor.slice(0, 3).join(" · ") },
+    { label: "Access", value: accessSignals[0] || "Check individual venues" },
+  ];
+}
+
+function getWhatYouWillFind(facilities: ReturnType<typeof toDirectoryFacility>[]) {
+  return Array.from(new Set(facilities.flatMap((facility) => facility.services || []))).slice(0, 8);
+}
+
+function getEditorNote(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
+  if (facilities.length >= 2) {
+    const names = facilities.slice(0, 2).map((facility) => facility.name).join(" and ");
+    return `Start with ${names} if you want a quick read on the ${page.shortTitle} wellness scene, then compare the remaining listings by service, price level and whether the experience is private, shared or guided.`;
+  }
+
+  if (facilities.length === 1) {
+    return `${facilities[0].name} is currently the strongest matched venue for ${page.shortTitle}. We avoid padding this guide with unrelated listings, so broader London service pages may be more useful until more local venues are verified.`;
+  }
+
+  return `This guide is intentionally conservative. We only show venues when they can be matched to ${page.shortTitle} with confidence, rather than filling the page with weak or unrelated results.`;
+}
+
 function buildSchema(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
   const itemList = facilities.slice(0, 6).map((facility, index) => ({
     "@type": "ListItem",
@@ -122,9 +172,13 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
     .slice(0, 6);
 
   const availableServices = getAvailableServices(relatedFacilities);
+  const serviceCounts = getServiceCounts(relatedFacilities);
+  const whatYouWillFind = getWhatYouWillFind(relatedFacilities);
+  const experienceProfile = getExperienceProfile(page, relatedFacilities);
   const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas);
   const fallbackNeighbourhoods = neighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
   const schema = buildSchema(page, relatedFacilities);
+  const editorNote = getEditorNote(page, relatedFacilities);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -146,21 +200,29 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       </section>
 
       <section className="px-5 pb-8 sm:px-6">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-[0.78fr_1.22fr]">
+        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Best for</p>
-            <div className="flex flex-wrap gap-2">
+            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Area profile</p>
+            <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+              {experienceProfile.map((item) => (
+                <div key={item.label}>
+                  <dt className="text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{item.label}</dt>
+                  <dd className="mt-1 text-sm leading-6 text-[#29241d]">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
+            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Why {page.shortTitle} for wellness?</p>
+            <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
               {page.bestFor.map((tag) => (
                 <span key={tag} className="rounded-full border border-[#d8cebf] px-3 py-1 text-xs text-[#5f574c]">
                   {tag}
                 </span>
               ))}
             </div>
-          </div>
-
-          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Wellness in the area</p>
-            <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
           </div>
         </div>
       </section>
@@ -180,7 +242,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           </div>
 
           {relatedFacilities.length > 0 ? (
-            <div className="grid gap-5 sm:gap-7 md:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {relatedFacilities.map((facility) => (
                 <FacilityCard key={facility.slug} facility={facility} source={`neighbourhood_${page.slug}`} />
               ))}
@@ -209,32 +271,54 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       <section className="px-5 py-8 sm:px-6 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What to expect</p>
-            <p className="mb-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.summary}</p>
-            <div className="space-y-4">
-              {page.visitNotes.map((note) => (
-                <p key={note} className="text-sm leading-7 text-[#5f574c]">
-                  {note}
-                </p>
-              ))}
-            </div>
-          </div>
-
-          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services in {page.shortTitle}</p>
-            {availableServices.length > 0 ? (
+            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What you&apos;ll find here</p>
+            {whatYouWillFind.length > 0 ? (
               <div className="flex flex-wrap gap-3">
-                {availableServices.map((service) => (
-                  <Link key={service.href} href={service.href} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">
-                    {service.label} in London
-                  </Link>
+                {whatYouWillFind.map((service) => (
+                  <span key={service} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm text-[#5f574c]">
+                    {service}
+                  </span>
                 ))}
               </div>
             ) : (
-              <p className="text-sm leading-7 text-[#5f574c]">
+              <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
                 Service availability is being verified for this neighbourhood. Explore the wider London edit while we refine the local venue data.
               </p>
             )}
+
+            {serviceCounts.length > 0 ? (
+              <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
+                <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Listing signals</p>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {serviceCounts.map((service) => (
+                    <Link key={service.href} href={service.href} className="rounded-[0.9rem] border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]">
+                      {service.count} {service.label} {service.count === 1 ? "venue" : "venues"}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
+            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Editor&apos;s note</p>
+            <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{editorNote}</p>
+            <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services in {page.shortTitle}</p>
+              {availableServices.length > 0 ? (
+                <div className="flex flex-wrap gap-3">
+                  {availableServices.map((service) => (
+                    <Link key={service.href} href={service.href} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">
+                      {service.label} in London
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm leading-7 text-[#5f574c]">
+                  Service availability is being verified for this neighbourhood. Explore the wider London edit while we refine the local venue data.
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </section>
