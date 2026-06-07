@@ -78,9 +78,9 @@ const sectionHeadingClass = "font-serif text-[2.2rem] font-normal leading-[1.02]
 const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
 const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
 const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
-const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
-const lightCarouselCardClass = "group min-w-[82%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
-const darkCarouselCardClass = "group min-w-[82%] snap-start rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:min-w-0 sm:p-6";
+const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
+const lightCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
+const darkCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:min-w-0 sm:p-6";
 
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
@@ -166,9 +166,9 @@ export default async function Home() {
                 Explore all venues
               </Link>
             </div>
-            <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
+            <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
-                <div key={facility.slug} className="min-w-[82%] snap-start sm:min-w-0">
+                <div key={facility.slug} className="min-w-[74%] snap-start sm:min-w-0">
                   <FacilityCard facility={facility} source="homepage_featured" />
                 </div>
               ))}
@@ -196,7 +196,7 @@ export default async function Home() {
               <Link
                 key={pillar.slug}
                 href={pillar.href}
-                className="group flex min-w-[82%] snap-start flex-col justify-between rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-h-[235px] sm:min-w-0 sm:p-6"
+                className="group flex min-w-[74%] snap-start flex-col justify-between rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-h-[235px] sm:min-w-0 sm:p-6"
               >
                 <div>
                   <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
@@ -283,7 +283,7 @@ export default async function Home() {
               <Link
                 key={treatment.href}
                 href={treatment.href}
-                className="group min-w-[82%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
+                className="group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
                 <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
@@ -301,10 +301,10 @@ export default async function Home() {
               More than a list of venues.
             </h2>
           </div>
-          <div className="-mx-6 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 text-sm leading-6 text-[#5f574c] sm:mx-0 sm:mt-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:leading-7">
-            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
-            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
-            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
+          <div className="-mx-6 mt-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-2 text-sm leading-6 text-[#5f574c] sm:mx-0 sm:mt-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:leading-7">
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
           </div>
         </div>
       </section>
@@ -322,7 +322,7 @@ export default async function Home() {
               View all neighbourhoods
             </Link>
           </div>
-          <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+          <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             {featuredNeighbourhoods.map((area) => (
               <Link
                 key={area.href}
@@ -344,7 +344,7 @@ export default async function Home() {
               <h2 className={`${sectionHeadingClass} max-w-3xl`}>
                 Find venues by London area.
               </h2>
-              <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 md:mx-0 md:flex-wrap md:justify-end md:overflow-visible md:px-0 md:pb-0">
+              <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 md:mx-0 md:flex-wrap md:justify-end md:overflow-visible md:px-0 md:pb-0">
                 {featuredAreaLinks.map((area) => (
                   <Link
                     key={area.href}
