@@ -82,10 +82,15 @@ function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
 }
 
+function hasFacilityPhoto(facility: ReturnType<typeof toDirectoryFacility>) {
+  return Boolean(facility.imageUrl || facility.galleryImages?.some((image) => image.url));
+}
+
 export default async function Home() {
   const facilities = await getFacilities();
   const directoryFacilities = facilities.map(toDirectoryFacility);
   const selectedFacilities = [...directoryFacilities]
+    .filter(hasFacilityPhoto)
     .sort((a, b) => selectionScore(b) - selectionScore(a))
     .slice(0, Math.min(3, directoryFacilities.length));
   const heroImage = facilities.find((facility) => facility.images.length > 0)?.images[0];
