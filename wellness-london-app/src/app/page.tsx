@@ -44,43 +44,39 @@ const serviceLinks = [
   },
 ];
 
-const venueTypeLinks = [
-  { href: "/explore", title: "Bathhouses", text: "Thermal circuits, pools and longer-format bathing spaces." },
-  { href: "/recovery-london", title: "Recovery studios", text: "Focused spaces for cold, compression, massage and post-training routines." },
-  { href: "/longevity-london", title: "Longevity clinics", text: "Clinics and technology-led spaces for preventative wellbeing and optimisation." },
-  { href: "/luxury-wellness-spaces-london", title: "Spas and hotel spas", text: "Polished venues for slower treatments, privacy and a higher-touch setting." },
-];
-
-const useCaseLinks = [
+const browseIntentionLinks = [
+  ...pillarPages.map((pillar) => ({
+    href: pillar.href,
+    title: pillar.label,
+    eyebrow: pillar.eyebrow,
+    text: pillar.intro,
+  })),
   {
     href: "/quiet-wellness-spaces-london",
     title: "Quiet recovery",
-    text: "Calm spaces for switching off and rebuilding capacity.",
-  },
-  {
-    href: "/recover",
-    title: "Post-gym recovery",
-    text: "Practical venues for heat, cold, compression and bodywork after training.",
-  },
-  {
-    href: "/luxury-wellness-spaces-london",
-    title: "Luxury reset",
-    text: "Elevated spaces where setting, privacy and service matter.",
+    eyebrow: "Low-stimulation spaces",
+    text: "Calm venues for switching off and rebuilding capacity.",
   },
   {
     href: "/beginner-friendly-wellness-london",
     title: "Beginner friendly",
+    eyebrow: "Easy first visits",
     text: "Clear, accessible places to try a treatment without guesswork.",
+  },
+  {
+    href: "/luxury-wellness-spaces-london",
+    title: "Luxury reset",
+    eyebrow: "Higher-touch settings",
+    text: "Elevated spaces where setting, privacy and service matter.",
   },
 ];
 
-const sectionHeadingClass = "font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-4xl md:text-5xl";
+const sectionHeadingClass = "font-serif text-[2.15rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-4xl md:text-5xl";
 const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
 const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
 const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
 const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
 const lightCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
-const darkCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:min-w-0 sm:p-6";
 
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
@@ -143,22 +139,22 @@ export default async function Home() {
 
       <HomeVenueSearch facilities={directoryFacilities} />
 
-      <section className="px-5 pb-5 pt-1 sm:px-6 sm:pb-10 sm:pt-2">
-        <div className="editorial-shell grid gap-4 border-b border-[#d8cebf]/70 pb-7 md:grid-cols-[0.85fr_1.15fr] md:items-end md:pb-10">
+      <section className="px-5 pb-4 pt-1 sm:px-6 sm:pb-8 sm:pt-2">
+        <div className="editorial-shell grid gap-4 border-b border-[#d8cebf]/70 pb-6 md:grid-cols-[0.85fr_1.15fr] md:items-end md:pb-8">
           <p className="editorial-eyebrow">A considered London guide</p>
           <p className="max-w-3xl text-lg leading-7 text-[#4f473c] sm:text-2xl sm:leading-10">
-            Well+ curates spaces by service, venue type, location and use case — so you can compare what is offered, where it is, and what it is genuinely best for.
+            Well+ curates spaces by service, location and use case — so you can compare what is offered, where it is, and what it is genuinely best for.
           </p>
         </div>
       </section>
 
       {selectedFacilities.length > 0 ? (
-        <section id="featured" className="px-5 py-5 sm:px-6 sm:py-12 md:py-16">
+        <section id="featured" className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-7 flex flex-col gap-4 sm:mb-10 md:flex-row md:items-end md:justify-between">
+            <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
-                <h2 className="max-w-3xl font-serif text-[2.25rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
+                <h2 className="max-w-3xl font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
                   Featured spaces worth starting with.
                 </h2>
               </div>
@@ -169,7 +165,7 @@ export default async function Home() {
             <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
                 <div key={facility.slug} className="min-w-[74%] snap-start sm:min-w-0">
-                  <FacilityCard facility={facility} source="homepage_featured" />
+                  <FacilityCard facility={facility} source="homepage_featured" compact />
                 </div>
               ))}
             </div>
@@ -177,95 +173,8 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Wellness goals</p>
-              <h2 className={sectionHeadingClass}>
-                Start with a goal.
-              </h2>
-            </div>
-            <p className={sectionLeadClass}>
-              Use these broader guides for recovery, performance, reset, optimisation and longevity before comparing specific services or locations.
-            </p>
-          </div>
-
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-5`}>
-            {pillarPages.map((pillar) => (
-              <Link
-                key={pillar.slug}
-                href={pillar.href}
-                className="group flex min-w-[74%] snap-start flex-col justify-between rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-h-[235px] sm:min-w-0 sm:p-6"
-              >
-                <div>
-                  <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
-                  <h3 className="mb-2 text-[1.45rem] font-medium leading-tight tracking-[-0.025em] group-hover:underline group-hover:underline-offset-4 sm:text-[1.75rem]">
-                    {pillar.label}
-                  </h3>
-                  <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{pillar.intro}</p>
-                </div>
-                <span className="mt-5 inline-block text-xs font-medium text-[#29241d] underline underline-offset-4 sm:text-sm">Explore {pillar.label.toLowerCase()}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#29241d] px-5 py-11 text-[#fbf8f1] sm:px-6 md:py-18">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Venue types</p>
-            <h2 className={sectionHeadingClass}>
-              Browse by venue type.
-            </h2>
-          </div>
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4`}>
-            {venueTypeLinks.map((collection) => (
-              <Link
-                key={collection.title}
-                href={collection.href}
-                className={darkCarouselCardClass}
-              >
-                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
-                <p className="text-sm leading-6 text-[#fbf8f1]/72 sm:leading-7">{collection.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Use cases</p>
-              <h2 className={sectionHeadingClass}>
-                Choose by situation.
-              </h2>
-            </div>
-            <p className={sectionLeadClass}>
-              Need a quiet reset, a post-gym recovery stop, a higher-touch spa setting or a clear first visit? Start here.
-            </p>
-          </div>
-
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
-            {useCaseLinks.map((collection) => (
-              <Link
-                key={collection.title}
-                href={collection.href}
-                className={lightCarouselCardClass}
-              >
-                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
-                <p className={editorialCardTextClass}>{collection.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#f4efe6] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-9 sm:pb-12">
+      <section className="bg-[#f4efe6] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Services</p>
@@ -274,7 +183,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className={sectionLeadClass}>
-              Fast routes into service-led London guides for sauna, cold plunge, cryotherapy, contrast therapy and recovery treatments.
+              Fast routes into London guides for sauna, cold plunge, cryotherapy, contrast therapy and recovery treatments.
             </p>
           </div>
 
@@ -293,24 +202,8 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-10 sm:px-6 md:py-16">
-        <div className="mx-auto max-w-6xl rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-6 sm:grid sm:grid-cols-[0.8fr_1.2fr] sm:gap-8 sm:p-8 md:p-10">
-          <div>
-            <p className="editorial-eyebrow mb-3">How we curate</p>
-            <h2 className={sectionHeadingClass}>
-              More than a list of venues.
-            </h2>
-          </div>
-          <div className="-mx-6 mt-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-2 text-sm leading-6 text-[#5f574c] sm:mx-0 sm:mt-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:leading-7">
-            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
-            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
-            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-5 pb-14 sm:px-6 md:pb-18">
-        <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8">
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Neighbourhood guides</p>
@@ -337,8 +230,8 @@ export default async function Home() {
       </section>
 
       {featuredAreaLinks.length > 0 ? (
-        <section className="bg-[#fbf8f1] px-5 pb-14 sm:px-6 md:pb-18">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8">
+        <section className="bg-[#fbf8f1] px-5 pb-8 sm:px-6 sm:pb-12 md:pb-14">
+          <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
             <p className="editorial-eyebrow mb-3">Browse by area</p>
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <h2 className={`${sectionHeadingClass} max-w-3xl`}>
@@ -359,6 +252,52 @@ export default async function Home() {
           </div>
         </section>
       ) : null}
+
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Browse by intention</p>
+              <h2 className={sectionHeadingClass}>
+                Choose the right starting point.
+              </h2>
+            </div>
+            <p className={sectionLeadClass}>
+              Use these guides when you know the outcome you want but not yet the venue, service or neighbourhood.
+            </p>
+          </div>
+
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
+            {browseIntentionLinks.map((collection) => (
+              <Link
+                key={`${collection.href}-${collection.title}`}
+                href={collection.href}
+                className={lightCarouselCardClass}
+              >
+                <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{collection.eyebrow}</p>
+                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
+                <p className={editorialCardTextClass}>{collection.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 md:py-14">
+        <div className="mx-auto max-w-6xl rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-6 sm:grid sm:grid-cols-[0.8fr_1.2fr] sm:gap-8 sm:p-8 md:p-10">
+          <div>
+            <p className="editorial-eyebrow mb-3">How we curate</p>
+            <h2 className={sectionHeadingClass}>
+              More than a list of venues.
+            </h2>
+          </div>
+          <div className="-mx-6 mt-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-2 text-sm leading-6 text-[#5f574c] sm:mx-0 sm:mt-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:leading-7">
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
+            <p className="min-w-[74%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
