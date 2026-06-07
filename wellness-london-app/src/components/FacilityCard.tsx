@@ -159,24 +159,18 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const frameClass = compact ? compactMediaFrameClass : mediaFrameClass;
   const titleClass = compact ? compactMediaTitleClass : mediaTitleClass;
 
+  const trackCardClick = () =>
+    trackEvent("listing_card_click", {
+      facility_name: facility.name,
+      facility_slug: facility.slug,
+      service_type: source,
+      area: areaLabel,
+      neighbourhood: neighbourhoodLabel,
+      page_path: window.location.pathname,
+    });
+
   return (
     <article className="group relative flex min-w-0 flex-col overflow-hidden rounded-[1.25rem] border border-[#d8cebf]/70 bg-[#fbf8f1] shadow-[0_18px_45px_rgba(41,36,29,0.055)] transition duration-500 hover:-translate-y-[2px] hover:shadow-[0_28px_70px_rgba(41,36,29,0.1)] sm:rounded-[1.4rem]">
-      <Link
-        href={cardHref}
-        className="absolute inset-0 z-20"
-        aria-label={`View ${facility.name}`}
-        onClick={() =>
-          trackEvent("listing_card_click", {
-            facility_name: facility.name,
-            facility_slug: facility.slug,
-            service_type: source,
-            area: areaLabel,
-            neighbourhood: neighbourhoodLabel,
-            page_path: window.location.pathname,
-          })
-        }
-      />
-
       <div className="relative overflow-hidden bg-[#d8cebf]">
         {cardImages.length > 0 ? (
           <>
@@ -203,14 +197,19 @@ export default function FacilityCard({ facility, source = "directory", compact =
                 </span>
               ) : null}
             </div>
-            <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+            <Link
+              href={cardHref}
+              aria-label={`View ${facility.name}`}
+              onClick={trackCardClick}
+              className="absolute bottom-0 left-0 right-0 z-10 block p-4 text-white sm:p-7"
+            >
               <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
               <h3 className={titleClass}>{facility.name}</h3>
               <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
-            </div>
+            </Link>
           </>
         ) : (
-          <div className={frameClass}>
+          <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${frameClass}`}>
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
             <div className="editorial-image-grain" />
             <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
@@ -223,11 +222,11 @@ export default function FacilityCard({ facility, source = "directory", compact =
               <h3 className="max-w-[92%] font-serif text-[1.7rem] font-normal leading-[0.96] tracking-[-0.045em] text-[#29241d] line-clamp-2 sm:min-h-[6.4rem] sm:max-w-[90%] sm:text-[2.6rem]">{facility.name}</h3>
               <p className="mt-2 text-[9px] uppercase tracking-[0.16em] text-[#756957] sm:mt-3 sm:text-[10px] sm:tracking-[0.18em]">{atmosphericDescriptor}</p>
             </div>
-          </div>
+          </Link>
         )}
       </div>
 
-      <div className={`flex flex-1 flex-col px-5 ${compact ? "py-3 sm:py-5" : "py-4 sm:px-6 sm:py-7"}`}>
+      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`flex flex-1 flex-col px-5 ${compact ? "py-3 sm:py-5" : "py-4 sm:px-6 sm:py-7"}`}>
         <p className={`${compact ? "mb-3 text-[13px] leading-5" : "mb-5 text-[14px] leading-6 sm:mb-6 sm:text-[15px] sm:leading-7"} text-[#5f574c] line-clamp-2`}>
           {summary}
         </p>
@@ -239,7 +238,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
             {rating ? <span>{rating}</span> : null}
           </p>
         </div>
-      </div>
+      </Link>
     </article>
   );
 }
