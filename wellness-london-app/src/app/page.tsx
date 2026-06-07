@@ -78,6 +78,9 @@ const sectionHeadingClass = "font-serif text-[2.2rem] font-normal leading-[1.02]
 const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
 const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
 const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
+const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
+const lightCarouselCardClass = "group min-w-[82%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
+const darkCarouselCardClass = "group min-w-[82%] snap-start rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:min-w-0 sm:p-6";
 
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
@@ -163,9 +166,11 @@ export default async function Home() {
                 Explore all venues
               </Link>
             </div>
-            <div className="grid gap-5 sm:gap-8 md:grid-cols-3">
+            <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
-                <FacilityCard key={facility.slug} facility={facility} source="homepage_featured" />
+                <div key={facility.slug} className="min-w-[82%] snap-start sm:min-w-0">
+                  <FacilityCard facility={facility} source="homepage_featured" />
+                </div>
               ))}
             </div>
           </div>
@@ -186,12 +191,12 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 lg:grid-cols-5">
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-5`}>
             {pillarPages.map((pillar) => (
               <Link
                 key={pillar.slug}
                 href={pillar.href}
-                className="group min-w-[78%] rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:flex sm:min-h-[235px] sm:min-w-0 sm:flex-col sm:justify-between sm:p-6"
+                className="group flex min-w-[82%] snap-start flex-col justify-between rounded-[1.2rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-h-[235px] sm:min-w-0 sm:p-6"
               >
                 <div>
                   <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
@@ -208,19 +213,19 @@ export default async function Home() {
       </section>
 
       <section className="bg-[#29241d] px-5 py-11 text-[#fbf8f1] sm:px-6 md:py-18">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.86fr_1.14fr] md:items-start">
-          <div>
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Venue types</p>
             <h2 className={sectionHeadingClass}>
               Browse by venue type.
             </h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4`}>
             {venueTypeLinks.map((collection) => (
               <Link
                 key={collection.title}
                 href={collection.href}
-                className="group rounded-[1.1rem] border border-[#fbf8f1]/16 p-5 transition hover:border-[#fbf8f1]/45 hover:bg-[#fbf8f1]/5 sm:p-6"
+                className={darkCarouselCardClass}
               >
                 <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
                 <p className="text-sm leading-6 text-[#fbf8f1]/72 sm:leading-7">{collection.text}</p>
@@ -244,12 +249,12 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
             {useCaseLinks.map((collection) => (
               <Link
                 key={collection.title}
                 href={collection.href}
-                className="group rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6"
+                className={lightCarouselCardClass}
               >
                 <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
                 <p className={editorialCardTextClass}>{collection.text}</p>
@@ -273,12 +278,12 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 xl:grid-cols-5">
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-5`}>
             {serviceLinks.map((treatment) => (
               <Link
                 key={treatment.href}
                 href={treatment.href}
-                className="group min-w-[78%] rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
+                className="group min-w-[82%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
                 <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
@@ -289,17 +294,17 @@ export default async function Home() {
       </section>
 
       <section className="bg-[#fbf8f1] px-5 py-10 sm:px-6 md:py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-6 sm:p-8 md:grid-cols-[0.8fr_1.2fr] md:p-10">
+        <div className="mx-auto max-w-6xl rounded-[1.4rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-6 sm:grid sm:grid-cols-[0.8fr_1.2fr] sm:gap-8 sm:p-8 md:p-10">
           <div>
             <p className="editorial-eyebrow mb-3">How we curate</p>
             <h2 className={sectionHeadingClass}>
               More than a list of venues.
             </h2>
           </div>
-          <div className="grid gap-5 text-sm leading-6 text-[#5f574c] sm:grid-cols-3 sm:leading-7">
-            <p><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
-            <p><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
-            <p><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
+          <div className="-mx-6 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-2 text-sm leading-6 text-[#5f574c] sm:mx-0 sm:mt-0 sm:grid sm:snap-none sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 sm:leading-7">
+            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Atmosphere</span> The feel of the space, from design and lighting to pace and setting.</p>
+            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Usefulness</span> What the venue is genuinely best for: reset, recovery, contrast, performance or a slower spa visit.</p>
+            <p className="min-w-[78%] snap-start rounded-[1rem] border border-[#d8cebf]/70 bg-[#fbf8f1]/60 p-4 sm:min-w-0 sm:border-0 sm:bg-transparent sm:p-0"><span className="block text-[#29241d]">Clarity</span> Practical details that help you choose with confidence before you book.</p>
           </div>
         </div>
       </section>
@@ -317,12 +322,12 @@ export default async function Home() {
               View all neighbourhoods
             </Link>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
             {featuredNeighbourhoods.map((area) => (
               <Link
                 key={area.href}
                 href={area.href}
-                className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]"
+                className="min-w-max snap-start rounded-full border border-[#d8cebf] px-5 py-2.5 text-sm transition hover:bg-[#f4efe6] sm:min-w-0"
               >
                 {area.shortTitle}
               </Link>
@@ -339,12 +344,12 @@ export default async function Home() {
               <h2 className={`${sectionHeadingClass} max-w-3xl`}>
                 Find venues by London area.
               </h2>
-              <div className="flex flex-wrap gap-3 md:justify-end">
+              <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 md:mx-0 md:flex-wrap md:justify-end md:overflow-visible md:px-0 md:pb-0">
                 {featuredAreaLinks.map((area) => (
                   <Link
                     key={area.href}
                     href={area.href}
-                    className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]"
+                    className="min-w-max snap-start rounded-full border border-[#d8cebf] px-5 py-2.5 text-sm transition hover:bg-[#f4efe6] md:min-w-0"
                   >
                     {area.label}
                   </Link>
