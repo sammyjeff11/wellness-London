@@ -114,10 +114,26 @@ function formatRating(value?: string) {
   return match ? `${match[0]} Google` : value.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
 }
 
+function priceScaleFromAmount(amount: number) {
+  if (amount <= 25) return "£";
+  if (amount <= 50) return "££";
+  if (amount <= 100) return "£££";
+  return "££££";
+}
+
 function formatPrice(value?: string) {
   if (!value) return "";
-  if (value.toLowerCase().includes("pricing requires")) return "";
-  return value.startsWith("£") ? `From ${value}` : value;
+
+  const trimmed = value.trim();
+  if (trimmed.toLowerCase().includes("pricing requires")) return "";
+
+  const scaleMatch = trimmed.match(/£{1,4}/)?.[0];
+  const amountMatch = trimmed.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/);
+
+  if (amountMatch) return priceScaleFromAmount(Number(amountMatch[1]));
+  if (scaleMatch) return scaleMatch;
+
+  return trimmed;
 }
 
 export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
@@ -127,16 +143,13 @@ export default function FacilityCard({ facility, source = "directory", compact =
     .filter(Boolean)
     .join(" / ");
   const atmosphericDescriptor = getAtmosphericDescriptor(facility);
-  const price = formatPrice(facility.priceFrom || facility.priceRange);
+  const price = formatPrice(facility.priceRange || facility.priceFrom);
   const serviceLine = formatServiceLine(facility.services);
   const summary = primaryBestFor(facility);
   const rating = formatRating(facility.rating);
 
-  const galleryImages = facility.galleryImages?.length
-    ? facility.galleryImages.slice(0, 5)
-    : facility.imageUrl
-      ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }]
-      : [];
+  const primaryImage = facility.galleryImages?.find((image) => image.url) ||
+    (facility.imageUrl ? { url: facility.imageUrl, filename: facility.imageAlt || facility.name } : undefined);
 
   const cardHref = `/facility/${facility.slug}`;
   const frameClass = compact ? compactMediaFrameClass : mediaFrameClass;
@@ -162,33 +175,26 @@ export default function FacilityCard({ facility, source = "directory", compact =
 
       <div className="relative overflow-hidden bg-[#d8cebf]">
         <div className="flex snap-x snap-mandatory overflow-x-auto">
-          {galleryImages.length > 0 ? (
-            galleryImages.map((image, index) => (
-              <div key={`${image.url}-${index}`} className={frameClass}>
-                <SafeImage
-                  src={image.url}
-                  alt={image.filename || facility.name}
-                  fill
-                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
-                />
-                <div className="editorial-image-overlay" />
-                <div className="editorial-image-grain" />
-                <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
-                  {price ? <span className={pricePillClass}>{price}</span> : <span />}
-                  {galleryImages.length > 1 ? (
-                    <span className="inline-flex min-h-8 items-center rounded-full bg-black/30 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
-                      {index + 1} / {galleryImages.length}
-                    </span>
-                  ) : null}
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
-                  <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
-                  <h3 className={titleClass}>{facility.name}</h3>
-                  <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
-                </div>
+          {primaryImage ? (
+            <div className={frameClass}>
+              <SafeImage
+                src={primaryImage.url}
+                alt={primaryImage.filename || facility.name}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="z-0 object-cover transition duration-1000 group-hover:scale-[1.035]"
+              />
+              <div className="editorial-image-overlay" />
+              <div className="editorial-image-grain" />
+              <div className="absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3 sm:left-5 sm:right-5 sm:top-5">
+                {price ? <span className={pricePillClass}>{price}</span> : <span />}
               </div>
-            ))
+              <div className="absolute bottom-0 left-0 right-0 z-10 p-4 text-white sm:p-7">
+                <p className={mediaLocationClass}>{overlayLocation || "London"}</p>
+                <h3 className={titleClass}>{facility.name}</h3>
+                <p className={mediaDescriptorClass}>{atmosphericDescriptor}</p>
+              </div>
+            </div>
           ) : (
             <div className={frameClass}>
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]" />
