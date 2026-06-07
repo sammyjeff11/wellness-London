@@ -289,6 +289,36 @@ export default async function Home() {
         </div>
       </section>
 
+
+      <section className="bg-[#fbf8f1] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Use cases</p>
+              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
+                Choose by situation.
+              </h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              Need a quiet reset, a post-gym recovery stop, a higher-touch spa setting or a clear first visit? Start here.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {useCaseLinks.map((collection) => (
+              <Link
+                key={collection.title}
+                href={collection.href}
+                className="group rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6"
+              >
+                <h3 className="mb-2 text-2xl font-medium tracking-[-0.03em] group-hover:underline group-hover:underline-offset-4">{collection.title}</h3>
+                <p className="text-sm leading-7 text-[#5f574c]">{collection.text}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-[#f4efe6] px-5 py-9 sm:px-6 sm:py-14 md:py-16">
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-9 sm:pb-12">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
