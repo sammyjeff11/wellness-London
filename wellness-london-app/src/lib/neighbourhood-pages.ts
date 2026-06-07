@@ -39,8 +39,8 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
     relatedAreas: ["Hackney", "Hoxton", "London Fields", "The City"],
     relatedLinks: [
-      { href: "/cold-plunge-london", label: "Cold plunge in London" },
-      { href: "/contrast-therapy-london", label: "Contrast therapy in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
       { href: "/east-london-wellness", label: "East London wellness spaces" },
     ],
   },

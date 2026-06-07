@@ -37,9 +37,9 @@ function normalise(value: string) {
 
 const serviceLinks = [
   { href: "/sauna-london", label: "Sauna", keys: ["sauna", "infrared sauna", "traditional sauna"] },
-  { href: "/cold-plunge-london", label: "Cold plunge", keys: ["cold plunge", "ice bath", "cold exposure"] },
+  { href: "/cold-plunge-london", label: "Cold Plunge", keys: ["cold plunge", "ice bath", "cold exposure"] },
   { href: "/cryotherapy-london", label: "Cryotherapy", keys: ["cryotherapy", "cryo"] },
-  { href: "/contrast-therapy-london", label: "Contrast therapy", keys: ["contrast therapy", "sauna", "cold plunge"] },
+  { href: "/contrast-therapy-london", label: "Contrast Therapy", keys: ["contrast therapy", "sauna", "cold plunge"] },
   { href: "/recovery-london", label: "Recovery", keys: ["recovery", "compression", "sports recovery", "massage"] },
   { href: "/longevity-london", label: "Longevity", keys: ["longevity", "red light", "hbot", "hyperbaric"] },
 ];

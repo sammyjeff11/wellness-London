@@ -6,6 +6,7 @@ import HomeVenueSearch from "@/components/HomeVenueSearch";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
+import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export const metadata: Metadata = {
   title: "Well+ London | The London Wellness Edit",
@@ -14,38 +15,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const serviceLinks = [
-  {
-    href: "/sauna-london",
-    label: "Saunas",
-    description: "Infrared, traditional and private sauna spaces for heat-led recovery and reset.",
-  },
-  {
-    href: "/cold-plunge-london",
-    label: "Cold plunge",
-    description: "Cold plunge, ice bath and cold exposure venues across London.",
-  },
-  {
-    href: "/cryotherapy-london",
-    label: "Cryotherapy",
-    description: "Whole-body and localised cryotherapy spaces for structured recovery sessions.",
-  },
-  {
-    href: "/contrast-therapy-london",
-    label: "Contrast therapy",
-    description: "Spaces combining heat and cold in one structured recovery session.",
-  },
-  {
-    href: "/red-light-therapy-london",
-    label: "Red light therapy",
-    description: "Technology-led light therapy sessions in recovery, optimisation and clinic settings.",
-  },
-  {
-    href: "/hbot-london",
-    label: "HBOT",
-    description: "Hyperbaric oxygen therapy options in specialist recovery and longevity settings.",
-  },
-];
+const serviceLinks = serviceTaxonomy
+  .filter((service) => service.href)
+  .slice(0, 6)
+  .map((service) => ({
+    href: service.href,
+    label: service.name,
+    description: service.description,
+  }));
 
 const venueTypeLinks = [
   {

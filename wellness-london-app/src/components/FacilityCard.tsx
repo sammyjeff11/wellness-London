@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
+import { canonicaliseServiceList } from "@/lib/taxonomy";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -104,7 +105,7 @@ function getAtmosphericDescriptor(facility: FacilityCardFacility) {
 
 function formatServiceLine(services?: string[]) {
   if (!services || services.length === 0) return "";
-  return services.slice(0, 3).join(" · ");
+  return canonicaliseServiceList(services).slice(0, 3).join(" · ");
 }
 
 function formatRating(value?: string) {

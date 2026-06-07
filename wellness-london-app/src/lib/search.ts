@@ -1,10 +1,12 @@
+import { serviceTaxonomy } from "@/lib/taxonomy";
+
+const serviceSearchAliases = Object.fromEntries(serviceTaxonomy.map((service) => [service.name.toLowerCase(), [service.slug, ...(service.synonyms || [])]]));
+
 const searchAliases: Record<string, string[]> = {
+  ...serviceSearchAliases,
   lowlu: ["low loo", "lowlou", "low lu", "lulu"],
   "rooftop saunas": ["roof top sauna", "roof top saunas", "rooftop sauna"],
-  "sauna and plunge": ["sauna plunge", "sauna & plunge", "sauna cold plunge"],
-  "cold plunge": ["ice bath", "ice baths", "cold tub", "cold dip", "cold therapy"],
-  cryotherapy: ["cryo", "cryotherpay", "cryotheraphy"],
-  "red light": ["redlight", "red light therapy", "led therapy"],
+  cryotherapy: ["cryotherpay", "cryotheraphy", ...(serviceSearchAliases.cryotherapy || [])],
   shoreditch: ["shore ditch"],
   "canary wharf": ["canary warf", "canarywarf"],
   "kentish town": ["kentish"],
