@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
 
 export type AirtableImage = {
   id: string;
@@ -232,19 +233,28 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
     }));
 }
 
+const serviceKeyAliases: Partial<Record<ServiceSlug, ServiceKey[]>> = {
+  sauna: ["sauna"],
+  "infrared-sauna": ["sauna"],
+  "cold-plunge": ["cold-plunge"],
+  cryotherapy: ["cryotherapy"],
+  "red-light-therapy": ["red-light"],
+  "hyperbaric-oxygen-therapy": ["hbot"],
+  breathwork: ["breathwork"],
+  massage: ["recovery"],
+  "float-therapy": ["recovery"],
+  "contrast-therapy": ["sauna", "cold-plunge", "recovery"],
+};
+
 function normaliseServiceKeys(services: string[]): ServiceKey[] {
   const keys = new Set<ServiceKey>();
 
   services.forEach((service) => {
-    const value = service.toLowerCase();
+    const taxonomySlug = canonicalServiceSlug(service);
+    if (taxonomySlug) serviceKeyAliases[taxonomySlug]?.forEach((key) => keys.add(key));
 
-    if (value.includes("sauna") || value.includes("infrared") || value.includes("finnish") || value.includes("steam") || value.includes("thermal")) keys.add("sauna");
-    if (value.includes("cold") || value.includes("plunge") || value.includes("ice bath") || value.includes("ice tub")) keys.add("cold-plunge");
-    if (value.includes("cryo")) keys.add("cryotherapy");
-    if (value.includes("recovery") || value.includes("compression") || value.includes("massage") || value.includes("physiotherapy") || value.includes("stretch")) keys.add("recovery");
-    if (value.includes("red light")) keys.add("red-light");
-    if (value.includes("hbot") || value.includes("hyperbaric")) keys.add("hbot");
-    if (value.includes("breath")) keys.add("breathwork");
+    const value = service.toLowerCase();
+    if (value.includes("recovery") || value.includes("compression") || value.includes("physiotherapy") || value.includes("stretch")) keys.add("recovery");
     if (value.includes("yoga")) keys.add("yoga");
     if (value.includes("meditation") || value.includes("sound bath")) keys.add("meditation");
   });
@@ -256,7 +266,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
   const activityTagsStandardized = normaliseList(record.fields["Activity Tags Standardized"]);
   const activityDisplayLabels = normaliseList(record.fields["Activity Display Labels"]);
-  const servicesOffered = normaliseList(firstDefined(record.fields["Activity Display Labels"], record.fields["Activity Tags Standardized"], record.fields.Services, record.fields["Services Offered"]));
+  const servicesOffered = canonicaliseServiceList(normaliseList(firstDefined(record.fields["Activity Display Labels"], record.fields["Activity Tags Standardized"], record.fields.Services, record.fields["Services Offered"])));
   const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);

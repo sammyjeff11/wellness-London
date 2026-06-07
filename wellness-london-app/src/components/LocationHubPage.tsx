@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
+import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export type LocationHubConfig = {
   area: string;
@@ -14,15 +15,13 @@ type LocationHubPageProps = {
   facilities: ServiceDirectoryFacility[];
 };
 
-const serviceLinks = [
-  { href: "/sauna-london", label: "Saunas in London", keys: ["sauna"] },
-  { href: "/cold-plunge-london", label: "Cold plunge in London", keys: ["cold-plunge", "cold plunge", "ice bath"] },
-  { href: "/cryotherapy-london", label: "Cryotherapy in London", keys: ["cryotherapy", "cryo"] },
-  { href: "/contrast-therapy-london", label: "Contrast therapy in London", keys: ["contrast", "sauna", "cold"] },
-  { href: "/red-light-therapy-london", label: "Red light therapy in London", keys: ["red-light", "red light"] },
-  { href: "/hbot-london", label: "HBOT in London", keys: ["hbot", "hyperbaric"] },
-  { href: "/recovery-london", label: "Recovery spaces in London", keys: ["recovery", "compression", "massage"] },
-];
+const serviceLinks = serviceTaxonomy
+  .filter((service) => service.href)
+  .map((service) => ({
+    href: service.href,
+    label: `${service.name} in London`,
+    keys: [service.slug, service.name, ...(service.synonyms || [])].map((term) => term.toLowerCase()),
+  }));
 
 function getAvailableServiceLinks(facilities: ServiceDirectoryFacility[]) {
   const serviceText = facilities

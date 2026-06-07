@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { pillarPages } from "@/lib/pillar-pages";
+import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export const metadata: Metadata = {
   title: "Explore London Wellness | The Well Edit",
@@ -11,13 +12,9 @@ export const metadata: Metadata = {
   },
 };
 
-const treatmentLinks = [
-  { href: "/sauna-london", label: "Saunas" },
-  { href: "/cold-plunge-london", label: "Cold Plunge" },
-  { href: "/cryotherapy-london", label: "Cryotherapy" },
-  { href: "/contrast-therapy-london", label: "Contrast Therapy" },
-  { href: "/recovery-london", label: "Recovery Clubs" },
-];
+const treatmentLinks = serviceTaxonomy
+  .filter((service) => service.href)
+  .map((service) => ({ href: service.href, label: service.name, description: service.description }));
 
 export default function ExplorePage() {
   return (

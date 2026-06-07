@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { serviceTaxonomy } from "@/lib/taxonomy";
 
 const pages = [
   {
@@ -25,13 +26,9 @@ const pages = [
   },
   {
     title: "Treatments and services",
-    links: [
-      { href: "/sauna-london", label: "Saunas in London" },
-      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
-      { href: "/cryotherapy-london", label: "Cryotherapy in London" },
-      { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
-      { href: "/recovery-london", label: "Recovery Spaces in London" },
-    ],
+    links: serviceTaxonomy
+      .filter((service) => service.href)
+      .map((service) => ({ href: service.href, label: `${service.name} in London` })),
   },
   {
     title: "Browse by area",

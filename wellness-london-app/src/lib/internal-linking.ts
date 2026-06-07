@@ -9,14 +9,14 @@ export type InternalLink = {
 
 const SERVICE_KEY_LABELS: Record<ServiceKey, string> = {
   sauna: "Sauna",
-  "cold-plunge": "Cold plunge",
+  "cold-plunge": "Cold Plunge",
   cryotherapy: "Cryotherapy",
   recovery: "Recovery",
   breathwork: "Breathwork",
   yoga: "Yoga",
   meditation: "Meditation",
-  "red-light": "Red light therapy",
-  hbot: "HBOT",
+  "red-light": "Red Light Therapy",
+  hbot: "Hyperbaric Oxygen Therapy",
 };
 
 function uniqueByHref<T extends { href: string }>(links: T[]) {
