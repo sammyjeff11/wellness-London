@@ -13,6 +13,7 @@ import {
 import { coldPlungeContent } from "@/content/service-page-content";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
 export const metadata: Metadata = {
   title: "Best Cold Plunge & Ice Baths in London | Well+",
@@ -25,6 +26,7 @@ export default async function ColdPlungeLondonPage() {
   const facilities = await getFacilities();
   const coldPlungeFacilities = facilities.filter((facility) => facility.serviceKeys.includes("cold-plunge"));
   const heroImage = coldPlungeFacilities.find((facility) => facility.images.length > 0)?.images[0];
+  const relatedLinks = [...coldPlungeContent.internalLinks, ...buildServiceLocationLinks(coldPlungeFacilities, "Cold plunge")];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -70,7 +72,7 @@ export default async function ColdPlungeLondonPage() {
       <ServiceDirectorySection facilities={coldPlungeFacilities.map(toDirectoryFacility)} serviceType="cold-plunge" emptyTitle="No cold plunge listings yet" emptyText="We are still curating cold plunge spaces for this guide." />
       <ServiceGuidanceSection title="How to choose a cold plunge in London" points={coldPlungeContent.guidancePoints} />
       <ServiceInsightSection panels={coldPlungeContent.insightPanels} />
-      <ServiceRelatedSection links={coldPlungeContent.internalLinks} />
+      <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title="Cold Plunge London FAQs" faqs={coldPlungeContent.faqs} />
     </main>
   );

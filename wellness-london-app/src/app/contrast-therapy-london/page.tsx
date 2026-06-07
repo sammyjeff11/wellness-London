@@ -5,6 +5,7 @@ import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
 export const metadata: Metadata = {
   title: "Contrast Therapy London | Sauna & Cold Plunge Spaces | Well+",
@@ -20,6 +21,12 @@ const faqs = [
   { question: "What is contrast therapy?", answer: "Contrast therapy usually involves alternating between heat and cold exposure, commonly sauna and cold plunge or ice bath sessions." },
   { question: "What should I check before booking contrast therapy?", answer: "Check the heat and cold setup, whether the session is guided, shower and towel provision, changing facilities, pricing and whether beginners are supported." },
   { question: "Is contrast therapy the same as cold plunge?", answer: "No. Cold plunge is one part of the experience. Contrast therapy normally combines cold exposure with heat exposure, usually sauna." },
+];
+
+const internalLinks = [
+  { href: "/sauna-london", label: "Sauna in London", text: "Compare heat-led venues that often sit at the centre of a contrast therapy routine." },
+  { href: "/cold-plunge-london", label: "Cold plunge in London", text: "Explore cold exposure venues that pair naturally with sauna and heat sessions." },
+  { href: "/recovery-london", label: "Recovery spaces in London", text: "Browse broader recovery studios offering heat, cold, compression and performance-led support." },
 ];
 
 function isContrastFacility(facility: ReturnType<typeof toDirectoryFacility>) {
@@ -40,6 +47,10 @@ export default async function ContrastTherapyLondonPage() {
   const contrastFacilities = directoryFacilities
     .filter(isContrastFacility)
     .slice(0, 9);
+  const sourceFacilities = facilities.filter((facility) =>
+    contrastFacilities.some((directoryFacility) => directoryFacility.slug === facility.slug),
+  );
+  const relatedLinks = [...internalLinks, ...buildServiceLocationLinks(sourceFacilities, "Contrast therapy")];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -127,6 +138,24 @@ export default async function ContrastTherapyLondonPage() {
           <div className="grid gap-y-12 sm:gap-y-16 md:grid-cols-3 md:gap-x-8">
             {contrastFacilities.map((facility) => (
               <FacilityCard key={facility.slug} facility={facility} source="contrast-therapy" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 border-b border-[#d8cebf] pb-5">
+            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Continue exploring</p>
+            <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related contrast therapy guides</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {relatedLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
+                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
+                <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>
+                <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
+              </Link>
             ))}
           </div>
         </div>

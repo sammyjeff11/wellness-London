@@ -15,16 +15,32 @@ type LocationHubPageProps = {
 };
 
 const serviceLinks = [
-  { href: "/sauna-london", label: "Saunas in London" },
-  { href: "/cold-plunge-london", label: "Cold plunge in London" },
-  { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+  { href: "/sauna-london", label: "Saunas in London", keys: ["sauna"] },
+  { href: "/cold-plunge-london", label: "Cold plunge in London", keys: ["cold-plunge", "cold plunge", "ice bath"] },
+  { href: "/cryotherapy-london", label: "Cryotherapy in London", keys: ["cryotherapy", "cryo"] },
+  { href: "/contrast-therapy-london", label: "Contrast therapy in London", keys: ["contrast", "sauna", "cold"] },
+  { href: "/red-light-therapy-london", label: "Red light therapy in London", keys: ["red-light", "red light"] },
+  { href: "/hbot-london", label: "HBOT in London", keys: ["hbot", "hyperbaric"] },
+  { href: "/recovery-london", label: "Recovery spaces in London", keys: ["recovery", "compression", "massage"] },
 ];
+
+function getAvailableServiceLinks(facilities: ServiceDirectoryFacility[]) {
+  const serviceText = facilities
+    .flatMap((facility) => [...(facility.services || []), ...(facility.serviceKeys || []), ...(facility.bestFor || [])])
+    .join(" ")
+    .toLowerCase();
+
+  const available = serviceLinks.filter((service) => service.keys.some((key) => serviceText.includes(key)));
+  return available.length > 0 ? available : serviceLinks.slice(0, 3);
+}
 
 export default function LocationHubPage({ config, facilities }: LocationHubPageProps) {
   const matchingFacilities = facilities.filter((facility) => {
     const area = facility.areaGroup || facility.location || "";
     return area === config.area || facility.location === config.area;
   });
+
+  const availableServiceLinks = getAvailableServiceLinks(matchingFacilities);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -38,7 +54,7 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
             {config.intro}
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            {serviceLinks.map((link) => (
+            {availableServiceLinks.map((link) => (
               <Link key={link.href} href={link.href} className="border border-[#d8cebf] px-4 py-3 text-sm text-[#29241d] transition hover:bg-[#fbf8f1]">
                 {link.label}
               </Link>

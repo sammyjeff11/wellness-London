@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import ServiceDirectory from "@/components/ServiceDirectory";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
 export const metadata: Metadata = {
   title: "HBOT London | Hyperbaric Oxygen Providers & Booking Guide | Well+",
@@ -49,6 +50,8 @@ const faqs = [
 export default async function HbotLondonPage() {
   const facilities = await getFacilities();
   const hbotFacilities = facilities.filter((facility) => facility.serviceKeys.includes("hbot"));
+
+  const relatedLinks = [...internalLinks, ...buildServiceLocationLinks(hbotFacilities, "HBOT")];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -134,7 +137,7 @@ export default async function HbotLondonPage() {
             <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related guides</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
-            {internalLinks.map((link) => (
+            {relatedLinks.map((link) => (
               <Link key={link.href} href={link.href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
                 <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>

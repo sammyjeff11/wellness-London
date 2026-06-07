@@ -13,6 +13,7 @@ import {
 import { cryotherapyContent } from "@/content/service-page-content";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
 export const metadata: Metadata = {
   title: "Best Cryotherapy in London | Whole Body & Recovery Studios | Well+",
@@ -25,6 +26,7 @@ export default async function CryotherapyLondonPage() {
   const facilities = await getFacilities();
   const cryotherapyFacilities = facilities.filter((facility) => facility.serviceKeys.includes("cryotherapy"));
   const heroImage = cryotherapyFacilities.find((facility) => facility.images.length > 0)?.images[0];
+  const relatedLinks = [...cryotherapyContent.internalLinks, ...buildServiceLocationLinks(cryotherapyFacilities, "Cryotherapy")];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -70,7 +72,7 @@ export default async function CryotherapyLondonPage() {
       <ServiceDirectorySection facilities={cryotherapyFacilities.map(toDirectoryFacility)} serviceType="cryotherapy" emptyTitle="No cryotherapy listings yet" emptyText="We are still curating cryotherapy studios for this guide." />
       <ServiceGuidanceSection title="How to choose cryotherapy in London" points={cryotherapyContent.guidancePoints} />
       <ServiceInsightSection panels={cryotherapyContent.insightPanels} />
-      <ServiceRelatedSection links={cryotherapyContent.internalLinks} />
+      <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title="Cryotherapy London FAQs" faqs={cryotherapyContent.faqs} />
     </main>
   );
