@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import HomeVenueSearch from "@/components/HomeVenueSearch";
@@ -109,7 +109,7 @@ export default async function Home() {
         <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
           <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
             {heroImage ? (
-              <Image
+              <SafeImage
                 src={heroImage.url}
                 alt={heroImage.filename || "Curated London wellness and recovery space"}
                 fill

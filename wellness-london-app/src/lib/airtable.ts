@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { safeImageUrl } from "@/lib/image-utils";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
 
 export type AirtableImage = {
@@ -224,13 +225,19 @@ function createSlug(value: string, fallback: string): string {
 
 function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage[] {
   if (!value) return [];
-  return value
-    .filter((image) => image.url)
-    .map((image) => ({
-      id: image.id || image.url || "",
-      url: image.url || "",
+
+  return value.reduce<AirtableImage[]>((images, image) => {
+    const url = safeImageUrl(image.url);
+    if (!url) return images;
+
+    images.push({
+      id: image.id || url,
+      url,
       filename: image.filename || "Well+ image",
-    }));
+    });
+
+    return images;
+  }, []);
 }
 
 const serviceKeyAliases: Partial<Record<ServiceSlug, ServiceKey[]>> = {

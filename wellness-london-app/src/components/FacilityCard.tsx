@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { canonicaliseServiceList } from "@/lib/taxonomy";
@@ -165,7 +165,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
           {galleryImages.length > 0 ? (
             galleryImages.map((image, index) => (
               <div key={`${image.url}-${index}`} className={frameClass}>
-                <Image
+                <SafeImage
                   src={image.url}
                   alt={image.filename || facility.name}
                   fill

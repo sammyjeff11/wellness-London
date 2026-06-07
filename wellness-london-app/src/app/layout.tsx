@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
 import { SITE_URL } from "@/lib/site";
 import "./globals.css";
-
-const editorialSerif = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-editorial-serif",
-  display: "swap",
-});
-
-const cleanSans = Inter({
-  subsets: ["latin"],
-  variable: "--font-clean-sans",
-  display: "swap",
-});
 
 const siteUrl = new URL(SITE_URL);
 const siteDescription =
@@ -61,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${editorialSerif.variable} ${cleanSans.variable} h-full antialiased`}>
+    <html lang="en" className="h-full antialiased">
       <body className="min-h-full flex flex-col bg-[#f4efe6] text-[#29241d]">
         {gaId && (
           <>
