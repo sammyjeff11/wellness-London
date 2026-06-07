@@ -60,6 +60,15 @@ function primaryBestFor(facility: FacilityCardFacility) {
   return operationalValues.has(value.trim().toLowerCase()) ? facility.description : value;
 }
 
+function conciseSummary(facility: FacilityCardFacility, serviceLine: string) {
+  const summary = primaryBestFor(facility).trim();
+  const fallback = serviceLine
+    ? `${facility.name} offers ${serviceLine.toLowerCase()} in ${getNeighbourhoodLabel(facility)}.`
+    : facility.description;
+  const value = summary || fallback;
+  return value.length > 118 ? `${value.slice(0, 115).trim()}…` : value;
+}
+
 function isBroadAreaLabel(value?: string) {
   return value ? broadAreaLabels.has(value.trim().toLowerCase()) : false;
 }
@@ -122,12 +131,12 @@ export default function FacilityCard({ facility, source = "directory", compact =
     .join(" · ");
   const price = formatPrice(facility.priceRange || facility.priceFrom);
   const serviceLine = formatServiceLine(facility.services);
-  const summary = primaryBestFor(facility);
+  const summary = conciseSummary(facility, serviceLine);
   const rating = formatRating(facility.rating);
   const cardImages = getCardImages(facility);
 
   const cardHref = `/facility/${facility.slug}`;
-  const imageAspect = compact ? "aspect-[1.12/1]" : "aspect-[1.18/1]";
+  const imageAspect = compact ? "aspect-[1.04/1]" : "aspect-[1.08/1]";
 
   const trackCardClick = () =>
     trackEvent("listing_card_click", {
@@ -183,13 +192,13 @@ export default function FacilityCard({ facility, source = "directory", compact =
 
       <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
         <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">
+          <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">
             {facility.name}
           </h3>
           {rating ? <span className="shrink-0 text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
         </div>
-        <p className="mt-0.5 text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
-        {serviceLine ? <p className="text-[15px] leading-6 text-[#6f6048]">{serviceLine}</p> : null}
+        <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
+        {serviceLine ? <p className="line-clamp-2 text-[15px] leading-6 text-[#6f6048]">{serviceLine}</p> : null}
         <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
       </Link>
     </article>
