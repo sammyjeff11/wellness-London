@@ -23,6 +23,8 @@ export type ActivityPageConfig = {
   serviceKeys: ServiceKey[];
   keywords: string[];
   related: { href: string; label: string; text: string }[];
+  bestFor: { title: string; text: string }[];
+  whatToExpect: { title: string; text: string }[];
   guidance: { title: string; text: string }[];
   faqs: { question: string; answer: string }[];
 };
@@ -46,6 +48,16 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water venues that pair naturally with sauna routines." },
       { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Spaces combining heat and cold in one structured recovery ritual." },
     ],
+    bestFor: [
+      { title: "Heat-led recovery", text: "Useful when you want a simple, repeatable recovery ritual after training or a demanding week." },
+      { title: "Social or solo reset", text: "London has communal sauna culture as well as quieter private rooms, so choose by atmosphere." },
+      { title: "Sauna-plus routines", text: "A strong starting point if you also want cold plunge, breathwork or a bathhouse-style circuit." },
+    ],
+    whatToExpect: [
+      { title: "A defined heat session", text: "Sessions usually revolve around timed heat exposure, with intensity varying by sauna type and venue style." },
+      { title: "Cooling and changing", text: "The better venues make the cool-down, showers, towels and changing areas feel considered." },
+      { title: "Different access models", text: "Expect everything from drop-in community sessions to private bookings, memberships and premium club access." },
+    ],
     guidance: [
       { title: "Check the heat format", text: "Traditional and communal saunas feel different from private or infrared-led rooms." },
       { title: "Look for practical facilities", text: "Showers, towels, changing rooms and cooling areas shape the visit as much as the sauna itself." },
@@ -67,11 +79,21 @@ export const activityPages: ActivityPageConfig[] = [
     eyebrow: "Gentle heat",
     heroText: "Lower-intensity heat spaces often used for quiet recovery, reset and wellness routines.",
     activityLabels: ["Infrared Sauna"],
-    serviceKeys: ["sauna"],
+    serviceKeys: [],
     keywords: ["infrared sauna", "infrared"],
     related: [
       { href: "/sauna-london", label: "Sauna", text: "Compare infrared with traditional and communal sauna experiences." },
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity often found in premium studios." },
+    ],
+    bestFor: [
+      { title: "Private heat rituals", text: "Best when you want a calmer room, often solo or couple-friendly rather than communal." },
+      { title: "Gentler sauna entry", text: "A good format for people who find traditional sauna too intense, while still wanting a heat-led reset." },
+      { title: "Routine-led wellness", text: "Works well if location, packages and repeat bookings matter more than a one-off spa day." },
+    ],
+    whatToExpect: [
+      { title: "Lower-intensity heat", text: "Infrared sessions are typically positioned as gentler and more private than traditional sauna." },
+      { title: "Studio-style booking", text: "Many venues offer timed cabin sessions with towels, showers or add-on recovery services." },
+      { title: "Premium variation", text: "The experience can range from simple cabins to design-led suites inside wellness clubs." },
     ],
     guidance: [
       { title: "Check whether it is private", text: "Infrared sauna is often offered as a private or semi-private room, but access models vary." },
@@ -101,6 +123,16 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Sauna and cold plunge together in one recovery ritual." },
       { href: "/cryotherapy-london", label: "Cryotherapy", text: "A different cold-therapy format using cold air rather than immersion." },
     ],
+    bestFor: [
+      { title: "Cold exposure beginners", text: "Choose venues with clear staff guidance, short first dips and somewhere warm to recover afterwards." },
+      { title: "Post-training recovery", text: "Cold plunge is often used by people looking for a structured recovery stop after sport or gym sessions." },
+      { title: "Heat-and-cold rituals", text: "Best suited to venues that pair plunge access with sauna, showers and calm transition space." },
+    ],
+    whatToExpect: [
+      { title: "Very cold water", text: "Expect a short, intense immersion rather than a long spa soak; session rules vary by venue." },
+      { title: "Safety briefing", text: "Good providers explain entry, breathing, timing and when to stop, especially for first-timers." },
+      { title: "Recovery afterwards", text: "Warm-up space, towels, showers and pacing can define how comfortable the overall visit feels." },
+    ],
     guidance: [
       { title: "Guided or self-led", text: "First-timers may prefer guided cold exposure, while experienced users may want flexible access." },
       { title: "Check the recovery setup", text: "Showers, towels, warm-up areas and staff guidance matter after cold immersion." },
@@ -122,11 +154,21 @@ export const activityPages: ActivityPageConfig[] = [
     eyebrow: "Hot and cold",
     heroText: "Spaces built around moving between heat and cold in one structured recovery session.",
     activityLabels: ["Contrast Therapy", "Sauna & Cold Plunge"],
-    serviceKeys: ["sauna", "cold-plunge"],
-    keywords: ["contrast therapy", "sauna and cold plunge", "sauna & cold plunge", "hot and cold"],
+    serviceKeys: [],
+    keywords: ["contrast therapy", "sauna and cold plunge", "sauna & cold plunge", "sauna and plunge", "sauna & plunge", "hot and cold"],
     related: [
       { href: "/sauna-london", label: "Sauna", text: "Heat-led spaces across London." },
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water recovery spaces and ice baths." },
+    ],
+    bestFor: [
+      { title: "Full recovery circuits", text: "Best when you want heat, cold and decompression in one purposeful visit." },
+      { title: "Guided first sessions", text: "A structured format can make hot-and-cold exposure feel less intimidating for new users." },
+      { title: "Group rituals", text: "Many contrast spaces work well for social sessions, classes or community-led reset rituals." },
+    ],
+    whatToExpect: [
+      { title: "Alternating heat and cold", text: "Most sessions move between sauna or heat exposure and cold plunge or ice bath." },
+      { title: "A clear flow matters", text: "Look for a venue where the physical layout makes transitions easy and unhurried." },
+      { title: "Session pacing", text: "Venues may suggest rounds, timings or guided protocols; follow the provider’s own safety guidance." },
     ],
     guidance: [
       { title: "Look for purpose-built flow", text: "The best contrast venues make it easy to move between sauna, cold plunge and recovery space." },
@@ -155,6 +197,16 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Compare cryotherapy with cold-water immersion." },
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another recovery technology often offered in premium wellness spaces." },
     ],
+    bestFor: [
+      { title: "Time-efficient cold therapy", text: "Often chosen when you want a short, staff-led cold treatment rather than water immersion." },
+      { title: "Recovery studio users", text: "Fits well alongside compression, red light or other appointment-led recovery services." },
+      { title: "Cold plunge alternatives", text: "Useful for people comparing cold exposure formats without committing to an ice bath." },
+    ],
+    whatToExpect: [
+      { title: "A brief treatment window", text: "Cryotherapy sessions are usually short and protocol-led, with guidance before the exposure." },
+      { title: "Whole-body or localised options", text: "Confirm whether the venue uses a chamber, cabin, facial or targeted local treatment." },
+      { title: "Contraindication checks", text: "Good providers should explain suitability, safety and when medical advice is needed." },
+    ],
     guidance: [
       { title: "Understand the treatment type", text: "Check whether the venue offers whole-body, localised or other cold-treatment formats." },
       { title: "Prioritise staff guidance", text: "Clear safety briefing and contraindication checks matter for first-time users." },
@@ -182,6 +234,16 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/hbot-london", label: "HBOT", text: "Another longevity and recovery technology offered by some premium clinics." },
       { href: "/longevity-london", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
     ],
+    bestFor: [
+      { title: "Technology-led recovery", text: "Best for users comparing non-invasive, appointment-led wellness technologies." },
+      { title: "Longevity routines", text: "Often found in clinics and clubs that package light therapy with broader optimisation services." },
+      { title: "Add-on sessions", text: "Works well as part of a wider visit that may include sauna, compression or consultation-led care." },
+    ],
+    whatToExpect: [
+      { title: "Panel, bed or room formats", text: "Setups vary widely, so compare equipment, privacy and how the session is supervised." },
+      { title: "Clear claim boundaries", text: "Treat strong medical claims carefully and check credentials where a provider positions treatment clinically." },
+      { title: "Repeat-use packages", text: "Many venues sell packs or memberships because light therapy is often marketed as a routine." },
+    ],
     guidance: [
       { title: "Check the setup", text: "Venues vary from simple panels to dedicated treatment rooms or clinic-led protocols." },
       { title: "Be cautious with claims", text: "Treat red light as a wellness activity and check venue credentials where health claims are made." },
@@ -208,6 +270,16 @@ export const activityPages: ActivityPageConfig[] = [
     related: [
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity found in longevity spaces." },
       { href: "/longevity-london", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
+    ],
+    bestFor: [
+      { title: "Clinic-led wellness", text: "Best for users comfortable with a more specialist, consultation-led environment." },
+      { title: "Longevity and recovery plans", text: "Often considered alongside diagnostics, red light therapy or wider optimisation programmes." },
+      { title: "Research-led decision makers", text: "Suited to users who want to compare credentials, protocols and provider transparency before booking." },
+    ],
+    whatToExpect: [
+      { title: "A chamber-based session", text: "HBOT is delivered in a pressurised chamber or pod, usually with a defined session length." },
+      { title: "More screening than casual wellness", text: "Expect suitability questions, safety information and clearer contraindication guidance." },
+      { title: "Packages and protocols", text: "Providers often recommend a course of sessions, so compare the full package rather than one price point." },
     ],
     guidance: [
       { title: "Check the access model", text: "HBOT is often offered in clinic or consultation-led settings rather than casual walk-in formats." },
@@ -243,6 +315,12 @@ function matchesActivityKeyword(facility: AirtableFacility, activity: ActivityPa
     facility.editorialVerdict,
     facility.ambience,
     facility.venueTypeStandardized,
+    facility.coldPlungeType,
+    facility.cryoType,
+    facility.contrastTherapyAvailable,
+    facility.guidedSessionsAvailable,
+    facility.privateOrShared,
+    ...facility.saunaType,
     ...facility.themeTagsStandardized,
     ...facility.activityCategories,
     ...facility.activityTagsStandardized,
