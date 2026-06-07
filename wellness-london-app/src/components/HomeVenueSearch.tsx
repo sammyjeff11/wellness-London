@@ -66,31 +66,34 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <section className="px-5 py-4 sm:px-6 sm:py-8">
-      <div className="editorial-shell border-b border-[#d8cebf]/70 pb-6 sm:pb-8">
-        <div className="grid gap-4 md:grid-cols-[0.72fr_1.28fr] md:items-end md:gap-8">
+    <section className="px-5 py-6 sm:px-6 sm:py-10">
+      <div className="editorial-shell rounded-[1.45rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/45 p-4 shadow-[0_18px_55px_rgba(41,36,29,0.045)] sm:p-6 md:p-8">
+        <div className="grid gap-5 md:grid-cols-[0.74fr_1.26fr] md:items-start md:gap-10">
           <div>
             <p className="editorial-eyebrow mb-2">Well+ directory</p>
-            <h2 className="font-serif text-[1.75rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.5rem] md:text-[3rem]">
+            <h2 className="max-w-md font-serif text-[1.75rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.5rem] md:text-[3rem]">
               Find your next London wellness space.
             </h2>
+            <p className="mt-3 max-w-md text-sm leading-6 text-[#5f574c] sm:text-[15px] sm:leading-7">
+              Search by venue, service or neighbourhood, then use the quick links to browse the most useful paths.
+            </p>
           </div>
 
-          <div>
+          <div className="rounded-[1.15rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:p-4">
             <label className="block">
               <span className="sr-only">Search London wellness venues</span>
               <input
                 type="search"
                 value={query}
                 onChange={(event) => updateQuery(event.target.value)}
-                placeholder="Try Othership, Shoreditch or cold plunge"
+                placeholder="Try Shoreditch, cold plunge or Rebase"
                 autoComplete="off"
-                className="w-full rounded-[1.1rem] border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-3.5 text-[16px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:rounded-full sm:px-5 sm:text-[15px]"
+                className="w-full rounded-full border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-3.5 text-[16px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:px-5 sm:text-[15px]"
               />
             </label>
 
             {trimmedQuery ? (
-              <div className="mt-3 rounded-[1.15rem] border border-[#d8cebf]/80 bg-[#fbf8f1]/90 p-2 shadow-[0_18px_45px_rgba(41,36,29,0.06)]">
+              <div className="mt-3 rounded-[1.15rem] border border-[#d8cebf]/80 bg-[#fbf8f1]/95 p-2 shadow-[0_18px_45px_rgba(41,36,29,0.06)]">
                 {results.length > 0 ? (
                   <div className="divide-y divide-[#d8cebf]/70">
                     {results.map((facility) => (
@@ -124,7 +127,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
               </div>
             ) : null}
 
-            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <div className="mt-4 grid gap-4 border-t border-[#d8cebf]/70 pt-4 sm:grid-cols-3">
               {quickLinkGroups.map((group) => (
                 <div key={group.title}>
                   <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">{group.title}</p>
@@ -133,7 +136,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                       <Link
                         key={`${link.href}-${link.label}`}
                         href={link.href}
-                        className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/70 px-4 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:text-sm"
+                        className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-4 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:text-sm"
                       >
                         {link.label}
                       </Link>
