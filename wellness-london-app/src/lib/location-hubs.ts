@@ -4,7 +4,6 @@ export const LOCATION_HUBS: Record<string, string> = {
   "West London": "/west-london-wellness",
   "North London": "/north-london-wellness",
   "South London": "/south-london-wellness",
-  "Greater London": "/greater-london-wellness",
   Shoreditch: "/neighbourhoods/shoreditch",
   Marylebone: "/neighbourhoods/marylebone",
   "Notting Hill": "/neighbourhoods/notting-hill",

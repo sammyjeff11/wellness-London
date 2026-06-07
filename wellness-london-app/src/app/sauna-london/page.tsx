@@ -13,6 +13,7 @@ import {
 import { saunaContent } from "@/content/service-page-content";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
 export const metadata: Metadata = {
   title: "Best Saunas in London | Infrared, Finnish & Contrast Therapy | Well+",
@@ -25,6 +26,7 @@ export default async function SaunaLondonPage() {
   const facilities = await getFacilities();
   const saunaFacilities = facilities.filter((facility) => facility.serviceKeys.includes("sauna"));
   const heroImage = saunaFacilities.find((facility) => facility.images.length > 0)?.images[0];
+  const relatedLinks = [...saunaContent.internalLinks, ...buildServiceLocationLinks(saunaFacilities, "Sauna")];
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -89,7 +91,7 @@ export default async function SaunaLondonPage() {
       />
 
       <ServiceRelatedSection
-        links={saunaContent.internalLinks}
+        links={relatedLinks}
       />
 
       <ServiceFaqSection

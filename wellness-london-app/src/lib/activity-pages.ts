@@ -30,7 +30,7 @@ export type ActivityPageConfig = {
 export const activityPages: ActivityPageConfig[] = [
   {
     slug: "sauna-london",
-    href: "/activities/sauna-london",
+    href: "/sauna-london",
     canonicalHref: "/sauna-london",
     label: "Sauna",
     title: "Sauna in London",
@@ -42,9 +42,9 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["sauna"],
     keywords: ["sauna", "finnish", "heat therapy", "heat exposure"],
     related: [
-      { href: "/activities/infrared-sauna-london", label: "Infrared Sauna", text: "Gentler private heat experiences and wellness-club infrared rooms." },
-      { href: "/activities/cold-plunge-london", label: "Cold Plunge", text: "Cold-water venues that pair naturally with sauna routines." },
-      { href: "/activities/contrast-therapy-london", label: "Contrast Therapy", text: "Spaces combining heat and cold in one structured recovery ritual." },
+      { href: "/infrared-sauna-london", label: "Infrared Sauna", text: "Gentler private heat experiences and wellness-club infrared rooms." },
+      { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water venues that pair naturally with sauna routines." },
+      { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Spaces combining heat and cold in one structured recovery ritual." },
     ],
     guidance: [
       { title: "Check the heat format", text: "Traditional and communal saunas feel different from private or infrared-led rooms." },
@@ -58,7 +58,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "infrared-sauna-london",
-    href: "/activities/infrared-sauna-london",
+    href: "/infrared-sauna-london",
     canonicalHref: "/infrared-sauna-london",
     label: "Infrared Sauna",
     title: "Infrared Sauna in London",
@@ -70,8 +70,8 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["sauna"],
     keywords: ["infrared sauna", "infrared"],
     related: [
-      { href: "/activities/sauna-london", label: "Sauna", text: "Compare infrared with traditional and communal sauna experiences." },
-      { href: "/activities/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity often found in premium studios." },
+      { href: "/sauna-london", label: "Sauna", text: "Compare infrared with traditional and communal sauna experiences." },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity often found in premium studios." },
     ],
     guidance: [
       { title: "Check whether it is private", text: "Infrared sauna is often offered as a private or semi-private room, but access models vary." },
@@ -85,7 +85,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "cold-plunge-london",
-    href: "/activities/cold-plunge-london",
+    href: "/cold-plunge-london",
     canonicalHref: "/cold-plunge-london",
     label: "Cold Plunge",
     title: "Cold Plunge in London",
@@ -97,9 +97,9 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["cold-plunge"],
     keywords: ["cold plunge", "ice bath", "cold exposure", "cold water"],
     related: [
-      { href: "/activities/sauna-london", label: "Sauna", text: "Heat-led spaces that often pair with cold immersion." },
-      { href: "/activities/contrast-therapy-london", label: "Contrast Therapy", text: "Sauna and cold plunge together in one recovery ritual." },
-      { href: "/activities/cryotherapy-london", label: "Cryotherapy", text: "A different cold-therapy format using cold air rather than immersion." },
+      { href: "/sauna-london", label: "Sauna", text: "Heat-led spaces that often pair with cold immersion." },
+      { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Sauna and cold plunge together in one recovery ritual." },
+      { href: "/cryotherapy-london", label: "Cryotherapy", text: "A different cold-therapy format using cold air rather than immersion." },
     ],
     guidance: [
       { title: "Guided or self-led", text: "First-timers may prefer guided cold exposure, while experienced users may want flexible access." },
@@ -113,7 +113,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "contrast-therapy-london",
-    href: "/activities/contrast-therapy-london",
+    href: "/contrast-therapy-london",
     canonicalHref: "/contrast-therapy-london",
     label: "Contrast Therapy",
     title: "Contrast Therapy in London",
@@ -125,8 +125,8 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["sauna", "cold-plunge"],
     keywords: ["contrast therapy", "sauna and cold plunge", "sauna & cold plunge", "hot and cold"],
     related: [
-      { href: "/activities/sauna-london", label: "Sauna", text: "Heat-led spaces across London." },
-      { href: "/activities/cold-plunge-london", label: "Cold Plunge", text: "Cold-water recovery spaces and ice baths." },
+      { href: "/sauna-london", label: "Sauna", text: "Heat-led spaces across London." },
+      { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water recovery spaces and ice baths." },
     ],
     guidance: [
       { title: "Look for purpose-built flow", text: "The best contrast venues make it easy to move between sauna, cold plunge and recovery space." },
@@ -140,7 +140,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "cryotherapy-london",
-    href: "/activities/cryotherapy-london",
+    href: "/cryotherapy-london",
     canonicalHref: "/cryotherapy-london",
     label: "Cryotherapy",
     title: "Cryotherapy in London",
@@ -152,8 +152,8 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["cryotherapy"],
     keywords: ["cryotherapy", "cryo", "whole body cryotherapy", "localised cryotherapy"],
     related: [
-      { href: "/activities/cold-plunge-london", label: "Cold Plunge", text: "Compare cryotherapy with cold-water immersion." },
-      { href: "/activities/red-light-therapy-london", label: "Red Light Therapy", text: "Another recovery technology often offered in premium wellness spaces." },
+      { href: "/cold-plunge-london", label: "Cold Plunge", text: "Compare cryotherapy with cold-water immersion." },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another recovery technology often offered in premium wellness spaces." },
     ],
     guidance: [
       { title: "Understand the treatment type", text: "Check whether the venue offers whole-body, localised or other cold-treatment formats." },
@@ -167,7 +167,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "red-light-therapy-london",
-    href: "/activities/red-light-therapy-london",
+    href: "/red-light-therapy-london",
     canonicalHref: "/red-light-therapy-london",
     label: "Red Light Therapy",
     title: "Red Light Therapy in London",
@@ -179,8 +179,8 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["red-light"],
     keywords: ["red light", "red light therapy", "photobiomodulation"],
     related: [
-      { href: "/activities/hbot-london", label: "HBOT", text: "Another longevity and recovery technology offered by some premium clinics." },
-      { href: "/longevity", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
+      { href: "/hbot-london", label: "HBOT", text: "Another longevity and recovery technology offered by some premium clinics." },
+      { href: "/longevity-london", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
     ],
     guidance: [
       { title: "Check the setup", text: "Venues vary from simple panels to dedicated treatment rooms or clinic-led protocols." },
@@ -194,7 +194,7 @@ export const activityPages: ActivityPageConfig[] = [
   },
   {
     slug: "hbot-london",
-    href: "/activities/hbot-london",
+    href: "/hbot-london",
     canonicalHref: "/hbot-london",
     label: "HBOT",
     title: "HBOT in London",
@@ -206,8 +206,8 @@ export const activityPages: ActivityPageConfig[] = [
     serviceKeys: ["hbot"],
     keywords: ["hbot", "hyperbaric", "hyperbaric oxygen therapy"],
     related: [
-      { href: "/activities/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity found in longevity spaces." },
-      { href: "/longevity", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity found in longevity spaces." },
+      { href: "/longevity-london", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
     ],
     guidance: [
       { title: "Check the access model", text: "HBOT is often offered in clinic or consultation-led settings rather than casual walk-in formats." },
