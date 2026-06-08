@@ -70,8 +70,12 @@ const evidenceNotesBySlug: Partial<Record<ActivitySlug, ActivityEvidenceNote[]>>
   ],
 };
 
+function withEvidenceNotes(activity: Omit<ActivityPageConfig, "evidenceNotes">): ActivityPageConfig {
+  return { ...activity, evidenceNotes: evidenceNotesBySlug[activity.slug] };
+}
+
 export const activityPages: ActivityPageConfig[] = [
-  {
+  withEvidenceNotes({
     slug: "sauna-london",
     href: "/sauna-london",
     canonicalHref: "/sauna-london",
@@ -110,8 +114,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Where can I find sauna in London?", answer: "London has communal sauna baths, premium bathhouses, recovery studios and wellness clubs offering sauna access. Use the directory to compare format, location and facilities." },
       { question: "Is sauna usually private or shared?", answer: "Both exist. Community sauna and bathhouse formats are usually shared, while some wellness studios offer private or semi-private sauna sessions." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "infrared-sauna-london",
     href: "/infrared-sauna-london",
     canonicalHref: "/infrared-sauna-london",
@@ -147,8 +151,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "What is infrared sauna?", answer: "Infrared sauna uses infrared heat rather than the same air-heating format as traditional sauna. The experience is often gentler, but exact formats vary by venue." },
       { question: "Where can I book infrared sauna in London?", answer: "Infrared sauna is commonly found in wellness clubs, recovery studios and some spas. Compare facilities and access before booking." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "cold-plunge-london",
     href: "/cold-plunge-london",
     canonicalHref: "/cold-plunge-london",
@@ -187,8 +191,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Where can I do cold plunge in London?", answer: "Cold plunge is available in recovery studios, community sauna sites, some gyms and premium wellness clubs. The best option depends on guidance, facilities and location." },
       { question: "Is cold plunge the same as cryotherapy?", answer: "No. Cold plunge usually means cold-water immersion, while cryotherapy uses cold air or localised cold treatments." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "contrast-therapy-london",
     href: "/contrast-therapy-london",
     canonicalHref: "/contrast-therapy-london",
@@ -226,8 +230,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "What is contrast therapy?", answer: "Contrast therapy usually combines heat and cold, often sauna followed by cold plunge or ice bath exposure." },
       { question: "Where can I do sauna and cold plunge in London?", answer: "London has recovery studios, bathhouses and community sauna venues offering heat-and-cold formats. Compare facilities before booking." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "cryotherapy-london",
     href: "/cryotherapy-london",
     canonicalHref: "/cryotherapy-london",
@@ -264,8 +268,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Where can I find cryotherapy in London?", answer: "Cryotherapy is offered by specialist studios, recovery venues and some premium wellness clinics across London." },
       { question: "Is cryotherapy the same as cold plunge?", answer: "No. Cryotherapy usually uses cold air or targeted cold treatment, while cold plunge involves cold-water immersion." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "red-light-therapy-london",
     href: "/red-light-therapy-london",
     canonicalHref: "/red-light-therapy-london",
@@ -302,8 +306,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Where can I find red light therapy in London?", answer: "Red light therapy is available in some recovery studios, longevity clinics and premium wellness clubs." },
       { question: "Is red light therapy medical treatment?", answer: "Well+ does not provide medical advice. Check provider credentials and seek professional guidance for medical concerns." },
     ],
-  },
-  {
+  }),
+  withEvidenceNotes({
     slug: "hbot-london",
     href: "/hbot-london",
     canonicalHref: "/hbot-london",
@@ -340,8 +344,8 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Where can I find HBOT in London?", answer: "HBOT is usually found in longevity clinics, medical-wellness spaces and specialist recovery venues." },
       { question: "Is HBOT medical advice?", answer: "No. Well+ is a directory and editorial guide, not a medical advice service. Always check provider credentials and seek professional advice where relevant." },
     ],
-  },
-].map((activity) => ({ ...activity, evidenceNotes: evidenceNotesBySlug[activity.slug] }));
+  }),
+];
 
 export function getActivityPage(slug: string) {
   return activityPages.find((page) => page.slug === slug);
