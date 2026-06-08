@@ -368,37 +368,30 @@ function matchesActivityLabel(facility: AirtableFacility, activity: ActivityPage
   return activity.activityLabels.some((label) => searchableLabels.some((item) => item.includes(label.toLowerCase())));
 }
 
-function matchesActivityKeyword(facility: AirtableFacility, activity: ActivityPageConfig) {
-  const searchable = [
-    facility.name,
-    facility.description,
-    facility.editorialSummary,
-    facility.editorialVerdict,
-    facility.ambience,
-    facility.venueTypeStandardized,
+function matchesStructuredActivityField(facility: AirtableFacility, activity: ActivityPageConfig) {
+  const structuredValues = [
+    ...facility.serviceKeys,
+    ...facility.servicesOffered,
+    ...facility.activityTagsStandardized,
+    ...facility.activityDisplayLabels,
+    ...facility.activityCategories,
+    ...facility.saunaType,
     facility.coldPlungeType,
     facility.cryoType,
     facility.contrastTherapyAvailable,
-    facility.guidedSessionsAvailable,
-    facility.privateOrShared,
-    ...facility.saunaType,
-    ...facility.themeTagsStandardized,
-    ...facility.activityCategories,
-    ...facility.activityTagsStandardized,
-    ...facility.activityDisplayLabels,
-    ...facility.servicesOffered,
-    ...facility.bestFor,
-    ...facility.experienceType,
-  ].filter(Boolean).join(" ").toLowerCase();
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
 
-  return activity.keywords.some((keyword) => searchable.includes(keyword.toLowerCase()));
+  return activity.keywords.some((keyword) => structuredValues.includes(keyword.toLowerCase()));
 }
 
 export function getFacilitiesForActivity(facilities: AirtableFacility[], activity: ActivityPageConfig) {
   return facilities
     .filter((facility) => {
       const serviceMatch = facility.serviceKeys.some((key) => activity.serviceKeys.includes(key));
-      return serviceMatch || matchesActivityLabel(facility, activity) || matchesActivityKeyword(facility, activity);
+      return serviceMatch || matchesActivityLabel(facility, activity) || matchesStructuredActivityField(facility, activity);
     })
     .sort((a, b) => Number(b.isFeatured) * 100 + b.profileCompletenessScore - (Number(a.isFeatured) * 100 + a.profileCompletenessScore));
 }
