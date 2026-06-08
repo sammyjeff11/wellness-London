@@ -107,8 +107,8 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <section className="px-4 pt-3 sm:px-5 md:px-8 md:pt-7">
-        <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_22px_70px_rgba(41,36,29,0.12)] sm:min-h-[76vh] md:rounded-[2.2rem]">
+      <section className="px-5 pt-4 sm:px-6 sm:pt-6 md:pt-8">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_18px_55px_rgba(41,36,29,0.1)] md:rounded-[1.75rem]">
           <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
             {heroImage ? (
               <SafeImage
@@ -123,18 +123,18 @@ export default async function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
           </div>
 
-          <div className="relative flex flex-col justify-end px-4 pb-4 pt-3 text-[#fbf8f1] sm:min-h-[76vh] sm:px-8 sm:py-12 md:px-16 md:py-16">
-            <div className="max-w-5xl">
-              <p className="mb-1.5 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-7 sm:text-[11px] sm:tracking-[0.28em]">
+          <div className="relative flex min-h-[26rem] flex-col justify-end px-4 pb-5 pt-3 text-[#fbf8f1] sm:min-h-[34rem] sm:px-8 sm:py-10 md:min-h-[36rem] md:px-12 md:py-12">
+            <div className="max-w-4xl">
+              <p className="mb-1.5 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-5xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.9rem] sm:leading-[0.92] md:text-[7.6rem]">
+              <h1 className="max-w-4xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.45rem] sm:leading-[0.92] md:text-[6.15rem]">
                 London&apos;s curated guide to modern wellness.
               </h1>
-              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-7 sm:max-w-2xl sm:text-lg sm:leading-8">
+              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Search by service, venue type, location or use case — with practical details to help you choose where to book.
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-9 sm:flex sm:flex-wrap sm:gap-3">
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
                 <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
                   Browse venues
                 </Link>
@@ -222,12 +222,8 @@ export default async function Home() {
 
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-3`}>
             {collectionLinks.map((collection) => (
-              <Link
-                key={collection.href}
-                href={collection.href}
-                className={lightCarouselCardClass}
-              >
-                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
+              <Link key={collection.href} href={collection.href} className={lightCarouselCardClass}>
+                <h3 className={editorialCardTitleClass}>{collection.title}</h3>
                 <p className={editorialCardTextClass}>{collection.text}</p>
               </Link>
             ))}
@@ -235,29 +231,20 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Venue types</p>
-              <h2 className={sectionHeadingClass}>
-                Browse by venue type.
-              </h2>
+              <h2 className={sectionHeadingClass}>Choose by setting.</h2>
             </div>
-            <p className={sectionLeadClass}>
-              Use this route when the setting matters as much as the treatment.
-            </p>
+            <p className={sectionLeadClass}>Browse broader venue formats when the setting matters as much as the treatment.</p>
           </div>
-
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
-            {venueTypeLinks.map((venueType) => (
-              <Link
-                key={venueType.href}
-                href={venueType.href}
-                className={lightCarouselCardClass}
-              >
-                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{venueType.title}</h3>
-                <p className={editorialCardTextClass}>{venueType.text}</p>
+          <div className={`${mobileCarouselClass} sm:grid-cols-3 sm:gap-4`}>
+            {venueTypeLinks.map((item) => (
+              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
+                <h3 className={editorialCardTitleClass}>{item.title}</h3>
+                <p className={editorialCardTextClass}>{item.text}</p>
               </Link>
             ))}
           </div>
@@ -268,22 +255,14 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Locations</p>
-              <h2 className={`${sectionHeadingClass} max-w-3xl`}>
-                Browse by location.
-              </h2>
+              <p className="editorial-eyebrow mb-3">London areas</p>
+              <h2 className={sectionHeadingClass}>Browse by part of London.</h2>
             </div>
-            <Link href="/neighbourhoods" className="w-fit text-sm font-medium underline underline-offset-4">
-              View all neighbourhoods
-            </Link>
+            <p className={sectionLeadClass}>Start with the wider area when location is the deciding factor.</p>
           </div>
-          <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-            {[...locationLinks, ...featuredNeighbourhoods.map((area) => ({ href: area.href, label: area.shortTitle }))].map((area) => (
-              <Link
-                key={area.href}
-                href={area.href}
-                className="min-w-max snap-start rounded-full border border-[#d8cebf] px-5 py-2.5 text-sm transition hover:bg-[#f4efe6] sm:min-w-0"
-              >
+          <div className="flex flex-wrap gap-2 sm:gap-3">
+            {locationLinks.map((area) => (
+              <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#f4efe6] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
                 {area.label}
               </Link>
             ))}
@@ -291,29 +270,41 @@ export default async function Home() {
         </div>
       </section>
 
+      {featuredNeighbourhoods.length > 0 ? (
+        <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+          <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+            <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="editorial-eyebrow mb-3">Neighbourhoods</p>
+                <h2 className={sectionHeadingClass}>More precise local guides.</h2>
+              </div>
+              <p className={sectionLeadClass}>Use neighbourhood guides when you already know roughly where you want to book.</p>
+            </div>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {featuredNeighbourhoods.map((area) => (
+                <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
+                  {area.shortTitle}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Use cases</p>
-              <h2 className={sectionHeadingClass}>
-                Choose by situation.
-              </h2>
+              <h2 className={sectionHeadingClass}>Choose by need.</h2>
             </div>
-            <p className={sectionLeadClass}>
-              Start with a practical intent when you know the outcome you want but not yet the venue.
-            </p>
+            <p className={sectionLeadClass}>A practical route into spaces for recovery, quiet resets, premium experiences and first-time bookings.</p>
           </div>
-
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
-            {useCaseLinks.map((collection) => (
-              <Link
-                key={`${collection.href}-${collection.title}`}
-                href={collection.href}
-                className={lightCarouselCardClass}
-              >
-                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
-                <p className={editorialCardTextClass}>{collection.text}</p>
+            {useCaseLinks.map((item) => (
+              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
+                <h3 className={editorialCardTitleClass}>{item.title}</h3>
+                <p className={editorialCardTextClass}>{item.text}</p>
               </Link>
             ))}
           </div>
