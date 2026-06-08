@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
 import { collections } from "@/lib/collections";
+import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Collections | Well+ London",
@@ -8,9 +10,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/collections" },
 };
 
+const collectionItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Well+ Collections",
+  url: absoluteUrl("/collections"),
+  itemListElement: collections.map((collection, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    url: absoluteUrl(collection.href),
+    name: collection.title,
+  })),
+};
+
+const collectionsBreadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: absoluteUrl("/"),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Collections",
+      item: absoluteUrl("/collections"),
+    },
+  ],
+};
+
 export default function CollectionsIndexPage() {
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <JsonLd data={[collectionItemListJsonLd, collectionsBreadcrumbJsonLd]} />
       <section className="px-5 py-10 sm:px-6 sm:py-14 md:py-18">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-4xl">
