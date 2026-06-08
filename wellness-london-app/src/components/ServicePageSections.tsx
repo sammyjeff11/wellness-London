@@ -91,18 +91,18 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
   if (notes.length === 0) return null;
 
   return (
-    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-9 max-w-3xl">
+        <div className="mb-8 max-w-3xl">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
           <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
           <p className="mt-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
             Practical notes to help you understand the likely benefits, limits and timing considerations before booking. This is not medical advice.
           </p>
         </div>
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2">
           {notes.map((note) => (
-            <article key={note.title} className="border border-[#d8cebf] bg-[#f4efe6] p-6 sm:p-7">
+            <article key={note.title} className="border border-[#d8cebf] bg-[#f4efe6] p-5 sm:p-6">
               <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d]">{note.title}</h3>
               <p className="text-sm leading-7 text-[#5f574c]">{note.text}</p>
             </article>
