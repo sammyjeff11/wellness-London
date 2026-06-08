@@ -3,6 +3,7 @@ import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
 import {
   ServiceDirectorySection,
+  ServiceEvidenceSection,
   ServiceFaqSection,
   ServiceGuidanceSection,
   ServiceInsightSection,
@@ -70,6 +71,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
 
       <ServiceIntroSection eyebrow={`${activity.label} guide`} title="Understand the experience before you book." paragraphs={[activity.description, activity.heroText]} />
       <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
+      <ServiceEvidenceSection notes={activity.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
       <ServiceDirectorySection facilities={activityFacilities.map(toDirectoryFacility)} serviceType={serviceTypeForAnalytics(activity)} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
