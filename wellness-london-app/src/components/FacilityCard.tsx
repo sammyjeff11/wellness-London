@@ -122,14 +122,16 @@ function formatBeginnerFriendly(value?: string) {
 }
 
 function getComparisonDetails(facility: FacilityCardFacility) {
-  const details = [
+  const priorityDetails = [
     cleanDetailValue(facility.privateOrShared),
-    cleanDetailValue(facility.accessType),
     formatBeginnerFriendly(facility.beginnerFriendly),
     cleanDetailValue(facility.venueType),
   ];
+  const accessDetail = cleanDetailValue(facility.accessType);
+  const uniquePriorityDetails = Array.from(new Set(priorityDetails.filter(Boolean)));
+  const details = accessDetail && uniquePriorityDetails.length > 0 ? [...uniquePriorityDetails, accessDetail] : uniquePriorityDetails;
 
-  return Array.from(new Set(details.filter(Boolean))).slice(0, 3);
+  return details.length >= 2 ? details.slice(0, 2) : [];
 }
 
 function getCardImages(facility: FacilityCardFacility) {
