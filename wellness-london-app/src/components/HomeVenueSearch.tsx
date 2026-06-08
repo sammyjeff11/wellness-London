@@ -47,22 +47,20 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <section className="overflow-hidden px-4 py-4 sm:px-6 sm:py-10">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/60 p-3 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-6 md:p-8">
-        <div className="grid min-w-0 gap-3 md:grid-cols-[0.74fr_1.26fr] md:items-start md:gap-10">
-          <div className="hidden md:block">
+    <section className="overflow-hidden px-4 py-4 sm:px-6 sm:py-8 md:py-10">
+      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-6 md:p-7">
+        <div className="grid min-w-0 gap-5 md:grid-cols-[0.48fr_1fr] md:items-center md:gap-7 lg:grid-cols-[0.42fr_1fr]">
+          <div>
             <p className="editorial-eyebrow mb-2">Well+ directory</p>
-            <h2 className="max-w-md font-serif text-[2.5rem] font-normal leading-[1.02] tracking-[-0.045em] md:text-[3rem]">
-              Find your next London wellness space.
+            <h2 className="max-w-sm font-serif text-[2.05rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.45rem] md:text-[2.65rem]">
+              Find a London wellness space.
             </h2>
-            <p className="mt-3 max-w-md text-[15px] leading-7 text-[#5f574c]">
-              Search by venue, service or neighbourhood, then use the quick links to browse the most useful paths.
+            <p className="mt-3 max-w-md text-sm leading-6 text-[#5f574c] sm:text-[15px] sm:leading-7">
+              Search by venue, service or neighbourhood, or use the shortcuts to start browsing.
             </p>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4">
-            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67] md:hidden">Search the directory</p>
-
+          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4 md:p-5">
             <label className="block min-w-0">
               <span className="sr-only">Search London wellness venues</span>
               <input
