@@ -104,6 +104,34 @@ function formatPrice(value?: string) {
   return trimmed;
 }
 
+function cleanDetailValue(value?: string) {
+  if (!value) return "";
+  const trimmed = value.trim();
+  const lower = trimmed.toLowerCase();
+  if (["n/a", "na", "unknown", "not specified", "not available", "none"].includes(lower)) return "";
+  return trimmed;
+}
+
+function formatBeginnerFriendly(value?: string) {
+  const cleaned = cleanDetailValue(value);
+  if (!cleaned) return "";
+  const lower = cleaned.toLowerCase();
+  if (["yes", "true", "y"].includes(lower)) return "Beginner-friendly";
+  if (["no", "false", "n"].includes(lower)) return "Advanced";
+  return cleaned;
+}
+
+function getComparisonDetails(facility: FacilityCardFacility) {
+  const details = [
+    cleanDetailValue(facility.privateOrShared),
+    cleanDetailValue(facility.accessType),
+    formatBeginnerFriendly(facility.beginnerFriendly),
+    cleanDetailValue(facility.venueType),
+  ];
+
+  return Array.from(new Set(details.filter(Boolean))).slice(0, 3);
+}
+
 function getCardImages(facility: FacilityCardFacility) {
   const images = facility.galleryImages?.filter((image) => image.url) || [];
   if (images.length > 0) return images.slice(0, 5);
@@ -124,6 +152,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const activeImage = cardImages[activeImageIndex] || cardImages[0];
   const cardHref = `/facility/${facility.slug}`;
   const imageAspect = compact ? "aspect-[1.04/1]" : "aspect-[1.08/1]";
+  const comparisonDetails = getComparisonDetails(facility);
 
   const trackCardClick = () =>
     trackEvent("listing_card_click", {
@@ -189,8 +218,17 @@ export default function FacilityCard({ facility, source = "directory", compact =
         </div>
         <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
       </Link>
+      {comparisonDetails.length > 0 ? (
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {comparisonDetails.map((detail) => (
+            <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
+              {detail}
+            </span>
+          ))}
+        </div>
+      ) : null}
       {serviceLabels.length > 0 ? (
-        <div className="mt-0.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
+        <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
           {serviceLabels.map((service, index) => {
             const href = canonicalServiceHref(service);
             return (
