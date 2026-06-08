@@ -9,6 +9,8 @@ export type ActivitySlug =
   | "red-light-therapy-london"
   | "hbot-london";
 
+export type ActivityEvidenceNote = { title: string; text: string };
+
 export type ActivityPageConfig = {
   slug: ActivitySlug;
   href: string;
@@ -24,9 +26,48 @@ export type ActivityPageConfig = {
   keywords: string[];
   related: { href: string; label: string; text: string }[];
   bestFor: { title: string; text: string }[];
+  evidenceNotes?: ActivityEvidenceNote[];
   whatToExpect: { title: string; text: string }[];
   guidance: { title: string; text: string }[];
   faqs: { question: string; answer: string }[];
+};
+
+const evidenceNotesBySlug: Partial<Record<ActivitySlug, ActivityEvidenceNote[]>> = {
+  "sauna-london": [
+    { title: "Best-supported benefit", text: "Regular sauna use is most strongly associated with cardiovascular and relaxation benefits. Treat it as a repeatable heat habit rather than a one-off biohack." },
+    { title: "Dose matters", text: "Short, consistent sessions are more useful than chasing extreme heat. Start conservatively and build tolerance over time." },
+    { title: "Hydration and recovery", text: "Sauna increases sweating and fluid loss. Rehydrate afterwards and avoid using heat when unwell, dehydrated or after heavy alcohol." },
+  ],
+  "infrared-sauna-london": [
+    { title: "Gentler heat", text: "Infrared sauna is usually lower air-temperature than traditional sauna. That can make it easier to tolerate, but it is still heat stress." },
+    { title: "Evidence is narrower", text: "The strongest sauna research is not all specific to infrared. Be cautious when venues imply infrared has the same evidence base as traditional sauna." },
+    { title: "Use consistently", text: "Focus on session length, comfort, hydration and repeatability rather than maximum heat intensity." },
+  ],
+  "cold-plunge-london": [
+    { title: "Recovery feel", text: "Cold water immersion may reduce perceived soreness and help some people feel fresher after hard sessions, but it is not automatically better for every goal." },
+    { title: "Avoid after hypertrophy work", text: "If muscle growth is the priority, avoid cold plunging immediately after resistance training. Some research suggests it may blunt parts of the adaptation signal." },
+    { title: "Short is enough", text: "More time is not always better. Start with short exposure, controlled breathing and a calm warm-up afterwards." },
+  ],
+  "contrast-therapy-london": [
+    { title: "Main value", text: "Contrast therapy is useful as a structured recovery ritual combining heat, cold and decompression. The strongest benefit may be consistency and perceived recovery." },
+    { title: "Training timing", text: "If strength or muscle gain is the main goal, be cautious with long cold exposure immediately after lifting, even when it is part of a contrast circuit." },
+    { title: "Flow matters", text: "A good venue should make transitions safe and unhurried, with clear guidance on timings, warming up and when to stop." },
+  ],
+  "cryotherapy-london": [
+    { title: "Cold without immersion", text: "Cryotherapy offers a short cold exposure without entering water. Some users value the speed and staff-led format more than the evidence itself." },
+    { title: "Evidence is mixed", text: "Claims around recovery, inflammation and soreness vary by protocol and outcome. Treat dramatic performance or medical claims cautiously." },
+    { title: "Safety screening matters", text: "Choose providers that explain contraindications, exposure time and what to expect before the session starts." },
+  ],
+  "red-light-therapy-london": [
+    { title: "Dose is everything", text: "Red and near-infrared light depend on wavelength, power, distance, treatment time and consistency. A premium room does not automatically mean an effective protocol." },
+    { title: "Where evidence is strongest", text: "Photobiomodulation has been studied for pain, inflammation, skin and tissue recovery, but results vary by device quality and use case." },
+    { title: "Watch the claims", text: "Be cautious with vague detox, fat-loss or dramatic anti-ageing claims unless the provider explains the protocol and evidence clearly." },
+  ],
+  "hbot-london": [
+    { title: "Medical-adjacent service", text: "HBOT is a recognised therapy for specific medical indications, but many wellness and longevity claims go beyond the strongest evidence." },
+    { title: "Provider quality matters", text: "Look for clear safety screening, staff training, chamber type, pressure protocol and whether a consultation is required." },
+    { title: "Think in protocols", text: "One session is unlikely to tell the full story. Compare session length, number of sessions, pressure level and total package cost." },
+  ],
 };
 
 export const activityPages: ActivityPageConfig[] = [
@@ -300,7 +341,7 @@ export const activityPages: ActivityPageConfig[] = [
       { question: "Is HBOT medical advice?", answer: "No. Well+ is a directory and editorial guide, not a medical advice service. Always check provider credentials and seek professional advice where relevant." },
     ],
   },
-];
+].map((activity) => ({ ...activity, evidenceNotes: evidenceNotesBySlug[activity.slug] }));
 
 export function getActivityPage(slug: string) {
   return activityPages.find((page) => page.slug === slug);
