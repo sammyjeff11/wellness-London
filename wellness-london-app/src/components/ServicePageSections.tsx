@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ServiceDirectory, { type ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import type { ServicePageContent } from "@/content/service-page-content";
+import type { ActivityEvidenceNote } from "@/lib/activity-pages";
 
 type ServiceIntroSectionProps = {
   eyebrow: string;
@@ -18,6 +19,11 @@ type ServiceDirectorySectionProps = {
 type ServiceGuidanceSectionProps = {
   title: string;
   points: ServicePageContent["guidancePoints"];
+};
+
+type ServiceEvidenceSectionProps = {
+  title?: string;
+  notes?: ActivityEvidenceNote[];
 };
 
 type ServiceInsightSectionProps = {
@@ -73,6 +79,32 @@ export function ServiceGuidanceSection({ title, points }: ServiceGuidanceSection
             <article key={point.title} className="border-t border-[#fbf8f1]/22 pt-5">
               <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#fbf8f1]">{point.title}</h3>
               <p className="text-sm leading-7 text-[#fbf8f1]/72">{point.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function ServiceEvidenceSection({ title = "What the evidence suggests", notes = [] }: ServiceEvidenceSectionProps) {
+  if (notes.length === 0) return null;
+
+  return (
+    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-9 max-w-3xl">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
+          <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
+          <p className="mt-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
+            Practical notes to help you understand the likely benefits, limits and timing considerations before booking. This is not medical advice.
+          </p>
+        </div>
+        <div className="grid gap-5 md:grid-cols-3">
+          {notes.map((note) => (
+            <article key={note.title} className="border border-[#d8cebf] bg-[#f4efe6] p-6 sm:p-7">
+              <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d]">{note.title}</h3>
+              <p className="text-sm leading-7 text-[#5f574c]">{note.text}</p>
             </article>
           ))}
         </div>
