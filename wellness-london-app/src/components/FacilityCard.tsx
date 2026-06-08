@@ -4,7 +4,7 @@ import { useState } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
-import { canonicaliseServiceList } from "@/lib/taxonomy";
+import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -72,9 +72,12 @@ function getAreaLabel(facility: FacilityCardFacility) {
   return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
 }
 
+function getCanonicalServices(services?: string[]) {
+  return canonicaliseServiceList(services).slice(0, 3);
+}
+
 function formatServiceLine(services?: string[]) {
-  if (!services || services.length === 0) return "";
-  return canonicaliseServiceList(services).slice(0, 3).join(" · ");
+  return getCanonicalServices(services).join(" · ");
 }
 
 function formatRating(value?: string) {
@@ -113,7 +116,8 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const areaLabel = getAreaLabel(facility);
   const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" · ");
   const price = formatPrice(facility.priceRange || facility.priceFrom);
-  const serviceLine = formatServiceLine(facility.services);
+  const serviceLabels = getCanonicalServices(facility.services);
+  const serviceLine = serviceLabels.join(" · ");
   const summary = conciseSummary(facility, serviceLine);
   const rating = formatRating(facility.rating);
   const cardImages = getCardImages(facility);
@@ -184,7 +188,27 @@ export default function FacilityCard({ facility, source = "directory", compact =
           {rating ? <span className="shrink-0 text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
         </div>
         <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
-        {serviceLine ? <p className="line-clamp-2 text-[15px] leading-6 text-[#6f6048]">{serviceLine}</p> : null}
+      </Link>
+      {serviceLabels.length > 0 ? (
+        <div className="mt-0.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
+          {serviceLabels.map((service, index) => {
+            const href = canonicalServiceHref(service);
+            return (
+              <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
+                {href ? (
+                  <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
+                    {service}
+                  </Link>
+                ) : (
+                  <span>{service}</span>
+                )}
+                {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
+              </span>
+            );
+          })}
+        </div>
+      ) : null}
+      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
         <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
       </Link>
     </article>

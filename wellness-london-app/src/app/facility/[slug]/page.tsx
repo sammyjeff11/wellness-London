@@ -8,6 +8,7 @@ import VenueLocationSection from "@/components/VenueLocationSection";
 import { getFacilities } from "@/lib/airtable";
 import { getFacilityLocation } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
+import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 
 export const dynamicParams = true;
 
@@ -78,7 +79,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   const location = getFacilityLocation(facility);
   const summary = facility.editorialVerdict || facility.editorialSummary || facility.description;
-  const services = facility.servicesOffered.slice(0, 8);
+  const services = canonicaliseServiceList(facility.servicesOffered).slice(0, 8);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -143,11 +144,18 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
-              {services.map((service) => (
-                <span key={service} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] sm:px-5 sm:py-3">
-                  {service}
-                </span>
-              ))}
+              {services.map((service) => {
+                const href = canonicalServiceHref(service);
+                return href ? (
+                  <Link key={service} href={href} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] transition hover:border-[#6f6048] hover:text-[#29241d] sm:px-5 sm:py-3">
+                    {service}
+                  </Link>
+                ) : (
+                  <span key={service} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] sm:px-5 sm:py-3">
+                    {service}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </section>
