@@ -84,16 +84,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <JsonLd data={venueJsonLd(facility)} />
 
-      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-16">
+      <section className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
         <div className="mx-auto max-w-6xl">
-          <nav aria-label="Breadcrumb" className="mb-7 flex flex-wrap gap-2 text-sm text-[#70695d]">
+          <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap gap-2 text-sm text-[#70695d] sm:mb-8">
             <Link href="/" className="underline-offset-4 hover:text-[#29241d] hover:underline">Home</Link>
             <span>/</span>
             <Link href="/explore" className="underline-offset-4 hover:text-[#29241d] hover:underline">Explore</Link>
           </nav>
 
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
-            <div>
+          <div className="grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
+            <div className="max-w-2xl lg:max-w-none">
               <p className="editorial-eyebrow mb-4">{facility.venueTypeStandardized || "London wellness venue"}</p>
               <h1 className="font-serif text-[3.1rem] font-normal leading-[0.94] tracking-[-0.06em] sm:text-6xl md:text-7xl">
                 {facility.name}
@@ -122,7 +122,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       </section>
 
       <section className="px-5 pb-10 sm:px-6 sm:pb-14">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3">
+        <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 md:grid-cols-3">
           <DetailPill label="Location" value={location} />
           <DetailPill label="Nearest station" value={facility.nearestStation} />
           <DetailPill label="Price from" value={facility.priceFrom || facility.overallPriceRange} />
@@ -132,21 +132,26 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </div>
       </section>
 
-      <section className="px-5 pb-12 sm:px-6 md:pb-16">
-        <div className="mx-auto grid max-w-6xl gap-8 border-t border-[#d8cebf]/70 pt-10 md:grid-cols-[0.72fr_1.28fr]">
-          <div>
-            <p className="editorial-eyebrow mb-3">Services</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em]">What to compare.</h2>
+      {services.length > 0 ? (
+        <section className="px-5 pb-12 sm:px-6 md:pb-16">
+          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+            <div className="max-w-2xl">
+              <p className="editorial-eyebrow mb-3">Services</p>
+              <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Available treatments.</h2>
+              <p className="mt-3 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
+                A quick view of the main services listed for this venue, so you can see whether it matches what you are looking for before booking.
+              </p>
+            </div>
+            <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
+              {services.map((service) => (
+                <span key={service} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] sm:px-5 sm:py-3">
+                  {service}
+                </span>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {services.map((service) => (
-              <span key={service} className="rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm text-[#5f574c]">
-                {service}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <VenueLocationSection
         name={facility.name}
