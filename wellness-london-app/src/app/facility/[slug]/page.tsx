@@ -5,6 +5,7 @@ import FacilityGallery from "@/components/FacilityGallery";
 import JsonLd from "@/components/JsonLd";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
+import { activityPages } from "@/lib/activity-pages";
 import { getFacilities } from "@/lib/airtable";
 import { getFacilityLocation } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
@@ -70,6 +71,25 @@ function DetailPill({ label, value }: { label: string; value?: string }) {
   );
 }
 
+const activityGuideByHref = new Map(activityPages.map((page) => [page.canonicalHref, page]));
+
+function getRelatedGuides(services: string[]) {
+  return services
+    .flatMap((service) => {
+      const href = canonicalServiceHref(service);
+      const guide = href ? activityGuideByHref.get(href) : undefined;
+
+      if (!href || !guide) return [];
+
+      return [{
+        href,
+        service: guide.label,
+        copy: guide.description,
+      }];
+    })
+    .slice(0, 4);
+}
+
 export default async function FacilityPage({ params }: FacilityPageProps) {
   const { slug } = await params;
   const facilities = await getFacilities();
@@ -79,7 +99,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   const location = getFacilityLocation(facility);
   const summary = facility.editorialVerdict || facility.editorialSummary || facility.description;
-  const services = canonicaliseServiceList(facility.servicesOffered).slice(0, 8);
+  const services = canonicaliseServiceList(facility.servicesOffered);
+  const relatedGuides = getRelatedGuides(services);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -129,7 +150,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           <DetailPill label="Price from" value={facility.priceFrom || facility.overallPriceRange} />
           <DetailPill label="Access" value={facility.accessType || facility.privateOrShared} />
           <DetailPill label="Beginner friendly" value={facility.beginnerFriendly} />
-          <DetailPill label="Last checked" value={facility.lastCheckedDate} />
         </div>
       </section>
 
@@ -144,7 +164,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
-              {services.map((service) => {
+              {services.slice(0, 8).map((service) => {
                 const href = canonicalServiceHref(service);
                 return href ? (
                   <Link key={service} href={href} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] transition hover:border-[#6f6048] hover:text-[#29241d] sm:px-5 sm:py-3">
@@ -156,6 +176,31 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                   </span>
                 );
               })}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {relatedGuides.length > 0 ? (
+        <section className="px-5 pb-12 sm:px-6 md:pb-16">
+          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+            <div className="max-w-2xl">
+              <p className="editorial-eyebrow mb-3">Related guides</p>
+              <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Keep exploring.</h2>
+              <p className="mt-3 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
+                Use these guides to compare similar services across London and understand what to look for before booking.
+              </p>
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {relatedGuides.map((guide) => (
+                <Link key={guide.href} href={guide.href} className="group flex min-h-48 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">
+                  <span>
+                    <span className="block text-lg font-medium leading-6 text-[#29241d]">{guide.service} in London</span>
+                    <span className="mt-3 block text-sm leading-6 text-[#5f574c]">{guide.copy}</span>
+                  </span>
+                  <span className="mt-6 text-sm font-medium text-[#29241d] underline-offset-4 group-hover:underline">Read guide &rarr;</span>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
