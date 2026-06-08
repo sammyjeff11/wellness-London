@@ -6,6 +6,7 @@ import HomeVenueSearch from "@/components/HomeVenueSearch";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
+import { collections } from "@/lib/collections";
 import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export const metadata: Metadata = {
@@ -24,16 +25,17 @@ const serviceLinks = serviceTaxonomy
     description: service.description,
   }));
 
+const collectionLinks = collections.map((collection) => ({
+  href: collection.href,
+  title: collection.title,
+  text: collection.heroText,
+}));
+
 const venueTypeLinks = [
   {
     href: "/best-sauna-cold-plunge-london",
     title: "Bathhouse",
     text: "Places built around a fuller bathing or thermal circuit rather than a single treatment room.",
-  },
-  {
-    href: "/best-recovery-clubs-london",
-    title: "Recovery Studio",
-    text: "Focused studios for repeatable recovery routines, guided sessions and practical facilities.",
   },
   {
     href: "/longevity-london",
@@ -198,6 +200,35 @@ export default async function Home() {
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
                 <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Curated collections</p>
+              <h2 className={sectionHeadingClass}>
+                Start with the best options.
+              </h2>
+            </div>
+            <p className={sectionLeadClass}>
+              Curated edits for high-intent searches like best saunas, cold plunges and recovery clubs in London.
+            </p>
+          </div>
+
+          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-3`}>
+            {collectionLinks.map((collection) => (
+              <Link
+                key={collection.href}
+                href={collection.href}
+                className={lightCarouselCardClass}
+              >
+                <h3 className={`${editorialCardTitleClass} group-hover:underline group-hover:underline-offset-4`}>{collection.title}</h3>
+                <p className={editorialCardTextClass}>{collection.text}</p>
               </Link>
             ))}
           </div>
