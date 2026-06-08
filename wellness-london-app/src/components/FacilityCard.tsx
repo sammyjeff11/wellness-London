@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
@@ -39,18 +40,7 @@ type FacilityCardProps = {
   compact?: boolean;
 };
 
-const broadAreaLabels = new Set([
-  "central",
-  "north",
-  "south",
-  "east",
-  "west",
-  "central london",
-  "north london",
-  "south london",
-  "east london",
-  "west london",
-]);
+const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
 
 const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 
@@ -62,9 +52,7 @@ function primaryBestFor(facility: FacilityCardFacility) {
 
 function conciseSummary(facility: FacilityCardFacility, serviceLine: string) {
   const summary = primaryBestFor(facility).trim();
-  const fallback = serviceLine
-    ? `${facility.name} offers ${serviceLine.toLowerCase()} in ${getNeighbourhoodLabel(facility)}.`
-    : facility.description;
+  const fallback = serviceLine ? `${facility.name} offers ${serviceLine.toLowerCase()} in ${getNeighbourhoodLabel(facility)}.` : facility.description;
   const value = summary || fallback;
   return value.length > 118 ? `${value.slice(0, 115).trim()}…` : value;
 }
@@ -104,16 +92,12 @@ function priceScaleFromAmount(amount: number) {
 
 function formatPrice(value?: string) {
   if (!value) return "";
-
   const trimmed = value.trim();
   if (trimmed.toLowerCase().includes("pricing requires")) return "";
-
   const scaleMatch = trimmed.match(/£{1,4}/)?.[0];
   const amountMatch = trimmed.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/);
-
   if (amountMatch) return priceScaleFromAmount(Number(amountMatch[1]));
   if (scaleMatch) return scaleMatch;
-
   return trimmed;
 }
 
@@ -124,17 +108,16 @@ function getCardImages(facility: FacilityCardFacility) {
 }
 
 export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
-  const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined]
-    .filter(Boolean)
-    .join(" · ");
+  const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" · ");
   const price = formatPrice(facility.priceRange || facility.priceFrom);
   const serviceLine = formatServiceLine(facility.services);
   const summary = conciseSummary(facility, serviceLine);
   const rating = formatRating(facility.rating);
   const cardImages = getCardImages(facility);
-
+  const activeImage = cardImages[activeImageIndex] || cardImages[0];
   const cardHref = `/facility/${facility.slug}`;
   const imageAspect = compact ? "aspect-[1.04/1]" : "aspect-[1.08/1]";
 
@@ -148,37 +131,42 @@ export default function FacilityCard({ facility, source = "directory", compact =
       page_path: window.location.pathname,
     });
 
+  function showPreviousImage() {
+    setActiveImageIndex((index) => (index - 1 + cardImages.length) % cardImages.length);
+  }
+
+  function showNextImage() {
+    setActiveImageIndex((index) => (index + 1) % cardImages.length);
+  }
+
   return (
     <article className="group min-w-0 overflow-hidden bg-transparent">
       <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
         {cardImages.length > 0 ? (
           <>
-            <div className="flex h-full snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-smooth">
-              {cardImages.map((image, index) => (
-                <div key={`${image.url}-${index}`} className="relative h-full min-w-full snap-center overflow-hidden">
-                  <SafeImage
-                    src={image.url}
-                    alt={image.filename || facility.name}
-                    fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="object-cover transition duration-700 group-hover:scale-[1.025]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/8" />
-                </div>
-              ))}
-            </div>
+            <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="absolute inset-0 block">
+              <SafeImage src={activeImage.url} alt={activeImage.filename || facility.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/8" />
+            </Link>
+
             <div className="pointer-events-none absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3">
               {price ? <span className={pricePillClass}>{price}</span> : <span />}
             </div>
+
             {cardImages.length > 1 ? (
-              <div className="pointer-events-none absolute bottom-3 left-0 right-0 z-10 flex justify-center gap-1.5">
-                {cardImages.slice(0, 5).map((image, index) => (
-                  <span
-                    key={`${image.url}-dot-${index}`}
-                    className={`h-1.5 w-1.5 rounded-full ${index === 0 ? "bg-white" : "bg-white/55"}`}
-                  />
-                ))}
-              </div>
+              <>
+                <button type="button" onClick={showPreviousImage} className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:block" aria-label={`Previous image for ${facility.name}`}>
+                  ←
+                </button>
+                <button type="button" onClick={showNextImage} className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:block" aria-label={`Next image for ${facility.name}`}>
+                  →
+                </button>
+                <div className="absolute bottom-3 left-0 right-0 z-10 flex justify-center gap-1.5">
+                  {cardImages.slice(0, 5).map((image, index) => (
+                    <button key={`${image.url}-dot-${index}`} type="button" onClick={() => setActiveImageIndex(index)} className={`h-1.5 rounded-full transition ${index === activeImageIndex ? "w-4 bg-white" : "w-1.5 bg-white/55 hover:bg-white/85"}`} aria-label={`Show image ${index + 1} for ${facility.name}`} />
+                  ))}
+                </div>
+              </>
             ) : null}
           </>
         ) : (
@@ -192,9 +180,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
 
       <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
         <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">
-            {facility.name}
-          </h3>
+          <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
           {rating ? <span className="shrink-0 text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
         </div>
         <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
