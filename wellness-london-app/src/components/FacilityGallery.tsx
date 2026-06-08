@@ -118,12 +118,12 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
 
             {galleryImages.length > 1 ? (
               <div className="border-t border-white/10 px-4 py-3 sm:px-6">
-                <div className="flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1">
+                <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
                   {galleryImages.map((image, index) => {
                     const isActive = index === activeIndex;
                     return (
-                      <button key={`${image.url}-library-${index}`} type="button" onClick={() => setActiveIndex(index)} className={`relative aspect-[4/3] min-w-[7rem] snap-start overflow-hidden rounded-[0.7rem] bg-[#211d17] transition focus:outline-none focus:ring-2 focus:ring-white/70 sm:min-w-[8.5rem] ${isActive ? "ring-2 ring-[#fbf8f1]" : "opacity-75 hover:opacity-100"}`} aria-label={`Show photo ${index + 1}`} aria-pressed={isActive}>
-                        <SafeImage src={image.url} alt={image.filename || `${venueName} thumbnail ${index + 1}`} fill sizes="9rem" className="object-contain p-1" />
+                      <button key={`${image.url}-library-${index}`} type="button" onClick={() => setActiveIndex(index)} className={`relative h-20 min-w-[8.75rem] snap-start overflow-hidden rounded-[0.7rem] bg-[#211d17] transition focus:outline-none focus:ring-2 focus:ring-white/70 sm:h-24 sm:min-w-[11rem] ${isActive ? "ring-2 ring-[#fbf8f1]" : "opacity-75 hover:opacity-100"}`} aria-label={`Show photo ${index + 1}`} aria-pressed={isActive}>
+                        <SafeImage src={image.url} alt={image.filename || `${venueName} thumbnail ${index + 1}`} fill sizes="11rem" className="object-contain" />
                       </button>
                     );
                   })}
