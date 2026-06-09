@@ -6,7 +6,7 @@ import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
 
-const defaultLastModified = new Date("2026-05-14T00:00:00.000Z");
+const defaultLastModified = new Date("2026-06-09T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
@@ -27,9 +27,15 @@ const staticRoutes = [
   { path: "/south-london-wellness", priority: 0.7 },
   { path: "/how-we-curate", priority: 0.55 },
   { path: "/editorial-standards", priority: 0.55 },
-  { path: "/journal", priority: 0.5 },
   { path: "/site-map", priority: 0.4 },
 ];
+
+function parseLastModified(value?: string) {
+  if (!value || value === "Details not yet confirmed") return defaultLastModified;
+
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? defaultLastModified : parsed;
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const facilities = await getFacilities();
@@ -45,7 +51,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((facility) => facility.slug && (facility.editorialSummary || facility.description))
     .map((facility) => ({
       url: absoluteUrl(`/facility/${facility.slug}`),
-      lastModified: defaultLastModified,
+      lastModified: parseLastModified(facility.lastCheckedDate),
       changeFrequency: "monthly" as const,
       priority: 0.6,
     }));
