@@ -9,6 +9,7 @@ import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
 import { getNeighbourhoodPage, neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { absoluteUrl } from "@/lib/site";
+import { normaliseServiceInput, serviceTaxonomy } from "@/lib/taxonomy";
 
 export async function generateStaticParams() {
   return neighbourhoodPages.map((page) => ({ slug: page.slug }));
@@ -45,6 +46,27 @@ const serviceLinks = [
   { href: "/recovery-london", label: "Recovery", keys: ["recovery", "compression", "sports recovery", "massage"] },
   { href: "/longevity-london", label: "Longevity", keys: ["longevity", "red light", "hbot", "hyperbaric"] },
 ];
+
+const bestForChipClass = "rounded-full border border-[#d8cebf] px-3 py-1 text-xs text-[#5f574c]";
+const linkedBestForChipClass = `${bestForChipClass} transition hover:bg-[#f4efe6] hover:text-[#29241d] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#6f6048]`;
+
+function getBestForServiceHref(label: string) {
+  const normalisedLabel = normaliseServiceInput(label);
+  if (!normalisedLabel) return undefined;
+
+  const serviceTerms = serviceTaxonomy.flatMap((service) =>
+    [service.name, service.slug, ...(service.synonyms || [])].map((term) => ({
+      href: service.href,
+      term: normaliseServiceInput(term),
+    }))
+  );
+  const exactMatch = serviceTerms.find(({ href, term }) => href && term === normalisedLabel);
+  if (exactMatch) return exactMatch.href;
+
+  return serviceTerms
+    .filter(({ href, term }) => href && term && (normalisedLabel.includes(term) || term.includes(normalisedLabel)))
+    .sort((a, b) => b.term.length - a.term.length)[0]?.href;
+}
 
 function getAvailableServices(facilities: ReturnType<typeof toDirectoryFacility>[]) {
   return serviceLinks.filter((service) => facilities.some((facility) => facilityHasServiceLink(facility, service)));
@@ -255,11 +277,24 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
             <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Why {page.shortTitle} for wellness?</p>
             <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
             <div className="mt-6 flex flex-wrap gap-2">
-              {page.bestFor.map((tag) => (
-                <span key={tag} className="rounded-full border border-[#d8cebf] px-3 py-1 text-xs text-[#5f574c]">
-                  {tag}
-                </span>
-              ))}
+              {page.bestFor.map((tag) => {
+                const serviceHref = getBestForServiceHref(tag);
+
+                return serviceHref ? (
+                  <Link
+                    key={tag}
+                    href={serviceHref}
+                    aria-label={`Explore ${tag} venues in London`}
+                    className={linkedBestForChipClass}
+                  >
+                    {tag}
+                  </Link>
+                ) : (
+                  <span key={tag} className={bestForChipClass}>
+                    {tag}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
