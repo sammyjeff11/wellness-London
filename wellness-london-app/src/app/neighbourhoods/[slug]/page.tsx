@@ -3,6 +3,7 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import FacilityCard from "@/components/FacilityCard";
+import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { getNeighbourhoodPage, neighbourhoodPages } from "@/lib/neighbourhood-pages";
@@ -176,6 +177,10 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
   const whatYouWillFind = getWhatYouWillFind(relatedFacilities);
   const experienceProfile = getExperienceProfile(page, relatedFacilities);
   const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas);
+  const enhancementRelatedAreaLinks =
+    page.slug === "shoreditch"
+      ? [{ href: "/east-london-wellness", label: "East London wellness spaces" }]
+      : supportedRelatedAreas.map((area) => ({ href: area.href, label: `${area.shortTitle} wellness spaces` }));
   const fallbackNeighbourhoods = neighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
   const schema = buildSchema(page, relatedFacilities);
   const editorNote = getEditorNote(page, relatedFacilities);
@@ -267,6 +272,13 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           )}
         </div>
       </section>
+
+      <LocationPageEnhancements
+        areaName={page.shortTitle}
+        facilities={relatedFacilities}
+        intro={page.intro}
+        relatedAreaLinks={enhancementRelatedAreaLinks}
+      />
 
       <section className="px-5 py-8 sm:px-6 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">

@@ -1,7 +1,11 @@
 import Link from "next/link";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
+import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import type { LocationGuide } from "@/content/location-guides";
+import { getFacilities } from "@/lib/airtable";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
 
 type LocationGuidePageProps = {
   guide: LocationGuide;
@@ -29,8 +33,38 @@ function areaNameFromTitle(title: string) {
   return title.replace("Best Wellness & Recovery Spaces in ", "");
 }
 
-export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
+function getRelatedAreaLinks(slug: string) {
+  const linksBySlug: Record<string, { href: string; label: string }[]> = {
+    "central-london-wellness": [
+      { href: "/east-london-wellness", label: "East London wellness spaces" },
+      { href: "/west-london-wellness", label: "West London wellness spaces" },
+      { href: "/neighbourhoods/soho", label: "Soho wellness spaces" },
+      { href: "/neighbourhoods/marylebone", label: "Marylebone wellness spaces" },
+    ],
+    "east-london-wellness": [
+      { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
+      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+    ],
+    "west-london-wellness": [
+      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces" },
+    ],
+    "north-london-wellness": [
+      { href: "/neighbourhoods/hampstead", label: "Hampstead wellness spaces" },
+      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+    ],
+    "south-london-wellness": [
+      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+    ],
+  };
+
+  return linksBySlug[slug] || [];
+}
+
+export default async function LocationGuidePage({ guide }: LocationGuidePageProps) {
   const areaName = areaNameFromTitle(guide.title);
+  const facilities = (await getFacilities()).map(toDirectoryFacility);
+  const locationFacilities = getFacilitiesForLocation(facilities, [areaName, ...guide.areas]);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -95,6 +129,13 @@ export default function LocationGuidePage({ guide }: LocationGuidePageProps) {
           </div>
         </div>
       </section>
+
+      <LocationPageEnhancements
+        areaName={areaName}
+        facilities={locationFacilities}
+        intro={`Explore recovery venues in ${areaName} offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.`}
+        relatedAreaLinks={getRelatedAreaLinks(guide.slug)}
+      />
 
       <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
