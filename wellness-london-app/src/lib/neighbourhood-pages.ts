@@ -18,15 +18,15 @@ export type NeighbourhoodPage = {
 export const neighbourhoodPages: NeighbourhoodPage[] = [
   {
     slug: "shoreditch",
-    title: "Wellness in Shoreditch",
+    title: "Recovery venues in Shoreditch",
     shortTitle: "Shoreditch",
     href: "/neighbourhoods/shoreditch",
-    metaTitle: "Wellness in Shoreditch | Well+ London Neighbourhood Guide",
+    metaTitle: "Recovery venues in Shoreditch | Saunas, cold plunge & contrast therapy",
     metaDescription:
-      "A concise Well+ guide to wellness in Shoreditch, from sauna and cold plunge rituals to recovery spaces and modern East London wellness culture.",
+      "Explore Shoreditch recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
     eyebrow: "East London energy",
     intro:
-      "Shoreditch brings a sharper, more social edge to London wellness — mixing contrast therapy, recovery studios, movement spaces and design-led venues into one compact part of East London.",
+      "Explore recovery venues in Shoreditch offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.",
     summary:
       "This is a useful area when you want wellness to feel active rather than overly quiet: a place for heat, cold, movement, post-work resets and weekend recovery routines.",
     bestFor: ["Contrast therapy", "Social wellness", "Post-work recovery", "Cold exposure", "Modern studios"],

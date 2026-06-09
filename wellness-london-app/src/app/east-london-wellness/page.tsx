@@ -2,17 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
+import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { eastLondonGuide } from "@/content/location-guides";
+import { getFacilities } from "@/lib/airtable";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
 
 export const metadata: Metadata = {
-  title: eastLondonGuide.title,
-  description: eastLondonGuide.description,
+  title: "Recovery venues in East London | Saunas, cold plunge & contrast therapy",
+  description:
+    "Explore East London recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
   alternates: {
     canonical: "/east-london-wellness",
   },
 };
 
-export default function EastLondonWellnessPage() {
+export default async function EastLondonWellnessPage() {
+  const facilities = (await getFacilities()).map(toDirectoryFacility);
+  const eastLondonFacilities = getFacilitiesForLocation(facilities, ["East London", ...eastLondonGuide.areas]);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -77,6 +84,16 @@ export default function EastLondonWellnessPage() {
           </div>
         </div>
       </section>
+
+      <LocationPageEnhancements
+        areaName="East London"
+        facilities={eastLondonFacilities}
+        intro="Explore recovery venues in East London offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and neighbourhood before choosing where to book."
+        relatedAreaLinks={[
+          { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
+          { href: "/central-london-wellness", label: "Central London wellness spaces" },
+        ]}
+      />
 
       <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
