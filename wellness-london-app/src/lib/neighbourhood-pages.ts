@@ -73,6 +73,34 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
   },
   {
+    slug: "kensington",
+    title: "Recovery venues in Kensington",
+    shortTitle: "Kensington",
+    href: "/neighbourhoods/kensington",
+    metaTitle: "Recovery venues in Kensington | Saunas, cryotherapy & wellness",
+    metaDescription:
+      "Explore Kensington recovery venues offering sauna, cryotherapy, red light therapy, HBOT and other wellness services. Compare facilities, services and nearby London areas before booking.",
+    eyebrow: "West London recovery",
+    intro:
+      "Explore recovery venues in Kensington offering infrared sauna, cryotherapy, red light therapy, HBOT and other wellness services. Compare the verified local facilities by service type, setting and location before choosing where to book.",
+    summary:
+      "Kensington is useful when you want premium recovery, biohacking and wellness services close to High Street Kensington rather than a broad West London search.",
+    bestFor: ["Infrared sauna", "Cryotherapy", "Red light therapy", "HBOT", "Premium recovery"],
+    character:
+      "The Kensington wellness scene in the current Well+ data is compact and premium-led, with two verified High Street Kensington venues focused on technology-led recovery, longevity and fitness support.",
+    visitNotes: [
+      "The current Kensington edit is intentionally limited to two matched physical venues.",
+      "Useful for comparing infrared sauna, cryotherapy, red light therapy and HBOT options around High Street Kensington.",
+      "Check access details carefully because one listed venue has a private-members signal in the data.",
+    ],
+    relatedAreas: ["Notting Hill", "West London", "Central London"],
+    relatedLinks: [
+      { href: "/sauna-london", label: "Saunas in London" },
+      { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+      { href: "/west-london-wellness", label: "West London wellness spaces" },
+    ],
+  },
+  {
     slug: "marylebone",
     title: "Wellness in Marylebone",
     shortTitle: "Marylebone",

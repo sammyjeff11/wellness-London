@@ -9,6 +9,7 @@ const searchAliases: Record<string, string[]> = {
   cryotherapy: ["cryotherpay", "cryotheraphy", ...(serviceSearchAliases.cryotherapy || [])],
   shoreditch: ["shore ditch"],
   "canary wharf": ["canary warf", "canarywarf"],
+  kensington: ["kensignton", "kensington high street", "high street kensington"],
   "kentish town": ["kentish"],
   wandsworth: ["wands worth"],
   brixton: ["brixston"],

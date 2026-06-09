@@ -48,6 +48,7 @@ function getRelatedAreaLinks(slug: string) {
     ],
     "west-london-wellness": [
       { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      { href: "/neighbourhoods/kensington", label: "Kensington wellness spaces" },
       { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces" },
     ],
     "north-london-wellness": [
