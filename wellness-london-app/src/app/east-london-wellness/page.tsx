@@ -91,6 +91,7 @@ export default async function EastLondonWellnessPage() {
         intro="Explore recovery venues in East London offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and neighbourhood before choosing where to book."
         relatedAreaLinks={[
           { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
+          { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf wellness spaces" },
           { href: "/central-london-wellness", label: "Central London wellness spaces" },
         ]}
       />

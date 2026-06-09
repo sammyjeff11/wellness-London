@@ -5,6 +5,7 @@ export const LOCATION_HUBS: Record<string, string> = {
   "North London": "/north-london-wellness",
   "South London": "/south-london-wellness",
   Shoreditch: "/neighbourhoods/shoreditch",
+  "Canary Wharf": "/neighbourhoods/canary-wharf",
   Marylebone: "/neighbourhoods/marylebone",
   "Notting Hill": "/neighbourhoods/notting-hill",
   Soho: "/neighbourhoods/soho",
@@ -26,6 +27,7 @@ export const locationHubLinks = [
 
 export const supportedNeighbourhoodHubLinks = [
   { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces", region: "East London" },
+  { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf wellness spaces", region: "East London" },
   { href: "/neighbourhoods/marylebone", label: "Marylebone wellness spaces", region: "Central London" },
   { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces", region: "West London" },
   { href: "/neighbourhoods/soho", label: "Soho wellness spaces", region: "Central London" },

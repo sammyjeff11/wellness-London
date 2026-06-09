@@ -15,6 +15,7 @@ const popularLinks = [
   { href: "/cold-plunge-london", label: "Cold plunge" },
   { href: "/cryotherapy-london", label: "Cryotherapy" },
   { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
+  { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf" },
 ];
 
 function getResultLocation(facility: ServiceDirectoryFacility) {

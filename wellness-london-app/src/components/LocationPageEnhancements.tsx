@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
+import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
 
 type RelatedLink = {
   href: string;
@@ -165,11 +166,13 @@ function buildFaqs(areaName: string, facilities: ServiceDirectoryFacility[]) {
 }
 
 export default function LocationPageEnhancements({ areaName, facilities, intro, relatedAreaLinks = [] }: LocationPageEnhancementsProps) {
-  if (facilities.length < 2) return null;
+  const comparisonFacilities = getUniquePhysicalVenues(facilities);
 
-  const availableServices = getAvailableServices(facilities);
-  const bestForItems = facilities.length >= 3 ? getBestForItems(areaName, facilities) : [];
-  const faqs = buildFaqs(areaName, facilities);
+  if (comparisonFacilities.length < 2) return null;
+
+  const availableServices = getAvailableServices(comparisonFacilities);
+  const bestForItems = comparisonFacilities.length >= 3 ? getBestForItems(areaName, comparisonFacilities) : [];
+  const faqs = buildFaqs(areaName, comparisonFacilities);
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -211,7 +214,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
         </div>
       </section>
 
-      {facilities.length >= 3 ? (
+      {comparisonFacilities.length >= 3 ? (
         <section className="px-5 py-14 sm:px-6 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-7 border-b border-[#d8cebf]/70 pb-5">
@@ -221,7 +224,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
 
             <div className="md:hidden">
               <div className="space-y-4">
-                {facilities.map((facility) => (
+                {comparisonFacilities.map((facility) => (
                   <article key={facility.slug} className="border border-[#d8cebf]/75 bg-[#fbf8f1] p-5">
                     <Link href={`/facility/${facility.slug}`} className="text-lg font-medium underline-offset-4 hover:underline">
                       {facility.name}
@@ -252,7 +255,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
                   </tr>
                 </thead>
                 <tbody>
-                  {facilities.map((facility) => (
+                  {comparisonFacilities.map((facility) => (
                     <tr key={facility.slug} className="border-b border-[#d8cebf]/70 last:border-b-0">
                       <th scope="row" className="px-4 py-4 font-medium text-[#29241d]">
                         <Link href={`/facility/${facility.slug}`} className="underline-offset-4 hover:underline">

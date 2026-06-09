@@ -6,6 +6,7 @@ import FacilityCard from "@/components/FacilityCard";
 import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { getFacilities } from "@/lib/airtable";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
 import { getNeighbourhoodPage, neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { absoluteUrl } from "@/lib/site";
 
@@ -171,19 +172,26 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
     })
     .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
     .slice(0, 6);
+  const displayFacilities = getUniquePhysicalVenues(relatedFacilities);
 
-  const availableServices = getAvailableServices(relatedFacilities);
-  const serviceCounts = getServiceCounts(relatedFacilities);
-  const whatYouWillFind = getWhatYouWillFind(relatedFacilities);
-  const experienceProfile = getExperienceProfile(page, relatedFacilities);
+  const availableServices = getAvailableServices(displayFacilities);
+  const serviceCounts = getServiceCounts(displayFacilities);
+  const whatYouWillFind = getWhatYouWillFind(displayFacilities);
+  const experienceProfile = getExperienceProfile(page, displayFacilities);
   const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas);
   const enhancementRelatedAreaLinks =
     page.slug === "shoreditch"
       ? [{ href: "/east-london-wellness", label: "East London wellness spaces" }]
+      : page.slug === "canary-wharf"
+        ? [
+            { href: "/east-london-wellness", label: "East London wellness spaces" },
+            { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
+            { href: "/central-london-wellness", label: "Central London wellness spaces" },
+          ]
       : supportedRelatedAreas.map((area) => ({ href: area.href, label: `${area.shortTitle} wellness spaces` }));
   const fallbackNeighbourhoods = neighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
-  const schema = buildSchema(page, relatedFacilities);
-  const editorNote = getEditorNote(page, relatedFacilities);
+  const schema = buildSchema(page, displayFacilities);
+  const editorNote = getEditorNote(page, displayFacilities);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -246,9 +254,9 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
             </Link>
           </div>
 
-          {relatedFacilities.length > 0 ? (
+          {displayFacilities.length > 0 ? (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {relatedFacilities.map((facility) => (
+              {displayFacilities.map((facility) => (
                 <FacilityCard key={facility.slug} facility={facility} source={`neighbourhood_${page.slug}`} />
               ))}
             </div>
@@ -275,7 +283,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
       <LocationPageEnhancements
         areaName={page.shortTitle}
-        facilities={relatedFacilities}
+        facilities={displayFacilities}
         intro={page.intro}
         relatedAreaLinks={enhancementRelatedAreaLinks}
       />
@@ -347,8 +355,8 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
               <div>
                 <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Are there curated listings in {page.shortTitle}?</h2>
                 <p className="text-sm leading-7 text-[#5f574c]">
-                  {relatedFacilities.length > 0
-                    ? `Yes — this guide currently highlights ${relatedFacilities.length} matched listing${relatedFacilities.length === 1 ? "" : "s"} in ${page.shortTitle} based on the available location data.`
+                  {displayFacilities.length > 0
+                    ? `Yes — this guide currently highlights ${displayFacilities.length} matched listing${displayFacilities.length === 1 ? "" : "s"} in ${page.shortTitle} based on the available location data.`
                     : "We are still verifying venues for this area, so the page avoids showing unrelated listings just to fill the space."}
                 </p>
               </div>

@@ -18,6 +18,7 @@ const pages = [
     links: [
       { href: "/neighbourhoods", label: "London Wellness Neighbourhoods" },
       { href: "/neighbourhoods/shoreditch", label: "Wellness in Shoreditch" },
+      { href: "/neighbourhoods/canary-wharf", label: "Wellness in Canary Wharf" },
       { href: "/neighbourhoods/marylebone", label: "Wellness in Marylebone" },
       { href: "/neighbourhoods/notting-hill", label: "Wellness in Notting Hill" },
       { href: "/neighbourhoods/soho", label: "Wellness in Soho" },

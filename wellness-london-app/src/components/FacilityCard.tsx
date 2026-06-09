@@ -11,6 +11,9 @@ export type FacilityCardFacility = {
   name: string;
   description: string;
   website?: string;
+  businessName?: string;
+  brandOperator?: string;
+  address?: string;
   imageUrl?: string;
   imageAlt?: string;
   galleryImages?: { url: string; filename?: string }[];
