@@ -24,6 +24,8 @@ export type AirtableFacility = {
   slug: string;
   name: string;
   website: string;
+  businessName: string;
+  brandOperator: string;
   address: string;
   phone: string;
   email: string;
@@ -91,6 +93,8 @@ type AirtableRecord = {
     Name?: string;
     Slug?: string;
     Website?: string;
+    "Business Name"?: string;
+    "Brand / Operator"?: string;
     Address?: string;
     Phone?: string;
     Email?: string;
@@ -289,6 +293,8 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     slug: createSlug(slugSource, record.id),
     name,
     website: record.fields.Website || "#",
+    businessName: record.fields["Business Name"] || "",
+    brandOperator: record.fields["Brand / Operator"] || "",
     address: record.fields.Address || "London",
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",

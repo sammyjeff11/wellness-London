@@ -45,6 +45,34 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
   },
   {
+    slug: "canary-wharf",
+    title: "Recovery venues in Canary Wharf",
+    shortTitle: "Canary Wharf",
+    href: "/neighbourhoods/canary-wharf",
+    metaTitle: "Recovery venues in Canary Wharf | Saunas, cold plunge & wellness spaces",
+    metaDescription:
+      "Explore Canary Wharf recovery venues offering sauna, cold plunge, contrast therapy, cryotherapy and other wellness services.",
+    eyebrow: "Docklands recovery",
+    intro:
+      "Explore recovery venues in Canary Wharf offering sauna, cold plunge, contrast therapy, cryotherapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.",
+    summary:
+      "Canary Wharf is useful when you want recovery close to offices, gyms, transport and weekday routines rather than a destination spa day.",
+    bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Cryotherapy", "Premium wellness"],
+    character:
+      "The Canary Wharf wellness scene is practical and workday-friendly, with recovery spaces clustered around gyms, offices and transport links.",
+    visitNotes: [
+      "Useful for weekday recovery before work, after work or between meetings.",
+      "Check access rules carefully because some facilities may sit inside broader gym or club settings.",
+      "Compare exact location details before travelling, especially around Crossrail Place and Canada Square.",
+    ],
+    relatedAreas: ["Shoreditch", "The City", "East London"],
+    relatedLinks: [
+      { href: "/sauna-london", label: "Saunas in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/east-london-wellness", label: "East London wellness spaces" },
+    ],
+  },
+  {
     slug: "marylebone",
     title: "Wellness in Marylebone",
     shortTitle: "Marylebone",

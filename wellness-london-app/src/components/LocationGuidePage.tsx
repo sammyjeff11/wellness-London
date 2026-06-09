@@ -43,6 +43,7 @@ function getRelatedAreaLinks(slug: string) {
     ],
     "east-london-wellness": [
       { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
+      { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf wellness spaces" },
       { href: "/central-london-wellness", label: "Central London wellness spaces" },
     ],
     "west-london-wellness": [
