@@ -4,7 +4,7 @@ import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 export const metadata = {
   title: "London Wellness Neighbourhood Guides | Well+",
   description:
-    "Explore concise Well+ guides to London wellness neighbourhoods including Shoreditch, Marylebone, Notting Hill, Soho and Hampstead.",
+    "Explore concise Well+ guides to London wellness neighbourhoods including Shoreditch, Canary Wharf, Kensington, Marylebone, Notting Hill, Soho and Hampstead.",
   alternates: { canonical: "/neighbourhoods" },
 };
 

@@ -58,6 +58,10 @@ function hasService(facility: ServiceDirectoryFacility, service: ServiceColumn):
   const serviceKeys = facility.serviceKeys || [];
   const text = normalise(getFacilityText(facility));
 
+  if (service.key === "cold-plunge") {
+    return service.terms.some((term) => text.includes(normalise(term)));
+  }
+
   if (service.key === "contrast-therapy") {
     return (
       service.terms.some((term) => text.includes(normalise(term))) ||
@@ -214,7 +218,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
         </div>
       </section>
 
-      {comparisonFacilities.length >= 3 ? (
+      {comparisonFacilities.length >= 2 ? (
         <section className="px-5 py-14 sm:px-6 sm:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-7 border-b border-[#d8cebf]/70 pb-5">

@@ -103,7 +103,7 @@ export default async function Home() {
     .sort((a, b) => selectionScore(b) - selectionScore(a))
     .slice(0, Math.min(3, directoryFacilities.length));
   const heroImage = facilities.find((facility) => facility.images.length > 0)?.images[0];
-  const featuredNeighbourhoods = neighbourhoodPages.slice(0, 6);
+  const featuredNeighbourhoods = neighbourhoodPages;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">

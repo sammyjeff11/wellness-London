@@ -41,18 +41,42 @@ const serviceLinks = [
   { href: "/sauna-london", label: "Sauna", keys: ["sauna", "infrared sauna", "traditional sauna"] },
   { href: "/cold-plunge-london", label: "Cold Plunge", keys: ["cold plunge", "ice bath", "cold exposure"] },
   { href: "/cryotherapy-london", label: "Cryotherapy", keys: ["cryotherapy", "cryo"] },
-  { href: "/contrast-therapy-london", label: "Contrast Therapy", keys: ["contrast therapy", "sauna", "cold plunge"] },
+  { href: "/contrast-therapy-london", label: "Contrast Therapy", keys: ["contrast therapy", "hot and cold", "sauna and cold plunge"] },
   { href: "/recovery-london", label: "Recovery", keys: ["recovery", "compression", "sports recovery", "massage"] },
   { href: "/longevity-london", label: "Longevity", keys: ["longevity", "red light", "hbot", "hyperbaric"] },
 ];
 
 function getAvailableServices(facilities: ReturnType<typeof toDirectoryFacility>[]) {
-  const serviceText = facilities
-    .flatMap((facility) => [...(facility.services || []), ...(facility.serviceKeys || []), ...(facility.bestFor || [])])
+  return serviceLinks.filter((service) => facilities.some((facility) => facilityHasServiceLink(facility, service)));
+}
+
+function getServiceText(facility: ReturnType<typeof toDirectoryFacility>, includeServiceKeys = true) {
+  return [
+    ...(facility.services || []),
+    ...(includeServiceKeys ? facility.serviceKeys || [] : []),
+    ...(facility.bestFor || []),
+    facility.description,
+  ]
     .join(" ")
     .toLowerCase();
+}
 
-  return serviceLinks.filter((service) => service.keys.some((key) => serviceText.includes(key)));
+function facilityHasServiceLink(facility: ReturnType<typeof toDirectoryFacility>, service: (typeof serviceLinks)[number]): boolean {
+  const text = getServiceText(facility);
+  const explicitText = getServiceText(facility, false);
+
+  if (service.href === "/cold-plunge-london") {
+    return service.keys.some((key) => explicitText.includes(key));
+  }
+
+  if (service.href === "/contrast-therapy-london") {
+    return (
+      service.keys.some((key) => explicitText.includes(key)) ||
+      (facilityHasServiceLink(facility, serviceLinks[0]) && facilityHasServiceLink(facility, serviceLinks[1]))
+    );
+  }
+
+  return service.keys.some((key) => text.includes(key));
 }
 
 function getSupportedRelatedAreas(currentSlug: string, relatedAreas: string[]) {
@@ -66,12 +90,7 @@ function getSupportedRelatedAreas(currentSlug: string, relatedAreas: string[]) {
 function getServiceCounts(facilities: ReturnType<typeof toDirectoryFacility>[]) {
   return serviceLinks
     .map((service) => {
-      const count = facilities.filter((facility) => {
-        const text = [...(facility.services || []), ...(facility.serviceKeys || []), ...(facility.bestFor || [])]
-          .join(" ")
-          .toLowerCase();
-        return service.keys.some((key) => text.includes(key));
-      }).length;
+      const count = facilities.filter((facility) => facilityHasServiceLink(facility, service)).length;
 
       return { ...service, count };
     })
@@ -163,7 +182,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
     .map(toDirectoryFacility)
     .filter((facility) => {
       const locationText = normalise(
-        [facility.neighbourhood, facility.location, facility.areaOfLondon, facility.areaGroup]
+        [facility.neighbourhood, facility.location, facility.areaOfLondon, facility.areaGroup, facility.nearestStation, facility.address]
           .filter(Boolean)
           .join(" ")
       );
@@ -188,6 +207,12 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
             { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
             { href: "/central-london-wellness", label: "Central London wellness spaces" },
           ]
+        : page.slug === "kensington"
+          ? [
+              { href: "/west-london-wellness", label: "West London wellness spaces" },
+              { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces" },
+              { href: "/central-london-wellness", label: "Central London wellness spaces" },
+            ]
       : supportedRelatedAreas.map((area) => ({ href: area.href, label: `${area.shortTitle} wellness spaces` }));
   const fallbackNeighbourhoods = neighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
   const schema = buildSchema(page, displayFacilities);
