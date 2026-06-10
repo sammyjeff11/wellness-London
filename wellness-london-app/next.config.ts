@@ -4,6 +4,20 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  async redirects() {
+    return [
+      {
+        source: "/journal",
+        destination: "/editorial",
+        permanent: true,
+      },
+      {
+        source: "/journal/best-saunas-london",
+        destination: "/editorial/best-saunas-london",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
