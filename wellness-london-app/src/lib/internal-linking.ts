@@ -1,4 +1,5 @@
 import type { AirtableFacility, ServiceKey } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { getLocationHubHref } from "@/lib/location-hubs";
 
 export type InternalLink = {
@@ -47,7 +48,7 @@ export function buildFacilityLocationLinks(facility: AirtableFacility) {
 export function buildServiceLocationLinks(facilities: AirtableFacility[], serviceLabel: string, limit = 4): InternalLink[] {
   const counts = new Map<string, { href: string; label: string; count: number }>();
 
-  facilities.forEach((facility) => {
+  dedupeFacilities(facilities).forEach((facility) => {
     buildFacilityLocationLinks(facility).forEach((location) => {
       const current = counts.get(location.href);
       counts.set(location.href, {

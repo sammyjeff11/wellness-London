@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export type LocationHubConfig = {
@@ -34,10 +35,12 @@ function getAvailableServiceLinks(facilities: ServiceDirectoryFacility[]) {
 }
 
 export default function LocationHubPage({ config, facilities }: LocationHubPageProps) {
-  const matchingFacilities = facilities.filter((facility) => {
-    const area = facility.areaGroup || facility.location || "";
-    return area === config.area || facility.location === config.area;
-  });
+  const matchingFacilities = dedupeFacilities(
+    facilities.filter((facility) => {
+      const area = facility.areaGroup || facility.location || "";
+      return area === config.area || facility.location === config.area;
+    })
+  );
 
   const availableServiceLinks = getAvailableServiceLinks(matchingFacilities);
 

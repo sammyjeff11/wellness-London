@@ -4,6 +4,7 @@ import { useMemo, useState, type ReactNode } from "react";
 import Link from "next/link";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
@@ -102,16 +103,17 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [sort, setSort] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
+  const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
 
-  const areaOptions = uniqueValues(facilities.map((facility) => facility.areaGroup || facility.location));
-  const premiumOptions = uniqueValues(facilities.map((facility) => facility.premiumLevel));
-  const experienceOptions = uniqueValues(facilities.flatMap((facility) => facility.experienceType || []));
-  const privateOptions = uniqueValues(facilities.map((facility) => facility.privateOrShared));
-  const beginnerOptions = uniqueValues(facilities.map((facility) => facility.beginnerFriendly));
+  const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
+  const premiumOptions = uniqueValues(uniqueFacilities.map((facility) => facility.premiumLevel));
+  const experienceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || []));
+  const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
+  const beginnerOptions = uniqueValues(uniqueFacilities.map((facility) => facility.beginnerFriendly));
   const searchValue = searchQuery.trim();
 
   const filteredFacilities = useMemo(() => {
-    const result = facilities.filter((facility) => {
+    const result = uniqueFacilities.filter((facility) => {
       const area = facility.areaGroup || facility.location || "";
       const experiences = facility.experienceType || [];
 
@@ -134,7 +136,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       if (sort === "recently-checked") return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
       return Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
     });
-  }, [facilities, filters, sort, searchValue]);
+  }, [uniqueFacilities, filters, sort, searchValue]);
 
   function updateFilter(key: keyof FilterState, value: string) {
     setFilters((current) => ({ ...current, [key]: value }));
@@ -170,7 +172,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
   const hasActiveSearch = searchQuery.trim().length > 0;
 
-  if (facilities.length === 0) {
+  if (uniqueFacilities.length === 0) {
     return (
       <div className="bg-[#fbf8f1] p-6 sm:p-8">
         <h3 className="mb-2 text-xl font-medium sm:text-2xl">{emptyTitle}</h3>
@@ -233,7 +235,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </button>
             ) : null}
           </div>
-          <p className="mt-2 text-xs leading-5 text-[#70695d]">{filteredFacilities.length} of {facilities.length} spaces shown</p>
+          <p className="mt-2 text-xs leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
         </div>
 
         <div className="mt-4 md:hidden">

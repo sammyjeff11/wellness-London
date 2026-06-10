@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 import FacilityCard from "@/components/FacilityCard";
 import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
-import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
 import { getNeighbourhoodPage, neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { absoluteUrl } from "@/lib/site";
 import { normaliseServiceInput, serviceTaxonomy } from "@/lib/taxonomy";
@@ -200,20 +200,20 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
   const facilities = await getFacilities();
   const searchTerms = [page.shortTitle].map(normalise);
-  const relatedFacilities = facilities
-    .map(toDirectoryFacility)
-    .filter((facility) => {
-      const locationText = normalise(
-        [facility.neighbourhood, facility.location, facility.areaOfLondon, facility.areaGroup, facility.nearestStation, facility.address]
-          .filter(Boolean)
-          .join(" ")
-      );
+  const displayFacilities = dedupeFacilities(
+    facilities
+      .map(toDirectoryFacility)
+      .filter((facility) => {
+        const locationText = normalise(
+          [facility.neighbourhood, facility.location, facility.areaOfLondon, facility.areaGroup, facility.nearestStation, facility.address]
+            .filter(Boolean)
+            .join(" ")
+        );
 
-      return searchTerms.some((term) => locationText.includes(term));
-    })
-    .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
-    .slice(0, 6);
-  const displayFacilities = getUniquePhysicalVenues(relatedFacilities);
+        return searchTerms.some((term) => locationText.includes(term));
+      })
+      .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
+  ).slice(0, 6);
 
   const availableServices = getAvailableServices(displayFacilities);
   const serviceCounts = getServiceCounts(displayFacilities);

@@ -4,6 +4,7 @@ import JsonLd from "@/components/JsonLd";
 import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import type { LocationGuide } from "@/content/location-guides";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
 
@@ -65,7 +66,7 @@ function getRelatedAreaLinks(slug: string) {
 
 export default async function LocationGuidePage({ guide }: LocationGuidePageProps) {
   const areaName = areaNameFromTitle(guide.title);
-  const facilities = (await getFacilities()).map(toDirectoryFacility);
+  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
   const locationFacilities = getFacilitiesForLocation(facilities, [areaName, ...guide.areas]);
   const faqSchema = {
     "@context": "https://schema.org",

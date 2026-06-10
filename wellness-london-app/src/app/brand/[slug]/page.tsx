@@ -5,6 +5,7 @@ import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 import { brandPages, getBrandPageBySlug, getFacilitiesForBrand, facilityIsComingSoon } from "@/lib/brand-pages";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
 
@@ -38,11 +39,12 @@ export default async function BrandPage({ params }: BrandPageProps) {
 
   const facilities = await getFacilities();
   const brandFacilities = getFacilitiesForBrand(facilities, brand);
-  const directoryFacilities = brandFacilities.map(toDirectoryFacility);
-  const liveFacilities = brandFacilities.filter((facility) => !facilityIsComingSoon(facility));
-  const comingSoonFacilities = brandFacilities.filter(facilityIsComingSoon);
+  const uniqueBrandFacilities = dedupeFacilities(brandFacilities);
+  const directoryFacilities = uniqueBrandFacilities.map(toDirectoryFacility);
+  const liveFacilities = uniqueBrandFacilities.filter((facility) => !facilityIsComingSoon(facility));
+  const comingSoonFacilities = uniqueBrandFacilities.filter(facilityIsComingSoon);
   const serviceSet = new Set<string>();
-  brandFacilities.forEach((facility) => facility.servicesOffered.forEach((service) => serviceSet.add(service)));
+  uniqueBrandFacilities.forEach((facility) => facility.servicesOffered.forEach((service) => serviceSet.add(service)));
   const services = Array.from(serviceSet).slice(0, 8);
   const pageUrl = absoluteUrl(`/brand/${brand.slug}`);
 
@@ -52,7 +54,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
     name: brand.seoTitle,
     description: brand.seoDescription,
     url: pageUrl,
-    mainEntity: brandFacilities.map((facility) => ({
+    mainEntity: uniqueBrandFacilities.map((facility) => ({
       "@type": "HealthAndBeautyBusiness",
       name: facility.name,
       url: absoluteUrl(`/facility/${facility.slug}`),
@@ -107,7 +109,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-5">
               <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">London locations</p>
-              <p className="mt-3 text-4xl font-medium tracking-[-0.04em]">{brandFacilities.length}</p>
+              <p className="mt-3 text-4xl font-medium tracking-[-0.04em]">{uniqueBrandFacilities.length}</p>
             </div>
             <div className="rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-5">
               <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Live now</p>

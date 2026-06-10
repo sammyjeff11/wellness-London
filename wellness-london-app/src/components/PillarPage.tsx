@@ -1,6 +1,7 @@
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import type { AirtableFacility } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import type { PillarPageConfig } from "@/lib/pillar-pages";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
@@ -11,7 +12,7 @@ export default function PillarPage({
   pillar: PillarPageConfig;
   facilities: AirtableFacility[];
 }) {
-  const featuredFacilities = facilities.slice(0, 9).map(toDirectoryFacility);
+  const featuredFacilities = dedupeFacilities(facilities.map(toDirectoryFacility)).slice(0, 9);
 
   const venuesSection = (
     <section className="px-5 py-2 sm:px-6 sm:py-14 md:py-20">

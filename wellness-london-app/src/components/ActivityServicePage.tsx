@@ -12,6 +12,7 @@ import {
 } from "@/components/ServicePageSections";
 import { getFacilities } from "@/lib/airtable";
 import { getFacilitiesForActivity, type ActivityPageConfig } from "@/lib/activity-pages";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { buildServiceLocationLinks } from "@/lib/internal-linking";
 
@@ -26,6 +27,7 @@ function serviceTypeForAnalytics(activity: ActivityPageConfig) {
 export default async function ActivityServicePage({ activity }: ActivityServicePageProps) {
   const facilities = await getFacilities();
   const activityFacilities = getFacilitiesForActivity(facilities, activity);
+  const directoryFacilities = dedupeFacilities(activityFacilities.map(toDirectoryFacility));
   const heroImage = activityFacilities.find((facility) => facility.images.length > 0)?.images[0];
   const relatedLinks = [...activity.related, ...buildServiceLocationLinks(activityFacilities, activity.label)];
 
@@ -33,7 +35,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: activity.title,
-    itemListElement: activityFacilities.map((facility, index) => ({
+    itemListElement: directoryFacilities.map((facility, index) => ({
       "@type": "ListItem",
       position: index + 1,
       url: `https://welledit.co.uk/facility/${facility.slug}`,
@@ -73,7 +75,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
       <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
       <ServiceEvidenceSection notes={activity.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
-      <ServiceDirectorySection facilities={activityFacilities.map(toDirectoryFacility)} serviceType={serviceTypeForAnalytics(activity)} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
       <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title={`${activity.label} London FAQs`} faqs={activity.faqs} />
