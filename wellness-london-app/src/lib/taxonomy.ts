@@ -33,7 +33,7 @@ export const serviceTaxonomy = [
   {
     name: "Cold Plunge",
     slug: "cold-plunge",
-    description: "Cold-water immersion experiences, including plunges, ice baths and cold tubs used for recovery or reset.",
+    description: "Cold-water immersion experiences, including plunges, ice baths and cold tubs used for recovery or reset. When paired with sauna, this is often described as contrast therapy.",
     synonyms: ["cold plunge", "cold plunges", "ice bath", "ice baths", "ice tub", "cold tub", "cold dip", "cold exposure", "cold water immersion", "cold therapy"],
     parentCategory: "cold",
     href: "/cold-plunge-london",
@@ -55,10 +55,10 @@ export const serviceTaxonomy = [
     href: "/red-light-therapy-london",
   },
   {
-    name: "Contrast Therapy",
+    name: "Sauna + Cold Plunge",
     slug: "contrast-therapy",
-    description: "Alternating heat and cold rituals, commonly combining sauna with cold plunge or ice-bath sessions.",
-    synonyms: ["contrast", "hot and cold", "sauna and cold plunge", "sauna & cold plunge", "sauna and plunge", "sauna & plunge", "thermal cycle"],
+    description: "Sauna and cold plunge in one hot-and-cold recovery ritual. This is also known as contrast therapy.",
+    synonyms: ["contrast therapy", "contrast", "hot and cold", "hot and cold therapy", "sauna and cold plunge", "sauna + cold plunge", "sauna & cold plunge", "sauna and plunge", "sauna & plunge", "thermal cycle"],
     parentCategory: "recovery",
     href: "/contrast-therapy-london",
   },
