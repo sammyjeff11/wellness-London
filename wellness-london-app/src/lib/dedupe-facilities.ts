@@ -223,8 +223,10 @@ export function getPhysicalVenueKey(facility: DedupeFacility) {
   const slug = normaliseSlug(facility.slug);
   const name = normaliseFacilityValue(facility.name);
 
-  if (hasSpecificAddress(facility)) return operator ? `address:${operator}:${address}` : `address:${address}`;
+  // Prefer operator + canonical neighbourhood over address because Airtable rows for
+  // the same physical venue can have slightly different address text.
   if (operator && location) return `venue:${operator}:${location}`;
+  if (hasSpecificAddress(facility)) return operator ? `address:${operator}:${address}` : `address:${address}`;
   if (isClearlyPhysicalSlug(facility)) return `slug:${slug}`;
   return `name:${name || slug}`;
 }
