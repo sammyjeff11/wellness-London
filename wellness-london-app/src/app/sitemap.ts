@@ -15,6 +15,8 @@ const staticRoutes = [
   { path: "/neighbourhoods", priority: 0.82 },
   { path: "/collections", priority: 0.82 },
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
+  { path: "/journal", priority: 0.72 },
+  { path: "/journal/best-saunas-london", priority: 0.74 },
   ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
   { path: "/longevity-london", priority: 0.75 },
