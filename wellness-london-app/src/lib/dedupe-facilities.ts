@@ -60,13 +60,15 @@ const parentRecordSignals = [
   "validate current clinic address",
 ];
 
+const legalSuffixes = ["ltd", "limited", "llp", "plc", "uk"];
+
 export function normaliseFacilityValue(value?: string | null) {
   return (value || "")
     .toLowerCase()
     .normalize("NFKD")
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/&/g, " and ")
-    .replace(/['']/g, "")
+    .replace(/[']/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -92,35 +94,67 @@ function specificLocationValue(facility: DedupeFacility) {
     .find((value) => value && !broadLocationLabels.has(value));
 }
 
-function getNameWithoutLocation(facility: DedupeFacility) {
-  let name = normaliseFacilityValue(facility.name);
+function removeLocationTerms(value: string, facility: DedupeFacility) {
+  let text = normaliseFacilityValue(value);
   const locationTerms = [
     facility.neighbourhood,
     facility.location,
     facility.nearestStation,
     facility.areaOfLondon,
     facility.areaGroup,
+    "canary wharf",
+    "shoreditch",
+    "hackney wick",
+    "hackney",
+    "stratford",
+    "walthamstow",
+    "kensington",
+    "marylebone",
+    "notting hill",
     "london",
   ]
-    .map((value) => normaliseFacilityValue(value))
-    .filter(Boolean);
+    .map((location) => normaliseFacilityValue(location))
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length);
 
   locationTerms.forEach((term) => {
-    name = name.replace(new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"), " ");
+    text = text.replace(new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"), " ");
   });
 
-  return name.replace(/\s+/g, " ").trim();
+  legalSuffixes.forEach((suffix) => {
+    text = text.replace(new RegExp(`\\b${suffix}\\b`, "g"), " ");
+  });
+
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function getNameWithoutLocation(facility: DedupeFacility) {
+  return removeLocationTerms(facility.name || "", facility);
+}
+
+function getCanonicalOperatorCandidate(value: string | undefined, facility: DedupeFacility) {
+  const stripped = removeLocationTerms(value || "", facility);
+  const normalised = normaliseFacilityValue(value);
+
+  return stripped || normalised;
 }
 
 function getOperatorKey(facility: DedupeFacility) {
-  return (
-    normaliseFacilityValue(facility.brandName) ||
-    normaliseFacilityValue(facility.operatorName) ||
-    normaliseFacilityValue(facility.brandOperator) ||
-    normaliseFacilityValue(facility.businessName) ||
-    getNameWithoutLocation(facility) ||
-    normaliseFacilityValue(facility.name)
-  );
+  const candidates = [
+    facility.brandName,
+    facility.operatorName,
+    facility.brandOperator,
+    facility.businessName,
+    facility.name,
+  ]
+    .map((value) => getCanonicalOperatorCandidate(value, facility))
+    .filter(Boolean);
+
+  const shortestMeaningfulCandidate = candidates
+    .filter((candidate) => candidate.length >= 2)
+    .sort((a, b) => a.length - b.length)[0];
+
+  return shortestMeaningfulCandidate || getNameWithoutLocation(facility) || normaliseFacilityValue(facility.name);
 }
 
 function isClearlyPhysicalSlug(facility: DedupeFacility) {
@@ -168,10 +202,17 @@ function hasImages(facility: DedupeFacility) {
   return Boolean(facility.imageUrl || facility.images?.length || facility.galleryImages?.length);
 }
 
+function hasLocationInName(facility: DedupeFacility) {
+  const name = normaliseFacilityValue(facility.name);
+  const location = specificLocationValue(facility);
+  return Boolean(location && name.includes(location));
+}
+
 function scoreFacility(facility: DedupeFacility) {
   return (
     Number(hasSpecificAddress(facility)) * 120 +
     Number(Boolean(specificLocationValue(facility))) * 90 +
+    Number(hasLocationInName(facility)) * 45 +
     Number(hasImages(facility)) * 55 +
     (facility.images?.length || 0) * 6 +
     (facility.galleryImages?.length || 0) * 6 +
