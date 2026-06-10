@@ -11,6 +11,14 @@ const featuredArticles = [
     meta: "Best of · Sauna · London",
   },
   {
+    href: "/editorial/infrared-sauna-vs-traditional-sauna",
+    kicker: "Sauna Guide 001",
+    title: "Infrared sauna vs traditional sauna",
+    description:
+      "A practical guide to choosing the right London sauna experience based on session style, intensity, privacy and ritual.",
+    meta: "Guide · Infrared · Sauna",
+  },
+  {
     href: "/best-sauna-cold-plunge-london",
     kicker: "Best of",
     title: "Best sauna + cold plunge",
@@ -106,7 +114,7 @@ export default function EditorialPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {standardsLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="rounded-[1.2rem] border border-[#d8cebf]/80 p-5 transition hover:bg-[#29241d] hover:text-[#fbf8f1]">
+              <Link key={link.href} href={link.href} className="group rounded-[1.2rem] border border-[#d8cebf]/80 p-5 transition hover:bg-[#29241d] hover:text-[#fbf8f1]">
                 <h3 className="font-serif text-3xl font-normal leading-[1] tracking-[-0.02em]">{link.label}</h3>
                 <p className="mt-4 text-sm leading-6 text-[#5f574c] transition group-hover:text-[#fbf8f1]/72">{link.text}</p>
               </Link>
