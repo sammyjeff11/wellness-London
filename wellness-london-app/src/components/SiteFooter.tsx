@@ -23,6 +23,7 @@ const serviceLinks = [
 const editorialLinks = [
   { href: "/editorial", label: "All Editorial" },
   { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
+  { href: "/editorial/infrared-sauna-vs-traditional-sauna", label: "Infrared vs Traditional Sauna" },
   { href: "/best-sauna-cold-plunge-london", label: "Best Sauna + Cold Plunge" },
   { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness" },
   { href: "/how-we-curate", label: "How We Curate" },
