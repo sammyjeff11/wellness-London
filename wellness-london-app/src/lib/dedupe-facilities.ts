@@ -43,10 +43,34 @@ const broadLocationLabels = new Set([
   "west",
   "central london",
   "north london",
+  "north east london",
   "south london",
   "east london",
   "west london",
 ]);
+
+const broadLocationTerms = [
+  "north east london",
+  "central london",
+  "north london",
+  "south london",
+  "east london",
+  "west london",
+  "greater london",
+  "london",
+];
+
+const knownNeighbourhoodTerms = [
+  "canary wharf",
+  "shoreditch",
+  "hackney wick",
+  "hackney",
+  "stratford",
+  "walthamstow",
+  "kensington",
+  "marylebone",
+  "notting hill",
+];
 
 const parentRecordSignals = [
   "multiple london locations",
@@ -83,6 +107,31 @@ function isBroadLocation(value?: string | null) {
   return !text || broadLocationLabels.has(text);
 }
 
+function stripTerms(value: string, terms: string[]) {
+  let text = normaliseFacilityValue(value);
+
+  terms
+    .map((term) => normaliseFacilityValue(term))
+    .filter(Boolean)
+    .sort((a, b) => b.length - a.length)
+    .forEach((term) => {
+      text = text.replace(new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"), " ");
+    });
+
+  return text.replace(/\s+/g, " ").trim();
+}
+
+function canonicalLocationValue(value?: string | null) {
+  const text = normaliseFacilityValue(value);
+  if (!text) return "";
+
+  const knownNeighbourhood = knownNeighbourhoodTerms.find((term) => text.includes(term));
+  if (knownNeighbourhood) return knownNeighbourhood;
+
+  const stripped = stripTerms(text, broadLocationTerms);
+  return isBroadLocation(stripped) ? "" : stripped;
+}
+
 function hasSpecificAddress(facility: DedupeFacility) {
   const address = normaliseFacilityValue(facility.address);
   return Boolean(address && !isBroadLocation(address) && !parentRecordSignals.some((signal) => address.includes(signal)));
@@ -90,42 +139,24 @@ function hasSpecificAddress(facility: DedupeFacility) {
 
 function specificLocationValue(facility: DedupeFacility) {
   return [facility.neighbourhood, facility.location, facility.nearestStation, facility.areaOfLondon, facility.areaGroup]
-    .map((value) => normaliseFacilityValue(value))
+    .map((value) => canonicalLocationValue(value))
     .find((value) => value && !broadLocationLabels.has(value));
 }
 
 function removeLocationTerms(value: string, facility: DedupeFacility) {
-  let text = normaliseFacilityValue(value);
   const locationTerms = [
     facility.neighbourhood,
     facility.location,
     facility.nearestStation,
     facility.areaOfLondon,
     facility.areaGroup,
-    "canary wharf",
-    "shoreditch",
-    "hackney wick",
-    "hackney",
-    "stratford",
-    "walthamstow",
-    "kensington",
-    "marylebone",
-    "notting hill",
-    "london",
+    ...knownNeighbourhoodTerms,
+    ...broadLocationTerms,
   ]
     .map((location) => normaliseFacilityValue(location))
-    .filter(Boolean)
-    .sort((a, b) => b.length - a.length);
+    .filter(Boolean);
 
-  locationTerms.forEach((term) => {
-    text = text.replace(new RegExp(`\\b${term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "g"), " ");
-  });
-
-  legalSuffixes.forEach((suffix) => {
-    text = text.replace(new RegExp(`\\b${suffix}\\b`, "g"), " ");
-  });
-
-  return text.replace(/\s+/g, " ").trim();
+  return stripTerms(stripTerms(value, locationTerms), legalSuffixes);
 }
 
 function getNameWithoutLocation(facility: DedupeFacility) {
