@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import FacilityCard from "@/components/FacilityCard";
+import SafeImage from "@/components/SafeImage";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 import {
@@ -38,30 +38,30 @@ type JournalPick = {
 const journalPicks: JournalPick[] = [
   {
     label: "Best overall",
-    title: "A strong first place to start",
+    title: "The most useful first shortlist",
     description:
-      "For most people, the best sauna choice is not just the hottest room. It is the venue that combines clear access, good supporting facilities and enough detail to understand the experience before booking.",
+      "A strong all-round sauna option should be clear, bookable and useful beyond simply having heat available. This pick gives weight to listing quality, services and practical recovery context.",
     match: { serviceKeys: ["sauna", "infrared-sauna"] },
   },
   {
-    label: "Best sauna + cold plunge",
-    title: "For a fuller contrast ritual",
+    label: "Best for contrast",
+    title: "When you want heat and cold together",
     description:
-      "Choose this route if you want heat and cold in the same visit. These spaces are better suited to people looking for a repeatable recovery routine rather than a single passive treatment.",
+      "This is the better route if you want a fuller sauna-and-cold-plunge ritual rather than a single heat session.",
     match: { allServiceKeys: ["sauna", "cold-plunge"] },
   },
   {
     label: "Best premium setting",
-    title: "For a more elevated experience",
+    title: "When the room matters as much as the ritual",
     description:
-      "Some sauna visits are about convenience; others are about the room, service and atmosphere. This pick gives more weight to premium positioning and a considered wellness setting.",
+      "Some sauna visits are about the wider environment: privacy, hospitality, finish and the feeling of the space around the session.",
     match: { serviceKeys: ["sauna", "infrared-sauna"], premiumLevelIncludes: ["premium", "luxury"] },
   },
   {
     label: "Best for first timers",
-    title: "For fewer unknowns before booking",
+    title: "A softer way into sauna culture",
     description:
-      "A better starting point if you are new to sauna, infrared heat or contrast therapy and want a venue that feels easier to approach without needing to know the rituals already.",
+      "A better starting point if you are new to sauna, infrared heat or contrast therapy and want fewer unknowns before booking.",
     match: { serviceKeys: ["sauna", "infrared-sauna"], beginnerFriendly: true },
   },
 ];
@@ -80,6 +80,16 @@ function getServiceLine(facility: ServiceDirectoryFacility) {
   return facility.services?.slice(0, 4).join(" · ") || "Sauna";
 }
 
+function getBestForLine(facility: ServiceDirectoryFacility) {
+  return facility.bestFor?.slice(0, 3).join(" · ") || facility.venueType || "Sauna and recovery";
+}
+
+function getHeroImage(facility?: ServiceDirectoryFacility) {
+  if (!facility) return undefined;
+  const galleryImage = facility.galleryImages?.find((image) => image.url);
+  return galleryImage?.url || facility.imageUrl;
+}
+
 function editorialNote(facility: ServiceDirectoryFacility) {
   const location = getLocationLine(facility) || "London";
   const services = getServiceLine(facility).toLowerCase();
@@ -87,14 +97,14 @@ function editorialNote(facility: ServiceDirectoryFacility) {
   const venueType = facility.venueType?.toLowerCase();
 
   if (bestFor) {
-    return `${facility.name} is a useful sauna option in ${location}, particularly if you are looking for ${bestFor}. The listing signals ${services}, so it works best as part of a practical recovery shortlist rather than a generic spa search.`;
+    return `${facility.name} earns a place in this edit because it gives the sauna search a more specific use case: ${bestFor}. For readers comparing London sauna options, it is worth viewing through the lens of ${services} in ${location}, rather than treating every sauna listing as interchangeable.`;
   }
 
   if (venueType) {
-    return `${facility.name} brings sauna into a ${venueType} setting in ${location}. It is worth comparing if you care about the wider experience around the heat session, not just whether a sauna is available.`;
+    return `${facility.name} brings sauna into a ${venueType} setting in ${location}. That matters because the atmosphere around a heat session often changes the decision as much as the treatment menu itself.`;
   }
 
-  return `${facility.name} is included because it carries clear sauna signals in the Well+ directory. Use the full profile to compare services, setting, location and whether the experience fits the kind of recovery session you want.`;
+  return `${facility.name} is included because it carries clear sauna signals in the Well+ directory. The full profile is the place to compare services, setting, location and whether the visit fits your preferred style of recovery.`;
 }
 
 function getCuratedPicks(facilities: ServiceDirectoryFacility[]) {
@@ -118,14 +128,8 @@ function articleJsonLd(facilities: ServiceDirectoryFacility[]) {
     headline: "Best Saunas in London",
     description:
       "A Well+ Journal guide to London sauna venues, including sauna and cold plunge, infrared sauna and premium recovery spaces.",
-    author: {
-      "@type": "Organization",
-      name: "Well+",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Well+",
-    },
+    author: { "@type": "Organization", name: "Well+" },
+    publisher: { "@type": "Organization", name: "Well+" },
     mainEntityOfPage: absoluteUrl("/journal/best-saunas-london"),
     about: ["Sauna", "Infrared sauna", "Cold plunge", "Recovery", "London wellness"],
     mentions: facilities.slice(0, 8).map((facility) => ({
@@ -148,185 +152,254 @@ function breadcrumbJsonLd() {
   };
 }
 
+function EditorialVenueEntry({ facility, index, label }: { facility: ServiceDirectoryFacility; index: number; label?: string }) {
+  const imageUrl = getHeroImage(facility);
+  const location = getLocationLine(facility) || "London";
+  const services = getServiceLine(facility);
+
+  return (
+    <article className="group border-t border-[#29241d]/18 py-8 first:border-t-0 sm:py-10">
+      <div className="grid gap-6 lg:grid-cols-[0.25fr_0.48fr_0.27fr] lg:items-start">
+        <div className="flex items-center justify-between gap-4 lg:block">
+          <p className="font-serif text-5xl font-normal leading-none tracking-[-0.04em] text-[#29241d]/34 sm:text-6xl">
+            {String(index + 1).padStart(2, "0")}
+          </p>
+          {label ? (
+            <p className="max-w-[11rem] text-right text-[10px] uppercase tracking-[0.22em] text-[#8d7d67] lg:mt-5 lg:text-left">
+              {label}
+            </p>
+          ) : null}
+        </div>
+
+        <div>
+          <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">{location}</p>
+          <h2 className="font-serif text-[2.45rem] font-normal leading-[0.98] tracking-[-0.025em] text-[#29241d] sm:text-5xl">
+            {facility.name}
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">
+            {editorialNote(facility)}
+          </p>
+
+          <dl className="mt-6 grid gap-3 border-y border-[#d8cebf]/80 py-4 text-sm leading-6 text-[#5f574c] sm:grid-cols-3">
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Services</dt>
+              <dd>{services}</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Best for</dt>
+              <dd>{getBestForLine(facility)}</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Price signal</dt>
+              <dd>{facility.priceRange || facility.priceFrom || "Check venue"}</dd>
+            </div>
+          </dl>
+
+          <Link href={`/facility/${facility.slug}`} className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-[#29241d] underline underline-offset-4 transition group-hover:gap-3">
+            Read the Well+ profile <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        <div className="relative min-h-56 overflow-hidden rounded-t-full rounded-b-[1.4rem] bg-[#d8cebf] lg:min-h-72">
+          {imageUrl ? (
+            <SafeImage
+              src={imageUrl}
+              alt={facility.imageAlt || facility.name}
+              fill
+              sizes="(min-width: 1024px) 28vw, 100vw"
+              className="object-cover grayscale-[15%] transition duration-700 group-hover:scale-[1.025] group-hover:grayscale-0"
+            />
+          ) : (
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_22%,rgba(251,248,241,0.74),transparent_30%),linear-gradient(145deg,rgba(244,239,230,0.95),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.18))]" />
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#29241d]/28 via-transparent to-transparent" />
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export default async function BestSaunasJournalPage() {
   const facilities = await getFacilities();
   const saunaFacilities = dedupeFacilities(facilities.map(toDirectoryFacility))
     .filter(isSaunaVenue)
     .sort((a, b) => directoryFacilityScore(b) - directoryFacilityScore(a));
-  const curatedPicks = getCuratedPicks(saunaFacilities);
+  const curatedPicks = getCuratedPicks(saunaFacilities).filter((pick) => pick.facility);
   const visibleShortlist = saunaFacilities.slice(0, 8);
+  const heroImage = getHeroImage(visibleShortlist[0]);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <JsonLd data={[articleJsonLd(visibleShortlist), breadcrumbJsonLd()]} />
 
       <article>
-        <section className="border-b border-[#d8cebf]/70 px-5 py-10 sm:px-6 sm:py-14 md:py-18">
-          <div className="mx-auto max-w-6xl">
-            <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap gap-2 text-sm text-[#70695d]">
-              <Link href="/" className="underline-offset-4 hover:text-[#29241d] hover:underline">Home</Link>
-              <span>/</span>
-              <Link href="/journal" className="underline-offset-4 hover:text-[#29241d] hover:underline">Journal</Link>
-            </nav>
+        <section className="relative isolate overflow-hidden bg-[#29241d] text-[#fbf8f1]">
+          <div className="absolute inset-0 opacity-[0.08] [background-image:linear-gradient(90deg,#fbf8f1_1px,transparent_1px),linear-gradient(#fbf8f1_1px,transparent_1px)] [background-size:44px_44px]" />
+          <div className="absolute left-1/2 top-0 hidden h-full w-px bg-[#fbf8f1]/16 lg:block" />
+          <div className="relative mx-auto grid max-w-[1500px] lg:min-h-[760px] lg:grid-cols-[0.92fr_1.08fr]">
+            <div className="flex flex-col justify-between px-5 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+              <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-[#fbf8f1]/62">
+                <Link href="/" className="underline-offset-4 hover:text-[#fbf8f1] hover:underline">Home</Link>
+                <span>/</span>
+                <Link href="/journal" className="underline-offset-4 hover:text-[#fbf8f1] hover:underline">Journal</Link>
+              </nav>
 
-            <div className="grid gap-9 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
-              <aside className="rounded-[1.2rem] border border-[#29241d]/14 bg-[#29241d] p-5 text-[#fbf8f1] shadow-[0_22px_65px_rgba(41,36,29,0.12)] sm:p-6">
-                <p className="text-[11px] uppercase tracking-[0.26em] text-[#fbf8f1]/58">Journal Artifact</p>
-                <div className="mt-12 border-t border-[#fbf8f1]/18 pt-5">
-                  <p className="font-serif text-3xl leading-none tracking-[-0.03em]">Heat Edit 001</p>
-                  <dl className="mt-6 space-y-4 text-sm leading-6 text-[#fbf8f1]/74">
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/46">Focus</dt>
-                      <dd>Sauna, infrared heat and sauna-paired recovery spaces</dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/46">Area</dt>
-                      <dd>London</dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/46">Built from</dt>
-                      <dd>{saunaFacilities.length} live Well+ sauna listings</dd>
-                    </div>
-                  </dl>
-                </div>
-              </aside>
-
-              <div>
-                <p className="editorial-eyebrow mb-5">The Well+ Journal</p>
-                <h1 className="max-w-4xl font-serif text-[3.7rem] font-normal leading-[0.9] tracking-[-0.025em] sm:text-7xl md:text-8xl">
+              <div className="mt-24 max-w-2xl lg:mt-0">
+                <p className="mb-6 text-[11px] uppercase tracking-[0.28em] text-[#cbbda8]">The Well+ Journal · Heat Edit 001</p>
+                <h1 className="font-serif text-[4.4rem] font-normal leading-[0.82] tracking-[-0.04em] sm:text-8xl lg:text-[8.5rem]">
                   Best saunas in London.
                 </h1>
-                <p className="mt-7 max-w-2xl text-lg leading-8 text-[#5f574c] sm:text-xl sm:leading-9">
-                  A practical editorial shortlist for finding sauna in London — from infrared rooms and recovery studios to fuller heat-and-cold rituals.
+                <p className="mt-8 max-w-xl text-lg leading-8 text-[#fbf8f1]/74 sm:text-xl sm:leading-9">
+                  An editorial guide to London sauna spaces — written for people choosing a ritual, not just browsing a list.
+                </p>
+              </div>
+
+              <div className="mt-14 grid gap-4 border-t border-[#fbf8f1]/16 pt-5 text-sm leading-6 text-[#fbf8f1]/68 sm:grid-cols-3">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">Focus</p>
+                  <p>Sauna and infrared heat</p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">Format</p>
+                  <p>Editorial shortlist</p>
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">Source</p>
+                  <p>{saunaFacilities.length} live listings</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative min-h-[420px] border-t border-[#fbf8f1]/16 lg:border-l lg:border-t-0">
+              {heroImage ? (
+                <SafeImage
+                  src={heroImage}
+                  alt="London sauna editorial feature"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 54vw, 100vw"
+                  className="object-cover grayscale-[22%]"
+                />
+              ) : (
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(251,248,241,0.16),transparent_28%),linear-gradient(145deg,rgba(111,96,72,0.62),rgba(41,36,29,0.96))]" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#29241d]/78 via-[#29241d]/22 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 lg:p-10">
+                <p className="max-w-md font-serif text-3xl font-normal leading-[1.05] tracking-[-0.02em] text-[#fbf8f1] sm:text-4xl">
+                  Heat, cold, atmosphere, access — the details that change the booking decision.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
-            <div>
-              <p className="editorial-eyebrow sticky top-28">Editor&apos;s note</p>
-            </div>
-            <div className="space-y-6 text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">
-              <p>
-                The best sauna in London depends on what you want the visit to do. A post-gym recovery session, a quiet infrared reset and a social sauna-and-cold-plunge ritual are not the same booking decision.
+        <section className="px-5 py-14 sm:px-6 sm:py-20">
+          <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.32fr_0.68fr]">
+            <aside className="hidden lg:block">
+              <div className="sticky top-28 border-l border-[#29241d]/18 pl-5">
+                <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Journal note</p>
+                <p className="mt-5 max-w-xs font-serif text-2xl font-normal leading-[1.08] tracking-[-0.02em] text-[#29241d]">
+                  This is not the directory. It is the editorial layer that helps interpret it.
+                </p>
+              </div>
+            </aside>
+
+            <div className="max-w-3xl">
+              <p className="font-serif text-3xl font-normal leading-[1.16] tracking-[-0.02em] text-[#29241d] sm:text-4xl">
+                The best sauna in London depends less on heat alone, and more on what kind of recovery experience you are trying to build around it.
               </p>
-              <p>
-                This Journal guide is deliberately more editorial than the directory. The cards below still link back into live Well+ venue profiles, but each pick is framed by use case: where to start, when to choose contrast, and when the setting matters as much as the treatment.
-              </p>
+              <div className="mt-8 space-y-6 text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">
+                <p>
+                  A post-gym recovery session, a quiet infrared reset, and a social sauna-and-cold-plunge ritual are different decisions. The aim of this edit is to make those differences visible before you click into the directory.
+                </p>
+                <p>
+                  The venues below are pulled from live Well+ listings, but they are presented as editorial entries: numbered, contextual and written around use case rather than arranged as a standard results grid.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="px-5 py-8 sm:px-6 sm:py-12">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-8 flex flex-col gap-4 border-y border-[#d8cebf]/70 py-6 md:flex-row md:items-end md:justify-between">
+        <section className="px-5 pb-10 sm:px-6 sm:pb-16">
+          <div className="mx-auto max-w-6xl border-y border-[#29241d]/18 py-8">
+            <div className="mb-8 grid gap-5 lg:grid-cols-[0.32fr_0.68fr] lg:items-end">
               <div>
-                <p className="editorial-eyebrow mb-3">Quick picks</p>
-                <h2 className="font-serif text-[2.5rem] font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">Start here.</h2>
+                <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Quick editorial picks</p>
               </div>
-              <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-                Four editorial angles, selected from live venue data so the guide remains connected to the directory rather than becoming a static blog post.
-              </p>
+              <h2 className="font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.03em] sm:text-6xl">
+                Four ways to choose.
+              </h2>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2">
-              {curatedPicks.map((pick) => (
-                <section key={pick.label} className="rounded-[1.45rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 shadow-[0_18px_55px_rgba(41,36,29,0.045)] sm:p-6">
-                  <div className="mb-5 border-b border-[#d8cebf]/70 pb-5">
-                    <p className="editorial-eyebrow mb-3">{pick.label}</p>
-                    <h3 className="font-serif text-3xl font-normal leading-[1.05] tracking-[-0.02em]">{pick.title}</h3>
-                    <p className="mt-3 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">{pick.description}</p>
-                  </div>
-                  {pick.facility ? (
-                    <div className="space-y-5">
-                      <FacilityCard facility={pick.facility} source="journal_best_saunas" compact />
-                      <div className="rounded-[1rem] bg-[#f4efe6] p-4 text-sm leading-6 text-[#5f574c]">
-                        <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Why it fits</p>
-                        <p>{editorialNote(pick.facility)}</p>
-                      </div>
+            <div className="grid gap-px overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/80 bg-[#d8cebf]/80 md:grid-cols-2">
+              {curatedPicks.map((pick, index) => (
+                pick.facility ? (
+                  <Link
+                    key={pick.label}
+                    href={`/facility/${pick.facility.slug}`}
+                    className="group bg-[#fbf8f1] p-5 transition hover:bg-[#29241d] hover:text-[#fbf8f1] sm:p-6"
+                  >
+                    <div className="mb-10 flex items-start justify-between gap-6">
+                      <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67] transition group-hover:text-[#cbbda8]">{pick.label}</p>
+                      <p className="font-serif text-4xl leading-none tracking-[-0.04em] text-[#29241d]/28 transition group-hover:text-[#fbf8f1]/28">0{index + 1}</p>
                     </div>
-                  ) : (
-                    <div className="rounded-[1rem] border border-dashed border-[#d8cebf] bg-[#f4efe6] p-5 text-sm leading-6 text-[#5f574c]">
-                      No live venue currently has enough matching signals for this editorial angle.
-                    </div>
-                  )}
-                </section>
+                    <h3 className="font-serif text-3xl font-normal leading-[1] tracking-[-0.02em]">{pick.facility.name}</h3>
+                    <p className="mt-4 text-sm leading-6 text-[#5f574c] transition group-hover:text-[#fbf8f1]/72">{pick.description}</p>
+                    <p className="mt-6 text-sm underline underline-offset-4">Read profile →</p>
+                  </Link>
+                ) : null
               ))}
             </div>
           </div>
         </section>
 
-        <section className="px-5 py-10 sm:px-6 sm:py-14">
+        <section className="px-5 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-8 grid gap-5 md:grid-cols-[0.72fr_1.28fr] md:items-end">
-              <div>
-                <p className="editorial-eyebrow mb-3">The shortlist</p>
-                <h2 className="font-serif text-[2.5rem] font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">More sauna spaces to compare.</h2>
-              </div>
-              <p className="max-w-2xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-                These are not ranked reviews. They are live sauna-relevant venues from Well+ arranged as an editorial shortlist, with profile links for deeper comparison.
-              </p>
+            <div className="mb-4 grid gap-5 lg:grid-cols-[0.32fr_0.68fr] lg:items-end">
+              <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">The edit</p>
+              <h2 className="font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.03em] sm:text-6xl">
+                Sauna spaces worth comparing.
+              </h2>
             </div>
+            <p className="ml-auto max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">
+              These entries are intentionally slower than directory cards. Each one gives the venue a reason to be considered, then points you into the full Well+ profile for practical details.
+            </p>
 
-            <div className="space-y-5">
+            <div className="mt-10">
               {visibleShortlist.map((facility, index) => (
-                <section key={facility.slug} className="grid gap-5 rounded-[1.45rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 sm:p-6 lg:grid-cols-[0.55fr_0.45fr] lg:items-start">
-                  <div>
-                    <div className="mb-4 flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-[#8d7d67]">
-                      <span>{String(index + 1).padStart(2, "0")}</span>
-                      <span className="h-px flex-1 bg-[#d8cebf]" />
-                      <span>{getLocationLine(facility) || "London"}</span>
-                    </div>
-                    <FacilityCard facility={facility} source="journal_best_saunas_shortlist" compact />
-                  </div>
-                  <div className="rounded-[1.1rem] bg-[#f4efe6] p-5 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-                    <p className="editorial-eyebrow mb-3">Journal note</p>
-                    <p>{editorialNote(facility)}</p>
-                    <Link href={`/facility/${facility.slug}`} className="mt-5 inline-block text-sm font-medium text-[#29241d] underline underline-offset-4">
-                      Read the Well+ profile
-                    </Link>
-                  </div>
-                </section>
+                <EditorialVenueEntry key={facility.slug} facility={facility} index={index} />
               ))}
             </div>
           </div>
         </section>
 
-        <section className="px-5 py-10 sm:px-6 sm:py-14">
-          <div className="mx-auto grid max-w-6xl gap-8 rounded-[1.45rem] bg-[#29241d] p-6 text-[#fbf8f1] sm:p-8 md:grid-cols-[0.72fr_1.28fr]">
+        <section className="px-5 pb-16 pt-6 sm:px-6 sm:pb-24">
+          <div className="mx-auto grid max-w-6xl gap-8 rounded-[2rem] bg-[#29241d] p-6 text-[#fbf8f1] sm:p-8 lg:grid-cols-[0.32fr_0.68fr]">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/58">How to choose</p>
+              <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/58">Before booking</p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-3">
-              <div>
-                <h3 className="font-serif text-2xl font-normal">Choose the format.</h3>
-                <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">Infrared sauna, traditional heat and sauna-paired cold plunge all suit different kinds of visit.</p>
-              </div>
-              <div>
-                <h3 className="font-serif text-2xl font-normal">Check the setting.</h3>
-                <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">A recovery studio, spa, bathhouse and gym-based sauna will feel very different in practice.</p>
-              </div>
-              <div>
-                <h3 className="font-serif text-2xl font-normal">Match the ritual.</h3>
-                <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">For a deeper recovery session, look for cold plunge, showers, guidance and enough time between rounds.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="px-5 pb-14 pt-4 sm:px-6 sm:pb-20">
-          <div className="mx-auto flex max-w-6xl flex-col gap-4 border-t border-[#d8cebf]/70 pt-8 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-2">Continue exploring</p>
-              <p className="text-sm leading-6 text-[#5f574c]">Move from the Journal into live directory pages for more filtering and comparison.</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/sauna-london" className="rounded-full border border-[#29241d]/18 px-4 py-2 text-sm text-[#29241d] transition hover:bg-[#29241d] hover:text-[#fbf8f1]">Saunas in London</Link>
-              <Link href="/cold-plunge-london" className="rounded-full border border-[#29241d]/18 px-4 py-2 text-sm text-[#29241d] transition hover:bg-[#29241d] hover:text-[#fbf8f1]">Cold plunge</Link>
-              <Link href="/collections/best-sauna-london" className="rounded-full border border-[#29241d]/18 px-4 py-2 text-sm text-[#29241d] transition hover:bg-[#29241d] hover:text-[#fbf8f1]">Directory collection</Link>
+              <h2 className="font-serif text-4xl font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">
+                Choose by ritual, not just by treatment.
+              </h2>
+              <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                <div>
+                  <h3 className="font-serif text-2xl font-normal">Heat type</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">Infrared and traditional sauna can feel different in intensity, setting and session style.</p>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-normal">Cold access</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">If contrast matters, check whether cold plunge is part of the same visit rather than nearby.</p>
+                </div>
+                <div>
+                  <h3 className="font-serif text-2xl font-normal">Setting</h3>
+                  <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">A spa, gym, bathhouse and recovery studio can all offer sauna, but the experience is not the same.</p>
+                </div>
+              </div>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Explore sauna directory</Link>
+                <Link href="/journal" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Back to Journal</Link>
+              </div>
             </div>
           </div>
         </section>
