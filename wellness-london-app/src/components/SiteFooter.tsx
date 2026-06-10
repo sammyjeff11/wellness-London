@@ -20,14 +20,11 @@ const serviceLinks = [
   { href: "/recovery-london", label: "Recovery Spaces in London" },
 ];
 
-const collectionLinks = [
+const editorialLinks = [
+  { href: "/editorial", label: "All Editorial" },
+  { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
   { href: "/best-sauna-cold-plunge-london", label: "Best Sauna + Cold Plunge" },
   { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness" },
-];
-
-const trustLinks = [
-  { href: "/journal", label: "Journal" },
-  { href: "/journal/best-saunas-london", label: "Best Saunas in London" },
   { href: "/how-we-curate", label: "How We Curate" },
   { href: "/editorial-standards", label: "Editorial Standards" },
 ];
@@ -65,7 +62,6 @@ export default function SiteFooter() {
     href: link.href,
     label: link.label.replace(" wellness spaces", "").replace(" saunas and recovery studios", "").replace(" recovery spaces", ""),
   }));
-  const editorialLinks = [...collectionLinks, ...trustLinks];
 
   return (
     <footer className="bg-[#29241d] px-5 py-8 text-[#fbf8f1] sm:px-6 sm:py-16">
