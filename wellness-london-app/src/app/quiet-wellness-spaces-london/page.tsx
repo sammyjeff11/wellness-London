@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
@@ -38,11 +39,12 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
 export default async function QuietWellnessSpacesPage() {
   const facilities = await getFacilities();
 
-  const selectedFacilities = facilities
-    .map(toDirectoryFacility)
-    .filter((facility) => scoreFacility(facility) > 0)
-    .sort((a, b) => scoreFacility(b) - scoreFacility(a))
-    .slice(0, 9);
+  const selectedFacilities = dedupeFacilities(
+    facilities
+      .map(toDirectoryFacility)
+      .filter((facility) => scoreFacility(facility) > 0)
+      .sort((a, b) => scoreFacility(b) - scoreFacility(a))
+  ).slice(0, 9);
 
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">

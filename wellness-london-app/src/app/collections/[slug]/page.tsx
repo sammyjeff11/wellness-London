@@ -13,6 +13,7 @@ import {
   getCollection,
   type CollectionFeaturedSection,
 } from "@/lib/collections";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
 
@@ -116,10 +117,12 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   if (!collection) notFound();
 
   const facilities = await getFacilities();
-  const directoryFacilities = facilities.map(toDirectoryFacility);
-  const collectionFacilities = directoryFacilities
-    .filter((facility) => facilityMatchesCollection(facility, collection))
-    .sort((a, b) => directoryFacilityScore(b) - directoryFacilityScore(a));
+  const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
+  const collectionFacilities = dedupeFacilities(
+    directoryFacilities
+      .filter((facility) => facilityMatchesCollection(facility, collection))
+      .sort((a, b) => directoryFacilityScore(b) - directoryFacilityScore(a))
+  );
   const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections);
 
   return (
@@ -138,7 +141,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             <p className="editorial-eyebrow mb-5">{collection.eyebrow}</p>
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
               <div>
-                <h1 className="font-serif text-[3.2rem] font-normal leading-[0.94] tracking-[-0.06em] sm:text-6xl md:text-7xl">
+                <h1 className="font-serif text-[3.2rem] font-normal leading-[0.94] tracking-[-0.02em] sm:text-6xl md:text-7xl">
                   {collection.title}
                 </h1>
                 <p className="mt-5 max-w-2xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">
@@ -174,7 +177,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
           <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Curated picks</p>
-              <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.05em] sm:text-5xl">
+              <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
                 Where to start.
               </h2>
             </div>
@@ -205,7 +208,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
             <p className="editorial-eyebrow mb-3">Full directory</p>
-            <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.05em] sm:text-5xl">
+            <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
               Compare every matching venue.
             </h2>
           </div>

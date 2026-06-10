@@ -3,6 +3,7 @@ import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
 
 export default async function BeginnerFriendlyWellnessLondonPage() {
   const facilities = await getFacilities();
-  const directoryFacilities = facilities.map(toDirectoryFacility);
+  const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
   const beginnerFacilities = directoryFacilities
     .filter((facility) => isBeginnerFriendly(facility.beginnerFriendly) || scoreFacility(facility) >= 5)
     .sort((a, b) => scoreFacility(b) - scoreFacility(a))

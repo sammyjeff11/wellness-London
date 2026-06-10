@@ -1,7 +1,7 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
-import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 
 type RelatedLink = {
   href: string;
@@ -170,7 +170,7 @@ function buildFaqs(areaName: string, facilities: ServiceDirectoryFacility[]) {
 }
 
 export default function LocationPageEnhancements({ areaName, facilities, intro, relatedAreaLinks = [] }: LocationPageEnhancementsProps) {
-  const comparisonFacilities = getUniquePhysicalVenues(facilities);
+  const comparisonFacilities = dedupeFacilities(facilities);
 
   if (comparisonFacilities.length < 2) return null;
 

@@ -4,8 +4,8 @@ import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import HomeVenueSearch from "@/components/HomeVenueSearch";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
-import { getUniquePhysicalVenues } from "@/lib/location-page-facilities";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { collections } from "@/lib/collections";
 import { serviceTaxonomy } from "@/lib/taxonomy";
@@ -98,7 +98,7 @@ function hasFacilityPhoto(facility: ReturnType<typeof toDirectoryFacility>) {
 
 export default async function Home() {
   const facilities = await getFacilities();
-  const directoryFacilities = getUniquePhysicalVenues(facilities.map(toDirectoryFacility));
+  const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
   const selectedFacilities = [...directoryFacilities]
     .filter(hasFacilityPhoto)
     .sort((a, b) => selectionScore(b) - selectionScore(a))

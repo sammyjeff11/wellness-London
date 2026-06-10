@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { eastLondonGuide } from "@/content/location-guides";
 import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
 
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 };
 
 export default async function EastLondonWellnessPage() {
-  const facilities = (await getFacilities()).map(toDirectoryFacility);
+  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
   const eastLondonFacilities = getFacilitiesForLocation(facilities, ["East London", ...eastLondonGuide.areas]);
   const faqSchema = {
     "@context": "https://schema.org",
