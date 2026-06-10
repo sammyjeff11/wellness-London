@@ -33,8 +33,8 @@ export const serviceTaxonomy = [
   {
     name: "Cold Plunge",
     slug: "cold-plunge",
-    description: "Cold-water immersion experiences, including plunges, ice baths and cold tubs used for recovery or reset.",
-    synonyms: ["cold plunge", "cold plunges", "ice bath", "ice baths", "ice tub", "cold tub", "cold dip", "cold exposure", "cold water immersion", "cold therapy"],
+    description: "Cold-water immersion experiences, also known as ice baths, cold tubs or cold-water recovery, used as a standalone cold session or as part of a contrast therapy ritual.",
+    synonyms: ["cold plunge", "cold plunges", "ice bath", "ice baths", "ice tub", "cold tub", "cold dip", "cold exposure", "cold water immersion", "cold water therapy", "cold therapy", "cold water recovery", "plunge pool"],
     parentCategory: "cold",
     href: "/cold-plunge-london",
   },
@@ -57,8 +57,8 @@ export const serviceTaxonomy = [
   {
     name: "Contrast Therapy",
     slug: "contrast-therapy",
-    description: "Alternating heat and cold rituals, commonly combining sauna with cold plunge or ice-bath sessions.",
-    synonyms: ["contrast", "hot and cold", "sauna and cold plunge", "sauna & cold plunge", "sauna and plunge", "sauna & plunge", "thermal cycle"],
+    description: "Hot-and-cold recovery rituals, also known as sauna and cold plunge, usually alternating heat exposure with cold-water immersion or ice-bath sessions.",
+    synonyms: ["contrast", "contrast bathing", "hot and cold", "hot-cold therapy", "hot cold therapy", "hot and cold therapy", "sauna and cold plunge", "sauna & cold plunge", "sauna and ice bath", "sauna & ice bath", "sauna and plunge", "sauna & plunge", "thermal cycle", "thermal circuit"],
     parentCategory: "recovery",
     href: "/contrast-therapy-london",
   },
