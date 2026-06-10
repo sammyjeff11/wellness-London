@@ -26,9 +26,10 @@ const collectionLinks = [
 ];
 
 const trustLinks = [
+  { href: "/journal", label: "Journal" },
+  { href: "/journal/best-saunas-london", label: "Best Saunas in London" },
   { href: "/how-we-curate", label: "How We Curate" },
   { href: "/editorial-standards", label: "Editorial Standards" },
-  { href: "/journal", label: "Journal" },
 ];
 
 function FooterLinkList({ links }: { links: { href: string; label: string }[] }) {
