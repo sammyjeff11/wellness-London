@@ -77,6 +77,9 @@ export type AirtableFacility = {
   dataSource: string;
   profileCompletenessScore: number;
   isFeatured: boolean;
+  publishStatus: string;
+  indexable: boolean;
+  noindexReason: string;
 };
 
 type AirtableAttachment = {
@@ -179,6 +182,9 @@ type AirtableRecord = {
     profile_completeness_score?: number;
     "Is Featured"?: boolean;
     is_featured?: boolean;
+    "Publish Status"?: AirtableFieldValue;
+    Indexable?: boolean;
+    "Noindex Reason"?: AirtableFieldValue;
   };
 };
 
@@ -273,6 +279,11 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
   return Array.from(keys);
 }
 
+function isPublishedIndexableRecord(record: AirtableRecord): boolean {
+  const publishStatus = normaliseSingle(record.fields["Publish Status"]);
+  return publishStatus === "Published" && record.fields.Indexable === true;
+}
+
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
   const activityTagsStandardized = normaliseList(record.fields["Activity Tags Standardized"]);
@@ -287,6 +298,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const bestFor = normaliseList(firstDefined(record.fields["Best For Standardized"], record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
   const priceFromValue = firstDefined(record.fields["Price From"], record.fields.price_from);
   const overallPriceRange = record.fields["Overall Price Range"] || "";
+  const publishStatus = normaliseSingle(record.fields["Publish Status"]);
 
   return {
     id: record.id,
@@ -346,6 +358,9 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     dataSource: normaliseSingle(firstDefined(record.fields["Data Source"], record.fields.data_source)) || "Public sources",
     profileCompletenessScore: firstDefined(record.fields["Profile Completeness Score"], record.fields.profile_completeness_score) || 0,
     isFeatured: Boolean(firstDefined(record.fields["Is Featured"], record.fields.is_featured)),
+    publishStatus,
+    indexable: record.fields.Indexable === true,
+    noindexReason: normaliseSingle(record.fields["Noindex Reason"]),
   };
 }
 
@@ -384,7 +399,7 @@ async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
 
     if (!response.ok) {
       console.error("Failed to fetch Airtable facilities", response.status, response.statusText);
-      return records.map(mapRecordToFacility);
+      return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
     }
 
     const data = (await response.json()) as AirtableResponse;
@@ -392,7 +407,7 @@ async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
     offset = data.offset;
   } while (offset);
 
-  return records.map(mapRecordToFacility);
+  return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
 }
 
 export const getFacilities = cache(fetchFacilitiesFromAirtable);
