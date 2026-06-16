@@ -279,9 +279,13 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
   return Array.from(keys);
 }
 
+function hasStableSlug(record: AirtableRecord): boolean {
+  return createSlug(record.fields.Slug || "", "") !== "";
+}
+
 function isPublishedIndexableRecord(record: AirtableRecord): boolean {
   const publishStatus = normaliseSingle(record.fields["Publish Status"]);
-  return publishStatus === "Published" && record.fields.Indexable === true;
+  return publishStatus === "Published" && record.fields.Indexable === true && hasStableSlug(record);
 }
 
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
@@ -292,7 +296,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
-  const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
+  const stableSlug = createSlug(record.fields.Slug || "", record.id);
   const experienceType = normaliseList(firstDefined(record.fields["Experience Type"], record.fields.experience_type, record.fields["Type of Experience"]));
   const bestForStandardized = normaliseList(record.fields["Best For Standardized"]);
   const bestFor = normaliseList(firstDefined(record.fields["Best For Standardized"], record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
@@ -302,7 +306,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
 
   return {
     id: record.id,
-    slug: createSlug(slugSource, record.id),
+    slug: stableSlug,
     name,
     website: record.fields.Website || "#",
     businessName: record.fields["Business Name"] || "",
