@@ -85,8 +85,13 @@ function formatServiceLine(services?: string[]) {
 
 function formatRating(value?: string) {
   if (!value) return "";
-  const match = value.match(/\d+(\.\d+)?/);
-  return match ? `${match[0]}` : value.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
+  const trimmed = value.trim();
+  const ratingMatch = trimmed.match(/\d+(?:\.\d+)?/);
+  if (!ratingMatch) return trimmed.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
+
+  const rating = ratingMatch[0];
+  const reviewText = trimmed.match(/\((?:based on\s*)?([^)]+reviews?)\)/i)?.[1]?.trim();
+  return reviewText ? `${rating}/5 (${reviewText})` : `${rating}/5`;
 }
 
 function priceScaleFromAmount(amount: number) {
