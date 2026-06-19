@@ -85,13 +85,25 @@ function formatServiceLine(services?: string[]) {
 
 function formatRating(value?: string) {
   if (!value) return "";
-  const trimmed = value.trim();
+
+  const trimmed = value.replace(/\s+/g, " ").trim();
   const ratingMatch = trimmed.match(/\d+(?:\.\d+)?/);
+  const reviewMatch = trimmed.match(/\(([^)]*review[^)]*)\)/i);
+
   if (!ratingMatch) return trimmed.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
 
   const rating = ratingMatch[0];
-  const reviewText = trimmed.match(/\((?:based on\s*)?([^)]+reviews?)\)/i)?.[1]?.trim();
-  return reviewText ? `${rating}/5 (${reviewText})` : `${rating}/5`;
+  const ratingDisplay = trimmed.includes("/5") ? rating : `${rating}/5`;
+
+  if (reviewMatch) {
+    const reviewText = reviewMatch[1]
+      .replace(/^based on\s+/i, "")
+      .replace(/^(\d[\d,]*\+?)$/i, "$1 reviews")
+      .trim();
+    return `${ratingDisplay} (${reviewText})`;
+  }
+
+  return ratingDisplay;
 }
 
 function priceScaleFromAmount(amount: number) {
@@ -222,7 +234,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
       <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
         <div className="flex items-start justify-between gap-3">
           <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
-          {rating ? <span className="shrink-0 text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
+          {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
         </div>
         <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
       </Link>
