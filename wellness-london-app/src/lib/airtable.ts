@@ -115,6 +115,8 @@ type AirtableRecord = {
     "Access Type"?: string[] | string;
     "Overall Price Range"?: string;
     "Google Rating"?: string;
+    "Google Review Count"?: number;
+    google_review_count?: number;
     "Booking Link"?: string;
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
@@ -213,6 +215,31 @@ function normaliseBooleanLabel(value: AirtableFieldValue, fallback = "Unknown"):
   if (value === false) return "No";
   const text = normaliseSingle(value);
   return text || fallback;
+}
+
+function formatReviewCount(value: AirtableFieldValue): string {
+  if (value === undefined || value === null || value === false) return "";
+  const count = Number(String(value).replace(/,/g, ""));
+  if (!Number.isFinite(count) || count <= 0) return "";
+  return Math.round(count).toLocaleString("en-GB");
+}
+
+function formatGoogleRating(ratingValue: AirtableFieldValue, reviewCountValue: AirtableFieldValue): string {
+  const ratingText = normaliseSingle(ratingValue).trim();
+  if (!ratingText) return "";
+
+  const ratingMatch = ratingText.match(/\d+(?:\.\d+)?/);
+  if (!ratingMatch) return ratingText;
+
+  const rating = ratingMatch[0];
+  const reviewCount = formatReviewCount(reviewCountValue);
+
+  if (reviewCount) return `${rating}/5 (${reviewCount} reviews)`;
+
+  const existingReviewText = ratingText.match(/\((?:based on\s*)?([^)]+reviews?)\)/i)?.[1]?.trim();
+  if (existingReviewText) return `${rating}/5 (${existingReviewText})`;
+
+  return ratingText.includes("/5") ? ratingText : `${rating}/5`;
 }
 
 function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
@@ -327,7 +354,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),
     overallPriceRange,
-    googleRating: record.fields["Google Rating"] || "",
+    googleRating: formatGoogleRating(record.fields["Google Rating"], firstDefined(record.fields["Google Review Count"], record.fields.google_review_count)),
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
