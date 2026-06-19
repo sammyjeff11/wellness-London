@@ -114,9 +114,8 @@ type AirtableRecord = {
     "Type of Experience"?: string[] | string;
     "Access Type"?: string[] | string;
     "Overall Price Range"?: string;
-    "Google Rating"?: string;
-    "Google Review Count"?: number;
-    google_review_count?: number;
+    "Google Rating"?: AirtableFieldValue;
+    "Google Review Count"?: AirtableFieldValue;
     "Booking Link"?: string;
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
@@ -217,33 +216,27 @@ function normaliseBooleanLabel(value: AirtableFieldValue, fallback = "Unknown"):
   return text || fallback;
 }
 
-function formatReviewCount(value: AirtableFieldValue): string {
-  if (value === undefined || value === null || value === false) return "";
-  const count = Number(String(value).replace(/,/g, ""));
-  if (!Number.isFinite(count) || count <= 0) return "";
-  return Math.round(count).toLocaleString("en-GB");
+function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
+  return values.find((value) => value !== undefined && value !== "") as T | undefined;
 }
 
 function formatGoogleRating(ratingValue: AirtableFieldValue, reviewCountValue: AirtableFieldValue): string {
-  const ratingText = normaliseSingle(ratingValue).trim();
-  if (!ratingText) return "";
-
+  const ratingText = normaliseSingle(ratingValue);
+  const reviewCountText = normaliseSingle(reviewCountValue).replace(/,/g, "");
   const ratingMatch = ratingText.match(/\d+(?:\.\d+)?/);
+  const reviewCountMatch = reviewCountText.match(/\d+/);
+
   if (!ratingMatch) return ratingText;
 
   const rating = ratingMatch[0];
-  const reviewCount = formatReviewCount(reviewCountValue);
 
-  if (reviewCount) return `${rating}/5 (${reviewCount} reviews)`;
-
-  const existingReviewText = ratingText.match(/\((?:based on\s*)?([^)]+reviews?)\)/i)?.[1]?.trim();
-  if (existingReviewText) return `${rating}/5 (${existingReviewText})`;
+  if (reviewCountMatch) {
+    const count = Number(reviewCountMatch[0]);
+    const formattedCount = Number.isFinite(count) ? count.toLocaleString("en-GB") : reviewCountMatch[0];
+    return `${rating}/5 (${formattedCount} reviews)`;
+  }
 
   return ratingText.includes("/5") ? ratingText : `${rating}/5`;
-}
-
-function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
-  return values.find((value) => value !== undefined && value !== "") as T | undefined;
 }
 
 function createSlug(value: string, fallback: string): string {
@@ -354,7 +347,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),
     overallPriceRange,
-    googleRating: formatGoogleRating(record.fields["Google Rating"], firstDefined(record.fields["Google Review Count"], record.fields.google_review_count)),
+    googleRating: formatGoogleRating(record.fields["Google Rating"], record.fields["Google Review Count"]),
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
