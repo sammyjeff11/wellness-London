@@ -17,6 +17,7 @@ const staticRoutes = [
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
   { path: "/editorial", priority: 0.72 },
   { path: "/editorial/best-saunas-london", priority: 0.74 },
+  { path: "/editorial/best-cryotherapy-london", priority: 0.74 },
   { path: "/editorial/infrared-sauna-vs-traditional-sauna", priority: 0.72 },
   ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
