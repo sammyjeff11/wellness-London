@@ -158,7 +158,7 @@ export function getCollection(slug: string) {
   return collections.find((collection) => collection.slug === slug);
 }
 
-const directoryServiceAliases: Record<ServiceSlug, string[]> = {
+const directoryServiceAliases: Partial<Record<ServiceSlug, string[]>> = {
   sauna: ["sauna"],
   "infrared-sauna": ["sauna"],
   "cold-plunge": ["cold-plunge"],
@@ -169,6 +169,16 @@ const directoryServiceAliases: Record<ServiceSlug, string[]> = {
   breathwork: ["breathwork"],
   "float-therapy": ["recovery"],
   "hyperbaric-oxygen-therapy": ["hbot"],
+  "longevity-testing": ["recovery", "hbot", "red-light"],
+  diagnostics: ["recovery", "hbot", "red-light"],
+  "blood-testing": ["recovery"],
+  "iv-therapy": ["recovery"],
+  "nad-therapy": ["recovery"],
+  "genomic-testing": ["recovery"],
+  "hormone-testing": ["recovery"],
+  "gut-health-testing": ["recovery"],
+  "ozone-therapy": ["recovery"],
+  "health-optimisation": ["recovery"],
 };
 
 function normaliseText(value?: string) {
