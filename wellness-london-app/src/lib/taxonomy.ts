@@ -1,4 +1,4 @@
-export type ServiceCategory = "heat" | "cold" | "recovery" | "mind-body" | "oxygen";
+export type ServiceCategory = "heat" | "cold" | "recovery" | "mind-body" | "oxygen" | "longevity" | "medical-wellness";
 
 export type ServiceSlug =
   | "sauna"
@@ -10,7 +10,17 @@ export type ServiceSlug =
   | "breathwork"
   | "float-therapy"
   | "hyperbaric-oxygen-therapy"
-  | "infrared-sauna";
+  | "infrared-sauna"
+  | "longevity-testing"
+  | "diagnostics"
+  | "blood-testing"
+  | "iv-therapy"
+  | "nad-therapy"
+  | "genomic-testing"
+  | "hormone-testing"
+  | "gut-health-testing"
+  | "ozone-therapy"
+  | "health-optimisation";
 
 export type ServiceTaxonomyEntry = {
   name: string;
@@ -18,7 +28,7 @@ export type ServiceTaxonomyEntry = {
   description: string;
   synonyms?: string[];
   parentCategory?: ServiceCategory;
-  href?: string;
+  href: string;
 };
 
 export const serviceTaxonomy = [
@@ -101,6 +111,86 @@ export const serviceTaxonomy = [
     synonyms: ["infrared", "ir sauna", "infrared cabin", "infrared heat"],
     parentCategory: "heat",
     href: "/infrared-sauna-london",
+  },
+  {
+    name: "Longevity Testing",
+    slug: "longevity-testing",
+    description: "Clinic-led testing and assessment designed to understand healthspan, biological age, risk markers and longer-term health optimisation.",
+    synonyms: ["longevity assessment", "longevity testing", "biological age testing", "biological age", "healthspan testing", "longevity baseline assessment", "longevity diagnostics"],
+    parentCategory: "longevity",
+    href: "/longevity",
+  },
+  {
+    name: "Diagnostics",
+    slug: "diagnostics",
+    description: "Advanced health assessments, screening and diagnostic mapping offered by preventative health and longevity clinics.",
+    synonyms: ["diagnostic testing", "diagnostic mapping", "health assessment", "health screening", "advanced diagnostics", "precision diagnostic mapping"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Blood Testing",
+    slug: "blood-testing",
+    description: "Blood-based biomarker testing used by clinics to assess health status, risk markers and optimisation opportunities.",
+    synonyms: ["blood test", "blood tests", "biomarker testing", "biomarkers", "blood panel", "bloodwork", "blood work"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "IV Therapy",
+    slug: "iv-therapy",
+    description: "Intravenous nutrient or hydration treatments offered in clinic-led wellness and recovery settings.",
+    synonyms: ["iv", "iv drip", "iv drips", "iv infusion", "iv infusions", "intravenous therapy", "nutrient infusion", "nutrient infusions"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "NAD+ Therapy",
+    slug: "nad-therapy",
+    description: "NAD+ replenishment or infusion therapies positioned around energy, cellular health and longevity-led optimisation.",
+    synonyms: ["nad", "nad+", "nad therapy", "nad+ therapy", "nad infusion", "nad+ infusion", "nad repletion", "nad+ repletion"],
+    parentCategory: "longevity",
+    href: "/longevity",
+  },
+  {
+    name: "Genomic Testing",
+    slug: "genomic-testing",
+    description: "Genetic or genomic assessments used by longevity clinics to inform health risk, performance and personalised optimisation programmes.",
+    synonyms: ["genomics", "genomic", "genetic testing", "genomic analysis", "genomic intelligence", "methylation analysis", "detox genomics", "hormonal genomic analysis"],
+    parentCategory: "longevity",
+    href: "/longevity",
+  },
+  {
+    name: "Hormone Testing",
+    slug: "hormone-testing",
+    description: "Hormonal and endocrine assessments used to understand metabolic, energy, reproductive or performance-related health markers.",
+    synonyms: ["hormone test", "hormonal testing", "endocrine testing", "endocrine intelligence", "metabolic intelligence", "cycle mapping"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Gut Health Testing",
+    slug: "gut-health-testing",
+    description: "Digestive, microbiome, food reactivity and immune-related testing offered by clinic-led wellness providers.",
+    synonyms: ["gut health", "digestive testing", "microbiome testing", "food sensitivity testing", "food immune reactivity", "sibo", "intestinal barrier", "immune integrity"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Ozone Therapy",
+    slug: "ozone-therapy",
+    description: "Medical-wellness ozone treatments offered by selected clinics as part of cellular recovery or optimisation programmes.",
+    synonyms: ["ozone", "medical ozone", "high-dose medical ozone", "high dose medical ozone", "ozone treatment"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Health Optimisation",
+    slug: "health-optimisation",
+    description: "Personalised health, energy, sleep, recovery and performance support delivered through testing, consultation and repeatable protocols.",
+    synonyms: ["health optimization", "optimisation", "optimization", "performance optimisation", "performance optimization", "preventative health", "preventive health", "precision medicine"],
+    parentCategory: "longevity",
+    href: "/optimise",
   },
 ] as const satisfies readonly ServiceTaxonomyEntry[];
 
