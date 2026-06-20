@@ -17,9 +17,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const serviceLinks = serviceTaxonomy
-  .filter((service) => service.href)
-  .slice(0, 6)
+const homepageServiceNames = ["Sauna", "Cold Plunge", "Cryotherapy", "Red Light Therapy", "Hyperbaric Oxygen Therapy", "Longevity Testing"];
+const serviceLinks = homepageServiceNames
+  .map((name) => serviceTaxonomy.find((service) => service.name === name && service.href))
+  .filter((service): service is NonNullable<typeof service> => Boolean(service))
   .map((service) => ({
     href: service.href,
     label: service.name,
@@ -39,9 +40,9 @@ const venueTypeLinks = [
     text: "Places built around a fuller bathing or thermal circuit rather than a single treatment room.",
   },
   {
-    href: "/longevity-london",
+    href: "/longevity",
     title: "Longevity Clinic",
-    text: "Clinic-led settings for preventative, optimisation and healthspan-focused services.",
+    text: "Clinic-led settings for diagnostics, prevention, optimisation and healthspan-focused services.",
   },
   {
     href: "/luxury-wellness-spaces-london",
@@ -70,9 +71,9 @@ const useCaseLinks = [
     text: "Practical venues for heat, cold, compression and bodywork after training.",
   },
   {
-    href: "/luxury-wellness-spaces-london",
-    title: "Luxury reset",
-    text: "Elevated spaces where setting, privacy and service matter.",
+    href: "/longevity",
+    title: "Longevity clinics",
+    text: "Clinic-led diagnostics, healthspan testing, IV/NAD+, HBOT and optimisation services.",
   },
   {
     href: "/beginner-friendly-wellness-london",
@@ -188,7 +189,7 @@ export default async function Home() {
               </h2>
             </div>
             <p className={sectionLeadClass}>
-              Fast routes into service guides for heat, cold, contrast and technology-led treatments.
+              Fast routes into service guides for heat, cold, contrast, recovery technology and clinic-led longevity.
             </p>
           </div>
 
@@ -299,7 +300,7 @@ export default async function Home() {
               <p className="editorial-eyebrow mb-3">Use cases</p>
               <h2 className={sectionHeadingClass}>Choose by need.</h2>
             </div>
-            <p className={sectionLeadClass}>A practical route into spaces for recovery, quiet resets, premium experiences and first-time bookings.</p>
+            <p className={sectionLeadClass}>A practical route into spaces for recovery, quiet resets, longevity clinics and first-time bookings.</p>
           </div>
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
             {useCaseLinks.map((item) => (
