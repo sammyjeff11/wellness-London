@@ -28,7 +28,7 @@ export type ServiceTaxonomyEntry = {
   description: string;
   synonyms?: string[];
   parentCategory?: ServiceCategory;
-  href?: string;
+  href: string;
 };
 
 export const serviceTaxonomy = [
