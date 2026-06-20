@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
         destination: "/editorial/:slug*",
         permanent: true,
       },
+      {
+        source: "/longevity-london",
+        destination: "/longevity",
+        permanent: true,
+      },
     ];
   },
   images: {
