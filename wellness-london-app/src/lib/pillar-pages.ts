@@ -129,6 +129,7 @@ export const pillarPages: PillarPageConfig[] = [
       { href: "/recovery-london", label: "Recovery Spaces in London", description: "A practical starting point for routine-led wellness." },
       { href: "/sauna-london", label: "Saunas in London", description: "Heat therapy spaces often used in broader optimisation routines." },
       { href: "/cryotherapy-london", label: "Cryotherapy in London", description: "Cold-therapy spaces for structured recovery and optimisation routines." },
+      { href: "/longevity", label: "Longevity Clinics in London", description: "Clinic-led diagnostics, healthspan testing and preventative health spaces." },
     ],
     guidance: [
       { title: "Separate signal from noise", text: "Optimisation can become overwhelming. Start with venues that provide clear services, practical routines and transparent information." },
@@ -144,29 +145,62 @@ export const pillarPages: PillarPageConfig[] = [
   {
     slug: "longevity",
     href: "/longevity",
-    label: "Longevity & Diagnostics",
-    taxonomyPillar: "Longevity & Diagnostics",
-    title: "Longevity & Diagnostics in London",
-    metaTitle: "Longevity in London | The Well Edit",
-    description: "A curated guide to London longevity, healthspan and preventative wellness spaces, from diagnostics to recovery and optimisation-led clinics.",
+    label: "Longevity",
+    title: "Longevity Clinics in London",
+    metaTitle: "Longevity Clinics in London | Diagnostics, HBOT & Health Optimisation | Well+",
+    description: "A curated guide to London longevity clinics and medical-wellness spaces, from diagnostics and biological age testing to HBOT, IV therapy, NAD+, red light therapy and physician-led healthspan programmes.",
     eyebrow: "Healthspan and prevention",
-    intro: "For diagnostics, biomarker testing, blood testing, HBOT, red light therapy, IV and NAD treatments, preventative health and optimisation.",
+    intro: "For clinic-led diagnostics, biological age testing, genomic insight, IV and NAD+ therapies, HBOT, red light therapy and longer-term health optimisation across London.",
     serviceKeys: ["red-light", "hbot", "sauna", "recovery"],
-    keywords: ["longevity", "healthspan", "preventative", "preventive", "diagnostics", "biological age", "clinic", "red light", "hyperbaric", "health optimisation"],
+    keywords: [
+      "longevity",
+      "healthspan",
+      "preventative",
+      "preventive",
+      "diagnostics",
+      "diagnostic",
+      "biological age",
+      "biomarker",
+      "blood testing",
+      "blood test",
+      "genomic",
+      "genetic",
+      "hormone",
+      "endocrine",
+      "metabolic",
+      "gut health",
+      "microbiome",
+      "clinic",
+      "red light",
+      "hyperbaric",
+      "hbot",
+      "iv therapy",
+      "iv infusion",
+      "nad",
+      "ozone",
+      "health optimisation",
+      "health optimization",
+      "precision medicine",
+      "physician-led",
+      "medical wellness",
+    ],
     popularLinks: [
-      { href: "/sauna-london", label: "Saunas in London", description: "Heat therapy spaces often discussed in broader longevity routines." },
-      { href: "/recovery-london", label: "Recovery Spaces in London", description: "Recovery-led venues that can sit within a longer-term wellbeing routine." },
-      { href: "/editorial-standards", label: "Editorial Standards", description: "How The Well Edit handles claims, caution and practical guidance." },
+      { href: "/hbot-london", label: "HBOT in London", description: "Hyperbaric oxygen therapy in clinic-led longevity and recovery settings." },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy in London", description: "Light-led recovery and optimisation treatments found in wellness clinics and recovery studios." },
+      { href: "/optimise", label: "Optimise in London", description: "Broader health optimisation spaces for routine-led energy, sleep and recovery support." },
+      { href: "/editorial-standards", label: "Editorial Standards", description: "How Well+ handles medical-adjacent claims, caution and practical guidance." },
     ],
     guidance: [
-      { title: "Prioritise credibility", text: "Longevity is a fast-growing category. Look for venues that are transparent about services, credentials, limitations and what is genuinely being offered." },
-      { title: "Understand the service type", text: "Some longevity spaces are clinics, some are recovery studios, and some are technology-led wellness venues. They should not all be evaluated in the same way." },
-      { title: "Avoid miracle framing", text: "The Well Edit treats longevity as a long-term healthspan category, not a promise of guaranteed outcomes." },
+      { title: "Start with what is actually being provided", text: "Longevity clinics can include diagnostics, blood testing, genomic analysis, physician-led programmes, IV therapy, HBOT, red light, cryotherapy or recovery protocols. Compare the service mix rather than relying on the word longevity alone." },
+      { title: "Prioritise credibility and boundaries", text: "Look for clear clinical oversight, transparent credentials, published service details, suitability screening and careful claim language. Strong providers explain both the service and its limits." },
+      { title: "Separate testing from treatment", text: "Some venues focus on assessment and insight, while others offer interventions such as IV/NAD+, HBOT, red light, ozone or cryotherapy. The best option depends on whether you want information, a programme or a specific session." },
+      { title: "Expect consultation-led access", text: "Many longevity services are not casual walk-in treatments. Discovery calls, questionnaires, health histories and longer-term packages are common." },
     ],
     faqs: [
-      { question: "What does longevity mean here?", answer: "Longevity refers to services and spaces focused on longer-term health, healthspan, prevention and proactive wellbeing." },
-      { question: "Is this medical advice?", answer: "No. The Well Edit does not provide medical advice. Longevity-related services should be considered carefully and discussed with qualified professionals where appropriate." },
-      { question: "How is Longevity different from Optimise?", answer: "Longevity is about longer-term healthspan and prevention. Optimise is broader and focuses on improving how you feel and function now." },
+      { question: "What is a longevity clinic?", answer: "A longevity clinic is usually a healthspan-focused setting offering diagnostics, assessments, preventative health services, optimisation programmes or medical-wellness treatments. The exact model varies significantly between providers." },
+      { question: "Which services fit the Longevity pillar?", answer: "Diagnostics, biological age testing, blood testing, genomic testing, hormone and gut health assessments, HBOT, red light therapy, IV therapy, NAD+, ozone therapy and physician-led optimisation programmes can all fit this pillar when they are positioned around healthspan or preventative health." },
+      { question: "How is Longevity different from Optimise?", answer: "Longevity is about longer-term healthspan, prevention and clinic-led insight. Optimise is broader and focuses on improving how you feel and function now through routines, recovery and performance support." },
+      { question: "Is this medical advice?", answer: "No. Well+ is a directory and editorial guide, not a medical advice service. Always check provider credentials and seek professional advice before using medical-adjacent services or acting on health concerns." },
     ],
   },
 ];
@@ -175,8 +209,30 @@ export function getPillarPage(slug: string) {
   return pillarPages.find((pillar) => pillar.slug === slug);
 }
 
-function isIndexableFacility(facility: AirtableFacility) {
-  return Boolean(facility.slug);
+function matchesKeyword(facility: AirtableFacility, keywords: string[]) {
+  const searchable = [
+    facility.name,
+    facility.description,
+    facility.editorialSummary,
+    facility.editorialVerdict,
+    facility.ambience,
+    facility.premiumLevel,
+    facility.venueTypeStandardized,
+    ...facility.servicesOffered,
+    ...facility.activityCategories,
+    ...facility.activityTagsStandardized,
+    ...facility.activityDisplayLabels,
+    ...facility.themeTagsStandardized,
+    ...facility.bestFor,
+    ...facility.bestForStandardized,
+    ...facility.experienceType,
+    ...facility.typeOfExperience,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return keywords.some((keyword) => searchable.includes(keyword.toLowerCase()));
 }
 
 export function getFacilitiesForPillar(

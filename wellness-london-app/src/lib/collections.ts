@@ -50,7 +50,7 @@ export const collections = [
     heroText: "The London sauna shortlist for premium heat, first visits and sauna-plus-cold recovery rituals.",
     introParagraphs: [
       "London sauna is no longer one format. The strongest options now range from premium wellness clubs and design-led spas to focused recovery studios and social bathhouse-style spaces.",
-      "This collection starts with venues that clearly list sauna or infrared sauna access, then prioritises completeness, practical details, beginner suitability and whether the setting supports a fuller heat-and-cold routine.",
+      "This collection starts with venues that clearly list sauna or infrared sauna access, then prioritises completeness, practical details, beginner suitability and whether the setting supports a fuller heat-and-cold routine — also known as contrast therapy when sauna is paired with cold plunge or ice bath.",
     ],
     serviceKeys: ["sauna", "infrared-sauna"],
     featuredSections: [
@@ -71,7 +71,7 @@ export const collections = [
       },
       {
         label: "Best sauna and cold plunge",
-        description: "A better fit when you want contrast: heat exposure paired with a cold plunge, ice bath or cold-water reset.",
+        description: "A better fit when you want contrast therapy: heat exposure paired with a cold plunge, ice bath or cold-water reset.",
         match: saunaAndColdPlungeMatch,
       },
     ],
@@ -81,12 +81,12 @@ export const collections = [
     href: "/collections/best-cold-plunge-london",
     title: "Best Cold Plunge London",
     metaTitle: "Best Cold Plunge London (2026) | Well+",
-    metaDescription: "Compare London cold plunge, ice bath and contrast therapy venues, curated by Well+.",
+    metaDescription: "Compare London cold plunge and ice bath venues, including contrast therapy spaces where sauna and cold water are used together.",
     eyebrow: "Curated cold edit",
-    heroText: "London cold plunge, ice bath and contrast spaces for guided sessions, first dips and sauna-paired recovery.",
+    heroText: "London cold plunge, also known as ice bath or cold-water immersion, plus contrast therapy spaces for guided sessions, first dips and sauna-paired recovery.",
     introParagraphs: [
-      "Cold plunge in London covers everything from guided group immersion and ice-bath recovery rooms to bathhouse circuits where cold exposure is part of a wider thermal ritual.",
-      "This edit favours venues with cold plunge or contrast therapy signals, then highlights practical fit: guidance, beginner friendliness, premium context and whether a sauna is available too.",
+      "Cold plunge in London covers cold-water immersion formats such as ice baths, cold tubs and plunge pools. These may be booked as a standalone cold session or as part of a wider contrast therapy ritual.",
+      "Contrast therapy refers to hot-and-cold recovery — usually sauna followed by cold plunge or ice bath. This edit favours venues with clear cold-water or contrast therapy signals, then highlights practical fit: guidance, beginner friendliness, premium context and whether sauna is available too.",
     ],
     serviceKeys: ["cold-plunge", "contrast-therapy"],
     featuredSections: [
@@ -102,7 +102,7 @@ export const collections = [
       },
       {
         label: "Best for first timers",
-        description: "A more approachable starting point for users trying ice baths or cold-water immersion for the first time.",
+        description: "A more approachable starting point for users trying cold plunge, ice baths or cold-water immersion for the first time.",
         match: { serviceKeys: ["cold-plunge", "contrast-therapy"], beginnerFriendly: true },
       },
       {
@@ -158,7 +158,7 @@ export function getCollection(slug: string) {
   return collections.find((collection) => collection.slug === slug);
 }
 
-const directoryServiceAliases: Record<ServiceSlug, string[]> = {
+const directoryServiceAliases: Partial<Record<ServiceSlug, string[]>> = {
   sauna: ["sauna"],
   "infrared-sauna": ["sauna"],
   "cold-plunge": ["cold-plunge"],
@@ -169,6 +169,16 @@ const directoryServiceAliases: Record<ServiceSlug, string[]> = {
   breathwork: ["breathwork"],
   "float-therapy": ["recovery"],
   "hyperbaric-oxygen-therapy": ["hbot"],
+  "longevity-testing": ["recovery", "hbot", "red-light"],
+  diagnostics: ["recovery", "hbot", "red-light"],
+  "blood-testing": ["recovery"],
+  "iv-therapy": ["recovery"],
+  "nad-therapy": ["recovery"],
+  "genomic-testing": ["recovery"],
+  "hormone-testing": ["recovery"],
+  "gut-health-testing": ["recovery"],
+  "ozone-therapy": ["recovery"],
+  "health-optimisation": ["recovery"],
 };
 
 function normaliseText(value?: string) {

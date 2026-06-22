@@ -38,6 +38,24 @@ const indexEntries: EditorialIndexEntry[] = [
   },
   {
     number: "02",
+    href: "/editorial/best-cryotherapy-london",
+    tag: "Recovery Guide 001",
+    title: "Best cryotherapy in London",
+    standfirst:
+      "An evidence-based guide to cryotherapy, recovery, performance and London’s leading cryotherapy venues.",
+    meta: "Cryotherapy · Recovery · Research",
+  },
+  {
+    number: "03",
+    href: "/editorial/infrared-sauna-vs-traditional-sauna",
+    tag: "Sauna Guide 001",
+    title: "Infrared sauna vs traditional sauna",
+    standfirst:
+      "A practical guide to choosing the right London sauna experience based on session style, intensity, privacy and ritual.",
+    meta: "Infrared · Traditional sauna",
+  },
+  {
+    number: "04",
     href: "/best-sauna-cold-plunge-london",
     tag: "Best Of",
     title: "Best sauna + cold plunge",
@@ -46,7 +64,7 @@ const indexEntries: EditorialIndexEntry[] = [
     meta: "Contrast · Recovery",
   },
   {
-    number: "03",
+    number: "05",
     href: "/beginner-friendly-wellness-london",
     tag: "Guide",
     title: "Beginner-friendly wellness",

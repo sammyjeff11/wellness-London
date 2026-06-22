@@ -81,6 +81,9 @@ export type AirtableFacility = {
   dataSource: string;
   profileCompletenessScore: number;
   isFeatured: boolean;
+  publishStatus: string;
+  indexable: boolean;
+  noindexReason: string;
 };
 
 type AirtableAttachment = {
@@ -123,7 +126,8 @@ type AirtableRecord = {
     "Type of Experience"?: string[] | string;
     "Access Type"?: string[] | string;
     "Overall Price Range"?: string;
-    "Google Rating"?: string;
+    "Google Rating"?: AirtableFieldValue;
+    "Google Review Count"?: AirtableFieldValue;
     "Booking Link"?: string;
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
@@ -191,6 +195,9 @@ type AirtableRecord = {
     profile_completeness_score?: number;
     "Is Featured"?: boolean;
     is_featured?: boolean;
+    "Publish Status"?: AirtableFieldValue;
+    Indexable?: boolean;
+    "Noindex Reason"?: AirtableFieldValue;
   };
 };
 
@@ -234,6 +241,25 @@ function normaliseBooleanLabel(value: AirtableFieldValue, fallback = "Unknown"):
 
 function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
   return values.find((value) => value !== undefined && value !== "") as T | undefined;
+}
+
+function formatGoogleRating(ratingValue: AirtableFieldValue, reviewCountValue: AirtableFieldValue): string {
+  const ratingText = normaliseSingle(ratingValue);
+  const reviewCountText = normaliseSingle(reviewCountValue).replace(/,/g, "");
+  const ratingMatch = ratingText.match(/\d+(?:\.\d+)?/);
+  const reviewCountMatch = reviewCountText.match(/\d+/);
+
+  if (!ratingMatch) return ratingText;
+
+  const rating = ratingMatch[0];
+
+  if (reviewCountMatch) {
+    const count = Number(reviewCountMatch[0]);
+    const formattedCount = Number.isFinite(count) ? count.toLocaleString("en-GB") : reviewCountMatch[0];
+    return `${rating}/5 (${formattedCount} reviews)`;
+  }
+
+  return ratingText.includes("/5") ? ratingText : `${rating}/5`;
 }
 
 function createSlug(value: string, fallback: string): string {
@@ -312,6 +338,15 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
   return Array.from(keys);
 }
 
+function hasStableSlug(record: AirtableRecord): boolean {
+  return createSlug(record.fields.Slug || "", "") !== "";
+}
+
+function isPublishedIndexableRecord(record: AirtableRecord): boolean {
+  const publishStatus = normaliseSingle(record.fields["Publish Status"]);
+  return publishStatus === "Published" && record.fields.Indexable === true && hasStableSlug(record);
+}
+
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
   const servicesOfferedRaw = normaliseList(record.fields["Services Offered"]);
@@ -331,16 +366,17 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
-  const slugSource = record.fields.Slug || [name, neighbourhood || areaOfLondon].filter(Boolean).join(" ");
+  const stableSlug = createSlug(record.fields.Slug || "", record.id);
   const experienceType = normaliseList(firstDefined(record.fields["Experience Type"], record.fields.experience_type, record.fields["Type of Experience"]));
   const bestForStandardized = normaliseList(record.fields["Best For Standardized"]);
   const bestFor = normaliseList(firstDefined(record.fields["Best For Standardized"], record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
   const priceFromValue = firstDefined(record.fields["Price From"], record.fields.price_from);
   const overallPriceRange = record.fields["Overall Price Range"] || "";
+  const publishStatus = normaliseSingle(record.fields["Publish Status"]);
 
   return {
     id: record.id,
-    slug: createSlug(slugSource, record.id),
+    slug: stableSlug,
     name,
     website: record.fields.Website || "#",
     businessName: record.fields["Business Name"] || "",
@@ -365,7 +401,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),
     overallPriceRange,
-    googleRating: record.fields["Google Rating"] || "",
+    googleRating: formatGoogleRating(record.fields["Google Rating"], record.fields["Google Review Count"]),
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
@@ -400,6 +436,9 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     dataSource: normaliseSingle(firstDefined(record.fields["Data Source"], record.fields.data_source)) || "Public sources",
     profileCompletenessScore: firstDefined(record.fields["Profile Completeness Score"], record.fields.profile_completeness_score) || 0,
     isFeatured: Boolean(firstDefined(record.fields["Is Featured"], record.fields.is_featured)),
+    publishStatus,
+    indexable: record.fields.Indexable === true,
+    noindexReason: normaliseSingle(record.fields["Noindex Reason"]),
   };
 }
 
@@ -438,7 +477,7 @@ async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
 
     if (!response.ok) {
       console.error("Failed to fetch Airtable facilities", response.status, response.statusText);
-      return records.map(mapRecordToFacility);
+      return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
     }
 
     const data = (await response.json()) as AirtableResponse;
@@ -446,7 +485,7 @@ async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
     offset = data.offset;
   } while (offset);
 
-  return records.map(mapRecordToFacility);
+  return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
 }
 
 export const getFacilities = cache(fetchFacilitiesFromAirtable);
