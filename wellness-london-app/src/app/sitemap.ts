@@ -5,6 +5,7 @@ import { collections } from "@/lib/collections";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
+import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 const defaultLastModified = new Date("2026-06-09T00:00:00.000Z");
 
@@ -35,10 +36,25 @@ const staticRoutes = [
 ];
 
 function parseLastModified(value?: string) {
-  if (!value || value === "Details not yet confirmed") return defaultLastModified;
+  const cleaned = cleanValue(value);
+  if (!cleaned) return defaultLastModified;
 
-  const parsed = new Date(value);
+  const parsed = new Date(cleaned);
   return Number.isNaN(parsed.getTime()) ? defaultLastModified : parsed;
+}
+
+function isSitemapFacility(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
+  const hasUsefulEditorialField = [
+    facility.editorialVerdict,
+    facility.editorialSummary,
+    facility.description,
+  ].some(isUsefulValue);
+
+  return Boolean(
+    isUsefulValue(facility.slug) &&
+    hasUsefulEditorialField &&
+    facility.slug === facility.slug.toLowerCase()
+  );
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -52,7 +68,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   const facilityEntries = facilities
-    .filter((facility) => facility.slug && (facility.editorialSummary || facility.description))
+    .filter(isSitemapFacility)
     .map((facility) => ({
       url: absoluteUrl(`/facility/${facility.slug}`),
       lastModified: parseLastModified(facility.lastCheckedDate),
