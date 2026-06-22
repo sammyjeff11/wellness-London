@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
+import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 type VenueLocationSectionProps = {
   name: string;
@@ -15,12 +16,6 @@ type VenueLocationSectionProps = {
   directionsHref?: string;
   appleMapsHref?: string;
 };
-
-function hasKnownValue(value?: string) {
-  if (!value) return false;
-  const lower = value.toLowerCase();
-  return !lower.includes("unknown") && !lower.includes("unclear") && !lower.includes("not confirmed") && !lower.includes("details not yet confirmed");
-}
 
 function buildMapPreviewUrl(query: string) {
   return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
@@ -42,14 +37,15 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
   const [isMapActive, setIsMapActive] = useState(false);
 
-  const locationLabel = [neighbourhood, borough || areaOfLondon]
-    .filter(Boolean)
+  const locationLabel = [cleanValue(neighbourhood), cleanValue(borough) || cleanValue(areaOfLondon)]
+    .filter(isUsefulValue)
     .join(" / ") || "London";
 
-  const fullAddress = [address, postcode].filter(Boolean).join(", ");
+  const fullAddress = [cleanValue(address), cleanValue(postcode)].filter(isUsefulValue).join(", ");
+  const cleanNearestStation = cleanValue(nearestStation);
 
-  const mapQuery = [name, address, postcode, "London"]
-    .filter(Boolean)
+  const mapQuery = [name, cleanValue(address), cleanValue(postcode), "London"]
+    .filter(isUsefulValue)
     .join(" ");
 
   const mapSrc = useMemo(() => buildMapPreviewUrl(mapQuery), [mapQuery]);
@@ -152,26 +148,27 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                     </p>
                   </div>
 
-                  <div>
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
-                      Address
-                    </p>
-                    <p className="text-base leading-8 text-[#5f574c]">
-                      {fullAddress ||
-                        "Address details are currently being confirmed."}
-                    </p>
-                  </div>
+                  {fullAddress ? (
+                    <div>
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
+                        Address
+                      </p>
+                      <p className="text-base leading-8 text-[#5f574c]">
+                        {fullAddress}
+                      </p>
+                    </div>
+                  ) : null}
 
-                  <div>
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
-                      Nearest station
-                    </p>
-                    <p className="text-base leading-8 text-[#5f574c]">
-                      {hasKnownValue(nearestStation)
-                        ? nearestStation
-                        : "Station details are still being checked."}
-                    </p>
-                  </div>
+                  {cleanNearestStation ? (
+                    <div>
+                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
+                        Nearest station
+                      </p>
+                      <p className="text-base leading-8 text-[#5f574c]">
+                        {cleanNearestStation}
+                      </p>
+                    </div>
+                  ) : null}
                 </div>
               </div>
 
@@ -184,7 +181,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                       facility_name: name,
                       facility_slug: slug,
                       cta_type: "google_maps_location_module",
-                      area: neighbourhood || areaOfLondon,
+                      area: cleanValue(neighbourhood) || cleanValue(areaOfLondon),
                     }}
                     className="inline-flex justify-center rounded-full bg-[#29241d] px-6 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#463c31]"
                   >
@@ -199,7 +196,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                     facility_name: name,
                     facility_slug: slug,
                     cta_type: "apple_maps_location_module",
-                    area: neighbourhood || areaOfLondon,
+                    area: cleanValue(neighbourhood) || cleanValue(areaOfLondon),
                   }}
                   className="inline-flex justify-center rounded-full border border-[#cfc5b6] px-6 py-3 text-sm text-[#29241d] transition hover:border-[#29241d] hover:bg-[#eee8dd]"
                 >
