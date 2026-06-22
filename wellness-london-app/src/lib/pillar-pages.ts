@@ -1,11 +1,19 @@
 import type { AirtableFacility, ServiceKey } from "@/lib/airtable";
+import {
+  getVenuePillarsFromServices,
+  getVenueServiceCountForPillar,
+  type ServicePillarMapping,
+  type ServicePillarName,
+} from "@/lib/service-pillar-mapping";
 
 export type PillarSlug = "recover" | "perform" | "reset" | "optimise" | "longevity";
+type PublicServicePillarName = Exclude<ServicePillarName, "Exclude from Pillar Pages">;
 
 export type PillarPageConfig = {
   slug: PillarSlug;
   href: string;
   label: string;
+  taxonomyPillar: PublicServicePillarName;
   title: string;
   metaTitle: string;
   description: string;
@@ -22,12 +30,13 @@ export const pillarPages: PillarPageConfig[] = [
   {
     slug: "recover",
     href: "/recover",
-    label: "Recover",
-    title: "Recover in London",
+    label: "Recovery & Performance",
+    taxonomyPillar: "Recovery & Performance",
+    title: "Recovery & Performance in London",
     metaTitle: "Recover in London | The Well Edit",
     description: "A curated guide to London recovery spaces, including sauna, cold plunge, cryotherapy, contrast therapy and recovery clubs.",
     eyebrow: "Recovery-led wellness",
-    intro: "For physical restoration, post-training routines and modern recovery rituals across London.",
+    intro: "For sauna, cold plunge, contrast therapy, cryotherapy, compression, sports recovery, massage, thermal recovery and post-training support across London.",
     serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "recovery"],
     keywords: ["recover", "recovery", "post-gym", "sports", "compression", "massage", "contrast", "cold", "sauna"],
     popularLinks: [
@@ -50,12 +59,13 @@ export const pillarPages: PillarPageConfig[] = [
   {
     slug: "perform",
     href: "/perform",
-    label: "Perform",
-    title: "Performance Wellness in London",
+    label: "Mobility",
+    taxonomyPillar: "Mobility",
+    title: "Mobility in London",
     metaTitle: "Performance Wellness in London | Well+",
-    description: "Explore performance-focused wellness activities in London, including cold plunge, cryotherapy, contrast therapy, breathwork and recovery studios.",
-    eyebrow: "Performance-focused wellness",
-    intro: "For training support, recovery routines, cold exposure, contrast therapy and wellness activities connected to performance and physical output.",
+    description: "Explore London mobility spaces, including assisted stretching, physiotherapy, Pilates, yoga, flexibility, posture and movement-quality support.",
+    eyebrow: "Movement and flexibility",
+    intro: "For assisted stretching, physiotherapy, Pilates, yoga, flexibility, posture, movement quality and injury-prevention support.",
     serviceKeys: ["recovery", "cryotherapy", "cold-plunge", "breathwork", "sauna"],
     keywords: ["perform", "performance", "training", "athlete", "sports", "post-gym", "mobility", "compression", "energy", "contrast", "cold plunge", "sauna"],
     popularLinks: [
@@ -70,20 +80,21 @@ export const pillarPages: PillarPageConfig[] = [
       { title: "Balance intensity with recovery", text: "Cold exposure and performance treatments work best when balanced with recovery, sleep, stress management and sustainable training load." },
     ],
     faqs: [
-      { question: "What types of activities fit the Perform pillar?", answer: "Cold plunge, cryotherapy, contrast therapy, sauna, mobility, compression and recovery-led wellness spaces can all fit this category." },
-      { question: "Is this only for athletes?", answer: "No. The Perform pillar is for anyone interested in physical output, recovery, energy and structured wellness routines." },
-      { question: "Which treatments are most associated with performance wellness?", answer: "Cold plunge, contrast therapy, cryotherapy, sauna and broader recovery-club experiences are among the most common." },
+      { question: "What types of activities fit the Mobility pillar?", answer: "Assisted stretching, physiotherapy, Pilates, yoga, barre, personal training and movement-quality services can all fit this category." },
+      { question: "Is this only for athletes?", answer: "No. Mobility support is useful for everyday posture, flexibility, injury prevention and better movement, not only sport." },
+      { question: "Which treatments are most associated with mobility?", answer: "Assisted stretching, physiotherapy, Reformer Pilates, yoga and personal training are among the most common." },
     ],
   },
   {
     slug: "reset",
     href: "/reset",
-    label: "Reset",
-    title: "Reset in London",
+    label: "Wellness Clubs",
+    taxonomyPillar: "Wellness Clubs",
+    title: "Wellness Clubs in London",
     metaTitle: "Reset in London | The Well Edit",
-    description: "Quiet London wellness spaces for calm, stress relief, sleep support, bathhouse rituals, sauna and restorative reset.",
-    eyebrow: "Calm and restoration",
-    intro: "For calm spaces, nervous-system downshift, sleep support and restorative wellness rituals across London.",
+    description: "Premium London wellness clubs, spa facilities, members' spaces, hotel wellness destinations and all-in-one wellness experiences.",
+    eyebrow: "Clubs, spas and rituals",
+    intro: "For premium wellness clubs, spa facilities, members' spaces, hotel wellness destinations, fitness and wellness amenities, rituals and all-in-one experiences.",
     serviceKeys: ["sauna", "breathwork", "meditation", "yoga"],
     keywords: ["reset", "calm", "quiet", "relax", "relaxation", "stress", "sleep", "restorative", "bathhouse", "private"],
     popularLinks: [
@@ -97,15 +108,16 @@ export const pillarPages: PillarPageConfig[] = [
       { title: "Avoid over-scheduling", text: "The best reset experiences leave space before and after the session, especially if you are using sauna, breathwork or deeper relaxation treatments." },
     ],
     faqs: [
-      { question: "What is a reset-focused wellness space?", answer: "A reset-focused space prioritises calm, restoration, stress relief and slower rituals rather than high-intensity performance outcomes." },
-      { question: "Which treatments fit the Reset pillar?", answer: "Sauna, bathhouse rituals, breathwork, meditation, restorative massage, floatation and quiet recovery spaces can all fit this pillar." },
-      { question: "Are reset spaces beginner-friendly?", answer: "Many are, but it is still worth checking privacy, guidance, booking requirements and facilities before visiting." },
+      { question: "What is a wellness club?", answer: "A wellness club brings several facilities or experiences together, such as spa amenities, fitness, recovery, rituals, classes or members' spaces." },
+      { question: "Which venues fit the Wellness Clubs pillar?", answer: "Premium clubs, hotel wellness destinations, spas, fitness-led wellness spaces and venues with all-in-one rituals can fit this pillar." },
+      { question: "Are wellness clubs beginner-friendly?", answer: "Many are, but it is still worth checking access model, booking requirements, facilities and whether day passes or memberships are required." },
     ],
   },
   {
     slug: "optimise",
     href: "/optimise",
     label: "Optimise",
+    taxonomyPillar: "Longevity & Diagnostics",
     title: "Optimise in London",
     metaTitle: "Optimise in London | The Well Edit",
     description: "London wellness spaces for improving routines, energy, sleep, recovery and everyday health optimisation.",
@@ -132,12 +144,13 @@ export const pillarPages: PillarPageConfig[] = [
   {
     slug: "longevity",
     href: "/longevity",
-    label: "Longevity",
-    title: "Longevity in London",
+    label: "Longevity & Diagnostics",
+    taxonomyPillar: "Longevity & Diagnostics",
+    title: "Longevity & Diagnostics in London",
     metaTitle: "Longevity in London | The Well Edit",
     description: "A curated guide to London longevity, healthspan and preventative wellness spaces, from diagnostics to recovery and optimisation-led clinics.",
     eyebrow: "Healthspan and prevention",
-    intro: "For longer-term health, preventative wellness, healthspan-focused services and clinics shaping London’s longevity landscape.",
+    intro: "For diagnostics, biomarker testing, blood testing, HBOT, red light therapy, IV and NAD treatments, preventative health and optimisation.",
     serviceKeys: ["red-light", "hbot", "sauna", "recovery"],
     keywords: ["longevity", "healthspan", "preventative", "preventive", "diagnostics", "biological age", "clinic", "red light", "hyperbaric", "health optimisation"],
     popularLinks: [
@@ -162,32 +175,33 @@ export function getPillarPage(slug: string) {
   return pillarPages.find((pillar) => pillar.slug === slug);
 }
 
-function matchesKeyword(facility: AirtableFacility, keywords: string[]) {
-  const searchable = [
-    facility.name,
-    facility.description,
-    facility.editorialSummary,
-    facility.editorialVerdict,
-    facility.ambience,
-    facility.premiumLevel,
-    ...facility.servicesOffered,
-    ...facility.bestFor,
-    ...facility.experienceType,
-    ...facility.typeOfExperience,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  return keywords.some((keyword) => searchable.includes(keyword.toLowerCase()));
+function isIndexableFacility(facility: AirtableFacility) {
+  return Boolean(facility.slug);
 }
 
-export function getFacilitiesForPillar(facilities: AirtableFacility[], pillar: PillarPageConfig) {
+export function getFacilitiesForPillar(
+  facilities: AirtableFacility[],
+  pillar: PillarPageConfig,
+  servicePillarMappings: ServicePillarMapping[],
+) {
   return facilities
     .filter((facility) => {
-      const serviceMatch = facility.serviceKeys.some((key) => pillar.serviceKeys.includes(key));
-      const keywordMatch = matchesKeyword(facility, pillar.keywords);
-      return serviceMatch || keywordMatch;
+      const venuePillars = getVenuePillarsFromServices(facility, servicePillarMappings);
+      return isIndexableFacility(facility) && venuePillars.includes(pillar.taxonomyPillar);
     })
-    .sort((a, b) => Number(b.isFeatured) * 100 + b.profileCompletenessScore - (Number(a.isFeatured) * 100 + a.profileCompletenessScore));
+    .sort((a, b) => {
+      const featuredScore = Number(b.isFeatured) - Number(a.isFeatured);
+      if (featuredScore !== 0) return featuredScore;
+
+      const primaryPillarScore =
+        Number(b.primaryPillar === pillar.taxonomyPillar) - Number(a.primaryPillar === pillar.taxonomyPillar);
+      if (primaryPillarScore !== 0) return primaryPillarScore;
+
+      const serviceDepthScore =
+        getVenueServiceCountForPillar(b, pillar.taxonomyPillar, servicePillarMappings) -
+        getVenueServiceCountForPillar(a, pillar.taxonomyPillar, servicePillarMappings);
+      if (serviceDepthScore !== 0) return serviceDepthScore;
+
+      return (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
+    });
 }

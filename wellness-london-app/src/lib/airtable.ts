@@ -32,12 +32,16 @@ export type AirtableFacility = {
   description: string;
   images: AirtableImage[];
   servicesOffered: string[];
+  serviceNames: string[];
+  primaryService: string;
+  secondaryServices: string[];
   serviceKeys: ServiceKey[];
   activityCategories: string[];
   activityTagsStandardized: string[];
   activityDisplayLabels: string[];
   venueTypeStandardized: string;
   themeTagsStandardized: string[];
+  primaryPillar: string;
   bestForStandardized: string[];
   typeOfExperience: string[];
   accessType: string;
@@ -85,7 +89,12 @@ type AirtableAttachment = {
   filename?: string;
 };
 
-type AirtableFieldValue = string[] | string | number | boolean | null | undefined;
+type AirtableSelectValue = {
+  id?: string;
+  name?: string;
+};
+
+type AirtableFieldValue = string | number | boolean | AirtableSelectValue | (string | number | boolean | AirtableSelectValue)[] | null | undefined;
 
 type AirtableRecord = {
   id: string;
@@ -102,11 +111,14 @@ type AirtableRecord = {
     Images?: AirtableAttachment[];
     "Services Offered"?: string[] | string;
     Services?: string[] | string;
+    "Primary Service"?: AirtableFieldValue;
+    "Secondary Services"?: AirtableFieldValue;
     "Activity Category"?: AirtableFieldValue;
     "Activity Tags Standardized"?: AirtableFieldValue;
     "Activity Display Labels"?: AirtableFieldValue;
     "Venue Type Standardized"?: AirtableFieldValue;
     "Theme Tags Standardized"?: AirtableFieldValue;
+    "Primary Pillar"?: AirtableFieldValue;
     "Best For Standardized"?: AirtableFieldValue;
     "Type of Experience"?: string[] | string;
     "Access Type"?: string[] | string;
@@ -189,10 +201,21 @@ type AirtableResponse = {
 
 export const AIRTABLE_REVALIDATE_SECONDS = 60 * 60 * 6;
 
+function normaliseFieldItem(value: Exclude<AirtableFieldValue, null | undefined | unknown[]>): string {
+  if (value === false) return "";
+  if (typeof value === "object") return value.name || "";
+  return String(value);
+}
+
 function normaliseList(value: AirtableFieldValue): string[] {
   if (value === undefined || value === null || value === false) return [];
-  if (Array.isArray(value)) return value.map(String).filter(Boolean);
-  return String(value)
+  if (Array.isArray(value)) {
+    return value
+      .flatMap((item) => normaliseFieldItem(item).split(","))
+      .map((item) => item.trim())
+      .filter(Boolean);
+  }
+  return normaliseFieldItem(value)
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
@@ -225,6 +248,22 @@ function createSlug(value: string, fallback: string): string {
     .replace(/-{2,}/g, "-");
 
   return slug || fallback.toLowerCase();
+}
+
+function uniqueStrings(values: string[]) {
+  const seen = new Set<string>();
+
+  return values.reduce<string[]>((items, value) => {
+    const cleaned = value.trim();
+    const key = cleaned.toLowerCase().replace(/\s+/g, " ");
+
+    if (cleaned && !seen.has(key)) {
+      seen.add(key);
+      items.push(cleaned);
+    }
+
+    return items;
+  }, []);
 }
 
 function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage[] {
@@ -275,8 +314,19 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
 
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
+  const servicesOfferedRaw = normaliseList(record.fields["Services Offered"]);
   const activityTagsStandardized = normaliseList(record.fields["Activity Tags Standardized"]);
   const activityDisplayLabels = normaliseList(record.fields["Activity Display Labels"]);
+  const primaryService = normaliseSingle(record.fields["Primary Service"]);
+  const secondaryServices = normaliseList(record.fields["Secondary Services"]);
+  const serviceNames = uniqueStrings([
+    ...servicesOfferedRaw,
+    ...activityTagsStandardized,
+    ...activityDisplayLabels,
+    ...normaliseList(record.fields.Services),
+    primaryService,
+    ...secondaryServices,
+  ]);
   const servicesOffered = canonicaliseServiceList(normaliseList(firstDefined(record.fields["Activity Display Labels"], record.fields["Activity Tags Standardized"], record.fields.Services, record.fields["Services Offered"])));
   const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
@@ -301,12 +351,16 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     description: record.fields.Description || "Premium wellness experience in London",
     images: normaliseImages(record.fields.Images),
     servicesOffered,
+    serviceNames,
+    primaryService,
+    secondaryServices,
     serviceKeys: normaliseServiceKeys(serviceKeySource),
     activityCategories: normaliseList(record.fields["Activity Category"]),
     activityTagsStandardized,
     activityDisplayLabels,
     venueTypeStandardized: normaliseSingle(record.fields["Venue Type Standardized"]),
     themeTagsStandardized: normaliseList(record.fields["Theme Tags Standardized"]),
+    primaryPillar: normaliseSingle(record.fields["Primary Pillar"]),
     bestForStandardized,
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
     accessType: normaliseSingle(record.fields["Access Type"]),

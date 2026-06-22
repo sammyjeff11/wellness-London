@@ -8,6 +8,11 @@ import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
 import { activityPages } from "@/lib/activity-pages";
 import { getFacilities, type AirtableFacility } from "@/lib/airtable";
+import {
+  getServicePillarMappings,
+  getVenuePillarsFromServices,
+  type ServicePillarMapping,
+} from "@/lib/service-pillar-mapping";
 import { absoluteUrl } from "@/lib/site";
 import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
@@ -163,9 +168,14 @@ function getRelatedGuides(services: string[]) {
     .slice(0, 4);
 }
 
-function getSimilarVenues(current: AirtableFacility, facilities: AirtableFacility[]) {
+function getSimilarVenues(
+  current: AirtableFacility,
+  facilities: AirtableFacility[],
+  servicePillarMappings: ServicePillarMapping[],
+) {
   const currentServices = new Set(canonicaliseServiceList(current.servicesOffered).map((service) => service.toLowerCase()));
   const currentServiceKeys = new Set(current.serviceKeys);
+  const currentPillars = new Set(getVenuePillarsFromServices(current, servicePillarMappings));
   const currentArea = cleanValue(current.neighbourhood) || cleanValue(current.areaOfLondon) || cleanValue(current.areaGroup);
   const currentVenueType = cleanValue(current.venueTypeStandardized);
 
@@ -175,6 +185,8 @@ function getSimilarVenues(current: AirtableFacility, facilities: AirtableFacilit
       const services = canonicaliseServiceList(candidate.servicesOffered);
       const serviceScore = services.filter((service) => currentServices.has(service.toLowerCase())).length * 10;
       const serviceKeyScore = candidate.serviceKeys.filter((key) => currentServiceKeys.has(key)).length * 8;
+      const pillarScore = getVenuePillarsFromServices(candidate, servicePillarMappings)
+        .filter((pillar) => currentPillars.has(pillar)).length * 9;
       const candidateAreas = [candidate.neighbourhood, candidate.areaOfLondon, candidate.areaGroup].map(cleanValue).filter(Boolean);
       const areaScore = currentArea && candidateAreas.includes(currentArea) ? 6 : 0;
       const venueTypeScore = currentVenueType && cleanValue(candidate.venueTypeStandardized) === currentVenueType ? 4 : 0;
@@ -182,7 +194,7 @@ function getSimilarVenues(current: AirtableFacility, facilities: AirtableFacilit
 
       return {
         facility: candidate,
-        score: serviceScore + serviceKeyScore + areaScore + venueTypeScore + completenessScore,
+        score: serviceScore + serviceKeyScore + pillarScore + areaScore + venueTypeScore + completenessScore,
       };
     })
     .filter((item) => item.score > 0)
@@ -210,7 +222,10 @@ function SimilarVenueCard({ facility }: { facility: AirtableFacility }) {
 
 export default async function FacilityPage({ params }: FacilityPageProps) {
   const { slug } = await params;
-  const facilities = await getFacilities();
+  const [facilities, servicePillarMappings] = await Promise.all([
+    getFacilities(),
+    getServicePillarMappings(),
+  ]);
   const facility = facilities.find((item) => item.slug === slug);
 
   if (!facility) notFound();
@@ -221,7 +236,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const whyCopy = editorialCandidates.find((candidate) => candidate !== heroSummary);
   const services = canonicaliseServiceList(cleanList(facility.servicesOffered));
   const relatedGuides = getRelatedGuides(services);
-  const similarVenues = getSimilarVenues(facility, facilities);
+  const similarVenues = getSimilarVenues(facility, facilities, servicePillarMappings);
   const website = cleanUrl(facility.website);
   const bookingLink = cleanUrl(facility.bookingLink);
   const instagramLink = cleanUrl(facility.instagramLink);
