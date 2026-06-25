@@ -7,7 +7,7 @@ import { pillarPages } from "@/lib/pillar-pages";
 import { absoluteUrl } from "@/lib/site";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
-const defaultLastModified = new Date("2026-06-09T00:00:00.000Z");
+const defaultLastModified = new Date("2026-06-25T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
@@ -16,13 +16,17 @@ const staticRoutes = [
   { path: "/neighbourhoods", priority: 0.82 },
   { path: "/collections", priority: 0.82 },
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
+  { path: "/best-sauna-cold-plunge-london", priority: 0.84 },
+  { path: "/beginner-friendly-wellness-london", priority: 0.72 },
+  { path: "/quiet-wellness-spaces-london", priority: 0.72 },
+  { path: "/luxury-wellness-spaces-london", priority: 0.72 },
   { path: "/editorial", priority: 0.72 },
   { path: "/editorial/best-saunas-london", priority: 0.74 },
   { path: "/editorial/best-cryotherapy-london", priority: 0.74 },
   { path: "/editorial/infrared-sauna-vs-traditional-sauna", priority: 0.72 },
+  { path: "/guides/sauna-london-guide", priority: 0.72 },
   ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
-  { path: "/longevity-london", priority: 0.75 },
   { path: "/stress-regulation-london", priority: 0.75 },
   ...activityPages.map((activity) => ({ path: activity.href, priority: 0.8 })),
   { path: "/central-london-wellness", priority: 0.7 },
@@ -32,7 +36,7 @@ const staticRoutes = [
   { path: "/south-london-wellness", priority: 0.7 },
   { path: "/how-we-curate", priority: 0.55 },
   { path: "/editorial-standards", priority: 0.55 },
-  { path: "/site-map", priority: 0.4 },
+  { path: "/site-map", priority: 0.6 },
 ];
 
 function parseLastModified(value?: string) {
