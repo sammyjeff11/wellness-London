@@ -40,6 +40,10 @@ type ServiceFaqSectionProps = {
   faqs: ServicePageContent["faqs"];
 };
 
+function canonicalInternalHref(href: string) {
+  return href === "/longevity-london" ? "/longevity" : href;
+}
+
 export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntroSectionProps) {
   return (
     <section className="border-y border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
@@ -140,13 +144,17 @@ export function ServiceRelatedSection({ links }: ServiceRelatedSectionProps) {
           <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related recovery guides</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
-              <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
-              <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>
-              <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
-            </Link>
-          ))}
+          {links.map((link) => {
+            const href = canonicalInternalHref(link.href);
+
+            return (
+              <Link key={href} href={href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
+                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
+                <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>
+                <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
