@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import PillarPage from "@/components/PillarPage";
 import { getFacilities } from "@/lib/airtable";
 import { getFacilitiesForPillar, getPillarPage, pillarPages } from "@/lib/pillar-pages";
+import { getServicePillarMappings } from "@/lib/service-pillar-mapping";
 
 export async function generateStaticParams() {
   return pillarPages.map((pillar) => ({ pillar: pillar.slug }));
@@ -41,8 +42,11 @@ export default async function WellnessPillarPage({
     notFound();
   }
 
-  const facilities = await getFacilities();
-  const matchingFacilities = getFacilitiesForPillar(facilities, pillar);
+  const [facilities, servicePillarMappings] = await Promise.all([
+    getFacilities(),
+    getServicePillarMappings(),
+  ]);
+  const matchingFacilities = getFacilitiesForPillar(facilities, pillar, servicePillarMappings);
 
   return <PillarPage pillar={pillar} facilities={matchingFacilities} />;
 }

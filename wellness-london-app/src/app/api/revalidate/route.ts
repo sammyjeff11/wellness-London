@@ -1,5 +1,6 @@
 import { revalidateTag } from "next/cache";
 import { NextResponse } from "next/server";
+import { AIRTABLE_SERVICE_PILLAR_MAPPING_TAG } from "@/lib/service-pillar-mapping";
 
 const AIRTABLE_FACILITIES_TAG = "airtable-facilities";
 
@@ -22,10 +23,11 @@ export async function POST(request: Request) {
   }
 
   revalidateTag(AIRTABLE_FACILITIES_TAG, "max");
+  revalidateTag(AIRTABLE_SERVICE_PILLAR_MAPPING_TAG, "max");
 
   return NextResponse.json({
     ok: true,
-    revalidated: [AIRTABLE_FACILITIES_TAG],
+    revalidated: [AIRTABLE_FACILITIES_TAG, AIRTABLE_SERVICE_PILLAR_MAPPING_TAG],
     revalidatedAt: new Date().toISOString(),
   });
 }
