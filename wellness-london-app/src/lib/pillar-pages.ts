@@ -5,6 +5,7 @@ import {
   type ServicePillarMapping,
   type ServicePillarName,
 } from "@/lib/service-pillar-mapping";
+import { isUsefulValue } from "@/lib/useful-values";
 
 export type PillarSlug = "recover" | "perform" | "reset" | "optimise" | "longevity";
 type PublicServicePillarName = Exclude<ServicePillarName, "Exclude from Pillar Pages">;
@@ -146,6 +147,7 @@ export const pillarPages: PillarPageConfig[] = [
     slug: "longevity",
     href: "/longevity",
     label: "Longevity",
+    taxonomyPillar: "Longevity & Diagnostics",
     title: "Longevity Clinics in London",
     metaTitle: "Longevity Clinics in London | Diagnostics, HBOT & Health Optimisation | Well+",
     description: "A curated guide to London longevity clinics and medical-wellness spaces, from diagnostics and biological age testing to HBOT, IV therapy, NAD+, red light therapy and physician-led healthspan programmes.",
@@ -209,30 +211,8 @@ export function getPillarPage(slug: string) {
   return pillarPages.find((pillar) => pillar.slug === slug);
 }
 
-function matchesKeyword(facility: AirtableFacility, keywords: string[]) {
-  const searchable = [
-    facility.name,
-    facility.description,
-    facility.editorialSummary,
-    facility.editorialVerdict,
-    facility.ambience,
-    facility.premiumLevel,
-    facility.venueTypeStandardized,
-    ...facility.servicesOffered,
-    ...facility.activityCategories,
-    ...facility.activityTagsStandardized,
-    ...facility.activityDisplayLabels,
-    ...facility.themeTagsStandardized,
-    ...facility.bestFor,
-    ...facility.bestForStandardized,
-    ...facility.experienceType,
-    ...facility.typeOfExperience,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  return keywords.some((keyword) => searchable.includes(keyword.toLowerCase()));
+function isIndexableFacility(facility: AirtableFacility) {
+  return facility.indexable === true && facility.publishStatus === "Published" && isUsefulValue(facility.slug);
 }
 
 export function getFacilitiesForPillar(
