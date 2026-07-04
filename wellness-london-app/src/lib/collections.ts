@@ -29,6 +29,7 @@ export type CollectionConfig = {
   heroText: string;
   introParagraphs: string[];
   serviceKeys: ServiceSlug[];
+  allServiceKeys?: ServiceSlug[];
   venueTypeIncludes?: string[];
   featuredSections: CollectionFeaturedSection[];
 };
@@ -36,6 +37,10 @@ export type CollectionConfig = {
 const saunaAndColdPlungeMatch: CollectionMatch = {
   allServiceKeys: ["sauna", "cold-plunge"],
   experienceTypeIncludes: ["contrast", "guided", "group", "shared"],
+};
+
+const contrastTherapyCoreMatch: CollectionMatch = {
+  allServiceKeys: ["sauna", "cold-plunge"],
 };
 
 export const collections = [
@@ -108,6 +113,50 @@ export const collections = [
       {
         label: "Best sauna and cold plunge",
         description: "A stronger option when the goal is contrast therapy: hot and cold in the same visit.",
+        match: saunaAndColdPlungeMatch,
+      },
+    ],
+  },
+  {
+    slug: "best-contrast-therapy-london",
+    href: "/collections/best-contrast-therapy-london",
+    title: "Best Contrast Therapy London",
+    metaTitle: "Best Contrast Therapy London (2026) | Sauna & Ice Bath | Well+",
+    metaDescription:
+      "Compare the best contrast therapy venues in London, including sauna and ice bath, sauna and cold plunge, hot-and-cold recovery and guided contrast sessions.",
+    eyebrow: "Curated hot-and-cold edit",
+    heroText: "London sauna-and-ice-bath spaces for contrast therapy, hot-and-cold recovery and guided sauna-plus-plunge rituals.",
+    introParagraphs: [
+      "Contrast therapy is the umbrella term for moving between heat and cold. In London, people may search for it as sauna and cold plunge, sauna and ice bath, hot-and-cold therapy, contrast bathing or a thermal circuit. The strongest venues make that sequence clear rather than simply listing a sauna in one place and a cold tub somewhere else.",
+      "The practical difference is flow. A good contrast therapy venue should make it easy to move between sauna or heat exposure, cold-water immersion, showers and a calmer recovery space. Guidance also matters, especially if you are new to ice baths or unsure how long to spend in each round.",
+      "This collection prioritises venues with both sauna and cold-water access, then separates the shortlist by use case: guided sessions, premium spaces, beginner-friendly setups and social or group formats. That should make it easier to choose a venue based on the experience you actually want, not just the nearest ice bath.",
+    ],
+    serviceKeys: ["sauna", "cold-plunge"],
+    allServiceKeys: ["sauna", "cold-plunge"],
+    featuredSections: [
+      {
+        label: "Best overall contrast therapy",
+        description: "A strong all-round hot-and-cold pick where the listing suggests both sauna and cold-water access, useful detail and a credible recovery context.",
+        match: contrastTherapyCoreMatch,
+      },
+      {
+        label: "Best guided hot-and-cold session",
+        description: "For users who want more structure around breathing, timing, rounds and how to move safely between sauna and ice bath or cold plunge.",
+        match: { allServiceKeys: ["sauna", "cold-plunge"], experienceTypeIncludes: ["guided", "class", "group", "breath", "contrast"] },
+      },
+      {
+        label: "Best premium contrast space",
+        description: "A better fit when the experience matters as much as the equipment: calmer design, hospitality, towels, showers and a more elevated recovery setting.",
+        match: { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
+      },
+      {
+        label: "Best for first timers",
+        description: "A more approachable place to try contrast therapy when clear guidance, shorter first dips and practical facilities matter most.",
+        match: { allServiceKeys: ["sauna", "cold-plunge"], beginnerFriendly: true },
+      },
+      {
+        label: "Best social contrast ritual",
+        description: "A stronger option for group sessions, shared sauna culture or a more communal hot-and-cold reset rather than a private solo booking.",
         match: saunaAndColdPlungeMatch,
       },
     ],
@@ -198,6 +247,7 @@ function listIncludesAny(values: string[] | undefined, needles: string[] | undef
 export function facilityHasCollectionService(facility: ServiceDirectoryFacility, serviceKey: ServiceSlug) {
   const aliases = directoryServiceAliases[serviceKey] || [serviceKey];
   const directoryKeys = facility.serviceKeys || [];
+  if (directoryKeys.includes(serviceKey)) return true;
   if (aliases.some((alias) => directoryKeys.includes(alias))) return true;
 
   return (facility.services || []).some((service) => canonicalServiceSlug(service) === serviceKey);
@@ -205,7 +255,12 @@ export function facilityHasCollectionService(facility: ServiceDirectoryFacility,
 
 export function facilityMatchesCollection(facility: ServiceDirectoryFacility, collection: CollectionConfig) {
   const serviceMatch = collection.serviceKeys.some((serviceKey) => facilityHasCollectionService(facility, serviceKey));
+  const allServicesMatch = collection.allServiceKeys?.every((serviceKey) => facilityHasCollectionService(facility, serviceKey));
   const venueTypeMatch = includesAny(facility.venueType, collection.venueTypeIncludes);
+
+  if (collection.allServiceKeys?.length) {
+    return Boolean(allServicesMatch || venueTypeMatch);
+  }
 
   return serviceMatch || venueTypeMatch;
 }
