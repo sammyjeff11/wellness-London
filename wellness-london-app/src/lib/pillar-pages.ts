@@ -34,7 +34,7 @@ export const pillarPages: PillarPageConfig[] = [
     label: "Recovery & Performance",
     taxonomyPillar: "Recovery & Performance",
     title: "Recovery & Performance in London",
-    metaTitle: "Recover in London | The Well Edit",
+    metaTitle: "Recover in London | Well+",
     description: "A curated guide to London recovery spaces, including sauna, cold plunge, cryotherapy, contrast therapy and recovery clubs.",
     eyebrow: "Recovery-led wellness",
     intro: "For sauna, cold plunge, contrast therapy, cryotherapy, compression, sports recovery, massage, thermal recovery and post-training support across London.",
@@ -92,7 +92,7 @@ export const pillarPages: PillarPageConfig[] = [
     label: "Wellness Clubs",
     taxonomyPillar: "Wellness Clubs",
     title: "Wellness Clubs in London",
-    metaTitle: "Reset in London | The Well Edit",
+    metaTitle: "Reset in London | Well+",
     description: "Premium London wellness clubs, spa facilities, members' spaces, hotel wellness destinations and all-in-one wellness experiences.",
     eyebrow: "Clubs, spas and rituals",
     intro: "For premium wellness clubs, spa facilities, members' spaces, hotel wellness destinations, fitness and wellness amenities, rituals and all-in-one experiences.",
@@ -120,7 +120,7 @@ export const pillarPages: PillarPageConfig[] = [
     label: "Optimise",
     taxonomyPillar: "Longevity & Diagnostics",
     title: "Optimise in London",
-    metaTitle: "Optimise in London | The Well Edit",
+    metaTitle: "Optimise in London | Well+",
     description: "London wellness spaces for improving routines, energy, sleep, recovery and everyday health optimisation.",
     eyebrow: "Better routines",
     intro: "For improving how you feel and function now, from sleep and energy to recovery technology and everyday wellness routines.",
@@ -138,9 +138,9 @@ export const pillarPages: PillarPageConfig[] = [
       { title: "Be careful with claims", text: "Treat advanced wellness services as supportive experiences rather than guaranteed outcomes, especially where health claims are involved." },
     ],
     faqs: [
-      { question: "What does optimise mean on The Well Edit?", answer: "Optimise covers spaces and services designed to support how you feel and function now, including recovery technology, sleep support, red light therapy and routine-led wellness." },
+      { question: "What does optimise mean on Well+?", answer: "Optimise covers spaces and services designed to support how you feel and function now, including recovery technology, sleep support, red light therapy and routine-led wellness." },
       { question: "How is Optimise different from Longevity?", answer: "Optimise focuses on near-term function and routine improvement. Longevity focuses more specifically on long-term healthspan and preventative wellness." },
-      { question: "Are these services medical?", answer: "The Well Edit is not a medical advice site. Users should check venue credentials and seek professional advice where a service relates to health or medical conditions." },
+      { question: "Are these services medical?", answer: "Well+ is not a medical advice site. Users should check venue credentials and seek professional advice where a service relates to health or medical conditions." },
     ],
   },
   {
@@ -149,8 +149,8 @@ export const pillarPages: PillarPageConfig[] = [
     label: "Longevity",
     taxonomyPillar: "Longevity & Diagnostics",
     title: "Longevity Clinics in London",
-    metaTitle: "Longevity Clinics in London | Diagnostics, HBOT & Health Optimisation | Well+",
-    description: "A curated guide to London longevity clinics and medical-wellness spaces, from diagnostics and biological age testing to HBOT, IV therapy, NAD+, red light therapy and physician-led healthspan programmes.",
+    metaTitle: "Longevity Clinics London | Diagnostics & HBOT | Well+",
+    description: "Compare London longevity clinics offering diagnostics, HBOT, IV therapy, red light and physician-led healthspan programmes.",
     eyebrow: "Healthspan and prevention",
     intro: "For clinic-led diagnostics, biological age testing, genomic insight, IV and NAD+ therapies, HBOT, red light therapy and longer-term health optimisation across London.",
     serviceKeys: ["red-light", "hbot", "sauna", "recovery"],
@@ -226,9 +226,6 @@ export function getFacilitiesForPillar(
       return isIndexableFacility(facility) && venuePillars.includes(pillar.taxonomyPillar);
     })
     .sort((a, b) => {
-      const featuredScore = Number(b.isFeatured) - Number(a.isFeatured);
-      if (featuredScore !== 0) return featuredScore;
-
       const primaryPillarScore =
         Number(b.primaryPillar === pillar.taxonomyPillar) - Number(a.primaryPillar === pillar.taxonomyPillar);
       if (primaryPillarScore !== 0) return primaryPillarScore;

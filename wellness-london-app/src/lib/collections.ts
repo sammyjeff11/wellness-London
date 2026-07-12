@@ -121,7 +121,7 @@ export const collections = [
     slug: "best-contrast-therapy-london",
     href: "/collections/best-contrast-therapy-london",
     title: "Best Contrast Therapy London",
-    metaTitle: "Best Contrast Therapy London (2026) | Sauna & Ice Bath | Well+",
+    metaTitle: "Best Contrast Therapy London (2026) | Well+",
     metaDescription:
       "Compare the best contrast therapy venues in London, including sauna and ice bath, sauna and cold plunge, hot-and-cold recovery and guided contrast sessions.",
     eyebrow: "Curated hot-and-cold edit",
@@ -207,27 +207,13 @@ export function getCollection(slug: string) {
   return collections.find((collection) => collection.slug === slug);
 }
 
-const directoryServiceAliases: Partial<Record<ServiceSlug, string[]>> = {
-  sauna: ["sauna"],
-  "infrared-sauna": ["sauna"],
-  "cold-plunge": ["cold-plunge"],
-  cryotherapy: ["cryotherapy"],
-  "red-light-therapy": ["red-light"],
-  "contrast-therapy": ["sauna", "cold-plunge", "recovery"],
-  massage: ["recovery"],
-  breathwork: ["breathwork"],
-  "float-therapy": ["recovery"],
-  "hyperbaric-oxygen-therapy": ["hbot"],
-  "longevity-testing": ["recovery", "hbot", "red-light"],
-  diagnostics: ["recovery", "hbot", "red-light"],
-  "blood-testing": ["recovery"],
-  "iv-therapy": ["recovery"],
-  "nad-therapy": ["recovery"],
-  "genomic-testing": ["recovery"],
-  "hormone-testing": ["recovery"],
-  "gut-health-testing": ["recovery"],
-  "ozone-therapy": ["recovery"],
-  "health-optimisation": ["recovery"],
+const directoryServiceKey: Partial<Record<ServiceSlug, string>> = {
+  sauna: "sauna",
+  "cold-plunge": "cold-plunge",
+  cryotherapy: "cryotherapy",
+  "red-light-therapy": "red-light",
+  breathwork: "breathwork",
+  "hyperbaric-oxygen-therapy": "hbot",
 };
 
 function normaliseText(value?: string) {
@@ -245,12 +231,11 @@ function listIncludesAny(values: string[] | undefined, needles: string[] | undef
 }
 
 export function facilityHasCollectionService(facility: ServiceDirectoryFacility, serviceKey: ServiceSlug) {
-  const aliases = directoryServiceAliases[serviceKey] || [serviceKey];
-  const directoryKeys = facility.serviceKeys || [];
-  if (directoryKeys.includes(serviceKey)) return true;
-  if (aliases.some((alias) => directoryKeys.includes(alias))) return true;
+  const exactServiceMatch = (facility.services || []).some((service) => canonicalServiceSlug(service) === serviceKey);
+  if (exactServiceMatch) return true;
 
-  return (facility.services || []).some((service) => canonicalServiceSlug(service) === serviceKey);
+  const key = directoryServiceKey[serviceKey];
+  return Boolean(key && (facility.serviceKeys || []).includes(key));
 }
 
 export function facilityMatchesCollection(facility: ServiceDirectoryFacility, collection: CollectionConfig) {
@@ -287,5 +272,5 @@ export function directoryFacilityScore(facility: ServiceDirectoryFacility, match
   const beginnerBonus = normaliseText(facility.beginnerFriendly).includes("yes") ? 8 : 0;
   const completeness = facility.profileCompletenessScore || 0;
 
-  return Number(facility.isFeatured) * 100 + serviceMatchCount * 20 + premiumBonus + beginnerBonus + completeness;
+  return serviceMatchCount * 20 + premiumBonus + beginnerBonus + completeness;
 }

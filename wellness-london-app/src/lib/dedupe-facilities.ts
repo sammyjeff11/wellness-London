@@ -255,7 +255,6 @@ function scoreFacility(facility: DedupeFacility) {
     (facility.experienceType?.length || 0) * 4 +
     Number(Boolean(facility.website && facility.website !== "#")) * 18 +
     Number(Boolean(facility.phone || facility.email || facility.bookingLink)) * 14 +
-    Number(Boolean(facility.isFeatured)) * 12 +
     (facility.profileCompletenessScore || 0) +
     Math.min(facility.description?.length || 0, 240) / 30
   );

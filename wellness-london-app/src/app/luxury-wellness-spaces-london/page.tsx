@@ -6,7 +6,7 @@ import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
-  title: "Luxury Wellness Spaces in London | Well Edit",
+  title: "Luxury Wellness Spaces in London | Well+",
   description:
     "A curated guide to luxury wellness spaces in London, from premium recovery clubs and private saunas to design-conscious wellness venues.",
   alternates: {
@@ -45,7 +45,7 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   const premiumScore = searchable.includes("premium") || searchable.includes("luxury") ? 3 : 0;
   const privateScore = searchable.includes("private") ? 2 : 0;
 
-  return keywordScore + premiumScore + privateScore + Number(facility.isFeatured) * 3 + (facility.profileCompletenessScore || 0);
+  return keywordScore + premiumScore + privateScore + (facility.profileCompletenessScore || 0);
 }
 
 export default async function LuxuryWellnessSpacesPage() {
@@ -137,7 +137,7 @@ export default async function LuxuryWellnessSpacesPage() {
               Some are clinical and longevity-led. Others are restorative, private or recovery-focused. The common thread is intentionality rather than price alone.
             </p>
             <p>
-              The Well Edit favours spaces that help users make better choices, not venues that rely only on aesthetics.
+              Well+ favours spaces that help users make better choices, not venues that rely only on aesthetics.
             </p>
           </div>
         </div>

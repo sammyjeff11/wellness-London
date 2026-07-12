@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Editorial Standards | The Well Edit",
+  title: "Editorial Standards | Well+",
   description:
-    "Editorial standards and publishing principles for The Well Edit's London wellness directory and journal.",
+    "Editorial standards and publishing principles for Well+'s London wellness directory and journal.",
   alternates: { canonical: "/editorial-standards" },
 };
 
@@ -22,11 +22,11 @@ export default function EditorialStandardsPage() {
       <div className="mx-auto max-w-4xl">
         <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Editorial standards</p>
         <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
-          Publishing principles for The Well Edit.
+          Publishing principles for Well+.
         </h1>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-          The Well Edit combines editorial storytelling with practical wellness discovery. Our aim is to help people navigate London wellness spaces with more confidence and less overwhelm.
+          Well+ combines editorial storytelling with practical wellness discovery. Our aim is to help people navigate London wellness spaces with more confidence and less overwhelm.
         </p>
 
         <div className="mt-14 space-y-4 border-t border-[#d8cebf] pt-8">

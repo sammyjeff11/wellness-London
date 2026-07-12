@@ -43,7 +43,7 @@ export const serviceTaxonomy = [
   {
     name: "Cold Plunge",
     slug: "cold-plunge",
-    description: "Cold-water immersion experiences, also known as ice baths, cold tubs or cold-water recovery, used as a standalone cold session or as part of a contrast therapy ritual.",
+    description: "Cold-water immersion, including ice baths and cold tubs, offered as a standalone session or as part of a contrast-therapy ritual.",
     synonyms: ["cold plunge", "cold plunges", "ice bath", "ice baths", "ice tub", "cold tub", "cold dip", "cold exposure", "cold water immersion", "cold water therapy", "cold therapy", "cold water recovery", "plunge pool"],
     parentCategory: "cold",
     href: "/cold-plunge-london",

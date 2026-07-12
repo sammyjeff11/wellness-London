@@ -104,7 +104,8 @@ export default async function Home() {
     .filter(hasFacilityPhoto)
     .sort((a, b) => selectionScore(b) - selectionScore(a))
     .slice(0, Math.min(3, directoryFacilities.length));
-  const heroImage = facilities.find((facility) => facility.images.length > 0)?.images[0];
+  const heroFacility = facilities.find((facility) => facility.images.length > 0);
+  const heroImage = heroFacility?.images[0];
   const featuredNeighbourhoods = neighbourhoodPages;
 
   return (
@@ -115,7 +116,7 @@ export default async function Home() {
             {heroImage ? (
               <SafeImage
                 src={heroImage.url}
-                alt={heroImage.filename || "Curated London wellness and recovery space"}
+                alt={heroFacility ? `${heroFacility.name} wellness venue in ${heroFacility.neighbourhood || "London"}` : "Curated London wellness and recovery space"}
                 fill
                 priority
                 sizes="100vw"

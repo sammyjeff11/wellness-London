@@ -129,12 +129,12 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
     return [...result].sort((a, b) => {
       if (searchValue && sort === "recommended") {
-        return rankVenueSearch(b, searchValue) - rankVenueSearch(a, searchValue) || Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
+        return rankVenueSearch(b, searchValue) - rankVenueSearch(a, searchValue) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
       }
       if (sort === "price-low") return parsePrice(a.priceFrom || a.priceRange) - parsePrice(b.priceFrom || b.priceRange);
       if (sort === "premium") return premiumRank(b.premiumLevel || b.priceRange) - premiumRank(a.premiumLevel || a.priceRange);
       if (sort === "recently-checked") return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
-      return Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
+      return (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
     });
   }, [uniqueFacilities, filters, sort, searchValue]);
 

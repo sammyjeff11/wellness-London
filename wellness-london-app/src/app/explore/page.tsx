@@ -4,7 +4,7 @@ import { pillarPages } from "@/lib/pillar-pages";
 import { serviceTaxonomy } from "@/lib/taxonomy";
 
 export const metadata: Metadata = {
-  title: "Explore London Wellness | The Well Edit",
+  title: "Explore London Wellness | Well+",
   description:
     "Explore London wellness spaces by intention, treatment and experience, from recovery and reset to optimisation and longevity.",
   alternates: {
@@ -26,7 +26,7 @@ export default function ExplorePage() {
             Browse by intention, treatment or experience.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            The Well Edit organises London wellness spaces around what people are actually looking for: recovery, performance, reset, optimisation and longer-term wellbeing.
+            Well+ organises London wellness spaces around what people are actually looking for: recovery, performance, reset, optimisation and longer-term wellbeing.
           </p>
         </div>
       </section>

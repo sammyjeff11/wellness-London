@@ -12,7 +12,7 @@ import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 export const metadata: Metadata = {
   title: "Best Cryotherapy in London (2026) | Well+",
   description:
-    "Discover the best cryotherapy venues in London. Compare recovery studios, understand how cryotherapy works, and explore what the latest research says about its benefits, limitations and best use cases.",
+    "Compare London cryotherapy venues, understand how whole-body cryotherapy works and review its potential uses, limitations and booking considerations.",
   alternates: { canonical: "/editorial/best-cryotherapy-london" },
   openGraph: {
     title: "Best Cryotherapy in London (2026) | Well+",

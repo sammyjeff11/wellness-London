@@ -1,8 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getFacilities } from "@/lib/airtable";
 import { collections } from "@/lib/collections";
 import { serviceTaxonomy } from "@/lib/taxonomy";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
+
+export const metadata: Metadata = {
+  title: "Site Map | Well+",
+  description: "Browse Well+ wellness guides, London neighbourhoods, services, collections, venue profiles and editorial standards.",
+  alternates: { canonical: "/site-map" },
+};
 
 const coreSections = [
   {
@@ -63,7 +70,7 @@ const coreSections = [
       { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
       { href: "/editorial/best-cryotherapy-london", label: "Best Cryotherapy in London" },
       { href: "/editorial/infrared-sauna-vs-traditional-sauna", label: "Infrared vs Traditional Sauna" },
-      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
       { href: "/how-we-curate", label: "How We Curate" },
       { href: "/editorial-standards", label: "Editorial Standards" },
     ],
@@ -71,7 +78,7 @@ const coreSections = [
 ];
 
 function facilityScore(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
-  return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
+  return facility.profileCompletenessScore || 0;
 }
 
 function venueLabel(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
@@ -93,14 +100,14 @@ export default async function SiteMapPage() {
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
       <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6 sm:py-16">
         <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">
-          Well Edit
+          Well+
         </p>
         <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">
           Site Map
         </h1>
 
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
-          Browse the core sections of The Well Edit, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages and editorial standards.
+          Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages and editorial standards.
         </p>
 
         <div className="space-y-12">

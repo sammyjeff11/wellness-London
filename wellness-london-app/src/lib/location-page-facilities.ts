@@ -20,7 +20,6 @@ function getLocationText(facility: ServiceDirectoryFacility) {
 
 function scoreFacilityCompleteness(facility: ServiceDirectoryFacility) {
   return (
-    Number(facility.isFeatured) * 1000 +
     (facility.profileCompletenessScore || 0) +
     Number(Boolean(facility.address)) * 100 +
     (facility.services?.length || 0) * 8 +

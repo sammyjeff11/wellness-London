@@ -4,12 +4,12 @@ import JsonLd from "@/components/JsonLd";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Infrared Sauna vs Traditional Sauna in London | Well+ Editorial",
+  title: "Infrared vs Traditional Sauna London | Well+ Editorial",
   description:
     "A practical Well+ Editorial guide to choosing between infrared sauna and traditional sauna in London.",
   alternates: { canonical: "/editorial/infrared-sauna-vs-traditional-sauna" },
   openGraph: {
-    title: "Infrared Sauna vs Traditional Sauna in London | Well+ Editorial",
+    title: "Infrared vs Traditional Sauna London | Well+ Editorial",
     description:
       "Understand the difference between infrared and traditional sauna, then choose the right London sauna experience for your recovery ritual.",
     url: absoluteUrl("/editorial/infrared-sauna-vs-traditional-sauna"),

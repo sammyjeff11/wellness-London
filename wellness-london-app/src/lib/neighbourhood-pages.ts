@@ -21,7 +21,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Recovery venues in Shoreditch",
     shortTitle: "Shoreditch",
     href: "/neighbourhoods/shoreditch",
-    metaTitle: "Recovery venues in Shoreditch | Saunas, cold plunge & contrast therapy",
+    metaTitle: "Shoreditch Recovery Venues | Sauna & Cold Plunge | Well+",
     metaDescription:
       "Explore Shoreditch recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
     eyebrow: "East London energy",
@@ -49,7 +49,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Recovery venues in Canary Wharf",
     shortTitle: "Canary Wharf",
     href: "/neighbourhoods/canary-wharf",
-    metaTitle: "Recovery venues in Canary Wharf | Saunas, cold plunge & wellness spaces",
+    metaTitle: "Canary Wharf Recovery Venues | Sauna & Wellness | Well+",
     metaDescription:
       "Explore Canary Wharf recovery venues offering sauna, cold plunge, contrast therapy, cryotherapy and other wellness services.",
     eyebrow: "Docklands recovery",
@@ -77,9 +77,9 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Recovery venues in Kensington",
     shortTitle: "Kensington",
     href: "/neighbourhoods/kensington",
-    metaTitle: "Recovery venues in Kensington | Saunas, cryotherapy & wellness",
+    metaTitle: "Kensington Recovery Venues | Cryotherapy & Sauna | Well+",
     metaDescription:
-      "Explore Kensington recovery venues offering sauna, cryotherapy, red light therapy, HBOT and other wellness services. Compare facilities, services and nearby London areas before booking.",
+      "Compare Kensington recovery venues offering sauna, cryotherapy, red light therapy and HBOT, with practical details to check before booking.",
     eyebrow: "West London recovery",
     intro:
       "Explore recovery venues in Kensington offering infrared sauna, cryotherapy, red light therapy, HBOT and other wellness services. Compare the verified local facilities by service type, setting and location before choosing where to book.",

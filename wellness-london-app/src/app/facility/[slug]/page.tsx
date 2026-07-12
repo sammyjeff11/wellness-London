@@ -13,7 +13,7 @@ import {
   getVenuePillarsFromServices,
   type ServicePillarMapping,
 } from "@/lib/service-pillar-mapping";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, truncateMetaText } from "@/lib/site";
 import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
 
@@ -46,14 +46,14 @@ function getCleanLocation(facility: AirtableFacility) {
 
 function getEditorialCandidates(facility: AirtableFacility) {
   return [
-    cleanValue(facility.editorialVerdict),
     cleanValue(facility.editorialSummary),
     cleanValue(facility.description),
   ].filter(Boolean) as string[];
 }
 
 function getMetaDescription(facility: AirtableFacility) {
-  return getEditorialCandidates(facility)[0] || `Explore ${facility.name}, a curated London wellness venue listed on Well+.`;
+  const description = getEditorialCandidates(facility)[0] || `Explore ${facility.name}, a curated London wellness venue listed on Well+.`;
+  return truncateMetaText(description);
 }
 
 export async function generateMetadata({ params }: FacilityPageProps): Promise<Metadata> {
@@ -66,16 +66,18 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
   const description = getMetaDescription(facility);
   const image = facility.images.find((item) => cleanUrl(item.url));
 
+  const title = truncateMetaText(`${facility.name} | Well+`, 60);
+
   return {
-    title: `${facility.name} | Well+ London`,
+    title,
     description,
     alternates: { canonical: `/facility/${facility.slug}` },
     openGraph: {
-      title: `${facility.name} | Well+ London`,
+      title: `${facility.name} | Well+`,
       description,
       url: absoluteUrl(`/facility/${facility.slug}`),
       type: "website",
-      images: image ? [{ url: image.url, alt: image.filename || facility.name }] : undefined,
+      images: image ? [{ url: image.url, alt: facility.name }] : undefined,
     },
   };
 }
@@ -97,7 +99,7 @@ function venueJsonLd(facility: AirtableFacility) {
           streetAddress: cleanValue(facility.address),
           postalCode: cleanValue(facility.postcode),
           addressLocality: cleanValue(facility.neighbourhood) || "London",
-          addressRegion: cleanValue(facility.borough),
+          addressRegion: cleanValue(facility.borough) || (cleanValue(facility.areaOfLondon)?.includes("London") ? "London" : undefined),
           addressCountry: "GB",
         }
       : undefined,

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Recovery in London | Saunas, Cold Plunge, Cryotherapy & Contrast Therapy | Well Edit",
+  title: "Recovery London | Sauna, Cold Plunge & Cryotherapy | Well+",
   description:
-    "A curated guide to recovery in London, including sauna, cold plunge, cryotherapy, contrast therapy and recovery studios for training, stress regulation and modern wellness routines.",
+    "Compare London recovery studios offering sauna, cold plunge, cryotherapy and contrast therapy for training, stress regulation and repeatable routines.",
   alternates: {
     canonical: "/recovery-london",
   },
@@ -55,7 +55,7 @@ const decisionPoints = [
 const relatedGuides = [
   {
     href: "/guides/sauna-london-guide",
-    label: "The Well Edit Guide to Sauna in London",
+    label: "Well+ Guide to Sauna in London",
     text: "Understand how sauna sits within recovery, longevity, stress regulation and London wellness culture.",
   },
   {
@@ -104,7 +104,7 @@ export default function RecoveryLondonPage() {
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-5xl border-t border-[#d8cebf]/70 pt-10 sm:pt-14">
           <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-            Well Edit / Recovery in London
+            Well+ / Recovery in London
           </p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">
             Recovery in London.
@@ -121,7 +121,7 @@ export default function RecoveryLondonPage() {
                 Some people are looking for post-training recovery. Others want better sleep, calmer evenings, nervous-system regulation or a more intentional weekly ritual. The right space depends on the outcome, not just the treatment name.
               </p>
               <p>
-                Use this guide as the parent route into the Well Edit recovery ecosystem, then move into the specific modality or location that fits the kind of recovery you want.
+                Use this guide as the parent route into the Well+ recovery ecosystem, then move into the specific modality or location that fits the kind of recovery you want.
               </p>
             </div>
           </div>
@@ -140,7 +140,7 @@ export default function RecoveryLondonPage() {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
-              These are the main recovery routes currently covered by Well Edit, each linked to a more specific London guide.
+              These are the main recovery routes currently covered by Well+, each linked to a more specific London guide.
             </p>
           </div>
 
@@ -200,7 +200,7 @@ export default function RecoveryLondonPage() {
               Recovery sits between several related intentions. For performance, it supports consistency, training readiness and post-workout reset. For longevity, it connects to sustainable routines such as heat exposure, sleep support and regular movement. For stress regulation, it can become a calmer ritual around rest, breath and downregulation.
             </p>
             <p>
-              That is why Well Edit treats sauna, cold plunge and cryotherapy as modalities within a broader recovery landscape, rather than isolated treatments. The value comes from choosing the right experience for the outcome you want.
+              That is why Well+ treats sauna, cold plunge and cryotherapy as modalities within a broader recovery landscape, rather than isolated treatments. The value comes from choosing the right experience for the outcome you want.
             </p>
           </div>
         </div>
