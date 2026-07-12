@@ -75,7 +75,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
       <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
       <ServiceEvidenceSection notes={activity.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
       <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title={`${activity.label} London FAQs`} faqs={activity.faqs} />

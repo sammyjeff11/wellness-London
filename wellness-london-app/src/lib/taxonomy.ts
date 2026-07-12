@@ -224,8 +224,11 @@ export function findCanonicalService(value?: string | null) {
   const normalisedValue = normaliseServiceInput(value);
   if (!normalisedValue) return undefined;
 
+  const exactMatch = serviceTerms.find(({ term }) => term === normalisedValue);
+  if (exactMatch) return exactMatch.service;
+
   return serviceTerms
-    .filter(({ term }) => term && (normalisedValue === term || normalisedValue.includes(term) || term.includes(normalisedValue)))
+    .filter(({ term }) => term && normalisedValue.includes(term))
     .sort((a, b) => b.term.length - a.term.length)[0]?.service;
 }
 
@@ -256,4 +259,16 @@ export function canonicaliseServiceList(values: string[] = []) {
 
     return services;
   }, []);
+}
+
+export function prioritiseCanonicalServiceList(values: string[] = [], preferredService?: string | null) {
+  const services = canonicaliseServiceList(values);
+  const preferred = findCanonicalService(preferredService);
+
+  if (!preferred) return services;
+
+  return [
+    preferred.name,
+    ...services.filter((service) => canonicalServiceSlug(service) !== preferred.slug),
+  ];
 }

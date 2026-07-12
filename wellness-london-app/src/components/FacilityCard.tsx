@@ -4,7 +4,7 @@ import { useState } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
-import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
+import { canonicalServiceHref, prioritiseCanonicalServiceList } from "@/lib/taxonomy";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -41,6 +41,7 @@ type FacilityCardProps = {
   facility: FacilityCardFacility;
   source?: string;
   compact?: boolean;
+  prioritisedService?: string;
 };
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
@@ -75,8 +76,8 @@ function getAreaLabel(facility: FacilityCardFacility) {
   return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
 }
 
-function getCanonicalServices(services?: string[]) {
-  return canonicaliseServiceList(services).slice(0, 3);
+function getCanonicalServices(services?: string[], prioritisedService?: string) {
+  return prioritiseCanonicalServiceList(services, prioritisedService).slice(0, 3);
 }
 
 function formatRating(value?: string) {
@@ -154,13 +155,13 @@ function getCardImages(facility: FacilityCardFacility) {
   return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
 }
 
-export default function FacilityCard({ facility, source = "directory", compact = false }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
   const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" · ");
   const price = formatPrice(facility.priceRange || facility.priceFrom);
-  const serviceLabels = getCanonicalServices(facility.services);
+  const serviceLabels = getCanonicalServices(facility.services, prioritisedService);
   const serviceLine = serviceLabels.join(" · ");
   const summary = conciseSummary(facility, serviceLine);
   const rating = formatRating(facility.rating);
