@@ -245,7 +245,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const primaryCtaHref = bookingLink || website;
   const primaryCtaLabel = bookingLink ? "Book this venue" : "Visit website";
   const price = cleanValue(facility.priceFrom) || cleanValue(facility.overallPriceRange);
-  const access = cleanValue(facility.accessType) || cleanValue(facility.privateOrShared);
+  const access = cleanValue(facility.accessType);
   const address = cleanValue(facility.address);
   const postcode = cleanValue(facility.postcode);
   const bestFor = cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor).slice(0, 8);
