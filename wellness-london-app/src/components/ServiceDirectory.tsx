@@ -31,6 +31,7 @@ type ServiceDirectoryProps = {
   serviceType: string;
   emptyTitle: string;
   emptyText: string;
+  prioritisedService?: string;
 };
 
 const initialFilters: FilterState = {
@@ -99,7 +100,7 @@ function MobileFilterPill({ label, value, onChange, children }: { label: string;
   );
 }
 
-export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText }: ServiceDirectoryProps) {
+export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectoryProps) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [sort, setSort] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
@@ -291,7 +292,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredFacilities.map((facility) => (
-              <FacilityCard key={facility.slug} facility={facility} source={serviceType} />
+              <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} />
             ))}
           </div>
         </section>

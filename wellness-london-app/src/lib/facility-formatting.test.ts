@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { extractUkPostcode, formatPriceFrom } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
+import { prioritiseCanonicalServiceList } from "./taxonomy.ts";
 
 test("formats Airtable currency values for public display", () => {
   assert.equal(formatPriceFrom(9), "From £9");
@@ -21,4 +22,15 @@ test("keeps metadata concise without cutting a word in half", () => {
   assert.ok(result.length <= 80);
   assert.ok(result.endsWith("…"));
   assert.ok(!result.endsWith(" …"));
+});
+
+test("puts the current service page tag first on venue cards", () => {
+  assert.deepEqual(
+    prioritiseCanonicalServiceList(["Cryotherapy", "Photobiomodulation", "HBOT"], "Red Light Therapy"),
+    ["Red Light Therapy", "Cryotherapy", "Hyperbaric Oxygen Therapy"],
+  );
+  assert.deepEqual(
+    prioritiseCanonicalServiceList(["Sauna", "Cold Plunge", "Massage"], "Cold Plunge"),
+    ["Cold Plunge", "Sauna", "Massage"],
+  );
 });

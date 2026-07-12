@@ -14,6 +14,7 @@ type ServiceDirectorySectionProps = {
   serviceType: string;
   emptyTitle: string;
   emptyText: string;
+  prioritisedService?: string;
 };
 
 type ServiceGuidanceSectionProps = {
@@ -62,11 +63,11 @@ export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntro
   );
 }
 
-export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText }: ServiceDirectorySectionProps) {
+export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectorySectionProps) {
   return (
     <section className="bg-[#f4efe6] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
-        <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} />
+        <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} prioritisedService={prioritisedService} />
       </div>
     </section>
   );
