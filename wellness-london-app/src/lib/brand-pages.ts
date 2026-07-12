@@ -33,7 +33,7 @@ export const brandPages: BrandPage[] = [
     intro:
       "Rooftop Saunas offers private sauna cabins, cold plunges and elevated recovery sessions across London rooftop settings.",
     description:
-      "Browse Rooftop Saunas locations in London, including Hackney and Brixton, with each listing separated by location for clearer booking and neighbourhood discovery.",
+      "Browse Rooftop Saunas in Hackney and Brixton, with separate profiles for clearer booking and neighbourhood discovery.",
     seoTitle: "Rooftop Saunas London locations | Well+ London",
     seoDescription:
       "Explore Rooftop Saunas locations in London, including Hackney and Brixton rooftop sauna and cold plunge experiences, curated by Well+.",

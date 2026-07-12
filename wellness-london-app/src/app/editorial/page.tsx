@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Editorial | Well+ London",
   description:
-    "The editorial layer of Well+: best-of guides, practical explainers and curation notes that help you interpret the London wellness directory rather than simply browse it.",
+    "Well+ best-of guides, practical explainers and curation notes for navigating London's wellness venues with more confidence.",
   alternates: { canonical: "/editorial" },
   openGraph: {
     title: "Editorial | Well+ London",

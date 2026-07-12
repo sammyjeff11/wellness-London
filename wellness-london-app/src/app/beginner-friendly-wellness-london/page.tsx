@@ -35,7 +35,6 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   if (searchable.includes("private")) score += 2;
   if (searchable.includes("calm")) score += 2;
   if (searchable.includes("reset")) score += 1;
-  if (facility.isFeatured) score += 2;
   score += facility.profileCompletenessScore || 0;
   return score;
 }

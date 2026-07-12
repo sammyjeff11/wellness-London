@@ -43,6 +43,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
   const primaryImage = previewImages[0];
   const secondaryImages = previewImages.slice(1, 5);
   const activeImage = galleryImages[activeIndex] || galleryImages[0];
+  const imageAlt = (index: number) => index === 0 ? `${venueName} wellness venue` : `${venueName} wellness venue, photo ${index + 1}`;
 
   function openLibrary(index = 0) {
     setActiveIndex(index);
@@ -54,14 +55,14 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
       <div className="relative overflow-hidden rounded-[1.15rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/72 p-2 shadow-[0_16px_40px_rgba(41,36,29,0.04)] sm:rounded-[1.35rem] sm:p-3">
         <div className="grid gap-2 md:grid-cols-[1.35fr_0.65fr]">
           <button type="button" onClick={() => openLibrary(0)} className="group relative aspect-[4/3] overflow-hidden rounded-[0.95rem] bg-[#d8cebf] text-left focus:outline-none focus:ring-2 focus:ring-[#6f6048] md:aspect-[5/4]" aria-label={`Open ${venueName} photo library`}>
-            <SafeImage src={primaryImage.url} alt={primaryImage.filename || `${venueName} main image`} fill priority sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
+            <SafeImage src={primaryImage.url} alt={imageAlt(0)} fill priority sizes="(min-width: 1024px) 34vw, 100vw" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
           </button>
 
           {secondaryImages.length > 0 ? (
             <div className="hidden gap-2 md:grid">
               {secondaryImages.slice(0, 2).map((image, index) => (
                 <button key={`${image.url}-${index}`} type="button" onClick={() => openLibrary(index + 1)} className="group relative overflow-hidden rounded-[0.95rem] bg-[#d8cebf] text-left focus:outline-none focus:ring-2 focus:ring-[#6f6048]" aria-label={`Open ${venueName} photo ${index + 2}`}>
-                  <SafeImage src={image.url} alt={image.filename || `${venueName} image ${index + 2}`} fill sizes="14rem" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
+                  <SafeImage src={image.url} alt={imageAlt(index + 1)} fill sizes="14rem" className="object-cover transition duration-300 group-hover:scale-[1.02]" />
                 </button>
               ))}
             </div>
@@ -72,7 +73,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
           <div className="mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:hidden">
             {secondaryImages.map((image, index) => (
               <button key={`${image.url}-${index}`} type="button" onClick={() => openLibrary(index + 1)} className="relative aspect-[4/3] min-w-[42%] snap-start overflow-hidden rounded-[0.8rem] bg-[#d8cebf] focus:outline-none focus:ring-2 focus:ring-[#6f6048]" aria-label={`Open ${venueName} photo ${index + 2}`}>
-                <SafeImage src={image.url} alt={image.filename || `${venueName} image ${index + 2}`} fill sizes="42vw" className="object-cover" />
+                <SafeImage src={image.url} alt={imageAlt(index + 1)} fill sizes="42vw" className="object-cover" />
               </button>
             ))}
           </div>
@@ -106,7 +107,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
               ) : null}
 
               <div className="relative h-full max-h-[68vh] w-full max-w-5xl overflow-hidden rounded-[1rem] bg-black/30 sm:max-h-[72vh]">
-                <SafeImage src={activeImage.url} alt={activeImage.filename || `${venueName} photo ${activeIndex + 1}`} fill sizes="100vw" className="object-contain" />
+                <SafeImage src={activeImage.url} alt={imageAlt(activeIndex)} fill sizes="100vw" className="object-contain" />
               </div>
 
               {galleryImages.length > 1 ? (
@@ -123,7 +124,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
                     const isActive = index === activeIndex;
                     return (
                       <button key={`${image.url}-library-${index}`} type="button" onClick={() => setActiveIndex(index)} className={`relative h-20 min-w-[8.75rem] snap-start overflow-hidden rounded-[0.7rem] bg-[#211d17] transition focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:h-24 sm:min-w-[11rem] ${isActive ? "opacity-100" : "opacity-55 hover:opacity-100"}`} aria-label={`Show photo ${index + 1}`} aria-pressed={isActive}>
-                        <SafeImage src={image.url} alt={image.filename || `${venueName} thumbnail ${index + 1}`} fill sizes="11rem" className="object-contain" />
+                        <SafeImage src={image.url} alt={imageAlt(index)} fill sizes="11rem" className="object-contain" />
                       </button>
                     );
                   })}

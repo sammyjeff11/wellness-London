@@ -6,7 +6,7 @@ import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
-  title: "Quiet Wellness Spaces in London | Well Edit",
+  title: "Quiet Wellness Spaces in London | Well+",
   description:
     "A curated guide to quiet London wellness spaces for calm, reset, sauna, bathhouse rituals and restorative recovery.",
   alternates: {
@@ -33,7 +33,7 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   const keywordScore = quietKeywords.reduce((score, keyword) => score + (searchable.includes(keyword) ? 1 : 0), 0);
   const privateScore = searchable.includes("private") ? 2 : 0;
 
-  return keywordScore + privateScore + Number(facility.isFeatured) * 3 + (facility.profileCompletenessScore || 0);
+  return keywordScore + privateScore + (facility.profileCompletenessScore || 0);
 }
 
 export default async function QuietWellnessSpacesPage() {

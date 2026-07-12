@@ -5,18 +5,29 @@ export function getFacilityLocation(facility: AirtableFacility) {
   return facility.neighbourhood || facility.areaOfLondon || facility.areaGroup || "London";
 }
 
+export function getPublicFacilityDescription(facility: AirtableFacility) {
+  return facility.editorialSummary || facility.description;
+}
+
+export function getFacilityImageAlt(facility: AirtableFacility, index = 0) {
+  const location = getFacilityLocation(facility);
+  return index === 0
+    ? `${facility.name} wellness venue in ${location}`
+    : `${facility.name} wellness venue in ${location}, photo ${index + 1}`;
+}
+
 export function toDirectoryFacility(facility: AirtableFacility): ServiceDirectoryFacility {
   return {
     slug: facility.slug,
     name: facility.name,
-    description: facility.editorialVerdict || facility.editorialSummary || facility.description,
+    description: getPublicFacilityDescription(facility),
     website: facility.website,
     businessName: facility.businessName,
     brandOperator: facility.brandOperator,
     address: facility.address,
     imageUrl: facility.images[0]?.url,
-    imageAlt: facility.images[0]?.filename || facility.name,
-    galleryImages: facility.images.map((image) => ({ url: image.url, filename: image.filename })).filter((image) => Boolean(image.url)),
+    imageAlt: getFacilityImageAlt(facility),
+    galleryImages: facility.images.map((image, index) => ({ url: image.url, filename: getFacilityImageAlt(facility, index) })).filter((image) => Boolean(image.url)),
     location: getFacilityLocation(facility),
     neighbourhood: facility.neighbourhood,
     areaOfLondon: facility.areaOfLondon,

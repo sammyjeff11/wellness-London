@@ -6,7 +6,7 @@ import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
-  title: "Best Recovery Clubs in London | Well Edit",
+  title: "Best Recovery Clubs in London | Well+",
   description:
     "A curated guide to London's best recovery clubs and recovery-led wellness studios, including contrast therapy, sauna, cryotherapy and performance recovery spaces.",
   alternates: {
@@ -28,7 +28,7 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
 
   const keywordScore = keywords.reduce((score, keyword) => score + (searchable.includes(keyword) ? 1 : 0), 0);
 
-  return keywordScore + Number(facility.isFeatured) * 3 + (facility.profileCompletenessScore || 0);
+  return keywordScore + (facility.profileCompletenessScore || 0);
 }
 
 export default async function BestRecoveryClubsPage() {
@@ -120,7 +120,7 @@ export default async function BestRecoveryClubsPage() {
               The most compelling venues tend to combine strong operational flow with thoughtful hospitality, rather than focusing purely on treatment intensity.
             </p>
             <p>
-              The Well Edit prioritises recovery spaces that feel intentional, practical and genuinely usable within everyday life.
+              Well+ prioritises recovery spaces that feel intentional, practical and genuinely usable within everyday life.
             </p>
           </div>
         </div>

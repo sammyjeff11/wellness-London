@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { facilityHasCollectionService } from "@/lib/collections";
 
 export const metadata: Metadata = {
   title: "Best Sauna and Cold Plunge Spaces in London | Well+",
@@ -14,20 +15,7 @@ export const metadata: Metadata = {
 };
 
 function hasSaunaAndCold(facility: ReturnType<typeof toDirectoryFacility>) {
-  const searchable = [
-    ...(facility.services || []),
-    ...(facility.bestFor || []),
-    ...(facility.experienceType || []),
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  const hasSauna = searchable.includes("sauna") || searchable.includes("heat");
-  const hasCold = searchable.includes("cold") || searchable.includes("plunge") || searchable.includes("ice");
-  const hasContrast = searchable.includes("contrast");
-
-  return hasContrast || (hasSauna && hasCold);
+  return facilityHasCollectionService(facility, "sauna") && facilityHasCollectionService(facility, "cold-plunge");
 }
 
 function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
@@ -47,7 +35,6 @@ function scoreFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   if (searchable.includes("plunge")) score += 4;
   if (searchable.includes("recovery")) score += 3;
   if (searchable.includes("private")) score += 2;
-  if (facility.isFeatured) score += 3;
   score += facility.profileCompletenessScore || 0;
   return score;
 }

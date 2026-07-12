@@ -395,5 +395,5 @@ export function getFacilitiesForActivity(facilities: AirtableFacility[], activit
       const serviceMatch = facility.serviceKeys.some((key) => activity.serviceKeys.includes(key));
       return serviceMatch || matchesActivityLabel(facility, activity) || matchesStructuredActivityField(facility, activity);
     })
-    .sort((a, b) => Number(b.isFeatured) * 100 + b.profileCompletenessScore - (Number(a.isFeatured) * 100 + a.profileCompletenessScore));
+    .sort((a, b) => b.profileCompletenessScore - a.profileCompletenessScore);
 }

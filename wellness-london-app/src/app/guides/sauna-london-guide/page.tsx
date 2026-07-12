@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import TopicalPathways from "@/components/TopicalPathways";
 
 export const metadata: Metadata = {
-  title: "The Well Edit Guide to Sauna in London | Heat Therapy, Recovery & Contrast Therapy",
+  title: "Sauna in London: Complete Guide | Well+",
   description:
-    "An editorial guide to sauna culture in London, including infrared sauna, traditional heat therapy, contrast therapy, recovery rituals and how to choose the right sauna experience.",
+    "A practical guide to London sauna, including infrared and traditional heat, contrast therapy, recovery rituals and what to check before booking.",
   alternates: {
     canonical: "/guides/sauna-london-guide",
   },
@@ -50,11 +50,11 @@ export default function SaunaLondonGuidePage() {
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-5xl border-t border-[#d8cebf]/70 pt-10 sm:pt-14">
           <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-            Well Edit / Sauna guide
+            Well+ / Sauna guide
           </p>
 
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">
-            The Well Edit Guide to Sauna in London.
+            Well+ Guide to Sauna in London.
           </h1>
 
           <div className="mt-10 grid gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-start">

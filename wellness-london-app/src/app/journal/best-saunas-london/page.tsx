@@ -17,7 +17,7 @@ import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 export const metadata: Metadata = {
   title: "Best Saunas in London | The Well+ Journal",
   description:
-    "A Well+ Journal guide to the best sauna experiences in London, including infrared sauna, sauna and cold plunge, premium wellness clubs and beginner-friendly recovery spaces.",
+    "A Well+ guide to London's best sauna experiences, including infrared, traditional heat, cold plunge and beginner-friendly recovery spaces.",
   alternates: { canonical: "/journal/best-saunas-london" },
   openGraph: {
     title: "Best Saunas in London | The Well+ Journal",

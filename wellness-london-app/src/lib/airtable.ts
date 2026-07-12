@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { safeImageUrl } from "@/lib/image-utils";
+import { extractUkPostcode, formatPriceFrom } from "@/lib/facility-formatting";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
 
 export type AirtableImage = {
@@ -112,6 +113,7 @@ type AirtableRecord = {
     Email?: string;
     Description?: string;
     Images?: AirtableAttachment[];
+    "Cover Image"?: AirtableAttachment[];
     "Services Offered"?: string[] | string;
     Services?: string[] | string;
     "Primary Service"?: AirtableFieldValue;
@@ -185,6 +187,7 @@ type AirtableRecord = {
     borough?: string;
     "Area Group"?: AirtableFieldValue;
     area_group?: AirtableFieldValue;
+    "Last Checked"?: string;
     "Last Checked Date"?: string;
     last_checked_date?: string;
     "Verification Status"?: AirtableFieldValue;
@@ -193,6 +196,7 @@ type AirtableRecord = {
     data_source?: AirtableFieldValue;
     "Profile Completeness Score"?: number;
     profile_completeness_score?: number;
+    Featured?: boolean;
     "Is Featured"?: boolean;
     is_featured?: boolean;
     "Publish Status"?: AirtableFieldValue;
@@ -297,7 +301,7 @@ function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage
 
   return value.reduce<AirtableImage[]>((images, image) => {
     const url = safeImageUrl(image.url);
-    if (!url) return images;
+    if (!url || images.some((existing) => existing.url === url)) return images;
 
     images.push({
       id: image.id || url,
@@ -319,7 +323,7 @@ const serviceKeyAliases: Partial<Record<ServiceSlug, ServiceKey[]>> = {
   breathwork: ["breathwork"],
   massage: ["recovery"],
   "float-therapy": ["recovery"],
-  "contrast-therapy": ["sauna", "cold-plunge", "recovery"],
+  "contrast-therapy": ["recovery"],
 };
 
 function normaliseServiceKeys(services: string[]): ServiceKey[] {
@@ -362,8 +366,15 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     primaryService,
     ...secondaryServices,
   ]);
-  const servicesOffered = canonicaliseServiceList(normaliseList(firstDefined(record.fields["Activity Display Labels"], record.fields["Activity Tags Standardized"], record.fields.Services, record.fields["Services Offered"])));
-  const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
+  const servicesOffered = canonicaliseServiceList(uniqueStrings([
+    primaryService,
+    ...secondaryServices,
+    ...activityDisplayLabels,
+    ...activityTagsStandardized,
+    ...servicesOfferedRaw,
+    ...normaliseList(record.fields.Services),
+  ]));
+  const serviceKeySource = [primaryService, ...secondaryServices, ...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
   const stableSlug = createSlug(record.fields.Slug || "", record.id);
@@ -381,11 +392,11 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     website: record.fields.Website || "#",
     businessName: record.fields["Business Name"] || "",
     brandOperator: record.fields["Brand / Operator"] || "",
-    address: record.fields.Address || "London",
+    address: record.fields.Address || "",
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",
-    description: record.fields.Description || "Premium wellness experience in London",
-    images: normaliseImages(record.fields.Images),
+    description: record.fields.Description || "",
+    images: normaliseImages([...(record.fields["Cover Image"] || []), ...(record.fields.Images || [])]),
     servicesOffered,
     serviceNames,
     primaryService,
@@ -409,7 +420,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     areaOfLondon,
     instagramLink: record.fields["Instagram Link"] || "",
     bestFor,
-    editorialVerdict: firstDefined(record.fields["Editorial Verdict"], record.fields.editorial_verdict, record.fields["Editorial Summary"], record.fields.Description) || "",
+    editorialVerdict: firstDefined(record.fields["Editorial Verdict"], record.fields.editorial_verdict) || "",
     experienceType,
     ambience: normaliseSingle(firstDefined(record.fields.Ambience, record.fields.ambience)),
     beginnerFriendly: normaliseBooleanLabel(firstDefined(record.fields["Beginner Friendly"], record.fields.beginner_friendly)),
@@ -419,8 +430,8 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     cryoType: normaliseSingle(firstDefined(record.fields["Cryo Type"], record.fields.cryo_type)) || "Unknown",
     contrastTherapyAvailable: normaliseBooleanLabel(firstDefined(record.fields["Contrast Therapy Available"], record.fields.contrast_therapy_available)),
     guidedSessionsAvailable: normaliseBooleanLabel(firstDefined(record.fields["Guided Sessions Available"], record.fields.guided_sessions_available)),
-    priceFrom: priceFromValue ? String(priceFromValue) : overallPriceRange || "Price not listed",
-    priceNotes: firstDefined(record.fields["Price Notes"], record.fields.price_notes) || "Pricing may vary by package or membership.",
+    priceFrom: formatPriceFrom(normaliseSingle(priceFromValue)),
+    priceNotes: firstDefined(record.fields["Price Notes"], record.fields.price_notes) || "",
     bookingRequired: normaliseSingle(firstDefined(record.fields["Booking Required"], record.fields.booking_required)) || "Booking details unclear",
     privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared, record.fields["Access Type"])) || "Private/shared not confirmed",
     towelsIncluded: normaliseBooleanLabel(firstDefined(record.fields["Towels Included"], record.fields.towels_included), "Details not yet confirmed"),
@@ -428,14 +439,14 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     changingRooms: normaliseBooleanLabel(firstDefined(record.fields["Changing Rooms"], record.fields.changing_rooms), "Details not yet confirmed"),
     relaxationArea: normaliseBooleanLabel(firstDefined(record.fields["Relaxation Area"], record.fields.relaxation_area), "Details not yet confirmed"),
     nearestStation: firstDefined(record.fields["Nearest Station"], record.fields.nearest_station) || "",
-    postcode: firstDefined(record.fields.Postcode, record.fields.postcode) || "",
+    postcode: firstDefined(record.fields.Postcode, record.fields.postcode) || extractUkPostcode(record.fields.Address || ""),
     borough: firstDefined(record.fields.Borough, record.fields.borough) || "",
     areaGroup: normaliseSingle(firstDefined(record.fields["Area Group"], record.fields.area_group, record.fields["Area of London"])),
-    lastCheckedDate: firstDefined(record.fields["Last Checked Date"], record.fields.last_checked_date) || "Details not yet confirmed",
+    lastCheckedDate: firstDefined(record.fields["Last Checked"], record.fields["Last Checked Date"], record.fields.last_checked_date) || "",
     verificationStatus: normaliseSingle(firstDefined(record.fields["Verification Status"], record.fields.verification_status)) || "Unverified listing",
     dataSource: normaliseSingle(firstDefined(record.fields["Data Source"], record.fields.data_source)) || "Public sources",
     profileCompletenessScore: firstDefined(record.fields["Profile Completeness Score"], record.fields.profile_completeness_score) || 0,
-    isFeatured: Boolean(firstDefined(record.fields["Is Featured"], record.fields.is_featured)),
+    isFeatured: Boolean(firstDefined(record.fields.Featured, record.fields["Is Featured"], record.fields.is_featured)),
     publishStatus,
     indexable: record.fields.Indexable === true,
     noindexReason: normaliseSingle(record.fields["Noindex Reason"]),

@@ -10,7 +10,7 @@ import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
 
 export const metadata: Metadata = {
-  title: "Recovery venues in East London | Saunas, cold plunge & contrast therapy",
+  title: "East London Recovery Venues | Well+",
   description:
     "Explore East London recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
   alternates: {

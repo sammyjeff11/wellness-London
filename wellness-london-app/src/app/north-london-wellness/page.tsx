@@ -3,7 +3,7 @@ import LocationGuidePage from "@/components/LocationGuidePage";
 import { northLondonGuide } from "@/content/location-guides";
 
 export const metadata: Metadata = {
-  title: "Recovery venues in North London | Saunas, cold plunge & wellness spaces",
+  title: "North London Recovery Venues | Well+",
   description:
     "Explore North London recovery venues offering sauna, cold plunge, cryotherapy and other wellness services.",
   alternates: {

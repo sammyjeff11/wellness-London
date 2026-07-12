@@ -79,10 +79,6 @@ function getCanonicalServices(services?: string[]) {
   return canonicaliseServiceList(services).slice(0, 3);
 }
 
-function formatServiceLine(services?: string[]) {
-  return getCanonicalServices(services).join(" · ");
-}
-
 function formatRating(value?: string) {
   if (!value) return "";
 

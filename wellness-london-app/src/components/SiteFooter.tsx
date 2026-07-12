@@ -65,7 +65,7 @@ function MobileFooterGroup({ title, links }: { title: string; links: { href: str
 }
 
 function facilityScore(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
-  return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
+  return facility.profileCompletenessScore || 0;
 }
 
 function venueLabel(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {

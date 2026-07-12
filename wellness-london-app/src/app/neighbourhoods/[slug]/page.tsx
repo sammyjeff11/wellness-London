@@ -212,7 +212,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
         return searchTerms.some((term) => locationText.includes(term));
       })
-      .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
+      .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
   ).slice(0, 6);
 
   const availableServices = getAvailableServices(displayFacilities);

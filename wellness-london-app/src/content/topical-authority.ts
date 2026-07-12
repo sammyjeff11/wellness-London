@@ -34,7 +34,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
         name: "Sauna and heat therapy",
         role: "Heat-led recovery, relaxation, contrast therapy pairing and calmer weekly rituals.",
         pages: [
-          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
           { href: "/sauna-london", label: "Best Saunas in London" },
         ],
       },
@@ -55,7 +55,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
       },
     ],
     existingPages: [
-      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
       { href: "/sauna-london", label: "Best Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
@@ -109,7 +109,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
         role: "Conditioning support, relaxation, post-training reset and contrast therapy pairing.",
         pages: [
           { href: "/sauna-london", label: "Best Saunas in London" },
-          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
         ],
       },
     ],
@@ -154,7 +154,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
         name: "Heat exposure",
         role: "A longevity-adjacent behaviour that connects sauna, recovery, relaxation and cardiovascular wellness interest.",
         pages: [
-          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
           { href: "/sauna-london", label: "Best Saunas in London" },
         ],
       },
@@ -170,7 +170,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
       },
     ],
     existingPages: [
-      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
       { href: "/sauna-london", label: "Best Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
@@ -213,7 +213,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
         name: "Sauna and quiet recovery",
         role: "Calm heat exposure, private rooms, slower routines and evening recovery rituals.",
         pages: [
-          { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+          { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
           { href: "/sauna-london", label: "Best Saunas in London" },
         ],
       },
@@ -224,7 +224,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
       },
     ],
     existingPages: [
-      { href: "/guides/sauna-london-guide", label: "The Well Edit Guide to Sauna in London" },
+      { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
       { href: "/sauna-london", label: "Best Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
     ],
@@ -251,7 +251,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
     slug: "luxury-wellness-experiences",
     name: "Luxury Wellness Experiences",
     purpose:
-      "Differentiate Well Edit through premium curation, design-led spaces, atmosphere, service quality and high-intent London wellness discovery.",
+      "Differentiate Well+ through premium curation, design-led spaces, atmosphere, service quality and high-intent London wellness discovery.",
     primaryPage: "/",
     userIntent: [
       "I want somewhere premium",

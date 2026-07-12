@@ -150,7 +150,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               </div>
               <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#f4efe6] p-5 sm:p-6">
                 <p className="text-sm leading-6 text-[#5f574c]">
-                  Built from the live Well+ directory with no hardcoded venue shortlist. The full directory below updates as venue inventory changes.
+                  Compare current London venues using confirmed services, practical details and suitability for this particular experience.
                 </p>
                 <p className="mt-4 text-[2rem] font-serif leading-none tracking-[-0.045em]">
                   {collectionFacilities.length} London spaces

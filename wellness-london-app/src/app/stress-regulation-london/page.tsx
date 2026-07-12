@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import TopicalPathways from "@/components/TopicalPathways";
 
 export const metadata: Metadata = {
-  title: "Stress Regulation in London | Calm Wellness, Sauna, Breathwork & Recovery | Well Edit",
+  title: "Stress Regulation Wellness in London | Well+",
   description:
     "Explore stress regulation and calm wellness in London, including sauna, breathwork, cold exposure, sleep-supportive routines and recovery spaces.",
   alternates: {
@@ -35,7 +35,7 @@ export default function StressRegulationLondonPage() {
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-5xl border-t border-[#d8cebf]/70 pt-10 sm:pt-14">
           <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-            Well Edit / Stress regulation in London
+            Well+ / Stress regulation in London
           </p>
 
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">
