@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { safeImageUrl } from "@/lib/image-utils";
-import { extractUkPostcode, formatPriceFrom } from "@/lib/facility-formatting";
+import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
 
 export type AirtableImage = {
@@ -410,7 +410,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     primaryPillar: normaliseSingle(record.fields["Primary Pillar"]),
     bestForStandardized,
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
-    accessType: normaliseSingle(record.fields["Access Type"]),
+    accessType: normaliseAccessType(normaliseSingle(record.fields["Access Type"])),
     overallPriceRange,
     googleRating: formatGoogleRating(record.fields["Google Rating"], record.fields["Google Review Count"]),
     bookingLink: record.fields["Booking Link"] || "",
@@ -433,7 +433,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     priceFrom: formatPriceFrom(normaliseSingle(priceFromValue)),
     priceNotes: firstDefined(record.fields["Price Notes"], record.fields.price_notes) || "",
     bookingRequired: normaliseSingle(firstDefined(record.fields["Booking Required"], record.fields.booking_required)) || "Booking details unclear",
-    privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared, record.fields["Access Type"])) || "Private/shared not confirmed",
+    privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared)) || "Private/shared not confirmed",
     towelsIncluded: normaliseBooleanLabel(firstDefined(record.fields["Towels Included"], record.fields.towels_included), "Details not yet confirmed"),
     showersAvailable: normaliseBooleanLabel(firstDefined(record.fields["Showers Available"], record.fields.showers_available), "Details not yet confirmed"),
     changingRooms: normaliseBooleanLabel(firstDefined(record.fields["Changing Rooms"], record.fields.changing_rooms), "Details not yet confirmed"),

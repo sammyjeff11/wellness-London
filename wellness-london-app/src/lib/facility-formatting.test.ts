@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { extractUkPostcode, formatPriceFrom } from "./facility-formatting.ts";
+import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
 import { prioritiseCanonicalServiceList } from "./taxonomy.ts";
 
@@ -15,6 +15,14 @@ test("extracts UK postcodes from complete venue addresses", () => {
   assert.equal(extractUkPostcode("124 Tabernacle Street, London EC2A 4SA"), "EC2A 4SA");
   assert.equal(extractUkPostcode("54 High Street, Sevenoaks, Kent TN13 1JG"), "TN13 1JG");
   assert.equal(extractUkPostcode("London"), "");
+});
+
+test("normalises access eligibility without mixing in booking terminology", () => {
+  assert.equal(normaliseAccessType("Pay as you go"), "Public");
+  assert.equal(normaliseAccessType(" Public + Member Options"), "Public");
+  assert.equal(normaliseAccessType("Private Members Only"), "Members only");
+  assert.equal(normaliseAccessType("Hotel Guests + Limited Day Access"), "Hotel guests + public bookings");
+  assert.equal(normaliseAccessType("Private / Group"), "");
 });
 
 test("keeps metadata concise without cutting a word in half", () => {

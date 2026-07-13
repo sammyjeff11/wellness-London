@@ -123,9 +123,7 @@ function getExperienceProfile(page: NonNullable<ReturnType<typeof getNeighbourho
   const serviceCounts = getServiceCounts(facilities);
   const strongestService = serviceCounts[0]?.label || page.bestFor[0] || "Wellness";
   const priceSignals = facilities.map((facility) => facility.priceRange || facility.priceFrom).filter(Boolean) as string[];
-  const accessSignals = facilities
-    .flatMap((facility) => [facility.privateOrShared, facility.accessType, ...(facility.experienceType || [])])
-    .filter(Boolean) as string[];
+  const accessSignals = facilities.map((facility) => facility.accessType).filter(Boolean) as string[];
 
   return [
     { label: "Matched listings", value: `${facilities.length}` },
