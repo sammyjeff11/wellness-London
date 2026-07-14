@@ -2,6 +2,7 @@ import { cache } from "react";
 import { safeImageUrl } from "@/lib/image-utils";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
+import { cleanPublicEditorialText } from "@/lib/useful-values";
 
 export type AirtableImage = {
   id: string;
@@ -51,6 +52,7 @@ export type AirtableFacility = {
   bookingLink: string;
   openingHours: string;
   editorialSummary: string;
+  goodToKnow: string;
   neighbourhood: string;
   areaOfLondon: string;
   instagramLink: string;
@@ -133,6 +135,7 @@ type AirtableRecord = {
     "Booking Link"?: string;
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
+    "Good To Know"?: string;
     Neighbourhood?: string[] | string;
     Neighborhood?: string[] | string;
     "Neighbourhood / Area"?: string[] | string;
@@ -416,6 +419,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
+    goodToKnow: cleanPublicEditorialText(record.fields["Good To Know"]),
     neighbourhood,
     areaOfLondon,
     instagramLink: record.fields["Instagram Link"] || "",

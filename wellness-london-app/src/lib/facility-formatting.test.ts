@@ -3,6 +3,7 @@ import test from "node:test";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
 import { prioritiseCanonicalServiceList } from "./taxonomy.ts";
+import { cleanPublicEditorialText } from "./useful-values.ts";
 
 test("formats Airtable currency values for public display", () => {
   assert.equal(formatPriceFrom(9), "From £9");
@@ -41,4 +42,13 @@ test("puts the current service page tag first on venue cards", () => {
     prioritiseCanonicalServiceList(["Sauna", "Cold Plunge", "Massage"], "Cold Plunge"),
     ["Cold Plunge", "Sauna", "Massage"],
   );
+});
+
+test("keeps internal workflow notes out of public editorial copy", () => {
+  assert.equal(
+    cleanPublicEditorialText("Advance booking is recommended and towels are provided."),
+    "Advance booking is recommended and towels are provided.",
+  );
+  assert.equal(cleanPublicEditorialText("Pricing requires validation before publication."), "");
+  assert.equal(cleanPublicEditorialText("Source-backed draft pending approved images."), "");
 });

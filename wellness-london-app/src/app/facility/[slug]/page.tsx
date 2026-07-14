@@ -274,6 +274,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Price notes", value: cleanValue(facility.priceNotes) },
   ].filter((item) => isUsefulValue(item.value));
+  const goodToKnow = cleanValue(facility.goodToKnow);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -372,13 +373,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </section>
       ) : null}
 
-      {practicalItems.length > 0 ? (
+      {practicalItems.length > 0 || goodToKnow ? (
         <section className="px-5 pb-12 sm:px-6 md:pb-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
             <SectionHeading eyebrow="Practical details" title="Before you go" copy="The details that matter when deciding whether the venue fits your visit." />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {practicalItems.map((item) => <DetailCard key={item.label} {...item} />)}
-            </div>
+            {goodToKnow ? <p className="mt-6 max-w-3xl text-lg leading-8 text-[#4f473d]">{goodToKnow}</p> : null}
+            {practicalItems.length > 0 ? (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {practicalItems.map((item) => <DetailCard key={item.label} {...item} />)}
+              </div>
+            ) : null}
           </div>
         </section>
       ) : null}
