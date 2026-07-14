@@ -106,7 +106,7 @@ export default async function SiteMapPage() {
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
       <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6 sm:py-16">
-        <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">Well+</p>
+        <p className="mb-3 text-xs uppercase tracking-[0.22em] text-stone-500">Well+</p>
         <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">Site Map</h1>
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
           Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages and editorial standards.

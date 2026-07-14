@@ -67,7 +67,7 @@ export default async function BeginnerFriendlyWellnessLondonPage() {
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.88fr_1.12fr] md:items-end">
             <div>
-              <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Well+ collection</p>
+              <p className="mb-5 text-xs uppercase tracking-[0.26em] text-[#6f6048]">Well+ collection</p>
               <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
                 Beginner-friendly wellness spaces in London.
               </h1>
@@ -91,7 +91,7 @@ export default async function BeginnerFriendlyWellnessLondonPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 grid gap-6 md:grid-cols-[0.9fr_1.1fr] md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">The beginner edit</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">The beginner edit</p>
               <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Approachable places to start.</h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end md:text-base">
@@ -115,7 +115,7 @@ export default async function BeginnerFriendlyWellnessLondonPage() {
 
       <section className="border-y border-[#d8cebf]/70 px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">How to choose</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">How to choose</p>
           <div className="grid gap-6 md:grid-cols-3">
             <article className="bg-[#fbf8f1] p-6 sm:p-7">
               <h3 className="mb-4 text-xl font-medium tracking-normal">Look for guidance</h3>
@@ -141,7 +141,7 @@ export default async function BeginnerFriendlyWellnessLondonPage() {
 
       <section className="px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8 sm:py-10">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Continue exploring</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Continue exploring</p>
           <div className="grid gap-6 md:grid-cols-3">
             <Link href="/sauna-london" className="group bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da]">
               <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">Saunas in London</h3>

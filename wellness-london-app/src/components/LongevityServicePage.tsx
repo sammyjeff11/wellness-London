@@ -66,11 +66,11 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
       <JsonLd data={breadcrumbSchema} />
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
-        <div className="relative mx-auto flex min-h-[58vh] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[68vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
+        <div className="relative mx-auto flex min-h-[27rem] max-w-[1400px] items-end overflow-hidden rounded-[1rem] bg-[#8f806b] px-5 py-10 sm:min-h-[32rem] sm:px-6 sm:py-12 md:px-14 md:py-16">
           {heroImage ? <SafeImage src={heroImage.url} alt={`${page.label} provider in London`} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
           <div className="relative max-w-4xl text-[#fbf8f1]">
-            <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / {page.eyebrow}</p>
+            <p className="mb-6 text-xs uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:tracking-[0.3em]">Well+ / {page.eyebrow}</p>
             <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">{page.title}</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">{page.heroText}</p>
           </div>
@@ -79,15 +79,15 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
 
       <section className="border-b border-[#d8cebf] px-5 py-5 sm:px-6 md:px-8">
         <div className="mx-auto max-w-[1400px]">
-          <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#6f6048]">Explore longevity services</p>
-          <nav aria-label="Longevity service pages" className="flex gap-2 overflow-x-auto whitespace-nowrap pb-1">
-            <Link href="/longevity" className="shrink-0 rounded-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-2 text-xs text-[#5f574c]">All clinics</Link>
+          <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#6f6048]">Explore longevity services</p>
+          <nav aria-label="Longevity service pages" className="flex flex-wrap gap-2">
+            <Link href="/longevity" className="rounded-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-2 text-sm text-[#5f574c]">All clinics</Link>
             {longevityServicePages.map((service) => (
               <Link
                 key={service.href}
                 href={service.href}
                 aria-current={service.href === page.href ? "page" : undefined}
-                className={`shrink-0 rounded-full border px-4 py-2 text-xs ${
+                className={`rounded-full border px-4 py-2 text-sm ${
                   service.href === page.href
                     ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]"
                     : "border-[#cfc3b2] bg-[#fbf8f1] text-[#5f574c]"
@@ -101,10 +101,10 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
       </section>
 
       <ServiceIntroSection eyebrow={`${page.label} guide`} title="Understand the assessment before you book." paragraphs={[page.description]} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={page.slug.replace(/-london$/, "")} prioritisedService={page.label} emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`} emptyText="We are still checking London providers for this guide. Only venues with a clearly stated matching diagnostic or assessment service will appear." />
       <ServiceInsightSection eyebrow="Best for" panels={page.bestFor} />
       <ServiceEvidenceSection notes={page.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${page.label.toLowerCase()} in London`} points={page.whatToExpect} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={page.slug.replace(/-london$/, "")} prioritisedService={page.label} emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`} emptyText="We are still checking London providers for this guide. Only venues with a clearly stated matching diagnostic or assessment service will appear." />
       <ServiceGuidanceSection title={`How to choose ${page.label.toLowerCase()} in London`} points={page.guidance} />
       <ServiceRelatedSection links={page.related} />
       <ServiceFaqSection title={`${page.label} London FAQs`} faqs={page.faqs} />

@@ -204,7 +204,7 @@ function profileClinic(facility: AirtableFacility): ClinicProfile {
 function FilterSelect({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: readonly { value: string; label: string }[] }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[10px] uppercase tracking-[0.18em] text-[#6f6048]">{label}</span>
+      <span className="mb-2 block text-xs uppercase tracking-[0.18em] text-[#6f6048]">{label}</span>
       <select value={value} onChange={(event) => onChange(event.target.value)} className="w-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-3 text-sm outline-none focus:border-[#29241d]">
         {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
       </select>
@@ -236,7 +236,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 pb-10 pt-8 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:text-[11px]">Preventative health and diagnostics</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048] sm:text-xs">Preventative health and diagnostics</p>
           <h1 className="max-w-5xl font-serif text-[2.7rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-6xl md:text-8xl">Longevity clinics in London.</h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">Compare medical assessments, advanced diagnostics, preventative screening and clinician-led longevity programmes by what they test, who reviews the results and what happens next.</p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -249,7 +249,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
       <section id="services" className="border-y border-[#d8cebf] bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Explore by assessment</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Explore by assessment</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Start with the question you want answered.</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
@@ -267,7 +267,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
       <section id="how-to-compare" className="px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Measure first. Then decide what to improve.</h2>
           </div>
           <div className="space-y-5 text-base leading-8 text-[#5f574c]">
@@ -280,7 +280,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
       <section id="clinics" className="scroll-mt-24 px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Compare longevity clinics.</h2>
             <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Start with what you need. Then narrow by clinical model, diagnostics and likely investment. Comparison details are drawn from provider information and should be confirmed before booking.</p>
           </div>
@@ -308,8 +308,8 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
                   <article key={profile.facility.slug} className="flex flex-col">
                     <div className="mb-3 border border-[#d8cebf] bg-[#f4efe6] p-4">
                       <div className="flex items-start justify-between gap-3">
-                        <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
-                        {profile.checked && <span className="shrink-0 text-[10px] uppercase tracking-[0.14em]">Provider info checked</span>}
+                        <p className="text-xs uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
+                        {profile.checked && <span className="shrink-0 text-xs uppercase tracking-[0.14em]">Provider info checked</span>}
                       </div>
                       <p className="mt-3 text-sm leading-6"><span className="text-[#6f6048]">Best for:</span> {profile.bestFor}</p>
                       <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-[#d8cebf] pt-4 text-xs">
@@ -319,10 +319,10 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
                       <div className="mt-4 flex flex-wrap gap-2">
                         {visibleLabels.map((label, index) => {
                           const href = featuredServiceHrefs[label];
-                          const className = `rounded-full border px-2.5 py-1 text-[10px] ${index < profile.featuredServiceLabels.length ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
+                          const className = `rounded-full border px-2.5 py-1 text-xs ${index < profile.featuredServiceLabels.length ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
                           return href ? <Link key={label} href={href} className={className}>{label}</Link> : <span key={label} className={className}>{label}</span>;
                         })}
-                        {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-[10px] underline underline-offset-4">+{moreCount} more diagnostics</Link>}
+                        {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-xs underline underline-offset-4">+{moreCount} more diagnostics</Link>}
                       </div>
                     </div>
                     <FacilityCard facility={{ ...directoryFacility, services: prioritisedServices }} source="longevity_directory" prioritisedService={profile.featuredServiceLabels[0]} />
@@ -339,7 +339,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
       <section className="bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#d8cebf]">Before booking</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#d8cebf]">Before booking</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Compare what happens after the test.</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -351,7 +351,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
       <section className="px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Go deeper</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Go deeper</p>
             <h2 className="font-serif text-4xl font-normal leading-tight">Learn before you test.</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">

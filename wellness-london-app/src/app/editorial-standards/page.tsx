@@ -20,7 +20,7 @@ export default function EditorialStandardsPage() {
   return (
     <main className="bg-[#fbf8f1] px-5 py-16 text-[#29241d] sm:px-6 md:py-24">
       <div className="mx-auto max-w-4xl">
-        <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Editorial standards</p>
+        <p className="mb-5 text-xs uppercase tracking-[0.26em] text-[#6f6048]">Editorial standards</p>
         <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
           Publishing principles for Well+.
         </h1>

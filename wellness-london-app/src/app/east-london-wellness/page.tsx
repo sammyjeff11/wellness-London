@@ -43,7 +43,7 @@ export default async function EastLondonWellnessPage() {
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
                 London location guide
               </p>
               <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
@@ -63,7 +63,7 @@ export default async function EastLondonWellnessPage() {
       <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 max-w-3xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
               East London recovery culture
             </p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
@@ -101,7 +101,7 @@ export default async function EastLondonWellnessPage() {
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
           <div className="grid gap-6 md:grid-cols-3">
             <Link href="/sauna-london" className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-7">
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
               <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
                 Saunas in London
               </h3>
@@ -111,7 +111,7 @@ export default async function EastLondonWellnessPage() {
             </Link>
 
             <Link href="/cold-plunge-london" className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-7">
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
               <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
                 Cold Plunge in London
               </h3>
@@ -121,7 +121,7 @@ export default async function EastLondonWellnessPage() {
             </Link>
 
             <Link href="/cryotherapy-london" className="group block bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da] sm:p-7">
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
               <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
                 Cryotherapy in London
               </h3>

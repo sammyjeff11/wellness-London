@@ -50,19 +50,19 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
 
   return (
     <section className="overflow-hidden px-4 pb-2 pt-4 sm:px-6 sm:pb-4 sm:pt-7 md:pb-5 md:pt-8">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-5 md:p-6">
+      <div className="editorial-card mx-auto max-w-6xl overflow-hidden bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:p-5 md:p-6">
         <div className="grid min-w-0 gap-5 md:grid-cols-[0.44fr_1fr] md:items-center md:gap-6 lg:grid-cols-[0.38fr_1fr]">
           <div>
             <p className="editorial-eyebrow mb-2">Well+ directory</p>
             <h2 className="max-w-sm font-serif text-[1.95rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.25rem] md:text-[2.35rem]">
               Search venues, services and neighbourhoods.
             </h2>
-            <p className="mt-3 max-w-md text-sm leading-6 text-[#5f574c]">
+            <p className="mt-3 max-w-md text-[15px] leading-6 text-[#5f574c]">
               Find a specific venue or start with a service, area or popular search.
             </p>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4 md:p-5">
+          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:p-4 md:p-5">
             <label className="block min-w-0">
               <span className="sr-only">Search London wellness venues</span>
               <input
@@ -93,7 +93,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                         }
                       >
                         <span className="block text-[15px] font-medium leading-6 text-[#29241d]">{facility.name}</span>
-                        <span className="mt-1 block text-xs leading-5 text-[#6f6048]">
+                        <span className="mt-1 block text-sm leading-5 text-[#6f6048]">
                           {[getResultLocation(facility), facility.services?.slice(0, 2).join(" · ")].filter(Boolean).join(" / ")}
                         </span>
                       </Link>
@@ -102,7 +102,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                 ) : (
                   <div className="px-3 py-3">
                     <p className="text-sm font-medium text-[#29241d]">No close match yet.</p>
-                    <p className="mt-1 text-xs leading-5 text-[#5f574c]">
+                    <p className="mt-1 text-sm leading-5 text-[#5f574c]">
                       Try a shorter venue name, a nearby neighbourhood, or browse below.
                     </p>
                   </div>
@@ -112,8 +112,8 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
 
             <div className="mt-3 min-w-0 border-t border-[#d8cebf]/70 pt-3">
               <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Popular</p>
-                <Link href="/explore" className="text-xs font-medium underline underline-offset-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#8d7d67]">Popular</p>
+                <Link href="/explore" className="text-sm font-medium underline underline-offset-4">
                   All venues
                 </Link>
               </div>
@@ -122,7 +122,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
                   <Link
                     key={`${link.href}-${link.label}`}
                     href={link.href}
-                    className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4 sm:text-sm"
+                    className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-sm leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4"
                   >
                     {link.label}
                   </Link>

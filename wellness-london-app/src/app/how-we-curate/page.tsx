@@ -38,7 +38,7 @@ export default function HowWeCuratePage() {
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Our approach</p>
+          <p className="mb-5 text-xs uppercase tracking-[0.26em] text-[#6f6048]">Our approach</p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
             How Well+ selects and checks venues.
           </h1>
@@ -63,7 +63,7 @@ export default function HowWeCuratePage() {
       <section className="px-5 pb-16 sm:px-6 md:pb-24">
         <div className="mx-auto grid max-w-6xl gap-10 border-y border-[#cbbda9] py-12 md:grid-cols-[0.85fr_1.15fr] md:py-16">
           <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Selection signals</p>
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Selection signals</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">What we look for</h2>
           </div>
           <ul className="space-y-4">
@@ -80,7 +80,7 @@ export default function HowWeCuratePage() {
       <section className="bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Important note</p>
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#d8cebf]">Important note</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Details can change before you book.</h2>
           </div>
           <div className="space-y-5 text-sm leading-7 text-[#fbf8f1]/78">

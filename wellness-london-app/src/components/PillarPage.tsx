@@ -47,7 +47,7 @@ export default function PillarPage({
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 hidden flex-col gap-3 sm:mb-10 md:flex md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Matching venues</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-xs sm:tracking-[0.24em]">Matching venues</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Recommended spaces.</h2>
           </div>
           <Link href="/how-we-curate" className="text-sm underline underline-offset-4">How we curate</Link>
@@ -76,7 +76,7 @@ export default function PillarPage({
       <div className="mx-auto max-w-6xl">
         <div className="mb-4 flex flex-col gap-2 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Popular routes</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-xs sm:tracking-[0.24em]">Popular routes</p>
             <h2 className="font-serif text-2xl font-normal leading-tight sm:text-4xl md:text-5xl">Start with a service.</h2>
           </div>
           <p className="hidden max-w-2xl text-sm leading-7 text-[#5f574c] sm:block md:text-base">These shortcuts lead to the service pages most closely associated with this pillar.</p>
@@ -101,7 +101,7 @@ export default function PillarPage({
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 pb-0 pt-4 sm:px-6 sm:py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6f6048] sm:mb-4 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
+          <p className="mb-2 text-xs uppercase tracking-[0.2em] text-[#6f6048] sm:mb-4 sm:text-xs sm:tracking-[0.26em]">{pillar.eyebrow}</p>
           <p className="mb-2 text-xs font-medium text-[#29241d] sm:mb-4 sm:text-sm">{pillar.descriptor}</p>
           <h1 className="max-w-[92%] font-serif text-[1.95rem] font-normal leading-[0.93] tracking-[-0.045em] sm:text-6xl md:text-7xl">{pillar.title}</h1>
           <p className="mt-2 max-w-2xl text-[12px] leading-5 text-[#5f574c] sm:mt-8 sm:text-lg sm:leading-8">{pillar.intro}</p>
@@ -115,7 +115,7 @@ export default function PillarPage({
       <section className="bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Choosing the right space matters.</h2>
           </div>
           <div className="space-y-6">
@@ -133,7 +133,7 @@ export default function PillarPage({
         <div className="mx-auto max-w-4xl border-t border-[#d8cebf] pt-8">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">FAQs</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">FAQs</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl">Questions people often ask.</h2>
             </div>
             <Link href="/editorial-standards" className="text-sm underline underline-offset-4">Editorial standards</Link>

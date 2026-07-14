@@ -91,7 +91,7 @@ function checkedTime(value?: string) {
 
 function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
   return (
-    <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#5f574c]">
+    <label className="grid gap-2 text-xs uppercase tracking-[0.16em] text-[#5f574c]">
       {label}
       <select
         value={value}
@@ -253,9 +253,9 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   if (uniqueFacilities.length === 0) {
     return (
-      <div className="bg-[#fbf8f1] p-6 sm:p-8">
+      <div className="editorial-card bg-[#fbf8f1] p-6 sm:p-8">
         <h3 className="mb-2 text-xl font-medium sm:text-2xl">{emptyTitle}</h3>
-        <p className="text-sm leading-6 text-[#5f574c]">{emptyText}</p>
+        <p className="text-[15px] leading-6 text-[#5f574c]">{emptyText}</p>
       </div>
     );
   }
@@ -297,9 +297,9 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   return (
     <div className="space-y-8 md:space-y-12">
-      <section className="rounded-[1.35rem] border border-[#d8cebf]/70 bg-[#eee7da] p-4 sm:p-6 md:p-8">
-        <div className="rounded-[1.2rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-3 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
-          <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#6f6048]">
+      <section className="editorial-card bg-[#eee7da] p-4 sm:p-6 md:p-8">
+        <div className="rounded-[1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-3 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
+          <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-xs uppercase tracking-[0.2em] text-[#6f6048]">
             Search venues
           </label>
           <div className="flex items-center gap-3">
@@ -318,7 +318,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </button>
             ) : null}
           </div>
-          <p className="mt-2 text-xs leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
+          <p className="mt-2 text-sm leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
         </div>
 
         <div className="mt-4 md:hidden">
@@ -370,13 +370,13 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
         {activeFilters.length > 0 ? (
           <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#d8cebf]/70 pt-4">
-            <span className="mr-1 text-[10px] uppercase tracking-[0.2em] text-[#6f6048]">Active filters</span>
+            <span className="mr-1 text-xs uppercase tracking-[0.18em] text-[#6f6048]">Active filters</span>
             {activeFilters.map((filter) => (
               <button
                 key={filter.key}
                 type="button"
                 onClick={() => updateFilter(filter.key, "")}
-                className="inline-flex items-center gap-2 rounded-full border border-[#c8baa7] bg-[#fbf8f1] px-3 py-2 text-xs text-[#29241d] transition hover:border-[#6f6048]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#c8baa7] bg-[#fbf8f1] px-3 py-2 text-sm text-[#29241d] transition hover:border-[#6f6048]"
                 aria-label={`Remove ${filter.label} filter: ${filter.value}`}
               >
                 <span>{filter.label}: {filter.value}</span>
@@ -409,7 +409,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </section>
       ) : (
-        <section className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
+        <section className="editorial-card bg-[#fbf8f1] p-6 sm:p-8">
           <h3 className="mb-3 text-2xl font-medium tracking-[-0.03em]">No matching spaces found.</h3>
           <p className="max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
             Try clearing one filter, searching a nearby neighbourhood, or browsing all venues.

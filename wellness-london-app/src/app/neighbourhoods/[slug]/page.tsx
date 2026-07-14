@@ -260,11 +260,11 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       <section className="px-5 pb-8 sm:px-6">
         <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Area profile</p>
+            <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Area profile</p>
             <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
               {experienceProfile.map((item) => (
                 <div key={item.label}>
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{item.label}</dt>
+                  <dt className="text-xs uppercase tracking-[0.18em] text-[#8d7d67]">{item.label}</dt>
                   <dd className="mt-1 text-sm leading-6 text-[#29241d]">{item.value}</dd>
                 </div>
               ))}
@@ -272,7 +272,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Why {page.shortTitle} for wellness?</p>
+            <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Why {page.shortTitle} for wellness?</p>
             <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {page.bestFor.map((tag) => {
@@ -349,7 +349,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       <section className="px-5 py-8 sm:px-6 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What you&apos;ll find here</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">What you&apos;ll find here</p>
             {whatYouWillFind.length > 0 ? (
               <div className="flex flex-wrap gap-3">
                 {whatYouWillFind.map((service) => (
@@ -366,7 +366,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
             {serviceCounts.length > 0 ? (
               <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
-                <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services available at listed venues</p>
+                <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Services available at listed venues</p>
                 <div className="grid gap-3 sm:grid-cols-2">
                   {serviceCounts.map((service) => (
                     <Link key={service.href} href={service.href} className="rounded-[0.9rem] border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]">
@@ -379,10 +379,10 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Editor&apos;s note</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Editor&apos;s note</p>
             <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{editorNote}</p>
             <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
-              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services in {page.shortTitle}</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Services in {page.shortTitle}</p>
               {availableServices.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                   {availableServices.map((service) => (
@@ -404,7 +404,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       <section className="px-5 py-8 sm:px-6 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Local questions</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Local questions</p>
             <div className="space-y-6">
               <div>
                 <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">What kind of wellness is {page.shortTitle} best for?</h2>
@@ -428,7 +428,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Continue exploring</p>
+            <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Continue exploring</p>
             <div className="flex flex-wrap gap-3">
               {page.relatedLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">

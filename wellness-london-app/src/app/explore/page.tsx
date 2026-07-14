@@ -21,7 +21,7 @@ export default function ExplorePage() {
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Explore London wellness</p>
+          <p className="mb-5 text-xs uppercase tracking-[0.26em] text-[#6f6048]">Explore London wellness</p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
             Browse by goal, service or setting.
           </h1>
@@ -35,7 +35,7 @@ export default function ExplorePage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by intention</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Explore by intention</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
                 Start with your goal.
               </h2>
@@ -50,12 +50,12 @@ export default function ExplorePage() {
               <Link
                 key={pillar.slug}
                 href={pillar.href}
-                className="flex min-h-[240px] flex-col justify-between border border-[#d8cebf] bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da]"
+                className="editorial-card flex min-h-[240px] flex-col justify-between bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da]"
               >
                 <div>
-                  <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
+                  <p className="mb-4 text-xs uppercase tracking-[0.2em] text-[#8d7d67]">{pillar.eyebrow}</p>
                   <h3 className="mb-4 text-3xl font-medium">{pillar.label}</h3>
-                  <p className="text-sm leading-7 text-[#5f574c]">{pillar.intro}</p>
+                  <p className="text-[15px] leading-7 text-[#5f574c]">{pillar.intro}</p>
                 </div>
                 <span className="mt-6 text-sm underline underline-offset-4">Explore</span>
               </Link>
@@ -68,7 +68,7 @@ export default function ExplorePage() {
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf] pt-8">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Popular searches</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Popular searches</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
                 Browse specific services.
               </h2>
@@ -83,7 +83,7 @@ export default function ExplorePage() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]"
+                className="rounded-full border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]"
               >
                 {link.label}
               </Link>

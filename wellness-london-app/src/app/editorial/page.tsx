@@ -127,7 +127,7 @@ export default function EditorialHubPage() {
 
           <div className="mt-16 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
             <div>
-              <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Editorial</p>
+              <p className="mb-6 text-xs uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Editorial</p>
               <h1 className="font-serif text-[4.2rem] font-normal leading-[0.86] tracking-[-0.03em] sm:text-8xl lg:text-[7.5rem]">
                 Guides, edits and standards.
               </h1>
@@ -137,7 +137,7 @@ export default function EditorialHubPage() {
             </div>
 
             <div className="border-t border-[#fbf8f1]/16 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">In this section</p>
+              <p className="text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/42">In this section</p>
               <p className="mt-4 max-w-xs font-serif text-2xl font-normal leading-[1.12] tracking-[-0.02em] text-[#fbf8f1]/92">
                 The directory answers what is available. Editorial answers what is worth considering, and why.
               </p>
@@ -149,7 +149,7 @@ export default function EditorialHubPage() {
       <section className="px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-contents">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#29241d]/22 pb-5">
-            <h2 id="editorial-contents" className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
+            <h2 id="editorial-contents" className="text-xs uppercase tracking-[0.26em] text-[#8d7d67]">
               Contents
             </h2>
             <p className="text-sm text-[#5f574c]">Issue order · newest first as the section grows</p>
@@ -166,7 +166,7 @@ export default function EditorialHubPage() {
                     {entry.number}
                   </p>
 
-                  <p className="text-[10px] uppercase tracking-[0.24em] text-[#8d7d67] transition-colors group-hover:text-[#cbbda8] lg:pt-3">
+                  <p className="text-xs uppercase tracking-[0.24em] text-[#8d7d67] transition-colors group-hover:text-[#cbbda8] lg:pt-3">
                     {entry.tag}
                   </p>
 
@@ -193,7 +193,7 @@ export default function EditorialHubPage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 border-t border-[#29241d]/22 pt-9 lg:grid-cols-[0.36fr_0.64fr]">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">Standards</p>
+              <p className="text-xs uppercase tracking-[0.26em] text-[#8d7d67]">Standards</p>
               <h2 id="editorial-standards-heading" className="mt-4 max-w-xs font-serif text-4xl font-normal leading-[1] tracking-[-0.02em]">
                 How this section is made.
               </h2>
@@ -217,7 +217,7 @@ export default function EditorialHubPage() {
       <section className="px-5 pb-16 sm:px-6 sm:pb-24">
         <div className="mx-auto grid max-w-6xl gap-7 bg-[#29241d] p-6 text-[#fbf8f1] sm:p-9 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/52">From editorial to the directory</p>
+            <p className="text-xs uppercase tracking-[0.24em] text-[#fbf8f1]/52">From editorial to the directory</p>
             <h2 className="mt-4 max-w-xl font-serif text-4xl font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">
               Every edit points back to live venue profiles.
             </h2>

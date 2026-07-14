@@ -73,7 +73,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
             <span>/</span>
             <span>{brand.name}</span>
           </nav>
-          <p className="mb-4 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#d8cebf] sm:text-[11px] sm:tracking-[0.28em]">
+          <p className="mb-4 text-xs uppercase leading-5 tracking-[0.24em] text-[#d8cebf] sm:text-xs sm:tracking-[0.28em]">
             {brand.eyebrow}
           </p>
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
@@ -108,15 +108,15 @@ export default async function BrandPage({ params }: BrandPageProps) {
 
           <div className="grid gap-4 sm:grid-cols-3">
             <div className="rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-5">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">London locations</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#8d7d67]">London locations</p>
               <p className="mt-3 text-4xl font-medium tracking-[-0.04em]">{uniqueBrandFacilities.length}</p>
             </div>
             <div className="rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-5">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Live now</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#8d7d67]">Live now</p>
               <p className="mt-3 text-4xl font-medium tracking-[-0.04em]">{liveFacilities.length}</p>
             </div>
             <div className="rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#fbf8f1] p-5">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Coming soon</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[#8d7d67]">Coming soon</p>
               <p className="mt-3 text-4xl font-medium tracking-[-0.04em]">{comingSoonFacilities.length}</p>
             </div>
           </div>

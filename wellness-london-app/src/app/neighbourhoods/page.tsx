@@ -31,7 +31,7 @@ export default function NeighbourhoodsPage() {
               href={area.href}
               className="group rounded-[1.35rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-8"
             >
-              <p className="mb-4 text-[10px] uppercase tracking-[0.24em] text-[#8d7d67]">{area.eyebrow}</p>
+              <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#8d7d67]">{area.eyebrow}</p>
               <h2 className="mb-4 font-serif text-4xl font-normal tracking-[-0.04em] group-hover:underline group-hover:underline-offset-4">
                 {area.shortTitle}
               </h2>

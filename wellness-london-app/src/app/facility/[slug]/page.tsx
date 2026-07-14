@@ -127,7 +127,7 @@ function QuickFact({ label, value }: DetailItem) {
 
   return (
     <div className="border-t border-[#d8cebf]/75 py-4 sm:border-l sm:border-t-0 sm:px-5 sm:py-0">
-      <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
       <p className="mt-2 text-sm leading-6 text-[#29241d]">{value}</p>
     </div>
   );
@@ -138,7 +138,7 @@ function DetailCard({ label, value }: DetailItem) {
 
   return (
     <div className="rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5">
-      <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
+      <p className="text-xs uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
       <p className="mt-3 text-base leading-7 text-[#29241d]">{value}</p>
     </div>
   );
@@ -214,7 +214,7 @@ function SimilarVenueCard({ facility }: { facility: AirtableFacility }) {
   return (
     <Link href={`/facility/${facility.slug}`} className="group flex min-h-52 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">
       <span>
-        <span className="block text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{location}</span>
+        <span className="block text-xs uppercase tracking-[0.2em] text-[#8a7f70]">{location}</span>
         <span className="mt-3 block text-xl font-medium leading-7 text-[#29241d]">{facility.name}</span>
         {summary ? <span className="mt-3 line-clamp-3 block text-sm leading-6 text-[#5f574c]">{summary}</span> : null}
       </span>

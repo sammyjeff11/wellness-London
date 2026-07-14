@@ -79,7 +79,7 @@ export default function InfraredVsTraditionalSaunaPage() {
 
             <div className="mt-16 grid gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
               <div>
-                <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Editorial · Sauna Guide 001</p>
+                <p className="mb-6 text-xs uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Editorial · Sauna Guide 001</p>
                 <h1 className="font-serif text-[4rem] font-normal leading-[0.86] tracking-[-0.035em] sm:text-8xl lg:text-[7.2rem]">
                   Infrared sauna vs traditional sauna.
                 </h1>
@@ -96,7 +96,7 @@ export default function InfraredVsTraditionalSaunaPage() {
         <section className="px-5 py-14 sm:px-6 sm:py-20">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.32fr_0.68fr]">
             <aside>
-              <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Editorial note</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#8d7d67]">Editorial note</p>
             </aside>
             <div className="max-w-3xl">
               <p className="font-serif text-3xl font-normal leading-[1.16] tracking-[-0.02em] text-[#29241d] sm:text-4xl">
@@ -117,7 +117,7 @@ export default function InfraredVsTraditionalSaunaPage() {
         <section className="px-5 pb-10 sm:px-6 sm:pb-16">
           <div className="mx-auto max-w-6xl border-y border-[#29241d]/18 py-8">
             <div className="mb-8 grid gap-5 lg:grid-cols-[0.32fr_0.68fr] lg:items-end">
-              <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">The quick answer</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#8d7d67]">The quick answer</p>
               <h2 className="font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.03em] sm:text-6xl">
                 Choose by session style.
               </h2>
@@ -125,7 +125,7 @@ export default function InfraredVsTraditionalSaunaPage() {
 
             <div className="grid gap-px overflow-hidden rounded-[1.4rem] border border-[#d8cebf]/80 bg-[#d8cebf]/80 md:grid-cols-2">
               <div className="bg-[#fbf8f1] p-6 sm:p-7">
-                <p className="mb-8 text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Choose infrared sauna if</p>
+                <p className="mb-8 text-xs uppercase tracking-[0.24em] text-[#8d7d67]">Choose infrared sauna if</p>
                 <h3 className="font-serif text-4xl font-normal leading-[1] tracking-[-0.02em]">You want a quieter, more controlled reset.</h3>
                 <p className="mt-5 text-base leading-8 text-[#5f574c]">
                   Infrared is often the easier choice for a private, appointment-style session where calm, consistency and comfort matter more than a larger heat-room atmosphere.
@@ -133,7 +133,7 @@ export default function InfraredVsTraditionalSaunaPage() {
               </div>
 
               <div className="bg-[#fbf8f1] p-6 sm:p-7">
-                <p className="mb-8 text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Choose traditional sauna if</p>
+                <p className="mb-8 text-xs uppercase tracking-[0.24em] text-[#8d7d67]">Choose traditional sauna if</p>
                 <h3 className="font-serif text-4xl font-normal leading-[1] tracking-[-0.02em]">You want a fuller heat-room ritual.</h3>
                 <p className="mt-5 text-base leading-8 text-[#5f574c]">
                   Traditional sauna is usually the stronger fit if you want the classic heat-room experience, a social or spa setting, or sauna paired with cold plunge.
@@ -146,7 +146,7 @@ export default function InfraredVsTraditionalSaunaPage() {
         <section className="px-5 py-10 sm:px-6 sm:py-16">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 grid gap-5 lg:grid-cols-[0.32fr_0.68fr] lg:items-end">
-              <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">Comparison</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#8d7d67]">Comparison</p>
               <h2 className="font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.03em] sm:text-6xl">
                 How they feel different in practice.
               </h2>
@@ -166,7 +166,7 @@ export default function InfraredVsTraditionalSaunaPage() {
         <section className="px-5 pb-16 pt-6 sm:px-6 sm:pb-24">
           <div className="mx-auto grid max-w-6xl gap-8 rounded-[2rem] bg-[#29241d] p-6 text-[#fbf8f1] sm:p-8 lg:grid-cols-[0.32fr_0.68fr]">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/58">Continue exploring</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#fbf8f1]/58">Continue exploring</p>
             </div>
             <div>
               <h2 className="font-serif text-4xl font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">

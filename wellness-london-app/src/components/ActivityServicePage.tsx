@@ -60,11 +60,11 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
       <JsonLd data={faqSchema} />
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
-        <div className="relative mx-auto flex min-h-[58vh] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[68vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
+        <div className="relative mx-auto flex min-h-[27rem] max-w-[1400px] items-end overflow-hidden rounded-[1rem] bg-[#8f806b] px-5 py-10 sm:min-h-[32rem] sm:px-6 sm:py-12 md:px-14 md:py-16">
           {heroImage ? <SafeImage src={heroImage.url} alt={`${activity.label} venue in London`} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/72 via-black/24 to-transparent" />
           <div className="relative max-w-4xl text-[#fbf8f1]">
-            <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / {activity.eyebrow}</p>
+            <p className="mb-6 text-xs uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:tracking-[0.3em]">Well+ / {activity.eyebrow}</p>
             <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">{activity.title}</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">{activity.heroText}</p>
           </div>
@@ -72,10 +72,10 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
       </section>
 
       <ServiceIntroSection eyebrow={`${activity.label} guide`} title="Understand the experience before you book." paragraphs={[activity.description, activity.heroText]} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
       <ServiceEvidenceSection notes={activity.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
       <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title={`${activity.label} London FAQs`} faqs={activity.faqs} />
