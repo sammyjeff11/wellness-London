@@ -104,13 +104,13 @@ export default function StressRegulationLondonPage() {
               "Calmer reset, post-training recovery and repeatable wellness routines.",
           },
           {
-            href: "/longevity-london",
+            href: "/longevity",
             label: "Longevity",
             description:
               "Sustainable wellness behaviours that support long-term health routines.",
           },
           {
-            href: "/journal",
+            href: "/editorial",
             label: "Performance",
             description:
               "Readiness and recovery routines that support training consistency and energy.",

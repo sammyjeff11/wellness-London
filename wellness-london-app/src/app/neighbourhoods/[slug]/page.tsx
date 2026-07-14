@@ -44,7 +44,7 @@ const serviceLinks = [
   { href: "/cryotherapy-london", label: "Cryotherapy", keys: ["cryotherapy", "cryo"] },
   { href: "/contrast-therapy-london", label: "Contrast Therapy", keys: ["contrast therapy", "hot and cold", "sauna and cold plunge"] },
   { href: "/recovery-london", label: "Recovery", keys: ["recovery", "compression", "sports recovery", "massage"] },
-  { href: "/longevity-london", label: "Longevity", keys: ["longevity", "red light", "hbot", "hyperbaric"] },
+  { href: "/longevity", label: "Longevity", keys: ["longevity", "red light", "hbot", "hyperbaric"] },
 ];
 
 const bestForChipClass = "rounded-full border border-[#d8cebf] px-3 py-1 text-xs text-[#5f574c]";

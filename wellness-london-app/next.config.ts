@@ -1,27 +1,12 @@
 import type { NextConfig } from "next";
+import { permanentRouteRedirects } from "./src/lib/route-consolidation";
 
 const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
   async redirects() {
-    return [
-      {
-        source: "/journal",
-        destination: "/editorial",
-        permanent: true,
-      },
-      {
-        source: "/journal/:slug*",
-        destination: "/editorial/:slug*",
-        permanent: true,
-      },
-      {
-        source: "/longevity-london",
-        destination: "/longevity",
-        permanent: true,
-      },
-    ];
+    return permanentRouteRedirects;
   },
   images: {
     remotePatterns: [

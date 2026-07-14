@@ -35,7 +35,7 @@ const collectionLinks = collections.map((collection) => ({
 
 const venueTypeLinks = [
   {
-    href: "/best-sauna-cold-plunge-london",
+    href: "/collections/best-contrast-therapy-london",
     title: "Bathhouse",
     text: "Places built around a fuller bathing or thermal circuit rather than a single treatment room.",
   },

@@ -41,10 +41,6 @@ type ServiceFaqSectionProps = {
   faqs: ServicePageContent["faqs"];
 };
 
-function canonicalInternalHref(href: string) {
-  return href === "/longevity-london" ? "/longevity" : href;
-}
-
 export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntroSectionProps) {
   return (
     <section className="border-y border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
@@ -146,7 +142,7 @@ export function ServiceRelatedSection({ links }: ServiceRelatedSectionProps) {
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {links.map((link) => {
-            const href = canonicalInternalHref(link.href);
+            const href = link.href;
 
             return (
               <Link key={href} href={href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">

@@ -125,13 +125,13 @@ export default function SaunaLondonGuidePage() {
               "Heat-led recovery, post-training reset and calmer weekly wellness routines.",
           },
           {
-            href: "/journal",
+            href: "/editorial",
             label: "Longevity",
             description:
               "Longer-term wellness behaviours involving heat exposure, sleep and sustainable recovery habits.",
           },
           {
-            href: "/journal",
+            href: "/editorial",
             label: "Stress Regulation",
             description:
               "Calmer rituals focused on nervous-system recovery, rest and downregulation.",
