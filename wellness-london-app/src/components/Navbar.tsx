@@ -14,8 +14,16 @@ const navLinks = [
   { href: "/longevity", label: "Longevity" },
 ];
 
+const longevityLinks = [
+  { href: "/longevity", label: "Clinics" },
+  { href: "/dexa-scan-london", label: "DEXA" },
+  { href: "/vo2-max-testing-london", label: "VO₂ Max" },
+  { href: "/health-screening-london", label: "Health Screening" },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
+  const isLongevityRoute = pathname === "/longevity" || longevityLinks.some((link) => pathname === link.href);
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#d8cebf]/45 bg-[#f4efe6]/92 backdrop-blur-xl">
@@ -25,9 +33,9 @@ export default function Navbar() {
           <span className="translate-y-[-0.05em] text-[0.82em] font-light tracking-[-0.08em] transition group-hover:text-[#8d7d67]">+</span>
         </Link>
 
-        <nav className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[12px] uppercase tracking-[0.14em] text-[#70695d] md:w-auto md:justify-end md:gap-x-7 md:overflow-visible md:pb-0">
+        <nav aria-label="Primary navigation" className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[12px] uppercase tracking-[0.14em] text-[#70695d] md:w-auto md:justify-end md:gap-x-7 md:overflow-visible md:pb-0">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`);
+            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`) || (link.href === "/longevity" && isLongevityRoute);
 
             return (
               <Link
@@ -44,6 +52,30 @@ export default function Navbar() {
           })}
         </nav>
       </div>
+
+      {isLongevityRoute ? (
+        <nav aria-label="Longevity services" className="border-t border-[#d8cebf]/45 px-5 py-2.5 md:hidden">
+          <div className="flex gap-2 overflow-x-auto whitespace-nowrap">
+            {longevityLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`shrink-0 rounded-full border px-3 py-1.5 text-[11px] ${
+                    isActive
+                      ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]"
+                      : "border-[#cfc3b2] bg-[#fbf8f1] text-[#5f574c]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      ) : null}
     </header>
   );
 }

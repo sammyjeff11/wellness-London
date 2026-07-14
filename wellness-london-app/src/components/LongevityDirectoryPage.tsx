@@ -18,11 +18,12 @@ const needs = [
 
 const diagnosticFilters = [
   { value: "all", label: "All diagnostics" },
+  { value: "screening", label: "Health screening" },
+  { value: "dexa", label: "DEXA" },
+  { value: "vo2", label: "VO₂ max" },
   { value: "blood", label: "Blood biomarkers" },
   { value: "imaging", label: "MRI / imaging" },
   { value: "cardiovascular", label: "Cardiovascular" },
-  { value: "dexa", label: "DEXA" },
-  { value: "vo2", label: "VO₂ max" },
   { value: "genetics", label: "Genetics / biological age" },
 ] as const;
 
@@ -40,6 +41,30 @@ const priceFilters = [
   { value: "1500-plus", label: "£1,500+" },
 ] as const;
 
+const featuredServices = [
+  {
+    label: "Health Screening",
+    href: "/health-screening-london",
+    description: "Build a broad picture of current health, risk factors and next steps.",
+  },
+  {
+    label: "DEXA Scans",
+    href: "/dexa-scan-london",
+    description: "Measure body composition, visceral fat and bone density more precisely.",
+  },
+  {
+    label: "VO₂ Max Testing",
+    href: "/vo2-max-testing-london",
+    description: "Understand cardiorespiratory fitness for performance and long-term health.",
+  },
+] as const;
+
+const featuredServiceHrefs: Record<string, string> = {
+  "Health Screening": "/health-screening-london",
+  "DEXA Scan": "/dexa-scan-london",
+  "VO₂ Max Testing": "/vo2-max-testing-london",
+};
+
 type Need = (typeof needs)[number]["value"];
 type Diagnostic = (typeof diagnosticFilters)[number]["value"];
 type Oversight = (typeof oversightFilters)[number]["value"];
@@ -53,10 +78,11 @@ type ClinicProfile = {
   oversightLabel: string;
   diagnostics: Exclude<Diagnostic, "all">[];
   diagnosticLabels: string[];
+  featuredServiceLabels: string[];
   format: "One-off" | "Ongoing" | "Both";
   priceBand: Exclude<Price, "all"> | "unknown";
   bestFor: string;
-  verified: boolean;
+  checked: boolean;
 };
 
 function searchableText(facility: AirtableFacility) {
@@ -90,30 +116,37 @@ function containsAny(text: string, terms: string[]) {
 function deriveDiagnostics(text: string) {
   const diagnostics: Exclude<Diagnostic, "all">[] = [];
   const labels: string[] = [];
-  const add = (value: Exclude<Diagnostic, "all">, label: string) => {
+  const featured: string[] = [];
+
+  const add = (value: Exclude<Diagnostic, "all">, label: string, isFeatured = false) => {
     if (!diagnostics.includes(value)) diagnostics.push(value);
     if (!labels.includes(label)) labels.push(label);
+    if (isFeatured && !featured.includes(label)) featured.push(label);
   };
 
-  if (containsAny(text, ["blood test", "blood testing", "biomarker", "blood panel"])) add("blood", "Blood biomarkers");
-  if (containsAny(text, ["mri", "ct scan", "medical imaging", "ultrasound", "full body scan"])) add("imaging", "Medical imaging");
-  if (containsAny(text, ["cardiovascular", "cardiac", "ecg", "heart screening"])) add("cardiovascular", "Cardiovascular screening");
-  if (text.includes("dexa")) add("dexa", "DEXA");
-  if (containsAny(text, ["vo2 max", "vo₂ max", "cardiorespiratory fitness"])) add("vo2", "VO₂ max");
-  if (containsAny(text, ["genetic", "genomic", "epigenetic", "biological age"])) add("genetics", "Genetics / biological age");
+  if (containsAny(text, ["health screening", "health assessment", "executive health", "full health check", "preventative health", "preventive health", "well person screening"])) add("screening", "Health Screening", true);
+  if (containsAny(text, ["dexa", "dual-energy x-ray absorptiometry", "body composition scan", "bone density scan"])) add("dexa", "DEXA Scan", true);
+  if (containsAny(text, ["vo2 max", "vo₂ max", "vo2max", "cardiorespiratory fitness", "cpet"])) add("vo2", "VO₂ Max Testing", true);
+  if (containsAny(text, ["blood test", "blood testing", "biomarker", "blood panel"])) add("blood", "Blood Biomarkers");
+  if (containsAny(text, ["mri", "ct scan", "medical imaging", "ultrasound", "full body scan"])) add("imaging", "Medical Imaging");
+  if (containsAny(text, ["cardiovascular", "cardiac", "ecg", "heart screening"])) add("cardiovascular", "Cardiovascular Screening");
+  if (containsAny(text, ["genetic", "genomic", "epigenetic", "biological age"])) add("genetics", "Genetics / Biological Age");
 
-  return { diagnostics, labels };
+  return {
+    diagnostics,
+    labels: [...featured, ...labels.filter((label) => !featured.includes(label))],
+    featured,
+  };
 }
 
 function parsePrice(value: string) {
   const matches = value.match(/[\d,]+/g);
-  if (!matches?.length) return undefined;
-  return Number(matches[0].replace(/,/g, ""));
+  return matches?.length ? Number(matches[0].replace(/,/g, "")) : undefined;
 }
 
 function profileClinic(facility: AirtableFacility): ClinicProfile {
   const text = searchableText(facility);
-  const { diagnostics, labels } = deriveDiagnostics(text);
+  const { diagnostics, labels, featured } = deriveDiagnostics(text);
   const ongoing = containsAny(text, ["membership", "annual programme", "ongoing", "repeat testing", "follow-up programme"]);
   const oneOff = containsAny(text, ["assessment", "screening", "scan", "test", "consultation"]);
 
@@ -159,11 +192,12 @@ function profileClinic(facility: AirtableFacility): ClinicProfile {
     oversight,
     oversightLabel,
     diagnostics,
-    diagnosticLabels: labels.length ? labels : ["Clinical assessment"],
+    diagnosticLabels: labels.length ? labels : ["Clinical Assessment"],
+    featuredServiceLabels: featured,
     format: ongoing && oneOff ? "Both" : ongoing ? "Ongoing" : "One-off",
     priceBand,
     bestFor,
-    verified: Boolean(facility.lastCheckedDate || facility.verificationStatus),
+    checked: Boolean(facility.lastCheckedDate || facility.verificationStatus),
   };
 }
 
@@ -185,16 +219,17 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
   const [price, setPrice] = useState<Price>("all");
 
   const profiles = useMemo(() => facilities.map(profileClinic), [facilities]);
-  const filteredProfiles = useMemo(() => profiles.filter((profile) => {
-    if (need !== "all" && profile.need !== need) return false;
-    if (diagnostic !== "all" && !profile.diagnostics.includes(diagnostic)) return false;
-    if (oversight !== "all" && profile.oversight !== oversight) return false;
-    if (price !== "all" && profile.priceBand !== price) return false;
-    return true;
-  }), [profiles, need, diagnostic, oversight, price]);
+  const filteredProfiles = useMemo(() => profiles.filter((profile) =>
+    (need === "all" || profile.need === need) &&
+    (diagnostic === "all" || profile.diagnostics.includes(diagnostic)) &&
+    (oversight === "all" || profile.oversight === oversight) &&
+    (price === "all" || profile.priceBand === price)
+  ), [profiles, need, diagnostic, oversight, price]);
 
   const directoryFacilities = dedupeFacilities(filteredProfiles.map((profile) => toDirectoryFacility(profile.facility)));
-  const visibleProfiles = directoryFacilities.map((directoryFacility) => profiles.find((profile) => profile.facility.slug === directoryFacility.slug)).filter(Boolean) as ClinicProfile[];
+  const visibleProfiles = directoryFacilities
+    .map((directoryFacility) => profiles.find((profile) => profile.facility.slug === directoryFacility.slug))
+    .filter(Boolean) as ClinicProfile[];
   const hasFilters = need !== "all" || diagnostic !== "all" || oversight !== "all" || price !== "all";
 
   return (
@@ -206,12 +241,30 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
           <p className="mt-6 max-w-3xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">Compare medical assessments, advanced diagnostics, preventative screening and clinician-led longevity programmes by what they test, who reviews the results and what happens next.</p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href="#clinics" className="rounded-full bg-[#29241d] px-5 py-3 text-sm text-[#fbf8f1]">Compare clinics</a>
-            <a href="#how-to-compare" className="rounded-full border border-[#b8aa96] px-5 py-3 text-sm">How to compare</a>
+            <a href="#services" className="rounded-full border border-[#b8aa96] px-5 py-3 text-sm">Explore assessments</a>
           </div>
         </div>
       </section>
 
-      <section id="how-to-compare" className="border-y border-[#d8cebf] bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14">
+      <section id="services" className="border-y border-[#d8cebf] bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-7 max-w-3xl">
+            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Explore by assessment</p>
+            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Start with the question you want answered.</h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {featuredServices.map((service) => (
+              <Link key={service.href} href={service.href} className="border border-[#d8cebf] bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da]">
+                <h3 className="text-xl font-medium">{service.label}</h3>
+                <p className="mt-3 text-sm leading-7 text-[#5f574c]">{service.description}</p>
+                <span className="mt-5 inline-block text-sm underline underline-offset-4">Explore providers</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="how-to-compare" className="px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
@@ -229,7 +282,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">Compare longevity clinics.</h2>
-            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Start with what you need. Then narrow by clinical model, diagnostics and likely investment.</p>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Start with what you need. Then narrow by clinical model, diagnostics and likely investment. Comparison details are drawn from provider information and should be confirmed before booking.</p>
           </div>
 
           <div className="mb-10 grid gap-4 border border-[#d8cebf] bg-[#f4efe6] p-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -238,7 +291,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
             <FilterSelect label="Clinical model" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
             <FilterSelect label="Starting price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
             <div className="flex items-end sm:col-span-2 lg:col-span-4">
-              <p className="text-xs text-[#6f6048]">Showing {visibleProfiles.length} of {profiles.length} verified clinical providers.</p>
+              <p className="text-xs text-[#6f6048]">Showing {visibleProfiles.length} of {profiles.length} listed providers.</p>
               {hasFilters && <button type="button" onClick={() => { setNeed("all"); setDiagnostic("all"); setOversight("all"); setPrice("all"); }} className="ml-auto text-xs underline underline-offset-4">Clear filters</button>}
             </div>
           </div>
@@ -247,12 +300,16 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {visibleProfiles.map((profile) => {
                 const directoryFacility = toDirectoryFacility(profile.facility);
+                const prioritisedServices = Array.from(new Set([...profile.featuredServiceLabels, ...(directoryFacility.services || [])]));
+                const visibleLabels = profile.diagnosticLabels.slice(0, 3);
+                const moreCount = Math.max(profile.diagnosticLabels.length - visibleLabels.length, 0);
+
                 return (
                   <article key={profile.facility.slug} className="flex flex-col">
                     <div className="mb-3 border border-[#d8cebf] bg-[#f4efe6] p-4">
                       <div className="flex items-start justify-between gap-3">
                         <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
-                        {profile.verified && <span className="shrink-0 text-[10px] uppercase tracking-[0.14em]">Checked</span>}
+                        {profile.checked && <span className="shrink-0 text-[10px] uppercase tracking-[0.14em]">Provider info checked</span>}
                       </div>
                       <p className="mt-3 text-sm leading-6"><span className="text-[#6f6048]">Best for:</span> {profile.bestFor}</p>
                       <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-[#d8cebf] pt-4 text-xs">
@@ -260,10 +317,15 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
                         <div><dt className="text-[#6f6048]">Format</dt><dd className="mt-1">{profile.format}</dd></div>
                       </dl>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        {profile.diagnosticLabels.slice(0, 3).map((label) => <span key={label} className="rounded-full border border-[#cfc3b2] px-2.5 py-1 text-[10px]">{label}</span>)}
+                        {visibleLabels.map((label, index) => {
+                          const href = featuredServiceHrefs[label];
+                          const className = `rounded-full border px-2.5 py-1 text-[10px] ${index < profile.featuredServiceLabels.length ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
+                          return href ? <Link key={label} href={href} className={className}>{label}</Link> : <span key={label} className={className}>{label}</span>;
+                        })}
+                        {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-[10px] underline underline-offset-4">+{moreCount} more diagnostics</Link>}
                       </div>
                     </div>
-                    <FacilityCard facility={directoryFacility} source="longevity_directory" />
+                    <FacilityCard facility={{ ...directoryFacility, services: prioritisedServices }} source="longevity_directory" prioritisedService={profile.featuredServiceLabels[0]} />
                   </article>
                 );
               })}

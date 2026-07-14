@@ -4,15 +4,17 @@ import { activityPages } from "@/lib/activity-pages";
 import { collections } from "@/lib/collections";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
+import { longevityServicePages } from "@/lib/longevity-service-pages";
 import { absoluteUrl } from "@/lib/site";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
-const defaultLastModified = new Date("2026-06-25T00:00:00.000Z");
+const defaultLastModified = new Date("2026-07-14T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
   { path: "/explore", priority: 0.95 },
   ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
+  ...longevityServicePages.map((page) => ({ path: page.href, priority: 0.84 })),
   { path: "/neighbourhoods", priority: 0.82 },
   { path: "/collections", priority: 0.82 },
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
