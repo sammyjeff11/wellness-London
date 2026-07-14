@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SafeImage from "@/components/SafeImage";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
@@ -15,6 +16,7 @@ import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import {
   getFacilitiesForLongevityService,
+  longevityServicePages,
   type LongevityServicePageConfig,
 } from "@/lib/longevity-service-pages";
 
@@ -61,6 +63,29 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
             <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">{page.title}</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">{page.heroText}</p>
           </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#d8cebf] px-5 py-5 sm:px-6 md:px-8">
+        <div className="mx-auto max-w-[1400px]">
+          <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#6f6048]">Explore longevity services</p>
+          <nav aria-label="Longevity service pages" className="flex gap-2 overflow-x-auto whitespace-nowrap pb-1">
+            <Link href="/longevity" className="shrink-0 rounded-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-2 text-xs text-[#5f574c]">All clinics</Link>
+            {longevityServicePages.map((service) => (
+              <Link
+                key={service.href}
+                href={service.href}
+                aria-current={service.href === page.href ? "page" : undefined}
+                className={`shrink-0 rounded-full border px-4 py-2 text-xs ${
+                  service.href === page.href
+                    ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]"
+                    : "border-[#cfc3b2] bg-[#fbf8f1] text-[#5f574c]"
+                }`}
+              >
+                {service.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 
