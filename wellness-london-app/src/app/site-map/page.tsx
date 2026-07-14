@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getFacilities } from "@/lib/airtable";
 import { collections } from "@/lib/collections";
+import { longevityServicePages } from "@/lib/longevity-service-pages";
 import { serviceTaxonomy } from "@/lib/taxonomy";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
@@ -21,6 +22,13 @@ const coreSections = [
       { href: "/reset", label: "Reset" },
       { href: "/optimise", label: "Optimise" },
       { href: "/longevity", label: "Longevity" },
+    ],
+  },
+  {
+    title: "Longevity and diagnostics",
+    links: [
+      { href: "/longevity", label: "Longevity Clinics in London" },
+      ...longevityServicePages.map((page) => ({ href: page.href, label: page.title })),
     ],
   },
   {
@@ -99,29 +107,18 @@ export default async function SiteMapPage() {
   return (
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
       <div className="mx-auto max-w-5xl px-5 py-14 sm:px-6 sm:py-16">
-        <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">
-          Well+
-        </p>
-        <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">
-          Site Map
-        </h1>
-
+        <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">Well+</p>
+        <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">Site Map</h1>
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
           Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages and editorial standards.
         </p>
-
         <div className="space-y-12">
           {pages.map((section) => (
             <section key={section.title}>
               <h2 className="mb-5 font-serif text-3xl font-normal sm:text-4xl">{section.title}</h2>
-
               <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
                 {section.links.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="border border-stone-200 bg-[#fffdf8] px-5 py-5 text-sm transition hover:border-stone-300 hover:bg-[#f4efe6]"
-                  >
+                  <Link key={link.href} href={link.href} className="border border-stone-200 bg-[#fffdf8] px-5 py-5 text-sm transition hover:border-stone-300 hover:bg-[#f4efe6]">
                     {link.label}
                   </Link>
                 ))}
