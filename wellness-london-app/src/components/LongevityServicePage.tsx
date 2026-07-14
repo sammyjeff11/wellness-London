@@ -48,11 +48,22 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://welledit.co.uk" },
+      { "@type": "ListItem", position: 2, name: "Longevity Clinics", item: "https://welledit.co.uk/longevity" },
+      { "@type": "ListItem", position: 3, name: page.label, item: `https://welledit.co.uk${page.href}` },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <AnalyticsPageView eventName="service_page_view" properties={{ service_type: page.slug.replace(/-london$/, ""), page_path: page.href }} />
       <JsonLd data={itemListSchema} />
       <JsonLd data={faqSchema} />
+      <JsonLd data={breadcrumbSchema} />
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
         <div className="relative mx-auto flex min-h-[58vh] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[68vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
@@ -89,11 +100,11 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
         </div>
       </section>
 
-      <ServiceIntroSection eyebrow={`${page.label} guide`} title="Understand the assessment before you book." paragraphs={[page.description, page.heroText]} />
+      <ServiceIntroSection eyebrow={`${page.label} guide`} title="Understand the assessment before you book." paragraphs={[page.description]} />
       <ServiceInsightSection eyebrow="Best for" panels={page.bestFor} />
       <ServiceEvidenceSection notes={page.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${page.label.toLowerCase()} in London`} points={page.whatToExpect} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={page.slug.replace(/-london$/, "")} prioritisedService={page.label} emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`} emptyText={`We are still verifying London providers for this guide. Only venues with a confirmed matching diagnostic or assessment service will appear.`} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={page.slug.replace(/-london$/, "")} prioritisedService={page.label} emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`} emptyText="We are still checking London providers for this guide. Only venues with a clearly stated matching diagnostic or assessment service will appear." />
       <ServiceGuidanceSection title={`How to choose ${page.label.toLowerCase()} in London`} points={page.guidance} />
       <ServiceRelatedSection links={page.related} />
       <ServiceFaqSection title={`${page.label} London FAQs`} faqs={page.faqs} />
