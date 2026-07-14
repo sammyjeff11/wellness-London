@@ -167,6 +167,14 @@ function profileClinic(facility: AirtableFacility): ClinicProfile {
   };
 }
 
+function focusedServiceLabels(profile: ClinicProfile) {
+  const labels: string[] = [];
+  if (profile.diagnostics.includes("dexa")) labels.push("DEXA Scan");
+  if (profile.diagnostics.includes("vo2")) labels.push("VO₂ Max Testing");
+  if (profile.need === "comprehensive" || profile.need === "imaging") labels.push("Health Screening");
+  return labels;
+}
+
 function FilterSelect({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: readonly { value: string; label: string }[] }) {
   return (
     <label className="block">
@@ -246,7 +254,10 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
           {visibleProfiles.length > 0 ? (
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {visibleProfiles.map((profile) => {
-                const directoryFacility = toDirectoryFacility(profile.facility);
+                const directoryFacility = {
+                  ...toDirectoryFacility(profile.facility),
+                  services: focusedServiceLabels(profile),
+                };
                 return (
                   <article key={profile.facility.slug} className="flex flex-col">
                     <div className="mb-3 border border-[#d8cebf] bg-[#f4efe6] p-4">
@@ -260,7 +271,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
                         <div><dt className="text-[#6f6048]">Format</dt><dd className="mt-1">{profile.format}</dd></div>
                       </dl>
                       <div className="mt-4 flex flex-wrap gap-2">
-                        {profile.diagnosticLabels.slice(0, 3).map((label) => <span key={label} className="rounded-full border border-[#cfc3b2] px-2.5 py-1 text-[10px]">{label}</span>)}
+                        {focusedServiceLabels(profile).map((label) => <span key={label} className="rounded-full border border-[#cfc3b2] px-2.5 py-1 text-[10px]">{label}</span>)}
                       </div>
                     </div>
                     <FacilityCard facility={directoryFacility} source="longevity_directory" />
