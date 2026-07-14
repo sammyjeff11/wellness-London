@@ -5,13 +5,13 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { href: "/explore", label: "Explore" },
-  { href: "/longevity", label: "Longevity" },
   { href: "/collections", label: "Collections" },
   { href: "/editorial", label: "Editorial" },
   { href: "/recover", label: "Recover" },
   { href: "/perform", label: "Perform" },
   { href: "/reset", label: "Reset" },
   { href: "/optimise", label: "Optimise" },
+  { href: "/longevity", label: "Longevity" },
 ];
 
 const longevityLinks = [
@@ -53,27 +53,29 @@ export default function Navbar() {
         </nav>
       </div>
 
-      <nav aria-label="Longevity services" className="border-t border-[#d8cebf]/45 px-5 py-2.5 md:hidden">
-        <div className="flex gap-2 overflow-x-auto whitespace-nowrap">
-          {longevityLinks.map((link) => {
-            const isActive = pathname === link.href;
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive ? "page" : undefined}
-                className={`shrink-0 rounded-full border px-3 py-1.5 text-[11px] ${
-                  isActive
-                    ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]"
-                    : "border-[#cfc3b2] bg-[#fbf8f1] text-[#5f574c]"
-                }`}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
+      {isLongevityRoute ? (
+        <nav aria-label="Longevity services" className="border-t border-[#d8cebf]/45 px-5 py-2.5 md:hidden">
+          <div className="flex gap-2 overflow-x-auto whitespace-nowrap">
+            {longevityLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={`shrink-0 rounded-full border px-3 py-1.5 text-[11px] ${
+                    isActive
+                      ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]"
+                      : "border-[#cfc3b2] bg-[#fbf8f1] text-[#5f574c]"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </div>
+        </nav>
+      ) : null}
     </header>
   );
 }
