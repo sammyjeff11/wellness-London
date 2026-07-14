@@ -13,10 +13,8 @@ type HomeVenueSearchProps = {
 const popularLinks = [
   { href: "/sauna-london", label: "Sauna" },
   { href: "/cold-plunge-london", label: "Cold plunge" },
-  { href: "/cryotherapy-london", label: "Cryotherapy" },
-  { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
-  { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf" },
-  { href: "/neighbourhoods/kensington", label: "Kensington" },
+  { href: "/longevity", label: "Longevity" },
+  { href: "/explore", label: "By area" },
 ];
 
 function getResultLocation(facility: ServiceDirectoryFacility) {
@@ -49,30 +47,39 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <section className="overflow-hidden px-4 pb-2 pt-4 sm:px-6 sm:pb-4 sm:pt-7 md:pb-5 md:pt-8">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-5 md:p-6">
-        <div className="grid min-w-0 gap-5 md:grid-cols-[0.44fr_1fr] md:items-center md:gap-6 lg:grid-cols-[0.38fr_1fr]">
-          <div>
-            <p className="editorial-eyebrow mb-2">Well+ directory</p>
-            <h2 className="max-w-sm font-serif text-[1.95rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.25rem] md:text-[2.35rem]">
-              Search venues, services and neighbourhoods.
+    <section aria-label="Search London wellness venues" className="px-5 py-6 sm:px-6 sm:py-8">
+      <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/80 pb-7 sm:pb-9">
+        <div className="grid min-w-0 gap-5 md:grid-cols-[0.42fr_1fr] md:items-center md:gap-10">
+          <div className="hidden md:block">
+            <p className="editorial-eyebrow mb-2">Find a venue</p>
+            <h2 className="max-w-sm font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.045em]">
+              Search London wellness.
             </h2>
             <p className="mt-3 max-w-md text-sm leading-6 text-[#5f574c]">
-              Find a specific venue or start with a service, area or popular search.
+              Search by venue, service or neighbourhood, or use a popular starting point.
             </p>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4 md:p-5">
+          <div className="min-w-0">
+            <h2 className="mb-3 font-serif text-[1.65rem] font-normal leading-tight tracking-[-0.035em] md:hidden">
+              What are you looking for?
+            </h2>
             <label className="block min-w-0">
               <span className="sr-only">Search London wellness venues</span>
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => updateQuery(event.target.value)}
-                placeholder="Try Shoreditch or cold plunge"
-                autoComplete="off"
-                className="block w-full min-w-0 rounded-full border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-2.5 text-[16px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:px-5 sm:py-3.5 sm:text-[15px]"
-              />
+              <span className="flex min-h-14 items-center gap-3 rounded-full border border-[#bcae99] bg-[#fbf8f1] px-5 shadow-[0_8px_24px_rgba(41,36,29,0.05)] transition focus-within:border-[#6f6048] focus-within:ring-2 focus-within:ring-[#d8cebf]">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 fill-none stroke-[#6f6048] stroke-[1.8]">
+                  <circle cx="11" cy="11" r="6.5" />
+                  <path d="m16 16 4 4" />
+                </svg>
+                <input
+                  type="search"
+                  value={query}
+                  onChange={(event) => updateQuery(event.target.value)}
+                  placeholder="Venue, service or area"
+                  autoComplete="off"
+                  className="block min-w-0 flex-1 bg-transparent py-3 text-[16px] leading-6 text-[#29241d] outline-none placeholder:text-[#8d7d67]"
+                />
+              </span>
             </label>
 
             {trimmedQuery ? (
@@ -110,24 +117,21 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
               </div>
             ) : null}
 
-            <div className="mt-3 min-w-0 border-t border-[#d8cebf]/70 pt-3">
-              <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Popular</p>
-                <Link href="/explore" className="text-xs font-medium underline underline-offset-4">
-                  All venues
-                </Link>
-              </div>
-              <div className="flex min-w-0 flex-wrap gap-2">
+            <div className="mt-3 min-w-0">
+              <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap">
                 {popularLinks.map((link) => (
                   <Link
                     key={`${link.href}-${link.label}`}
                     href={link.href}
-                    className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4 sm:text-sm"
+                    className="rounded-full border border-[#d8cebf] px-3.5 py-2 text-center text-sm leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4"
                   >
                     {link.label}
                   </Link>
                 ))}
               </div>
+              <Link href="/explore" className="mt-4 inline-flex text-sm font-medium underline underline-offset-4">
+                Browse all venues
+              </Link>
             </div>
           </div>
         </div>

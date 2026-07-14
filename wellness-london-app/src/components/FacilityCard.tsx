@@ -190,8 +190,8 @@ export default function FacilityCard({ facility, source = "directory", compact =
   }
 
   return (
-    <article className="group min-w-0 overflow-hidden bg-transparent">
-      <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
+    <article className="group min-w-0 overflow-hidden rounded-[1.5rem] border border-[#d8cebf] bg-[#fbf8f1] shadow-[0_12px_34px_rgba(41,36,29,0.055)] transition hover:-translate-y-[1px] hover:shadow-[0_16px_38px_rgba(41,36,29,0.08)]">
+      <div className={`relative overflow-hidden bg-[#d8cebf] ${imageAspect}`}>
         {cardImages.length > 0 ? (
           <>
             <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="absolute inset-0 block">
@@ -228,44 +228,49 @@ export default function FacilityCard({ facility, source = "directory", compact =
         )}
       </div>
 
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
-          {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
-        </div>
-        <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
-      </Link>
-      {comparisonDetails.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {comparisonDetails.map((detail) => (
-            <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
-              {detail}
-            </span>
-          ))}
-        </div>
-      ) : null}
-      {serviceLabels.length > 0 ? (
-        <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
-          {serviceLabels.map((service, index) => {
-            const href = canonicalServiceHref(service);
-            return (
-              <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
-                {href ? (
-                  <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
-                    {service}
-                  </Link>
-                ) : (
-                  <span>{service}</span>
-                )}
-                {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
+      <div className={compact ? "p-4 pt-3.5" : "p-4 sm:p-5"}>
+        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
+            {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
+          </div>
+          <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
+        </Link>
+        {comparisonDetails.length > 0 ? (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {comparisonDetails.map((detail) => (
+              <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
+                {detail}
               </span>
-            );
-          })}
-        </div>
-      ) : null}
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-        <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
-      </Link>
+            ))}
+          </div>
+        ) : null}
+        {serviceLabels.length > 0 ? (
+          <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
+            {serviceLabels.map((service, index) => {
+              const href = canonicalServiceHref(service);
+              return (
+                <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
+                  {href ? (
+                    <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
+                      {service}
+                    </Link>
+                  ) : (
+                    <span>{service}</span>
+                  )}
+                  {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
+                </span>
+              );
+            })}
+          </div>
+        ) : null}
+        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
+          <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
+        </Link>
+        <Link href={cardHref} onClick={trackCardClick} className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-[#29241d] underline decoration-[#bcae99] underline-offset-4 transition hover:decoration-[#29241d]" aria-label={`View ${facility.name} venue details`}>
+          View venue <span aria-hidden="true">→</span>
+        </Link>
+      </div>
     </article>
   );
 }
