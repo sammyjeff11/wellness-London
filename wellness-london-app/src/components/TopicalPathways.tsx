@@ -46,7 +46,7 @@ export default function TopicalPathways({
       <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
         <div className="mb-10 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
               {eyebrow}
             </p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
@@ -64,7 +64,7 @@ export default function TopicalPathways({
         <div className="space-y-10">
           {parentTopic ? (
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
                 Parent topic
               </p>
               <div className="max-w-xl">
@@ -75,7 +75,7 @@ export default function TopicalPathways({
 
           {relatedModalities.length > 0 ? (
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
                 Related modalities
               </p>
               <div className="grid gap-5 md:grid-cols-3">
@@ -88,7 +88,7 @@ export default function TopicalPathways({
 
           {relatedOutcomes.length > 0 ? (
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
                 Related outcomes
               </p>
               <div className="grid gap-5 md:grid-cols-3">
@@ -101,7 +101,7 @@ export default function TopicalPathways({
 
           {relatedLocations.length > 0 ? (
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
                 Related locations
               </p>
               <div className="grid gap-5 md:grid-cols-3">

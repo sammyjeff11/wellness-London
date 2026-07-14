@@ -53,7 +53,7 @@ function MobileFooterGroup({ title, links }: { title: string; links: { href: str
 
   return (
     <details className="group border-t border-[#fbf8f1]/14 py-4">
-      <summary className="flex cursor-pointer list-none items-center justify-between text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/72">
+      <summary className="flex cursor-pointer list-none items-center justify-between text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/72">
         {title}
         <span className="text-base leading-none transition group-open:rotate-45">+</span>
       </summary>
@@ -88,7 +88,7 @@ export default async function SiteFooter() {
     <footer className="bg-[#29241d] px-5 py-8 text-[#fbf8f1] sm:px-6 sm:py-16">
       <div className="mx-auto max-w-7xl border-t border-[#fbf8f1]/18 pt-7 sm:pt-10">
         <div className="mb-6 md:mb-0">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
+          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
           <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
             A practical guide to London saunas, cold plunges, recovery studios, spas and longevity clinics.
           </p>
@@ -105,27 +105,27 @@ export default async function SiteFooter() {
         <div className="hidden gap-8 md:grid md:grid-cols-[1.1fr_0.85fr_0.9fr_0.85fr_1fr_0.95fr]">
           <div aria-hidden="true" />
           <nav aria-label="Footer pillars">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Explore by intention</h2>
+            <h2 className="mb-4 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/62">Explore by intention</h2>
             <FooterLinkList links={pillarLinks} />
           </nav>
 
           <nav aria-label="Footer services">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Treatments</h2>
+            <h2 className="mb-4 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/62">Treatments</h2>
             <FooterLinkList links={serviceLinks} />
           </nav>
 
           <nav aria-label="Footer areas">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Areas</h2>
+            <h2 className="mb-4 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/62">Areas</h2>
             <FooterLinkList links={areaLinks} />
           </nav>
 
           <nav aria-label="Footer popular venues">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Popular venues</h2>
+            <h2 className="mb-4 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/62">Popular venues</h2>
             <FooterLinkList links={popularVenueLinks} />
           </nav>
 
           <nav aria-label="Footer editorial and collections">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Editorial</h2>
+            <h2 className="mb-4 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/62">Editorial</h2>
             <FooterLinkList links={editorialLinks} />
           </nav>
         </div>

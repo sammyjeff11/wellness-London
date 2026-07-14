@@ -103,7 +103,7 @@ export default function RecoveryLondonPage() {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-5xl border-t border-[#d8cebf]/70 pt-10 sm:pt-14">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          <p className="mb-5 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
             Well+ / Recovery in London
           </p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-6xl md:text-8xl">
@@ -132,7 +132,7 @@ export default function RecoveryLondonPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
                 Recovery modalities
               </p>
               <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-6xl">
@@ -151,7 +151,7 @@ export default function RecoveryLondonPage() {
                 href={item.href}
                 className="group block border border-[#d8cebf]/70 bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-8"
               >
-                <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+                <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
                   {item.eyebrow}
                 </p>
                 <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
@@ -167,7 +167,7 @@ export default function RecoveryLondonPage() {
       <section className="px-5 py-14 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-10">
           <div className="mb-10 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
               How to choose
             </p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
@@ -189,7 +189,7 @@ export default function RecoveryLondonPage() {
 
       <section className="bg-[#eee7da] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-4xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
             Recovery, performance and stress regulation
           </p>
           <h2 className="mb-8 font-serif text-4xl font-normal leading-tight sm:text-5xl">
@@ -210,7 +210,7 @@ export default function RecoveryLondonPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
                 Related pathways
               </p>
               <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">

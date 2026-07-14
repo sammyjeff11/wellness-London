@@ -55,10 +55,10 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
     `https://maps.apple.com/?q=${encodeURIComponent(mapQuery)}`;
 
   return (
-    <section className="border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 py-16 sm:px-6 sm:py-24">
+    <section className="editorial-section border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-3xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
             Location & arrival
           </p>
 
@@ -74,9 +74,9 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
           </p>
         </div>
 
-        <div className="overflow-hidden border border-[#d8cebf]/80 bg-[#fbf8f1]">
+        <div className="editorial-card overflow-hidden bg-[#fbf8f1]">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative min-h-[380px] border-b border-[#d8cebf]/70 lg:min-h-[640px] lg:border-b-0 lg:border-r">
+            <div className="relative min-h-[340px] border-b border-[#d8cebf]/70 lg:min-h-[480px] lg:border-b-0 lg:border-r">
               {!isMapActive ? (
                 <button
                   type="button"
@@ -102,7 +102,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
                   <div className="relative z-10 flex w-full flex-col gap-5 p-6 text-[#fbf8f1] sm:p-8 lg:p-10">
                     <div>
-                      <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#fbf8f1]/74">
+                      <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/78">
                         Interactive location preview
                       </p>
 
@@ -124,7 +124,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                 <iframe
                   title={`${name} map`}
                   src={mapSrc}
-                  className="h-full min-h-[380px] w-full border-0 grayscale-[0.32] contrast-[0.96] lg:min-h-[640px]"
+                  className="h-full min-h-[340px] w-full border-0 grayscale-[0.32] contrast-[0.96] lg:min-h-[480px]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
@@ -134,13 +134,13 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
             <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
               <div>
-                <p className="mb-5 text-[10px] uppercase tracking-[0.24em] text-[#8a7f70]">
+                <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8a7f70]">
                   Arrival notes
                 </p>
 
                 <div className="space-y-8 border-y border-[#d8cebf]/70 py-8">
                   <div>
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
+                    <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#8a7f70]">
                       Area
                     </p>
                     <p className="font-serif text-3xl leading-tight text-[#29241d] sm:text-4xl">
@@ -150,7 +150,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
                   {fullAddress ? (
                     <div>
-                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
+                      <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#8a7f70]">
                         Address
                       </p>
                       <p className="text-base leading-8 text-[#5f574c]">
@@ -161,7 +161,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
                   {cleanNearestStation ? (
                     <div>
-                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
+                      <p className="mb-2 text-xs uppercase tracking-[0.18em] text-[#8a7f70]">
                         Nearest station
                       </p>
                       <p className="text-base leading-8 text-[#5f574c]">

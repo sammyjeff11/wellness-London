@@ -237,7 +237,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
                     <dl className="mt-4 grid grid-cols-2 gap-3">
                       {serviceColumns.map((service) => (
                         <div key={`${facility.slug}-${service.key}`}>
-                          <dt className="text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{service.label}</dt>
+                          <dt className="text-xs uppercase tracking-[0.18em] text-[#8d7d67]">{service.label}</dt>
                           <dd className="mt-1 text-sm text-[#29241d]">{hasService(facility, service) ? "Yes" : "No"}</dd>
                         </div>
                       ))}
@@ -250,7 +250,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
             <div className="hidden overflow-x-auto md:block">
               <table className="min-w-full border-collapse bg-[#fbf8f1] text-left text-sm">
                 <thead>
-                  <tr className="border-b border-[#d8cebf] text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">
+                  <tr className="border-b border-[#d8cebf] text-xs uppercase tracking-[0.18em] text-[#8d7d67]">
                     <th scope="col" className="px-4 py-4 font-medium">Venue</th>
                     <th scope="col" className="px-4 py-4 font-medium">Area / neighbourhood</th>
                     {serviceColumns.map((service) => (
@@ -293,7 +293,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
             <div className="grid gap-5 md:grid-cols-3">
               {bestForItems.map((item) => (
                 <article key={item.title} className="border border-[#d8cebf] bg-[#fbf8f1] p-6 sm:p-7">
-                  <p className="mb-3 text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">{item.title}</p>
+                  <p className="mb-3 text-xs uppercase tracking-[0.2em] text-[#8d7d67]">{item.title}</p>
                   <h3 className="mb-3 text-xl font-medium tracking-normal">
                     <Link href={`/facility/${item.facility.slug}`} className="underline-offset-4 hover:underline">
                       {item.facility.name}
@@ -326,7 +326,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
 
           {relatedAreaLinks.length > 0 ? (
             <div className="border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-              <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Nearby and related areas</p>
+              <p className="mb-5 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Nearby and related areas</p>
               <div className="flex flex-wrap gap-3">
                 {relatedAreaLinks.map((link) => (
                   <Link key={link.href} href={link.href} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">

@@ -90,7 +90,7 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
         <div className="mx-auto max-w-6xl border-y border-[#cbbda9] py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
-              <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
                 London location guide
               </p>
               <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
@@ -110,7 +110,7 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
       <section className="border-y border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 max-w-3xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
               {areaName} recovery culture
             </p>
             <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
@@ -143,13 +143,13 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
       <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 border-b border-[#d8cebf] pb-5">
-            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Continue exploring</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Continue exploring</p>
             <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related London guides</h2>
           </div>
           <div className="grid gap-5 md:grid-cols-3">
             {relatedGuides.map((relatedGuide) => (
               <Link key={relatedGuide.href} href={relatedGuide.href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
-                <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
+                <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Related guide</p>
                 <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
                   {relatedGuide.title}
                 </h3>
@@ -165,7 +165,7 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
 
       <section className="border-t border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-3xl bg-[#fbf8f1] p-6 shadow-[0_20px_60px_rgba(41,36,29,0.05)] sm:p-8 md:p-10">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
           <h2 className="mb-8 text-2xl font-medium tracking-normal sm:text-3xl md:text-4xl">
             {areaName} Wellness FAQs
           </h2>

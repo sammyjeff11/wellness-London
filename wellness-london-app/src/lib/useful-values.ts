@@ -1,5 +1,10 @@
 const placeholderValues = new Set([
   "#",
+  "n/a",
+  "na",
+  "none",
+  "not available",
+  "not specified",
   "unknown",
   "details not yet confirmed",
   "booking details unclear",

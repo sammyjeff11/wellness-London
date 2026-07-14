@@ -5,6 +5,7 @@ import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { canonicalServiceHref, prioritiseCanonicalServiceList } from "@/lib/taxonomy";
+import { cleanValue } from "@/lib/useful-values";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -46,7 +47,7 @@ type FacilityCardProps = {
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
 
-const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
+const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-xs font-medium uppercase tracking-[0.12em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 
 function primaryBestFor(facility: FacilityCardFacility) {
   const value = facility.bestFor?.[0] || facility.description;
@@ -122,11 +123,7 @@ function formatPrice(value?: string) {
 }
 
 function cleanDetailValue(value?: string) {
-  if (!value) return "";
-  const trimmed = value.trim();
-  const lower = trimmed.toLowerCase();
-  if (["n/a", "na", "unknown", "not specified", "not available", "none"].includes(lower)) return "";
-  return trimmed;
+  return cleanValue(value) || "";
 }
 
 function formatBeginnerFriendly(value?: string) {
@@ -191,7 +188,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
 
   return (
     <article className="group min-w-0 overflow-hidden bg-transparent">
-      <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
+      <div className={`relative overflow-hidden rounded-[1rem] bg-[#d8cebf] ${imageAspect}`}>
         {cardImages.length > 0 ? (
           <>
             <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="absolute inset-0 block">
@@ -238,7 +235,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
       {comparisonDetails.length > 0 ? (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {comparisonDetails.map((detail) => (
-            <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
+            <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-xs leading-4 text-[#5f574c]">
               {detail}
             </span>
           ))}
@@ -264,7 +261,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
         </div>
       ) : null}
       <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-        <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
+        <p className="mt-1 line-clamp-2 text-[15px] leading-6 text-[#5f574c]">{summary}</p>
       </Link>
     </article>
   );

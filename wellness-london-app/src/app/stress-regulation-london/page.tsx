@@ -34,7 +34,7 @@ export default function StressRegulationLondonPage() {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-5xl border-t border-[#d8cebf]/70 pt-10 sm:pt-14">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          <p className="mb-5 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
             Well+ / Stress regulation in London
           </p>
 
@@ -136,7 +136,7 @@ export default function StressRegulationLondonPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 grid gap-5 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
                 Regulation themes
               </p>
               <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-6xl">

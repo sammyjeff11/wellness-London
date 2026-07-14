@@ -48,7 +48,7 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10 sm:pt-12">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by area</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Explore by area</p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-tight sm:text-6xl md:text-7xl">
             {config.title}
           </h1>
@@ -68,7 +68,7 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
       <section className="px-5 pb-20 sm:px-6 md:pb-28">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
-            <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
+            <p className="mb-2 text-xs uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
             <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">
               {matchingFacilities.length > 0 ? `Wellness spaces in ${config.area}` : `No ${config.area} spaces listed yet`}
             </h2>

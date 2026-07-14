@@ -50,7 +50,7 @@ export default async function QuietWellnessSpacesPage() {
     <main className="min-h-screen bg-[#f8f5ef] text-[#211d18]">
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">
+          <p className="mb-5 text-xs uppercase tracking-[0.26em] text-[#6f6048]">
             Venue shortlist / Reset
           </p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
@@ -65,19 +65,19 @@ export default async function QuietWellnessSpacesPage() {
       <section className="bg-[#fbf8f1] px-5 py-10 sm:px-6 md:py-14">
         <div className="mx-auto grid max-w-6xl gap-5 border-y border-[#d8cebf]/70 py-8 md:grid-cols-3">
           <div>
-            <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Best for</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Best for</p>
             <p className="text-sm leading-7 text-[#5f574c]">
               Solo visits, low-stimulation settings, slower recovery sessions and people who prefer clear appointment windows.
             </p>
           </div>
           <div>
-            <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Look for</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Look for</p>
             <p className="text-sm leading-7 text-[#5f574c]">
               Calm interiors, private or semi-private access, clear booking windows, showers, towels and space to decompress before leaving.
             </p>
           </div>
           <div>
-            <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Explore further</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#8d7d67]">Explore further</p>
             <div className="flex flex-wrap gap-2">
               <Link href="/reset" className="border border-[#d8cebf] px-3 py-2 text-sm hover:bg-[#f4efe6]">Reset</Link>
               <Link href="/sauna-london" className="border border-[#d8cebf] px-3 py-2 text-sm hover:bg-[#f4efe6]">Saunas</Link>
@@ -91,7 +91,7 @@ export default async function QuietWellnessSpacesPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Selected venues</p>
+              <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">Selected venues</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
                 Quieter venues to compare.
               </h2>
@@ -112,7 +112,7 @@ export default async function QuietWellnessSpacesPage() {
       <section className="bg-[#29241d] px-5 py-12 text-[#fbf8f1] sm:px-6 md:py-16">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
               Quiet does not always mean empty.
             </h2>

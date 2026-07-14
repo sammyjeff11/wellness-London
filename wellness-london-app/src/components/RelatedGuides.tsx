@@ -23,7 +23,7 @@ export default function RelatedGuides({
     <section className="px-5 py-14 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-6xl border-y border-[#d8cebf]/70 py-8">
         <div className="mb-8 max-w-2xl">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          <p className="mb-3 text-xs uppercase tracking-[0.24em] text-[#6f6048]">
             {eyebrow}
           </p>
           <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl">

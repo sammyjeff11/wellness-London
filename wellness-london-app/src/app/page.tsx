@@ -83,11 +83,10 @@ const useCaseLinks = [
 ];
 
 const sectionHeadingClass = "font-serif text-[2.15rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-4xl md:text-5xl";
-const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
+const sectionLeadClass = "max-w-xl text-[15px] leading-7 text-[#5f574c] sm:text-base";
 const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
-const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
-const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
-const lightCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
+const editorialCardTextClass = "text-[15px] leading-7 text-[#5f574c]";
+const lightCardClass = "editorial-card group bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-6";
 
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
@@ -126,25 +125,25 @@ export default async function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
           </div>
 
-          <div className="relative flex min-h-[26rem] flex-col justify-end px-4 pb-5 pt-3 text-[#fbf8f1] sm:min-h-[34rem] sm:px-8 sm:py-10 md:min-h-[36rem] md:px-12 md:py-12">
+          <div className="relative flex min-h-[22rem] flex-col justify-end px-5 pb-6 pt-4 text-[#fbf8f1] sm:min-h-[32rem] sm:px-8 sm:py-10 md:min-h-[34rem] md:px-12 md:py-12">
             <div className="max-w-4xl">
-              <p className="mb-1.5 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">
+              <p className="mb-2 text-xs uppercase leading-5 tracking-[0.22em] text-[#fbf8f1]/72 sm:mb-6 sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
               </p>
               <h1 className="max-w-4xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.45rem] sm:leading-[0.92] md:text-[6.15rem]">
                 Find the right wellness venue in London.
               </h1>
-              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
+              <p className="mt-3 max-w-[31rem] text-[15px] leading-6 text-[#fbf8f1]/84 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Search by service, venue type, location or use case — with practical details to help you choose where to book.
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
-                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
+              <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3">
+                <Link href="/explore" className="rounded-full bg-[#fbf8f1] px-5 py-3 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da]">
                   Browse venues
                 </Link>
                 <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
                   Sauna
                 </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5 sm:py-3">
+                <Link href="#featured" className="hidden rounded-full border border-[#fbf8f1]/22 px-5 py-3 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:inline-flex">
                   Featured
                 </Link>
               </div>
@@ -156,7 +155,7 @@ export default async function Home() {
       <HomeVenueSearch facilities={directoryFacilities} />
 
       {selectedFacilities.length > 0 ? (
-        <section id="featured" className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
+        <section id="featured" className="px-5 py-10 sm:px-6 md:py-14">
           <div className="mx-auto max-w-6xl">
             <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
               <div>
@@ -169,9 +168,9 @@ export default async function Home() {
                 Explore all venues
               </Link>
             </div>
-            <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
+            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
-                <div key={facility.slug} className="min-w-[88%] snap-start sm:min-w-0">
+                <div key={facility.slug}>
                   <FacilityCard facility={facility} source="homepage_featured" compact />
                 </div>
               ))}
@@ -180,72 +179,63 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <section className="bg-[#f4efe6] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+      <section className="editorial-section bg-[#f4efe6] px-5 sm:px-6">
+        <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Services</p>
+              <p className="editorial-eyebrow mb-3">Services &amp; settings</p>
               <h2 className={sectionHeadingClass}>
-                Browse by service.
+                Start with what matters most.
               </h2>
             </div>
             <p className={sectionLeadClass}>
-              Fast routes into service guides for heat, cold, contrast, recovery technology and clinic-led longevity.
+              Choose a treatment when you know what you want, or a venue format when the setting will shape the visit.
             </p>
           </div>
 
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-6`}>
+          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {serviceLinks.map((treatment) => (
               <Link
                 key={treatment.href}
                 href={treatment.href}
-                className="group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
+                className="editorial-card group bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da]"
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
-                <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
+                <p className="text-[15px] leading-7 text-[#5f574c]">{treatment.description}</p>
+              </Link>
+            ))}
+          </div>
+          <div className="mt-5 grid gap-3 sm:grid-cols-3 sm:gap-4">
+            {venueTypeLinks.map((item) => (
+              <Link key={item.href} href={item.href} className={lightCardClass}>
+                <h3 className={editorialCardTitleClass}>{item.title}</h3>
+                <p className={editorialCardTextClass}>{item.text}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
+      <section className="editorial-section bg-[#fbf8f1] px-5 sm:px-6">
+        <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Shortlists</p>
-              <h2 className={sectionHeadingClass}>
-                Compare the strongest matches.
-              </h2>
+              <p className="editorial-eyebrow mb-3">Curated routes</p>
+              <h2 className={sectionHeadingClass}>Compare with a clearer brief.</h2>
             </div>
-            <p className={sectionLeadClass}>
-              Focused comparisons for saunas, cold plunges, contrast therapy and multi-service recovery clubs.
-            </p>
+            <p className={sectionLeadClass}>Use a focused shortlist for direct comparisons, or start with the outcome you want from the visit.</p>
           </div>
-
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-3`}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {collectionLinks.map((collection) => (
-              <Link key={collection.href} href={collection.href} className={lightCarouselCardClass}>
+              <Link key={collection.href} href={collection.href} className={lightCardClass}>
+                <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6f6048]">Shortlist</p>
                 <h3 className={editorialCardTitleClass}>{collection.title}</h3>
                 <p className={editorialCardTextClass}>{collection.text}</p>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Venue types</p>
-              <h2 className={sectionHeadingClass}>Choose by setting.</h2>
-            </div>
-            <p className={sectionLeadClass}>Browse broader venue formats when the setting matters as much as the treatment.</p>
-          </div>
-          <div className={`${mobileCarouselClass} sm:grid-cols-3 sm:gap-4`}>
-            {venueTypeLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
+            {useCaseLinks.map((item) => (
+              <Link key={item.href} href={item.href} className={lightCardClass}>
+                <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6f6048]">By need</p>
                 <h3 className={editorialCardTitleClass}>{item.title}</h3>
                 <p className={editorialCardTextClass}>{item.text}</p>
               </Link>
@@ -254,62 +244,36 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">London areas</p>
-              <h2 className={sectionHeadingClass}>Browse by part of London.</h2>
-            </div>
-            <p className={sectionLeadClass}>Start with the wider area when location is the deciding factor.</p>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {locationLinks.map((area) => (
-              <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#f4efe6] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
-                {area.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {featuredNeighbourhoods.length > 0 ? (
-        <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-          <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-            <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="editorial-eyebrow mb-3">Neighbourhoods</p>
-                <h2 className={sectionHeadingClass}>More precise local guides.</h2>
-              </div>
-              <p className={sectionLeadClass}>Use neighbourhood guides when you already know roughly where you want to book.</p>
-            </div>
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {featuredNeighbourhoods.map((area) => (
-                <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
-                  {area.shortTitle}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section className="editorial-section px-5 sm:px-6">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Use cases</p>
-              <h2 className={sectionHeadingClass}>Start with what you need.</h2>
+              <p className="editorial-eyebrow mb-3">Location</p>
+              <h2 className={sectionHeadingClass}>Find somewhere that fits your day.</h2>
             </div>
-            <p className={sectionLeadClass}>Compare places for post-training recovery, quieter visits, preventative health and first-time sessions.</p>
+            <p className={sectionLeadClass}>Start with a wider part of London, then narrow the search when a neighbourhood is more useful.</p>
           </div>
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
-            {useCaseLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
-                <h3 className={editorialCardTitleClass}>{item.title}</h3>
-                <p className={editorialCardTextClass}>{item.text}</p>
-              </Link>
-            ))}
+          <div className="editorial-card bg-[#fbf8f1] p-5 sm:p-7">
+            <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6f6048]">London areas</p>
+            <div className="flex flex-wrap gap-2 sm:gap-3">
+              {locationLinks.map((area) => (
+                <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#f4efe6] px-4 py-2.5 text-sm transition hover:bg-[#eee7da] sm:px-5">
+                  {area.label}
+                </Link>
+              ))}
+            </div>
+            {featuredNeighbourhoods.length > 0 ? (
+              <div className="mt-6 border-t border-[#d8cebf]/70 pt-6">
+                <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6f6048]">Neighbourhood guides</p>
+                <div className="flex flex-wrap gap-2 sm:gap-3">
+                  {featuredNeighbourhoods.map((area) => (
+                    <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] px-4 py-2.5 text-sm transition hover:bg-[#eee7da] sm:px-5">
+                      {area.shortTitle}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </section>
