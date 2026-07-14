@@ -12,12 +12,12 @@ export const centralLondonGuide: LocationGuide = {
   slug: "central-london-wellness",
   title: "Best Wellness & Recovery Spaces in Central London",
   description:
-    "Discover curated saunas, cold plunge studios, cryotherapy and recovery spaces across Central London, including Soho, Covent Garden, Marylebone and Fitzrovia.",
+    "Compare saunas, cold plunges, cryotherapy and recovery venues across Soho, Covent Garden, Marylebone, Fitzrovia and Mayfair.",
   areas: ["Soho", "Covent Garden", "Marylebone", "Fitzrovia", "Mayfair", "Holborn"],
   intro: [
-    "Central London is where many of the city’s highest-profile wellness concepts and recovery studios are concentrated. From premium sauna spaces and contrast therapy clubs to cryotherapy and luxury wellness facilities, the area offers a dense mix of treatments designed around busy city lifestyles.",
-    "Neighbourhoods such as Soho, Covent Garden, Marylebone and Fitzrovia combine accessibility with a growing demand for recovery spaces that fit naturally around work, fitness and urban routines.",
-    "Use this guide to compare Central London wellness spaces at a broad regional level, while naturally referencing key neighbourhoods that help distinguish atmosphere, convenience and treatment style."
+    "Central London has a dense mix of recovery studios, hotel spas, members' clubs and treatment-led clinics, often within walking distance of major offices and transport hubs.",
+    "Soho and Covent Garden suit shorter appointments around work or an evening out; Marylebone, Fitzrovia and Mayfair include more clinic-led, private and hotel-based options.",
+    "Compare the access model as carefully as the treatment: some venues take public bookings, while others restrict facilities to members or hotel guests."
   ],
   highlights: [
     {
@@ -25,8 +25,8 @@ export const centralLondonGuide: LocationGuide = {
       text: "Central London is ideal for people who want recovery spaces close to offices, gyms, hotels and transport links."
     },
     {
-      title: "Best for premium concepts",
-      text: "Many of London’s more design-led and trend-aware wellness concepts launch in central neighbourhoods first."
+      title: "Best for choice",
+      text: "The area covers public studios, hotel spas, private clubs and specialist clinics within a relatively compact part of London."
     },
     {
       title: "Best for mixed wellness routines",
@@ -40,7 +40,7 @@ export const centralLondonGuide: LocationGuide = {
     },
     {
       question: "Is Central London good for recovery and wellness?",
-      answer: "Yes. Central London offers one of the highest concentrations of premium wellness and recovery spaces in the city, especially for people balancing work, fitness and city living."
+      answer: "Yes. The main advantage is choice and transport access, but prices and access rules vary widely between public studios, hotel spas and members' clubs."
     }
   ]
 };
@@ -48,17 +48,17 @@ export const centralLondonGuide: LocationGuide = {
 export const northLondonGuide: LocationGuide = {
   slug: "north-london-wellness",
   title: "Best Wellness & Recovery Spaces in North London",
-  description: "Discover curated saunas, cold plunge, cryotherapy and recovery spaces across North London.",
+  description: "Compare saunas, cold plunges and recovery venues across Islington, Hampstead, Camden, Highbury and nearby North London areas.",
   areas: ["Islington", "Hampstead", "Camden", "Highbury", "Primrose Hill", "Finsbury Park"],
   intro: [
-    "North London’s wellness scene is shaped by neighbourhood-led studios and calmer residential recovery spaces.",
-    "Areas such as Islington, Hampstead and Camden support practical weekly recovery routines.",
-    "Use this guide to compare North London wellness and recovery spaces at a broad regional level."
+    "North London listings are spread across residential neighbourhoods rather than one central wellness district.",
+    "That makes journey time and repeatability especially important: compare venues near home, work or a regular transport route before comparing smaller differences in atmosphere.",
+    "The mix includes community sauna, private recovery studios and appointment-led treatments, with access and facilities varying by venue."
   ],
   highlights: [
-    { title: "Best for repeat routines", text: "Works well for people wanting recovery close to home or work." },
-    { title: "Best for calmer spaces", text: "Many venues feel less destination-led and more practical." },
-    { title: "Best for local discovery", text: "Useful for comparing smaller studios across North London." }
+    { title: "Best for repeat routines", text: "Prioritise a venue close to home, work or a station you already use." },
+    { title: "Best for neighbourhood studios", text: "The region includes smaller operators and community-led formats as well as larger clubs." },
+    { title: "Check before travelling", text: "North London is broad, so confirm the exact branch, postcode and transport route." }
   ],
   faqs: [
     { question: "Where are the best wellness spaces in North London?", answer: "Useful areas include Islington, Hampstead, Camden and Highbury." },
@@ -70,12 +70,12 @@ export const eastLondonGuide: LocationGuide = {
   slug: "east-london-wellness",
   title: "Best Wellness & Recovery Spaces in East London",
   description:
-    "Discover curated saunas, cold plunge studios, cryotherapy and recovery spaces across East London, including Shoreditch, Hackney and Canary Wharf.",
+    "Compare saunas, cold plunges, contrast therapy and recovery venues across Shoreditch, Hackney, Canary Wharf and nearby East London areas.",
   areas: ["Shoreditch", "Hackney", "Canary Wharf", "Bethnal Green", "Dalston", "London Fields"],
   intro: [
-    "East London has become one of the strongest areas in the city for modern recovery culture. Boutique wellness studios, design-led saunas, contrast therapy spaces and performance-focused recovery clubs now sit alongside gyms, cafés and creative workspaces across Shoreditch, Hackney and Canary Wharf.",
-    "The area suits people looking for wellness spaces that feel integrated into everyday life rather than destination spas. Many venues are smaller, more design-conscious and built around repeat weekly rituals rather than occasional visits.",
-    "Use this guide to explore recovery spaces across East London, from infrared saunas and cold plunge studios to broader recovery clubs offering contrast therapy and performance-led treatments."
+    "East London has a useful concentration of sauna-and-cold-plunge venues, particularly around Hackney and Shoreditch, alongside gym-based and members' facilities in Canary Wharf.",
+    "Shared community sessions, outdoor setups and guided contrast formats are more common here than traditional hotel-spa experiences.",
+    "Check whether a session is guided or self-led, private or shared, and whether towels, showers and changing facilities are included."
   ],
   highlights: [
     {
@@ -83,8 +83,8 @@ export const eastLondonGuide: LocationGuide = {
       text: "East London has a growing concentration of studios combining sauna and cold plunge within one guided experience."
     },
     {
-      title: "Best for creative professionals",
-      text: "Many spaces are designed around calmer daily rituals, flexible drop-ins and post-work recovery sessions."
+      title: "Best for after-work sessions",
+      text: "Shoreditch and Canary Wharf both have options close to offices, gyms and major transport links."
     },
     {
       title: "Best for gym-adjacent recovery",
@@ -106,17 +106,17 @@ export const eastLondonGuide: LocationGuide = {
 export const southLondonGuide: LocationGuide = {
   slug: "south-london-wellness",
   title: "Best Wellness & Recovery Spaces in South London",
-  description: "Discover curated saunas, cold plunge, cryotherapy and recovery spaces across South London.",
+  description: "Compare saunas, cold plunges and recovery venues across Brixton, Peckham, Battersea, Clapham and wider South London.",
   areas: ["Clapham", "Battersea", "Brixton", "Wimbledon", "Peckham", "Dulwich"],
   intro: [
-    "South London’s wellness scene is spread across residential and lifestyle-led neighbourhoods.",
-    "Areas such as Clapham, Battersea and Wimbledon support a mix of sauna access and recovery services.",
-    "Use this guide to compare South London wellness and recovery spaces at a regional level."
+    "South London venues are spread across Brixton, Peckham, Battersea, Clapham and other neighbourhood centres rather than clustered in one district.",
+    "The current mix includes community sauna, rooftop or outdoor heat-and-cold sessions, and appointment-led recovery services.",
+    "Compare the exact location, session format and facilities before booking; two venues in the same broad area can offer very different visits."
   ],
   highlights: [
-    { title: "Best for local routines", text: "Useful for people who want recovery access close to home." },
-    { title: "Best for lifestyle-led spaces", text: "Many venues combine recovery and movement." },
-    { title: "Best for weekend recovery", text: "Works well for slower weekend wellness routines." }
+    { title: "Best for local routines", text: "Choose by journey time if you expect to book regularly." },
+    { title: "Best for community formats", text: "Several South London options use shared, social or outdoor session formats." },
+    { title: "Check the setup", text: "Outdoor and rooftop venues may have different changing, shower and weather policies." }
   ],
   faqs: [
     { question: "Where are the best wellness spaces in South London?", answer: "Useful areas include Clapham, Battersea, Brixton and Wimbledon." },
@@ -127,20 +127,20 @@ export const southLondonGuide: LocationGuide = {
 export const westLondonGuide: LocationGuide = {
   slug: "west-london-wellness",
   title: "Best Wellness & Recovery Spaces in West London",
-  description: "Discover curated saunas, cold plunge, cryotherapy and recovery spaces across West London.",
+  description: "Compare spas, saunas, recovery studios and longevity clinics across Notting Hill, Chelsea, Kensington, Fulham and wider West London.",
   areas: ["Notting Hill", "Chelsea", "Kensington", "Chiswick", "Hammersmith", "Fulham"],
   intro: [
-    "West London is naturally aligned with premium wellness and calmer lifestyle-led recovery experiences.",
-    "Across neighbourhoods such as Notting Hill, Chelsea and Kensington, the wellness offer includes saunas, cryotherapy and luxury studios.",
-    "Use this guide to explore West London at a broad regional level while still referencing key neighbourhoods naturally."
+    "West London has a broad mix of hotel spas, private recovery studios, members' clubs and clinic-led longevity services.",
+    "Chelsea and Kensington are stronger for diagnostics and equipment-led recovery; Notting Hill combines spa, movement and treatment-led venues.",
+    "Access is the key comparison: check whether facilities are public, tied to a treatment, reserved for hotel guests or limited to members."
   ],
   highlights: [
-    { title: "Best for premium spaces", text: "A strong fit for polished and luxury-led wellness experiences." },
-    { title: "Best for private treatments", text: "Well suited to private rooms and calmer appointment-led treatments." },
-    { title: "Best for lifestyle wellness", text: "Many venues blend recovery with beauty and movement." }
+    { title: "Best for higher-service venues", text: "West London has a strong selection of hotel spas, private rooms and appointment-led clinics." },
+    { title: "Best for private treatments", text: "Useful when privacy and one-to-one appointments matter more than shared facilities." },
+    { title: "Best for mixed services", text: "Many venues combine recovery with diagnostics, beauty, movement or spa treatments." }
   ],
   faqs: [
     { question: "Where are the best wellness spaces in West London?", answer: "Notting Hill, Chelsea, Kensington and Fulham are useful areas to explore." },
-    { question: "Is West London good for luxury wellness?", answer: "Yes. West London is one of the stronger areas for premium wellness experiences." }
+    { question: "Is West London good for luxury wellness?", answer: "Yes. It has many hotel spas, private clinics and members' venues, but confirm public access and exactly what each booking includes." }
   ]
 };

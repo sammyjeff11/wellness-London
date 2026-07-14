@@ -90,9 +90,9 @@ export const activityPages: ActivityPageConfig[] = [
     label: "Sauna",
     title: "Sauna in London",
     metaTitle: "Sauna in London | Well+ Activity Guide",
-    description: "Explore London sauna venues, including traditional, communal and premium heat therapy spaces.",
+    description: "Compare London sauna venues by heat type, privacy, access, facilities and whether cold-water recovery is included.",
     eyebrow: "Heat therapy",
-    heroText: "Traditional, communal and premium heat spaces for recovery, reset and ritual.",
+    heroText: "Traditional, communal and private sauna venues, with the practical details that change the visit.",
     activityLabels: ["Sauna"],
     serviceKeys: ["sauna"],
     keywords: ["sauna", "finnish", "heat therapy", "heat exposure"],
@@ -100,8 +100,8 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/infrared-sauna-london", label: "Infrared Sauna", text: "Gentler private heat experiences and wellness-club infrared rooms." },
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water venues that pair naturally with sauna routines." },
       { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Spaces combining heat and cold in one structured recovery ritual." },
-      { href: "/collections/best-sauna-london", label: "Best Sauna London", text: "Curated best-of sauna options across London." },
-      { href: "/collections/best-recovery-clubs-london", label: "Best Recovery Clubs London", text: "Recovery clubs that often combine sauna with cold and technology-led recovery." },
+      { href: "/collections/best-sauna-london", label: "Best saunas in London", text: "Compare sauna venues by setting, access and facilities." },
+      { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Recovery clubs that often combine sauna with cold and equipment-led services." },
     ],
     bestFor: [
       { title: "Heat-led recovery", text: "Useful when you want a simple, repeatable recovery ritual after training or a demanding week." },
@@ -130,15 +130,15 @@ export const activityPages: ActivityPageConfig[] = [
     label: "Infrared Sauna",
     title: "Infrared Sauna in London",
     metaTitle: "Infrared Sauna in London | Well+ Activity Guide",
-    description: "Find London venues offering infrared sauna, from private recovery rooms to premium wellness clubs.",
+    description: "Compare London infrared sauna venues by cabin type, privacy, session length, facilities and access.",
     eyebrow: "Gentle heat",
-    heroText: "Lower-intensity heat spaces often used for quiet recovery, reset and wellness routines.",
+    heroText: "Lower-temperature sauna sessions, often in private or semi-private cabins.",
     activityLabels: ["Infrared Sauna"],
     serviceKeys: [],
     keywords: ["infrared sauna", "infrared"],
     related: [
       { href: "/sauna-london", label: "Sauna", text: "Compare infrared with traditional and communal sauna experiences." },
-      { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity often found in premium studios." },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "A separate light-based service offered by some of the same recovery studios." },
     ],
     bestFor: [
       { title: "Private heat rituals", text: "Best when you want a calmer room, often solo or couple-friendly rather than communal." },
@@ -177,8 +177,8 @@ export const activityPages: ActivityPageConfig[] = [
       { href: "/sauna-london", label: "Sauna", text: "Heat-led spaces that often pair with ice baths and cold plunge." },
       { href: "/contrast-therapy-london", label: "Contrast Therapy", text: "Sauna and ice bath or cold plunge together in one hot-and-cold recovery ritual." },
       { href: "/cryotherapy-london", label: "Cryotherapy", text: "A different cold-therapy format using cold air rather than water immersion." },
-      { href: "/collections/best-cold-plunge-london", label: "Best Cold Plunge London", text: "Curated cold plunge, ice bath, cold therapy and contrast therapy venues." },
-      { href: "/collections/best-recovery-clubs-london", label: "Best Recovery Clubs London", text: "Broader recovery spaces for post-training routines." },
+      { href: "/collections/best-cold-plunge-london", label: "Best cold plunges in London", text: "Compare cold plunge, ice bath and contrast therapy venues." },
+      { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Broader recovery spaces for post-training routines." },
     ],
     bestFor: [
       { title: "Cold exposure beginners", text: "Choose venues with clear staff guidance, short first dips and somewhere warm to recover afterwards." },
@@ -217,8 +217,8 @@ export const activityPages: ActivityPageConfig[] = [
     related: [
       { href: "/sauna-london", label: "Sauna", text: "Heat-led spaces across London." },
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Cold-water recovery spaces and ice baths." },
-      { href: "/collections/best-sauna-london", label: "Best Sauna London", text: "Curated heat-led spaces across London." },
-      { href: "/collections/best-cold-plunge-london", label: "Best Cold Plunge London", text: "Curated cold plunge and contrast therapy venues." },
+      { href: "/collections/best-sauna-london", label: "Best saunas in London", text: "Compare heat-led venues across London." },
+      { href: "/collections/best-cold-plunge-london", label: "Best cold plunges in London", text: "Compare cold plunge and contrast therapy venues." },
     ],
     bestFor: [
       { title: "Full recovery circuits", text: "Best when you want heat, cold and decompression in one purposeful visit." },
@@ -256,7 +256,7 @@ export const activityPages: ActivityPageConfig[] = [
     related: [
       { href: "/cold-plunge-london", label: "Cold Plunge", text: "Compare cryotherapy with cold-water immersion." },
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another recovery technology often offered in premium wellness spaces." },
-      { href: "/collections/best-recovery-clubs-london", label: "Best Recovery Clubs London", text: "Curated recovery clubs and studios across London." },
+      { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Compare recovery clubs and studios across London." },
     ],
     bestFor: [
       { title: "Time-efficient cold therapy", text: "Often chosen when you want a short, staff-led cold treatment rather than water immersion." },
@@ -294,7 +294,7 @@ export const activityPages: ActivityPageConfig[] = [
     related: [
       { href: "/hbot-london", label: "HBOT", text: "Another longevity and recovery technology offered by some premium clinics." },
       { href: "/longevity-london", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
-      { href: "/collections/best-recovery-clubs-london", label: "Best Recovery Clubs London", text: "Curated recovery clubs with technology-led treatments." },
+      { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Compare recovery clubs offering equipment-led treatments." },
     ],
     bestFor: [
       { title: "Technology-led recovery", text: "Best for users comparing non-invasive, appointment-led wellness technologies." },
@@ -332,7 +332,7 @@ export const activityPages: ActivityPageConfig[] = [
     related: [
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity found in longevity spaces." },
       { href: "/longevity-london", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
-      { href: "/collections/best-recovery-clubs-london", label: "Best Recovery Clubs London", text: "Curated recovery clubs with oxygen, light and cold technologies." },
+      { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Compare recovery clubs offering oxygen, light and cold services." },
     ],
     bestFor: [
       { title: "Clinic-led wellness", text: "Best for users comfortable with a more specialist, consultation-led environment." },

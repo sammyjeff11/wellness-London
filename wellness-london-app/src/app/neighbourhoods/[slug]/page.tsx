@@ -411,7 +411,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                 <p className="text-sm leading-7 text-[#5f574c]">{page.summary}</p>
               </div>
               <div>
-                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Are there curated listings in {page.shortTitle}?</h2>
+                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Which venues are listed in {page.shortTitle}?</h2>
                 <p className="text-sm leading-7 text-[#5f574c]">
                   {displayFacilities.length > 0
                     ? `Yes — this guide currently highlights ${displayFacilities.length} matched listing${displayFacilities.length === 1 ? "" : "s"} in ${page.shortTitle} based on the available location data.`

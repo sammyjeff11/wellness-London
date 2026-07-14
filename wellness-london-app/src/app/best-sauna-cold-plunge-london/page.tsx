@@ -77,7 +77,7 @@ export default async function BestSaunaColdPlungeLondonPage() {
                 Sauna and cold plunge spaces sit at the centre of London&apos;s modern recovery scene: part ritual, part training support, part reset from the pace of the city.
               </p>
               <p>
-                This Well+ edit brings together venues where heat and cold can be experienced in the same recovery journey, from contrast therapy studios to wellness spaces with a broader recovery setup.
+                This shortlist brings together venues where sauna and cold-water immersion are available in the same visit, from dedicated contrast studios to broader recovery clubs.
               </p>
               <p className="text-sm leading-7 text-[#8a7f70]">
                 Use this as a starting point for discovery. Always check current facilities, booking requirements and health suitability directly with the venue before visiting.

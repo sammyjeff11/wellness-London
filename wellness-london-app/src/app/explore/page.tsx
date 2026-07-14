@@ -6,7 +6,7 @@ import { serviceTaxonomy } from "@/lib/taxonomy";
 export const metadata: Metadata = {
   title: "Explore London Wellness | Well+",
   description:
-    "Explore London wellness spaces by intention, treatment and experience, from recovery and reset to optimisation and longevity.",
+    "Browse London wellness venues by goal, service and setting, from post-training recovery to preventative health.",
   alternates: {
     canonical: "/explore",
   },
@@ -23,10 +23,10 @@ export default function ExplorePage() {
         <div className="mx-auto max-w-5xl">
           <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Explore London wellness</p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
-            Browse by intention, treatment or experience.
+            Browse by goal, service or setting.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            Well+ organises London wellness spaces around what people are actually looking for: recovery, performance, reset, optimisation and longer-term wellbeing.
+            Start with the outcome you want, then compare the service, access rules, location and practical details before you book.
           </p>
         </div>
       </section>
@@ -37,11 +37,11 @@ export default function ExplorePage() {
             <div>
               <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by intention</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Wellness pillars.
+                Start with your goal.
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              These pillars help organise wellness spaces by outcome and experience rather than only by treatment type.
+              Use these five routes when you know what you want to achieve but not which treatment or venue will suit you.
             </p>
           </div>
 
@@ -70,11 +70,11 @@ export default function ExplorePage() {
             <div>
               <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Popular searches</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Direct routes into treatments.
+                Browse specific services.
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              Some users already know exactly what they want. These pages provide faster routes into the most searched wellness treatments and recovery formats.
+              If you already know the treatment, go straight to a service guide and compare matching venues.
             </p>
           </div>
 

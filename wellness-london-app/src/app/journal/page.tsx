@@ -15,7 +15,7 @@ const featuredArticles = [
 export const metadata: Metadata = {
   title: "Journal | Well+ London",
   description:
-    "The Well+ Journal: practical guides, curated roundups and editorial notes on London sauna, recovery and wellness spaces.",
+    "Practical Well+ guides to London sauna, recovery and wellness venues, with clear comparisons and booking advice.",
   alternates: {
     canonical: "/journal",
   },
@@ -37,10 +37,10 @@ export default function JournalPage() {
             <div>
               <p className="editorial-eyebrow mb-5">The Well+ Journal</p>
               <h1 className="max-w-4xl font-serif text-[3.7rem] font-normal leading-[0.9] tracking-[-0.025em] sm:text-7xl md:text-8xl">
-                Guides to recovery, ritual and city wellness.
+                Practical guides to London wellness.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-[#5f574c] sm:text-xl sm:leading-9">
-                Practical guides, curated roundups and considered notes to help you choose where to go — not a generic wellness blog.
+                Clear comparisons, evidence-aware explainers and useful questions to ask before you book.
               </p>
             </div>
           </div>
@@ -53,11 +53,11 @@ export default function JournalPage() {
             <div>
               <p className="editorial-eyebrow mb-3">Featured</p>
               <h2 className="font-serif text-[2.45rem] font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">
-                Start with the first edit.
+                Start with our sauna guide.
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-              Journal pages are designed to feel more editorial than the directory, while still linking back into live Well+ venue profiles.
+              Understand the differences between services, then move directly into current venue profiles.
             </p>
           </div>
 

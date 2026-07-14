@@ -92,7 +92,7 @@ const collectionPageJsonLd = {
   "@type": "CollectionPage",
   name: "Well+ Editorial",
   description:
-    "Best-of guides, practical explainers and curation standards from Well+, the curated London wellness directory.",
+    "Venue shortlists, practical service explainers and editorial standards from the Well+ London wellness directory.",
   url: absoluteUrl("/editorial"),
   isPartOf: { "@type": "WebSite", name: "Well+", url: absoluteUrl("/") },
   hasPart: indexEntries.map((entry) => ({

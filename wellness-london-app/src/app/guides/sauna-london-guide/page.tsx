@@ -96,7 +96,7 @@ export default function SaunaLondonGuidePage() {
             href: "/sauna-london",
             label: "Best Saunas in London",
             description:
-              "Compare curated sauna spaces across London, including infrared, Finnish and contrast therapy studios.",
+              "Compare London sauna venues, including infrared, Finnish and contrast therapy studios.",
           },
           {
             href: "/cold-plunge-london",

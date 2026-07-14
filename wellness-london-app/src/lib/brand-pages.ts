@@ -23,7 +23,7 @@ export const brandPages: BrandPage[] = [
       "Browse Lowlu locations in London, including live sauna and plunge villages in Kentish Town and Wandsworth, plus new openings as they become available.",
     seoTitle: "Lowlu London locations | Well+ London",
     seoDescription:
-      "Explore Lowlu sauna and cold plunge locations in London, including Kentish Town, Wandsworth and upcoming openings, curated by Well+.",
+      "Compare Lowlu sauna and cold plunge locations in London, including Kentish Town, Wandsworth and upcoming openings.",
   },
   {
     slug: "rooftop-saunas",
@@ -31,12 +31,12 @@ export const brandPages: BrandPage[] = [
     operator: "Rooftop Saunas",
     eyebrow: "Rooftop sauna operator",
     intro:
-      "Rooftop Saunas offers private sauna cabins, cold plunges and elevated recovery sessions across London rooftop settings.",
+      "Rooftop Saunas offers private sauna cabins and outdoor cold plunges at rooftop locations in London.",
     description:
       "Browse Rooftop Saunas in Hackney and Brixton, with separate profiles for clearer booking and neighbourhood discovery.",
     seoTitle: "Rooftop Saunas London locations | Well+ London",
     seoDescription:
-      "Explore Rooftop Saunas locations in London, including Hackney and Brixton rooftop sauna and cold plunge experiences, curated by Well+.",
+      "Compare Rooftop Saunas locations in London, including the Hackney and Brixton sauna-and-cold-plunge venues.",
   },
 ];
 

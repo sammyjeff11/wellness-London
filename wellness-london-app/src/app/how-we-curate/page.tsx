@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "How Well+ Curates London Wellness Venues | Well+",
-  description: "Learn how Well+ curates London saunas, cold plunges, recovery studios, longevity spaces and wellness venues.",
+  title: "How Well+ Selects and Checks Venues | Well+",
+  description: "How Well+ selects, checks and presents London wellness venues, including our approach to sources, practical details and health claims.",
   alternates: { canonical: "/how-we-curate" },
 };
 
@@ -16,8 +16,8 @@ const editorialCards = [
     text: "A stronger listing helps people understand what the visit is actually like: the access model, setting, practical facilities, service format, price structure and booking experience.",
   },
   {
-    title: "Editorial selection, not every option",
-    text: "Well+ is a curated guide rather than an exhaustive directory. We prioritise venues that feel useful, distinctive or relevant for recovery, reset, performance and longevity intent.",
+    title: "A useful shortlist, not every result",
+    text: "Well+ is not an exhaustive directory. We prioritise venues with a clear London location, relevant services and enough reliable information to help someone decide whether to book.",
   },
   {
     title: "Clear boundaries around health claims",
@@ -40,10 +40,10 @@ export default function HowWeCuratePage() {
         <div className="mx-auto max-w-6xl">
           <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Our approach</p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
-            How Well+ curates venues.
+            How Well+ selects and checks venues.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            Well+ is a curated London guide to saunas, cold plunges, recovery studios, longevity spaces and modern wellness venues. Our aim is to make discovery feel calmer, more editorial and more practical, so users can compare spaces by what they offer, how they feel and how they fit real London routines.
+            We organise London wellness venues so you can compare what they offer, who can access them, what a visit costs and what to check before booking. Selection is based on usefulness and source quality, not promotional language.
           </p>
         </div>
       </section>
@@ -85,7 +85,7 @@ export default function HowWeCuratePage() {
           </div>
           <div className="space-y-5 text-sm leading-7 text-[#fbf8f1]/78">
             <p>
-              Venue details, services, prices, opening hours, availability and facilities can change. Well+ is designed as an editorial discovery guide, so users should check directly with the venue before booking or travelling.
+              Venue details, services, prices, opening hours, availability and facilities can change. Check directly with the venue before booking or travelling.
             </p>
             <p>
               Well+ is not medical advice and does not verify medical claims. For medical-adjacent services, suitability questions or specific health concerns, users should speak with the venue and, where relevant, a qualified professional.

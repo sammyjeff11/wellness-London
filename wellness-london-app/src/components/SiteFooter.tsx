@@ -90,7 +90,7 @@ export default async function SiteFooter() {
         <div className="mb-6 md:mb-0">
           <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
           <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
-            The London wellness edit — a curated guide to saunas, cold plunges, recovery studios and modern wellbeing across the capital.
+            A practical guide to London saunas, cold plunges, recovery studios, spas and longevity clinics.
           </p>
         </div>
 

@@ -8,7 +8,7 @@ import { toDirectoryFacility } from "@/lib/facility-presenters";
 export const metadata: Metadata = {
   title: "Best Recovery Clubs in London | Well+",
   description:
-    "A curated guide to London's best recovery clubs and recovery-led wellness studios, including contrast therapy, sauna, cryotherapy and performance recovery spaces.",
+    "Compare London recovery clubs and studios offering sauna, cold plunge, cryotherapy, compression and other post-training services.",
   alternates: {
     canonical: "/best-recovery-clubs-london",
   },
@@ -46,13 +46,13 @@ export default async function BestRecoveryClubsPage() {
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
           <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">
-            Curated collections / Recover + Perform
+            Venue shortlist / Recover + Perform
           </p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
             The best recovery clubs in London.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            A curated guide to London&apos;s strongest recovery-led wellness spaces — combining sauna, cold plunge, cryotherapy, compression and performance-focused recovery routines.
+            Compare multi-service venues for sauna, cold plunge, cryotherapy, compression and other post-training recovery options.
           </p>
         </div>
       </section>
@@ -86,13 +86,13 @@ export default async function BestRecoveryClubsPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Curated venues</p>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Selected venues</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
                 Recovery-focused London spaces.
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              These venues have been selected for treatment breadth, recovery relevance, repeatability and overall editorial fit.
+              Selected for relevant services, practical listing detail and a format that can support repeat visits.
             </p>
           </div>
 
@@ -109,18 +109,18 @@ export default async function BestRecoveryClubsPage() {
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Editorial perspective</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-              Recovery clubs are becoming lifestyle infrastructure.
+              A recovery club should make repeat visits practical.
             </h2>
           </div>
           <div className="space-y-5 text-sm leading-8 text-[#fbf8f1]/78 md:text-base">
             <p>
-              London&apos;s strongest recovery clubs are no longer only serving athletes. Many now operate as broader wellness environments for recovery, stress management and repeatable routines.
+              Recovery clubs are not only for competitive athletes. Many now serve people managing regular training, demanding work schedules or recurring soreness.
             </p>
             <p>
-              The most compelling venues tend to combine strong operational flow with thoughtful hospitality, rather than focusing purely on treatment intensity.
+              Compare the parts that affect regular use: location, opening hours, changing facilities, session length, booking rules and package pricing.
             </p>
             <p>
-              Well+ prioritises recovery spaces that feel intentional, practical and genuinely usable within everyday life.
+              A long treatment list is less useful if the access model or session format does not fit your routine.
             </p>
           </div>
         </div>

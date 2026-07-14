@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Best Saunas in London | The Well+ Journal",
     description:
-      "A curated editorial guide to London sauna spaces, from heat-and-cold recovery studios to premium wellness clubs.",
+      "A practical guide to London sauna venues, from communal heat and private infrared rooms to sauna-and-cold-plunge studios.",
     url: absoluteUrl("/journal/best-saunas-london"),
     type: "article",
   },
@@ -358,7 +358,7 @@ export default async function BestSaunasJournalPage() {
             <div className="mb-4 grid gap-5 lg:grid-cols-[0.32fr_0.68fr] lg:items-end">
               <p className="text-[11px] uppercase tracking-[0.24em] text-[#8d7d67]">The edit</p>
               <h2 className="font-serif text-[3rem] font-normal leading-[0.92] tracking-[-0.03em] sm:text-6xl">
-                Sauna spaces worth comparing.
+                Compare sauna venues by format.
               </h2>
             </div>
             <p className="ml-auto max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">

@@ -8,7 +8,7 @@ import { toDirectoryFacility } from "@/lib/facility-presenters";
 export const metadata: Metadata = {
   title: "Quiet Wellness Spaces in London | Well+",
   description:
-    "A curated guide to quiet London wellness spaces for calm, reset, sauna, bathhouse rituals and restorative recovery.",
+    "Compare quieter London wellness venues, including private saunas, bathhouses, spas and appointment-led recovery spaces.",
   alternates: {
     canonical: "/quiet-wellness-spaces-london",
   },
@@ -51,13 +51,13 @@ export default async function QuietWellnessSpacesPage() {
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
           <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">
-            Curated collections / Reset
+            Venue shortlist / Reset
           </p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
             Quiet wellness spaces in London.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            A calmer edit of London wellness spaces for switching off — from private sauna rooms and restorative recovery studios to bathhouse-style rituals and slower reset experiences.
+            Compare private sauna rooms, bathhouses, spas and appointment-led venues where noise, privacy and pacing matter.
           </p>
         </div>
       </section>
@@ -67,7 +67,7 @@ export default async function QuietWellnessSpacesPage() {
           <div>
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Best for</p>
             <p className="text-sm leading-7 text-[#5f574c]">
-              Stress relief, solo reset, slower recovery rituals, sleep-supporting routines and quieter wellness experiences.
+              Solo visits, low-stimulation settings, slower recovery sessions and people who prefer clear appointment windows.
             </p>
           </div>
           <div>
@@ -91,13 +91,13 @@ export default async function QuietWellnessSpacesPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Curated venues</p>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Selected venues</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Calm London spaces worth bookmarking.
+                Quieter venues to compare.
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              Selected for atmosphere, reset potential, privacy signals, facilities and fit with a slower wellness routine.
+              Selected using privacy, session format, access model and facilities. Always confirm whether shared areas or peak sessions may be busy.
             </p>
           </div>
 
@@ -119,13 +119,13 @@ export default async function QuietWellnessSpacesPage() {
           </div>
           <div className="space-y-5 text-sm leading-8 text-[#fbf8f1]/78 md:text-base">
             <p>
-              Some of London&apos;s best reset spaces are calm because the booking model, room layout and service flow are carefully controlled — not because they are always silent.
+              A venue can feel calm because capacity, room layout and appointment times are controlled; that does not mean every session will be silent.
             </p>
             <p>
-              If you are looking for a genuinely restorative experience, check whether the venue is private, guided, membership-led, spa-like or more social before booking.
+              Check whether the booking is private, guided, members-only or shared, and ask about peak periods if noise matters to you.
             </p>
             <p>
-              The strongest quiet wellness spaces usually combine practical details with atmosphere: towels, showers, changing facilities, clear timings and a slower rhythm.
+              Towels, showers, changing space and enough time after the session often matter more than decorative claims about tranquillity.
             </p>
           </div>
         </div>

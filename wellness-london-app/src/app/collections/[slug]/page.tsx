@@ -176,7 +176,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Curated picks</p>
+              <p className="editorial-eyebrow mb-3">Selected by use case</p>
               <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
                 Where to start.
               </h2>

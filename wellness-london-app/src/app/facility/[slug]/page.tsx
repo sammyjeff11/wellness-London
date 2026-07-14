@@ -52,7 +52,7 @@ function getEditorialCandidates(facility: AirtableFacility) {
 }
 
 function getMetaDescription(facility: AirtableFacility) {
-  const description = getEditorialCandidates(facility)[0] || `Explore ${facility.name}, a curated London wellness venue listed on Well+.`;
+  const description = getEditorialCandidates(facility)[0] || `View services, access and booking details for ${facility.name} in London.`;
   return truncateMetaText(description);
 }
 
@@ -234,7 +234,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   const location = getCleanLocation(facility);
   const editorialCandidates = getEditorialCandidates(facility);
-  const heroSummary = editorialCandidates[0] || `A curated London wellness venue listed on Well+.`;
+  const heroSummary = editorialCandidates[0] || "View the available services, access rules and practical booking details.";
   const whyCopy = editorialCandidates.find((candidate) => candidate !== heroSummary);
   const services = canonicaliseServiceList(cleanList(facility.servicesOffered));
   const relatedGuides = getRelatedGuides(services);
@@ -422,7 +422,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {relatedGuides.length > 0 ? (
         <section className="px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="Related guides" title="Keep exploring" copy="Use these guides to compare similar services across London and understand what to look for before booking." />
+            <SectionHeading eyebrow="Related guides" title="Compare related services" copy="See similar services across London and the practical differences to check before booking." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {relatedGuides.map((guide) => (
                 <Link key={guide.href} href={guide.href} className="group flex min-h-48 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">

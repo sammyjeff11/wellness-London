@@ -15,7 +15,7 @@ export const facilities: Facility[] = [
     area: "London",
     services: ["Sauna", "Cold Plunge", "Recovery"],
     priceRange: "Premium",
-    description: "Premium wellness experience in London",
+    description: "London wellness venue; check the profile for current services and access.",
     website: "https://www.arccommunity.co.uk",
   },
   {
@@ -24,7 +24,7 @@ export const facilities: Facility[] = [
     area: "London",
     services: ["Sauna", "Cold Plunge", "Breathwork"],
     priceRange: "Premium",
-    description: "Premium wellness experience in London",
+    description: "London wellness venue; check the profile for current services and access.",
     website: "https://www.othership.us",
   },
   {
@@ -33,7 +33,7 @@ export const facilities: Facility[] = [
     area: "London",
     services: ["Cryotherapy", "Cold Plunge", "Recovery"],
     priceRange: "Premium",
-    description: "Premium wellness experience in London",
+    description: "London wellness venue; check the profile for current services and access.",
     website: "https://www.rebaserecovery.com",
   },
 ];
