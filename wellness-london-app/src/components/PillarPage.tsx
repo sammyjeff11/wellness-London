@@ -10,6 +10,13 @@ import {
   type ServicePillar,
 } from "@/lib/service-pillars";
 
+const pillarSlugMap: Record<string, ServicePillar> = {
+  recover: "recovery",
+  perform: "performance",
+  reset: "reset",
+  optimise: "optimise",
+};
+
 export default function PillarPage({
   pillar,
   facilities,
@@ -17,13 +24,17 @@ export default function PillarPage({
   pillar: PillarPageConfig;
   facilities: AirtableFacility[];
 }) {
-  const servicePillar = pillar.slug as ServicePillar;
+  const servicePillar = pillarSlugMap[pillar.slug];
   const featuredFacilities = dedupeFacilities(facilities.map(toDirectoryFacility))
     .slice(0, 9)
     .map((facility) => {
       const originalServices = facility.services || [];
-      const matchedPillarServices = getMatchedPillarServices(servicePillar, originalServices);
-      const prioritisedServices = prioritiseServicesForPillar(servicePillar, originalServices);
+      const matchedPillarServices = servicePillar
+        ? getMatchedPillarServices(servicePillar, originalServices)
+        : [];
+      const prioritisedServices = servicePillar
+        ? prioritiseServicesForPillar(servicePillar, originalServices)
+        : originalServices;
 
       return {
         facility: { ...facility, services: prioritisedServices },
