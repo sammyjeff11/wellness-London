@@ -1,10 +1,21 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useSyncExternalStore, type ReactNode } from "react";
 import Link from "next/link";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
+import {
+  buildDirectorySearchParams,
+  directoryFilterKeys,
+  initialDirectoryFilters,
+  matchesDirectoryFilters,
+  parseDirectoryUrlState,
+  type DirectoryFilterKey,
+  type DirectoryFilterOptions,
+  type DirectorySort,
+  type DirectoryUrlState,
+} from "@/lib/directory-filter-state";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
@@ -18,14 +29,6 @@ export type ServiceDirectoryFacility = FacilityCardFacility & {
   profileCompletenessScore?: number;
 };
 
-type FilterState = {
-  area: string;
-  premiumLevel: string;
-  experienceType: string;
-  privateOrShared: string;
-  beginnerFriendly: string;
-};
-
 type ServiceDirectoryProps = {
   facilities: ServiceDirectoryFacility[];
   serviceType: string;
@@ -34,13 +37,33 @@ type ServiceDirectoryProps = {
   prioritisedService?: string;
 };
 
-const initialFilters: FilterState = {
-  area: "",
-  premiumLevel: "",
-  experienceType: "",
-  privateOrShared: "",
-  beginnerFriendly: "",
+const directoryUrlEvent = "wellness-directory-url-change";
+
+const filterLabels: Record<DirectoryFilterKey, string> = {
+  area: "Area",
+  premiumLevel: "Price level",
+  experienceType: "Experience",
+  accessType: "Access",
+  privateOrShared: "Session setting",
+  beginnerFriendly: "Beginner friendly",
 };
+
+function subscribeToDirectoryUrl(onStoreChange: () => void) {
+  window.addEventListener("popstate", onStoreChange);
+  window.addEventListener(directoryUrlEvent, onStoreChange);
+  return () => {
+    window.removeEventListener("popstate", onStoreChange);
+    window.removeEventListener(directoryUrlEvent, onStoreChange);
+  };
+}
+
+function getDirectoryUrlSnapshot() {
+  return window.location.search;
+}
+
+function getServerDirectoryUrlSnapshot() {
+  return "";
+}
 
 function uniqueValues(values: (string | undefined)[]) {
   return Array.from(new Set(values.filter(Boolean) as string[])).sort();
@@ -101,31 +124,27 @@ function MobileFilterPill({ label, value, onChange, children }: { label: string;
 }
 
 export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectoryProps) {
-  const [filters, setFilters] = useState<FilterState>(initialFilters);
-  const [sort, setSort] = useState("recommended");
-  const [searchQuery, setSearchQuery] = useState("");
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
-
-  const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
-  const premiumOptions = uniqueValues(uniqueFacilities.map((facility) => facility.premiumLevel));
-  const experienceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || []));
-  const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
-  const beginnerOptions = uniqueValues(uniqueFacilities.map((facility) => facility.beginnerFriendly));
+  const urlSearch = useSyncExternalStore(subscribeToDirectoryUrl, getDirectoryUrlSnapshot, getServerDirectoryUrlSnapshot);
+  const filterOptions = useMemo<DirectoryFilterOptions>(() => ({
+    area: uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location)),
+    premiumLevel: uniqueValues(uniqueFacilities.map((facility) => facility.premiumLevel)),
+    experienceType: uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || [])),
+    accessType: uniqueValues(uniqueFacilities.map((facility) => facility.accessType)),
+    privateOrShared: uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared)),
+    beginnerFriendly: uniqueValues(uniqueFacilities.map((facility) => facility.beginnerFriendly)),
+  }), [uniqueFacilities]);
+  const { filters, sort, searchQuery } = useMemo(
+    () => parseDirectoryUrlState(urlSearch, filterOptions),
+    [filterOptions, urlSearch],
+  );
+  const lastTrackedSearch = useRef("");
+  const lastZeroResultState = useRef("");
   const searchValue = searchQuery.trim();
 
   const filteredFacilities = useMemo(() => {
     const result = uniqueFacilities.filter((facility) => {
-      const area = facility.areaGroup || facility.location || "";
-      const experiences = facility.experienceType || [];
-
-      return (
-        matchesVenueSearch(facility, searchValue) &&
-        (!filters.area || area === filters.area) &&
-        (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) &&
-        (!filters.experienceType || experiences.includes(filters.experienceType)) &&
-        (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared) &&
-        (!filters.beginnerFriendly || facility.beginnerFriendly === filters.beginnerFriendly)
-      );
+      return matchesVenueSearch(facility, searchValue) && matchesDirectoryFilters(facility, filters);
     });
 
     return [...result].sort((a, b) => {
@@ -139,39 +158,98 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     });
   }, [uniqueFacilities, filters, sort, searchValue]);
 
-  function updateFilter(key: keyof FilterState, value: string) {
-    setFilters((current) => ({ ...current, [key]: value }));
+  function updateUrlState(nextState: DirectoryUrlState, mode: "push" | "replace" = "push") {
+    const params = buildDirectorySearchParams(window.location.search, nextState);
+    const query = params.toString();
+    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`;
+    window.history[mode === "push" ? "pushState" : "replaceState"](null, "", nextUrl);
+    window.dispatchEvent(new Event(directoryUrlEvent));
+  }
+
+  function countResults(nextFilters: typeof filters, nextSearchQuery = searchQuery) {
+    const nextSearchValue = nextSearchQuery.trim();
+    return uniqueFacilities.filter((facility) => matchesVenueSearch(facility, nextSearchValue) && matchesDirectoryFilters(facility, nextFilters)).length;
+  }
+
+  function updateFilter(key: DirectoryFilterKey, value: string) {
+    const nextFilters = { ...filters, [key]: value };
+    updateUrlState({ filters: nextFilters, searchQuery, sort });
     trackEvent(value ? "filter_applied" : "filter_cleared", {
       filter_name: key,
       filter_value: value || "cleared",
       service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      result_count: countResults(nextFilters),
+      page_path: window.location.pathname,
     });
   }
 
   function clearFilters() {
-    setFilters(initialFilters);
-    setSearchQuery("");
+    updateUrlState({ filters: initialDirectoryFilters, searchQuery: "", sort: "recommended" });
     trackEvent("filter_cleared", {
       filter_name: "all",
       service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      result_count: uniqueFacilities.length,
+      page_path: window.location.pathname,
     });
   }
 
   function updateSearch(value: string) {
-    setSearchQuery(value);
-    if (value.length === 1 || value.length % 4 === 0) {
-      trackEvent("venue_search_used", {
-        search_length: value.length,
-        service_type: serviceType,
-        page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
-      });
-    }
+    updateUrlState({ filters, searchQuery: value.slice(0, 120), sort }, "replace");
   }
 
-  const activeFilters = Object.entries(filters).filter(([, value]) => value);
+  function updateSort(value: DirectorySort) {
+    updateUrlState({ filters, searchQuery, sort: value });
+    trackEvent("directory_sort_changed", {
+      sort_type: value,
+      service_type: serviceType,
+      result_count: filteredFacilities.length,
+      page_path: window.location.pathname,
+    });
+  }
+
+  const activeFilters = directoryFilterKeys
+    .filter((key) => filters[key])
+    .map((key) => ({ key, label: filterLabels[key], value: filters[key] }));
+  const activeFilterState = activeFilters.map((filter) => `${filter.key}:${filter.value}`).join("|");
   const hasActiveSearch = searchQuery.trim().length > 0;
+
+  useEffect(() => {
+    if (searchValue.length < 2) {
+      lastTrackedSearch.current = "";
+      return;
+    }
+
+    const trackingKey = `${searchValue.toLowerCase()}|${filteredFacilities.length}`;
+    if (lastTrackedSearch.current === trackingKey) return;
+
+    const timeout = window.setTimeout(() => {
+      trackEvent("venue_search_used", {
+        search_length: searchValue.length,
+        result_count: filteredFacilities.length,
+        service_type: serviceType,
+        page_path: window.location.pathname,
+      });
+      lastTrackedSearch.current = trackingKey;
+    }, 600);
+
+    return () => window.clearTimeout(timeout);
+  }, [filteredFacilities.length, searchValue, serviceType]);
+
+  useEffect(() => {
+    const activeState = `${searchValue}|${activeFilterState}`;
+    if (filteredFacilities.length === 0 && (hasActiveSearch || activeFilters.length > 0)) {
+      if (lastZeroResultState.current === activeState) return;
+      trackEvent("directory_zero_results", {
+        active_filter_count: activeFilters.length,
+        has_search: hasActiveSearch,
+        service_type: serviceType,
+        page_path: window.location.pathname,
+      });
+      lastZeroResultState.current = activeState;
+      return;
+    }
+    lastZeroResultState.current = "";
+  }, [activeFilterState, activeFilters.length, filteredFacilities.length, hasActiveSearch, searchValue, serviceType]);
 
   if (uniqueFacilities.length === 0) {
     return (
@@ -186,25 +264,29 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     <>
       <FilterSelect label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
         <option value="">Any area</option>
-        {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {filterOptions.area.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
-      <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
+      <FilterSelect label="Price level" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
         <option value="">Any level</option>
-        {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {filterOptions.premiumLevel.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
       <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
         <option value="">Any type</option>
-        {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {filterOptions.experienceType.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
-      <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+      <FilterSelect label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
         <option value="">Any access</option>
-        {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {filterOptions.accessType.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
-      <FilterSelect label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
+      <FilterSelect label="Session setting" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+        <option value="">Any setting</option>
+        {filterOptions.privateOrShared.map((option) => <option key={option} value={option}>{option}</option>)}
+      </FilterSelect>
+      <FilterSelect label="Beginner friendly" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
         <option value="">Any</option>
-        {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {filterOptions.beginnerFriendly.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
-      <FilterSelect label="Sort" value={sort} onChange={setSort}>
+      <FilterSelect label="Sort" value={sort} onChange={(value) => updateSort(value as DirectorySort)}>
         <option value="recommended">Recommended</option>
         <option value="price-low">Price low to high</option>
         <option value="premium">Premium/luxury</option>
@@ -251,17 +333,29 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2">
             <MobileFilterPill label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
               <option value="">Area</option>
-              {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+              {filterOptions.area.map((option) => <option key={option} value={option}>{option}</option>)}
             </MobileFilterPill>
-            <MobileFilterPill label="Type" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-              <option value="">Type</option>
-              {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            <MobileFilterPill label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
+              <option value="">Experience</option>
+              {filterOptions.experienceType.map((option) => <option key={option} value={option}>{option}</option>)}
             </MobileFilterPill>
-            <MobileFilterPill label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+            <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
               <option value="">Access</option>
-              {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+              {filterOptions.accessType.map((option) => <option key={option} value={option}>{option}</option>)}
             </MobileFilterPill>
-            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={setSort}>
+            <MobileFilterPill label="Session" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+              <option value="">Session</option>
+              {filterOptions.privateOrShared.map((option) => <option key={option} value={option}>{option}</option>)}
+            </MobileFilterPill>
+            <MobileFilterPill label="Price level" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
+              <option value="">Price level</option>
+              {filterOptions.premiumLevel.map((option) => <option key={option} value={option}>{option}</option>)}
+            </MobileFilterPill>
+            <MobileFilterPill label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
+              <option value="">Beginner</option>
+              {filterOptions.beginnerFriendly.map((option) => <option key={option} value={option}>{option}</option>)}
+            </MobileFilterPill>
+            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={(value) => updateSort(value as DirectorySort)}>
               <option value="recommended">Sort</option>
               <option value="price-low">Price</option>
               <option value="premium">Premium</option>
@@ -270,9 +364,27 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </div>
 
-        <div className="mt-6 hidden grid-cols-2 gap-5 lg:grid-cols-6 md:grid">
+        <div className="mt-6 hidden grid-cols-2 gap-5 md:grid lg:grid-cols-4 xl:grid-cols-7">
           {filterControls}
         </div>
+
+        {activeFilters.length > 0 ? (
+          <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-[#d8cebf]/70 pt-4">
+            <span className="mr-1 text-[10px] uppercase tracking-[0.2em] text-[#6f6048]">Active filters</span>
+            {activeFilters.map((filter) => (
+              <button
+                key={filter.key}
+                type="button"
+                onClick={() => updateFilter(filter.key, "")}
+                className="inline-flex items-center gap-2 rounded-full border border-[#c8baa7] bg-[#fbf8f1] px-3 py-2 text-xs text-[#29241d] transition hover:border-[#6f6048]"
+                aria-label={`Remove ${filter.label} filter: ${filter.value}`}
+              >
+                <span>{filter.label}: {filter.value}</span>
+                <span aria-hidden="true">×</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       {filteredFacilities.length > 0 ? (

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import FacilityGallery from "@/components/FacilityGallery";
 import JsonLd from "@/components/JsonLd";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
@@ -277,6 +278,17 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <AnalyticsPageView
+        eventName="facility_page_view"
+        properties={{
+          facility_name: facility.name,
+          facility_slug: facility.slug,
+          access_type: access,
+          location,
+          primary_service: services[0],
+          page_path: `/facility/${facility.slug}`,
+        }}
+      />
       <JsonLd data={venueJsonLd(facility)} />
 
       <section className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
@@ -307,7 +319,14 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                   <TrackedExternalLink
                     href={primaryCtaHref}
                     eventName="listing_cta_click"
-                    properties={{ facility_name: facility.name, facility_slug: facility.slug, source: "facility_detail", cta_type: bookingLink ? "booking" : "website" }}
+                    properties={{
+                      facility_name: facility.name,
+                      facility_slug: facility.slug,
+                      source: "facility_detail",
+                      cta_type: bookingLink ? "booking" : "website",
+                      access_type: access,
+                      primary_service: services[0],
+                    }}
                     className="rounded-full bg-[#29241d] px-5 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#3d352b]"
                   >
                     {primaryCtaLabel}
@@ -317,7 +336,14 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                   <TrackedExternalLink
                     href={instagramLink}
                     eventName="listing_cta_click"
-                    properties={{ facility_name: facility.name, facility_slug: facility.slug, source: "facility_detail", cta_type: "instagram" }}
+                    properties={{
+                      facility_name: facility.name,
+                      facility_slug: facility.slug,
+                      source: "facility_detail",
+                      cta_type: "instagram",
+                      access_type: access,
+                      primary_service: services[0],
+                    }}
                     className="rounded-full border border-[#d8cebf] px-5 py-3 text-sm transition hover:bg-[#fbf8f1]"
                   >
                     View on Instagram
