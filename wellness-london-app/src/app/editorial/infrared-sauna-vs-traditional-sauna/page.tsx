@@ -175,7 +175,7 @@ export default function InfraredVsTraditionalSaunaPage() {
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link href="/infrared-sauna-london" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Explore infrared sauna</Link>
                 <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Explore sauna directory</Link>
-                <Link href="/editorial/best-saunas-london" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Read best saunas</Link>
+                <Link href="/collections/best-sauna-london" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">Compare the sauna shortlist</Link>
               </div>
             </div>
           </div>

@@ -6,7 +6,7 @@ export const topicalPathways = {
       "Explore sauna, cold plunge, cryotherapy and contrast therapy within London’s wider recovery ecosystem.",
   },
   longevity: {
-    href: "/longevity-london",
+    href: "/longevity",
     label: "Longevity in London",
     description:
       "Recovery, sleep, heat exposure and sustainable wellness routines connected to modern longevity culture.",

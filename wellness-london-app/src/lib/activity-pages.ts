@@ -293,7 +293,7 @@ export const activityPages: ActivityPageConfig[] = [
     keywords: ["red light", "red light therapy", "photobiomodulation"],
     related: [
       { href: "/hbot-london", label: "HBOT", text: "Another longevity and recovery technology offered by some premium clinics." },
-      { href: "/longevity-london", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
+      { href: "/longevity", label: "Longevity", text: "Explore broader longevity and optimisation-led wellness spaces." },
       { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Compare recovery clubs offering equipment-led treatments." },
     ],
     bestFor: [
@@ -331,7 +331,7 @@ export const activityPages: ActivityPageConfig[] = [
     keywords: ["hbot", "hyperbaric", "hyperbaric oxygen therapy"],
     related: [
       { href: "/red-light-therapy-london", label: "Red Light Therapy", text: "Another technology-led wellness activity found in longevity spaces." },
-      { href: "/longevity-london", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
+      { href: "/longevity", label: "Longevity", text: "Explore longevity clinics and preventative wellness spaces." },
       { href: "/collections/best-recovery-clubs-london", label: "Best recovery clubs in London", text: "Compare recovery clubs offering oxygen, light and cold services." },
     ],
     bestFor: [

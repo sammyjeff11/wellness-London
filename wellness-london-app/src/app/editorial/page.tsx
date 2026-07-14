@@ -29,7 +29,7 @@ type EditorialIndexEntry = {
 const indexEntries: EditorialIndexEntry[] = [
   {
     number: "01",
-    href: "/editorial/best-saunas-london",
+    href: "/collections/best-sauna-london",
     tag: "Heat Edit 001",
     title: "Best saunas in London",
     standfirst:
@@ -56,7 +56,7 @@ const indexEntries: EditorialIndexEntry[] = [
   },
   {
     number: "04",
-    href: "/best-sauna-cold-plunge-london",
+    href: "/collections/best-contrast-therapy-london",
     tag: "Best Of",
     title: "Best sauna + cold plunge",
     standfirst:

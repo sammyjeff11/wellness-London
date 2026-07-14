@@ -55,7 +55,6 @@ const coreSections = [
     links: [
       { href: "/collections", label: "All Collections" },
       ...collections.map((collection) => ({ href: collection.href, label: collection.title })),
-      { href: "/best-sauna-cold-plunge-london", label: "Best Sauna and Cold Plunge Spaces in London" },
       { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness Spaces in London" },
       { href: "/quiet-wellness-spaces-london", label: "Quiet Wellness Spaces in London" },
       { href: "/luxury-wellness-spaces-london", label: "Luxury Wellness Spaces in London" },
@@ -75,7 +74,7 @@ const coreSections = [
     title: "Editorial and trust",
     links: [
       { href: "/editorial", label: "Editorial" },
-      { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
+      { href: "/collections/best-sauna-london", label: "Best Saunas in London" },
       { href: "/editorial/best-cryotherapy-london", label: "Best Cryotherapy in London" },
       { href: "/editorial/infrared-sauna-vs-traditional-sauna", label: "Infrared vs Traditional Sauna" },
       { href: "/guides/sauna-london-guide", label: "Well+ Guide to Sauna in London" },
