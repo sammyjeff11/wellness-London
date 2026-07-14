@@ -7,18 +7,18 @@ import "./globals.css";
 
 const siteUrl = new URL(SITE_URL);
 const siteDescription =
-  "Well+ is a curated London guide to saunas, cold plunges, cryotherapy, recovery studios and longevity spaces across the capital.";
+  "Compare London saunas, cold plunges, recovery studios, spas and longevity clinics using practical venue details and focused guides.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
   title: {
-    default: "Well+ London | Curated Wellness Spaces",
+    default: "Well+ London | Wellness Venues & Practical Guides",
     template: "%s",
   },
   description: siteDescription,
   openGraph: {
-    title: "Well+ London | Curated Wellness Spaces",
+    title: "Well+ London | Wellness Venues & Practical Guides",
     description: siteDescription,
     url: "/",
     siteName: "Well+",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Well+ London | Curated Wellness Spaces",
+    title: "Well+ London | Wellness Venues & Practical Guides",
     description: siteDescription,
     images: ["/opengraph-image"],
   },

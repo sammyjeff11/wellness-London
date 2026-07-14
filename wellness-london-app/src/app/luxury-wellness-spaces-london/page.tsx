@@ -8,7 +8,7 @@ import { toDirectoryFacility } from "@/lib/facility-presenters";
 export const metadata: Metadata = {
   title: "Luxury Wellness Spaces in London | Well+",
   description:
-    "A curated guide to luxury wellness spaces in London, from premium recovery clubs and private saunas to design-conscious wellness venues.",
+    "Compare luxury wellness venues in London, including hotel spas, private saunas, members' clubs and clinic-led services.",
   alternates: {
     canonical: "/luxury-wellness-spaces-london",
   },
@@ -63,13 +63,13 @@ export default async function LuxuryWellnessSpacesPage() {
       <section className="px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-5xl">
           <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">
-            Curated collections / Optimise + Longevity
+            Venue shortlist / Optimise + Longevity
           </p>
           <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
             Luxury wellness spaces in London.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            A curated guide to London&apos;s more considered wellness spaces — from premium recovery clubs and private sauna rooms to longevity-led clinics and design-conscious wellness destinations.
+            Compare hotel spas, private sauna rooms, members&apos; clubs and clinic-led venues where facilities, privacy and service are part of the price.
           </p>
         </div>
       </section>
@@ -79,13 +79,13 @@ export default async function LuxuryWellnessSpacesPage() {
           <div>
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Best for</p>
             <p className="text-sm leading-7 text-[#5f574c]">
-              Premium recovery, private wellness rituals, design-led spaces, longer-term optimisation and elevated London wellness experiences.
+              Private treatments, high-spec facilities, attentive service and settings suited to longer or more discreet visits.
             </p>
           </div>
           <div>
             <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What defines luxury</p>
             <p className="text-sm leading-7 text-[#5f574c]">
-              Not just price. We look for atmosphere, service design, facility quality, privacy, clarity of experience and whether the venue feels intentionally curated.
+              Price alone is not enough. Useful signals include privacy, staff support, facility quality, clear booking and what is actually included.
             </p>
           </div>
           <div>
@@ -103,13 +103,13 @@ export default async function LuxuryWellnessSpacesPage() {
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Curated venues</p>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Selected venues</p>
               <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Elevated London wellness spaces.
+                London venues where the service should justify the price.
               </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              Selected for atmosphere, premium positioning, privacy signals, service quality and fit with a more elevated wellness experience.
+              Selected using venue type, access model, privacy, facilities and service detail—not branding alone.
             </p>
           </div>
 
@@ -126,18 +126,18 @@ export default async function LuxuryWellnessSpacesPage() {
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">Editorial perspective</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-              Luxury wellness is about confidence, not excess.
+              What should a higher price buy?
             </h2>
           </div>
           <div className="space-y-5 text-sm leading-8 text-[#fbf8f1]/78 md:text-base">
             <p>
-              The strongest premium wellness spaces in London tend to make the experience easier to understand: clearer booking, better facilities, calmer design and a more considered sense of hospitality.
+              At the better venues, the extra spend buys something tangible: more privacy, stronger facilities, experienced staff, longer access or smoother service.
             </p>
             <p>
-              Some are clinical and longevity-led. Others are restorative, private or recovery-focused. The common thread is intentionality rather than price alone.
+              The offer may be clinical, spa-led or recovery-focused, so compare inclusions rather than assuming every expensive venue provides the same experience.
             </p>
             <p>
-              Well+ favours spaces that help users make better choices, not venues that rely only on aesthetics.
+              Check whether pool or thermal access is included, whether non-members can book, and which facilities are restricted to hotel guests or club members.
             </p>
           </div>
         </div>

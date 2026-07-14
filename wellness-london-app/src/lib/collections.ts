@@ -47,26 +47,26 @@ export const collections = [
   {
     slug: "best-sauna-london",
     href: "/collections/best-sauna-london",
-    title: "Best Sauna London",
-    metaTitle: "Best Sauna London (2026) | Well+",
+    title: "Best saunas in London",
+    metaTitle: "Best Saunas in London (2026) | Well+",
     metaDescription:
-      "Discover the best sauna experiences in London, from premium wellness clubs to recovery studios and social heat-and-cold spaces, curated by Well+.",
-    eyebrow: "Curated heat edit",
-    heroText: "The London sauna shortlist for premium heat, first visits and sauna-plus-cold recovery rituals.",
+      "Compare London saunas, from communal and traditional heat to private infrared rooms and sauna-and-cold-plunge venues.",
+    eyebrow: "London sauna shortlist",
+    heroText: "Compare communal saunas, private infrared rooms and venues that pair heat with a cold plunge.",
     introParagraphs: [
-      "London sauna is no longer one format. The strongest options now range from premium wellness clubs and design-led spas to focused recovery studios and social bathhouse-style spaces.",
+      "A sauna booking in London can mean a communal session, a private infrared cabin, a traditional bathhouse or a members' club. The format matters because it changes the temperature, privacy, facilities and price.",
       "This collection starts with venues that clearly list sauna or infrared sauna access, then prioritises completeness, practical details, beginner suitability and whether the setting supports a fuller heat-and-cold routine — also known as contrast therapy when sauna is paired with cold plunge or ice bath.",
     ],
     serviceKeys: ["sauna", "infrared-sauna"],
     featuredSections: [
       {
         label: "Best overall",
-        description: "A strong all-round sauna pick with useful detail, good positioning and a credible recovery or wellness context.",
+        description: "A well-documented sauna option with clear access, practical facilities and a format that suits regular use.",
         match: { serviceKeys: ["sauna", "infrared-sauna"] },
       },
       {
         label: "Best premium sauna",
-        description: "For users who want a more elevated setting, hospitality-led experience or premium wellness-club feel.",
+        description: "For people comparing hotel-level facilities, more privacy or a members' club setting.",
         match: { serviceKeys: ["sauna", "infrared-sauna"], premiumLevelIncludes: ["premium", "luxury"] },
       },
       {
@@ -76,7 +76,7 @@ export const collections = [
       },
       {
         label: "Best sauna and cold plunge",
-        description: "A better fit when you want contrast therapy: heat exposure paired with a cold plunge, ice bath or cold-water reset.",
+        description: "For contrast therapy in one visit: sauna paired with a cold plunge, ice bath or cold-water immersion.",
         match: saunaAndColdPlungeMatch,
       },
     ],
@@ -84,20 +84,20 @@ export const collections = [
   {
     slug: "best-cold-plunge-london",
     href: "/collections/best-cold-plunge-london",
-    title: "Best Cold Plunge London",
-    metaTitle: "Best Cold Plunge London (2026) | Well+",
+    title: "Best cold plunges in London",
+    metaTitle: "Best Cold Plunges in London (2026) | Well+",
     metaDescription: "Compare London cold plunge and ice bath venues, including contrast therapy spaces where sauna and cold water are used together.",
-    eyebrow: "Curated cold edit",
-    heroText: "London cold plunge, also known as ice bath or cold-water immersion, plus contrast therapy spaces for guided sessions, first dips and sauna-paired recovery.",
+    eyebrow: "London cold-plunge shortlist",
+    heroText: "Compare standalone cold-water sessions, guided first dips and venues that include sauna for contrast therapy.",
     introParagraphs: [
       "Cold plunge in London covers cold-water immersion formats such as ice baths, cold tubs and plunge pools. These may be booked as a standalone cold session or as part of a wider contrast therapy ritual.",
-      "Contrast therapy refers to hot-and-cold recovery — usually sauna followed by cold plunge or ice bath. This edit favours venues with clear cold-water or contrast therapy signals, then highlights practical fit: guidance, beginner friendliness, premium context and whether sauna is available too.",
+      "Contrast therapy usually means alternating sauna with a cold plunge or ice bath. This shortlist separates standalone cold sessions from full hot-and-cold setups and highlights guidance, beginner suitability and whether sauna access is included.",
     ],
     serviceKeys: ["cold-plunge", "contrast-therapy"],
     featuredSections: [
       {
         label: "Best overall",
-        description: "A balanced cold-plunge choice with useful venue detail and a credible recovery or wellness setting.",
+        description: "A well-documented cold-plunge option with clear access, session format and practical facilities.",
         match: { serviceKeys: ["cold-plunge", "contrast-therapy"] },
       },
       {
@@ -120,23 +120,23 @@ export const collections = [
   {
     slug: "best-contrast-therapy-london",
     href: "/collections/best-contrast-therapy-london",
-    title: "Best Contrast Therapy London",
-    metaTitle: "Best Contrast Therapy London (2026) | Well+",
+    title: "Best contrast therapy in London",
+    metaTitle: "Best Contrast Therapy in London (2026) | Well+",
     metaDescription:
       "Compare the best contrast therapy venues in London, including sauna and ice bath, sauna and cold plunge, hot-and-cold recovery and guided contrast sessions.",
-    eyebrow: "Curated hot-and-cold edit",
-    heroText: "London sauna-and-ice-bath spaces for contrast therapy, hot-and-cold recovery and guided sauna-plus-plunge rituals.",
+    eyebrow: "London hot-and-cold shortlist",
+    heroText: "Compare venues where sauna and cold-water immersion are available as one coherent session.",
     introParagraphs: [
       "Contrast therapy is the umbrella term for moving between heat and cold. In London, people may search for it as sauna and cold plunge, sauna and ice bath, hot-and-cold therapy, contrast bathing or a thermal circuit. The strongest venues make that sequence clear rather than simply listing a sauna in one place and a cold tub somewhere else.",
       "The practical difference is flow. A good contrast therapy venue should make it easy to move between sauna or heat exposure, cold-water immersion, showers and a calmer recovery space. Guidance also matters, especially if you are new to ice baths or unsure how long to spend in each round.",
-      "This collection prioritises venues with both sauna and cold-water access, then separates the shortlist by use case: guided sessions, premium spaces, beginner-friendly setups and social or group formats. That should make it easier to choose a venue based on the experience you actually want, not just the nearest ice bath.",
+      "This shortlist includes venues with both sauna and cold-water access, then separates guided sessions, first-timer options, higher-service settings and shared formats. The aim is to compare the whole setup, not simply find the nearest ice bath.",
     ],
     serviceKeys: ["sauna", "cold-plunge"],
     allServiceKeys: ["sauna", "cold-plunge"],
     featuredSections: [
       {
         label: "Best overall contrast therapy",
-        description: "A strong all-round hot-and-cold pick where the listing suggests both sauna and cold-water access, useful detail and a credible recovery context.",
+        description: "A well-documented hot-and-cold venue with sauna, cold-water access and a practical route between the two.",
         match: contrastTherapyCoreMatch,
       },
       {
@@ -146,7 +146,7 @@ export const collections = [
       },
       {
         label: "Best premium contrast space",
-        description: "A better fit when the experience matters as much as the equipment: calmer design, hospitality, towels, showers and a more elevated recovery setting.",
+        description: "For people who value privacy, staff support, towels, showers and a higher-service setting as well as the equipment.",
         match: { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
       },
       {
@@ -156,7 +156,7 @@ export const collections = [
       },
       {
         label: "Best social contrast ritual",
-        description: "A stronger option for group sessions, shared sauna culture or a more communal hot-and-cold reset rather than a private solo booking.",
+        description: "For group sessions, shared sauna culture or a communal hot-and-cold format rather than a private booking.",
         match: saunaAndColdPlungeMatch,
       },
     ],
@@ -164,12 +164,12 @@ export const collections = [
   {
     slug: "best-recovery-clubs-london",
     href: "/collections/best-recovery-clubs-london",
-    title: "Best Recovery Clubs London",
-    metaTitle: "Best Recovery Clubs London (2026) | Well+",
+    title: "Best recovery clubs in London",
+    metaTitle: "Best Recovery Clubs in London (2026) | Well+",
     metaDescription:
       "Explore London recovery clubs and studios offering saunas, cold plunges, cryotherapy, red light therapy and recovery-focused treatments.",
-    eyebrow: "Curated recovery edit",
-    heroText: "Recovery clubs and studios for heat, cold, light, oxygen and post-training reset routines across London.",
+    eyebrow: "London recovery shortlist",
+    heroText: "Compare multi-service clubs and studios for heat, cold, light, oxygen and post-training recovery.",
     introParagraphs: [
       "Recovery clubs bring several modalities into one setting: sauna, cold plunge, cryotherapy, red light therapy, compression, HBOT or other appointment-led recovery treatments.",
       "This collection gives priority to venues that look routine-friendly rather than one-off only — places where location, practical amenities, technology and repeat booking models matter.",
@@ -179,12 +179,12 @@ export const collections = [
     featuredSections: [
       {
         label: "Best overall recovery club",
-        description: "A strong all-round recovery pick with multiple relevant services and enough detail to compare confidently.",
+        description: "A multi-service recovery venue with enough access, facility and booking detail to compare confidently.",
         match: { serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "red-light-therapy", "contrast-therapy", "hyperbaric-oxygen-therapy"], venueTypeIncludes: ["recovery", "club", "studio", "wellness"] },
       },
       {
         label: "Best premium recovery space",
-        description: "For users comparing elevated recovery settings, premium clubs or design-led wellness spaces.",
+        description: "For people comparing more private, facility-rich or hospitality-led recovery settings.",
         match: { serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "red-light-therapy", "contrast-therapy", "hyperbaric-oxygen-therapy"], premiumLevelIncludes: ["premium", "luxury"] },
       },
       {

@@ -6,7 +6,7 @@ import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Collections | Well+ London",
-  description: "Curated best-of wellness collections for London saunas, cold plunges and recovery clubs.",
+  description: "Compare Well+ shortlists for London saunas, cold plunges, contrast therapy and recovery clubs.",
   alternates: { canonical: "/collections" },
 };
 
@@ -49,12 +49,12 @@ export default function CollectionsIndexPage() {
       <section className="px-5 py-10 sm:px-6 sm:py-14 md:py-18">
         <div className="mx-auto max-w-6xl">
           <div className="max-w-4xl">
-            <p className="editorial-eyebrow mb-4">Curated collections</p>
+            <p className="editorial-eyebrow mb-4">Venue shortlists</p>
             <h1 className="font-serif text-[3.1rem] font-normal leading-[0.96] tracking-[-0.055em] sm:text-6xl md:text-7xl">
-              Start with the best options.
+              Compare venues by use case.
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">
-              Editorial best-of pages for high-intent London wellness searches — built from the Well+ directory and kept separate from journal guides.
+              Shortlists built from published venue data, with separate picks for first visits, guided sessions, facilities and access type.
             </p>
           </div>
 

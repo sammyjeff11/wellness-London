@@ -106,7 +106,7 @@ export const pillarPages: PillarPageConfig[] = [
       { href: "/stress-regulation-london", label: "Stress Regulation", description: "Breathwork and calmer practices for nervous-system support." },
       { href: "/recovery-london", label: "Restorative Wellness", description: "A broader guide to physical and mental restoration in London." },
       { href: "/sauna-london", label: "Restorative Saunas", description: "Heat-led spaces suited to slower, quieter rituals." },
-      { href: "/collections", label: "Wellness Clubs & Collections", description: "Browse all-in-one clubs, spas and curated venue collections." },
+      { href: "/collections", label: "Wellness Clubs & Collections", description: "Compare all-in-one clubs, spas and venue shortlists." },
     ],
     guidance: [
       { title: "Choose the atmosphere first", text: "For reset-led visits, privacy, noise level, pace and the feel of the space can matter as much as the service itself." },

@@ -116,7 +116,7 @@ export default async function Home() {
             {heroImage ? (
               <SafeImage
                 src={heroImage.url}
-                alt={heroFacility ? `${heroFacility.name} wellness venue in ${heroFacility.neighbourhood || "London"}` : "Curated London wellness and recovery space"}
+                alt={heroFacility ? `${heroFacility.name} wellness venue in ${heroFacility.neighbourhood || "London"}` : "London wellness and recovery venue"}
                 fill
                 priority
                 sizes="100vw"
@@ -132,7 +132,7 @@ export default async function Home() {
                 Well+ / The London wellness edit
               </p>
               <h1 className="max-w-4xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.45rem] sm:leading-[0.92] md:text-[6.15rem]">
-                London&apos;s curated guide to modern wellness.
+                Find the right wellness venue in London.
               </h1>
               <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Search by service, venue type, location or use case — with practical details to help you choose where to book.
@@ -162,7 +162,7 @@ export default async function Home() {
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
                 <h2 className="max-w-3xl font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-                  Featured spaces worth starting with.
+                  Three places to start.
                 </h2>
               </div>
               <Link href="/explore" className="w-fit text-sm font-medium underline underline-offset-4">
@@ -213,13 +213,13 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Curated collections</p>
+              <p className="editorial-eyebrow mb-3">Shortlists</p>
               <h2 className={sectionHeadingClass}>
-                Start with the best options.
+                Compare the strongest matches.
               </h2>
             </div>
             <p className={sectionLeadClass}>
-              Curated edits for high-intent searches like best saunas, cold plunges and recovery clubs in London.
+              Focused comparisons for saunas, cold plunges, contrast therapy and multi-service recovery clubs.
             </p>
           </div>
 
@@ -299,9 +299,9 @@ export default async function Home() {
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Use cases</p>
-              <h2 className={sectionHeadingClass}>Choose by need.</h2>
+              <h2 className={sectionHeadingClass}>Start with what you need.</h2>
             </div>
-            <p className={sectionLeadClass}>A practical route into spaces for recovery, quiet resets, longevity clinics and first-time bookings.</p>
+            <p className={sectionLeadClass}>Compare places for post-training recovery, quieter visits, preventative health and first-time sessions.</p>
           </div>
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
             {useCaseLinks.map((item) => (

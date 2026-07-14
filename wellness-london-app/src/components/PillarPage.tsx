@@ -47,7 +47,7 @@ export default function PillarPage({
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 hidden flex-col gap-3 sm:mb-10 md:flex md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Curated venues</p>
+            <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Matching venues</p>
             <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">Recommended spaces.</h2>
           </div>
           <Link href="/how-we-curate" className="text-sm underline underline-offset-4">How we curate</Link>

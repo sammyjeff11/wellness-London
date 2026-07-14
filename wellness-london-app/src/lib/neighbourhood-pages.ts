@@ -107,10 +107,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     href: "/neighbourhoods/marylebone",
     metaTitle: "Wellness in Marylebone | Well+ London Neighbourhood Guide",
     metaDescription:
-      "A refined guide to wellness in Marylebone, covering premium recovery, longevity, clinical wellness and calm central London routines.",
+      "Compare recovery, longevity and clinical wellness venues in Marylebone, with practical access and location guidance.",
     eyebrow: "Refined central wellness",
     intro:
-      "Marylebone is one of London’s most polished wellness neighbourhoods: calm, central and well suited to premium recovery, clinical wellness and longevity-led routines.",
+      "Marylebone is a useful base for private recovery, clinical wellness and longevity appointments without leaving central London.",
     summary:
       "The area works well when you want a quieter central London base with a more considered feel — less rushed than Soho, but still easy to reach before work, after meetings or at the weekend.",
     bestFor: ["Premium wellness", "Longevity routines", "Clinical treatments", "Calm recovery", "Central access"],
@@ -135,12 +135,12 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     href: "/neighbourhoods/notting-hill",
     metaTitle: "Wellness in Notting Hill | Well+ London Neighbourhood Guide",
     metaDescription:
-      "Explore wellness in Notting Hill with Well+, from calm West London rituals to premium recovery, sauna, movement and lifestyle-led wellness spaces.",
+      "Compare sauna, spa, movement and treatment-led wellness venues in Notting Hill and nearby West London neighbourhoods.",
     eyebrow: "West London lifestyle",
     intro:
-      "Notting Hill gives London wellness a softer lifestyle edge — calm streets, polished studios, slower rituals and venues that sit naturally alongside cafés, shopping and weekend routines.",
+      "Notting Hill combines spa, movement and treatment-led venues in a walkable part of West London, making it practical to include a booking in a wider morning or afternoon.",
     summary:
-      "This is a neighbourhood for wellness that feels personal and lifestyle-led: less clinical, more atmospheric, and often best experienced as part of a slower West London day.",
+      "The local mix is less clinic-heavy than Chelsea or Kensington and places more emphasis on spa treatments, movement and appointment-led wellbeing.",
     bestFor: ["Slow wellness", "Lifestyle rituals", "Premium studios", "Weekend resets", "Calm atmosphere"],
     character:
       "The Notting Hill wellness identity is warm, aesthetic and unhurried. It works well for people who want recovery and self-care to feel integrated into everyday life rather than treated as a standalone appointment.",
