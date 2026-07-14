@@ -16,6 +16,15 @@ const placeholderFragments = [
   "unclear",
 ];
 
+const internalEditorialFragments = [
+  "before publication",
+  "before final publication",
+  "confirm before publishing",
+  "pending approved images",
+  "requires validation",
+  "source-backed draft",
+];
+
 export function isUsefulValue(value: unknown): boolean {
   if (value === undefined || value === null || value === false) return false;
 
@@ -35,6 +44,14 @@ export function isUsefulValue(value: unknown): boolean {
 export function cleanValue(value: unknown): string | undefined {
   if (!isUsefulValue(value)) return undefined;
   return String(value).trim();
+}
+
+export function cleanPublicEditorialText(value: unknown): string {
+  const cleaned = cleanValue(value);
+  if (!cleaned) return "";
+
+  const normalized = cleaned.toLowerCase().replace(/\s+/g, " ");
+  return internalEditorialFragments.some((fragment) => normalized.includes(fragment)) ? "" : cleaned;
 }
 
 export function cleanList(values: unknown[] = []): string[] {
