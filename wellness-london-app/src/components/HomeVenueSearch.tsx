@@ -49,9 +49,9 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <section className="overflow-hidden px-4 pb-2 pt-4 sm:px-6 sm:pb-4 sm:pt-7 md:pb-5 md:pt-8">
-      <div className="editorial-card mx-auto max-w-6xl overflow-hidden bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:p-5 md:p-6">
-        <div className="grid min-w-0 gap-5 md:grid-cols-[0.44fr_1fr] md:items-center md:gap-6 lg:grid-cols-[0.38fr_1fr]">
+    <section className="overflow-hidden px-5 pb-5 pt-6 sm:px-6 sm:pb-6 sm:pt-7 md:pb-8 md:pt-8">
+      <div className="editorial-card mx-auto max-w-6xl overflow-hidden bg-[#fbf8f1]/72 p-5 shadow-[0_14px_36px_rgba(41,36,29,0.04)] md:p-6">
+        <div className="grid min-w-0 gap-7 md:grid-cols-[0.44fr_1fr] md:items-center md:gap-6 lg:grid-cols-[0.38fr_1fr]">
           <div>
             <p className="editorial-eyebrow mb-2">Well+ directory</p>
             <h2 className="max-w-sm font-serif text-[1.95rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.25rem] md:text-[2.35rem]">
@@ -62,7 +62,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
             </p>
           </div>
 
-          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:p-4 md:p-5">
+          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-4 md:p-5">
             <label className="block min-w-0">
               <span className="sr-only">Search London wellness venues</span>
               <input

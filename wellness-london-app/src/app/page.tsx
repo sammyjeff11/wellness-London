@@ -136,14 +136,14 @@ export default async function Home() {
               <p className="mt-3 max-w-[31rem] text-[15px] leading-6 text-[#fbf8f1]/84 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
                 Search by service, venue type, location or use case — with practical details to help you choose where to book.
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
-                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
+              <div className="mt-5 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-3">
+                <Link href="/explore" className="rounded-full bg-[#fbf8f1] px-5 py-3 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da]">
                   Browse venues
                 </Link>
                 <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
                   Sauna
                 </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5 sm:py-3">
+                <Link href="#featured" className="hidden rounded-full border border-[#fbf8f1]/22 px-5 py-3 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:inline-flex">
                   Featured
                 </Link>
               </div>
@@ -155,7 +155,7 @@ export default async function Home() {
       <HomeVenueSearch facilities={directoryFacilities} />
 
       {selectedFacilities.length > 0 ? (
-        <section id="featured" className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
+        <section id="featured" className="px-5 py-10 sm:px-6 md:py-14">
           <div className="mx-auto max-w-6xl">
             <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
               <div>
@@ -193,12 +193,12 @@ export default async function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
+          <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {serviceLinks.map((treatment) => (
               <Link
                 key={treatment.href}
                 href={treatment.href}
-                className="editorial-card group bg-[#fbf8f1] p-4 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:p-5"
+                className="editorial-card group bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da]"
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
                 <p className="text-[15px] leading-7 text-[#5f574c]">{treatment.description}</p>
@@ -266,13 +266,13 @@ export default async function Home() {
               <div className="mt-6 border-t border-[#d8cebf]/70 pt-6">
                 <p className="mb-3 text-xs uppercase tracking-[0.18em] text-[#6f6048]">Neighbourhood guides</p>
                 <div className="flex flex-wrap gap-2 sm:gap-3">
-              {featuredNeighbourhoods.map((area) => (
+                  {featuredNeighbourhoods.map((area) => (
                     <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] px-4 py-2.5 text-sm transition hover:bg-[#eee7da] sm:px-5">
-                  {area.shortTitle}
-                </Link>
-              ))}
+                      {area.shortTitle}
+                    </Link>
+                  ))}
                 </div>
-            </div>
+              </div>
             ) : null}
           </div>
         </div>

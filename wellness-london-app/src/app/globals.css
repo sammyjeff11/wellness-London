@@ -111,7 +111,7 @@ img {
 }
 
 .editorial-section {
-  padding-block: clamp(3rem, 6vw, 5rem);
+  padding-block: clamp(3.5rem, 6vw, 5rem);
 }
 
 .image-grain::after {

@@ -104,25 +104,6 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
   );
 }
 
-function MobileFilterPill({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
-  return (
-    <label className="relative shrink-0">
-      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm font-medium text-[#29241d]">
-        {value || label}
-      </span>
-      <select
-        aria-label={label}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-11 max-w-[11rem] appearance-none rounded-full border border-[#d8cebf] bg-[#fbf8f1] pl-4 pr-9 text-sm text-transparent outline-none"
-      >
-        {children}
-      </select>
-      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70695d]">⌄</span>
-    </label>
-  );
-}
-
 export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectoryProps) {
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
   const urlSearch = useSyncExternalStore(subscribeToDirectoryUrl, getDirectoryUrlSnapshot, getServerDirectoryUrlSnapshot);
@@ -297,8 +278,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   return (
     <div className="space-y-8 md:space-y-12">
-      <section className="editorial-card bg-[#eee7da] p-4 sm:p-6 md:p-8">
-        <div className="rounded-[1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-3 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
+      <section className="editorial-card bg-[#eee7da] p-5 sm:p-6 md:p-8">
+        <div className="rounded-[1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-4 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
           <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-xs uppercase tracking-[0.2em] text-[#6f6048]">
             Search venues
           </label>
@@ -321,7 +302,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           <p className="mt-2 text-sm leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
         </div>
 
-        <div className="mt-4 md:hidden">
+        <div className="mt-5 md:hidden">
           <div className="mb-3 flex items-center justify-between gap-4">
             <p className="text-sm text-[#5f574c]">{filteredFacilities.length} spaces found</p>
             {activeFilters.length > 0 || hasActiveSearch ? (
@@ -330,38 +311,15 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </button>
             ) : null}
           </div>
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2">
-            <MobileFilterPill label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
-              <option value="">Area</option>
-              {filterOptions.area.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-              <option value="">Experience</option>
-              {filterOptions.experienceType.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
-              <option value="">Access</option>
-              {filterOptions.accessType.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Session" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-              <option value="">Session</option>
-              {filterOptions.privateOrShared.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Price level" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
-              <option value="">Price level</option>
-              {filterOptions.premiumLevel.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
-              <option value="">Beginner</option>
-              {filterOptions.beginnerFriendly.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={(value) => updateSort(value as DirectorySort)}>
-              <option value="recommended">Sort</option>
-              <option value="price-low">Price</option>
-              <option value="premium">Premium</option>
-              <option value="recently-checked">Recent</option>
-            </MobileFilterPill>
-          </div>
+          <details className="rounded-[1rem] border border-[#c8baa7] bg-[#fbf8f1] px-4 py-3">
+            <summary className="flex cursor-pointer list-none items-center justify-between text-sm font-medium text-[#29241d]">
+              <span>Filters and sort</span>
+              <span aria-hidden="true">＋</span>
+            </summary>
+            <div className="mt-5 grid gap-5 border-t border-[#d8cebf]/70 pt-5">
+              {filterControls}
+            </div>
+          </details>
         </div>
 
         <div className="mt-6 hidden grid-cols-2 gap-5 md:grid lg:grid-cols-4 xl:grid-cols-7">
