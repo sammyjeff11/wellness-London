@@ -77,9 +77,9 @@ export default function PillarPage({
         <div className="mb-4 flex flex-col gap-2 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="mb-2 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:mb-3 sm:text-[11px] sm:tracking-[0.24em]">Popular routes</p>
-            <h2 className="font-serif text-2xl font-normal leading-tight sm:text-4xl md:text-5xl">Start with a treatment.</h2>
+            <h2 className="font-serif text-2xl font-normal leading-tight sm:text-4xl md:text-5xl">Start with a service.</h2>
           </div>
-          <p className="hidden max-w-2xl text-sm leading-7 text-[#5f574c] sm:block md:text-base">Some users know exactly what they want. These shortcuts provide faster routes into the most relevant service-led pages.</p>
+          <p className="hidden max-w-2xl text-sm leading-7 text-[#5f574c] sm:block md:text-base">These shortcuts lead to the service pages most closely associated with this pillar.</p>
         </div>
 
         <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-4">
@@ -101,9 +101,10 @@ export default function PillarPage({
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 pb-0 pt-4 sm:px-6 sm:py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
-          <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6f6048] sm:mb-5 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
+          <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6f6048] sm:mb-4 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
+          <p className="mb-2 text-xs font-medium text-[#29241d] sm:mb-4 sm:text-sm">{pillar.descriptor}</p>
           <h1 className="max-w-[92%] font-serif text-[1.95rem] font-normal leading-[0.93] tracking-[-0.045em] sm:text-6xl md:text-7xl">{pillar.title}</h1>
-          <p className="mt-2 max-w-lg text-[12px] leading-5 text-[#5f574c] sm:mt-8 sm:text-lg sm:leading-8">{pillar.intro}</p>
+          <p className="mt-2 max-w-2xl text-[12px] leading-5 text-[#5f574c] sm:mt-8 sm:text-lg sm:leading-8">{pillar.intro}</p>
         </div>
       </section>
 
