@@ -15,7 +15,7 @@ import {
   type ServicePillarMapping,
 } from "@/lib/service-pillar-mapping";
 import { absoluteUrl, truncateMetaText } from "@/lib/site";
-import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
+import { canonicaliseServiceList, canonicalServiceHref, groupFacilityServices } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 export const dynamicParams = true;
@@ -238,6 +238,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const heroSummary = editorialCandidates[0] || "View the available services, access rules and practical booking details.";
   const whyCopy = editorialCandidates.find((candidate) => candidate !== heroSummary);
   const services = canonicaliseServiceList(cleanList(facility.servicesOffered));
+  const serviceGroups = groupFacilityServices(services);
   const relatedGuides = getRelatedGuides(services);
   const similarVenues = getSimilarVenues(facility, facilities, servicePillarMappings);
   const website = cleanUrl(facility.website);
@@ -402,21 +403,29 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </section>
       ) : null}
 
-      {services.length > 0 ? (
+      {serviceGroups.length > 0 ? (
         <section className="px-5 pb-12 sm:px-6 md:pb-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="Services" title={`Services listed for ${facility.name}`} copy="Treatments and recovery options available here." />
-            <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
-              {services.slice(0, 8).map((service) => {
-                const href = canonicalServiceHref(service);
-                return href ? (
-                  <Link key={service} href={href} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] transition hover:border-[#6f6048] hover:text-[#29241d] sm:px-5 sm:py-3">
-                    {service}
-                  </Link>
-                ) : (
-                  <Pill key={service}>{service}</Pill>
-                );
-              })}
+            <SectionHeading eyebrow="Services" title={`Services at ${facility.name}`} copy="Browse the testing, treatments and recovery services listed for this venue." />
+            <div className="mt-7 grid gap-7 lg:grid-cols-2 lg:gap-10">
+              {serviceGroups.map((group) => (
+                <div key={group.key}>
+                  <h3 className="mb-3 text-[11px] uppercase tracking-[0.2em] text-[#6f6048]">{group.label}</h3>
+                  <div className="grid grid-cols-2 gap-2">
+                    {group.services.map((service) => {
+                      const href = canonicalServiceHref(service);
+                      const className = `flex min-h-12 items-center justify-between gap-3 rounded-[0.85rem] border border-[#d8cebf] bg-[#fbf8f1] px-4 py-3 text-sm leading-5 text-[#29241d] transition hover:border-[#6f6048] hover:bg-[#eee7da] ${service.length > 22 ? "col-span-2" : ""}`;
+                      return href ? (
+                        <Link key={service} href={href} className={className}>
+                          <span>{service}</span><span aria-hidden="true">→</span>
+                        </Link>
+                      ) : (
+                        <span key={service} className={className}>{service}</span>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

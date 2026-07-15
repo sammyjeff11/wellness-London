@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
-import { prioritiseCanonicalServiceList } from "./taxonomy.ts";
+import { canonicaliseServiceList, groupFacilityServices, prioritiseCanonicalServiceList } from "./taxonomy.ts";
 
 test("formats Airtable currency values for public display", () => {
   assert.equal(formatPriceFrom(9), "From £9");
@@ -41,4 +41,27 @@ test("puts the current service page tag first on venue cards", () => {
     prioritiseCanonicalServiceList(["Sauna", "Cold Plunge", "Massage"], "Cold Plunge"),
     ["Cold Plunge", "Sauna", "Massage"],
   );
+});
+
+test("groups venue services and removes generic values from profiles", () => {
+  assert.deepEqual(
+    groupFacilityServices([
+      "Other",
+      "Diagnostics",
+      "HBOT",
+      "Cryotherapy",
+      "Photobiomodulation",
+      "IV Therapy",
+      "Longevity Testing",
+      "Blood Testing",
+    ]),
+    [
+      { key: "testing", label: "Testing and diagnostics", services: ["Blood Testing", "Longevity Testing"] },
+      { key: "treatments", label: "Treatments and therapies", services: ["Hyperbaric Oxygen Therapy", "Cryotherapy", "Red Light Therapy", "IV Therapy"] },
+    ],
+  );
+  assert.deepEqual(canonicaliseServiceList(["Sauna", "Other", "Cold Plunge"]), ["Sauna", "Cold Plunge"]);
+  assert.deepEqual(groupFacilityServices(["Diagnostics"]), [
+    { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
+  ]);
 });

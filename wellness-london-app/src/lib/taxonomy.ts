@@ -196,6 +196,54 @@ export const serviceTaxonomy = [
 
 export type CanonicalService = (typeof serviceTaxonomy)[number];
 
+export type FacilityServiceGroup = {
+  key: "testing" | "treatments" | "recovery" | "mind-body" | "programmes" | "other";
+  label: string;
+  services: string[];
+};
+
+const hiddenServiceValues = new Set(["other"]);
+
+const specificDiagnosticSlugs = new Set<ServiceSlug>([
+  "blood-testing",
+  "longevity-testing",
+  "genomic-testing",
+  "hormone-testing",
+  "gut-health-testing",
+]);
+
+const facilityServiceGroupDefinitions: Array<{
+  key: FacilityServiceGroup["key"];
+  label: string;
+  slugs: ServiceSlug[];
+}> = [
+  {
+    key: "testing",
+    label: "Testing and diagnostics",
+    slugs: ["blood-testing", "longevity-testing", "genomic-testing", "hormone-testing", "gut-health-testing", "diagnostics"],
+  },
+  {
+    key: "treatments",
+    label: "Treatments and therapies",
+    slugs: ["hyperbaric-oxygen-therapy", "cryotherapy", "red-light-therapy", "iv-therapy", "nad-therapy", "ozone-therapy"],
+  },
+  {
+    key: "recovery",
+    label: "Heat, cold and recovery",
+    slugs: ["sauna", "infrared-sauna", "cold-plunge", "contrast-therapy", "massage", "float-therapy"],
+  },
+  {
+    key: "mind-body",
+    label: "Mind and body",
+    slugs: ["breathwork"],
+  },
+  {
+    key: "programmes",
+    label: "Health programmes",
+    slugs: ["health-optimisation"],
+  },
+];
+
 const normaliseTaxonomyText = (value: string) =>
   value
     .toLowerCase()
@@ -252,13 +300,38 @@ export function canonicaliseServiceList(values: string[] = []) {
     const label = canonical?.name || value;
     const key = canonical?.slug || normaliseServiceInput(label);
 
-    if (label && !seen.has(key)) {
+    if (label && !hiddenServiceValues.has(normaliseServiceInput(label)) && !seen.has(key)) {
       seen.add(key);
       services.push(label);
     }
 
     return services;
   }, []);
+}
+
+export function groupFacilityServices(values: string[] = []): FacilityServiceGroup[] {
+  const canonicalServices = canonicaliseServiceList(values);
+  const serviceSlugs = new Set(canonicalServices.map(canonicalServiceSlug).filter(Boolean) as ServiceSlug[]);
+  const hasSpecificDiagnostics = Array.from(specificDiagnosticSlugs).some((slug) => serviceSlugs.has(slug));
+  const assigned = new Set<string>();
+  const groups: FacilityServiceGroup[] = [];
+
+  for (const definition of facilityServiceGroupDefinitions) {
+    const services = definition.slugs.flatMap((slug) => {
+      if (slug === "diagnostics" && hasSpecificDiagnostics) return [];
+      const service = canonicalServices.find((label) => canonicalServiceSlug(label) === slug);
+      if (!service) return [];
+      assigned.add(service);
+      return [service];
+    });
+
+    if (services.length > 0) groups.push({ key: definition.key, label: definition.label, services });
+  }
+
+  const otherServices = canonicalServices.filter((service) => !assigned.has(service) && !(hasSpecificDiagnostics && canonicalServiceSlug(service) === "diagnostics"));
+  if (otherServices.length > 0) groups.push({ key: "other", label: "Other services", services: otherServices });
+
+  return groups;
 }
 
 export function prioritiseCanonicalServiceList(values: string[] = [], preferredService?: string | null) {
