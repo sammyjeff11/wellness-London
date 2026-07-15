@@ -406,7 +406,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {serviceGroups.length > 0 ? (
         <section className="px-5 pb-12 sm:px-6 md:pb-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="Services" title={`Services at ${facility.name}`} copy="Browse the testing, treatments and recovery services listed for this venue." />
+            <SectionHeading eyebrow="Services" title={`Services at ${facility.name}`} copy="Browse the specific tests, clinical care, treatments and classes listed for this venue." />
             <div className="mt-7 grid gap-7 lg:grid-cols-2 lg:gap-10">
               {serviceGroups.map((group) => (
                 <div key={group.key}>
