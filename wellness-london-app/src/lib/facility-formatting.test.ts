@@ -75,6 +75,39 @@ test("keeps activity categories out of venue services", () => {
   assert.deepEqual(services, ["Diagnostics", "Physiotherapy"]);
   assert.deepEqual(groupFacilityServices(services), [
     { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
-    { key: "recovery", label: "Heat, cold and recovery", services: ["Physiotherapy"] },
+    { key: "clinical-care", label: "Clinical care", services: ["Physiotherapy"] },
   ]);
+});
+
+test("organises a multidisciplinary clinic into specific service groups", () => {
+  assert.deepEqual(
+    groupFacilityServices([
+      "Diagnostics",
+      "Health Screening",
+      "MRI",
+      "General Medicine",
+      "Functional Medicine",
+      "MSK Medicine",
+      "Sports Medicine",
+      "Physiotherapy",
+      "Osteopathy",
+      "Nutrition",
+      "Cryotherapy",
+      "IV Infusions",
+      "Ozone Therapy",
+      "NESA Therapy",
+      "Massage",
+      "Yoga",
+      "Personal Training",
+      "Reformer Pilates",
+    ]),
+    [
+      { key: "testing", label: "Testing and diagnostics", services: ["Health Screening", "MRI / Medical Imaging"] },
+      { key: "clinical-care", label: "Clinical care", services: ["General Medicine", "Functional Medicine", "Musculoskeletal Medicine", "Sports & Exercise Medicine", "Physiotherapy", "Osteopathy", "Nutrition"] },
+      { key: "treatments", label: "Treatments and therapies", services: ["Cryotherapy", "IV Therapy", "Ozone Therapy", "NESA Therapy"] },
+      { key: "recovery", label: "Heat, cold and recovery", services: ["Massage"] },
+      { key: "mind-body", label: "Mind and body", services: ["Yoga"] },
+      { key: "movement", label: "Movement and performance", services: ["Personal Training", "Reformer Pilates"] },
+    ],
+  );
 });
