@@ -137,9 +137,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             <Link href="/collections" className="underline-offset-4 hover:text-[#29241d] hover:underline">Collections</Link>
           </nav>
 
-          <div className="rounded-[1.6rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 shadow-[0_24px_70px_rgba(41,36,29,0.06)] sm:p-8 md:p-10">
+          <div className="rounded-[1.35rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 shadow-[0_18px_50px_rgba(41,36,29,0.05)] sm:rounded-[1.6rem] sm:p-8 md:p-10">
             <p className="editorial-eyebrow mb-5">{collection.eyebrow}</p>
-            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+            <div>
               <div>
                 <h1 className="font-serif text-[3.2rem] font-normal leading-[0.94] tracking-[-0.02em] sm:text-6xl md:text-7xl">
                   {collection.title}
@@ -148,14 +148,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                   {collection.heroText}
                 </p>
               </div>
-              <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#f4efe6] p-5 sm:p-6">
-                <p className="text-sm leading-6 text-[#5f574c]">
-                  Compare current London venues using confirmed services, practical details and suitability for this particular experience.
-                </p>
-                <p className="mt-4 text-[2rem] font-serif leading-none tracking-[-0.045em]">
-                  {collectionFacilities.length} London spaces
-                </p>
-              </div>
+              <p className="mt-5 inline-flex rounded-full border border-[#d8cebf] bg-[#f4efe6] px-4 py-2 text-sm text-[#5f574c]">{collectionFacilities.length} London spaces</p>
             </div>
           </div>
         </div>
@@ -165,8 +158,8 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         <div className="mx-auto grid max-w-6xl gap-5 border-b border-[#d8cebf]/70 pb-10 md:grid-cols-[0.7fr_1.3fr] md:gap-10">
           <p className="editorial-eyebrow">Editor&apos;s note</p>
           <div className="space-y-5 text-base leading-8 text-[#5f574c] sm:text-lg sm:leading-9">
-            {collection.introParagraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+            {collection.introParagraphs.map((paragraph, index) => (
+              <p key={paragraph} className={index > 0 ? "hidden sm:block" : ""}>{paragraph}</p>
             ))}
           </div>
         </div>
@@ -186,9 +179,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {curatedPicks.map(({ section, facility }) => (
-              <article key={section.label} className="rounded-[1.35rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 sm:p-6">
+          <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0">
+            {curatedPicks.map(({ section, facility }, index) => (
+              <article key={section.label} className={`min-w-[88%] snap-start sm:min-w-0 ${index > 2 ? "hidden sm:block" : ""}`}>
                 <p className="editorial-eyebrow mb-3">{section.label}</p>
                 <p className="mb-5 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">{section.description}</p>
                 {facility ? (

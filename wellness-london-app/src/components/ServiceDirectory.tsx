@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useSyncExternalStore, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import Link from "next/link";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
@@ -104,26 +104,8 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
   );
 }
 
-function MobileFilterPill({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
-  return (
-    <label className="relative shrink-0">
-      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm font-medium text-[#29241d]">
-        {value || label}
-      </span>
-      <select
-        aria-label={label}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-11 max-w-[11rem] appearance-none rounded-full border border-[#d8cebf] bg-[#fbf8f1] pl-4 pr-9 text-sm text-transparent outline-none"
-      >
-        {children}
-      </select>
-      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70695d]">⌄</span>
-    </label>
-  );
-}
-
 export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectoryProps) {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
   const urlSearch = useSyncExternalStore(subscribeToDirectoryUrl, getDirectoryUrlSnapshot, getServerDirectoryUrlSnapshot);
   const filterOptions = useMemo<DirectoryFilterOptions>(() => ({
@@ -214,6 +196,21 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const hasActiveSearch = searchQuery.trim().length > 0;
 
   useEffect(() => {
+    if (!isFilterOpen) return;
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsFilterOpen(false);
+    }
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isFilterOpen]);
+
+  useEffect(() => {
     if (searchValue.length < 2) {
       lastTrackedSearch.current = "";
       return;
@@ -297,12 +294,16 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   return (
     <div className="space-y-8 md:space-y-12">
-      <section className="rounded-[1.35rem] border border-[#d8cebf]/70 bg-[#eee7da] p-4 sm:p-6 md:p-8">
-        <div className="rounded-[1.2rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-3 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
-          <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#6f6048]">
-            Search venues
-          </label>
-          <div className="flex items-center gap-3">
+      <section className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#eee7da] p-4 sm:p-6 md:p-8">
+        <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[11px] font-medium text-[#5f574c]">
+          Search venues
+        </label>
+        <div className="flex min-h-14 items-center gap-3 rounded-full border border-[#bcae99] bg-[#fbf8f1] px-5 shadow-[0_8px_24px_rgba(41,36,29,0.05)] focus-within:border-[#6f6048] focus-within:ring-2 focus-within:ring-[#d8cebf]">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 fill-none stroke-[#6f6048] stroke-[1.8]">
+            <circle cx="11" cy="11" r="6.5" />
+            <path d="m16 16 4 4" />
+          </svg>
+          <div className="flex min-w-0 flex-1 items-center gap-3">
             <input
               id={`venue-search-${serviceType}`}
               type="search"
@@ -310,7 +311,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               onChange={(event) => updateSearch(event.target.value)}
               placeholder="Try a venue, area or treatment"
               autoComplete="off"
-              className="min-w-0 flex-1 bg-transparent py-1 text-base text-[#29241d] outline-none placeholder:text-[#8d7d67]"
+              className="min-w-0 flex-1 bg-transparent py-3 text-base text-[#29241d] outline-none placeholder:text-[#8d7d67]"
             />
             {hasActiveSearch ? (
               <button type="button" onClick={() => updateSearch("")} className="relative z-30 text-sm text-[#29241d] underline underline-offset-4">
@@ -318,50 +319,26 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </button>
             ) : null}
           </div>
-          <p className="mt-2 text-xs leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
         </div>
 
-        <div className="mt-4 md:hidden">
-          <div className="mb-3 flex items-center justify-between gap-4">
-            <p className="text-sm text-[#5f574c]">{filteredFacilities.length} spaces found</p>
-            {activeFilters.length > 0 || hasActiveSearch ? (
-              <button type="button" onClick={clearFilters} className="relative z-30 text-sm text-[#29241d] underline underline-offset-4">
-                Clear all
-              </button>
-            ) : null}
-          </div>
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2">
-            <MobileFilterPill label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
-              <option value="">Area</option>
-              {filterOptions.area.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-              <option value="">Experience</option>
-              {filterOptions.experienceType.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
-              <option value="">Access</option>
-              {filterOptions.accessType.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Session" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-              <option value="">Session</option>
-              {filterOptions.privateOrShared.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Price level" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
-              <option value="">Price level</option>
-              {filterOptions.premiumLevel.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
-              <option value="">Beginner</option>
-              {filterOptions.beginnerFriendly.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={(value) => updateSort(value as DirectorySort)}>
-              <option value="recommended">Sort</option>
-              <option value="price-low">Price</option>
+        <div className="mt-4 flex items-center gap-2 md:hidden">
+          <button type="button" onClick={() => setIsFilterOpen(true)} className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full border border-[#bcae99] bg-[#fbf8f1] px-4 text-sm font-medium">
+            Filters {activeFilters.length > 0 ? <span className="rounded-full bg-[#29241d] px-2 py-0.5 text-xs text-[#fbf8f1]">{activeFilters.length}</span> : null}
+          </button>
+          <label className="relative inline-flex min-h-11 flex-1 items-center justify-center rounded-full border border-[#bcae99] bg-[#fbf8f1] px-4 text-sm font-medium">
+            <span>{sort === "recommended" ? "Recommended" : sort === "price-low" ? "Lowest price" : sort === "premium" ? "Premium" : "Recently checked"}</span>
+            <select aria-label="Sort venues" value={sort} onChange={(event) => updateSort(event.target.value as DirectorySort)} className="absolute inset-0 h-full w-full cursor-pointer appearance-none opacity-0">
+              <option value="recommended">Recommended</option>
+              <option value="price-low">Lowest price</option>
               <option value="premium">Premium</option>
-              <option value="recently-checked">Recent</option>
-            </MobileFilterPill>
-          </div>
+              <option value="recently-checked">Recently checked</option>
+            </select>
+          </label>
+        </div>
+
+        <div className="mt-3 flex items-center justify-between gap-4 md:hidden">
+          <p className="text-sm text-[#5f574c]">{filteredFacilities.length} of {uniqueFacilities.length} venues</p>
+          {activeFilters.length > 0 || hasActiveSearch ? <button type="button" onClick={clearFilters} className="text-sm underline underline-offset-4">Clear all</button> : null}
         </div>
 
         <div className="mt-6 hidden grid-cols-2 gap-5 md:grid lg:grid-cols-4 xl:grid-cols-7">
@@ -386,6 +363,22 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         ) : null}
       </section>
+
+      {isFilterOpen ? (
+        <div className="fixed inset-0 z-50 flex items-end bg-[#15120e]/55 p-0 md:hidden" role="dialog" aria-modal="true" aria-label="Filter venues">
+          <div className="max-h-[88vh] w-full overflow-y-auto rounded-t-[1.5rem] bg-[#fbf8f1] px-5 pb-8 pt-5 shadow-[0_-20px_60px_rgba(0,0,0,0.2)]">
+            <div className="mb-6 flex items-center justify-between border-b border-[#d8cebf] pb-4">
+              <div>
+                <p className="text-lg font-medium">Filter venues</p>
+                <p className="mt-1 text-sm text-[#6f6048]">{filteredFacilities.length} matches</p>
+              </div>
+              <button autoFocus type="button" onClick={() => setIsFilterOpen(false)} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm">Done</button>
+            </div>
+            <div className="grid gap-5">{filterControls}</div>
+            {activeFilters.length > 0 ? <button type="button" onClick={clearFilters} className="mt-6 text-sm underline underline-offset-4">Clear all filters</button> : null}
+          </div>
+        </div>
+      ) : null}
 
       {filteredFacilities.length > 0 ? (
         <section>

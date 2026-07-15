@@ -258,7 +258,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Nearest station", value: cleanValue(facility.nearestStation) },
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Opening hours", value: cleanValue(facility.openingHours) },
-  ].filter((item) => isUsefulValue(item.value));
+  ].filter((item) => isUsefulValue(item.value)).slice(0, 6);
   const experienceItems: DetailItem[] = [
     { label: "Experience style", value: cleanList(facility.experienceType).join(", ") },
     { label: "Atmosphere", value: cleanValue(facility.ambience) },
@@ -275,9 +275,11 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Price notes", value: cleanValue(facility.priceNotes) },
   ].filter((item) => isUsefulValue(item.value));
+  const visitItems = [...experienceItems, ...practicalItems]
+    .filter((item, index, items) => items.findIndex((candidate) => candidate.label === item.label) === index);
 
   return (
-    <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+    <main className={`min-h-screen bg-[#f4efe6] text-[#29241d] ${primaryCtaHref ? "pb-20 md:pb-0" : ""}`}>
       <AnalyticsPageView
         eventName="facility_page_view"
         properties={{
@@ -300,7 +302,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           </nav>
 
           <div className="grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
-            <div className="max-w-2xl lg:max-w-none">
+            <div className="order-2 max-w-2xl lg:order-1 lg:max-w-none">
               <p className="editorial-eyebrow mb-4">{cleanValue(facility.venueTypeStandardized) || "London wellness venue"}</p>
               <h1 className="font-serif text-[3.1rem] font-normal leading-[0.94] tracking-[-0.06em] sm:text-6xl md:text-7xl">
                 {facility.name}
@@ -352,7 +354,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </div>
             </div>
 
-            <FacilityGallery images={facility.images} venueName={facility.name} />
+            <div className="order-1 lg:order-2">
+              <FacilityGallery images={facility.images} venueName={facility.name} />
+            </div>
           </div>
         </div>
       </section>
@@ -360,7 +364,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {quickFacts.length > 0 ? (
         <section className="px-5 pb-10 sm:px-6 sm:pb-14">
           <div className="mx-auto max-w-6xl rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/70 p-5 shadow-[0_18px_48px_rgba(41,36,29,0.04)] sm:p-6">
-            <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-x-4 sm:grid-cols-2 lg:grid-cols-4">
               {quickFacts.map((item) => <QuickFact key={item.label} {...item} />)}
             </div>
           </div>
@@ -387,23 +391,12 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         </section>
       ) : null}
 
-      {experienceItems.length > 0 ? (
+      {visitItems.length > 0 ? (
         <section className="px-5 pb-12 sm:px-6 md:pb-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="What to expect" title="The experience" copy="A concise read on the visit style, atmosphere and session format." />
+            <SectionHeading eyebrow="What to expect" title="The experience and practical details" copy="Session format, facilities and the details worth checking before you book." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {experienceItems.map((item) => <DetailCard key={item.label} {...item} />)}
-            </div>
-          </div>
-        </section>
-      ) : null}
-
-      {practicalItems.length > 0 ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="Practical details" title="Before you go" copy="The details that matter when deciding whether the venue fits your visit." />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {practicalItems.map((item) => <DetailCard key={item.label} {...item} />)}
+              {visitItems.map((item) => <DetailCard key={item.label} {...item} />)}
             </div>
           </div>
         </section>
@@ -445,9 +438,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         <section className="px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
             <SectionHeading eyebrow="Related guides" title="Compare related services" copy="See similar services across London and the practical differences to check before booking." />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="-mx-5 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 lg:grid-cols-4">
               {relatedGuides.map((guide) => (
-                <Link key={guide.href} href={guide.href} className="group flex min-h-48 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">
+                <Link key={guide.href} href={guide.href} className="group flex min-h-48 min-w-[82%] snap-start flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0] sm:min-w-0">
                   <span>
                     <span className="block text-lg font-medium leading-6 text-[#29241d]">{guide.service} in London</span>
                     <span className="mt-3 block text-sm leading-6 text-[#5f574c]">{guide.copy}</span>
@@ -464,11 +457,24 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         <section className="px-5 pb-14 sm:px-6 md:pb-20">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
             <SectionHeading eyebrow="Similar venues" title="Explore similar venues" copy="More Well+ profiles with related services, areas or venue styles." />
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {similarVenues.map((venue) => <SimilarVenueCard key={venue.slug} facility={venue} />)}
+            <div className="-mx-5 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 lg:grid-cols-4">
+              {similarVenues.map((venue) => <div key={venue.slug} className="min-w-[82%] snap-start sm:min-w-0"><SimilarVenueCard facility={venue} /></div>)}
             </div>
           </div>
         </section>
+      ) : null}
+
+      {primaryCtaHref ? (
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d8cebf] bg-[#fbf8f1]/96 p-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-12px_32px_rgba(41,36,29,0.12)] backdrop-blur md:hidden">
+          <TrackedExternalLink
+            href={primaryCtaHref}
+            eventName="listing_cta_click"
+            properties={{ facility_name: facility.name, facility_slug: facility.slug, source: "facility_sticky_mobile", cta_type: bookingLink ? "booking" : "website", access_type: access, primary_service: services[0] }}
+            className="flex min-h-12 w-full items-center justify-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]"
+          >
+            {primaryCtaLabel}
+          </TrackedExternalLink>
+        </div>
       ) : null}
     </main>
   );

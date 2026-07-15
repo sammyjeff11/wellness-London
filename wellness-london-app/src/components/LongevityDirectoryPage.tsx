@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import type { AirtableFacility } from "@/lib/airtable";
@@ -217,6 +217,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
   const [diagnostic, setDiagnostic] = useState<Diagnostic>("all");
   const [oversight, setOversight] = useState<Oversight>("all");
   const [price, setPrice] = useState<Price>("all");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const profiles = useMemo(() => facilities.map(profileClinic), [facilities]);
   const filteredProfiles = useMemo(() => profiles.filter((profile) =>
@@ -232,9 +233,31 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
     .filter(Boolean) as ClinicProfile[];
   const hasFilters = need !== "all" || diagnostic !== "all" || oversight !== "all" || price !== "all";
 
+  useEffect(() => {
+    if (!isFilterOpen) return;
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setIsFilterOpen(false);
+    }
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [isFilterOpen]);
+
+  function clearFilters() {
+    setNeed("all");
+    setDiagnostic("all");
+    setOversight("all");
+    setPrice("all");
+  }
+
+  const activeFilterCount = [need, diagnostic, oversight, price].filter((value) => value !== "all").length;
+
   return (
-    <main className="bg-[#fbf8f1] text-[#29241d]">
-      <section className="px-5 pb-10 pt-8 sm:px-6 sm:py-20 md:py-24">
+    <main className="flex flex-col bg-[#fbf8f1] text-[#29241d]">
+      <section className="order-1 px-5 pb-9 pt-8 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:text-[11px]">Preventative health and diagnostics</p>
           <h1 className="max-w-5xl font-serif text-[2.7rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-6xl md:text-8xl">Longevity clinics in London.</h1>
@@ -246,7 +269,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
         </div>
       </section>
 
-      <section id="services" className="border-y border-[#d8cebf] bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14">
+      <section id="services" className="order-3 border-y border-[#d8cebf] bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Explore by assessment</p>
@@ -264,7 +287,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
         </div>
       </section>
 
-      <section id="how-to-compare" className="px-5 py-10 sm:px-6 sm:py-14">
+      <section id="how-to-compare" className="order-4 px-5 py-10 sm:px-6 sm:py-14">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
@@ -277,7 +300,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
         </div>
       </section>
 
-      <section id="clinics" className="scroll-mt-24 px-5 py-12 sm:px-6 md:py-20">
+      <section id="clinics" className="order-2 scroll-mt-24 px-5 py-10 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
@@ -285,16 +308,42 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
             <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Start with what you need. Then narrow by clinical model, diagnostics and likely investment. Comparison details are drawn from provider information and should be confirmed before booking.</p>
           </div>
 
-          <div className="mb-10 grid gap-4 border border-[#d8cebf] bg-[#f4efe6] p-5 sm:grid-cols-2 lg:grid-cols-4">
-            <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
-            <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
-            <FilterSelect label="Clinical model" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
-            <FilterSelect label="Starting price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
-            <div className="flex items-end sm:col-span-2 lg:col-span-4">
+          <div className="mb-8 border border-[#d8cebf] bg-[#f4efe6] p-4 sm:mb-10 sm:p-5">
+            <div className="flex items-center gap-3 sm:hidden">
+              <button type="button" onClick={() => setIsFilterOpen(true)} className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-full border border-[#bcae99] bg-[#fbf8f1] px-4 text-sm font-medium">
+                Filters {activeFilterCount > 0 ? <span className="rounded-full bg-[#29241d] px-2 py-0.5 text-xs text-[#fbf8f1]">{activeFilterCount}</span> : null}
+              </button>
+              {hasFilters ? <button type="button" onClick={clearFilters} className="text-sm underline underline-offset-4">Clear</button> : null}
+            </div>
+            <div className="hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
+              <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
+              <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
+              <FilterSelect label="Clinical model" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
+              <FilterSelect label="Starting price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
+            </div>
+            <div className="mt-3 flex items-end sm:col-span-2 sm:mt-4 lg:col-span-4">
               <p className="text-xs text-[#6f6048]">Showing {visibleProfiles.length} of {profiles.length} listed providers.</p>
-              {hasFilters && <button type="button" onClick={() => { setNeed("all"); setDiagnostic("all"); setOversight("all"); setPrice("all"); }} className="ml-auto text-xs underline underline-offset-4">Clear filters</button>}
+              {hasFilters && <button type="button" onClick={clearFilters} className="ml-auto hidden text-xs underline underline-offset-4 sm:block">Clear filters</button>}
             </div>
           </div>
+
+          {isFilterOpen ? (
+            <div className="fixed inset-0 z-50 flex items-end bg-[#15120e]/55 md:hidden" role="dialog" aria-modal="true" aria-label="Filter longevity clinics">
+              <div className="max-h-[88vh] w-full overflow-y-auto rounded-t-[1.5rem] bg-[#fbf8f1] px-5 pb-8 pt-5">
+                <div className="mb-6 flex items-center justify-between border-b border-[#d8cebf] pb-4">
+                  <div><p className="text-lg font-medium">Filter clinics</p><p className="mt-1 text-sm text-[#6f6048]">{visibleProfiles.length} matches</p></div>
+                  <button autoFocus type="button" onClick={() => setIsFilterOpen(false)} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm">Done</button>
+                </div>
+                <div className="grid gap-5">
+                  <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
+                  <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
+                  <FilterSelect label="Clinical model" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
+                  <FilterSelect label="Starting price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
+                </div>
+                {hasFilters ? <button type="button" onClick={clearFilters} className="mt-6 text-sm underline underline-offset-4">Clear all filters</button> : null}
+              </div>
+            </div>
+          ) : null}
 
           {visibleProfiles.length > 0 ? (
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -305,28 +354,33 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
                 const moreCount = Math.max(profile.diagnosticLabels.length - visibleLabels.length, 0);
 
                 return (
-                  <article key={profile.facility.slug} className="flex flex-col">
-                    <div className="mb-3 border border-[#d8cebf] bg-[#f4efe6] p-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
-                        {profile.checked && <span className="shrink-0 text-[10px] uppercase tracking-[0.14em]">Provider info checked</span>}
+                  <FacilityCard
+                    key={profile.facility.slug}
+                    facility={{ ...directoryFacility, services: prioritisedServices }}
+                    source="longevity_directory"
+                    prioritisedService={profile.featuredServiceLabels[0]}
+                    supplementaryContent={(
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
+                          {profile.checked && <span className="shrink-0 text-[10px] uppercase tracking-[0.14em]">Provider info checked</span>}
+                        </div>
+                        <p className="mt-3 text-sm leading-6"><span className="text-[#6f6048]">Best for:</span> {profile.bestFor}</p>
+                        <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-[#d8cebf] pt-4 text-xs">
+                          <div><dt className="text-[#6f6048]">Clinical model</dt><dd className="mt-1">{profile.oversightLabel}</dd></div>
+                          <div><dt className="text-[#6f6048]">Format</dt><dd className="mt-1">{profile.format}</dd></div>
+                        </dl>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {visibleLabels.map((label, index) => {
+                            const href = featuredServiceHrefs[label];
+                            const className = `rounded-full border px-2.5 py-1 text-[10px] ${index < profile.featuredServiceLabels.length ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
+                            return href ? <Link key={label} href={href} className={className}>{label}</Link> : <span key={label} className={className}>{label}</span>;
+                          })}
+                          {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-[10px] underline underline-offset-4">+{moreCount} more diagnostics</Link>}
+                        </div>
                       </div>
-                      <p className="mt-3 text-sm leading-6"><span className="text-[#6f6048]">Best for:</span> {profile.bestFor}</p>
-                      <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-[#d8cebf] pt-4 text-xs">
-                        <div><dt className="text-[#6f6048]">Clinical model</dt><dd className="mt-1">{profile.oversightLabel}</dd></div>
-                        <div><dt className="text-[#6f6048]">Format</dt><dd className="mt-1">{profile.format}</dd></div>
-                      </dl>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {visibleLabels.map((label, index) => {
-                          const href = featuredServiceHrefs[label];
-                          const className = `rounded-full border px-2.5 py-1 text-[10px] ${index < profile.featuredServiceLabels.length ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
-                          return href ? <Link key={label} href={href} className={className}>{label}</Link> : <span key={label} className={className}>{label}</span>;
-                        })}
-                        {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-[10px] underline underline-offset-4">+{moreCount} more diagnostics</Link>}
-                      </div>
-                    </div>
-                    <FacilityCard facility={{ ...directoryFacility, services: prioritisedServices }} source="longevity_directory" prioritisedService={profile.featuredServiceLabels[0]} />
-                  </article>
+                    )}
+                  />
                 );
               })}
             </div>
@@ -336,7 +390,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
         </div>
       </section>
 
-      <section className="bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
+      <section className="order-5 bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#d8cebf]">Before booking</p>
@@ -348,7 +402,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Air
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:px-6 md:py-20">
+      <section className="order-6 px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Go deeper</p>

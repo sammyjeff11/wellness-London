@@ -55,28 +55,25 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
     `https://maps.apple.com/?q=${encodeURIComponent(mapQuery)}`;
 
   return (
-    <section className="border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 py-16 sm:px-6 sm:py-24">
+    <section className="border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 py-12 sm:px-6 sm:py-20">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-3xl">
+        <div className="mb-7 max-w-3xl sm:mb-10">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
             Location & arrival
           </p>
 
-          <h2 className="font-serif text-4xl font-normal leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-7xl">
-            Know the setting before you arrive.
+          <h2 className="font-serif text-[2.15rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">
+            Location and arrival.
           </h2>
 
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#70695d] sm:text-lg sm:leading-9">
-            {name} sits within {locationLabel}. This section combines
-            practical arrival details with a calmer visual orientation layer,
-            helping users understand both the route and the atmosphere around
-            the venue.
+          <p className="mt-4 max-w-2xl text-base leading-7 text-[#70695d] sm:mt-6 sm:text-lg sm:leading-9">
+            Find the address, nearest station and directions for {name}.
           </p>
         </div>
 
         <div className="overflow-hidden border border-[#d8cebf]/80 bg-[#fbf8f1]">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative min-h-[380px] border-b border-[#d8cebf]/70 lg:min-h-[640px] lg:border-b-0 lg:border-r">
+            <div className="relative min-h-[270px] border-b border-[#d8cebf]/70 sm:min-h-[360px] lg:min-h-[440px] lg:border-b-0 lg:border-r">
               {!isMapActive ? (
                 <button
                   type="button"
@@ -124,7 +121,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                 <iframe
                   title={`${name} map`}
                   src={mapSrc}
-                  className="h-full min-h-[380px] w-full border-0 grayscale-[0.32] contrast-[0.96] lg:min-h-[640px]"
+                  className="h-full min-h-[270px] w-full border-0 grayscale-[0.32] contrast-[0.96] sm:min-h-[360px] lg:min-h-[440px]"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
