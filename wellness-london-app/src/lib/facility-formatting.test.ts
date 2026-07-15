@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
-import { canonicaliseServiceList, groupFacilityServices, prioritiseCanonicalServiceList } from "./taxonomy.ts";
+import { canonicaliseServiceList, canonicaliseVenueServices, groupFacilityServices, prioritiseCanonicalServiceList } from "./taxonomy.ts";
 
 test("formats Airtable currency values for public display", () => {
   assert.equal(formatPriceFrom(9), "From £9");
@@ -63,5 +63,18 @@ test("groups venue services and removes generic values from profiles", () => {
   assert.deepEqual(canonicaliseServiceList(["Sauna", "Other", "Cold Plunge"]), ["Sauna", "Cold Plunge"]);
   assert.deepEqual(groupFacilityServices(["Diagnostics"]), [
     { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
+  ]);
+});
+
+test("keeps activity categories out of venue services", () => {
+  const services = canonicaliseVenueServices(
+    ["Diagnostics"],
+    ["Wellness Club", "Physiotherapy", "Longevity", "Medical Wellness", "Recovery", "Fitness"],
+  );
+
+  assert.deepEqual(services, ["Diagnostics", "Physiotherapy"]);
+  assert.deepEqual(groupFacilityServices(services), [
+    { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
+    { key: "recovery", label: "Heat, cold and recovery", services: ["Physiotherapy"] },
   ]);
 });

@@ -7,6 +7,7 @@ export type ServiceSlug =
   | "red-light-therapy"
   | "contrast-therapy"
   | "massage"
+  | "physiotherapy"
   | "breathwork"
   | "float-therapy"
   | "hyperbaric-oxygen-therapy"
@@ -77,6 +78,14 @@ export const serviceTaxonomy = [
     slug: "massage",
     description: "Hands-on bodywork and recovery treatments, from sports massage to restorative body treatments.",
     synonyms: ["sports massage", "body treatment", "bodywork", "deep tissue massage", "lymphatic massage"],
+    parentCategory: "recovery",
+    href: "/recovery-london",
+  },
+  {
+    name: "Physiotherapy",
+    slug: "physiotherapy",
+    description: "Assessment, rehabilitation and movement-led treatment delivered by a physiotherapist.",
+    synonyms: ["physio", "physical therapy", "sports physiotherapy", "sports physio", "rehabilitation"],
     parentCategory: "recovery",
     href: "/recovery-london",
   },
@@ -197,12 +206,19 @@ export const serviceTaxonomy = [
 export type CanonicalService = (typeof serviceTaxonomy)[number];
 
 export type FacilityServiceGroup = {
-  key: "testing" | "treatments" | "recovery" | "mind-body" | "programmes" | "other";
+  key: "testing" | "treatments" | "recovery" | "mind-body" | "programmes";
   label: string;
   services: string[];
 };
 
-const hiddenServiceValues = new Set(["other"]);
+const hiddenServiceValues = new Set([
+  "other",
+  "wellness club",
+  "longevity",
+  "medical wellness",
+  "recovery",
+  "fitness",
+]);
 
 const specificDiagnosticSlugs = new Set<ServiceSlug>([
   "blood-testing",
@@ -230,7 +246,7 @@ const facilityServiceGroupDefinitions: Array<{
   {
     key: "recovery",
     label: "Heat, cold and recovery",
-    slugs: ["sauna", "infrared-sauna", "cold-plunge", "contrast-therapy", "massage", "float-therapy"],
+    slugs: ["sauna", "infrared-sauna", "cold-plunge", "contrast-therapy", "physiotherapy", "massage", "float-therapy"],
   },
   {
     key: "mind-body",
@@ -309,11 +325,19 @@ export function canonicaliseServiceList(values: string[] = []) {
   }, []);
 }
 
+export function canonicaliseVenueServices(serviceValues: string[] = [], activityValues: string[] = []) {
+  const recognisedActivityServices = activityValues.flatMap((value) => {
+    const service = findCanonicalService(value);
+    return service ? [service.name] : [];
+  });
+
+  return canonicaliseServiceList([...serviceValues, ...recognisedActivityServices]);
+}
+
 export function groupFacilityServices(values: string[] = []): FacilityServiceGroup[] {
   const canonicalServices = canonicaliseServiceList(values);
   const serviceSlugs = new Set(canonicalServices.map(canonicalServiceSlug).filter(Boolean) as ServiceSlug[]);
   const hasSpecificDiagnostics = Array.from(specificDiagnosticSlugs).some((slug) => serviceSlugs.has(slug));
-  const assigned = new Set<string>();
   const groups: FacilityServiceGroup[] = [];
 
   for (const definition of facilityServiceGroupDefinitions) {
@@ -321,15 +345,11 @@ export function groupFacilityServices(values: string[] = []): FacilityServiceGro
       if (slug === "diagnostics" && hasSpecificDiagnostics) return [];
       const service = canonicalServices.find((label) => canonicalServiceSlug(label) === slug);
       if (!service) return [];
-      assigned.add(service);
       return [service];
     });
 
     if (services.length > 0) groups.push({ key: definition.key, label: definition.label, services });
   }
-
-  const otherServices = canonicalServices.filter((service) => !assigned.has(service) && !(hasSpecificDiagnostics && canonicalServiceSlug(service) === "diagnostics"));
-  if (otherServices.length > 0) groups.push({ key: "other", label: "Other services", services: otherServices });
 
   return groups;
 }
