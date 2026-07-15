@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { safeImageUrl } from "@/lib/image-utils";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
-import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
+import { canonicaliseVenueServices, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
 
 export type AirtableImage = {
   id: string;
@@ -358,23 +358,12 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const activityDisplayLabels = normaliseList(record.fields["Activity Display Labels"]);
   const primaryService = normaliseSingle(record.fields["Primary Service"]);
   const secondaryServices = normaliseList(record.fields["Secondary Services"]);
-  const serviceNames = uniqueStrings([
-    ...servicesOfferedRaw,
-    ...activityTagsStandardized,
-    ...activityDisplayLabels,
-    ...normaliseList(record.fields.Services),
-    primaryService,
-    ...secondaryServices,
-  ]);
-  const servicesOffered = canonicaliseServiceList(uniqueStrings([
-    primaryService,
-    ...secondaryServices,
-    ...activityDisplayLabels,
-    ...activityTagsStandardized,
+  const servicesOffered = canonicaliseVenueServices(uniqueStrings([
     ...servicesOfferedRaw,
     ...normaliseList(record.fields.Services),
-  ]));
-  const serviceKeySource = [primaryService, ...secondaryServices, ...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
+  ]), [...activityTagsStandardized, ...activityDisplayLabels]);
+  const serviceNames = servicesOffered;
+  const serviceKeySource = [...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
   const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
   const stableSlug = createSlug(record.fields.Slug || "", record.id);

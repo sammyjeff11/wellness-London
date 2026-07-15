@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
-import { canonicaliseServiceList, groupFacilityServices, prioritiseCanonicalServiceList } from "./taxonomy.ts";
+import { canonicaliseServiceList, canonicaliseVenueServices, groupFacilityServices, prioritiseCanonicalServiceList } from "./taxonomy.ts";
 
 test("formats Airtable currency values for public display", () => {
   assert.equal(formatPriceFrom(9), "From £9");
@@ -64,4 +64,50 @@ test("groups venue services and removes generic values from profiles", () => {
   assert.deepEqual(groupFacilityServices(["Diagnostics"]), [
     { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
   ]);
+});
+
+test("keeps activity categories out of venue services", () => {
+  const services = canonicaliseVenueServices(
+    ["Diagnostics"],
+    ["Wellness Club", "Physiotherapy", "Longevity", "Medical Wellness", "Recovery", "Fitness"],
+  );
+
+  assert.deepEqual(services, ["Diagnostics", "Physiotherapy"]);
+  assert.deepEqual(groupFacilityServices(services), [
+    { key: "testing", label: "Testing and diagnostics", services: ["Diagnostics"] },
+    { key: "clinical-care", label: "Clinical care", services: ["Physiotherapy"] },
+  ]);
+});
+
+test("organises a multidisciplinary clinic into specific service groups", () => {
+  assert.deepEqual(
+    groupFacilityServices([
+      "Diagnostics",
+      "Health Screening",
+      "MRI",
+      "General Medicine",
+      "Functional Medicine",
+      "MSK Medicine",
+      "Sports Medicine",
+      "Physiotherapy",
+      "Osteopathy",
+      "Nutrition",
+      "Cryotherapy",
+      "IV Infusions",
+      "Ozone Therapy",
+      "NESA Therapy",
+      "Massage",
+      "Yoga",
+      "Personal Training",
+      "Reformer Pilates",
+    ]),
+    [
+      { key: "testing", label: "Testing and diagnostics", services: ["Health Screening", "MRI / Medical Imaging"] },
+      { key: "clinical-care", label: "Clinical care", services: ["General Medicine", "Functional Medicine", "Musculoskeletal Medicine", "Sports & Exercise Medicine", "Physiotherapy", "Osteopathy", "Nutrition"] },
+      { key: "treatments", label: "Treatments and therapies", services: ["Cryotherapy", "IV Therapy", "Ozone Therapy", "NESA Therapy"] },
+      { key: "recovery", label: "Heat, cold and recovery", services: ["Massage"] },
+      { key: "mind-body", label: "Mind and body", services: ["Yoga"] },
+      { key: "movement", label: "Movement and performance", services: ["Personal Training", "Reformer Pilates"] },
+    ],
+  );
 });
