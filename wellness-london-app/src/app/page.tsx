@@ -112,7 +112,7 @@ export default async function Home() {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 pt-4 sm:px-6 sm:pt-6 md:pt-8">
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_18px_55px_rgba(41,36,29,0.1)] md:rounded-[1.75rem]">
-          <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
+          <div className="absolute inset-0 overflow-hidden">
             {heroImage ? (
               <SafeImage
                 src={heroImage.url}
@@ -123,10 +123,10 @@ export default async function Home() {
                 className="object-cover object-center sm:object-cover"
               />
             ) : null}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#211d17]/95 via-[#211d17]/52 to-[#211d17]/10 sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
           </div>
 
-          <div className="relative flex min-h-[26rem] flex-col justify-end px-4 pb-5 pt-3 text-[#fbf8f1] sm:min-h-[34rem] sm:px-8 sm:py-10 md:min-h-[36rem] md:px-12 md:py-12">
+          <div className="relative flex min-h-[28rem] flex-col justify-end px-5 pb-6 pt-20 text-[#fbf8f1] sm:min-h-[34rem] sm:px-8 sm:py-10 md:min-h-[36rem] md:px-12 md:py-12">
             <div className="max-w-4xl">
               <p className="mb-1.5 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">
                 Well+ / The London wellness edit
@@ -135,17 +135,17 @@ export default async function Home() {
                 Find the right wellness venue in London.
               </h1>
               <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
-                Search by service, venue type, location or use case — with practical details to help you choose where to book.
+                A curated directory for comparing saunas, recovery studios, longevity clinics and more.
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
-                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
-                  Browse venues
+              <div className="mt-5 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
+                <Link href="#venue-search" className="rounded-full bg-[#fbf8f1] px-4 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
+                  Find a venue
                 </Link>
-                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
-                  Sauna
+                <Link href="/explore" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
+                  Browse all
                 </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5 sm:py-3">
-                  Featured
+                <Link href="/sauna-london" className="hidden rounded-full border border-[#fbf8f1]/22 px-5 py-3 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:block">
+                  Explore saunas
                 </Link>
               </div>
             </div>
@@ -153,16 +153,18 @@ export default async function Home() {
         </div>
       </section>
 
-      <HomeVenueSearch facilities={directoryFacilities} />
+      <div id="venue-search">
+        <HomeVenueSearch facilities={directoryFacilities} />
+      </div>
 
       {selectedFacilities.length > 0 ? (
         <section id="featured" className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div className="mb-5 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
                 <h2 className="max-w-3xl font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-                  Three places to start.
+                  Recommended places to start.
                 </h2>
               </div>
               <Link href="/explore" className="w-fit text-sm font-medium underline underline-offset-4">
@@ -195,11 +197,11 @@ export default async function Home() {
           </div>
 
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-6`}>
-            {serviceLinks.map((treatment) => (
+            {serviceLinks.map((treatment, index) => (
               <Link
                 key={treatment.href}
                 href={treatment.href}
-                className="group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
+                className={`group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 ${index > 3 ? "hidden sm:block" : ""}`}
               >
                 <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
                 <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
@@ -224,8 +226,8 @@ export default async function Home() {
           </div>
 
           <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-3`}>
-            {collectionLinks.map((collection) => (
-              <Link key={collection.href} href={collection.href} className={lightCarouselCardClass}>
+            {collectionLinks.map((collection, index) => (
+              <Link key={collection.href} href={collection.href} className={`${lightCarouselCardClass} ${index > 2 ? "hidden sm:block" : ""}`}>
                 <h3 className={editorialCardTitleClass}>{collection.title}</h3>
                 <p className={editorialCardTextClass}>{collection.text}</p>
               </Link>
@@ -234,7 +236,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section className="hidden px-5 py-8 sm:block sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -254,7 +256,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section className="hidden bg-[#fbf8f1] px-5 py-8 sm:block sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
@@ -274,7 +276,7 @@ export default async function Home() {
       </section>
 
       {featuredNeighbourhoods.length > 0 ? (
-        <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+        <section className="hidden px-5 py-8 sm:block sm:px-6 sm:py-12 md:py-14">
           <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
             <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
@@ -294,7 +296,7 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section className="hidden bg-[#fbf8f1] px-5 py-8 sm:block sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
