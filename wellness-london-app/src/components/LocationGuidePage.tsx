@@ -86,14 +86,14 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
       <AnalyticsPageView eventName="location_page_view" properties={{ location: guide.slug, page_path: `/${guide.slug}` }} />
       <JsonLd data={faqSchema} />
 
-      <section className="px-5 py-16 sm:px-6 sm:py-24 md:py-32">
+      <section className="px-5 py-10 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-6xl border-y border-[#cbbda9] py-10 sm:py-14">
           <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr] md:items-start">
             <div>
               <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
                 London location guide
               </p>
-              <h1 className="font-serif text-5xl font-normal leading-[0.98] tracking-normal sm:text-6xl md:text-8xl">
+              <h1 className="font-serif text-[2.8rem] font-normal leading-[0.96] tracking-[-0.035em] sm:text-6xl md:text-8xl">
                 {guide.title}
               </h1>
             </div>
@@ -107,7 +107,14 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
         </div>
       </section>
 
-      <section className="border-y border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
+      <LocationPageEnhancements
+        areaName={areaName}
+        facilities={locationFacilities}
+        intro={`Explore recovery venues in ${areaName} offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.`}
+        relatedAreaLinks={getRelatedAreaLinks(guide.slug)}
+      />
+
+      <section className="border-y border-[#cbbda9] bg-[#eee7da] px-5 py-12 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 max-w-3xl">
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
@@ -132,13 +139,6 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
           </div>
         </div>
       </section>
-
-      <LocationPageEnhancements
-        areaName={areaName}
-        facilities={locationFacilities}
-        intro={`Explore recovery venues in ${areaName} offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.`}
-        relatedAreaLinks={getRelatedAreaLinks(guide.slug)}
-      />
 
       <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">

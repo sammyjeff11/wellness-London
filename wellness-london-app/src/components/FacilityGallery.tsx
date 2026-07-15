@@ -69,19 +69,9 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
           ) : null}
         </div>
 
-        {secondaryImages.length > 0 ? (
-          <div className="mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:hidden">
-            {secondaryImages.map((image, index) => (
-              <button key={`${image.url}-${index}`} type="button" onClick={() => openLibrary(index + 1)} className="relative aspect-[4/3] min-w-[42%] snap-start overflow-hidden rounded-[0.8rem] bg-[#d8cebf] focus:outline-none focus:ring-2 focus:ring-[#6f6048]" aria-label={`Open ${venueName} photo ${index + 2}`}>
-                <SafeImage src={image.url} alt={imageAlt(index + 1)} fill sizes="42vw" className="object-cover" />
-              </button>
-            ))}
-          </div>
-        ) : null}
-
         {galleryImages.length > 1 ? (
           <button type="button" onClick={() => openLibrary(0)} className="absolute bottom-4 right-4 rounded-full bg-[#fbf8f1]/95 px-4 py-2 text-xs font-medium text-[#29241d] shadow-[0_8px_22px_rgba(41,36,29,0.14)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f6048]">
-            View photos
+            View {galleryImages.length} photos
           </button>
         ) : null}
       </div>

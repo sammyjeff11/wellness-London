@@ -1,4 +1,5 @@
 import Link from "next/link";
+import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
@@ -172,7 +173,7 @@ function buildFaqs(areaName: string, facilities: ServiceDirectoryFacility[]) {
 export default function LocationPageEnhancements({ areaName, facilities, intro, relatedAreaLinks = [] }: LocationPageEnhancementsProps) {
   const comparisonFacilities = dedupeFacilities(facilities);
 
-  if (comparisonFacilities.length < 2) return null;
+  if (comparisonFacilities.length === 0) return null;
 
   const availableServices = getAvailableServices(comparisonFacilities);
   const bestForItems = comparisonFacilities.length >= 3 ? getBestForItems(areaName, comparisonFacilities) : [];
@@ -215,6 +216,12 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
               ))}
             </div>
           ) : null}
+
+          <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {comparisonFacilities.map((facility) => (
+              <FacilityCard key={facility.slug} facility={facility} source={`location_${areaName}`} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -235,10 +242,10 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
                     </Link>
                     <p className="mt-1 text-sm text-[#6f6048]">{getAreaLabel(facility)}</p>
                     <dl className="mt-4 grid grid-cols-2 gap-3">
-                      {serviceColumns.map((service) => (
+                      {serviceColumns.filter((service) => hasService(facility, service)).map((service) => (
                         <div key={`${facility.slug}-${service.key}`}>
                           <dt className="text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{service.label}</dt>
-                          <dd className="mt-1 text-sm text-[#29241d]">{hasService(facility, service) ? "Yes" : "No"}</dd>
+                          <dd className="mt-1 text-sm text-[#29241d]">Available</dd>
                         </div>
                       ))}
                     </dl>

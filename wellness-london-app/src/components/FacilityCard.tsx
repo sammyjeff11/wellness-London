@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
@@ -42,6 +42,7 @@ type FacilityCardProps = {
   source?: string;
   compact?: boolean;
   prioritisedService?: string;
+  supplementaryContent?: ReactNode;
 };
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
@@ -155,7 +156,7 @@ function getCardImages(facility: FacilityCardFacility) {
   return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
 }
 
-export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, supplementaryContent }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
@@ -236,6 +237,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
           </div>
           <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
         </Link>
+        {supplementaryContent ? <div className="mt-4 border-t border-[#d8cebf]/80 pt-4">{supplementaryContent}</div> : null}
         {comparisonDetails.length > 0 ? (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {comparisonDetails.map((detail) => (

@@ -43,15 +43,15 @@ type ServiceFaqSectionProps = {
 
 export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntroSectionProps) {
   return (
-    <section className="border-y border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section className="border-y border-[#cbbda9] bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-9 md:grid-cols-[0.95fr_1.05fr] md:items-start">
           <div>
             <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">{eyebrow}</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">{title}</h2>
+            <h2 className="font-serif text-[2.15rem] font-normal leading-tight sm:text-5xl md:text-7xl">{title}</h2>
           </div>
           <div className="space-y-5 text-base leading-8 text-[#5f574c]">
-            {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {paragraphs.map((paragraph, index) => <p key={paragraph} className={index > 0 ? "hidden sm:block" : ""}>{paragraph}</p>)}
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@ export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntro
 
 export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectorySectionProps) {
   return (
-    <section className="bg-[#f4efe6] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section className="bg-[#f4efe6] px-5 py-10 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
         <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} prioritisedService={prioritisedService} />
       </div>
@@ -71,11 +71,11 @@ export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, e
 
 export function ServiceGuidanceSection({ title, points }: ServiceGuidanceSectionProps) {
   return (
-    <section className="border-y border-[#cbbda9] bg-[#29241d] px-5 py-16 text-[#fbf8f1] sm:px-6 sm:py-24">
+    <section className="border-y border-[#cbbda9] bg-[#29241d] px-5 py-12 text-[#fbf8f1] sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
-        <h2 className="mb-12 max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
-        <div className="grid gap-8 sm:gap-10 md:grid-cols-4">
+        <h2 className="mb-8 max-w-3xl font-serif text-[2.15rem] font-normal leading-tight sm:mb-12 sm:text-5xl">{title}</h2>
+        <div className="grid gap-6 sm:gap-10 md:grid-cols-4">
           {points.map((point) => (
             <article key={point.title} className="border-t border-[#fbf8f1]/22 pt-5">
               <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#fbf8f1]">{point.title}</h3>
@@ -92,7 +92,7 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
   if (notes.length === 0) return null;
 
   return (
-    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 max-w-3xl">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
@@ -116,7 +116,7 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
 
 export function ServiceInsightSection({ eyebrow = "Before you book", panels }: ServiceInsightSectionProps) {
   return (
-    <section className="border-b border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
+    <section className="border-b border-[#cbbda9] bg-[#eee7da] px-5 py-10 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">{eyebrow}</p>
         <div className="grid gap-5 md:grid-cols-3">
