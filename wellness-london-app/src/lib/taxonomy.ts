@@ -21,7 +21,23 @@ export type ServiceSlug =
   | "hormone-testing"
   | "gut-health-testing"
   | "ozone-therapy"
-  | "health-optimisation";
+  | "health-optimisation"
+  | "health-screening"
+  | "medical-imaging"
+  | "general-medicine"
+  | "functional-medicine"
+  | "womens-health"
+  | "musculoskeletal-medicine"
+  | "sports-exercise-medicine"
+  | "cardiology"
+  | "sleep-medicine"
+  | "osteopathy"
+  | "pain-management"
+  | "nutrition"
+  | "nesa-therapy"
+  | "personal-training"
+  | "reformer-pilates"
+  | "yoga";
 
 export type ServiceTaxonomyEntry = {
   name: string;
@@ -133,9 +149,25 @@ export const serviceTaxonomy = [
     name: "Diagnostics",
     slug: "diagnostics",
     description: "Advanced health assessments, screening and diagnostic mapping offered by preventative health and longevity clinics.",
-    synonyms: ["diagnostic testing", "diagnostic mapping", "health assessment", "health screening", "advanced diagnostics", "precision diagnostic mapping"],
+    synonyms: ["diagnostic testing", "diagnostic mapping", "health assessment", "advanced diagnostics", "precision diagnostic mapping"],
     parentCategory: "medical-wellness",
     href: "/longevity",
+  },
+  {
+    name: "Health Screening",
+    slug: "health-screening",
+    description: "Preventative health checks that bring together relevant examinations, tests and clinical review.",
+    synonyms: ["health screenings", "preventative screening", "preventive screening"],
+    parentCategory: "medical-wellness",
+    href: "/health-screening-london",
+  },
+  {
+    name: "MRI / Medical Imaging",
+    slug: "medical-imaging",
+    description: "MRI and other clinician-directed medical imaging used to investigate health, injury or performance concerns.",
+    synonyms: ["mri", "medical imaging", "full body mri", "whole body mri"],
+    parentCategory: "medical-wellness",
+    href: "/health-screening-london",
   },
   {
     name: "Blood Testing",
@@ -201,12 +233,124 @@ export const serviceTaxonomy = [
     parentCategory: "longevity",
     href: "/optimise",
   },
+  {
+    name: "General Medicine",
+    slug: "general-medicine",
+    description: "General medical assessment and ongoing care delivered by qualified clinicians.",
+    synonyms: ["general medical care", "gp", "gp and medical concierge", "medical concierge"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Functional Medicine",
+    slug: "functional-medicine",
+    description: "Clinician-led assessment that considers health history, symptoms and lifestyle together.",
+    synonyms: ["functional health"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Women's Health",
+    slug: "womens-health",
+    description: "Clinical services focused on women's health needs across different life stages.",
+    synonyms: ["women’s health", "female health"],
+    parentCategory: "medical-wellness",
+    href: "/longevity",
+  },
+  {
+    name: "Musculoskeletal Medicine",
+    slug: "musculoskeletal-medicine",
+    description: "Clinical assessment and care for joint, muscle, tendon and other musculoskeletal concerns.",
+    synonyms: ["musculoskeletal", "msk", "msk medicine", "musculoskeletal (msk)"],
+    parentCategory: "medical-wellness",
+    href: "/recovery-london",
+  },
+  {
+    name: "Sports & Exercise Medicine",
+    slug: "sports-exercise-medicine",
+    description: "Medical assessment and care for exercise, injury prevention, rehabilitation and physical performance.",
+    synonyms: ["sports medicine", "exercise medicine", "sport and exercise medicine", "sports & exercise medicine"],
+    parentCategory: "medical-wellness",
+    href: "/perform",
+  },
+  {
+    name: "Cardiology",
+    slug: "cardiology",
+    description: "Specialist cardiovascular assessment and medical care.",
+    synonyms: ["cardiac assessment", "cardiovascular medicine"],
+    parentCategory: "medical-wellness",
+    href: "/health-screening-london",
+  },
+  {
+    name: "Sleep Medicine",
+    slug: "sleep-medicine",
+    description: "Clinical assessment and support for sleep-related concerns.",
+    synonyms: ["sleep clinic", "sleep health"],
+    parentCategory: "medical-wellness",
+    href: "/optimise",
+  },
+  {
+    name: "Osteopathy",
+    slug: "osteopathy",
+    description: "Hands-on musculoskeletal assessment and treatment delivered by an osteopath.",
+    synonyms: ["osteopathic treatment", "osteopath"],
+    parentCategory: "recovery",
+    href: "/recovery-london",
+  },
+  {
+    name: "Pain Management",
+    slug: "pain-management",
+    description: "Clinical assessment and treatment intended to help manage persistent or acute pain.",
+    synonyms: ["pain medicine", "pain clinic"],
+    parentCategory: "medical-wellness",
+    href: "/recovery-london",
+  },
+  {
+    name: "Nutrition",
+    slug: "nutrition",
+    description: "Individual nutrition assessment and guidance delivered as a standalone service or within a wider health plan.",
+    synonyms: ["nutritional therapy", "nutrition coaching", "nutrition consultation"],
+    parentCategory: "medical-wellness",
+    href: "/optimise",
+  },
+  {
+    name: "NESA Therapy",
+    slug: "nesa-therapy",
+    description: "A non-invasive neuromodulation therapy offered by selected clinical wellness providers.",
+    synonyms: ["nesa", "nesa neuromodulation", "neuromodulation therapy"],
+    parentCategory: "medical-wellness",
+    href: "/reset",
+  },
+  {
+    name: "Personal Training",
+    slug: "personal-training",
+    description: "One-to-one exercise coaching built around individual movement, strength or performance goals.",
+    synonyms: ["personal trainer", "one to one training", "1:1 training", "elite personal training"],
+    parentCategory: "recovery",
+    href: "/perform",
+  },
+  {
+    name: "Reformer Pilates",
+    slug: "reformer-pilates",
+    description: "Pilates sessions using reformer equipment, offered privately or in small classes.",
+    synonyms: ["pilates reformer", "reformer class", "reformer pilates class"],
+    parentCategory: "mind-body",
+    href: "/perform",
+  },
+  {
+    name: "Yoga",
+    slug: "yoga",
+    description: "Guided movement and breath-led classes offered across restorative and performance-focused formats.",
+    synonyms: ["yoga class", "yoga classes"],
+    parentCategory: "mind-body",
+    href: "/reset",
+  },
 ] as const satisfies readonly ServiceTaxonomyEntry[];
 
 export type CanonicalService = (typeof serviceTaxonomy)[number];
 
 export type FacilityServiceGroup = {
-  key: "testing" | "treatments" | "recovery" | "mind-body" | "programmes";
+  key: "testing" | "clinical-care" | "treatments" | "recovery" | "mind-body" | "movement" | "programmes";
   label: string;
   services: string[];
 };
@@ -221,6 +365,8 @@ const hiddenServiceValues = new Set([
 ]);
 
 const specificDiagnosticSlugs = new Set<ServiceSlug>([
+  "health-screening",
+  "medical-imaging",
   "blood-testing",
   "longevity-testing",
   "genomic-testing",
@@ -236,22 +382,32 @@ const facilityServiceGroupDefinitions: Array<{
   {
     key: "testing",
     label: "Testing and diagnostics",
-    slugs: ["blood-testing", "longevity-testing", "genomic-testing", "hormone-testing", "gut-health-testing", "diagnostics"],
+    slugs: ["health-screening", "medical-imaging", "blood-testing", "longevity-testing", "genomic-testing", "hormone-testing", "gut-health-testing", "diagnostics"],
+  },
+  {
+    key: "clinical-care",
+    label: "Clinical care",
+    slugs: ["general-medicine", "functional-medicine", "womens-health", "musculoskeletal-medicine", "sports-exercise-medicine", "cardiology", "sleep-medicine", "physiotherapy", "osteopathy", "pain-management", "nutrition"],
   },
   {
     key: "treatments",
     label: "Treatments and therapies",
-    slugs: ["hyperbaric-oxygen-therapy", "cryotherapy", "red-light-therapy", "iv-therapy", "nad-therapy", "ozone-therapy"],
+    slugs: ["hyperbaric-oxygen-therapy", "cryotherapy", "red-light-therapy", "iv-therapy", "nad-therapy", "ozone-therapy", "nesa-therapy"],
   },
   {
     key: "recovery",
     label: "Heat, cold and recovery",
-    slugs: ["sauna", "infrared-sauna", "cold-plunge", "contrast-therapy", "physiotherapy", "massage", "float-therapy"],
+    slugs: ["sauna", "infrared-sauna", "cold-plunge", "contrast-therapy", "massage", "float-therapy"],
   },
   {
     key: "mind-body",
     label: "Mind and body",
-    slugs: ["breathwork"],
+    slugs: ["breathwork", "yoga"],
+  },
+  {
+    key: "movement",
+    label: "Movement and performance",
+    slugs: ["personal-training", "reformer-pilates"],
   },
   {
     key: "programmes",
