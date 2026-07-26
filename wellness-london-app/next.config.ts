@@ -21,6 +21,21 @@ const nextConfig: NextConfig = {
         destination: "/longevity",
         permanent: true,
       },
+      {
+        source: "/facility/koyo-wellness",
+        destination: "/west-london-wellness",
+        permanent: true,
+      },
+      {
+        source: "/facility/re-place",
+        destination: "/west-london-wellness",
+        permanent: true,
+      },
+      {
+        source: "/facility/cryojuvenate-uk",
+        destination: "/cryotherapy-london",
+        permanent: true,
+      },
     ];
   },
   images: {
