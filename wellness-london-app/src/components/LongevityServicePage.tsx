@@ -158,9 +158,9 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
 
       <DiagnosticInfoSection eyebrow="Tracking over time" title="Repeat the useful measurement, not the whole package." panels={page.trackingNotes} />
       <ServiceEvidenceSection notes={page.evidenceNotes} />
-      <ServiceGuidanceSection title={`What to expect from ${page.label.toLowerCase()} in London`} points={page.whatToExpect} />
-      <ServiceGuidanceSection title={`How to choose ${page.label.toLowerCase()} in London`} points={page.guidance} />
-      <ServiceRelatedSection links={page.related} />
+      <ServiceGuidanceSection eyebrow="What to expect" title={`What to expect from ${page.label.toLowerCase()} in London`} points={page.whatToExpect} />
+      <ServiceGuidanceSection eyebrow="How to choose" title={`How to choose ${page.label.toLowerCase()} in London`} points={page.guidance} />
+      <ServiceRelatedSection eyebrow="Continue exploring" title="Related diagnostic guides" links={page.related} />
       <ServiceFaqSection title={`${page.label} London FAQs`} faqs={page.faqs} />
     </main>
   );
