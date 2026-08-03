@@ -14,12 +14,31 @@ const pillarLinks = [
 
 const serviceLinks = [
   { href: "/sauna-london", label: "Saunas in London" },
-  { href: "/infrared-sauna-london", label: "Infrared Sauna in London" },
   { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+  { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
   { href: "/cryotherapy-london", label: "Cryotherapy in London" },
   { href: "/red-light-therapy-london", label: "Red Light Therapy in London" },
-  { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
+  { href: "/infrared-sauna-london", label: "Infrared Sauna in London" },
+  { href: "/hbot-london", label: "HBOT in London" },
   { href: "/recovery-london", label: "Recovery Spaces in London" },
+];
+
+const priorityAreaLinks = [
+  { href: "/neighbourhoods/soho", label: "Soho" },
+  { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf" },
+  { href: "/neighbourhoods/kensington", label: "Kensington" },
+  { href: "/central-london-wellness", label: "Central London" },
+];
+
+const priorityVenueSlugs = [
+  "london-cryo-belgravia",
+  "bxr-lab",
+  "kxu-chelsea",
+  "community-sauna-baths-walthamstow",
+  "and-soul-shoreditch",
+  "community-sauna-baths-camberwell",
+  "community-sauna-baths-peckham",
+  "the-bath-house",
 ];
 
 const editorialLinks = [
@@ -73,14 +92,33 @@ function venueLabel(facility: Awaited<ReturnType<typeof getFacilities>>[number])
   return location ? `${facility.name} — ${location}` : facility.name;
 }
 
+function uniqueLinks(links: { href: string; label: string }[]) {
+  return links.filter((link, index) => links.findIndex((candidate) => candidate.href === link.href) === index);
+}
+
 export default async function SiteFooter() {
-  const areaLinks = locationHubLinks.map((link) => ({
-    href: link.href,
-    label: link.label.replace(" wellness spaces", "").replace(" saunas and recovery studios", "").replace(" recovery spaces", ""),
-  }));
+  const areaLinks = uniqueLinks([
+    ...priorityAreaLinks,
+    ...locationHubLinks.map((link) => ({
+      href: link.href,
+      label: link.label.replace(" wellness spaces", "").replace(" saunas and recovery studios", "").replace(" recovery spaces", ""),
+    })),
+  ]);
+  const priorityRank = new Map(priorityVenueSlugs.map((slug, index) => [slug, index]));
   const popularVenueLinks = (await getFacilities())
     .filter((facility) => isUsefulValue(facility.slug))
-    .sort((a, b) => facilityScore(b) - facilityScore(a))
+    .sort((a, b) => {
+      const aRank = priorityRank.get(a.slug);
+      const bRank = priorityRank.get(b.slug);
+
+      if (aRank !== undefined || bRank !== undefined) {
+        if (aRank === undefined) return 1;
+        if (bRank === undefined) return -1;
+        return aRank - bRank;
+      }
+
+      return facilityScore(b) - facilityScore(a);
+    })
     .slice(0, 10)
     .map((facility) => ({ href: `/facility/${facility.slug}`, label: venueLabel(facility) }));
 
