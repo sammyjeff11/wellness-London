@@ -97,7 +97,10 @@ function facilityScore(facility: Awaited<ReturnType<typeof getFacilities>>[numbe
 
 function venueLabel(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
   const location = cleanValue(facility.neighbourhood) || cleanValue(facility.areaOfLondon) || cleanValue(facility.areaGroup);
-  return location ? `${facility.name} — ${location}` : facility.name;
+  if (!location) return facility.name;
+
+  const normalisedName = facility.name.toLowerCase();
+  return normalisedName.includes(location.toLowerCase()) ? facility.name : `${facility.name} — ${location}`;
 }
 
 function uniqueLinks(links: { href: string; label: string }[]) {
