@@ -71,7 +71,7 @@ export default function InquiryForm({ kind, source, defaultVenue = "", defaultLi
     });
 
     setStatus("Opening your email app with the enquiry prepared.");
-    window.location.href = `mailto:${encodeURIComponent(contactEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   const inputClass =
