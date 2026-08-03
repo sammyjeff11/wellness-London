@@ -8,7 +8,7 @@ import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 export const metadata: Metadata = {
   title: "Site Map | Well+",
-  description: "Browse Well+ wellness guides, London neighbourhoods, services, collections, venue profiles and editorial standards.",
+  description: "Browse Well+ wellness guides, London neighbourhoods, services, collections, venue profiles, contact routes and editorial standards.",
   alternates: { canonical: "/site-map" },
 };
 
@@ -22,6 +22,15 @@ const coreSections = [
       { href: "/reset", label: "Reset" },
       { href: "/optimise", label: "Optimise" },
       { href: "/longevity", label: "Longevity" },
+    ],
+  },
+  {
+    title: "Well+ and venue enquiries",
+    links: [
+      { href: "/the-edit", label: "The Well+ Edit" },
+      { href: "/contact", label: "Contact Well+" },
+      { href: "/claim-listing", label: "Claim or Update a Listing" },
+      { href: "/work-with-well-plus", label: "Work with Well+" },
     ],
   },
   {
@@ -110,7 +119,7 @@ export default async function SiteMapPage() {
         <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">Well+</p>
         <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">Site Map</h1>
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
-          Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages and editorial standards.
+          Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages, contact routes and editorial standards.
         </p>
         <div className="space-y-12">
           {pages.map((section) => (
