@@ -145,9 +145,18 @@ async function fetchLongevityFacilities(): Promise<LongevityFacility[]> {
 }
 
 export function hasStructuredLongevityData(facility: LongevityFacility) {
+  const hasClinicalModel = Boolean(
+    facility.clinicModel && facility.clinicModel !== "Not applicable",
+  );
+  const hasMeaningfulOversight = Boolean(
+    facility.clinicalOversight &&
+    facility.clinicalOversight !== "Not applicable" &&
+    facility.clinicalOversight !== "Not confirmed",
+  );
+
   return Boolean(
-    (facility.clinicModel && facility.clinicModel !== "Not applicable") ||
-    (facility.clinicalOversight && facility.clinicalOversight !== "Not applicable") ||
+    hasClinicalModel ||
+    hasMeaningfulOversight ||
     facility.confirmedDiagnostics.length ||
     facility.assessmentFormat.length ||
     facility.resultsIncluded.length ||
