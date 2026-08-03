@@ -71,6 +71,16 @@ function isClinicalLongevityFacility(facility: LongevityFacility) {
   return clinicalLongevitySignals.some((signal) => searchable.includes(signal));
 }
 
+function longevitySortScore(facility: LongevityFacility) {
+  return (
+    Number(facility.venueConfirmed) * 1000 +
+    Number(Boolean(facility.serviceLastVerified)) * 500 +
+    facility.confirmedDiagnostics.length * 50 +
+    facility.resultsIncluded.length * 20 +
+    (facility.profileCompletenessScore || 0)
+  );
+}
+
 export async function generateStaticParams() {
   return pillarPages.map((pillar) => ({ pillar: pillar.slug }));
 }
@@ -112,12 +122,12 @@ export default async function WellnessPillarPage({
   if (!pillar) notFound();
 
   if (pillar.slug === "longevity") {
-    const [facilities, servicePillarMappings] = await Promise.all([
-      getLongevityFacilities(),
-      getServicePillarMappings(),
-    ]);
-    const matchingFacilities = getFacilitiesForPillar(facilities, pillar, servicePillarMappings);
-    return <LongevityDirectoryPage facilities={matchingFacilities.filter(isClinicalLongevityFacility)} />;
+    const facilities = await getLongevityFacilities();
+    const clinicalFacilities = facilities
+      .filter(isClinicalLongevityFacility)
+      .sort((a, b) => longevitySortScore(b) - longevitySortScore(a));
+
+    return <LongevityDirectoryPage facilities={clinicalFacilities} />;
   }
 
   const [facilities, servicePillarMappings] = await Promise.all([
