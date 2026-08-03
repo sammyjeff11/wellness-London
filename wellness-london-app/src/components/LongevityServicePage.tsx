@@ -3,7 +3,6 @@ import SafeImage from "@/components/SafeImage";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
 import LongevityJourney from "@/components/LongevityJourney";
-import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   ServiceDirectorySection,
   ServiceEvidenceSection,
@@ -163,16 +162,6 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
       <ServiceGuidanceSection title={`How to choose ${page.label.toLowerCase()} in London`} points={page.guidance} />
       <ServiceRelatedSection links={page.related} />
       <ServiceFaqSection title={`${page.label} London FAQs`} faqs={page.faqs} />
-
-      <section className="border-t border-[#d8cebf] bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto max-w-4xl">
-          <NewsletterSignup
-            source={`longevity_${page.slug}`}
-            title="Follow the diagnostic edit"
-            copy="New London providers, clearer testing guides and useful ways to understand what to measure next."
-          />
-        </div>
-      </section>
     </main>
   );
 }
