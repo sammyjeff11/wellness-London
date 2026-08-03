@@ -18,6 +18,7 @@ type ServiceDirectorySectionProps = {
 };
 
 type ServiceGuidanceSectionProps = {
+  eyebrow?: string;
   title: string;
   points: ServicePageContent["guidancePoints"];
 };
@@ -33,6 +34,8 @@ type ServiceInsightSectionProps = {
 };
 
 type ServiceRelatedSectionProps = {
+  eyebrow?: string;
+  title?: string;
   links: ServicePageContent["internalLinks"];
 };
 
@@ -73,11 +76,11 @@ export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, e
   );
 }
 
-export function ServiceGuidanceSection({ title, points }: ServiceGuidanceSectionProps) {
+export function ServiceGuidanceSection({ eyebrow = "How to choose", title, points }: ServiceGuidanceSectionProps) {
   return (
     <section className="border-y border-[#cbbda9] bg-[#29241d] px-5 py-16 text-[#fbf8f1] sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">How to choose</p>
+        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">{eyebrow}</p>
         <h2 className="mb-12 max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
         <div className="grid gap-8 sm:gap-10 md:grid-cols-4">
           {points.map((point) => (
@@ -136,13 +139,13 @@ export function ServiceInsightSection({ eyebrow = "Before you book", panels }: S
   );
 }
 
-export function ServiceRelatedSection({ links }: ServiceRelatedSectionProps) {
+export function ServiceRelatedSection({ eyebrow = "Continue exploring", title = "Related recovery guides", links }: ServiceRelatedSectionProps) {
   return (
     <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 border-b border-[#d8cebf] pb-5">
-          <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Continue exploring</p>
-          <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">Related recovery guides</h2>
+          <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">{eyebrow}</p>
+          <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">{title}</h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {links.map((link) => {
