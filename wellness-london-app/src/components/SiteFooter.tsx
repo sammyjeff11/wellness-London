@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getFacilities } from "@/lib/airtable";
 import { locationHubLinks } from "@/lib/location-hubs";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
@@ -21,6 +22,13 @@ const serviceLinks = [
   { href: "/infrared-sauna-london", label: "Infrared Sauna in London" },
   { href: "/hbot-london", label: "HBOT in London" },
   { href: "/recovery-london", label: "Recovery Spaces in London" },
+];
+
+const businessLinks = [
+  { href: "/the-edit", label: "The Well+ Edit" },
+  { href: "/contact", label: "Contact" },
+  { href: "/claim-listing", label: "Claim or update a listing" },
+  { href: "/work-with-well-plus", label: "Work with Well+" },
 ];
 
 const priorityAreaLinks = [
@@ -125,14 +133,24 @@ export default async function SiteFooter() {
   return (
     <footer className="bg-[#29241d] px-5 py-8 text-[#fbf8f1] sm:px-6 sm:py-16">
       <div className="mx-auto max-w-7xl border-t border-[#fbf8f1]/18 pt-7 sm:pt-10">
-        <div className="mb-6 md:mb-0">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
-          <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
-            A practical guide to London saunas, cold plunges, recovery studios, spas and longevity clinics.
-          </p>
+        <div className="mb-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
+            <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
+              A practical guide to London saunas, cold plunges, recovery studios, spas and longevity clinics.
+            </p>
+          </div>
+          <NewsletterSignup
+            source="site_footer"
+            variant="dark"
+            compact
+            title="The Well+ Edit"
+            copy="New London wellness openings, useful guides and worthwhile shortlists — sent occasionally."
+          />
         </div>
 
         <div className="md:hidden">
+          <MobileFooterGroup title="Well+" links={businessLinks} />
           <MobileFooterGroup title="Explore" links={pillarLinks} />
           <MobileFooterGroup title="Treatments" links={serviceLinks} />
           <MobileFooterGroup title="Areas" links={areaLinks} />
@@ -140,8 +158,12 @@ export default async function SiteFooter() {
           <MobileFooterGroup title="Editorial" links={editorialLinks} />
         </div>
 
-        <div className="hidden gap-8 md:grid md:grid-cols-[1.1fr_0.85fr_0.9fr_0.85fr_1fr_0.95fr]">
-          <div aria-hidden="true" />
+        <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-6">
+          <nav aria-label="Footer business links">
+            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Well+</h2>
+            <FooterLinkList links={businessLinks} />
+          </nav>
+
           <nav aria-label="Footer pillars">
             <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Explore by intention</h2>
             <FooterLinkList links={pillarLinks} />
