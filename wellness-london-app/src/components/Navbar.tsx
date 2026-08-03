@@ -16,9 +16,12 @@ const navLinks = [
 
 const longevityLinks = [
   { href: "/longevity", label: "Clinics" },
+  { href: "/health-screening-london", label: "Screening" },
+  { href: "/blood-testing-london", label: "Blood Tests" },
+  { href: "/cardiovascular-screening-london", label: "Heart Health" },
   { href: "/dexa-scan-london", label: "DEXA" },
   { href: "/vo2-max-testing-london", label: "VO₂ Max" },
-  { href: "/health-screening-london", label: "Health Screening" },
+  { href: "/medical-imaging-london", label: "Imaging" },
 ];
 
 export default function Navbar() {
