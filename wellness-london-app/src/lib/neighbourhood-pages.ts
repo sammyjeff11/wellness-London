@@ -3,6 +3,7 @@ export type NeighbourhoodPage = {
   title: string;
   shortTitle: string;
   href: string;
+  region: string;
   metaTitle: string;
   metaDescription: string;
   eyebrow: string;
@@ -18,10 +19,11 @@ export type NeighbourhoodPage = {
 export const neighbourhoodPages: NeighbourhoodPage[] = [
   {
     slug: "shoreditch",
-    title: "Recovery venues in Shoreditch",
+    title: "Wellness in Shoreditch",
     shortTitle: "Shoreditch",
     href: "/neighbourhoods/shoreditch",
-    metaTitle: "Shoreditch Recovery Venues | Sauna & Cold Plunge | Well+",
+    region: "East London",
+    metaTitle: "Wellness in Shoreditch | Sauna & Cold Plunge | Well+",
     metaDescription:
       "Explore Shoreditch recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
     eyebrow: "East London energy",
@@ -46,20 +48,21 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
   },
   {
     slug: "canary-wharf",
-    title: "Recovery venues in Canary Wharf",
+    title: "Wellness in Canary Wharf",
     shortTitle: "Canary Wharf",
     href: "/neighbourhoods/canary-wharf",
-    metaTitle: "Canary Wharf Recovery Venues | Sauna & Wellness | Well+",
+    region: "East London",
+    metaTitle: "Wellness in Canary Wharf | Sauna, Ice Baths & Recovery | Well+",
     metaDescription:
-      "Explore Canary Wharf recovery venues offering sauna, cold plunge, contrast therapy, cryotherapy and other wellness services.",
+      "Explore Canary Wharf wellness, from Arc's communal sauna and ice baths to Third Space recovery services, with practical guidance before booking.",
     eyebrow: "Docklands recovery",
     intro:
-      "Explore recovery venues in Canary Wharf offering sauna, cold plunge, contrast therapy, cryotherapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.",
+      "Canary Wharf has evolved beyond its office-district identity into a modern waterside neighbourhood with high-spec health clubs, recovery treatments and one of London's most distinctive communal contrast-therapy spaces.",
     summary:
-      "Canary Wharf is useful when you want recovery close to offices, gyms, transport and weekday routines rather than a destination spa day.",
+      "The local edit is strongest for structured recovery: sauna, ice baths, guided contrast sessions and specialist treatments that can fit before work, after work or into a focused weekend visit.",
     bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Cryotherapy", "Premium wellness"],
     character:
-      "The Canary Wharf wellness scene is practical and workday-friendly, with recovery spaces clustered around gyms, offices and transport links.",
+      "The atmosphere is polished, contemporary and efficient, shaped by modern architecture, waterside public spaces and a weekday business rhythm. Arc adds a more social, sensory counterpoint to the area's club-led wellness offer.",
     visitNotes: [
       "Useful for weekday recovery before work, after work or between meetings.",
       "Check access rules carefully because some facilities may sit inside broader gym or club settings.",
@@ -74,22 +77,23 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
   },
   {
     slug: "kensington",
-    title: "Recovery venues in Kensington",
+    title: "Wellness in Kensington",
     shortTitle: "Kensington",
     href: "/neighbourhoods/kensington",
-    metaTitle: "Kensington Recovery Venues | Cryotherapy & Sauna | Well+",
+    region: "West London",
+    metaTitle: "Wellness in Kensington | Cryotherapy, Sauna & HBOT | Well+",
     metaDescription:
       "Compare Kensington recovery venues offering sauna, cryotherapy, red light therapy and HBOT, with practical details to check before booking.",
     eyebrow: "West London recovery",
     intro:
-      "Explore recovery venues in Kensington offering infrared sauna, cryotherapy, red light therapy, HBOT and other wellness services. Compare the verified local facilities by service type, setting and location before choosing where to book.",
+      "Kensington's wellness offer reflects the neighbourhood itself: polished, appointment-led and premium, with technology-led recovery close to the shops, homes and hotels around Kensington High Street.",
     summary:
       "Kensington is useful when you want premium recovery, biohacking and wellness services close to High Street Kensington rather than a broad West London search.",
     bestFor: ["Infrared sauna", "Cryotherapy", "Red light therapy", "HBOT", "Premium recovery"],
     character:
-      "The Kensington wellness scene in the current Well+ data is compact and premium-led, with two verified High Street Kensington venues focused on technology-led recovery, longevity and fitness support.",
+      "The current Well+ edit is intentionally compact and centres on a verified High Street Kensington venue offering equipment-led recovery, longevity and movement services.",
     visitNotes: [
-      "The current Kensington edit is intentionally limited to two matched physical venues.",
+      "The current Kensington edit only shows venues that are published and confidently matched to the neighbourhood.",
       "Useful for comparing infrared sauna, cryotherapy, red light therapy and HBOT options around High Street Kensington.",
       "Check access details carefully because one listed venue has a private-members signal in the data.",
     ],
@@ -105,6 +109,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Wellness in Marylebone",
     shortTitle: "Marylebone",
     href: "/neighbourhoods/marylebone",
+    region: "Central London",
     metaTitle: "Wellness in Marylebone | Well+ London Neighbourhood Guide",
     metaDescription:
       "Compare recovery, longevity and clinical wellness venues in Marylebone, with practical access and location guidance.",
@@ -133,21 +138,22 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Wellness in Notting Hill",
     shortTitle: "Notting Hill",
     href: "/neighbourhoods/notting-hill",
+    region: "West London",
     metaTitle: "Wellness in Notting Hill | Well+ London Neighbourhood Guide",
     metaDescription:
       "Compare sauna, spa, movement and treatment-led wellness venues in Notting Hill and nearby West London neighbourhoods.",
     eyebrow: "West London lifestyle",
     intro:
-      "Notting Hill combines spa, movement and treatment-led venues in a walkable part of West London, making it practical to include a booking in a wider morning or afternoon.",
+      "Notting Hill brings an unhurried, lifestyle-led feel to wellness. The current Well+ edit is centred on a multidisciplinary spa and members' club in the neighbourhood's quieter residential streets.",
     summary:
-      "The local mix is less clinic-heavy than Chelsea or Kensington and places more emphasis on spa treatments, movement and appointment-led wellbeing.",
+      "The strongest verified local signal is slow, treatment-led wellbeing rather than performance recovery: heat, cold, bodywork, holistic therapies and restorative appointments in one considered setting.",
     bestFor: ["Slow wellness", "Lifestyle rituals", "Premium studios", "Weekend resets", "Calm atmosphere"],
     character:
       "The Notting Hill wellness identity is warm, aesthetic and unhurried. It works well for people who want recovery and self-care to feel integrated into everyday life rather than treated as a standalone appointment.",
     visitNotes: [
       "Best approached as part of a wider West London morning or afternoon rather than a rushed visit.",
       "Good for users who care about atmosphere, design and the feel of a venue.",
-      "Check whether venues are closer to Notting Hill, Holland Park, Bayswater or Ladbroke Grove before travelling.",
+      "Check the exact postcode before travelling: neighbouring Bayswater, Holland Park and Ladbroke Grove are distinct local areas and are not automatically included here.",
     ],
     relatedAreas: ["Holland Park", "Ladbroke Grove", "Bayswater", "Kensington"],
     relatedLinks: [
@@ -161,6 +167,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Wellness in Soho",
     shortTitle: "Soho",
     href: "/neighbourhoods/soho",
+    region: "Central London",
     metaTitle: "Wellness in Soho | Well+ London Neighbourhood Guide",
     metaDescription:
       "A Well+ guide to wellness in Soho, covering central London recovery, sauna, treatments and quick rituals around work, food and city life.",
@@ -189,6 +196,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     title: "Wellness in Hampstead",
     shortTitle: "Hampstead",
     href: "/neighbourhoods/hampstead",
+    region: "North London",
     metaTitle: "Wellness in Hampstead | Well+ London Neighbourhood Guide",
     metaDescription:
       "Discover wellness in Hampstead with Well+, including calm North London recovery, sauna, restorative routines and nature-adjacent wellness experiences.",

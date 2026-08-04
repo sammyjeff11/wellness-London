@@ -50,7 +50,6 @@ const coreSections = [
       { href: "/neighbourhoods/marylebone", label: "Wellness in Marylebone" },
       { href: "/neighbourhoods/notting-hill", label: "Wellness in Notting Hill" },
       { href: "/neighbourhoods/soho", label: "Wellness in Soho" },
-      { href: "/neighbourhoods/hampstead", label: "Wellness in Hampstead" },
     ],
   },
   {

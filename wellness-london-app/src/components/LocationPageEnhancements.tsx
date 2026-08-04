@@ -145,8 +145,8 @@ function buildFaqs(areaName: string, facilities: ServiceDirectoryFacility[]) {
 
   if (availableServices.length > 0) {
     faqs.push({
-      question: `What recovery services are available in ${areaName}?`,
-      answer: `Listed ${areaName} venues currently show ${formatNames(serviceNames, "verified recovery services")} in the project data.`,
+      question: `What wellness services are available in ${areaName}?`,
+      answer: `Listed ${areaName} venues currently show ${formatNames(serviceNames, "verified wellness services")} in the directory.`,
     });
   }
 
@@ -199,7 +199,7 @@ export default function LocationPageEnhancements({ areaName, facilities, intro, 
           <div className="max-w-3xl">
             <p className="editorial-eyebrow mb-3">Compare the local edit</p>
             <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-5xl">
-              Recovery venues in {areaName}.
+              Wellness venues in {areaName}.
             </h2>
             <p className="mt-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
               {intro}
