@@ -101,6 +101,13 @@ export default function PillarPage({
     <main className="bg-[#fbf8f1] text-[#29241d]">
       <section className="px-5 pb-0 pt-4 sm:px-6 sm:py-16 md:py-24">
         <div className="mx-auto max-w-5xl">
+          <nav aria-label="Breadcrumb" className="mb-6 hidden flex-wrap items-center gap-2 text-sm text-[#6f6048] sm:flex">
+            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/explore" className="underline-offset-4 hover:underline">Venues</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-[#29241d]">{pillar.label}</span>
+          </nav>
           <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#6f6048] sm:mb-4 sm:text-[11px] sm:tracking-[0.26em]">{pillar.eyebrow}</p>
           <p className="mb-2 text-xs font-medium text-[#29241d] sm:mb-4 sm:text-sm">{pillar.descriptor}</p>
           <h1 className="max-w-[92%] font-serif text-[1.95rem] font-normal leading-[0.93] tracking-[-0.045em] sm:text-6xl md:text-7xl">{pillar.title}</h1>

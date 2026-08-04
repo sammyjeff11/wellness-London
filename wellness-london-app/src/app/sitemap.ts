@@ -13,9 +13,11 @@ const defaultLastModified = new Date("2026-08-04T00:00:00.000Z");
 const staticRoutes = [
   { path: "", priority: 1 },
   { path: "/explore", priority: 0.95 },
+  { path: "/services", priority: 0.9 },
   ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
   ...longevityServicePages.map((page) => ({ path: page.href, priority: 0.84 })),
   { path: "/neighbourhoods", priority: 0.82 },
+  { path: "/assisted-stretching-london", priority: 0.78 },
   { path: "/collections", priority: 0.82 },
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
   { path: "/best-sauna-cold-plunge-london", priority: 0.84 },

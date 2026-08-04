@@ -123,7 +123,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
     relatedAreas: ["Fitzrovia", "Mayfair", "Regent’s Park", "Baker Street"],
     relatedLinks: [
-      { href: "/longevity-london", label: "Longevity in London" },
+      { href: "/longevity", label: "Longevity in London" },
       { href: "/recovery-london", label: "Recovery spaces in London" },
       { href: "/central-london-wellness", label: "Central London wellness spaces" },
     ],

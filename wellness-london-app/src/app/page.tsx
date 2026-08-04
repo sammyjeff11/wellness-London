@@ -37,10 +37,10 @@ const serviceLinks = homepageServiceNames
 const startRoutes = [
   {
     number: "01",
-    href: "/explore#treatments",
-    title: "Browse by treatment",
-    text: "Go straight to sauna, cold plunge, cryotherapy, red light and other service guides.",
-    action: "See treatments",
+    href: "/services",
+    title: "Browse by service",
+    text: "Go straight to sauna, cold plunge, cryotherapy, red light, diagnostics and other guides.",
+    action: "See services",
   },
   {
     number: "02",
@@ -82,7 +82,7 @@ const websiteJsonLd = {
       "@id": `${absoluteUrl("/")}#organization`,
       name: "Well+",
       url: absoluteUrl("/"),
-      description: "An independent guide to London wellness venues, treatments and clinics.",
+      description: "An independent guide to London wellness venues, services and clinics.",
     },
     {
       "@type": "WebSite",
@@ -247,7 +247,7 @@ export default async function Home() {
             <NewsletterSignup
               source="homepage_return"
               title="Join The Well+ Edit"
-              copy="New and changing London venues, worthwhile shortlists and practical treatment guides — sent occasionally."
+              copy="New and changing London venues, worthwhile shortlists and practical service guides — sent occasionally."
               variant="dark"
             />
           </div>
@@ -278,12 +278,12 @@ export default async function Home() {
           <div className="mb-8 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Explore London wellness</p>
             <h2 id="discover-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Browse the full edit.</h2>
-            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Direct routes to the treatments, places and intentions people use most. Detailed guidance lives on each destination page.</p>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Direct routes to the services, places and intentions people use most. Detailed guidance lives on each destination page.</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3 md:gap-12">
-            <nav aria-label="Popular treatments">
-              <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Treatments</h3>
+            <nav aria-label="Popular services">
+              <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Services</h3>
               <ul className="mt-4 space-y-3 text-sm">
                 {serviceLinks.map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
               </ul>

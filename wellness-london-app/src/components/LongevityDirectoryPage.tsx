@@ -363,6 +363,11 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
     <main className="bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 pb-12 pt-8 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
+          <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#6f6048]">
+            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-[#29241d]">Longevity</span>
+          </nav>
           <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:text-[11px]">London longevity and diagnostics</p>
           <h1 className="max-w-5xl font-serif text-[2.8rem] font-normal leading-[0.92] tracking-[-0.055em] sm:text-6xl md:text-8xl">Know your baseline. Track what changes.</h1>
           <p className="mt-6 max-w-3xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">Compare London clinics by what they measure, who interprets the results, what happens next and whether the service supports meaningful follow-up over time.</p>

@@ -285,7 +285,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           <nav aria-label="Breadcrumb" className="mb-6 flex flex-wrap gap-2 text-sm text-[#70695d] sm:mb-8">
             <Link href="/" className="underline-offset-4 hover:text-[#29241d] hover:underline">Home</Link>
             <span>/</span>
-            <Link href="/explore" className="underline-offset-4 hover:text-[#29241d] hover:underline">Explore</Link>
+            <Link href="/explore" className="underline-offset-4 hover:text-[#29241d] hover:underline">Venues</Link>
+            <span>/</span>
+            <span aria-current="page" className="text-[#29241d]">{facility.name}</span>
           </nav>
 
           <div className="grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
@@ -390,7 +392,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {services.length > 0 ? (
         <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Services" title={`Services listed for ${facility.name}`} copy="Treatments and recovery options available here." />
+            <SectionHeading eyebrow="Services" title={`Services listed for ${facility.name}`} copy="Bookable services and recovery options available here." />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {services.slice(0, 8).map((service) => {
                 const href = canonicalServiceHref(service);

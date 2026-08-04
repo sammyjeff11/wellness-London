@@ -88,7 +88,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
     name: "Performance",
     purpose:
       "Create a performance-led content layer for people using wellness spaces to support training, consistency, energy, mobility and readiness.",
-    primaryPage: "/journal",
+    primaryPage: "/perform",
     userIntent: [
       "I want to train and recover better",
       "I want to improve energy and readiness",
@@ -142,7 +142,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
     name: "Longevity",
     purpose:
       "Build an evidence-aware longevity layer around sustainable wellness behaviours, recovery science, heat exposure, cold exposure, sleep and modern health optimisation.",
-    primaryPage: "/journal",
+    primaryPage: "/longevity",
     userIntent: [
       "I want to build a healthier long-term routine",
       "I want to understand which wellness treatments matter",
@@ -201,7 +201,7 @@ export const topicalAuthorityPillars: TopicalAuthorityPillar[] = [
     name: "Stress Regulation",
     purpose:
       "Own the calm, nervous-system-led side of wellness: downregulation, rest, sleep, breathwork, relaxation and slower recovery experiences.",
-    primaryPage: "/journal",
+    primaryPage: "/stress-regulation-london",
     userIntent: [
       "I want to feel calmer",
       "I want to reduce stress",
