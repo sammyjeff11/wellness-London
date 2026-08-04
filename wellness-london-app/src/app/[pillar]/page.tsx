@@ -2,7 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import LongevityDirectoryPage from "@/components/LongevityDirectoryPage";
 import PillarPage from "@/components/PillarPage";
-import { getFacilities, type AirtableFacility } from "@/lib/airtable";
+import { getFacilities } from "@/lib/airtable";
+import {
+  getLongevityFacilities,
+  hasStructuredLongevityData,
+  type LongevityFacility,
+} from "@/lib/longevity-facilities";
 import { getFacilitiesForPillar, getPillarPage, pillarPages } from "@/lib/pillar-pages";
 import { getServicePillarMappings } from "@/lib/service-pillar-mapping";
 
@@ -40,7 +45,9 @@ const clinicalLongevitySignals = [
   "precision medicine",
 ];
 
-function isClinicalLongevityFacility(facility: AirtableFacility) {
+function isClinicalLongevityFacility(facility: LongevityFacility) {
+  if (hasStructuredLongevityData(facility)) return true;
+
   const searchable = [
     facility.name,
     facility.description,
@@ -64,6 +71,16 @@ function isClinicalLongevityFacility(facility: AirtableFacility) {
   return clinicalLongevitySignals.some((signal) => searchable.includes(signal));
 }
 
+function longevitySortScore(facility: LongevityFacility) {
+  return (
+    Number(facility.venueConfirmed) * 1000 +
+    Number(Boolean(facility.serviceLastVerified)) * 500 +
+    facility.confirmedDiagnostics.length * 50 +
+    facility.resultsIncluded.length * 20 +
+    (facility.profileCompletenessScore || 0)
+  );
+}
+
 export async function generateStaticParams() {
   return pillarPages.map((pillar) => ({ pillar: pillar.slug }));
 }
@@ -76,14 +93,13 @@ export async function generateMetadata({
   const { pillar: pillarSlug } = await params;
   const pillar = getPillarPage(pillarSlug);
 
-  if (!pillar) {
-    return {};
-  }
+  if (!pillar) return {};
 
   if (pillar.slug === "longevity") {
     return {
-      title: "Longevity Clinics London | Diagnostics & Screening | Well+",
-      description: "Compare London longevity clinics offering medical assessments, advanced diagnostics, preventative screening and clinician-led health programmes.",
+      title: "Longevity Clinics London | Diagnostics, Testing & Tracking | Well+",
+      description:
+        "Compare London longevity clinics by diagnostics, clinical oversight, results, follow-up and support for tracking meaningful health measures over time.",
       alternates: { canonical: "/longevity" },
     };
   }
@@ -91,9 +107,7 @@ export async function generateMetadata({
   return {
     title: pillar.metaTitle,
     description: pillar.description,
-    alternates: {
-      canonical: pillar.href,
-    },
+    alternates: { canonical: pillar.href },
   };
 }
 
@@ -105,8 +119,15 @@ export default async function WellnessPillarPage({
   const { pillar: pillarSlug } = await params;
   const pillar = getPillarPage(pillarSlug);
 
-  if (!pillar) {
-    notFound();
+  if (!pillar) notFound();
+
+  if (pillar.slug === "longevity") {
+    const facilities = await getLongevityFacilities();
+    const clinicalFacilities = facilities
+      .filter(isClinicalLongevityFacility)
+      .sort((a, b) => longevitySortScore(b) - longevitySortScore(a));
+
+    return <LongevityDirectoryPage facilities={clinicalFacilities} />;
   }
 
   const [facilities, servicePillarMappings] = await Promise.all([
@@ -114,10 +135,5 @@ export default async function WellnessPillarPage({
     getServicePillarMappings(),
   ]);
   const matchingFacilities = getFacilitiesForPillar(facilities, pillar, servicePillarMappings);
-
-  if (pillar.slug === "longevity") {
-    return <LongevityDirectoryPage facilities={matchingFacilities.filter(isClinicalLongevityFacility)} />;
-  }
-
   return <PillarPage pillar={pillar} facilities={matchingFacilities} />;
 }
