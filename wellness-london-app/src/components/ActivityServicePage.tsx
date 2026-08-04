@@ -1,6 +1,7 @@
 import SafeImage from "@/components/SafeImage";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import {
   ServiceDirectorySection,
   ServiceEvidenceSection,
@@ -30,6 +31,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
   const directoryFacilities = dedupeFacilities(activityFacilities.map(toDirectoryFacility));
   const heroImage = activityFacilities.find((facility) => facility.images.length > 0)?.images[0];
   const relatedLinks = [...activity.related, ...buildServiceLocationLinks(activityFacilities, activity.label)];
+  const serviceType = serviceTypeForAnalytics(activity);
 
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -55,7 +57,7 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <AnalyticsPageView eventName="service_page_view" properties={{ service_type: serviceTypeForAnalytics(activity), page_path: activity.href }} />
+      <AnalyticsPageView eventName="service_page_view" properties={{ service_type: serviceType, page_path: activity.href }} />
       <JsonLd data={itemListSchema} />
       <JsonLd data={faqSchema} />
 
@@ -72,11 +74,22 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
       </section>
 
       <ServiceIntroSection eyebrow={`${activity.label} guide`} title="Understand the experience before you book." paragraphs={[activity.description, activity.heroText]} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceTypeForAnalytics(activity)} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceType} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
       <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
       <ServiceEvidenceSection notes={activity.evidenceNotes} />
       <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
       <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
+
+      <section className="px-5 py-12 sm:px-6 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <NewsletterSignup
+            source={`service_${serviceType}`}
+            title={`Keep up with ${activity.label.toLowerCase()} in London`}
+            copy={`Join The Well+ Edit for new ${activity.label.toLowerCase()} venues, practical comparisons and worthwhile London wellness updates.`}
+          />
+        </div>
+      </section>
+
       <ServiceRelatedSection links={relatedLinks} />
       <ServiceFaqSection title={`${activity.label} London FAQs`} faqs={activity.faqs} />
     </main>
