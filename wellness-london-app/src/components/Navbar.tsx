@@ -4,13 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/explore", label: "Explore" },
-  { href: "/collections", label: "Collections" },
-  { href: "/editorial", label: "Editorial" },
-  { href: "/recover", label: "Recover" },
-  { href: "/perform", label: "Perform" },
-  { href: "/reset", label: "Reset" },
-  { href: "/optimise", label: "Optimise" },
+  { href: "/explore", label: "Venues" },
+  { href: "/explore#treatments", label: "Treatments" },
+  { href: "/neighbourhoods", label: "Areas" },
+  { href: "/editorial", label: "Guides" },
   { href: "/longevity", label: "Longevity" },
 ];
 
@@ -36,16 +33,18 @@ export default function Navbar() {
           <span className="translate-y-[-0.05em] text-[0.82em] font-light tracking-[-0.08em] transition group-hover:text-[#8d7d67]">+</span>
         </Link>
 
-        <nav aria-label="Primary navigation" className="flex w-full gap-x-5 overflow-x-auto whitespace-nowrap pb-1 text-[12px] uppercase tracking-[0.14em] text-[#70695d] md:w-auto md:justify-end md:gap-x-7 md:overflow-visible md:pb-0">
+        <nav aria-label="Primary navigation" className="flex w-full flex-wrap gap-x-5 gap-y-2 text-[12px] uppercase tracking-[0.14em] text-[#70695d] md:w-auto md:justify-end md:gap-x-7">
           {navLinks.map((link) => {
-            const isActive = pathname === link.href || pathname.startsWith(`${link.href}/`) || (link.href === "/longevity" && isLongevityRoute);
+            const linkPath = link.href.split("#")[0];
+            const isHashRoute = link.href.includes("#");
+            const isActive = !isHashRoute && (pathname === linkPath || pathname.startsWith(`${linkPath}/`) || (linkPath === "/longevity" && isLongevityRoute));
 
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 aria-current={isActive ? "page" : undefined}
-                className={`shrink-0 underline-offset-4 transition hover:text-[#29241d] ${
+                className={`underline-offset-4 transition hover:text-[#29241d] ${
                   isActive ? "text-[#29241d] underline" : ""
                 }`}
               >

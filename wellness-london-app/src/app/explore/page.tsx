@@ -64,7 +64,7 @@ export default function ExplorePage() {
         </div>
       </section>
 
-      <section className="px-5 py-14 sm:px-6 md:py-20">
+      <section id="treatments" className="scroll-mt-28 px-5 py-14 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf] pt-8">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>

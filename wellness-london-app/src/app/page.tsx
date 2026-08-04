@@ -1,53 +1,60 @@
 import type { Metadata } from "next";
-import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
+import SafeImage from "@/components/SafeImage";
 import FacilityCard from "@/components/FacilityCard";
 import HomeVenueSearch from "@/components/HomeVenueSearch";
+import JsonLd from "@/components/JsonLd";
+import NewsletterSignup from "@/components/NewsletterSignup";
 import { getFacilities } from "@/lib/airtable";
+import { collections } from "@/lib/collections";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
-import { collections } from "@/lib/collections";
+import { absoluteUrl } from "@/lib/site";
 import { serviceTaxonomy } from "@/lib/taxonomy";
+import { cleanValue } from "@/lib/useful-values";
 
 export const metadata: Metadata = {
-  title: "Well+ London | The London Wellness Edit",
+  title: "London Wellness Venues: Saunas, Cold Plunges & Clinics | Well+",
   description:
-    "Find London wellness venues by service, venue type, location or use case — from saunas and cold plunges to clinics, spas and recovery studios.",
+    "Find and compare London saunas, cold plunges, recovery studios, spas and longevity clinics using practical details, curated selections and independent guides.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "London Wellness Venues: Saunas, Cold Plunges & Clinics | Well+",
+    description:
+      "Compare curated London wellness venues using practical details, independent guides and focused shortlists.",
+    url: absoluteUrl("/"),
+    type: "website",
+  },
 };
 
 const homepageServiceNames = ["Sauna", "Cold Plunge", "Cryotherapy", "Red Light Therapy", "Hyperbaric Oxygen Therapy", "Longevity Testing"];
 const serviceLinks = homepageServiceNames
   .map((name) => serviceTaxonomy.find((service) => service.name === name && service.href))
   .filter((service): service is NonNullable<typeof service> => Boolean(service))
-  .map((service) => ({
-    href: service.href,
-    label: service.name,
-    description: service.description,
-  }));
+  .map((service) => ({ href: service.href, label: service.name }));
 
-const collectionLinks = collections.map((collection) => ({
-  href: collection.href,
-  title: collection.title,
-  text: collection.heroText,
-}));
-
-const venueTypeLinks = [
+const startRoutes = [
   {
-    href: "/best-sauna-cold-plunge-london",
-    title: "Bathhouse",
-    text: "Places built around a fuller bathing or thermal circuit rather than a single treatment room.",
+    number: "01",
+    href: "/explore#treatments",
+    title: "Browse by treatment",
+    text: "Go straight to sauna, cold plunge, cryotherapy, red light and other service guides.",
+    action: "See treatments",
   },
   {
-    href: "/longevity",
-    title: "Longevity Clinic",
-    text: "Clinic-led settings for diagnostics, prevention, optimisation and healthspan-focused services.",
+    number: "02",
+    href: "/neighbourhoods",
+    title: "Find somewhere nearby",
+    text: "Use London area and neighbourhood guides when location is the deciding factor.",
+    action: "Browse areas",
   },
   {
-    href: "/luxury-wellness-spaces-london",
-    title: "Spa",
-    text: "Service-led settings where comfort, privacy and hospitality are part of the booking decision.",
+    number: "03",
+    href: "/editorial",
+    title: "Help me choose",
+    text: "Read practical comparisons and focused shortlists when you are unsure where to start.",
+    action: "Read the guides",
   },
 ];
 
@@ -59,35 +66,34 @@ const locationLinks = [
   { href: "/south-london-wellness", label: "South London" },
 ];
 
-const useCaseLinks = [
-  {
-    href: "/quiet-wellness-spaces-london",
-    title: "Quiet recovery",
-    text: "Calm venues for switching off and rebuilding capacity.",
-  },
-  {
-    href: "/recover",
-    title: "Post-gym recovery",
-    text: "Practical venues for heat, cold, compression and bodywork after training.",
-  },
-  {
-    href: "/longevity",
-    title: "Longevity clinics",
-    text: "Clinic-led diagnostics, healthspan testing, IV/NAD+, HBOT and optimisation services.",
-  },
-  {
-    href: "/beginner-friendly-wellness-london",
-    title: "Beginner friendly",
-    text: "Clear places to try a treatment without guesswork.",
-  },
+const intentionLinks = [
+  { href: "/recover", label: "Recover" },
+  { href: "/perform", label: "Perform" },
+  { href: "/reset", label: "Reset" },
+  { href: "/optimise", label: "Optimise" },
+  { href: "/longevity", label: "Longevity" },
 ];
 
-const sectionHeadingClass = "font-serif text-[2.15rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-4xl md:text-5xl";
-const sectionLeadClass = "max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7";
-const editorialCardTitleClass = "mb-2 text-[1.35rem] font-medium leading-tight tracking-[-0.025em] sm:text-2xl";
-const editorialCardTextClass = "text-sm leading-6 text-[#5f574c] sm:leading-7";
-const mobileCarouselClass = "-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:overflow-visible sm:px-0";
-const lightCarouselCardClass = "group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/70 bg-[#f4efe6] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0 sm:p-6";
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${absoluteUrl("/")}#organization`,
+      name: "Well+",
+      url: absoluteUrl("/"),
+      description: "An independent guide to London wellness venues, treatments and clinics.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${absoluteUrl("/")}#website`,
+      name: "Well+ London",
+      url: absoluteUrl("/"),
+      publisher: { "@id": `${absoluteUrl("/")}#organization` },
+      inLanguage: "en-GB",
+    },
+  ],
+};
 
 function selectionScore(facility: ReturnType<typeof toDirectoryFacility>) {
   return Number(facility.isFeatured) * 100 + (facility.profileCompletenessScore || 0);
@@ -97,6 +103,21 @@ function hasFacilityPhoto(facility: ReturnType<typeof toDirectoryFacility>) {
   return Boolean(facility.imageUrl || facility.galleryImages?.some((image) => image.url));
 }
 
+function checkedTime(value?: string) {
+  const parsed = value ? new Date(value).getTime() : 0;
+  return Number.isNaN(parsed) ? 0 : parsed;
+}
+
+function selectionReason(facility: ReturnType<typeof toDirectoryFacility>) {
+  const setting = cleanValue(facility.venueType);
+  const services = facility.services?.slice(0, 2).join(" and ");
+  const location = cleanValue(facility.neighbourhood) || cleanValue(facility.location) || "London";
+
+  if (setting && services) return `${setting} combining ${services.toLowerCase()} in ${location}.`;
+  if (services) return `${services} in ${location}, with practical booking details gathered in one place.`;
+  return `A well-documented ${location} venue selected for the clarity of its listing.`;
+}
+
 export default async function Home() {
   const facilities = await getFacilities();
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
@@ -104,75 +125,98 @@ export default async function Home() {
     .filter(hasFacilityPhoto)
     .sort((a, b) => selectionScore(b) - selectionScore(a))
     .slice(0, Math.min(3, directoryFacilities.length));
+  const selectedSlugs = new Set(selectedFacilities.map((facility) => facility.slug));
+  const recentlyCheckedFacilities = [...directoryFacilities]
+    .filter((facility) => hasFacilityPhoto(facility) && !selectedSlugs.has(facility.slug) && checkedTime(facility.lastCheckedDate) > 0)
+    .sort((a, b) => checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate) || selectionScore(b) - selectionScore(a))
+    .slice(0, Math.min(3, Math.max(0, directoryFacilities.length - selectedFacilities.length)));
   const heroFacility = facilities.find((facility) => facility.images.length > 0);
   const heroImage = heroFacility?.images[0];
-  const featuredNeighbourhoods = neighbourhoodPages;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <JsonLd data={websiteJsonLd} />
+
       <section className="px-5 pt-4 sm:px-6 sm:pt-6 md:pt-8">
         <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_18px_55px_rgba(41,36,29,0.1)] md:rounded-[1.75rem]">
-          <div className="relative h-[24vh] min-h-[150px] overflow-hidden sm:absolute sm:inset-0 sm:h-auto">
+          <div className="absolute inset-0">
             {heroImage ? (
               <SafeImage
                 src={heroImage.url}
                 alt={heroFacility ? `${heroFacility.name} wellness venue in ${heroFacility.neighbourhood || "London"}` : "London wellness and recovery venue"}
                 fill
                 priority
-                sizes="100vw"
-                className="object-cover object-center sm:object-cover"
+                fetchPriority="high"
+                sizes="(max-width: 1200px) 100vw, 1152px"
+                className="object-cover object-center"
               />
             ) : null}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#211d17] via-[#211d17]/26 to-transparent sm:bg-gradient-to-r sm:from-black/82 sm:via-black/42 sm:to-black/12" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/66 to-black/18" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
           </div>
 
-          <div className="relative flex min-h-[26rem] flex-col justify-end px-4 pb-5 pt-3 text-[#fbf8f1] sm:min-h-[34rem] sm:px-8 sm:py-10 md:min-h-[36rem] md:px-12 md:py-12">
+          <div className="relative flex min-h-[42rem] items-end px-5 py-8 text-[#fbf8f1] sm:min-h-[39rem] sm:px-9 sm:py-10 md:px-12 md:py-12">
             <div className="max-w-4xl">
-              <p className="mb-1.5 text-[9px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/68 sm:mb-6 sm:text-[11px] sm:tracking-[0.28em]">
-                Well+ / The London wellness edit
-              </p>
-              <h1 className="max-w-4xl font-serif text-[2.05rem] font-normal leading-[0.94] tracking-[-0.055em] sm:text-[4.45rem] sm:leading-[0.92] md:text-[6.15rem]">
-                Find the right wellness venue in London.
+              <p className="mb-4 text-[10px] uppercase tracking-[0.25em] text-[#fbf8f1]/66 sm:text-[11px]">Well+ / The London wellness edit</p>
+              <h1 className="max-w-4xl font-serif text-[3.15rem] font-normal leading-[0.9] tracking-[-0.055em] sm:text-[4.8rem] md:text-[6.25rem]">
+                Find and compare London wellness venues.
               </h1>
-              <p className="mt-3 max-w-[31rem] text-[13px] leading-5 text-[#fbf8f1]/82 sm:mt-6 sm:max-w-2xl sm:text-lg sm:leading-8">
-                Search by service, venue type, location or use case — with practical details to help you choose where to book.
+              <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#fbf8f1]/82 sm:text-lg sm:leading-8">
+                Curated saunas, cold plunges, recovery studios, spas and longevity clinics — with practical details to help you choose before you book.
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:flex sm:flex-wrap sm:gap-3">
-                <Link href="/explore" className="col-span-2 rounded-full bg-[#fbf8f1] px-5 py-2.5 text-center text-sm text-[#29241d] transition hover:bg-[#eee7da] sm:col-span-1 sm:py-3">
-                  Browse venues
-                </Link>
-                <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/45 px-4 py-2.5 text-center text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d] sm:px-5 sm:py-3">
-                  Sauna
-                </Link>
-                <Link href="#featured" className="rounded-full border border-[#fbf8f1]/22 px-4 py-2 text-center text-sm text-[#fbf8f1]/82 transition hover:border-[#fbf8f1]/70 sm:px-5 sm:py-3">
-                  Featured
-                </Link>
-              </div>
+              <HomeVenueSearch facilities={directoryFacilities} />
             </div>
           </div>
         </div>
       </section>
 
-      <HomeVenueSearch facilities={directoryFacilities} />
+      <section className="px-5 py-10 sm:px-6 sm:py-14" aria-labelledby="start-heading">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="editorial-eyebrow mb-3">Start here</p>
+              <h2 id="start-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Three simple ways in.</h2>
+            </div>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">You do not need to understand the whole directory. Begin with what you already know.</p>
+          </div>
+
+          <div className="grid gap-px overflow-hidden rounded-[1.2rem] bg-[#d8cebf] md:grid-cols-3">
+            {startRoutes.map((route) => (
+              <Link key={route.href} href={route.href} className="group flex min-h-[15rem] flex-col justify-between bg-[#fbf8f1] p-6 transition hover:bg-[#29241d] hover:text-[#fbf8f1] sm:p-7">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67] transition group-hover:text-[#cbbda8]">{route.number}</p>
+                  <h3 className="mt-5 text-[2rem] font-normal leading-[1] tracking-[-0.04em]">{route.title}</h3>
+                  <p className="mt-4 text-sm leading-6 text-[#5f574c] transition group-hover:text-[#fbf8f1]/72">{route.text}</p>
+                </div>
+                <span className="mt-6 text-sm underline underline-offset-4">{route.action} →</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {selectedFacilities.length > 0 ? (
-        <section id="featured" className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">
+        <section id="featured" className="border-y border-[#d8cebf]/70 bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="featured-heading">
           <div className="mx-auto max-w-6xl">
-            <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
+            <div className="mb-7 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
-                <h2 className="max-w-3xl font-serif text-[2.2rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-                  Three places to start.
-                </h2>
+                <h2 id="featured-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">Three considered places to start.</h2>
               </div>
-              <Link href="/explore" className="w-fit text-sm font-medium underline underline-offset-4">
-                Explore all venues
-              </Link>
+              <div className="flex flex-wrap gap-4 text-sm">
+                <Link href="/how-we-curate" className="underline underline-offset-4">How we curate</Link>
+                <Link href="/explore" className="font-medium underline underline-offset-4">All venues</Link>
+              </div>
             </div>
-            <div className="-mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 md:grid-cols-3">
+
+            <div className="grid gap-9 sm:grid-cols-2 md:grid-cols-3">
               {selectedFacilities.map((facility) => (
-                <div key={facility.slug} className="min-w-[88%] snap-start sm:min-w-0">
-                  <FacilityCard facility={facility} source="homepage_featured" compact />
+                <div key={facility.slug}>
+                  <div className="mb-3 min-h-[3.5rem] border-l border-[#8d7d67] pl-3">
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Why it stands out</p>
+                    <p className="mt-1 text-xs leading-5 text-[#5f574c]">{selectionReason(facility)}</p>
+                  </div>
+                  <FacilityCard facility={facility} source="homepage_featured" compact showSaveButton />
                 </div>
               ))}
             </div>
@@ -180,136 +224,84 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <section className="bg-[#f4efe6] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <section className="px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="return-heading">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Services</p>
-              <h2 className={sectionHeadingClass}>
-                Browse by service.
-              </h2>
+              <p className="editorial-eyebrow mb-3">Come back with purpose</p>
+              <h2 id="return-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">More useful each time you return.</h2>
             </div>
-            <p className={sectionLeadClass}>
-              Fast routes into service guides for heat, cold, contrast, recovery technology and clinic-led longevity.
-            </p>
+            <Link href="/shortlist" className="w-fit rounded-full border border-[#29241d] px-5 py-2.5 text-sm transition hover:bg-[#29241d] hover:text-[#fbf8f1]">View saved venues</Link>
           </div>
 
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 xl:grid-cols-6`}>
-            {serviceLinks.map((treatment) => (
-              <Link
-                key={treatment.href}
-                href={treatment.href}
-                className="group min-w-[74%] snap-start rounded-[1.1rem] border border-[#d8cebf]/80 bg-[#fbf8f1] p-5 transition hover:-translate-y-[1px] hover:bg-[#eee7da] sm:min-w-0"
-              >
-                <h3 className={`${editorialCardTitleClass} mb-3 group-hover:underline group-hover:underline-offset-4`}>{treatment.label}</h3>
-                <p className="line-clamp-2 text-sm leading-6 text-[#5f574c] sm:line-clamp-none">{treatment.description}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Shortlists</p>
-              <h2 className={sectionHeadingClass}>
-                Compare the strongest matches.
-              </h2>
-            </div>
-            <p className={sectionLeadClass}>
-              Focused comparisons for saunas, cold plunges, contrast therapy and multi-service recovery clubs.
-            </p>
-          </div>
-
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-3`}>
-            {collectionLinks.map((collection) => (
-              <Link key={collection.href} href={collection.href} className={lightCarouselCardClass}>
-                <h3 className={editorialCardTitleClass}>{collection.title}</h3>
-                <p className={editorialCardTextClass}>{collection.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Venue types</p>
-              <h2 className={sectionHeadingClass}>Choose by setting.</h2>
-            </div>
-            <p className={sectionLeadClass}>Browse broader venue formats when the setting matters as much as the treatment.</p>
-          </div>
-          <div className={`${mobileCarouselClass} sm:grid-cols-3 sm:gap-4`}>
-            {venueTypeLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
-                <h3 className={editorialCardTitleClass}>{item.title}</h3>
-                <p className={editorialCardTextClass}>{item.text}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">London areas</p>
-              <h2 className={sectionHeadingClass}>Browse by part of London.</h2>
-            </div>
-            <p className={sectionLeadClass}>Start with the wider area when location is the deciding factor.</p>
-          </div>
-          <div className="flex flex-wrap gap-2 sm:gap-3">
-            {locationLinks.map((area) => (
-              <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#f4efe6] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
-                {area.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {featuredNeighbourhoods.length > 0 ? (
-        <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-          <div className="mx-auto max-w-6xl border-b border-[#d8cebf]/70 pb-8 sm:pb-10">
-            <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
+            <Link href="/editorial/best-saunas-london" className="group flex min-h-[23rem] flex-col justify-between overflow-hidden rounded-[1.25rem] bg-[#29241d] p-6 text-[#fbf8f1] transition hover:bg-[#3a3229] sm:p-8">
               <div>
-                <p className="editorial-eyebrow mb-3">Neighbourhoods</p>
-                <h2 className={sectionHeadingClass}>More precise local guides.</h2>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-[#cbbda8]">Latest Well+ guide</p>
+                <h3 className="mt-5 max-w-xl font-serif text-5xl font-normal leading-[0.92] tracking-[-0.045em] sm:text-6xl">The best saunas in London.</h3>
+                <p className="mt-5 max-w-lg text-sm leading-7 text-[#fbf8f1]/70 sm:text-base">A focused edit of traditional, infrared and recovery-led sauna experiences, with the differences that matter before booking.</p>
               </div>
-              <p className={sectionLeadClass}>Use neighbourhood guides when you already know roughly where you want to book.</p>
+              <span className="mt-7 text-sm underline underline-offset-4 transition group-hover:translate-x-1">Read the guide →</span>
+            </Link>
+
+            <NewsletterSignup
+              source="homepage_return"
+              title="Join The Well+ Edit"
+              copy="New and changing London venues, worthwhile shortlists and practical treatment guides — sent occasionally."
+            />
+          </div>
+        </div>
+      </section>
+
+      {recentlyCheckedFacilities.length > 0 ? (
+        <section className="bg-[#eee7da] px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="recent-heading">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="editorial-eyebrow mb-3">Recently checked</p>
+                <h2 id="recent-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Fresh from the directory.</h2>
+              </div>
+              <p className="max-w-xl text-sm leading-7 text-[#5f574c]">Listings recently reviewed or added to the Well+ dataset. Always confirm live availability with the venue before booking.</p>
             </div>
-            <div className="flex flex-wrap gap-2 sm:gap-3">
-              {featuredNeighbourhoods.map((area) => (
-                <Link key={area.href} href={area.href} className="rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm transition hover:bg-[#eee7da] sm:px-5 sm:py-3">
-                  {area.shortTitle}
-                </Link>
+            <div className="grid gap-9 sm:grid-cols-2 md:grid-cols-3">
+              {recentlyCheckedFacilities.map((facility) => (
+                <FacilityCard key={facility.slug} facility={facility} source="homepage_recent" compact showSaveButton />
               ))}
             </div>
           </div>
         </section>
       ) : null}
 
-      <section className="bg-[#fbf8f1] px-5 py-8 sm:px-6 sm:py-12 md:py-14">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="editorial-eyebrow mb-3">Use cases</p>
-              <h2 className={sectionHeadingClass}>Start with what you need.</h2>
-            </div>
-            <p className={sectionLeadClass}>Compare places for post-training recovery, quieter visits, preventative health and first-time sessions.</p>
+      <section className="px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="discover-heading">
+        <div className="mx-auto max-w-6xl border-t border-[#d8cebf] pt-8 sm:pt-10">
+          <div className="mb-8 max-w-3xl">
+            <p className="editorial-eyebrow mb-3">Explore London wellness</p>
+            <h2 id="discover-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Browse the full edit.</h2>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Direct routes to the treatments, places and intentions people use most. Detailed guidance lives on each destination page.</p>
           </div>
-          <div className={`${mobileCarouselClass} sm:grid-cols-2 sm:gap-4 lg:grid-cols-4`}>
-            {useCaseLinks.map((item) => (
-              <Link key={item.href} href={item.href} className={lightCarouselCardClass}>
-                <h3 className={editorialCardTitleClass}>{item.title}</h3>
-                <p className={editorialCardTextClass}>{item.text}</p>
-              </Link>
-            ))}
+
+          <div className="grid gap-8 md:grid-cols-3 md:gap-12">
+            <nav aria-label="Popular treatments">
+              <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Treatments</h3>
+              <ul className="mt-4 space-y-3 text-sm">
+                {serviceLinks.map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
+              </ul>
+            </nav>
+
+            <nav aria-label="London areas">
+              <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Areas</h3>
+              <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-sm">
+                {[...locationLinks, ...neighbourhoodPages.map((page) => ({ href: page.href, label: page.shortTitle }))].map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
+              </ul>
+            </nav>
+
+            <nav aria-label="Wellness intentions and shortlists">
+              <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Intentions & shortlists</h3>
+              <ul className="mt-4 space-y-3 text-sm">
+                {intentionLinks.map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
+                {collections.slice(0, 3).map((collection) => <li key={collection.href}><Link href={collection.href} className="underline-offset-4 hover:underline">{collection.title}</Link></li>)}
+              </ul>
+            </nav>
           </div>
         </div>
       </section>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import SiteFooter from "@/components/SiteFooter";
@@ -9,6 +10,18 @@ const siteUrl = new URL(SITE_URL);
 const siteDescription =
   "Compare London saunas, cold plunges, recovery studios, spas and longevity clinics using practical venue details and focused guides.";
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant-garamond",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: siteUrl,
@@ -47,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`${inter.variable} ${cormorantGaramond.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#f4efe6] text-[#29241d]">
         {gaId && (
           <>
