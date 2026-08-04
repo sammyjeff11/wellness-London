@@ -241,11 +241,20 @@ function hasLocationInName(facility: DedupeFacility) {
   return Boolean(location && name.includes(location));
 }
 
+function hasCanonicalLocationSlug(facility: DedupeFacility) {
+  const slug = normaliseSlug(facility.slug);
+  const location = specificLocationValue(facility)?.replace(/\s+/g, "-");
+  const operator = getOperatorKey(facility).replace(/\s+/g, "-");
+
+  return Boolean(slug && location && operator && slug.includes(location) && slug.includes(operator));
+}
+
 function scoreFacility(facility: DedupeFacility) {
   return (
     Number(hasSpecificAddress(facility)) * 120 +
     Number(Boolean(specificLocationValue(facility))) * 90 +
     Number(hasLocationInName(facility)) * 45 +
+    Number(hasCanonicalLocationSlug(facility)) * 160 +
     Number(hasImages(facility)) * 55 +
     (facility.images?.length || 0) * 6 +
     (facility.galleryImages?.length || 0) * 6 +

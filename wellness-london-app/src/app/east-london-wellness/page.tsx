@@ -7,7 +7,8 @@ import { eastLondonGuide } from "@/content/location-guides";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
-import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
+import { getAvailableNeighbourhoods, getFacilitiesForRegion } from "@/lib/location-directory";
+import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 
 export const metadata: Metadata = {
   title: "East London Recovery Venues | Well+",
@@ -20,7 +21,9 @@ export const metadata: Metadata = {
 
 export default async function EastLondonWellnessPage() {
   const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
-  const eastLondonFacilities = getFacilitiesForLocation(facilities, ["East London", ...eastLondonGuide.areas]);
+  const eastLondonFacilities = getFacilitiesForRegion(facilities, "East London");
+  const localNeighbourhoods = getAvailableNeighbourhoods(facilities, neighbourhoodPages)
+    .filter(({ page }) => page.region === "East London");
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -85,6 +88,28 @@ export default async function EastLondonWellnessPage() {
           </div>
         </div>
       </section>
+
+      {localNeighbourhoods.length > 0 ? (
+        <section className="surface-band-stone px-5 py-14 sm:px-6 sm:py-20" aria-labelledby="east-neighbourhoods-heading">
+          <div className="mx-auto max-w-6xl">
+            <p className="editorial-eyebrow mb-3">Go more local</p>
+            <h2 id="east-neighbourhoods-heading" className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Neighbourhoods in East London.</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              Shoreditch and Canary Wharf have very different wellness identities. Choose the neighbourhood before comparing the individual venues.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {localNeighbourhoods.map(({ page, facilities: localFacilities }) => (
+                <Link key={page.slug} href={page.href} className="surface-paper group rounded-[1rem] p-6 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7] sm:p-7">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">{localFacilities.length} {localFacilities.length === 1 ? "venue" : "venues"}</p>
+                  <h3 className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em]">{page.shortTitle}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[#5f574c]">{page.summary}</p>
+                  <span className="mt-5 inline-block text-sm underline underline-offset-4">Explore neighbourhood →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <LocationPageEnhancements
         areaName="East London"

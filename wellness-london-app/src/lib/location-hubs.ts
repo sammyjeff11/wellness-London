@@ -10,8 +10,53 @@ export const LOCATION_HUBS: Record<string, string> = {
   Marylebone: "/neighbourhoods/marylebone",
   "Notting Hill": "/neighbourhoods/notting-hill",
   Soho: "/neighbourhoods/soho",
-  Hampstead: "/neighbourhoods/hampstead",
 };
+
+export type LondonRegion = {
+  name: string;
+  href: string;
+  copy: string;
+  areaValues: string[];
+  neighbourhoodSlugs: string[];
+};
+
+export const londonRegions: LondonRegion[] = [
+  {
+    name: "Central London",
+    href: "/central-london-wellness",
+    copy: "City-centre recovery, premium clubs, spas and clinic-led wellness.",
+    areaValues: ["Central London"],
+    neighbourhoodSlugs: ["marylebone", "soho"],
+  },
+  {
+    name: "East London",
+    href: "/east-london-wellness",
+    copy: "Community sauna, contrast therapy and design-led recovery spaces.",
+    areaValues: ["East London"],
+    neighbourhoodSlugs: ["shoreditch", "canary-wharf"],
+  },
+  {
+    name: "West London",
+    href: "/west-london-wellness",
+    copy: "Premium studios, private wellness and longevity-led services.",
+    areaValues: ["West London"],
+    neighbourhoodSlugs: ["kensington", "notting-hill"],
+  },
+  {
+    name: "North London",
+    href: "/north-london-wellness",
+    copy: "Restorative spaces, neighbourhood studios and slower wellness routines.",
+    areaValues: ["North London", "North East London"],
+    neighbourhoodSlugs: ["hampstead"],
+  },
+  {
+    name: "South London",
+    href: "/south-london-wellness",
+    copy: "Community sauna, recovery studios and accessible local rituals.",
+    areaValues: ["South London"],
+    neighbourhoodSlugs: [],
+  },
+];
 
 export function getLocationHubHref(location?: string | null) {
   if (!location) return null;
@@ -33,5 +78,4 @@ export const supportedNeighbourhoodHubLinks = [
   { href: "/neighbourhoods/marylebone", label: "Marylebone wellness spaces", region: "Central London" },
   { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces", region: "West London" },
   { href: "/neighbourhoods/soho", label: "Soho wellness spaces", region: "Central London" },
-  { href: "/neighbourhoods/hampstead", label: "Hampstead wellness spaces", region: "North London" },
 ];

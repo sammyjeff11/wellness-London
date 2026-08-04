@@ -6,7 +6,8 @@ import type { LocationGuide } from "@/content/location-guides";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
-import { getFacilitiesForLocation } from "@/lib/location-page-facilities";
+import { getAvailableNeighbourhoods, getFacilitiesForRegion } from "@/lib/location-directory";
+import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 
 type LocationGuidePageProps = {
   guide: LocationGuide;
@@ -67,7 +68,15 @@ function getRelatedAreaLinks(slug: string) {
 export default async function LocationGuidePage({ guide }: LocationGuidePageProps) {
   const areaName = areaNameFromTitle(guide.title);
   const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
-  const locationFacilities = getFacilitiesForLocation(facilities, [areaName, ...guide.areas]);
+  const locationFacilities = getFacilitiesForRegion(facilities, areaName);
+  const localNeighbourhoods = getAvailableNeighbourhoods(facilities, neighbourhoodPages)
+    .filter(({ page }) => page.region === areaName);
+  const availableNeighbourhoodHrefs = new Set(
+    getAvailableNeighbourhoods(facilities, neighbourhoodPages).map(({ page }) => page.href),
+  );
+  const relatedAreaLinks = getRelatedAreaLinks(guide.slug).filter(
+    (link) => !link.href.startsWith("/neighbourhoods/") || availableNeighbourhoodHrefs.has(link.href),
+  );
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -133,11 +142,35 @@ export default async function LocationGuidePage({ guide }: LocationGuidePageProp
         </div>
       </section>
 
+      {localNeighbourhoods.length > 0 ? (
+        <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20" aria-labelledby={`${guide.slug}-neighbourhoods`}>
+          <div className="mx-auto max-w-6xl">
+            <p className="editorial-eyebrow mb-3">Go more local</p>
+            <h2 id={`${guide.slug}-neighbourhoods`} className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">
+              Neighbourhoods in {areaName}.
+            </h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              Continue into a neighbourhood only where the directory currently has published local listings.
+            </p>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              {localNeighbourhoods.map(({ page, facilities: localFacilities }) => (
+                <Link key={page.slug} href={page.href} className="surface-paper group rounded-[1rem] p-6 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7] sm:p-7">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">{localFacilities.length} {localFacilities.length === 1 ? "venue" : "venues"}</p>
+                  <h3 className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em]">{page.shortTitle}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[#5f574c]">{page.summary}</p>
+                  <span className="mt-5 inline-block text-sm underline underline-offset-4">Explore neighbourhood →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       <LocationPageEnhancements
         areaName={areaName}
         facilities={locationFacilities}
         intro={`Explore recovery venues in ${areaName} offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.`}
-        relatedAreaLinks={getRelatedAreaLinks(guide.slug)}
+        relatedAreaLinks={relatedAreaLinks}
       />
 
       <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">

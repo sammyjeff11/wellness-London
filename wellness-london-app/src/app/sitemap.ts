@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { getFacilities } from "@/lib/airtable";
 import { activityPages } from "@/lib/activity-pages";
 import { collections } from "@/lib/collections";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getAvailableNeighbourhoods } from "@/lib/location-directory";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { longevityServicePages } from "@/lib/longevity-service-pages";
@@ -33,7 +36,6 @@ const staticRoutes = [
   { path: "/contact", priority: 0.55 },
   { path: "/claim-listing", priority: 0.58 },
   { path: "/work-with-well-plus", priority: 0.58 },
-  ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
   { path: "/stress-regulation-london", priority: 0.75 },
   ...activityPages.map((activity) => ({ path: activity.href, priority: 0.8 })),
@@ -71,8 +73,11 @@ function isSitemapFacility(facility: Awaited<ReturnType<typeof getFacilities>>[n
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const facilities = await getFacilities();
+  const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
+  const neighbourhoodRoutes = getAvailableNeighbourhoods(directoryFacilities, neighbourhoodPages)
+    .map(({ page }) => ({ path: page.href, priority: 0.78 }));
 
-  const routeEntries = staticRoutes.map((route) => ({
+  const routeEntries = [...staticRoutes, ...neighbourhoodRoutes].map((route) => ({
     url: absoluteUrl(route.path),
     lastModified: defaultLastModified,
     changeFrequency: "weekly" as const,

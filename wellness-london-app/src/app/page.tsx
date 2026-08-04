@@ -9,6 +9,7 @@ import { getFacilities } from "@/lib/airtable";
 import { collections } from "@/lib/collections";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getAvailableNeighbourhoods } from "@/lib/location-directory";
 import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { absoluteUrl } from "@/lib/site";
 import { serviceTaxonomy } from "@/lib/taxonomy";
@@ -121,6 +122,8 @@ function selectionReason(facility: ReturnType<typeof toDirectoryFacility>) {
 export default async function Home() {
   const facilities = await getFacilities();
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
+  const availableNeighbourhoodPages = getAvailableNeighbourhoods(directoryFacilities, neighbourhoodPages)
+    .map(({ page }) => page);
   const selectedFacilities = [...directoryFacilities]
     .filter(hasFacilityPhoto)
     .sort((a, b) => selectionScore(b) - selectionScore(a))
@@ -292,7 +295,7 @@ export default async function Home() {
             <nav aria-label="London areas">
               <h3 className="border-b border-[#d8cebf] pb-3 text-[11px] font-sans uppercase tracking-[0.22em] text-[#8d7d67]">Areas</h3>
               <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-3 text-sm">
-                {[...locationLinks, ...neighbourhoodPages.map((page) => ({ href: page.href, label: page.shortTitle }))].map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
+                {[...locationLinks, ...availableNeighbourhoodPages.map((page) => ({ href: page.href, label: page.shortTitle }))].map((link) => <li key={link.href}><Link href={link.href} className="underline-offset-4 hover:underline">{link.label}</Link></li>)}
               </ul>
             </nav>
 

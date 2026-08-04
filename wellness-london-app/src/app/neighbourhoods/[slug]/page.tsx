@@ -7,12 +7,15 @@ import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
+import { getAvailableNeighbourhoods, getFacilitiesForNeighbourhood } from "@/lib/location-directory";
+import { londonRegions } from "@/lib/location-hubs";
 import { getNeighbourhoodPage, neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { absoluteUrl } from "@/lib/site";
 import { normaliseServiceInput, serviceTaxonomy } from "@/lib/taxonomy";
 
 export async function generateStaticParams() {
-  return neighbourhoodPages.map((page) => ({ slug: page.slug }));
+  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
+  return getAvailableNeighbourhoods(facilities, neighbourhoodPages).map(({ page }) => ({ slug: page.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -101,9 +104,9 @@ function facilityHasServiceLink(facility: ReturnType<typeof toDirectoryFacility>
   return service.keys.some((key) => text.includes(key));
 }
 
-function getSupportedRelatedAreas(currentSlug: string, relatedAreas: string[]) {
+function getSupportedRelatedAreas(currentSlug: string, relatedAreas: string[], candidates = neighbourhoodPages) {
   const relatedTerms = relatedAreas.map(normalise);
-  return neighbourhoodPages.filter((candidate) => {
+  return candidates.filter((candidate) => {
     if (candidate.slug === currentSlug) return false;
     return relatedTerms.includes(normalise(candidate.shortTitle)) || relatedTerms.includes(normalise(candidate.title.replace("Wellness in ", "")));
   });
@@ -117,22 +120,6 @@ function getServiceCounts(facilities: ReturnType<typeof toDirectoryFacility>[]) 
       return { ...service, count };
     })
     .filter((service) => service.count > 0);
-}
-
-function getExperienceProfile(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
-  const serviceCounts = getServiceCounts(facilities);
-  const strongestService = serviceCounts[0]?.label || page.bestFor[0] || "Wellness";
-  const priceSignals = facilities.map((facility) => facility.priceRange || facility.priceFrom).filter(Boolean) as string[];
-  const accessSignals = facilities.map((facility) => facility.accessType).filter(Boolean) as string[];
-
-  return [
-    { label: "Matched listings", value: `${facilities.length}` },
-    { label: "Main service signal", value: strongestService },
-    { label: "Typical feel", value: page.bestFor.slice(0, 2).join(" · ") },
-    { label: "Price signal", value: priceSignals[0] || "Varies by venue" },
-    { label: "Good for", value: page.bestFor.slice(0, 3).join(" · ") },
-    { label: "Access", value: accessSignals[0] || "Check individual venues" },
-  ];
 }
 
 function getWhatYouWillFind(facilities: ReturnType<typeof toDirectoryFacility>[]) {
@@ -196,28 +183,21 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
   if (!page) notFound();
 
-  const facilities = await getFacilities();
-  const searchTerms = [page.shortTitle].map(normalise);
-  const displayFacilities = dedupeFacilities(
-    facilities
-      .map(toDirectoryFacility)
-      .filter((facility) => {
-        const locationText = normalise(
-          [facility.neighbourhood, facility.location, facility.areaOfLondon, facility.areaGroup, facility.nearestStation, facility.address]
-            .filter(Boolean)
-            .join(" ")
-        );
+  const allFacilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
+  const displayFacilities = getFacilitiesForNeighbourhood(allFacilities, page.shortTitle)
+    .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
+    .slice(0, 6);
 
-        return searchTerms.some((term) => locationText.includes(term));
-      })
-      .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
-  ).slice(0, 6);
+  if (displayFacilities.length === 0) notFound();
+
+  const availableNeighbourhoods = getAvailableNeighbourhoods(allFacilities, neighbourhoodPages);
+  const availableNeighbourhoodPages = availableNeighbourhoods.map(({ page: availablePage }) => availablePage);
+  const region = londonRegions.find((candidate) => candidate.name === page.region);
 
   const availableServices = getAvailableServices(displayFacilities);
   const serviceCounts = getServiceCounts(displayFacilities);
   const whatYouWillFind = getWhatYouWillFind(displayFacilities);
-  const experienceProfile = getExperienceProfile(page, displayFacilities);
-  const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas);
+  const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas, availableNeighbourhoodPages);
   const enhancementRelatedAreaLinks =
     page.slug === "shoreditch"
       ? [{ href: "/east-london-wellness", label: "East London wellness spaces" }]
@@ -234,7 +214,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
               { href: "/central-london-wellness", label: "Central London wellness spaces" },
             ]
       : supportedRelatedAreas.map((area) => ({ href: area.href, label: `${area.shortTitle} wellness spaces` }));
-  const fallbackNeighbourhoods = neighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
+  const fallbackNeighbourhoods = availableNeighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
   const schema = buildSchema(page, displayFacilities);
   const editorNote = getEditorNote(page, displayFacilities);
 
@@ -244,9 +224,17 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
 
       <section className="px-5 py-14 sm:px-6 sm:py-18">
         <div className="mx-auto max-w-5xl">
-          <Link href="/neighbourhoods" className="mb-6 inline-block text-sm text-[#5f574c] underline underline-offset-4">
-            London neighbourhood guides
-          </Link>
+          <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#6f6048]">
+            <Link href="/neighbourhoods" className="underline-offset-4 hover:underline">Areas</Link>
+            {region ? (
+              <>
+                <span aria-hidden="true">/</span>
+                <Link href={region.href} className="underline-offset-4 hover:underline">{region.name}</Link>
+              </>
+            ) : null}
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-[#29241d]">{page.shortTitle}</span>
+          </nav>
           <p className="editorial-eyebrow mb-4">{page.eyebrow}</p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[0.95] tracking-[-0.05em] sm:text-7xl">
             {page.title}
@@ -257,24 +245,21 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <section className="px-5 pb-8 sm:px-6">
-        <div className="mx-auto grid max-w-6xl gap-5 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Area profile</p>
-            <dl className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
-              {experienceProfile.map((item) => (
-                <div key={item.label}>
-                  <dt className="text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{item.label}</dt>
-                  <dd className="mt-1 text-sm leading-6 text-[#29241d]">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
+      <section className="surface-band-stone px-5 py-10 sm:px-6 sm:py-14">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-7 max-w-3xl">
+            <p className="editorial-eyebrow mb-3">Know the neighbourhood</p>
+            <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">The place, the atmosphere and how wellness fits.</h2>
           </div>
-
-          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Why {page.shortTitle} for wellness?</p>
-            <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
+          <div className="grid gap-4 lg:grid-cols-3">
+            <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What the area is about</p>
+              <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.summary}</p>
+            </article>
+            <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Atmosphere</p>
+              <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{page.character}</p>
+              <div className="mt-6 flex flex-wrap gap-2">
               {page.bestFor.map((tag) => {
                 const serviceHref = getBestForServiceHref(tag);
 
@@ -293,7 +278,17 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                   </span>
                 );
               })}
-            </div>
+              </div>
+            </article>
+            <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
+              <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Plan the visit</p>
+              <ul className="space-y-3 text-sm leading-7 text-[#5f574c]">
+                {page.visitNotes.map((note) => <li key={note}>— {note}</li>)}
+              </ul>
+              <p className="mt-6 border-t border-[#d8cebf] pt-5 text-sm text-[#29241d]">
+                {displayFacilities.length} published {displayFacilities.length === 1 ? "venue" : "venues"} in this edit
+              </p>
+            </article>
           </div>
         </div>
       </section>
