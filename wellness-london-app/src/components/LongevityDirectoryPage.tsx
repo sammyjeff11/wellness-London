@@ -360,7 +360,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
   const hasFilters = need !== "all" || diagnostic !== "all" || oversight !== "all" || price !== "all";
 
   return (
-    <main className="bg-[#fbf8f1] text-[#29241d]">
+    <main className="bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 pb-12 pt-8 sm:px-6 sm:py-20 md:py-24">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:text-[11px]">London longevity and diagnostics</p>
@@ -375,7 +375,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
 
       <LongevityJourney />
 
-      <section id="services" className="scroll-mt-24 border-b border-[#d8cebf] bg-[#f4efe6] px-5 py-12 sm:px-6 sm:py-16">
+      <section id="services" className="surface-band-sage scroll-mt-24 px-5 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Explore by health question</p>
@@ -383,7 +383,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {featuredServices.map((service) => (
-              <Link key={service.href} href={service.href} className="group border border-[#d8cebf] bg-[#fbf8f1] p-6 transition hover:-translate-y-[1px] hover:bg-[#eee7da]">
+              <Link key={service.href} href={service.href} className="surface-paper-strong group rounded-[1rem] p-6 transition hover:-translate-y-[2px] hover:bg-[#f5f0e7]">
                 <h3 className="font-serif text-2xl font-normal leading-tight group-hover:underline group-hover:underline-offset-4">{service.label}</h3>
                 <p className="mt-3 text-sm leading-7 text-[#5f574c]">{service.question}</p>
                 <span className="mt-5 inline-block text-sm underline underline-offset-4">Understand the assessment</span>
@@ -393,7 +393,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
         </div>
       </section>
 
-      <section id="how-to-compare" className="px-5 py-12 sm:px-6 sm:py-16">
+      <section id="how-to-compare" className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
@@ -407,7 +407,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
         </div>
       </section>
 
-      <section id="clinics" className="scroll-mt-24 border-t border-[#d8cebf] px-5 py-12 sm:px-6 md:py-20">
+      <section id="clinics" className="scroll-mt-24 px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
@@ -415,7 +415,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
             <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Narrow by health need, confirmed diagnostics, clinical oversight and likely investment. Structured provider fields are used where verified; otherwise the listing is based on clearly stated public information.</p>
           </div>
 
-          <div className="mb-10 grid gap-4 border border-[#d8cebf] bg-[#f4efe6] p-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="surface-paper-strong mb-10 grid gap-4 rounded-[1.2rem] p-5 sm:grid-cols-2 lg:grid-cols-4">
             <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
             <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
             <FilterSelect label="Clinical oversight" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
@@ -437,7 +437,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
 
                 return (
                   <article key={profile.facility.slug} className="flex flex-col">
-                    <div className="mb-3 border border-[#d8cebf] bg-[#f4efe6] p-4">
+                    <div className="surface-inset mb-3 rounded-[1rem] p-4">
                       <div className="flex items-start justify-between gap-3">
                         <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
                         <span className="shrink-0 text-right text-[9px] uppercase tracking-[0.12em] text-[#6f6048]">{profile.verificationLabel}</span>
@@ -482,15 +482,15 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:px-6 md:py-20">
+      <section className="surface-band-stone px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The Well+ role</p>
             <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em]">Understand what to measure before choosing where.</h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Link href="/editorial" className="border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da]"><h3 className="font-serif text-2xl font-normal">Testing and tracking guides</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Editorial explaining what different assessments can and cannot tell you.</p></Link>
-            <Link href="/editorial-standards" className="border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da]"><h3 className="font-serif text-2xl font-normal">How Well+ handles health claims</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Our approach to evidence, uncertainty and medical-adjacent services.</p></Link>
+            <Link href="/editorial" className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"><h3 className="font-serif text-2xl font-normal">Testing and tracking guides</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Editorial explaining what different assessments can and cannot tell you.</p></Link>
+            <Link href="/editorial-standards" className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"><h3 className="font-serif text-2xl font-normal">How Well+ handles health claims</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Our approach to evidence, uncertainty and medical-adjacent services.</p></Link>
           </div>
         </div>
       </section>

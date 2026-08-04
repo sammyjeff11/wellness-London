@@ -72,7 +72,7 @@ export default function PillarPage({
   );
 
   const routesSection = (
-    <section className="bg-[#f4efe6] px-5 py-5 sm:px-6 sm:py-12 md:py-16">
+    <section className="surface-band-sage px-5 py-5 sm:px-6 sm:py-12 md:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="mb-4 flex flex-col gap-2 sm:mb-8 md:flex-row md:items-end md:justify-between">
           <div>
@@ -84,7 +84,7 @@ export default function PillarPage({
 
         <div className="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-4">
           {pillar.popularLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="min-w-[74%] border border-[#d8cebf] bg-[#fbf8f1] px-4 py-4 transition hover:bg-[#eee7da] sm:flex sm:min-h-[220px] sm:min-w-0 sm:flex-col sm:justify-between sm:p-6">
+            <Link key={link.href} href={link.href} className="surface-paper-strong min-w-[74%] rounded-[1rem] px-4 py-4 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7] sm:flex sm:min-h-[220px] sm:min-w-0 sm:flex-col sm:justify-between sm:p-6">
               <div>
                 <h3 className="mb-2 text-lg font-medium sm:mb-4 sm:text-2xl">{link.label}</h3>
                 <p className="line-clamp-2 text-xs leading-5 text-[#5f574c] sm:line-clamp-none sm:text-sm sm:leading-7">{link.description}</p>
@@ -129,8 +129,8 @@ export default function PillarPage({
         </div>
       </section>
 
-      <section className="px-5 py-14 sm:px-6 md:py-20">
-        <div className="mx-auto max-w-4xl border-t border-[#d8cebf] pt-8">
+      <section className="surface-band-stone px-5 py-14 sm:px-6 md:py-20">
+        <div className="surface-paper mx-auto max-w-4xl rounded-[1.25rem] p-6 sm:p-9">
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">FAQs</p>

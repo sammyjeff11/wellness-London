@@ -65,7 +65,7 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
         </div>
       </section>
 
-      <section className="px-5 pb-20 sm:px-6 md:pb-28">
+      <section className="surface-band-stone px-5 py-16 sm:px-6 md:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 border-b border-[#d8cebf]/70 pb-5">
             <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The edit</p>
@@ -81,7 +81,7 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
               ))}
             </div>
           ) : (
-            <div className="max-w-2xl bg-[#fbf8f1] p-6 sm:p-8">
+            <div className="surface-paper max-w-2xl rounded-[1rem] p-6 sm:p-8">
               <p className="text-sm leading-7 text-[#5f574c]">
                 We are still curating this area. For now, explore the wider London sauna, cold plunge and cryotherapy guides.
               </p>

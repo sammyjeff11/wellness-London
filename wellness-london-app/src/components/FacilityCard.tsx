@@ -192,7 +192,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
   }
 
   return (
-    <article className="group min-w-0 overflow-hidden bg-transparent">
+    <article className="group min-w-0 overflow-hidden rounded-[1.45rem] border border-[#b9ab97]/80 bg-[#fbf8f1] shadow-[0_16px_42px_rgba(41,36,29,0.07)]">
       <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
         {cardImages.length > 0 ? (
           <>
@@ -241,7 +241,8 @@ export default function FacilityCard({ facility, source = "directory", compact =
         )}
       </div>
 
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className={`block ${compact ? "pt-3" : "pt-4"}`}>
+      <div className={compact ? "px-4 pb-4 pt-3" : "px-5 pb-5 pt-4"}>
+      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
         <div className="flex items-start justify-between gap-3">
           <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
           {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
@@ -279,6 +280,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
       <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
         <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
       </Link>
+      </div>
     </article>
   );
 }

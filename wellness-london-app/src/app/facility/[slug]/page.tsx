@@ -136,7 +136,7 @@ function DetailCard({ label, value }: DetailItem) {
   if (!isUsefulValue(value)) return null;
 
   return (
-    <div className="rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5">
+    <div className="surface-paper rounded-[1rem] p-5">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
       <p className="mt-3 text-base leading-7 text-[#29241d]">{value}</p>
     </div>
@@ -211,7 +211,7 @@ function SimilarVenueCard({ facility }: { facility: AirtableFacility }) {
   const summary = getEditorialCandidates(facility)[0];
 
   return (
-    <Link href={`/facility/${facility.slug}`} className="group flex min-h-52 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">
+    <Link href={`/facility/${facility.slug}`} className="surface-paper group flex min-h-52 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:border-[#6f6048] hover:bg-[#fffaf0]">
       <span>
         <span className="block text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{location}</span>
         <span className="mt-3 block text-xl font-medium leading-7 text-[#29241d]">{facility.name}</span>
@@ -334,7 +334,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
       {quickFacts.length > 0 ? (
         <section className="px-5 pb-10 sm:px-6 sm:pb-14">
-          <div className="mx-auto max-w-6xl rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/70 p-5 shadow-[0_18px_48px_rgba(41,36,29,0.04)] sm:p-6">
+          <div className="surface-paper-strong mx-auto max-w-6xl rounded-[1.1rem] p-5 sm:p-6">
             <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
               {quickFacts.map((item) => <QuickFact key={item.label} {...item} />)}
             </div>
@@ -352,8 +352,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       ) : null}
 
       {bestFor.length > 0 ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+        <section className="surface-band-sage px-5 py-12 sm:px-6 md:py-16">
+          <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="Best for" title="Best for" />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {bestFor.map((item) => <Pill key={item}>{item}</Pill>)}
@@ -363,8 +363,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       ) : null}
 
       {experienceItems.length > 0 ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+        <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
+          <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="What to expect" title="The experience" copy="A concise read on the visit style, atmosphere and session format." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {experienceItems.map((item) => <DetailCard key={item.label} {...item} />)}
@@ -374,8 +374,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       ) : null}
 
       {practicalItems.length > 0 || goodToKnow ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+        <section className="surface-band-stone px-5 py-12 sm:px-6 md:py-16">
+          <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="Practical details" title="Before you go" copy="The details that matter when deciding whether the venue fits your visit." />
             {goodToKnow ? <p className="mt-6 max-w-3xl text-lg leading-8 text-[#4f473d]">{goodToKnow}</p> : null}
             {practicalItems.length > 0 ? (
@@ -388,8 +388,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       ) : null}
 
       {services.length > 0 ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+        <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
+          <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="Services" title={`Services listed for ${facility.name}`} copy="Treatments and recovery options available here." />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {services.slice(0, 8).map((service) => {
@@ -425,7 +425,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
             <SectionHeading eyebrow="Related guides" title="Compare related services" copy="See similar services across London and the practical differences to check before booking." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {relatedGuides.map((guide) => (
-                <Link key={guide.href} href={guide.href} className="group flex min-h-48 flex-col justify-between rounded-[1rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 transition hover:border-[#6f6048] hover:bg-[#fffaf0]">
+                <Link key={guide.href} href={guide.href} className="surface-paper group flex min-h-48 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:border-[#6f6048] hover:bg-[#fffaf0]">
                   <span>
                     <span className="block text-lg font-medium leading-6 text-[#29241d]">{guide.service} in London</span>
                     <span className="mt-3 block text-sm leading-6 text-[#5f574c]">{guide.copy}</span>
@@ -439,8 +439,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       ) : null}
 
       {similarVenues.length > 0 ? (
-        <section className="px-5 pb-14 sm:px-6 md:pb-20">
-          <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
+        <section className="surface-band-stone px-5 py-14 sm:px-6 md:py-20">
+          <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="Similar venues" title="Explore similar venues" copy="More Well+ profiles with related services, areas or venue styles." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {similarVenues.map((venue) => <SimilarVenueCard key={venue.slug} facility={venue} />)}
