@@ -1,4 +1,4 @@
-import { serviceTaxonomy } from "@/lib/taxonomy";
+import { serviceTaxonomy } from "./taxonomy.ts";
 
 const serviceSearchAliases = Object.fromEntries(serviceTaxonomy.map((service) => [service.name.toLowerCase(), [service.slug, ...(service.synonyms || [])]]));
 
@@ -178,5 +178,5 @@ export function rankVenueSearch(facility: VenueSearchFacility, query: string) {
 
 export function matchesVenueSearch(facility: VenueSearchFacility, query: string) {
   if (!normaliseSearch(query)) return true;
-  return rankVenueSearch(facility, query) > 0;
+  return rankVenueSearch(facility, query) >= 24;
 }

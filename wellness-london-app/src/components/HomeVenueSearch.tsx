@@ -13,10 +13,8 @@ type HomeVenueSearchProps = {
 const popularLinks = [
   { href: "/sauna-london", label: "Sauna" },
   { href: "/cold-plunge-london", label: "Cold plunge" },
-  { href: "/cryotherapy-london", label: "Cryotherapy" },
   { href: "/neighbourhoods/shoreditch", label: "Shoreditch" },
-  { href: "/neighbourhoods/canary-wharf", label: "Canary Wharf" },
-  { href: "/neighbourhoods/kensington", label: "Kensington" },
+  { href: "/longevity", label: "Longevity clinics" },
 ];
 
 function getResultLocation(facility: ServiceDirectoryFacility) {
@@ -35,7 +33,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
     return facilities
       .filter((facility) => matchesVenueSearch(facility, trimmedQuery))
       .sort((a, b) => rankVenueSearch(b, trimmedQuery) - rankVenueSearch(a, trimmedQuery))
-      .slice(0, 6);
+      .slice(0, 5);
   }, [facilities, trimmedQuery]);
 
   function updateQuery(value: string) {
@@ -49,89 +47,64 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <section className="overflow-hidden px-4 pb-2 pt-4 sm:px-6 sm:pb-4 sm:pt-7 md:pb-5 md:pt-8">
-      <div className="mx-auto max-w-6xl overflow-hidden rounded-[1.1rem] border border-[#d8cebf]/75 bg-[#fbf8f1]/72 p-4 shadow-[0_14px_36px_rgba(41,36,29,0.04)] sm:rounded-[1.45rem] sm:p-5 md:p-6">
-        <div className="grid min-w-0 gap-5 md:grid-cols-[0.44fr_1fr] md:items-center md:gap-6 lg:grid-cols-[0.38fr_1fr]">
-          <div>
-            <p className="editorial-eyebrow mb-2">Well+ directory</p>
-            <h2 className="max-w-sm font-serif text-[1.95rem] font-normal leading-[1.02] tracking-[-0.045em] sm:text-[2.25rem] md:text-[2.35rem]">
-              Search venues, services and neighbourhoods.
-            </h2>
-            <p className="mt-3 max-w-md text-sm leading-6 text-[#5f574c]">
-              Find a specific venue or start with a service, area or popular search.
-            </p>
-          </div>
-
-          <div className="min-w-0 overflow-hidden rounded-[1rem] border border-[#d8cebf]/70 bg-[#f4efe6]/70 p-3 sm:rounded-[1.15rem] sm:p-4 md:p-5">
-            <label className="block min-w-0">
-              <span className="sr-only">Search London wellness venues</span>
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => updateQuery(event.target.value)}
-                placeholder="Try Shoreditch or cold plunge"
-                autoComplete="off"
-                className="block w-full min-w-0 rounded-full border border-[#cfc1ad] bg-[#fbf8f1] px-4 py-2.5 text-[16px] leading-6 text-[#29241d] shadow-[inset_0_1px_0_rgba(255,255,255,0.75)] outline-none transition placeholder:text-[#8d7d67] focus:border-[#6f6048] focus:ring-2 focus:ring-[#d8cebf] sm:px-5 sm:py-3.5 sm:text-[15px]"
-              />
-            </label>
-
-            {trimmedQuery ? (
-              <div className="mt-3 rounded-[1rem] border border-[#d8cebf]/80 bg-[#fbf8f1]/95 p-2 shadow-[0_18px_45px_rgba(41,36,29,0.06)]">
-                {results.length > 0 ? (
-                  <div className="divide-y divide-[#d8cebf]/70">
-                    {results.map((facility) => (
-                      <Link
-                        key={facility.slug}
-                        href={`/facility/${facility.slug}`}
-                        className="block rounded-[0.9rem] px-3 py-3 transition hover:bg-[#efe6d8] focus:bg-[#efe6d8] focus:outline-none"
-                        onClick={() =>
-                          trackEvent("homepage_search_result_click", {
-                            facility_name: facility.name,
-                            facility_slug: facility.slug,
-                            page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
-                          })
-                        }
-                      >
-                        <span className="block text-[15px] font-medium leading-6 text-[#29241d]">{facility.name}</span>
-                        <span className="mt-1 block text-xs leading-5 text-[#6f6048]">
-                          {[getResultLocation(facility), facility.services?.slice(0, 2).join(" · ")].filter(Boolean).join(" / ")}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <div className="px-3 py-3">
-                    <p className="text-sm font-medium text-[#29241d]">No close match yet.</p>
-                    <p className="mt-1 text-xs leading-5 text-[#5f574c]">
-                      Try a shorter venue name, a nearby neighbourhood, or browse below.
-                    </p>
-                  </div>
-                )}
-              </div>
-            ) : null}
-
-            <div className="mt-3 min-w-0 border-t border-[#d8cebf]/70 pt-3">
-              <div className="mb-2 flex items-center justify-between gap-3">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Popular</p>
-                <Link href="/explore" className="text-xs font-medium underline underline-offset-4">
-                  All venues
-                </Link>
-              </div>
-              <div className="flex min-w-0 flex-wrap gap-2">
-                {popularLinks.map((link) => (
-                  <Link
-                    key={`${link.href}-${link.label}`}
-                    href={link.href}
-                    className="rounded-full border border-[#d8cebf] bg-[#fbf8f1]/78 px-3.5 py-2 text-xs leading-5 text-[#29241d] transition hover:bg-[#eee7da] sm:px-4 sm:text-sm"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="relative mt-6 max-w-2xl sm:mt-8">
+      <label htmlFor="homepage-venue-search" className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">
+        Search the directory
+      </label>
+      <div className="relative">
+        <input
+          id="homepage-venue-search"
+          type="search"
+          value={query}
+          onChange={(event) => updateQuery(event.target.value)}
+          placeholder="Try Shoreditch, sauna or a venue name"
+          autoComplete="off"
+          className="block w-full rounded-full border border-[#fbf8f1]/40 bg-[#fbf8f1] px-5 py-3.5 pr-12 text-[16px] leading-6 text-[#29241d] shadow-[0_12px_32px_rgba(0,0,0,0.16)] outline-none transition placeholder:text-[#8d7d67] focus:border-white focus:ring-2 focus:ring-[#fbf8f1]/38 sm:py-4"
+        />
+        <span aria-hidden="true" className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-lg text-[#6f6048]">⌕</span>
       </div>
-    </section>
+
+      {trimmedQuery ? (
+        <div id="homepage-search-results" className="mt-2 overflow-hidden rounded-[1rem] border border-[#d8cebf] bg-[#fbf8f1] p-2 text-[#29241d] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
+          {results.length > 0 ? (
+            <div className="divide-y divide-[#d8cebf]/70">
+              {results.map((facility) => (
+                <Link
+                  key={facility.slug}
+                  href={`/facility/${facility.slug}`}
+                  className="block rounded-[0.8rem] px-3 py-2.5 transition hover:bg-[#efe6d8] focus:bg-[#efe6d8] focus:outline-none"
+                  onClick={() =>
+                    trackEvent("homepage_search_result_click", {
+                      facility_name: facility.name,
+                      facility_slug: facility.slug,
+                      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+                    })
+                  }
+                >
+                  <span className="block text-sm font-medium leading-6">{facility.name}</span>
+                  <span className="block text-xs leading-5 text-[#6f6048]">
+                    {[getResultLocation(facility), facility.services?.slice(0, 2).join(" · ")].filter(Boolean).join(" / ")}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="px-3 py-3">
+              <p className="text-sm font-medium">No close match yet.</p>
+              <p className="mt-1 text-xs leading-5 text-[#5f574c]">Try a venue, treatment or London neighbourhood.</p>
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      <div className="mt-3 flex flex-wrap items-center gap-2">
+        <span className="mr-1 text-[10px] uppercase tracking-[0.18em] text-[#fbf8f1]/52">Popular</span>
+        {popularLinks.map((link) => (
+          <Link key={link.href} href={link.href} className="rounded-full border border-[#fbf8f1]/24 bg-black/10 px-3 py-1.5 text-xs text-[#fbf8f1]/88 transition hover:border-[#fbf8f1]/60 hover:bg-[#fbf8f1] hover:text-[#29241d]">
+            {link.label}
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }

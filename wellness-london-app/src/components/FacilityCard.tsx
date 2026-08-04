@@ -5,6 +5,7 @@ import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { canonicalServiceHref, prioritiseCanonicalServiceList } from "@/lib/taxonomy";
+import SaveVenueButton from "@/components/SaveVenueButton";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -42,6 +43,7 @@ type FacilityCardProps = {
   source?: string;
   compact?: boolean;
   prioritisedService?: string;
+  showSaveButton?: boolean;
 };
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
@@ -155,7 +157,7 @@ function getCardImages(facility: FacilityCardFacility) {
   return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
 }
 
-export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = false }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
@@ -199,9 +201,15 @@ export default function FacilityCard({ facility, source = "directory", compact =
               <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/8" />
             </Link>
 
-            <div className="pointer-events-none absolute left-4 right-4 top-4 z-10 flex items-start justify-between gap-3">
+            <div className="pointer-events-none absolute left-4 top-4 z-10">
               {price ? <span className={pricePillClass}>{price}</span> : <span />}
             </div>
+
+            {showSaveButton ? (
+              <div className="absolute right-4 top-4 z-30">
+                <SaveVenueButton slug={facility.slug} name={facility.name} />
+              </div>
+            ) : null}
 
             {cardImages.length > 1 ? (
               <>
@@ -224,6 +232,11 @@ export default function FacilityCard({ facility, source = "directory", compact =
             <div className="absolute inset-x-5 top-1/2 h-px bg-[#fbf8f1]/65" />
             <div className="absolute inset-y-5 left-1/2 w-px bg-[#fbf8f1]/45" />
             <div className="absolute left-4 top-4 z-10">{price ? <span className={pricePillClass}>{price}</span> : null}</div>
+            {showSaveButton ? (
+              <div className="absolute right-4 top-4 z-30">
+                <SaveVenueButton slug={facility.slug} name={facility.name} />
+              </div>
+            ) : null}
           </div>
         )}
       </div>
