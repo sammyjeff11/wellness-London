@@ -8,7 +8,7 @@ import { longevityServicePages } from "@/lib/longevity-service-pages";
 import { absoluteUrl } from "@/lib/site";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
-const defaultLastModified = new Date("2026-07-14T00:00:00.000Z");
+const defaultLastModified = new Date("2026-08-04T00:00:00.000Z");
 
 const staticRoutes = [
   { path: "", priority: 1 },
@@ -27,6 +27,10 @@ const staticRoutes = [
   { path: "/editorial/best-cryotherapy-london", priority: 0.74 },
   { path: "/editorial/infrared-sauna-vs-traditional-sauna", priority: 0.72 },
   { path: "/guides/sauna-london-guide", priority: 0.72 },
+  { path: "/the-edit", priority: 0.68 },
+  { path: "/contact", priority: 0.55 },
+  { path: "/claim-listing", priority: 0.58 },
+  { path: "/work-with-well-plus", priority: 0.58 },
   ...neighbourhoodPages.map((page) => ({ path: page.href, priority: 0.78 })),
   { path: "/recovery-london", priority: 0.85 },
   { path: "/stress-regulation-london", priority: 0.75 },
