@@ -234,7 +234,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   const location = getCleanLocation(facility);
   const editorialCandidates = getEditorialCandidates(facility);
-  const heroSummary = editorialCandidates[0] || "View the available services, access rules and practical booking details.";
+  const heroSummary = editorialCandidates[0] || "Compare the services, access model and booking details before deciding whether this venue suits your visit.";
   const whyCopy = editorialCandidates.find((candidate) => candidate !== heroSummary);
   const services = canonicaliseServiceList(cleanList(facility.servicesOffered));
   const relatedGuides = getRelatedGuides(services);
@@ -347,7 +347,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {whyCopy ? (
         <section className="px-5 pb-12 sm:px-6 md:pb-16">
           <div className="mx-auto grid max-w-6xl gap-8 border-t border-[#d8cebf]/70 pt-8 sm:pt-10 lg:grid-cols-[0.78fr_1.22fr]">
-            <SectionHeading eyebrow="Why visit" title={`Why visit ${facility.name}?`} />
+            <SectionHeading eyebrow="Editorial view" title="Why choose it" />
             <p className="max-w-3xl text-xl leading-9 text-[#4f473d] sm:text-2xl sm:leading-10">{whyCopy}</p>
           </div>
         </section>
@@ -356,7 +356,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {bestFor.length > 0 ? (
         <section className="surface-band-sage px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Best for" title="Best for" />
+            <SectionHeading eyebrow="Suitability" title="Particularly good for" />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {bestFor.map((item) => <Pill key={item}>{item}</Pill>)}
             </div>
@@ -367,7 +367,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {experienceItems.length > 0 ? (
         <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="What to expect" title="The experience" copy="A concise read on the visit style, atmosphere and session format." />
+            <SectionHeading eyebrow="Session format" title="What the visit is like" />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {experienceItems.map((item) => <DetailCard key={item.label} {...item} />)}
             </div>
@@ -378,7 +378,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {practicalItems.length > 0 || goodToKnow ? (
         <section className="surface-band-stone px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Practical details" title="Before you go" copy="The details that matter when deciding whether the venue fits your visit." />
+            <SectionHeading eyebrow="Before you go" title="Know before booking" />
             {goodToKnow ? <p className="mt-6 max-w-3xl text-lg leading-8 text-[#4f473d]">{goodToKnow}</p> : null}
             {practicalItems.length > 0 ? (
               <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -392,7 +392,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {services.length > 0 ? (
         <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Services" title={`Services listed for ${facility.name}`} copy="Bookable services and recovery options available here." />
+            <SectionHeading eyebrow="Services" title="Available here" />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {services.slice(0, 8).map((service) => {
                 const href = canonicalServiceHref(service);
@@ -424,7 +424,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {relatedGuides.length > 0 ? (
         <section className="px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-8 sm:pt-10">
-            <SectionHeading eyebrow="Related guides" title="Compare related services" copy="See similar services across London and the practical differences to check before booking." />
+            <SectionHeading eyebrow="Related guides" title="Understand the alternatives" copy="Compare formats, access and session styles before choosing a service." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {relatedGuides.map((guide) => (
                 <Link key={guide.href} href={guide.href} className="surface-paper group flex min-h-48 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:border-[#6f6048] hover:bg-[#fffaf0]">
@@ -443,7 +443,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {similarVenues.length > 0 ? (
         <section className="surface-band-stone px-5 py-14 sm:px-6 md:py-20">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Similar venues" title="Explore similar venues" copy="More Well+ profiles with related services, areas or venue styles." />
+            <SectionHeading eyebrow="Similar venues" title="Alternatives to consider" copy="Other London venues with related services, locations or access models." />
             <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {similarVenues.map((venue) => <SimilarVenueCard key={venue.slug} facility={venue} />)}
             </div>

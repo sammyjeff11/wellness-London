@@ -143,7 +143,7 @@ export default async function SiteFooter() {
           <div>
             <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/62">Well+</p>
             <p className="max-w-sm text-sm leading-7 text-[#fbf8f1]/72">
-              A practical guide to London saunas, cold plunges, recovery studios, spas and longevity clinics.
+              Compare London saunas, cold plunges, recovery studios, spas and longevity clinics by access, price, facilities and session format.
             </p>
           </div>
           <NewsletterSignup
@@ -151,7 +151,7 @@ export default async function SiteFooter() {
             variant="dark"
             compact
             title="The Well+ Edit"
-            copy="New London wellness openings, useful guides and worthwhile shortlists — sent occasionally."
+            copy="New openings, material venue updates and clear guides to choosing between London wellness services — sent occasionally."
           />
         </div>
 

@@ -15,27 +15,27 @@ export const metadata: Metadata = {
 const groups: { title: string; description: string; categories: ServiceCategory[] }[] = [
   {
     title: "Heat and sauna",
-    description: "Traditional, communal and private heat experiences, including infrared sauna.",
+    description: "Choose between social communal saunas, traditional high-heat rooms and private infrared sessions. Compare privacy, temperature, facilities and whether cold-water immersion is included.",
     categories: ["heat"],
   },
   {
     title: "Cold and contrast",
-    description: "Cold-water immersion, cryotherapy and structured hot-and-cold experiences.",
+    description: "Compare cold plunges, dry-air cryotherapy and full heat-and-cold circuits. The main differences are intensity, supervision, session length and whether recovery space is included.",
     categories: ["cold"],
   },
   {
     title: "Recovery and performance",
-    description: "Services used around physical recovery, training, movement and restoration.",
+    description: "Massage, compression, oxygen therapies and other services used around training. Look at the access model, practitioner input and whether the venue supports repeat visits.",
     categories: ["recovery", "oxygen"],
   },
   {
     title: "Mind and restorative",
-    description: "Quieter practices and experiences centred on decompression and regulation.",
+    description: "Breathwork, sound, yoga and slower sessions for decompression. Choose by group size, level of guidance and the atmosphere you want to spend time in.",
     categories: ["mind-body"],
   },
   {
     title: "Tests and diagnostics",
-    description: "Clinic-led screening, measurement and health assessments within longevity and preventative health.",
+    description: "Health screening, performance testing and medical imaging. Compare what is measured, who interprets the result and what follow-up is included.",
     categories: ["longevity", "medical-wellness"],
   },
 ];
@@ -96,10 +96,10 @@ export default async function ServicesPage() {
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-[#29241d]">Services</span>
           </nav>
-          <p className="editorial-eyebrow mb-4">Browse what is available</p>
-          <h1 className="max-w-4xl font-serif text-[3.4rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-7xl md:text-8xl">Wellness services in London.</h1>
+          <p className="editorial-eyebrow mb-4">Understand the options</p>
+          <h1 className="max-w-4xl font-serif text-[3.4rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-7xl md:text-8xl">Explore London wellness services.</h1>
           <p className="mt-7 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
-            “Services” is used here as the inclusive term for bookable wellness offerings. Where something is specifically a test, diagnostic assessment or wider experience, we label it clearly rather than calling everything a treatment.
+            Understand what each service involves, who it tends to suit and what changes the experience before you choose where to book.
           </p>
         </div>
       </section>
@@ -140,7 +140,7 @@ export default async function ServicesPage() {
           <div className="mx-auto max-w-6xl">
             <div className="mb-8 grid gap-3 md:grid-cols-[0.7fr_1.3fr] md:items-end">
               <h2 id="more-services-heading" className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Movement and measurement.</h2>
-              <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Useful routes that cross Performance, Mobility and Longevity rather than fitting neatly inside one wellness category.</p>
+              <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Practitioner-led movement and objective testing sit across performance, mobility and preventative health. Compare the method, professional oversight and what you receive afterward.</p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {additionalServices.map((service) => (

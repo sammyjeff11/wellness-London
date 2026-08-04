@@ -81,19 +81,19 @@ export default async function ActivityServicePage({ activity }: ActivityServiceP
         </div>
       </section>
 
-      <ServiceIntroSection eyebrow={`${activity.label} guide`} title="Understand the experience before you book." paragraphs={[activity.description, activity.heroText]} />
-      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceType} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`We are still curating ${activity.label.toLowerCase()} venues for this guide.`} />
-      <ServiceInsightSection eyebrow="Best for" panels={activity.bestFor} />
+      <ServiceIntroSection eyebrow={`${activity.label} guide`} title="Understand the experience before you book." paragraphs={[activity.description]} />
+      <ServiceInsightSection eyebrow="Who it tends to suit" panels={activity.bestFor} />
+      <ServiceGuidanceSection eyebrow="Compare the formats" title={`What to check before booking ${activity.label.toLowerCase()}`} points={activity.guidance} />
+      <ServiceDirectorySection facilities={directoryFacilities} serviceType={serviceType} prioritisedService={activity.label} emptyTitle={`No ${activity.label.toLowerCase()} listings yet`} emptyText={`No published ${activity.label.toLowerCase()} venues currently meet the directory criteria.`} />
+      <ServiceGuidanceSection eyebrow="The session" title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
       <ServiceEvidenceSection notes={activity.evidenceNotes} />
-      <ServiceGuidanceSection title={`What to expect from ${activity.label.toLowerCase()} in London`} points={activity.whatToExpect} />
-      <ServiceGuidanceSection title={`How to choose ${activity.label.toLowerCase()} in London`} points={activity.guidance} />
 
       <section className="px-5 py-12 sm:px-6 md:py-16">
         <div className="mx-auto max-w-6xl">
           <NewsletterSignup
             source={`service_${serviceType}`}
             title={`Keep up with ${activity.label.toLowerCase()} in London`}
-            copy={`Join The Well+ Edit for new ${activity.label.toLowerCase()} venues, practical comparisons and worthwhile London wellness updates.`}
+            copy={`Get new ${activity.label.toLowerCase()} openings, material venue changes and guides that clarify the booking decision.`}
           />
         </div>
       </section>

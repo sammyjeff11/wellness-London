@@ -1,5 +1,6 @@
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import type { AirtableFacility } from "@/lib/airtable";
+import { canonicaliseServiceList } from "@/lib/taxonomy";
 
 export function getFacilityLocation(facility: AirtableFacility) {
   return facility.neighbourhood || facility.areaOfLondon || facility.areaGroup || "London";
@@ -32,7 +33,7 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     neighbourhood: facility.neighbourhood,
     areaOfLondon: facility.areaOfLondon,
     areaGroup: facility.areaGroup,
-    services: facility.servicesOffered,
+    services: canonicaliseServiceList(facility.servicesOffered),
     serviceKeys: facility.serviceKeys,
     priceRange: facility.overallPriceRange,
     rating: facility.googleRating,

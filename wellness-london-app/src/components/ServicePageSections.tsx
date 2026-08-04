@@ -101,7 +101,7 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
           <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
           <p className="mt-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-            Practical notes to help you understand the likely benefits, limits and timing considerations before booking. This is not medical advice.
+            A measured summary of likely benefits, limitations and timing considerations. This is not medical advice.
           </p>
         </div>
         <div className="grid gap-5 md:grid-cols-2">

@@ -6,6 +6,7 @@ import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCa
 import { trackEvent } from "@/lib/analytics";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
+import { isUsefulValue } from "@/lib/useful-values";
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
   serviceKeys: string[];
@@ -65,7 +66,7 @@ function getPriceBand(value?: string) {
 }
 
 function uniqueValues(values: (string | undefined)[]) {
-  return Array.from(new Set(values.filter(Boolean) as string[])).sort();
+  return Array.from(new Set(values.filter((value): value is string => isUsefulValue(value)))).sort();
 }
 
 function parsePrice(value?: string) {

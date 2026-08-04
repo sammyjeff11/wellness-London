@@ -28,12 +28,12 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Explore Shoreditch recovery venues offering sauna, cold plunge, contrast therapy and other wellness services.",
     eyebrow: "East London energy",
     intro:
-      "Explore recovery venues in Shoreditch offering sauna, cold plunge, contrast therapy and other wellness services. Compare facilities by service type, setting and location before choosing where to book.",
+      "Shoreditch has one of London's more social recovery scenes: communal sauna, cold-water immersion and modern studios designed to sit alongside work, training and nightlife.",
     summary:
-      "This is a useful area when you want wellness to feel active rather than overly quiet: a place for heat, cold, movement, post-work resets and weekend recovery routines.",
+      "The local strength is contrast therapy rather than traditional spa time. Come here for heat, cold and movement in an active studio setting, often with a stronger community feel than a hotel or health-club spa.",
     bestFor: ["Contrast therapy", "Social wellness", "Post-work recovery", "Cold exposure", "Modern studios"],
     character:
-      "The Shoreditch wellness scene feels energetic and contemporary. It suits people who want recovery to sit close to work, food, fitness and nightlife rather than feel like a destination spa escape.",
+      "Energetic, informal and contemporary. Recovery sits among gyms, cafés and late-night venues, so the atmosphere tends to be urban and social rather than hushed or retreat-like.",
     visitNotes: [
       "Good for pairing sauna or cold exposure with a wider East London day out.",
       "Expect a more urban, social atmosphere than traditional spa-led wellness.",
@@ -54,17 +54,17 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "East London",
     metaTitle: "Wellness in Canary Wharf | Sauna, Ice Baths & Recovery | Well+",
     metaDescription:
-      "Explore Canary Wharf wellness, from Arc's communal sauna and ice baths to Third Space recovery services, with practical guidance before booking.",
+      "Compare Canary Wharf wellness venues, from Arc's communal sauna and ice baths to Third Space recovery and health-club services.",
     eyebrow: "Docklands recovery",
     intro:
       "Canary Wharf has evolved beyond its office-district identity into a modern waterside neighbourhood with high-spec health clubs, recovery treatments and one of London's most distinctive communal contrast-therapy spaces.",
     summary:
-      "The local edit is strongest for structured recovery: sauna, ice baths, guided contrast sessions and specialist treatments that can fit before work, after work or into a focused weekend visit.",
+      "Canary Wharf is strongest for structured recovery. Arc offers a public-facing contrast experience; Third Space places recovery within a premium members' club. The deciding factor is access as much as the treatment list.",
     bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Cryotherapy", "Premium wellness"],
     character:
-      "The atmosphere is polished, contemporary and efficient, shaped by modern architecture, waterside public spaces and a weekday business rhythm. Arc adds a more social, sensory counterpoint to the area's club-led wellness offer.",
+      "Polished and efficient, with the strongest weekday rhythm before and after office hours. Arc is the more social and sensory option; Third Space is the broader club environment.",
     visitNotes: [
-      "Useful for weekday recovery before work, after work or between meetings.",
+      "Particularly convenient before work, after work or between meetings.",
       "Check access rules carefully because some facilities may sit inside broader gym or club settings.",
       "Compare exact location details before travelling, especially around Crossrail Place and Canada Square.",
     ],
@@ -83,18 +83,18 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "West London",
     metaTitle: "Wellness in Kensington | Cryotherapy, Sauna & HBOT | Well+",
     metaDescription:
-      "Compare Kensington recovery venues offering sauna, cryotherapy, red light therapy and HBOT, with practical details to check before booking.",
+      "Compare Kensington recovery venues offering sauna, cryotherapy, red light therapy and HBOT, including access and booking details.",
     eyebrow: "West London recovery",
     intro:
       "Kensington's wellness offer reflects the neighbourhood itself: polished, appointment-led and premium, with technology-led recovery close to the shops, homes and hotels around Kensington High Street.",
     summary:
-      "Kensington is useful when you want premium recovery, biohacking and wellness services close to High Street Kensington rather than a broad West London search.",
+      "The local offer is concentrated around technology-led recovery: infrared heat, cryotherapy, red light and hyperbaric oxygen rather than communal bathing or a traditional spa circuit.",
     bestFor: ["Infrared sauna", "Cryotherapy", "Red light therapy", "HBOT", "Premium recovery"],
     character:
-      "The current Well+ edit is intentionally compact and centres on a verified High Street Kensington venue offering equipment-led recovery, longevity and movement services.",
+      "The published directory is currently compact and centred on High Street Kensington. Expect appointment-led sessions and a premium clinical-studio feel rather than a casual drop-in sauna.",
     visitNotes: [
       "The current Kensington edit only shows venues that are published and confidently matched to the neighbourhood.",
-      "Useful for comparing infrared sauna, cryotherapy, red light therapy and HBOT options around High Street Kensington.",
+      "Choose the service before travelling: infrared sauna, cryotherapy, red light and HBOT are distinct sessions rather than interchangeable recovery add-ons.",
       "Check access details carefully because one listed venue has a private-members signal in the data.",
     ],
     relatedAreas: ["Notting Hill", "West London", "Central London"],
@@ -115,12 +115,12 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Compare recovery, longevity and clinical wellness venues in Marylebone, with practical access and location guidance.",
     eyebrow: "Refined central wellness",
     intro:
-      "Marylebone is a useful base for private recovery, clinical wellness and longevity appointments without leaving central London.",
+      "Marylebone combines private recovery and clinic-led wellness with a quieter central London setting than Soho or the West End.",
     summary:
-      "The area works well when you want a quieter central London base with a more considered feel — less rushed than Soho, but still easy to reach before work, after meetings or at the weekend.",
+      "The area's advantage is discretion and convenience. It makes most sense for appointment-led treatments, health assessments and calmer recovery rather than social contrast therapy.",
     bestFor: ["Premium wellness", "Longevity routines", "Clinical treatments", "Calm recovery", "Central access"],
     character:
-      "Marylebone’s wellness character is composed and discreet. It is less about spectacle and more about quality, convenience and a sense of calm within central London.",
+      "Composed and discreet, with clinics and studios embedded among medical practices, hotels and residential streets. The mood is quieter and more service-led than performance-led.",
     visitNotes: [
       "A strong area for combining wellness with medical, beauty or performance-led appointments.",
       "Best suited to users who value calm, service and convenience over a high-energy studio feel.",
@@ -146,10 +146,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     intro:
       "Notting Hill brings an unhurried, lifestyle-led feel to wellness. The current Well+ edit is centred on a multidisciplinary spa and members' club in the neighbourhood's quieter residential streets.",
     summary:
-      "The strongest verified local signal is slow, treatment-led wellbeing rather than performance recovery: heat, cold, bodywork, holistic therapies and restorative appointments in one considered setting.",
+      "The strongest published option is treatment-led rather than performance-led: heat, cold, bodywork and restorative appointments brought together in one setting.",
     bestFor: ["Slow wellness", "Lifestyle rituals", "Premium studios", "Weekend resets", "Calm atmosphere"],
     character:
-      "The Notting Hill wellness identity is warm, aesthetic and unhurried. It works well for people who want recovery and self-care to feel integrated into everyday life rather than treated as a standalone appointment.",
+      "Warm, design-conscious and unhurried. The experience is closer to a neighbourhood members' club or multidisciplinary spa than a high-output recovery studio.",
     visitNotes: [
       "Best approached as part of a wider West London morning or afternoon rather than a rushed visit.",
       "Good for users who care about atmosphere, design and the feel of a venue.",
@@ -175,12 +175,12 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     intro:
       "Soho is wellness at London speed: central, compact and easy to fold into a working day, evening plan or weekend in the city.",
     summary:
-      "The area is best for people who want useful, well-located wellness rather than a retreat-like escape — short recovery sessions, treatments, heat, cold and resets close to everything else.",
+      "Soho is strongest for short, central appointments. Choose it when location and timing matter more than seclusion, extensive facilities or an all-day spa experience.",
     bestFor: ["Convenient recovery", "After-work resets", "Central treatments", "Short sessions", "City routines"],
     character:
-      "Soho’s wellness character is practical and high-energy. It is less about silence and more about access: being able to recover, reset or recharge without leaving the centre of London.",
+      "Busy and high-energy. Wellness here works as a pause within the city rather than an escape from it, with venues close to offices, hotels, restaurants and several Underground lines.",
     visitNotes: [
-      "Useful when you want wellness close to restaurants, offices, hotels and transport links.",
+      "Best when you want a session close to restaurants, offices, hotels and transport links.",
       "Expect a busier central London feel, especially around evenings and weekends.",
       "Ideal for shorter sessions rather than slow, all-day wellness experiences.",
     ],

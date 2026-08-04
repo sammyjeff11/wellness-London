@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "London Wellness Guides & Venue Shortlists | Well+",
     description:
-      "Best-of guides, practical explainers and curation standards from Well+ — the editorial layer of the London wellness directory.",
+      "Best-of guides, service explainers and curation standards for choosing between London wellness venues.",
     url: absoluteUrl("/editorial"),
     type: "website",
   },
@@ -128,19 +128,19 @@ export default function EditorialHubPage() {
 
           <div className="mt-16 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
             <div>
-              <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Editorial</p>
+              <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Guides</p>
               <h1 className="font-serif text-[4.2rem] font-normal leading-[0.86] tracking-[-0.03em] sm:text-8xl lg:text-[7.5rem]">
-                Guides, edits and standards.
+                Guides for choosing well.
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-8 text-[#fbf8f1]/74 sm:text-xl sm:leading-9">
-                The editorial layer of Well+: best-of guides, practical explainers and curation notes that help you interpret the directory rather than simply browse it.
+                Compare different services, understand what changes the experience and find the London venues best suited to a particular kind of visit.
               </p>
             </div>
 
             <div className="border-t border-[#fbf8f1]/16 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">In this section</p>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">What the guides answer</p>
               <p className="mt-4 max-w-xs font-serif text-2xl font-normal leading-[1.12] tracking-[-0.02em] text-[#fbf8f1]/92">
-                The directory answers what is available. Editorial answers what is worth considering, and why.
+                Which format suits you, where to book it and what to check before committing.
               </p>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function EditorialHubPage() {
             <h2 id="editorial-contents" className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
               Contents
             </h2>
-            <p className="text-sm text-[#5f574c]">Issue order · newest first as the section grows</p>
+            <p className="text-sm text-[#5f574c]">Latest guidance first</p>
           </div>
 
           <ol className="list-none">
@@ -180,7 +180,7 @@ export default function EditorialHubPage() {
                     </p>
                     <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-[#8d7d67] transition-colors group-hover:text-[#cbbda8]">
                       <span>{entry.meta}</span>
-                      <span className="underline underline-offset-4 transition-transform group-hover:translate-x-1">Read the edit →</span>
+                      <span className="underline underline-offset-4 transition-transform group-hover:translate-x-1">Read the guide →</span>
                     </div>
                   </div>
                 </Link>
@@ -197,7 +197,7 @@ export default function EditorialHubPage() {
               <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">Venue shortlists</p>
               <h2 id="shortlists-heading" className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Compare by use case.</h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Collections now sit inside the Guides journey, so best-of lists, explainers and editorial standards have one clear home.</p>
+            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Start with the outcome or experience you want. Each shortlist explains why a venue belongs and what may make another option better for you.</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {collections.map((collection) => (
