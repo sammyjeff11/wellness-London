@@ -8,6 +8,12 @@ const reviewedCopyFiles = [
   "src/content/location-guides.ts",
   "src/lib/neighbourhood-pages.ts",
   "src/app/how-we-curate/page.tsx",
+  "src/app/page.tsx",
+  "src/app/services/page.tsx",
+  "src/app/editorial/page.tsx",
+  "src/app/facility/[slug]/page.tsx",
+  "src/app/neighbourhoods/[slug]/page.tsx",
+  "src/components/VenueLocationSection.tsx",
 ];
 
 const reviewedCopy = reviewedCopyFiles
@@ -24,6 +30,14 @@ test("keeps stock marketing language out of reviewed editorial copy", () => {
     "curated heat edit",
     "curated cold edit",
     "curated recovery edit",
+    "this section combines",
+    "the editorial layer",
+    "collections now sit inside",
+    "find a venue that fits the visit",
+    "private/shared not confirmed",
+    "a concise read on",
+    "fresh from the directory",
+    "browse the full edit",
   ];
 
   blockedPhrases.forEach((phrase) => {

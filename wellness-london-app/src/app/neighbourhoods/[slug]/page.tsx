@@ -3,7 +3,6 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import FacilityCard from "@/components/FacilityCard";
-import LocationPageEnhancements from "@/components/LocationPageEnhancements";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
@@ -128,12 +127,15 @@ function getWhatYouWillFind(facilities: ReturnType<typeof toDirectoryFacility>[]
 
 function getEditorNote(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
   if (facilities.length >= 2) {
-    const names = facilities.slice(0, 2).map((facility) => facility.name).join(" and ");
-    return `Start with ${names} if you want a quick read on the ${page.shortTitle} wellness scene, then compare the remaining listings by service, price level and whether the experience is private, shared or guided.`;
+    const [first, second] = facilities;
+    const firstServices = first.services?.slice(0, 2).join(" and ").toLowerCase() || "its listed services";
+    const secondServices = second.services?.slice(0, 2).join(" and ").toLowerCase() || "its listed services";
+    return `${first.name} is the stronger option for ${firstServices}; ${second.name} is the alternative for ${secondServices}. Compare their access model, session format and price before choosing between them.`;
   }
 
   if (facilities.length === 1) {
-    return `${facilities[0].name} is currently the strongest matched venue for ${page.shortTitle}. We avoid padding this guide with unrelated listings, so broader London service pages may be more useful until more local venues are verified.`;
+    const services = facilities[0].services?.slice(0, 3).join(", ").toLowerCase();
+    return `${facilities[0].name} is currently the only published ${page.shortTitle} venue in the directory${services ? `, offering ${services}` : ""}. Check the wider ${page.region} guide if you want more choice.`;
   }
 
   return `This guide is intentionally conservative. We only show venues when they can be matched to ${page.shortTitle} with confidence, rather than filling the page with weak or unrelated results.`;
@@ -198,22 +200,6 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
   const serviceCounts = getServiceCounts(displayFacilities);
   const whatYouWillFind = getWhatYouWillFind(displayFacilities);
   const supportedRelatedAreas = getSupportedRelatedAreas(page.slug, page.relatedAreas, availableNeighbourhoodPages);
-  const enhancementRelatedAreaLinks =
-    page.slug === "shoreditch"
-      ? [{ href: "/east-london-wellness", label: "East London wellness spaces" }]
-      : page.slug === "canary-wharf"
-        ? [
-            { href: "/east-london-wellness", label: "East London wellness spaces" },
-            { href: "/neighbourhoods/shoreditch", label: "Shoreditch wellness spaces" },
-            { href: "/central-london-wellness", label: "Central London wellness spaces" },
-          ]
-        : page.slug === "kensington"
-          ? [
-              { href: "/west-london-wellness", label: "West London wellness spaces" },
-              { href: "/neighbourhoods/notting-hill", label: "Notting Hill wellness spaces" },
-              { href: "/central-london-wellness", label: "Central London wellness spaces" },
-            ]
-      : supportedRelatedAreas.map((area) => ({ href: area.href, label: `${area.shortTitle} wellness spaces` }));
   const fallbackNeighbourhoods = availableNeighbourhoodPages.filter((candidate) => candidate.slug !== page.slug).slice(0, 4);
   const schema = buildSchema(page, displayFacilities);
   const editorNote = getEditorNote(page, displayFacilities);
@@ -249,7 +235,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Know the neighbourhood</p>
-            <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">The place, the atmosphere and how wellness fits.</h2>
+            <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">What the area feels like — and what it does best.</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
             <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
@@ -334,17 +320,10 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
         </div>
       </section>
 
-      <LocationPageEnhancements
-        areaName={page.shortTitle}
-        facilities={displayFacilities}
-        intro={page.intro}
-        relatedAreaLinks={enhancementRelatedAreaLinks}
-      />
-
       <section className="px-5 py-8 sm:px-6 md:py-10">
         <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">What you&apos;ll find here</p>
+            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services represented</p>
             {whatYouWillFind.length > 0 ? (
               <div className="flex flex-wrap gap-3">
                 {whatYouWillFind.map((service) => (
@@ -355,7 +334,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
               </div>
             ) : (
               <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-                Service availability is being verified for this neighbourhood. Explore the wider London edit while we refine the local venue data.
+                The published venues do not yet have enough confirmed service detail to summarise here.
               </p>
             )}
 
@@ -374,7 +353,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Editor&apos;s note</p>
+            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">How the venues differ</p>
             <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">{editorNote}</p>
             <div className="mt-6 border-t border-[#d8cebf]/70 pt-5">
               <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Services in {page.shortTitle}</p>
@@ -388,7 +367,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                 </div>
               ) : (
                 <p className="text-sm leading-7 text-[#5f574c]">
-                  Service availability is being verified for this neighbourhood. Explore the wider London edit while we refine the local venue data.
+                  No additional service guides are linked until the venue information is confirmed.
                 </p>
               )}
             </div>
@@ -397,31 +376,7 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
       </section>
 
       <section className="px-5 py-8 sm:px-6 md:py-10">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-            <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Local questions</p>
-            <div className="space-y-6">
-              <div>
-                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">What kind of wellness is {page.shortTitle} best for?</h2>
-                <p className="text-sm leading-7 text-[#5f574c]">{page.summary}</p>
-              </div>
-              <div>
-                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">Which venues are listed in {page.shortTitle}?</h2>
-                <p className="text-sm leading-7 text-[#5f574c]">
-                  {displayFacilities.length > 0
-                    ? `Yes — this guide currently highlights ${displayFacilities.length} matched listing${displayFacilities.length === 1 ? "" : "s"} in ${page.shortTitle} based on the available location data.`
-                    : "We are still verifying venues for this area, so the page avoids showing unrelated listings just to fill the space."}
-                </p>
-              </div>
-              <div>
-                <h2 className="mb-2 text-xl font-medium tracking-[-0.03em]">How should I choose a venue in {page.shortTitle}?</h2>
-                <p className="text-sm leading-7 text-[#5f574c]">
-                  Start with the type of session you want — heat, cold, recovery treatment or a slower reset — then compare atmosphere, location, price and whether the experience is private, shared or guided.
-                </p>
-              </div>
-            </div>
-          </div>
-
+        <div className="mx-auto max-w-6xl">
           <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
             <p className="mb-5 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Continue exploring</p>
             <div className="flex flex-wrap gap-3">
@@ -436,11 +391,6 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
                 </Link>
               ))}
             </div>
-            {supportedRelatedAreas.length === 0 ? (
-              <p className="mt-5 text-xs leading-6 text-[#8d7d67]">
-                Related neighbourhood links are limited to supported Well+ area pages, so we avoid sending readers to unfinished local guides.
-              </p>
-            ) : null}
           </div>
         </div>
       </section>

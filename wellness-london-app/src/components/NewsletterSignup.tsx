@@ -14,7 +14,7 @@ type NewsletterSignupProps = {
 export default function NewsletterSignup({
   source,
   title = "The Well+ Edit",
-  copy = "New London wellness openings, useful treatment guides and the places worth knowing about — sent occasionally.",
+  copy = "New London wellness openings, material venue updates and clear guides to choosing between services — sent occasionally.",
   variant = "light",
   compact = false,
 }: NewsletterSignupProps) {
@@ -40,7 +40,7 @@ export default function NewsletterSignup({
       }
     >
       <p className={`text-[10px] uppercase tracking-[0.22em] ${isDark ? "text-[#fbf8f1]/58" : "text-[#8a7f70]"}`}>
-        Stay close to the edit
+        Occasional updates
       </p>
       <h2 className={`${compact ? "mt-3 text-2xl sm:text-3xl" : "mt-4 text-3xl sm:text-4xl"} font-serif font-normal leading-tight tracking-[-0.04em]`}>
         {title}
@@ -89,7 +89,7 @@ export default function NewsletterSignup({
       <p className={`mt-3 text-xs leading-5 ${isDark ? "text-[#fbf8f1]/52" : "text-[#8a7f70]"}`} aria-live="polite">
         {isConfigured
           ? "Occasional emails only. Unsubscribe at any time."
-          : "The signup design is ready and will activate once the mailing-list service is connected."}
+          : "Email updates are not open yet."}
       </p>
     </div>
   );

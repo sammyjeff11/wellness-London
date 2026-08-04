@@ -127,7 +127,7 @@ function cleanDetailValue(value?: string) {
   if (!value) return "";
   const trimmed = value.trim();
   const lower = trimmed.toLowerCase();
-  if (["n/a", "na", "unknown", "not specified", "not available", "none"].includes(lower)) return "";
+  if (["n/a", "na", "unknown", "not specified", "not available", "none", "other", "private/shared not confirmed", "details not yet confirmed"].includes(lower)) return "";
   return trimmed;
 }
 

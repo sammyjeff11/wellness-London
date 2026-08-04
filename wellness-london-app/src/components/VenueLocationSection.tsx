@@ -65,15 +65,11 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
             Location & arrival
           </p>
 
-          <h2 className="font-serif text-4xl font-normal leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-7xl">
-            Know the setting before you arrive.
-          </h2>
+          <h2 className="font-serif text-4xl font-normal leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-7xl">Getting there.</h2>
 
           <p className="mt-6 max-w-2xl text-base leading-8 text-[#70695d] sm:text-lg sm:leading-9">
-            {name} sits within {locationLabel}. This section combines
-            practical arrival details with a calmer visual orientation layer,
-            helping users understand both the route and the atmosphere around
-            the venue.
+            {fullAddress ? `${name} is at ${fullAddress}, in ${locationLabel}.` : `${name} is in ${locationLabel}.`}
+            {cleanNearestStation ? ` The nearest listed station is ${cleanNearestStation}.` : ""}
           </p>
         </div>
 
@@ -106,7 +102,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                   <div className="relative z-10 flex w-full flex-col gap-5 p-6 text-[#fbf8f1] sm:p-8 lg:p-10">
                     <div>
                       <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#fbf8f1]/74">
-                        Interactive location preview
+                        Map preview
                       </p>
 
                       <h3 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl lg:text-5xl">
@@ -119,7 +115,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                     </div>
 
                     <div className="mt-auto inline-flex w-fit rounded-full bg-[#fbf8f1] px-5 py-3 text-sm text-[#29241d] transition group-hover:bg-[#eee7da]">
-                      Load map experience
+                      Load map
                     </div>
                   </div>
                 </button>

@@ -75,7 +75,7 @@ export default async function ExplorePage() {
           <div className="mb-8 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Search and compare</p>
             <h2 id="directory-heading" className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl">
-              Find a venue that fits the visit.
+            Compare {facilities.length} London wellness venues.
             </h2>
           </div>
           <ServiceDirectory

@@ -417,7 +417,7 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
           <div className="mb-8 max-w-3xl">
             <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
             <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Compare the full assessment, not only the test list.</h2>
-            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Narrow by health need, confirmed diagnostics, clinical oversight and likely investment. Structured provider fields are used where verified; otherwise the listing is based on clearly stated public information.</p>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">We prioritise clinics that explain what they test, who reviews the results and what follow-up is included. Where those details are not publicly clear, we say so.</p>
           </div>
 
           <div className="surface-paper-strong mb-10 grid gap-4 rounded-[1.2rem] p-5 sm:grid-cols-2 lg:grid-cols-4">

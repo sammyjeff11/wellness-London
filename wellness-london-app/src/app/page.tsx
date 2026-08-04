@@ -18,12 +18,12 @@ import { cleanValue } from "@/lib/useful-values";
 export const metadata: Metadata = {
   title: "London Wellness Venues: Saunas, Cold Plunges & Clinics | Well+",
   description:
-    "Find and compare London saunas, cold plunges, recovery studios, spas and longevity clinics using practical details, curated selections and independent guides.",
+    "Find and compare London saunas, cold plunges, recovery studios, spas and longevity clinics by service, area, access and price.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "London Wellness Venues: Saunas, Cold Plunges & Clinics | Well+",
     description:
-      "Compare curated London wellness venues using practical details, independent guides and focused shortlists.",
+      "Compare London wellness venues by service, area, access and price, with independent guides to the choices that matter.",
     url: absoluteUrl("/"),
     type: "website",
   },
@@ -54,7 +54,7 @@ const startRoutes = [
     number: "03",
     href: "/editorial",
     title: "Help me choose",
-    text: "Read practical comparisons and focused shortlists when you are unsure where to start.",
+    text: "Compare formats, understand the trade-offs and find a shortlist for the kind of visit you want.",
     action: "Read the guides",
   },
 ];
@@ -111,12 +111,18 @@ function checkedTime(value?: string) {
 
 function selectionReason(facility: ReturnType<typeof toDirectoryFacility>) {
   const setting = cleanValue(facility.venueType);
-  const services = facility.services?.slice(0, 2).join(" and ");
+  const services = facility.services?.slice(0, 3);
   const location = cleanValue(facility.neighbourhood) || cleanValue(facility.location) || "London";
+  const access = cleanValue(facility.accessType);
+  const format = cleanValue(facility.privateOrShared);
 
-  if (setting && services) return `${setting} combining ${services.toLowerCase()} in ${location}.`;
-  if (services) return `${services} in ${location}, with practical booking details gathered in one place.`;
-  return `A well-documented ${location} venue selected for the clarity of its listing.`;
+  if (services?.length) {
+    const serviceList = services.length === 1 ? services[0] : `${services.slice(0, -1).join(", ")} and ${services.at(-1)}`;
+    const accessNote = [format, access].filter(Boolean).join(", ").toLowerCase();
+    return `${serviceList} in ${location}${accessNote ? `, with ${accessNote} access` : ""}.`;
+  }
+
+  return `${setting || "Wellness venue"} in ${location}.`;
 }
 
 export default async function Home() {
@@ -165,7 +171,7 @@ export default async function Home() {
                 Find and compare London wellness venues.
               </h1>
               <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#fbf8f1]/82 sm:text-lg sm:leading-8">
-                Curated saunas, cold plunges, recovery studios, spas and longevity clinics — with practical details to help you choose before you book.
+                Saunas, cold plunges, recovery studios, spas and longevity clinics — compared by access, price, facilities and what the visit is actually like.
               </p>
               <HomeVenueSearch facilities={directoryFacilities} />
             </div>
@@ -178,9 +184,9 @@ export default async function Home() {
           <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="editorial-eyebrow mb-3">Start here</p>
-              <h2 id="start-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Three simple ways in.</h2>
+              <h2 id="start-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">How would you like to search?</h2>
             </div>
-            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">You do not need to understand the whole directory. Begin with what you already know.</p>
+            <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">Browse by service, look near you or use a guide to choose between different experiences.</p>
           </div>
 
           <div className="grid gap-3 md:grid-cols-3">
@@ -204,7 +210,7 @@ export default async function Home() {
             <div className="mb-7 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Editor&apos;s selection</p>
-                <h2 id="featured-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">Three considered places to start.</h2>
+                <h2 id="featured-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">Three venues worth knowing.</h2>
               </div>
               <div className="flex flex-wrap gap-4 text-sm">
                 <Link href="/how-we-curate" className="underline underline-offset-4">How we curate</Link>
@@ -216,7 +222,7 @@ export default async function Home() {
               {selectedFacilities.map((facility) => (
                 <div key={facility.slug}>
                   <div className="mb-3 min-h-[3.5rem] border-l border-[#8d7d67] pl-3">
-                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Why it stands out</p>
+                    <p className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Why we selected it</p>
                     <p className="mt-1 text-xs leading-5 text-[#5f574c]">{selectionReason(facility)}</p>
                   </div>
                   <FacilityCard facility={facility} source="homepage_featured" compact showSaveButton />
@@ -232,7 +238,7 @@ export default async function Home() {
           <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#cbbda8]">Come back with purpose</p>
-              <h2 id="return-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">More useful each time you return.</h2>
+              <h2 id="return-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">Save venues. Build a better shortlist.</h2>
             </div>
             <Link href="/shortlist" className="w-fit rounded-full border border-[#fbf8f1]/35 px-5 py-2.5 text-sm transition hover:bg-[#fbf8f1] hover:text-[#29241d]">View saved venues</Link>
           </div>
@@ -250,7 +256,7 @@ export default async function Home() {
             <NewsletterSignup
               source="homepage_return"
               title="Join The Well+ Edit"
-              copy="New and changing London venues, worthwhile shortlists and practical service guides — sent occasionally."
+              copy="New openings, venue updates and clear guides to choosing between London wellness experiences — sent occasionally."
               variant="dark"
             />
           </div>
@@ -263,9 +269,9 @@ export default async function Home() {
             <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="editorial-eyebrow mb-3">Recently checked</p>
-                <h2 id="recent-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Fresh from the directory.</h2>
+                <h2 id="recent-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Recently checked venues.</h2>
               </div>
-              <p className="max-w-xl text-sm leading-7 text-[#5f574c]">Listings recently reviewed or added to the Well+ dataset. Always confirm live availability with the venue before booking.</p>
+              <p className="max-w-xl text-sm leading-7 text-[#5f574c]">Profiles we have recently reviewed or added. Confirm current prices, timetables and availability with the venue before travelling.</p>
             </div>
             <div className="grid gap-9 sm:grid-cols-2 md:grid-cols-3">
               {recentlyCheckedFacilities.map((facility) => (
@@ -280,8 +286,8 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf] pt-8 sm:pt-10">
           <div className="mb-8 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Explore London wellness</p>
-            <h2 id="discover-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Browse the full edit.</h2>
-            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Direct routes to the services, places and intentions people use most. Detailed guidance lives on each destination page.</p>
+            <h2 id="discover-heading" className="font-serif text-[2.5rem] font-normal leading-none tracking-[-0.045em] sm:text-5xl">Browse by service, area or goal.</h2>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">Go directly to the kind of session you want, the part of London you are visiting or the outcome you are trying to support.</p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3 md:gap-12">
