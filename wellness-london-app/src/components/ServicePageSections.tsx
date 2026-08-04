@@ -50,7 +50,7 @@ function canonicalInternalHref(href: string) {
 
 export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntroSectionProps) {
   return (
-    <section className="border-y border-[#cbbda9] bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-9 md:grid-cols-[0.95fr_1.05fr] md:items-start">
           <div>
@@ -68,7 +68,7 @@ export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntro
 
 export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectorySectionProps) {
   return (
-    <section className="bg-[#f4efe6] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section className="surface-band-stone px-5 py-14 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
         <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} prioritisedService={prioritisedService} />
       </div>
@@ -99,7 +99,7 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
   if (notes.length === 0) return null;
 
   return (
-    <section className="border-b border-[#cbbda9] bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+    <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 max-w-3xl">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
@@ -110,7 +110,7 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {notes.map((note) => (
-            <article key={note.title} className="border border-[#d8cebf] bg-[#f4efe6] p-5 sm:p-6">
+            <article key={note.title} className="surface-inset rounded-[1rem] p-5 sm:p-6">
               <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d]">{note.title}</h3>
               <p className="text-sm leading-7 text-[#5f574c]">{note.text}</p>
             </article>
@@ -123,12 +123,12 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
 
 export function ServiceInsightSection({ eyebrow = "Before you book", panels }: ServiceInsightSectionProps) {
   return (
-    <section className="border-b border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
+    <section className="surface-band-sage px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">{eyebrow}</p>
         <div className="grid gap-5 md:grid-cols-3">
           {panels.map((panel) => (
-            <article key={panel.title} className="border border-[#d8cebf] bg-[#fbf8f1] p-6 shadow-[0_20px_50px_rgba(41,36,29,0.045)] sm:p-7">
+            <article key={panel.title} className="surface-paper-strong rounded-[1rem] p-6 sm:p-7">
               <h3 className="mb-4 text-xl font-medium tracking-normal">{panel.title}</h3>
               <p className="text-sm leading-7 text-[#5f574c]">{panel.text}</p>
             </article>
@@ -152,7 +152,7 @@ export function ServiceRelatedSection({ eyebrow = "Continue exploring", title = 
             const href = canonicalInternalHref(link.href);
 
             return (
-              <Link key={href} href={href} className="group block border border-[#d8cebf] bg-[#f4efe6] p-6 transition hover:bg-[#eee7da] sm:p-7">
+              <Link key={href} href={href} className="surface-inset group block rounded-[1rem] p-6 transition hover:bg-[#e7ddcf] sm:p-7">
                 <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>
                 <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
@@ -167,8 +167,8 @@ export function ServiceRelatedSection({ eyebrow = "Continue exploring", title = 
 
 export function ServiceFaqSection({ title, faqs }: ServiceFaqSectionProps) {
   return (
-    <section className="border-t border-[#cbbda9] bg-[#eee7da] px-5 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-3xl bg-[#fbf8f1] p-6 shadow-[0_20px_60px_rgba(41,36,29,0.05)] sm:p-8 md:p-10">
+    <section className="surface-band-stone px-5 py-16 sm:px-6 sm:py-24">
+      <div className="surface-paper-strong mx-auto max-w-3xl rounded-[1.25rem] p-6 sm:p-8 md:p-10">
         <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
         <h2 className="mb-8 text-2xl font-medium tracking-normal sm:mb-10 sm:text-3xl md:text-4xl">{title}</h2>
         <div className="space-y-7 sm:space-y-8">

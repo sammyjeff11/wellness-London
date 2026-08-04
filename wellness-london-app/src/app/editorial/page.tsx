@@ -146,7 +146,7 @@ export default function EditorialHubPage() {
         </div>
       </section>
 
-      <section className="px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-contents">
+      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-contents">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#29241d]/22 pb-5">
             <h2 id="editorial-contents" className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
@@ -189,7 +189,7 @@ export default function EditorialHubPage() {
         </div>
       </section>
 
-      <section className="px-5 pb-12 sm:px-6 sm:pb-16" aria-labelledby="editorial-standards-heading">
+      <section className="surface-band-sage px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-standards-heading">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 border-t border-[#29241d]/22 pt-9 lg:grid-cols-[0.36fr_0.64fr]">
             <div>
@@ -201,7 +201,7 @@ export default function EditorialHubPage() {
 
             <div className="grid gap-px overflow-hidden bg-[#29241d]/16 sm:grid-cols-2">
               {standardsEntries.map((entry) => (
-                <Link key={entry.href} href={entry.href} className="group bg-[#f4efe6] py-6 pr-6 transition hover:bg-[#fbf8f1] sm:px-6">
+                <Link key={entry.href} href={entry.href} className="surface-paper group p-6 transition hover:bg-[#fffdf8]">
                   <h3 className="font-serif text-2xl font-normal leading-[1.05] tracking-[-0.02em]">{entry.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-[#5f574c]">{entry.description}</p>
                   <p className="mt-5 text-sm text-[#8d7d67] underline underline-offset-4 transition group-hover:translate-x-1 group-hover:text-[#29241d]">

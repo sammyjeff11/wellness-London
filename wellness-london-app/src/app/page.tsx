@@ -170,7 +170,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="px-5 py-10 sm:px-6 sm:py-14" aria-labelledby="start-heading">
+      <section className="surface-band-stone mt-10 px-5 py-10 sm:mt-14 sm:px-6 sm:py-14" aria-labelledby="start-heading">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 flex flex-col gap-3 sm:mb-8 md:flex-row md:items-end md:justify-between">
             <div>
@@ -180,9 +180,9 @@ export default async function Home() {
             <p className="max-w-xl text-sm leading-7 text-[#5f574c] sm:text-base">You do not need to understand the whole directory. Begin with what you already know.</p>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-[1.2rem] bg-[#d8cebf] md:grid-cols-3">
+          <div className="grid gap-3 md:grid-cols-3">
             {startRoutes.map((route) => (
-              <Link key={route.href} href={route.href} className="group flex min-h-[15rem] flex-col justify-between bg-[#fbf8f1] p-6 transition hover:bg-[#29241d] hover:text-[#fbf8f1] sm:p-7">
+              <Link key={route.href} href={route.href} className="surface-paper-strong group flex min-h-[15rem] flex-col justify-between rounded-[1.2rem] p-6 transition hover:-translate-y-0.5 hover:bg-[#29241d] hover:text-[#fbf8f1] sm:p-7">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67] transition group-hover:text-[#cbbda8]">{route.number}</p>
                   <h3 className="mt-5 text-[2rem] font-normal leading-[1] tracking-[-0.04em]">{route.title}</h3>
@@ -196,7 +196,7 @@ export default async function Home() {
       </section>
 
       {selectedFacilities.length > 0 ? (
-        <section id="featured" className="border-y border-[#d8cebf]/70 bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="featured-heading">
+        <section id="featured" className="bg-[#fbf8f1] px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="featured-heading">
           <div className="mx-auto max-w-6xl">
             <div className="mb-7 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
@@ -224,18 +224,18 @@ export default async function Home() {
         </section>
       ) : null}
 
-      <section className="px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="return-heading">
+      <section className="bg-[#29241d] px-5 py-10 text-[#fbf8f1] sm:px-6 sm:py-16" aria-labelledby="return-heading">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-3">Come back with purpose</p>
+              <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#cbbda8]">Come back with purpose</p>
               <h2 id="return-heading" className="max-w-3xl font-serif text-[2.6rem] font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl md:text-6xl">More useful each time you return.</h2>
             </div>
-            <Link href="/shortlist" className="w-fit rounded-full border border-[#29241d] px-5 py-2.5 text-sm transition hover:bg-[#29241d] hover:text-[#fbf8f1]">View saved venues</Link>
+            <Link href="/shortlist" className="w-fit rounded-full border border-[#fbf8f1]/35 px-5 py-2.5 text-sm transition hover:bg-[#fbf8f1] hover:text-[#29241d]">View saved venues</Link>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
-            <Link href="/editorial/best-saunas-london" className="group flex min-h-[23rem] flex-col justify-between overflow-hidden rounded-[1.25rem] bg-[#29241d] p-6 text-[#fbf8f1] transition hover:bg-[#3a3229] sm:p-8">
+            <Link href="/editorial/best-saunas-london" className="group flex min-h-[23rem] flex-col justify-between overflow-hidden rounded-[1.25rem] border border-[#fbf8f1]/16 bg-[#fbf8f1]/[0.055] p-6 text-[#fbf8f1] transition hover:bg-[#fbf8f1]/[0.1] sm:p-8">
               <div>
                 <p className="text-[10px] uppercase tracking-[0.24em] text-[#cbbda8]">Latest Well+ guide</p>
                 <h3 className="mt-5 max-w-xl font-serif text-5xl font-normal leading-[0.92] tracking-[-0.045em] sm:text-6xl">The best saunas in London.</h3>
@@ -248,13 +248,14 @@ export default async function Home() {
               source="homepage_return"
               title="Join The Well+ Edit"
               copy="New and changing London venues, worthwhile shortlists and practical treatment guides — sent occasionally."
+              variant="dark"
             />
           </div>
         </div>
       </section>
 
       {recentlyCheckedFacilities.length > 0 ? (
-        <section className="bg-[#eee7da] px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="recent-heading">
+        <section className="surface-band-sage px-5 py-10 sm:px-6 sm:py-16" aria-labelledby="recent-heading">
           <div className="mx-auto max-w-6xl">
             <div className="mb-7 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>

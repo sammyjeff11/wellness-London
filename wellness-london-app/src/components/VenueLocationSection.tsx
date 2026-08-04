@@ -58,7 +58,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
   const claimHref = `/claim-listing?venue=${encodeURIComponent(name)}&url=${encodeURIComponent(`/facility/${slug}`)}`;
 
   return (
-    <section className="border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 py-16 sm:px-6 sm:py-24">
+    <section className="surface-band-sage px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-3xl">
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
@@ -77,7 +77,7 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
           </p>
         </div>
 
-        <div className="overflow-hidden border border-[#d8cebf]/80 bg-[#fbf8f1]">
+        <div className="surface-paper-strong overflow-hidden rounded-[1.25rem]">
           <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
             <div className="relative min-h-[380px] border-b border-[#d8cebf]/70 lg:min-h-[640px] lg:border-b-0 lg:border-r">
               {!isMapActive ? (

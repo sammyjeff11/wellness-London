@@ -215,8 +215,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   return (
     <div className="space-y-8 md:space-y-12">
-      <section className="rounded-[1.35rem] border border-[#d8cebf]/70 bg-[#eee7da] p-4 sm:p-6 md:p-8">
-        <div className="rounded-[1.2rem] border border-[#d8cebf]/80 bg-[#fbf8f1] px-4 py-3 shadow-[0_18px_45px_rgba(41,36,29,0.04)] sm:px-5">
+      <section className="rounded-[1.35rem] border border-[#b9ab97]/80 bg-[#ded4c5] p-4 shadow-[0_18px_46px_rgba(41,36,29,0.07)] sm:p-6 md:p-8">
+        <div className="surface-paper-strong rounded-[1.2rem] px-4 py-3 sm:px-5">
           <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#6f6048]">
             Search venues
           </label>
