@@ -20,6 +20,10 @@ export type ServiceDirectoryFacility = FacilityCardFacility & {
 
 type FilterState = {
   area: string;
+  service: string;
+  venueType: string;
+  accessType: string;
+  priceBand: string;
   premiumLevel: string;
   experienceType: string;
   privateOrShared: string;
@@ -32,15 +36,33 @@ type ServiceDirectoryProps = {
   emptyTitle: string;
   emptyText: string;
   prioritisedService?: string;
+  directoryMode?: boolean;
 };
 
 const initialFilters: FilterState = {
   area: "",
+  service: "",
+  venueType: "",
+  accessType: "",
+  priceBand: "",
   premiumLevel: "",
   experienceType: "",
   privateOrShared: "",
   beginnerFriendly: "",
 };
+
+function getPriceBand(value?: string) {
+  if (!value) return "";
+  const amount = value.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/)?.[1];
+  if (amount) {
+    const number = Number(amount);
+    if (number <= 25) return "£";
+    if (number <= 50) return "££";
+    if (number <= 100) return "£££";
+    return "££££";
+  }
+  return value.match(/£{1,4}/)?.[0] || "";
+}
 
 function uniqueValues(values: (string | undefined)[]) {
   return Array.from(new Set(values.filter(Boolean) as string[])).sort();
@@ -48,7 +70,9 @@ function uniqueValues(values: (string | undefined)[]) {
 
 function parsePrice(value?: string) {
   const number = value?.replace(/,/g, "").match(/\d+/)?.[0];
-  return number ? Number(number) : Number.POSITIVE_INFINITY;
+  if (number) return Number(number);
+  const band = value?.match(/£{1,4}/)?.[0];
+  return band ? band.length * 25 : Number.POSITIVE_INFINITY;
 }
 
 function premiumRank(value?: string) {
@@ -100,13 +124,17 @@ function MobileFilterPill({ label, value, onChange, children }: { label: string;
   );
 }
 
-export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectoryProps) {
+export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService, directoryMode = false }: ServiceDirectoryProps) {
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [sort, setSort] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
 
   const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
+  const serviceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.services || []));
+  const venueTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.venueType));
+  const accessTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.accessType));
+  const priceBandOptions = uniqueValues(uniqueFacilities.map((facility) => getPriceBand(facility.priceFrom || facility.priceRange)));
   const premiumOptions = uniqueValues(uniqueFacilities.map((facility) => facility.premiumLevel));
   const experienceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || []));
   const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
@@ -117,10 +145,15 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     const result = uniqueFacilities.filter((facility) => {
       const area = facility.areaGroup || facility.location || "";
       const experiences = facility.experienceType || [];
+      const priceBand = getPriceBand(facility.priceFrom || facility.priceRange);
 
       return (
         matchesVenueSearch(facility, searchValue) &&
         (!filters.area || area === filters.area) &&
+        (!filters.service || facility.services?.includes(filters.service)) &&
+        (!filters.venueType || facility.venueType === filters.venueType) &&
+        (!filters.accessType || facility.accessType === filters.accessType) &&
+        (!filters.priceBand || priceBand === filters.priceBand) &&
         (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) &&
         (!filters.experienceType || experiences.includes(filters.experienceType)) &&
         (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared) &&
@@ -188,6 +221,28 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         <option value="">Any area</option>
         {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
+      {directoryMode ? (
+        <>
+          <FilterSelect label="Service" value={filters.service} onChange={(value) => updateFilter("service", value)}>
+            <option value="">Any service</option>
+            {serviceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Venue type" value={filters.venueType} onChange={(value) => updateFilter("venueType", value)}>
+            <option value="">Any type</option>
+            {venueTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
+            <option value="">Any access</option>
+            {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Price" value={filters.priceBand} onChange={(value) => updateFilter("priceBand", value)}>
+            <option value="">Any price</option>
+            {priceBandOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+        </>
+      ) : null}
+      {!directoryMode ? (
+        <>
       <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
         <option value="">Any level</option>
         {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
@@ -204,6 +259,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         <option value="">Any</option>
         {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
       </FilterSelect>
+        </>
+      ) : null}
       <FilterSelect label="Sort" value={sort} onChange={setSort}>
         <option value="recommended">Recommended</option>
         <option value="price-low">Price low to high</option>
@@ -253,6 +310,27 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               <option value="">Area</option>
               {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
             </MobileFilterPill>
+            {directoryMode ? (
+              <>
+                <MobileFilterPill label="Service" value={filters.service} onChange={(value) => updateFilter("service", value)}>
+                  <option value="">Service</option>
+                  {serviceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
+                <MobileFilterPill label="Venue type" value={filters.venueType} onChange={(value) => updateFilter("venueType", value)}>
+                  <option value="">Venue type</option>
+                  {venueTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
+                <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
+                  <option value="">Access</option>
+                  {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
+                <MobileFilterPill label="Price" value={filters.priceBand} onChange={(value) => updateFilter("priceBand", value)}>
+                  <option value="">Price</option>
+                  {priceBandOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
+              </>
+            ) : (
+              <>
             <MobileFilterPill label="Type" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
               <option value="">Type</option>
               {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
@@ -261,6 +339,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               <option value="">Access</option>
               {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
             </MobileFilterPill>
+              </>
+            )}
             <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={setSort}>
               <option value="recommended">Sort</option>
               <option value="price-low">Price</option>
@@ -270,7 +350,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </div>
 
-        <div className="mt-6 hidden grid-cols-2 gap-5 lg:grid-cols-6 md:grid">
+        <div className={`mt-6 hidden grid-cols-2 gap-5 md:grid ${directoryMode ? "lg:grid-cols-6" : "lg:grid-cols-6"}`}>
           {filterControls}
         </div>
       </section>
@@ -292,7 +372,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {filteredFacilities.map((facility) => (
-              <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} />
+              <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} showSaveButton={directoryMode} />
             ))}
           </div>
         </section>

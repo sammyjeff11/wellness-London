@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import { collections } from "@/lib/collections";
 import { absoluteUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Editorial | Well+ London",
+  title: "London Wellness Guides & Venue Shortlists | Well+",
   description:
     "Well+ best-of guides, practical explainers and curation notes for navigating London's wellness venues with more confidence.",
   alternates: { canonical: "/editorial" },
   openGraph: {
-    title: "Editorial | Well+ London",
+    title: "London Wellness Guides & Venue Shortlists | Well+",
     description:
       "Best-of guides, practical explainers and curation standards from Well+ — the editorial layer of the London wellness directory.",
     url: absoluteUrl("/editorial"),
@@ -107,7 +108,7 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-    { "@type": "ListItem", position: 2, name: "Editorial", item: absoluteUrl("/editorial") },
+    { "@type": "ListItem", position: 2, name: "Guides", item: absoluteUrl("/editorial") },
   ],
 };
 
@@ -122,7 +123,7 @@ export default function EditorialHubPage() {
           <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-[#fbf8f1]/62">
             <Link href="/" className="underline-offset-4 hover:text-[#fbf8f1] hover:underline">Home</Link>
             <span>/</span>
-            <span className="text-[#fbf8f1]/86">Editorial</span>
+            <span className="text-[#fbf8f1]/86">Guides</span>
           </nav>
 
           <div className="mt-16 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
@@ -186,6 +187,30 @@ export default function EditorialHubPage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      <section className="surface-band-stone px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="shortlists-heading">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 grid gap-4 md:grid-cols-[0.75fr_1.25fr] md:items-end">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">Venue shortlists</p>
+              <h2 id="shortlists-heading" className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Compare by use case.</h2>
+            </div>
+            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Collections now sit inside the Guides journey, so best-of lists, explainers and editorial standards have one clear home.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {collections.map((collection) => (
+              <Link key={collection.slug} href={collection.href} className="surface-paper group flex min-h-64 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{collection.eyebrow}</p>
+                  <h3 className="mt-5 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">{collection.title}</h3>
+                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-[#5f574c]">{collection.heroText}</p>
+                </div>
+                <span className="mt-5 text-sm underline underline-offset-4">View shortlist →</span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -48,6 +48,13 @@ export default function LocationHubPage({ config, facilities }: LocationHubPageP
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <section className="px-5 py-16 sm:px-6 sm:py-20 md:py-28">
         <div className="mx-auto max-w-6xl border-t border-[#d8cebf]/70 pt-10 sm:pt-12">
+          <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#6f6048]">
+            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/neighbourhoods" className="underline-offset-4 hover:underline">Areas</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-[#29241d]">{config.area}</span>
+          </nav>
           <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by area</p>
           <h1 className="max-w-4xl font-serif text-5xl font-normal leading-tight sm:text-6xl md:text-7xl">
             {config.title}

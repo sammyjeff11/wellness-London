@@ -1,91 +1,113 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import JsonLd from "@/components/JsonLd";
+import ServiceDirectory from "@/components/ServiceDirectory";
+import { getFacilities } from "@/lib/airtable";
+import { dedupeFacilities } from "@/lib/dedupe-facilities";
+import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { pillarPages } from "@/lib/pillar-pages";
-import { serviceTaxonomy } from "@/lib/taxonomy";
+import { absoluteUrl } from "@/lib/site";
+
+const pageDescription =
+  "Search and compare published London wellness venues by service, location, venue type, access and price, including saunas, recovery studios, spas and longevity clinics.";
 
 export const metadata: Metadata = {
-  title: "Explore London Wellness | Well+",
-  description:
-    "Browse London wellness venues by goal, service and setting, from post-training recovery to preventative health.",
-  alternates: {
-    canonical: "/explore",
-  },
+  title: "London Wellness Venues | Search & Compare | Well+",
+  description: pageDescription,
+  alternates: { canonical: "/explore" },
 };
 
-const treatmentLinks = serviceTaxonomy
-  .filter((service) => service.href)
-  .map((service) => ({ href: service.href, label: service.name, description: service.description }));
+export default async function ExplorePage() {
+  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
 
-export default function ExplorePage() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        name: "London wellness venues",
+        url: absoluteUrl("/explore"),
+        description: pageDescription,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: facilities.length,
+          itemListElement: facilities.map((facility, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: facility.name,
+            url: absoluteUrl(`/facility/${facility.slug}`),
+          })),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Venues", item: absoluteUrl("/explore") },
+        ],
+      },
+    ],
+  };
+
   return (
-    <main className="bg-[#fbf8f1] text-[#29241d]">
-      <section className="px-5 py-16 sm:px-6 md:py-24">
-        <div className="mx-auto max-w-5xl">
-          <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Explore London wellness</p>
-          <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
-            Browse by goal, service or setting.
+    <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <JsonLd data={schema} />
+
+      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-6xl">
+          <nav aria-label="Breadcrumb" className="mb-10 flex items-center gap-2 text-sm text-[#6f6048]">
+            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page" className="text-[#29241d]">Venues</span>
+          </nav>
+          <p className="editorial-eyebrow mb-4">The London directory</p>
+          <h1 className="max-w-4xl font-serif text-[3.4rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-7xl md:text-8xl">
+            London wellness venues.
           </h1>
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-            Start with the outcome you want, then compare the service, access rules, location and practical details before you book.
+          <p className="mt-7 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
+            Compare published saunas, cold plunges, recovery studios, spas and longevity clinics. Search by venue, service or neighbourhood, then narrow the directory using the details that matter before you book.
           </p>
         </div>
       </section>
 
-      <section className="bg-[#f4efe6] px-5 py-12 sm:px-6 md:py-16">
+      <section className="surface-band-stone px-5 py-12 sm:px-6 sm:py-16 md:py-20" aria-labelledby="directory-heading">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Explore by intention</p>
-              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Start with your goal.
-              </h2>
-            </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              Use these five routes when you know what you want to achieve but not which treatment or venue will suit you.
-            </p>
+          <div className="mb-8 max-w-3xl">
+            <p className="editorial-eyebrow mb-3">Search and compare</p>
+            <h2 id="directory-heading" className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl">
+              Find a venue that fits the visit.
+            </h2>
           </div>
-
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {pillarPages.map((pillar) => (
-              <Link
-                key={pillar.slug}
-                href={pillar.href}
-                className="flex min-h-[240px] flex-col justify-between border border-[#d8cebf] bg-[#fbf8f1] p-6 transition hover:bg-[#eee7da]"
-              >
-                <div>
-                  <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
-                  <h3 className="mb-4 text-3xl font-medium">{pillar.label}</h3>
-                  <p className="text-sm leading-7 text-[#5f574c]">{pillar.intro}</p>
-                </div>
-                <span className="mt-6 text-sm underline underline-offset-4">Explore</span>
-              </Link>
-            ))}
-          </div>
+          <ServiceDirectory
+            facilities={facilities}
+            serviceType="all_venues"
+            emptyTitle="No published venues are available right now"
+            emptyText="The directory is being refreshed. Browse Services, Areas or Guides while listings are restored."
+            directoryMode
+          />
         </div>
       </section>
 
-      <section id="treatments" className="scroll-mt-28 px-5 py-14 sm:px-6 md:py-20">
-        <div className="mx-auto max-w-6xl border-t border-[#d8cebf] pt-8">
-          <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="goals-heading">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 grid gap-4 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Popular searches</p>
-              <h2 className="font-serif text-3xl font-normal leading-tight sm:text-4xl md:text-5xl">
-                Browse specific services.
-              </h2>
+              <p className="editorial-eyebrow mb-3">Not sure which service?</p>
+              <h2 id="goals-heading" className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl">Explore by goal.</h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:text-base">
-              If you already know the treatment, go straight to a service guide and compare matching venues.
+            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">
+              These routes help when you know the outcome you want but not the service or venue that best fits it.
             </p>
           </div>
-
-          <div className="flex flex-wrap gap-3">
-            {treatmentLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="border border-[#d8cebf] px-4 py-3 text-sm transition hover:bg-[#f4efe6]"
-              >
-                {link.label}
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            {pillarPages.map((pillar) => (
+              <Link key={pillar.slug} href={pillar.href} className="surface-paper group flex min-h-56 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
+                  <h3 className="mt-4 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">{pillar.label}</h3>
+                  <p className="mt-4 text-sm leading-6 text-[#5f574c]">{pillar.descriptor}</p>
+                </div>
+                <span className="mt-5 text-sm underline underline-offset-4">Explore →</span>
               </Link>
             ))}
           </div>

@@ -11,7 +11,7 @@ const activity = {
   heroText:
     "Compare red light therapy panels, beds and treatment rooms across London recovery studios, wellness clubs and longevity clinics.",
   related: [
-    ...baseActivity.related.filter((link) => link.href !== "/longevity-london"),
+    ...baseActivity.related.filter((link) => link.href !== "/longevity"),
     {
       href: "/longevity",
       label: "Longevity clinics",

@@ -54,10 +54,14 @@ const coreSections = [
     ],
   },
   {
-    title: "Treatments and services",
-    links: serviceTaxonomy
-      .filter((service) => service.href)
-      .map((service) => ({ href: service.href, label: `${service.name} in London` })),
+    title: "Services, tests and experiences",
+    links: [
+      { href: "/services", label: "All wellness services" },
+      ...serviceTaxonomy
+        .filter((service) => service.href)
+        .map((service) => ({ href: service.href, label: `${service.name} in London` })),
+      { href: "/assisted-stretching-london", label: "Assisted Stretching in London" },
+    ],
   },
   {
     title: "Collections and best-of pages",
@@ -122,7 +126,7 @@ export default async function SiteMapPage() {
         <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">Well+</p>
         <h1 className="mb-5 font-serif text-5xl font-normal tracking-tight sm:mb-6 sm:text-6xl">Site Map</h1>
         <p className="mb-12 max-w-3xl text-base leading-8 text-stone-600 sm:text-lg">
-          Browse the core sections of Well+, including wellness pillars, treatment-led guides, neighbourhood guides, venue pages, contact routes and editorial standards.
+          Browse the core sections of Well+, including wellness pillars, service guides, neighbourhood guides, venue pages, contact routes and editorial standards.
         </p>
         <div className="space-y-12">
           {pages.map((section) => (

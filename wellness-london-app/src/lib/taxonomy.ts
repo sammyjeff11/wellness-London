@@ -126,7 +126,7 @@ export const serviceTaxonomy = [
     description: "Advanced health assessments, screening and diagnostic mapping offered by preventative health and longevity clinics.",
     synonyms: ["diagnostic testing", "diagnostic mapping", "health assessment", "health screening", "advanced diagnostics", "precision diagnostic mapping"],
     parentCategory: "medical-wellness",
-    href: "/longevity",
+    href: "/health-screening-london",
   },
   {
     name: "Blood Testing",
@@ -134,7 +134,7 @@ export const serviceTaxonomy = [
     description: "Blood-based biomarker testing used by clinics to assess health status, risk markers and optimisation opportunities.",
     synonyms: ["blood test", "blood tests", "biomarker testing", "biomarkers", "blood panel", "bloodwork", "blood work"],
     parentCategory: "medical-wellness",
-    href: "/longevity",
+    href: "/blood-testing-london",
   },
   {
     name: "IV Therapy",

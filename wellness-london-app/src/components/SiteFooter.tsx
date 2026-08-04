@@ -5,7 +5,7 @@ import { locationHubLinks } from "@/lib/location-hubs";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 const pillarLinks = [
-  { href: "/explore", label: "Explore" },
+  { href: "/explore", label: "All venues" },
   { href: "/recover", label: "Recover" },
   { href: "/perform", label: "Perform" },
   { href: "/reset", label: "Reset" },
@@ -14,6 +14,7 @@ const pillarLinks = [
 ];
 
 const serviceLinks = [
+  { href: "/services", label: "All services" },
   { href: "/sauna-london", label: "Saunas in London" },
   { href: "/cold-plunge-london", label: "Cold Plunge in London" },
   { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
@@ -51,7 +52,8 @@ const priorityVenueSlugs = [
 ];
 
 const editorialLinks = [
-  { href: "/editorial", label: "All Editorial" },
+  { href: "/editorial", label: "All guides" },
+  { href: "/collections", label: "Venue shortlists" },
   { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
   { href: "/editorial/best-cryotherapy-london", label: "Best Cryotherapy in London" },
   { href: "/editorial/infrared-sauna-vs-traditional-sauna", label: "Infrared vs Traditional Sauna" },
@@ -156,10 +158,10 @@ export default async function SiteFooter() {
         <div className="md:hidden">
           <MobileFooterGroup title="Well+" links={businessLinks} />
           <MobileFooterGroup title="Explore" links={pillarLinks} />
-          <MobileFooterGroup title="Treatments" links={serviceLinks} />
+          <MobileFooterGroup title="Services" links={serviceLinks} />
           <MobileFooterGroup title="Areas" links={areaLinks} />
           <MobileFooterGroup title="Venues" links={popularVenueLinks} />
-          <MobileFooterGroup title="Editorial" links={editorialLinks} />
+          <MobileFooterGroup title="Guides" links={editorialLinks} />
         </div>
 
         <div className="hidden gap-8 md:grid md:grid-cols-2 lg:grid-cols-6">
@@ -174,7 +176,7 @@ export default async function SiteFooter() {
           </nav>
 
           <nav aria-label="Footer services">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Treatments</h2>
+            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Services</h2>
             <FooterLinkList links={serviceLinks} />
           </nav>
 
@@ -184,12 +186,12 @@ export default async function SiteFooter() {
           </nav>
 
           <nav aria-label="Footer popular venues">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Popular venues</h2>
+            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Selected venues</h2>
             <FooterLinkList links={popularVenueLinks} />
           </nav>
 
           <nav aria-label="Footer editorial and collections">
-            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Editorial</h2>
+            <h2 className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">Guides</h2>
             <FooterLinkList links={editorialLinks} />
           </nav>
         </div>

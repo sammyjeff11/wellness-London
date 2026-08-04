@@ -107,6 +107,13 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
           {heroImage ? <SafeImage src={heroImage.url} alt={`${page.label} provider in London`} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/34 to-black/10" />
           <div className="relative max-w-5xl text-[#fbf8f1]">
+            <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#fbf8f1]/72">
+              <Link href="/" className="underline-offset-4 hover:text-white hover:underline">Home</Link>
+              <span aria-hidden="true">/</span>
+              <Link href="/longevity" className="underline-offset-4 hover:text-white hover:underline">Longevity</Link>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page" className="text-white">{page.label}</span>
+            </nav>
             <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / {page.eyebrow}</p>
             <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">{page.title}</h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">{page.heroText}</p>
