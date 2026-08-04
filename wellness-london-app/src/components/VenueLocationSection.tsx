@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
@@ -53,6 +54,8 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
   const resolvedAppleMapsHref =
     appleMapsHref ||
     `https://maps.apple.com/?q=${encodeURIComponent(mapQuery)}`;
+
+  const claimHref = `/claim-listing?venue=${encodeURIComponent(name)}&url=${encodeURIComponent(`/facility/${slug}`)}`;
 
   return (
     <section className="border-y border-[#d8cebf]/70 bg-[#f4efe6] px-5 py-16 sm:px-6 sm:py-24">
@@ -202,6 +205,19 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
                 >
                   Open in Apple Maps
                 </TrackedExternalLink>
+
+                <div className="mt-4 border-t border-[#d8cebf]/70 pt-6">
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">Represent this venue?</p>
+                  <p className="mt-2 text-sm leading-6 text-[#5f574c]">
+                    Verify the listing, correct practical details or supply approved imagery.
+                  </p>
+                  <Link
+                    href={claimHref}
+                    className="mt-4 inline-flex text-sm font-medium text-[#29241d] underline underline-offset-4"
+                  >
+                    Claim or update this listing
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
