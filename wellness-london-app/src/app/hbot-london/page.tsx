@@ -256,7 +256,42 @@ export default async function HbotLondonPage() {
           <h2 id="provider-comparison-heading" className="max-w-4xl font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-6xl">
             What London providers publish — and what you still need to ask.
           </h2>
-          <div className="mt-9 overflow-x-auto rounded-[1.25rem] border border-[#d8cebf] bg-[#fbf8f1]">
+
+          <div className="mt-9 grid gap-4 md:hidden">
+            {facilities.map((facility) => {
+              const detail = getProviderDetail(facility);
+              return (
+                <article key={facility.slug} className="rounded-[1.25rem] border border-[#d8cebf] bg-[#fbf8f1] p-5">
+                  <div className="border-b border-[#d8cebf]/75 pb-4">
+                    <Link href={`/facility/${facility.slug}`} className="font-serif text-2xl leading-tight tracking-[-0.03em] underline decoration-[#8d7d67]/45 underline-offset-4">
+                      {facility.name}
+                    </Link>
+                    <p className="mt-2 text-xs text-[#8d7d67]">{getLocation(facility)}</p>
+                  </div>
+                  <dl className="mt-4 space-y-4 text-sm">
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Published format</dt>
+                      <dd className="mt-1.5 leading-6 text-[#5f574c]">{detail.format}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Session</dt>
+                      <dd className="mt-1.5 leading-6 text-[#5f574c]">{detail.session}</dd>
+                    </div>
+                    <div>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">Price signal</dt>
+                      <dd className="mt-1.5 leading-6 text-[#5f574c]">{detail.price}</dd>
+                    </div>
+                    <div className="rounded-xl bg-[#f4efe6] p-4">
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">What to verify</dt>
+                      <dd className="mt-1.5 leading-6 text-[#5f574c]">{detail.publishedDetail}</dd>
+                    </div>
+                  </dl>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-9 hidden overflow-x-auto rounded-[1.25rem] border border-[#d8cebf] bg-[#fbf8f1] md:block">
             <table className="min-w-[980px] w-full border-collapse text-left text-sm">
               <thead className="border-b border-[#d8cebf] text-[10px] uppercase tracking-[0.2em] text-[#8d7d67]">
                 <tr><th className="p-5">Provider</th><th className="p-5">Published format</th><th className="p-5">Session</th><th className="p-5">Price signal</th><th className="p-5">Editorial note</th></tr>
@@ -278,7 +313,7 @@ export default async function HbotLondonPage() {
             </table>
           </div>
           <p className="mt-5 max-w-4xl text-sm leading-7 text-[#6f6048]">
-            Prices and formats are based on current public provider information and can change. Where pressure, oxygen delivery or supervision could not be verified publicly, the table says so rather than inferring it.
+            Prices and formats are based on current public provider information and can change. Where pressure, oxygen delivery or supervision could not be verified publicly, the comparison says so rather than inferring it.
           </p>
         </div>
       </section>
