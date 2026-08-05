@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
         destination: "/cryotherapy-london",
         permanent: true,
       },
+      {
+        source: "/facility/sauna-and-plunge-east-london",
+        destination: "/facility/sauna-and-plunge-shoreditch",
+        permanent: true,
+      },
     ];
   },
   images: {
