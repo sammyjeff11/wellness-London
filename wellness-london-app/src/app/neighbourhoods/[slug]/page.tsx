@@ -14,7 +14,9 @@ import { normaliseServiceInput, serviceTaxonomy } from "@/lib/taxonomy";
 
 export async function generateStaticParams() {
   const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
-  return getAvailableNeighbourhoods(facilities, neighbourhoodPages).map(({ page }) => ({ slug: page.slug }));
+  return getAvailableNeighbourhoods(facilities, neighbourhoodPages)
+    .filter(({ page }) => page.slug !== "shoreditch")
+    .map(({ page }) => ({ slug: page.slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
