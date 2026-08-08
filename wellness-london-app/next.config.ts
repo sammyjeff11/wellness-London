@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/collections/best-sauna-london",
+        destination: "/editorial/best-saunas-london",
+        permanent: true,
+      },
+      {
         source: "/facility/koyo-wellness",
         destination: "/west-london-wellness",
         permanent: true,
