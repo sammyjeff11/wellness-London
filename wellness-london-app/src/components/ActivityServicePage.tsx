@@ -26,12 +26,20 @@ function serviceTypeForAnalytics(activity: ActivityPageConfig) {
   return activity.serviceKeys[0] || activity.slug.replace(/-london$/, "");
 }
 
+function canonicalRelatedHref(href: string) {
+  if (href === "/collections/best-sauna-london") return "/editorial/best-saunas-london";
+  return href;
+}
+
 export default async function ActivityServicePage({ activity }: ActivityServicePageProps) {
   const facilities = await getFacilities();
   const activityFacilities = getFacilitiesForActivity(facilities, activity);
   const directoryFacilities = dedupeFacilities(activityFacilities.map(toDirectoryFacility));
   const heroImage = activityFacilities.find((facility) => facility.images.length > 0)?.images[0];
-  const relatedLinks = [...activity.related, ...buildServiceLocationLinks(activityFacilities, activity.label)];
+  const relatedLinks = [
+    ...activity.related.map((link) => ({ ...link, href: canonicalRelatedHref(link.href) })),
+    ...buildServiceLocationLinks(activityFacilities, activity.label),
+  ];
   const serviceType = serviceTypeForAnalytics(activity);
 
   const itemListSchema = {
