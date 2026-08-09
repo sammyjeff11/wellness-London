@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import FacilityGallery from "@/components/FacilityGallery";
+import FacilitySocialContext from "@/components/FacilitySocialContext";
 import JsonLd from "@/components/JsonLd";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
@@ -253,7 +254,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Google rating", value: cleanValue(facility.googleRating) },
     { label: "Price", value: price },
     { label: "Access", value: access },
-    { label: "Beginner friendly", value: cleanValue(facility.beginnerFriendly) },
     { label: "Nearest station", value: cleanValue(facility.nearestStation) },
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Opening hours", value: cleanValue(facility.openingHours) },
@@ -352,6 +352,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           </div>
         </section>
       ) : null}
+
+      <FacilitySocialContext slug={facility.slug} />
 
       {bestFor.length > 0 ? (
         <section className="surface-band-sage px-5 py-12 sm:px-6 md:py-16">
