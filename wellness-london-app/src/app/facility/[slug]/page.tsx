@@ -41,6 +41,29 @@ function cleanUrl(value?: string) {
   return cleaned;
 }
 
+function normaliseInstagramUrl(value?: string) {
+  const cleaned = cleanValue(value);
+  if (!cleaned) return undefined;
+  if (/^https?:\/\//i.test(cleaned)) return cleaned;
+
+  const withoutWww = cleaned.replace(/^www\./i, "");
+  if (/^instagram\.com\//i.test(withoutWww)) return `https://${withoutWww}`;
+
+  const handle = cleaned
+    .replace(/^@/, "")
+    .replace(/^\/+|\/+$/g, "")
+    .split(/[/?#]/)[0]
+    ?.trim();
+
+  return handle ? `https://www.instagram.com/${handle}/` : undefined;
+}
+
+function formatDetailValue(label: string, value?: string) {
+  if (!value) return value;
+  if (label !== "Opening hours") return value;
+  return value.replace(/\s*;\s*/g, ";\n").replace(/\s+\|\s+/g, "\n");
+}
+
 function getCleanLocation(facility: AirtableFacility) {
   return cleanValue(facility.neighbourhood) || cleanValue(facility.areaOfLondon) || cleanValue(facility.areaGroup) || "London";
 }
@@ -66,7 +89,6 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
 
   const description = getMetaDescription(facility);
   const image = facility.images.find((item) => cleanUrl(item.url));
-
   const title = truncateMetaText(`${facility.name} | Well+`, 60);
 
   return {
@@ -85,7 +107,7 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
 
 function venueJsonLd(facility: AirtableFacility) {
   const addressParts = [cleanValue(facility.address), cleanValue(facility.postcode)].filter(Boolean);
-  const sameAs = [cleanUrl(facility.website), cleanUrl(facility.instagramLink)].filter(Boolean);
+  const sameAs = [cleanUrl(facility.website), normaliseInstagramUrl(facility.instagramLink)].filter(Boolean);
   const images = facility.images.map((image) => cleanUrl(image.url)).filter(Boolean);
 
   return {
@@ -128,7 +150,7 @@ function QuickFact({ label, value }: DetailItem) {
   return (
     <div className="border-t border-[#d8cebf]/75 py-4 sm:border-l sm:border-t-0 sm:px-5 sm:py-0">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
-      <p className="mt-2 text-sm leading-6 text-[#29241d]">{value}</p>
+      <p className="mt-2 whitespace-pre-line text-sm leading-6 text-[#29241d]">{formatDetailValue(label, value)}</p>
     </div>
   );
 }
@@ -139,7 +161,7 @@ function DetailCard({ label, value }: DetailItem) {
   return (
     <div className="surface-paper rounded-[1rem] p-5">
       <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">{label}</p>
-      <p className="mt-3 text-base leading-7 text-[#29241d]">{value}</p>
+      <p className="mt-3 whitespace-pre-line text-base leading-7 text-[#29241d]">{formatDetailValue(label, value)}</p>
     </div>
   );
 }
@@ -242,7 +264,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const similarVenues = getSimilarVenues(facility, facilities, servicePillarMappings);
   const website = cleanUrl(facility.website);
   const bookingLink = cleanUrl(facility.bookingLink);
-  const instagramLink = cleanUrl(facility.instagramLink);
+  const instagramLink = normaliseInstagramUrl(facility.instagramLink);
+  const hasGallery = facility.images.some((image) => Boolean(cleanUrl(image.url)));
   const primaryCtaHref = bookingLink || website;
   const primaryCtaLabel = bookingLink ? "Book this venue" : "Visit website";
   const price = cleanValue(facility.priceFrom) || cleanValue(facility.overallPriceRange);
@@ -251,9 +274,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const postcode = cleanValue(facility.postcode);
   const bestFor = cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor).slice(0, 8);
   const quickFacts: DetailItem[] = [
-    { label: "Google rating", value: cleanValue(facility.googleRating) },
-    { label: "Price", value: price },
-    { label: "Access", value: access },
     { label: "Nearest station", value: cleanValue(facility.nearestStation) },
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Opening hours", value: cleanValue(facility.openingHours) },
@@ -270,8 +290,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Showers", value: cleanValue(facility.showersAvailable) },
     { label: "Changing rooms", value: cleanValue(facility.changingRooms) },
     { label: "Relaxation area", value: cleanValue(facility.relaxationArea) },
-    { label: "Opening hours", value: cleanValue(facility.openingHours) },
-    { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Price notes", value: cleanValue(facility.priceNotes) },
   ].filter((item) => isUsefulValue(item.value));
   const goodToKnow = cleanValue(facility.goodToKnow);
@@ -290,8 +308,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
             <span aria-current="page" className="text-[#29241d]">{facility.name}</span>
           </nav>
 
-          <div className="grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
-            <div className="max-w-2xl lg:max-w-none">
+          <div className={hasGallery ? "grid gap-7 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10" : "max-w-4xl"}>
+            <div className={hasGallery ? "max-w-2xl lg:max-w-none" : "max-w-3xl"}>
               <p className="editorial-eyebrow mb-4">{cleanValue(facility.venueTypeStandardized) || "London wellness venue"}</p>
               <h1 className="font-serif text-[3.1rem] font-normal leading-[0.94] tracking-[-0.06em] sm:text-6xl md:text-7xl">
                 {facility.name}
@@ -329,7 +347,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               </div>
             </div>
 
-            <FacilityGallery images={facility.images} venueName={facility.name} />
+            {hasGallery ? <FacilityGallery images={facility.images} venueName={facility.name} /> : null}
           </div>
         </div>
       </section>
@@ -337,7 +355,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {quickFacts.length > 0 ? (
         <section className="px-5 pb-10 sm:px-6 sm:pb-14">
           <div className="surface-paper-strong mx-auto max-w-6xl rounded-[1.1rem] p-5 sm:p-6">
-            <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
               {quickFacts.map((item) => <QuickFact key={item.label} {...item} />)}
             </div>
           </div>
