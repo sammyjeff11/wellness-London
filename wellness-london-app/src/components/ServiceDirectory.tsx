@@ -50,6 +50,20 @@ const initialFilters: FilterState = {
   privateOrShared: "",
 };
 
+const directoryServiceAliases: Record<string, string> = {
+  "assisted stretch": "Assisted Stretching",
+  "assisted stretching": "Assisted Stretching",
+  "sound bath": "Sound Bath",
+  "sound baths": "Sound Bath",
+  steam: "Steam Room",
+  "steam room": "Steam Room",
+};
+
+function normaliseDirectoryService(value: string) {
+  const cleaned = value.trim();
+  return directoryServiceAliases[cleaned.toLowerCase()] || cleaned;
+}
+
 function getPriceBand(value?: string) {
   if (!value) return "";
   const amount = value.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/)?.[1];
@@ -94,6 +108,7 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
     <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#5f574c]">
       {label}
       <select
+        aria-label={label}
         value={value}
         onChange={(event) => onChange(event.target.value)}
         className="min-w-0 rounded-none border-0 border-b border-[#bfb3a3] bg-transparent px-0 py-3 text-base normal-case tracking-normal text-[#29241d] outline-none transition focus:border-[#29241d] sm:text-sm"
@@ -130,7 +145,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
 
   const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
-  const serviceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.services || []));
+  const serviceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => (facility.services || []).map(normaliseDirectoryService)));
   const venueTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.venueType));
   const accessTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.accessType));
   const priceBandOptions = uniqueValues(uniqueFacilities.map((facility) => getPriceBand(facility.priceFrom || facility.priceRange)));
@@ -144,11 +159,12 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       const area = facility.areaGroup || facility.location || "";
       const experiences = facility.experienceType || [];
       const priceBand = getPriceBand(facility.priceFrom || facility.priceRange);
+      const facilityServices = (facility.services || []).map(normaliseDirectoryService);
 
       return (
         matchesVenueSearch(facility, searchValue) &&
         (!filters.area || area === filters.area) &&
-        (!filters.service || facility.services?.includes(filters.service)) &&
+        (!filters.service || facilityServices.includes(filters.service)) &&
         (!filters.venueType || facility.venueType === filters.venueType) &&
         (!filters.accessType || facility.accessType === filters.accessType) &&
         (!filters.priceBand || priceBand === filters.priceBand) &&
