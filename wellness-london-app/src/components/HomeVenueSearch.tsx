@@ -91,7 +91,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
           ) : (
             <div className="px-3 py-3">
               <p className="text-sm font-medium">No close match yet.</p>
-              <p className="mt-1 text-xs leading-5 text-[#5f574c]">Try a venue, treatment or London neighbourhood.</p>
+              <p className="mt-1 text-xs leading-5 text-[#5f574c]">Try a venue, service or London neighbourhood.</p>
             </div>
           )}
         </div>
