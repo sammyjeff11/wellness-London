@@ -23,6 +23,8 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
   useEffect(() => {
     if (!isOpen) return;
 
+    const previousOverflow = document.body.style.overflow;
+
     function onKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") setIsOpen(false);
       if (event.key === "ArrowRight") setActiveIndex((index) => (index + 1) % galleryImages.length);
@@ -33,7 +35,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [galleryImages.length, isOpen]);
@@ -80,7 +82,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
         ) : null}
 
         {galleryImages.length > 1 ? (
-          <button type="button" onClick={() => openLibrary(0)} className="absolute bottom-4 right-4 rounded-full bg-[#fbf8f1]/95 px-4 py-2 text-xs font-medium text-[#29241d] shadow-[0_8px_22px_rgba(41,36,29,0.14)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f6048]">
+          <button type="button" onClick={() => openLibrary(0)} className="absolute right-4 top-4 inline-flex min-h-11 items-center rounded-full bg-[#fbf8f1]/95 px-4 py-2 text-xs font-medium text-[#29241d] shadow-[0_8px_22px_rgba(41,36,29,0.14)] transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-[#6f6048] md:bottom-4 md:top-auto">
             View photos
           </button>
         ) : null}
@@ -94,14 +96,14 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
                 <p className="text-[10px] uppercase tracking-[0.22em] text-[#d8cebf]">Photo library</p>
                 <p className="mt-1 text-sm text-[#fbf8f1]/82">{venueName} · {activeIndex + 1} of {galleryImages.length}</p>
               </div>
-              <button type="button" onClick={() => setIsOpen(false)} className="rounded-full border border-white/20 px-4 py-2 text-sm transition hover:bg-white hover:text-[#29241d] focus:outline-none focus:ring-2 focus:ring-white/70">
+              <button type="button" onClick={() => setIsOpen(false)} className="inline-flex min-h-11 items-center rounded-full border border-white/20 px-4 py-2 text-sm transition hover:bg-white hover:text-[#29241d] focus:outline-none focus:ring-2 focus:ring-white/70">
                 Close
               </button>
             </div>
 
             <div className="relative flex min-h-0 flex-1 items-center justify-center px-4 py-4 sm:px-6">
               {galleryImages.length > 1 ? (
-                <button type="button" onClick={() => setActiveIndex((index) => (index - 1 + galleryImages.length) % galleryImages.length)} className="absolute left-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-4 py-3 text-[#29241d] shadow-lg transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 sm:block" aria-label="Previous photo">
+                <button type="button" onClick={() => setActiveIndex((index) => (index - 1 + galleryImages.length) % galleryImages.length)} className="absolute left-3 top-1/2 z-10 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-3 text-[#29241d] shadow-lg transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 sm:left-5" aria-label="Previous photo">
                   ←
                 </button>
               ) : null}
@@ -111,7 +113,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
               </div>
 
               {galleryImages.length > 1 ? (
-                <button type="button" onClick={() => setActiveIndex((index) => (index + 1) % galleryImages.length)} className="absolute right-3 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-4 py-3 text-[#29241d] shadow-lg transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 sm:block" aria-label="Next photo">
+                <button type="button" onClick={() => setActiveIndex((index) => (index + 1) % galleryImages.length)} className="absolute right-3 top-1/2 z-10 inline-flex min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-3 text-[#29241d] shadow-lg transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/70 sm:right-5" aria-label="Next photo">
                   →
                 </button>
               ) : null}
