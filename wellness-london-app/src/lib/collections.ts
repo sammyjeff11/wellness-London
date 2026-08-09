@@ -1,4 +1,5 @@
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
+import type { SocialWellnessProfile } from "@/lib/social-wellness";
 import type { ServiceSlug } from "@/lib/taxonomy";
 import { canonicalServiceSlug } from "@/lib/taxonomy";
 
@@ -11,6 +12,8 @@ export type CollectionMatch = {
   privateOrSharedIncludes?: string[];
   venueTypeIncludes?: string[];
   experienceTypeIncludes?: string[];
+  socialFormatIncludes?: string[];
+  communityFeatureIncludes?: string[];
 };
 
 export type CollectionFeaturedSection = {
@@ -31,6 +34,7 @@ export type CollectionConfig = {
   serviceKeys: ServiceSlug[];
   allServiceKeys?: ServiceSlug[];
   venueTypeIncludes?: string[];
+  socialDiscovery?: boolean;
   featuredSections: CollectionFeaturedSection[];
 };
 
@@ -44,6 +48,55 @@ const contrastTherapyCoreMatch: CollectionMatch = {
 };
 
 export const collections = [
+  {
+    slug: "social-wellness-london",
+    href: "/collections/social-wellness-london",
+    title: "Social wellness in London",
+    metaTitle: "Social Wellness in London (2026) | Well+",
+    metaDescription:
+      "Find London wellness spaces built around shared sauna, guided contrast, recurring group sessions, events and genuine community programming.",
+    eyebrow: "London social wellness",
+    heroText: "Find wellness spaces where meeting people, returning for group sessions and spending time together are part of the experience — not an accidental by-product.",
+    introParagraphs: [
+      "Social wellness is broader than simply sharing a sauna with other people. The strongest examples deliberately create repeat interaction through guided sessions, events, member programming, communal rituals or spaces designed for people to stay and connect before or after a session.",
+      "This collection separates community-led venues from places that are simply communal. A shared sauna can still be a social experience, but we only give stronger community emphasis where the operator runs concrete programming such as recurring group sessions, socials, workshops, events or member activity.",
+      "That distinction matters when choosing a venue. Some people want a quiet individual treatment; others want contrast therapy, sauna or movement to double as a way to meet people and become part of a regular local community.",
+    ],
+    serviceKeys: ["sauna", "cold-plunge", "contrast-therapy", "breathwork", "yoga"],
+    socialDiscovery: true,
+    featuredSections: [
+      {
+        label: "Best for social contrast",
+        description: "For a deliberately social sauna-and-cold experience with organised group sessions or events around the core contrast ritual.",
+        match: {
+          socialFormatIncludes: ["shared", "communal", "group-led"],
+          communityFeatureIncludes: ["guided contrast", "events", "recurring group sessions"],
+        },
+      },
+      {
+        label: "Best community-led sauna",
+        description: "For a sauna where organised community sessions and repeat local participation are part of the operating model, not just the room layout.",
+        match: {
+          socialFormatIncludes: ["shared", "communal", "group-led"],
+          communityFeatureIncludes: ["communal sauna", "events", "recurring group sessions"],
+        },
+      },
+      {
+        label: "Best recurring social programme",
+        description: "For people who want reasons to return beyond a single booking: events, member activity, group sessions or other recurring programming.",
+        match: {
+          communityFeatureIncludes: ["events", "member programming", "recurring group sessions", "group classes"],
+        },
+      },
+      {
+        label: "Best for staying and connecting",
+        description: "For venues that combine the wellness session with a lounge, café or other social space designed for time together around the activity itself.",
+        match: {
+          communityFeatureIncludes: ["cafe", "social space", "members lounge"],
+        },
+      },
+    ],
+  },
   {
     slug: "best-sauna-london",
     href: "/collections/best-sauna-london",
@@ -220,14 +273,21 @@ function normaliseText(value?: string) {
   return value?.toLowerCase().trim() || "";
 }
 
-function includesAny(value: string | undefined, needles: string[] | undefined) {
+function includesAny(value: string | undefined, needles: readonly string[] | undefined) {
   const normalisedValue = normaliseText(value);
   return Boolean(needles?.some((needle) => normalisedValue.includes(needle.toLowerCase())));
 }
 
-function listIncludesAny(values: string[] | undefined, needles: string[] | undefined) {
+function listIncludesAny(values: string[] | undefined, needles: readonly string[] | undefined) {
   const normalisedValues = values?.map((value) => value.toLowerCase()) || [];
   return Boolean(needles?.some((needle) => normalisedValues.some((value) => value.includes(needle.toLowerCase()))));
+}
+
+function socialProfileMatches(profile: SocialWellnessProfile | undefined, match: CollectionMatch) {
+  if (!profile) return false;
+  if (match.socialFormatIncludes && !listIncludesAny(profile.socialFormats, match.socialFormatIncludes)) return false;
+  if (match.communityFeatureIncludes && !listIncludesAny(profile.communityFeatures, match.communityFeatureIncludes)) return false;
+  return true;
 }
 
 export function facilityHasCollectionService(facility: ServiceDirectoryFacility, serviceKey: ServiceSlug) {
@@ -238,7 +298,15 @@ export function facilityHasCollectionService(facility: ServiceDirectoryFacility,
   return Boolean(key && (facility.serviceKeys || []).includes(key));
 }
 
-export function facilityMatchesCollection(facility: ServiceDirectoryFacility, collection: CollectionConfig) {
+export function facilityMatchesCollection(
+  facility: ServiceDirectoryFacility,
+  collection: CollectionConfig,
+  socialProfile?: SocialWellnessProfile,
+) {
+  if (collection.socialDiscovery) {
+    return Boolean(socialProfile && (socialProfile.socialNote || socialProfile.socialFormats.length || socialProfile.communityFeatures.length));
+  }
+
   const serviceMatch = collection.serviceKeys.some((serviceKey) => facilityHasCollectionService(facility, serviceKey));
   const allServicesMatch = collection.allServiceKeys?.every((serviceKey) => facilityHasCollectionService(facility, serviceKey));
   const venueTypeMatch = includesAny(facility.venueType, collection.venueTypeIncludes);
@@ -250,7 +318,11 @@ export function facilityMatchesCollection(facility: ServiceDirectoryFacility, co
   return serviceMatch || venueTypeMatch;
 }
 
-export function facilityMatchesFeaturedSection(facility: ServiceDirectoryFacility, match: CollectionMatch) {
+export function facilityMatchesFeaturedSection(
+  facility: ServiceDirectoryFacility,
+  match: CollectionMatch,
+  socialProfile?: SocialWellnessProfile,
+) {
   if (match.serviceKey && !facilityHasCollectionService(facility, match.serviceKey)) return false;
   if (match.serviceKeys && !match.serviceKeys.some((serviceKey) => facilityHasCollectionService(facility, serviceKey))) return false;
   if (match.allServiceKeys && !match.allServiceKeys.every((serviceKey) => facilityHasCollectionService(facility, serviceKey))) return false;
@@ -259,11 +331,16 @@ export function facilityMatchesFeaturedSection(facility: ServiceDirectoryFacilit
   if (match.privateOrSharedIncludes && !includesAny(facility.privateOrShared, match.privateOrSharedIncludes)) return false;
   if (match.venueTypeIncludes && !includesAny(facility.venueType, match.venueTypeIncludes)) return false;
   if (match.experienceTypeIncludes && !listIncludesAny(facility.experienceType, match.experienceTypeIncludes)) return false;
+  if ((match.socialFormatIncludes || match.communityFeatureIncludes) && !socialProfileMatches(socialProfile, match)) return false;
 
   return true;
 }
 
-export function directoryFacilityScore(facility: ServiceDirectoryFacility, match?: CollectionMatch) {
+export function directoryFacilityScore(
+  facility: ServiceDirectoryFacility,
+  match?: CollectionMatch,
+  socialProfile?: SocialWellnessProfile,
+) {
   const serviceMatchCount = match
     ? [...(match.serviceKeys || []), ...(match.allServiceKeys || []), ...(match.serviceKey ? [match.serviceKey] : [])].filter((serviceKey) => facilityHasCollectionService(facility, serviceKey)).length
     : facility.serviceKeys.length;
@@ -271,6 +348,9 @@ export function directoryFacilityScore(facility: ServiceDirectoryFacility, match
   const premiumBonus = includesAny(facility.premiumLevel, ["premium", "luxury"]) ? 12 : 0;
   const beginnerBonus = normaliseText(facility.beginnerFriendly).includes("yes") ? 8 : 0;
   const completeness = facility.profileCompletenessScore || 0;
+  const socialBonus = socialProfile
+    ? socialProfile.communityFeatures.length * 14 + socialProfile.socialFormats.length * 8 + (socialProfile.socialNote ? 12 : 0)
+    : 0;
 
-  return serviceMatchCount * 20 + premiumBonus + beginnerBonus + completeness;
+  return serviceMatchCount * 20 + premiumBonus + beginnerBonus + completeness + socialBonus;
 }

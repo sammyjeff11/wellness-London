@@ -16,6 +16,7 @@ import {
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
+import { getSocialWellnessProfiles, type SocialWellnessProfile } from "@/lib/social-wellness";
 
 export const dynamicParams = false;
 
@@ -53,14 +54,21 @@ export async function generateMetadata({ params }: CollectionPageProps): Promise
   };
 }
 
-function getCuratedPicks(facilities: ServiceDirectoryFacility[], sections: readonly CollectionFeaturedSection[]) {
+function getCuratedPicks(
+  facilities: ServiceDirectoryFacility[],
+  sections: readonly CollectionFeaturedSection[],
+  socialProfiles: Map<string, SocialWellnessProfile>,
+) {
   const usedSlugs = new Set<string>();
 
   return sections.map<CuratedPick>((section) => {
     const facility = facilities
       .filter((candidate) => !usedSlugs.has(candidate.slug))
-      .filter((candidate) => facilityMatchesFeaturedSection(candidate, section.match))
-      .sort((a, b) => directoryFacilityScore(b, section.match) - directoryFacilityScore(a, section.match))[0];
+      .filter((candidate) => facilityMatchesFeaturedSection(candidate, section.match, socialProfiles.get(candidate.slug)))
+      .sort((a, b) =>
+        directoryFacilityScore(b, section.match, socialProfiles.get(b.slug)) -
+        directoryFacilityScore(a, section.match, socialProfiles.get(a.slug))
+      )[0];
 
     if (facility) usedSlugs.add(facility.slug);
 
@@ -116,14 +124,21 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   if (!collection) notFound();
 
-  const facilities = await getFacilities();
+  const isSocialDiscovery = "socialDiscovery" in collection && collection.socialDiscovery === true;
+  const [facilities, socialProfiles] = await Promise.all([
+    getFacilities(),
+    isSocialDiscovery ? getSocialWellnessProfiles() : Promise.resolve(new Map<string, SocialWellnessProfile>()),
+  ]);
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
   const collectionFacilities = dedupeFacilities(
     directoryFacilities
-      .filter((facility) => facilityMatchesCollection(facility, collection))
-      .sort((a, b) => directoryFacilityScore(b) - directoryFacilityScore(a))
+      .filter((facility) => facilityMatchesCollection(facility, collection, socialProfiles.get(facility.slug)))
+      .sort((a, b) =>
+        directoryFacilityScore(b, undefined, socialProfiles.get(b.slug)) -
+        directoryFacilityScore(a, undefined, socialProfiles.get(a.slug))
+      )
   );
-  const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections);
+  const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections, socialProfiles);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -150,7 +165,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               </div>
               <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#f4efe6] p-5 sm:p-6">
                 <p className="text-sm leading-6 text-[#5f574c]">
-                  Compare current London venues using confirmed services, practical details and suitability for this particular experience.
+                  {isSocialDiscovery
+                    ? "Built from explicit venue-format and community-programming signals — not assumptions about who goes there."
+                    : "Compare current London venues using confirmed services, practical details and suitability for this particular experience."}
                 </p>
                 <p className="mt-4 text-[2rem] font-serif leading-none tracking-[-0.045em]">
                   {collectionFacilities.length} London spaces
@@ -182,7 +199,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-              One best-matched venue per editorial angle, selected from matching facilities using service, venue type and listing quality signals.
+              {isSocialDiscovery
+                ? "Picks use observable format and programming signals such as recurring sessions, events, communal sauna and social spaces."
+                : "One best-matched venue per editorial angle, selected from matching facilities using service, venue type and listing quality signals."}
             </p>
           </div>
 
