@@ -62,7 +62,7 @@ export const collections = [
       "This collection separates community-led venues from places that are simply communal. A shared sauna can still be a social experience, but we only give stronger community emphasis where the operator runs concrete programming such as recurring group sessions, socials, workshops, events or member activity.",
       "That distinction matters when choosing a venue. Some people want a quiet individual treatment; others want contrast therapy, sauna or movement to double as a way to meet people and become part of a regular local community.",
     ],
-    serviceKeys: ["sauna", "cold-plunge", "contrast-therapy", "breathwork", "yoga"],
+    serviceKeys: ["sauna", "cold-plunge", "contrast-therapy", "breathwork"],
     socialDiscovery: true,
     featuredSections: [
       {
