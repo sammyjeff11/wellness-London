@@ -11,12 +11,12 @@ import { absoluteUrl } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Hyperbaric Oxygen Therapy London: Compare HBOT Clinics | Well+",
   description:
-    "Compare London HBOT providers by chamber format, session length, price, access, consultation and the safety details to ask before booking.",
+    "Compare London HBOT clinics and hyperbaric chambers by chamber format, session length, price, screening, supervision and the safety details to ask before booking.",
   alternates: { canonical: "/hbot-london" },
   openGraph: {
     title: "Hyperbaric Oxygen Therapy London: Compare HBOT Clinics | Well+",
     description:
-      "An evidence-aware guide to London HBOT providers, chamber formats, screening, pricing and booking questions.",
+      "An evidence-aware guide to London HBOT clinics and hyperbaric chambers, including screening, pricing and booking questions.",
     url: "/hbot-london",
     type: "website",
   },
@@ -104,6 +104,11 @@ const faqs = [
       "HBOT involves breathing oxygen in a chamber pressurised above normal atmospheric pressure. The pressure, oxygen concentration, delivery method, session duration and clinical purpose all affect what is actually being provided.",
   },
   {
+    question: "Where can I find a hyperbaric chamber in London?",
+    answer:
+      "London has HBOT chambers in specialist clinics, recovery studios, biohacking spaces and members' wellness clubs. Compare the actual chamber type, pressure, oxygen-delivery method, screening and supervision rather than assuming every hyperbaric chamber offers the same protocol.",
+  },
+  {
     question: "How much does HBOT cost in London?",
     answer:
       "Publicly listed London prices vary widely. Current examples range from approximately £59-£79 for introductory or single sessions at some recovery studios to £180 or more at clinic-led providers, with longer sessions and packages costing more.",
@@ -112,6 +117,11 @@ const faqs = [
     question: "How long is an HBOT session?",
     answer:
       "London providers advertise formats from around 30 minutes to 90 minutes. Check whether that figure includes pressurisation and decompression or only time at treatment pressure.",
+  },
+  {
+    question: "What should I compare between HBOT clinics?",
+    answer:
+      "Start with chamber type, treatment pressure, oxygen delivery, session duration, screening, supervision and total package cost. Those details are more useful than comparing provider labels alone.",
   },
   {
     question: "Is HBOT proven for recovery or longevity?",
@@ -171,7 +181,7 @@ function buildSchema(facilities: DirectoryFacility[]) {
         name: "Hyperbaric Oxygen Therapy London",
         description: metadata.description,
         isPartOf: { "@type": "WebSite", name: "Well+", url: absoluteUrl() },
-        about: ["Hyperbaric oxygen therapy", "HBOT", "London wellness", "recovery"],
+        about: ["Hyperbaric oxygen therapy", "HBOT", "Hyperbaric chamber", "Oxygen therapy", "London wellness", "recovery"],
         mainEntity: {
           "@type": "ItemList",
           itemListElement: facilities.map((facility, index) => ({
@@ -223,7 +233,7 @@ export default async function HbotLondonPage() {
             Hyperbaric oxygen therapy in London.
           </h1>
           <p className="mt-8 max-w-3xl text-lg leading-8 text-[#fbf8f1]/74 sm:text-xl sm:leading-9">
-            Compare HBOT providers by the details that actually change the treatment: chamber format, pressure, oxygen delivery, session length, screening, supervision and total package cost.
+            Compare London HBOT clinics and hyperbaric chambers by the details that actually change the treatment: chamber format, pressure, oxygen delivery, session length, screening, supervision and total package cost.
           </p>
           <div className="mt-12 grid gap-4 border-t border-[#fbf8f1]/16 pt-6 text-sm text-[#fbf8f1]/68 sm:grid-cols-3">
             <div><p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">Published providers</p><p>{facilities.length} London listings</p></div>
