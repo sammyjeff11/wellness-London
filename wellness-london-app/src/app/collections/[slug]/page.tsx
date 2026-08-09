@@ -124,9 +124,10 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
 
   if (!collection) notFound();
 
+  const isSocialDiscovery = "socialDiscovery" in collection && collection.socialDiscovery === true;
   const [facilities, socialProfiles] = await Promise.all([
     getFacilities(),
-    collection.socialDiscovery ? getSocialWellnessProfiles() : Promise.resolve(new Map<string, SocialWellnessProfile>()),
+    isSocialDiscovery ? getSocialWellnessProfiles() : Promise.resolve(new Map<string, SocialWellnessProfile>()),
   ]);
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
   const collectionFacilities = dedupeFacilities(
@@ -164,7 +165,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               </div>
               <div className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#f4efe6] p-5 sm:p-6">
                 <p className="text-sm leading-6 text-[#5f574c]">
-                  {collection.socialDiscovery
+                  {isSocialDiscovery
                     ? "Built from explicit venue-format and community-programming signals — not assumptions about who goes there."
                     : "Compare current London venues using confirmed services, practical details and suitability for this particular experience."}
                 </p>
@@ -198,7 +199,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
               </h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-              {collection.socialDiscovery
+              {isSocialDiscovery
                 ? "Picks use observable format and programming signals such as recurring sessions, events, communal sauna and social spaces."
                 : "One best-matched venue per editorial angle, selected from matching facilities using service, venue type and listing quality signals."}
             </p>
