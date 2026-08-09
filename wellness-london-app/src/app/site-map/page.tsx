@@ -68,7 +68,6 @@ const coreSections = [
       { href: "/collections", label: "All Collections" },
       ...collections.map((collection) => ({ href: collection.href, label: collection.title })),
       { href: "/best-sauna-cold-plunge-london", label: "Best Sauna and Cold Plunge Spaces in London" },
-      { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness Spaces in London" },
       { href: "/quiet-wellness-spaces-london", label: "Quiet Wellness Spaces in London" },
       { href: "/luxury-wellness-spaces-london", label: "Luxury Wellness Spaces in London" },
     ],

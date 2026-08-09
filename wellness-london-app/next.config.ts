@@ -27,13 +27,8 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/facility/koyo-wellness",
-        destination: "/west-london-wellness",
-        permanent: true,
-      },
-      {
-        source: "/facility/re-place",
-        destination: "/west-london-wellness",
+        source: "/beginner-friendly-wellness-london",
+        destination: "/explore",
         permanent: true,
       },
       {

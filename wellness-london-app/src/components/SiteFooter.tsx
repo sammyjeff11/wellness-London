@@ -54,11 +54,11 @@ const priorityVenueSlugs = [
 const editorialLinks = [
   { href: "/editorial", label: "All guides" },
   { href: "/collections", label: "Venue shortlists" },
+  { href: "/collections/social-wellness-london", label: "Social Wellness in London" },
   { href: "/editorial/best-saunas-london", label: "Best Saunas in London" },
   { href: "/editorial/best-cryotherapy-london", label: "Best Cryotherapy in London" },
   { href: "/editorial/infrared-sauna-vs-traditional-sauna", label: "Infrared vs Traditional Sauna" },
   { href: "/best-sauna-cold-plunge-london", label: "Best Sauna + Cold Plunge" },
-  { href: "/beginner-friendly-wellness-london", label: "Beginner-Friendly Wellness" },
   { href: "/how-we-curate", label: "How We Curate" },
   { href: "/editorial-standards", label: "Editorial Standards" },
   { href: "/site-map", label: "Site Map" },

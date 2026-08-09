@@ -28,7 +28,6 @@ type FilterState = {
   premiumLevel: string;
   experienceType: string;
   privateOrShared: string;
-  beginnerFriendly: string;
 };
 
 type ServiceDirectoryProps = {
@@ -49,7 +48,6 @@ const initialFilters: FilterState = {
   premiumLevel: "",
   experienceType: "",
   privateOrShared: "",
-  beginnerFriendly: "",
 };
 
 function getPriceBand(value?: string) {
@@ -139,7 +137,6 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const premiumOptions = uniqueValues(uniqueFacilities.map((facility) => facility.premiumLevel));
   const experienceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || []));
   const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
-  const beginnerOptions = uniqueValues(uniqueFacilities.map((facility) => facility.beginnerFriendly));
   const searchValue = searchQuery.trim();
 
   const filteredFacilities = useMemo(() => {
@@ -157,8 +154,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         (!filters.priceBand || priceBand === filters.priceBand) &&
         (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) &&
         (!filters.experienceType || experiences.includes(filters.experienceType)) &&
-        (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared) &&
-        (!filters.beginnerFriendly || facility.beginnerFriendly === filters.beginnerFriendly)
+        (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared)
       );
     });
 
@@ -244,22 +240,18 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       ) : null}
       {!directoryMode ? (
         <>
-      <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
-        <option value="">Any level</option>
-        {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-      </FilterSelect>
-      <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-        <option value="">Any type</option>
-        {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-      </FilterSelect>
-      <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-        <option value="">Any access</option>
-        {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-      </FilterSelect>
-      <FilterSelect label="Beginner" value={filters.beginnerFriendly} onChange={(value) => updateFilter("beginnerFriendly", value)}>
-        <option value="">Any</option>
-        {beginnerOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-      </FilterSelect>
+          <FilterSelect label="Premium" value={filters.premiumLevel} onChange={(value) => updateFilter("premiumLevel", value)}>
+            <option value="">Any level</option>
+            {premiumOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Experience" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
+            <option value="">Any type</option>
+            {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
+          <FilterSelect label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+            <option value="">Any access</option>
+            {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+          </FilterSelect>
         </>
       ) : null}
       <FilterSelect label="Sort" value={sort} onChange={setSort}>
@@ -284,7 +276,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               type="search"
               value={searchQuery}
               onChange={(event) => updateSearch(event.target.value)}
-              placeholder="Try a venue, area or treatment"
+              placeholder="Try a venue, area or service"
               autoComplete="off"
               className="min-w-0 flex-1 bg-transparent py-1 text-base text-[#29241d] outline-none placeholder:text-[#8d7d67]"
             />
@@ -332,14 +324,14 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               </>
             ) : (
               <>
-            <MobileFilterPill label="Type" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-              <option value="">Type</option>
-              {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-              <option value="">Access</option>
-              {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
+                <MobileFilterPill label="Type" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
+                  <option value="">Type</option>
+                  {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
+                <MobileFilterPill label="Access" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+                  <option value="">Access</option>
+                  {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+                </MobileFilterPill>
               </>
             )}
             <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={setSort}>
@@ -351,7 +343,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </div>
 
-        <div className={`mt-6 hidden grid-cols-2 gap-5 md:grid ${directoryMode ? "lg:grid-cols-6" : "lg:grid-cols-6"}`}>
+        <div className={`mt-6 hidden grid-cols-2 gap-5 md:grid ${directoryMode ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>
           {filterControls}
         </div>
       </section>

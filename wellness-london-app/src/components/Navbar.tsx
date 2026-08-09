@@ -28,6 +28,7 @@ const areaLinks = [
 const guideLinks = [
   { href: "/editorial", label: "All guides" },
   { href: "/collections", label: "Venue shortlists" },
+  { href: "/collections/social-wellness-london", label: "Social wellness" },
   { href: "/editorial/best-saunas-london", label: "Best saunas" },
   { href: "/editorial/best-cryotherapy-london", label: "Best cryotherapy" },
   { href: "/how-we-curate", label: "How we curate" },
