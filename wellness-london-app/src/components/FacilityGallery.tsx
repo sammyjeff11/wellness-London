@@ -72,7 +72,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
         </div>
 
         {secondaryImages.length > 0 ? (
-          <div className="mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:hidden">
+          <div className="gallery-scrollbar mt-2 flex snap-x snap-mandatory gap-2 overflow-x-auto pb-1 md:hidden">
             {secondaryImages.map((image, index) => (
               <button key={`${image.url}-${index}`} type="button" onClick={() => openLibrary(index + 1)} className="relative aspect-[4/3] min-w-[42%] snap-start overflow-hidden rounded-[0.8rem] bg-[#d8cebf] focus:outline-none focus:ring-2 focus:ring-[#6f6048]" aria-label={`Open ${venueName} photo ${index + 2}`}>
                 <SafeImage src={image.url} alt={imageAlt(index + 1)} fill sizes="42vw" className="object-cover" />
@@ -121,7 +121,7 @@ export default function FacilityGallery({ images, venueName }: FacilityGalleryPr
 
             {galleryImages.length > 1 ? (
               <div className="border-t border-white/10 px-4 py-3 sm:px-6">
-                <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
+                <div className="gallery-scrollbar flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1">
                   {galleryImages.map((image, index) => {
                     const isActive = index === activeIndex;
                     return (
