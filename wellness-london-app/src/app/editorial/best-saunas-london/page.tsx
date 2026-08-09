@@ -17,7 +17,7 @@ import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 export const metadata: Metadata = {
   title: "Best Saunas in London | Well+ Editorial",
   description:
-    "A Well+ guide to London's best sauna experiences, including infrared, traditional heat, cold plunge and beginner-friendly recovery spaces.",
+    "A Well+ guide to London's best sauna experiences, including infrared, traditional heat, cold plunge and private or communal recovery spaces.",
   alternates: { canonical: "/editorial/best-saunas-london" },
   openGraph: {
     title: "Best Saunas in London | Well+ Editorial",
@@ -58,11 +58,11 @@ const editorialPicks: EditorialPick[] = [
     match: { serviceKeys: ["sauna", "infrared-sauna"], premiumLevelIncludes: ["premium", "luxury"] },
   },
   {
-    label: "Best for first timers",
-    title: "A softer way into sauna culture",
+    label: "Best for a more private session",
+    title: "When you want a quieter format",
     description:
-      "A better starting point if you are new to sauna, infrared heat or contrast therapy and want fewer unknowns before booking.",
-    match: { serviceKeys: ["sauna", "infrared-sauna"], beginnerFriendly: true },
+      "A better fit if you would rather book a private or small-format sauna experience than enter a larger communal setting.",
+    match: { serviceKeys: ["sauna", "infrared-sauna"], privateOrSharedIncludes: ["private"] },
   },
 ];
 
