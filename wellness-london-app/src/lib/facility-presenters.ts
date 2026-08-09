@@ -42,7 +42,6 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     experienceType: facility.experienceType,
     priceFrom: facility.priceFrom,
     privateOrShared: facility.privateOrShared,
-    beginnerFriendly: facility.beginnerFriendly,
     premiumLevel: facility.premiumLevel,
     nearestStation: facility.nearestStation,
     venueType: facility.venueTypeStandardized,
