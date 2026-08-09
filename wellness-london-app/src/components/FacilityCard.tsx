@@ -85,7 +85,7 @@ function getCanonicalServices(services?: string[], prioritisedService?: string) 
 function formatRating(value?: string) {
   if (!value) return "";
 
-  const trimmed = value.replace(/\s+/g, " ").trim();
+  const trimmed = value.replace(/\s+/g, " ").replace(/,\s+(?=\d)/g, ",").trim();
   const ratingMatch = trimmed.match(/\d+(?:\.\d+)?/);
   const reviewMatch = trimmed.match(/\(([^)]*review[^)]*)\)/i);
 
@@ -115,7 +115,8 @@ function priceScaleFromAmount(amount: number) {
 function formatPrice(value?: string) {
   if (!value) return "";
   const trimmed = value.trim();
-  if (trimmed.toLowerCase().includes("pricing requires")) return "";
+  const lower = trimmed.toLowerCase();
+  if (["unknown", "not specified", "not available", "details not yet confirmed", "n/a", "na"].includes(lower) || lower.includes("pricing requires")) return "";
   const scaleMatch = trimmed.match(/£{1,4}/)?.[0];
   const amountMatch = trimmed.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/);
   if (amountMatch) return priceScaleFromAmount(Number(amountMatch[1]));
@@ -213,15 +214,17 @@ export default function FacilityCard({ facility, source = "directory", compact =
 
             {cardImages.length > 1 ? (
               <>
-                <button type="button" onClick={showPreviousImage} className="absolute left-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:block" aria-label={`Previous image for ${facility.name}`}>
+                <button type="button" onClick={showPreviousImage} className="absolute left-3 top-1/2 z-20 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:inline-flex" aria-label={`Previous image for ${facility.name}`}>
                   ←
                 </button>
-                <button type="button" onClick={showNextImage} className="absolute right-3 top-1/2 z-20 hidden -translate-y-1/2 rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:block" aria-label={`Next image for ${facility.name}`}>
+                <button type="button" onClick={showNextImage} className="absolute right-3 top-1/2 z-20 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:inline-flex" aria-label={`Next image for ${facility.name}`}>
                   →
                 </button>
-                <div className="absolute bottom-3 left-0 right-0 z-10 flex justify-center gap-1.5">
+                <div className="absolute bottom-1 left-0 right-0 z-10 flex justify-center gap-0.5">
                   {cardImages.slice(0, 5).map((image, index) => (
-                    <button key={`${image.url}-dot-${index}`} type="button" onClick={() => setActiveImageIndex(index)} className={`h-1.5 rounded-full transition ${index === activeImageIndex ? "w-4 bg-white" : "w-1.5 bg-white/55 hover:bg-white/85"}`} aria-label={`Show image ${index + 1} for ${facility.name}`} />
+                    <button key={`${image.url}-dot-${index}`} type="button" onClick={() => setActiveImageIndex(index)} className="inline-flex min-h-8 min-w-8 items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/90" aria-label={`Show image ${index + 1} for ${facility.name}`} aria-pressed={index === activeImageIndex}>
+                      <span className={`block h-1.5 rounded-full transition ${index === activeImageIndex ? "w-4 bg-white" : "w-1.5 bg-white/55"}`} />
+                    </button>
                   ))}
                 </div>
               </>
@@ -242,44 +245,44 @@ export default function FacilityCard({ facility, source = "directory", compact =
       </div>
 
       <div className={compact ? "px-4 pb-4 pt-3" : "px-5 pb-5 pt-4"}>
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-        <div className="flex items-start justify-between gap-3">
-          <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
-          {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
-        </div>
-        <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
-      </Link>
-      {comparisonDetails.length > 0 ? (
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {comparisonDetails.map((detail) => (
-            <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
-              {detail}
-            </span>
-          ))}
-        </div>
-      ) : null}
-      {serviceLabels.length > 0 ? (
-        <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
-          {serviceLabels.map((service, index) => {
-            const href = canonicalServiceHref(service);
-            return (
-              <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
-                {href ? (
-                  <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
-                    {service}
-                  </Link>
-                ) : (
-                  <span>{service}</span>
-                )}
-                {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
+        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
+            {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
+          </div>
+          <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
+        </Link>
+        {comparisonDetails.length > 0 ? (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {comparisonDetails.map((detail) => (
+              <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
+                {detail}
               </span>
-            );
-          })}
-        </div>
-      ) : null}
-      <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-        <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
-      </Link>
+            ))}
+          </div>
+        ) : null}
+        {serviceLabels.length > 0 ? (
+          <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
+            {serviceLabels.map((service, index) => {
+              const href = canonicalServiceHref(service);
+              return (
+                <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
+                  {href ? (
+                    <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
+                      {service}
+                    </Link>
+                  ) : (
+                    <span>{service}</span>
+                  )}
+                  {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
+                </span>
+              );
+            })}
+          </div>
+        ) : null}
+        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
+          <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
+        </Link>
       </div>
     </article>
   );
