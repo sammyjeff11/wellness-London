@@ -52,15 +52,15 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     shortTitle: "Canary Wharf",
     href: "/neighbourhoods/canary-wharf",
     region: "East London",
-    metaTitle: "Wellness in Canary Wharf | Sauna, Ice Baths & Recovery | Well+",
+    metaTitle: "Wellness in Canary Wharf | Sauna & Cold Plunge | Well+",
     metaDescription:
-      "Compare Canary Wharf wellness venues, from Arc's communal sauna and ice baths to Third Space recovery and health-club services.",
+      "Compare Canary Wharf sauna, cold plunge and contrast therapy venues, including Arc and Third Space, with access and booking details.",
     eyebrow: "Docklands recovery",
     intro:
       "Canary Wharf has evolved beyond its office-district identity into a modern waterside neighbourhood with high-spec health clubs, recovery treatments and one of London's most distinctive communal contrast-therapy spaces.",
     summary:
-      "Canary Wharf is strongest for structured recovery. Arc offers a public-facing contrast experience; Third Space places recovery within a premium members' club. The deciding factor is access as much as the treatment list.",
-    bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Cryotherapy", "Premium wellness"],
+      "Canary Wharf is strongest for structured recovery. Arc offers a public-facing sauna and cold-plunge experience; Third Space places recovery within a premium members' club. The deciding factor is access as much as the treatment list.",
+    bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Contrast therapy", "Premium wellness"],
     character:
       "Polished and efficient, with the strongest weekday rhythm before and after office hours. Arc is the more social and sensory option; Third Space is the broader club environment.",
     visitNotes: [
@@ -72,6 +72,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedLinks: [
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
       { href: "/east-london-wellness", label: "East London wellness spaces" },
     ],
   },
@@ -81,9 +82,9 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     shortTitle: "Kensington",
     href: "/neighbourhoods/kensington",
     region: "West London",
-    metaTitle: "Wellness in Kensington | Cryotherapy, Sauna & HBOT | Well+",
+    metaTitle: "Wellness in Kensington | Cryotherapy, Red Light & HBOT | Well+",
     metaDescription:
-      "Compare Kensington recovery venues offering sauna, cryotherapy, red light therapy and HBOT, including access and booking details.",
+      "Compare Kensington cryotherapy, red light therapy, HBOT and infrared sauna venues, with practical access and booking details.",
     eyebrow: "West London recovery",
     intro:
       "Kensington's wellness offer reflects the neighbourhood itself: polished, appointment-led and premium, with technology-led recovery close to the shops, homes and hotels around Kensington High Street.",
@@ -99,8 +100,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
     relatedAreas: ["Notting Hill", "West London", "Central London"],
     relatedLinks: [
-      { href: "/sauna-london", label: "Saunas in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
+      { href: "/red-light-therapy-london", label: "Red Light Therapy in London" },
+      { href: "/hbot-london", label: "HBOT in London" },
+      { href: "/sauna-london", label: "Saunas in London" },
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
   },
