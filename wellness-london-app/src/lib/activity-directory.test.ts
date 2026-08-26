@@ -1,8 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import type { AirtableFacility } from "./airtable.ts";
-import { getActivityPage } from "./activity-pages.ts";
-import { matchesFacilityActivitySignals } from "./activity-directory.ts";
+import { matchesFacilityActivitySignals, type ActivitySignalConfig } from "./activity-signal-matching.ts";
 
 function facility(overrides: Partial<AirtableFacility>): AirtableFacility {
   return {
@@ -75,10 +74,29 @@ function facility(overrides: Partial<AirtableFacility>): AirtableFacility {
   };
 }
 
-const sauna = getActivityPage("sauna-london")!;
-const coldPlunge = getActivityPage("cold-plunge-london")!;
-const contrast = getActivityPage("contrast-therapy-london")!;
-const hbot = getActivityPage("hbot-london")!;
+const sauna: ActivitySignalConfig = {
+  slug: "sauna-london",
+  activityLabels: ["Sauna"],
+  keywords: ["sauna", "finnish", "heat therapy", "heat exposure"],
+};
+
+const coldPlunge: ActivitySignalConfig = {
+  slug: "cold-plunge-london",
+  activityLabels: ["Cold Plunge", "Ice Bath"],
+  keywords: ["cold plunge", "ice bath", "plunge pool", "cold tub"],
+};
+
+const contrast: ActivitySignalConfig = {
+  slug: "contrast-therapy-london",
+  activityLabels: ["Contrast Therapy", "Sauna & Cold Plunge"],
+  keywords: ["contrast therapy", "sauna and cold plunge", "sauna & plunge", "hot and cold"],
+};
+
+const hbot: ActivitySignalConfig = {
+  slug: "hbot-london",
+  activityLabels: ["Hyperbaric Oxygen Therapy", "HBOT"],
+  keywords: ["hbot", "hyperbaric", "hyperbaric oxygen therapy"],
+};
 
 test("composite source services remain discoverable on sauna and cold-plunge pages", () => {
   const venue = facility({ serviceNames: ["Sauna & Plunge"] });
