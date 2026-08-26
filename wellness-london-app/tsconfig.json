@@ -20,6 +20,7 @@
       }
     ],
     "paths": {
+      "@/lib/airtable": ["./src/lib/cached-airtable.ts"],
       "@/*": ["./src/*"]
     }
   },
