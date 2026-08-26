@@ -40,6 +40,10 @@ export function matchesFacilityActivitySignals(facility: AirtableFacility, activ
 
   if (explicitLabelMatch || keywordMatch) return true;
 
+  if (activity.slug === "cold-plunge-london") {
+    return structuredText.includes("plunge") || isMeaningfulStructuredValue(facility.coldPlungeType);
+  }
+
   if (activity.slug === "contrast-therapy-london") {
     if (normaliseSignal(facility.contrastTherapyAvailable) === "yes") return true;
 
