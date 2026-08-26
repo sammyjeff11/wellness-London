@@ -13,8 +13,7 @@ import {
   ServiceRelatedSection,
 } from "@/components/ServicePageSections";
 import { getFacilities } from "@/lib/airtable";
-import { getDirectoryFacilitiesForActivity } from "@/lib/activity-directory";
-import { type ActivityPageConfig } from "@/lib/activity-pages";
+import { getFacilitiesForActivity, type ActivityPageConfig } from "@/lib/activity-pages";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { buildServiceLocationLinks } from "@/lib/internal-linking";
@@ -91,7 +90,7 @@ function ColdContrastIntentGuide({ slug }: { slug: ActivityPageConfig["slug"] })
 
 export default async function ActivityServicePage({ activity }: ActivityServicePageProps) {
   const facilities = await getFacilities();
-  const activityFacilities = getDirectoryFacilitiesForActivity(facilities, activity);
+  const activityFacilities = getFacilitiesForActivity(facilities, activity);
   const directoryFacilities = dedupeFacilities(activityFacilities.map(toDirectoryFacility));
   const heroImage = activityFacilities.find((facility) => facility.images.length > 0)?.images[0];
   const relatedLinks = [
