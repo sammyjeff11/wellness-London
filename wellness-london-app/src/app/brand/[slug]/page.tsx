@@ -8,8 +8,14 @@ import { brandPages, getBrandPageBySlug, getFacilitiesForBrand, facilityIsComing
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
+import { getUsefulServiceLabels } from "@/lib/discovery-labels";
+import { isUsefulValue } from "@/lib/useful-values";
 
 type BrandPageProps = { params: Promise<{ slug: string }> };
+
+function comparisonValue(value?: string, fallback = "Check venue") {
+  return isUsefulValue(value) ? value : fallback;
+}
 
 export function generateStaticParams() {
   return brandPages.map((brand) => ({ slug: brand.slug }));
@@ -43,6 +49,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
   const directoryFacilities = uniqueBrandFacilities.map(toDirectoryFacility);
   const liveFacilities = uniqueBrandFacilities.filter((facility) => !facilityIsComingSoon(facility));
   const comingSoonFacilities = uniqueBrandFacilities.filter(facilityIsComingSoon);
+  const comingSoonSlugs = new Set(comingSoonFacilities.map((facility) => facility.slug));
   const serviceSet = new Set<string>();
   uniqueBrandFacilities.forEach((facility) => facility.servicesOffered.forEach((service) => serviceSet.add(service)));
   const services = Array.from(serviceSet).slice(0, 8);
@@ -128,6 +135,63 @@ export default async function BrandPage({ params }: BrandPageProps) {
       {directoryFacilities.length > 0 ? (
         <section className="px-5 pb-14 sm:px-6 sm:pb-20">
           <div className="mx-auto max-w-6xl">
+            <div className="mb-10 sm:mb-14">
+              <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <p className="editorial-eyebrow mb-3">Location comparison</p>
+                  <h2 className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.045em] sm:text-5xl">Compare at a glance</h2>
+                </div>
+                <p className="max-w-md text-sm leading-6 text-[#6f6048]">Published information can vary by location. Open a venue profile for full booking and practical details.</p>
+              </div>
+
+              <div className="overflow-hidden rounded-[1.2rem] border border-[#cdbfab] bg-[#fbf8f1]">
+                <div className="hidden grid-cols-[1.35fr_1.45fr_0.8fr_0.65fr_auto] gap-4 border-b border-[#d8cebf] bg-[#eee7db] px-5 py-3 text-[10px] uppercase tracking-[0.18em] text-[#70695d] md:grid">
+                  <span>Location</span>
+                  <span>Services</span>
+                  <span>Access</span>
+                  <span>Price</span>
+                  <span className="sr-only">Profile</span>
+                </div>
+                <ul className="divide-y divide-[#d8cebf]">
+                  {directoryFacilities.map((facility) => {
+                    const location = facility.neighbourhood || facility.location || facility.nearestStation || "London";
+                    const serviceLabels = getUsefulServiceLabels(facility.services, undefined, 3);
+                    const isComingSoon = comingSoonSlugs.has(facility.slug);
+
+                    return (
+                      <li key={`${facility.slug}-comparison`} className="grid gap-4 px-5 py-5 md:grid-cols-[1.35fr_1.45fr_0.8fr_0.65fr_auto] md:items-center">
+                        <div>
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="font-medium leading-6 text-[#29241d]">{facility.name}</h3>
+                            {isComingSoon ? <span className="rounded-full bg-[#e6dccd] px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-[#5f574c]">Coming soon</span> : null}
+                          </div>
+                          <p className="mt-0.5 text-sm text-[#6f6048]">{location}</p>
+                        </div>
+                        <div>
+                          <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-[#8d7d67] md:hidden">Services</p>
+                          <p className="text-sm leading-6 text-[#4f473d]">{serviceLabels.join(" · ") || "See venue profile"}</p>
+                        </div>
+                        <div>
+                          <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-[#8d7d67] md:hidden">Access</p>
+                          <p className="text-sm leading-6 text-[#4f473d]">{comparisonValue(facility.accessType)}</p>
+                        </div>
+                        <div>
+                          <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-[#8d7d67] md:hidden">Price</p>
+                          <p className="text-sm leading-6 text-[#4f473d]">{comparisonValue(facility.priceFrom || facility.priceRange)}</p>
+                        </div>
+                        <Link href={`/facility/${facility.slug}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d] transition hover:bg-[#29241d] hover:text-[#fbf8f1]">
+                          View venue
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mb-5 border-b border-[#d8cebf]/70 pb-4">
+              <p className="editorial-eyebrow">Full venue profiles</p>
+            </div>
             <div className="grid gap-5 sm:gap-8 md:grid-cols-3">
               {directoryFacilities.map((facility) => (
                 <FacilityCard key={facility.slug} facility={facility} source="brand_page" />

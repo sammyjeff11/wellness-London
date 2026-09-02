@@ -4,7 +4,8 @@ import { useState } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
-import { canonicalServiceHref, prioritiseCanonicalServiceList } from "@/lib/taxonomy";
+import { canonicalServiceHref } from "@/lib/taxonomy";
+import { filterSuitabilityLabels, getUsefulServiceLabels } from "@/lib/discovery-labels";
 import SaveVenueButton from "@/components/SaveVenueButton";
 
 export type FacilityCardFacility = {
@@ -51,9 +52,7 @@ const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "c
 const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 
 function primaryBestFor(facility: FacilityCardFacility) {
-  const value = facility.bestFor?.[0] || facility.description;
-  const operationalValues = new Set(["solo", "private", "shared", "group", "guided"]);
-  return operationalValues.has(value.trim().toLowerCase()) ? facility.description : value;
+  return filterSuitabilityLabels(facility.bestFor)[0] || facility.description;
 }
 
 function conciseSummary(facility: FacilityCardFacility, serviceLine: string) {
@@ -79,7 +78,7 @@ function getAreaLabel(facility: FacilityCardFacility) {
 }
 
 function getCanonicalServices(services?: string[], prioritisedService?: string) {
-  return prioritiseCanonicalServiceList(services, prioritisedService).slice(0, 3);
+  return getUsefulServiceLabels(services, prioritisedService, 3);
 }
 
 function formatRating(value?: string) {

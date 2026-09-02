@@ -18,6 +18,7 @@ import {
 import { absoluteUrl, truncateMetaText } from "@/lib/site";
 import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
+import { filterSuitabilityLabels } from "@/lib/discovery-labels";
 
 export const dynamicParams = false;
 
@@ -272,7 +273,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const access = cleanValue(facility.accessType);
   const address = cleanValue(facility.address);
   const postcode = cleanValue(facility.postcode);
-  const bestFor = cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor).slice(0, 8);
+  const bestFor = filterSuitabilityLabels(
+    cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor),
+  ).slice(0, 8);
   const quickFacts: DetailItem[] = [
     { label: "Nearest station", value: cleanValue(facility.nearestStation) },
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
