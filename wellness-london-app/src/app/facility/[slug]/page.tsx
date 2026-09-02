@@ -9,6 +9,7 @@ import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
 import { activityPages } from "@/lib/activity-pages";
 import { getFacilities, type AirtableFacility } from "@/lib/airtable";
+import { getBrandPageForFacility } from "@/lib/brand-pages";
 import {
   getServicePillarMappings,
   getVenuePillarsFromServices,
@@ -292,6 +293,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     { label: "Price notes", value: cleanValue(facility.priceNotes) },
   ].filter((item) => isUsefulValue(item.value));
   const goodToKnow = cleanValue(facility.goodToKnow);
+  const brandPage = getBrandPageForFacility(facility);
+  const directionsHref = address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${facility.name} ${address}`)}` : undefined;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -314,6 +317,11 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                 {facility.name}
               </h1>
               <p className="mt-4 text-sm uppercase tracking-[0.18em] text-[#6f6048]">{location}</p>
+              {brandPage ? (
+                <Link href={`/brand/${brandPage.slug}`} className="mt-3 inline-flex text-sm text-[#5f574c] underline underline-offset-4 hover:text-[#29241d]">
+                  Compare all {brandPage.name} locations
+                </Link>
+              ) : null}
               <p className="mt-5 max-w-2xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">{heroSummary}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
@@ -343,6 +351,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
                     View on Instagram
                   </TrackedExternalLink>
                 ) : null}
+                {directionsHref ? (
+                  <TrackedExternalLink
+                    href={directionsHref}
+                    eventName="listing_cta_click"
+                    properties={{ facility_name: facility.name, facility_slug: facility.slug, source: "facility_detail", cta_type: "directions" }}
+                    className="rounded-full border border-[#d8cebf] px-5 py-3 text-sm transition hover:bg-[#fbf8f1]"
+                  >
+                    Directions
+                  </TrackedExternalLink>
+                ) : null}
               </div>
             </div>
 
@@ -360,17 +378,6 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           </div>
         </section>
       ) : null}
-
-      {whyCopy ? (
-        <section className="px-5 pb-12 sm:px-6 md:pb-16">
-          <div className="mx-auto grid max-w-6xl gap-8 border-t border-[#d8cebf]/70 pt-8 sm:pt-10 lg:grid-cols-[0.78fr_1.22fr]">
-            <SectionHeading eyebrow="Editorial view" title="Why choose it" />
-            <p className="max-w-3xl text-xl leading-9 text-[#4f473d] sm:text-2xl sm:leading-10">{whyCopy}</p>
-          </div>
-        </section>
-      ) : null}
-
-      <FacilitySocialContext slug={facility.slug} />
 
       {bestFor.length > 0 ? (
         <section className="surface-band-sage px-5 py-12 sm:px-6 md:py-16">
@@ -437,8 +444,19 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
         borough={cleanValue(facility.borough)}
         areaOfLondon={cleanValue(facility.areaOfLondon)}
         nearestStation={cleanValue(facility.nearestStation)}
-        directionsHref={address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${facility.name} ${address}`)}` : undefined}
+        directionsHref={directionsHref}
       />
+
+      {whyCopy ? (
+        <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 md:py-16">
+          <div className="mx-auto grid max-w-6xl gap-8 border-t border-[#d8cebf]/70 pt-8 sm:pt-10 lg:grid-cols-[0.78fr_1.22fr]">
+            <SectionHeading eyebrow="Well+ editorial" title="Our view" />
+            <p className="max-w-3xl text-xl leading-9 text-[#4f473d] sm:text-2xl sm:leading-10">{whyCopy}</p>
+          </div>
+        </section>
+      ) : null}
+
+      <FacilitySocialContext slug={facility.slug} />
 
       {relatedGuides.length > 0 ? (
         <section className="px-5 py-12 sm:px-6 md:py-16">

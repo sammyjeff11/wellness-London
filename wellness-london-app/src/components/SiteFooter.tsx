@@ -27,6 +27,7 @@ const serviceLinks = [
 
 const businessLinks = [
   { href: "/the-edit", label: "The Well+ Edit" },
+  { href: "/brands", label: "Multi-location brands" },
   { href: "/shortlist", label: "Saved venues" },
   { href: "/contact", label: "Contact" },
   { href: "/claim-listing", label: "Claim or update a listing" },
