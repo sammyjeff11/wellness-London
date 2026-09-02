@@ -1595,7 +1595,7 @@
         "Name": "Equinox Bishopsgate",
         "Slug": "equinox-bishopsgate",
         "Website": "https://www.equinox.com/clubs/london/bishopsgate",
-        "Booking Link": "https://www.equinox.com/clubs/london/bishopsgate",
+        "Booking Link": "https://www.equinox.com/join/step1",
         "Business Name": "Equinox Bishopsgate",
         "Brand / Operator": "Equinox",
         "Address": "8 Clerk’s Place, London EC3A 8AQ",
@@ -1690,7 +1690,7 @@
         "Name": "Equinox Kensington",
         "Slug": "equinox-kensington",
         "Website": "https://www.equinox.com/clubs/london/kensington",
-        "Booking Link": "https://www.equinox.com/clubs/london/kensington",
+        "Booking Link": "https://www.equinox.com/join/step1/871",
         "Business Name": "Equinox Kensington",
         "Brand / Operator": "Equinox",
         "Address": "99 Kensington High Street, London W8 5SA",
@@ -1785,23 +1785,20 @@
         "Name": "E by Equinox St James’s",
         "Slug": "equinox-st-jamess",
         "Website": "https://www.equinox.com/clubs/london/stjames",
-        "Booking Link": "https://www.equinox.com/clubs/london/stjames",
+        "Booking Link": "https://www.equinox.com/join/step1/873",
         "Business Name": "E by Equinox St James’s",
         "Brand / Operator": "Equinox",
         "Address": "12 St James’s Street, London SW1A 1ER",
         "Phone": "+44 (0) 20 3884 2071",
         "Neighborhood": "Mayfair",
         "Area of London": "Central London",
-        "Description": "Executive-membership club in St James’s combining personal training, Studio Pilates, strength and cardio floors, sauna and steam facilities, spa bodywork and advanced recovery services including contrast therapy, IV drips and hyperbaric oxygen sessions.",
-        "Editorial Summary": "The most recovery-focused Equinox in London. Alongside premium training and spa facilities, the official E Club offer includes contrast therapy, IV drips and hyperbaric oxygen sessions.",
-        "Good To Know": "Access is restricted to Executive Members. Confirm how advanced recovery sessions are scheduled and whether they carry separate charges before joining.",
-        "Editorial Verdict": "The clearest Equinox fit for Well+ users prioritising integrated training and advanced recovery, but it sits behind the brand’s highest membership tier.",
+        "Description": "Premium St James’s fitness club combining personalised coaching, strength and cardio floors, Studio Pilates, hot dry sauna and eucalyptus steam facilities, spa bodywork and skincare, and Hypervolt recovery.",
+        "Editorial Summary": "A highly personalised Equinox club with premium training, Pilates, sauna and steam facilities, plus a full-service spa that can be booked separately by non-members.",
+        "Good To Know": "The wider club is membership-led, while the official location page states that spa appointments are open to non-members. Confirm current membership pricing and any separately charged recovery services directly.",
+        "Editorial Verdict": "Best for users seeking personalised premium training with sauna, steam and spa recovery in St James’s; non-members can book spa appointments.",
         "Services Offered": [
           "Sauna",
           "Steam Room",
-          "Contrast Therapy",
-          "IV Drips",
-          "Hyperbaric Oxygen Therapy",
           "Spa",
           "Pilates",
           "Elite Personal Training"
@@ -1809,29 +1806,20 @@
         "Primary Service": "Wellness Club",
         "Secondary Services": [
           "Gym / Performance",
-          "Contrast Therapy",
           "Sauna",
-          "HBOT",
-          "IV Therapy"
+          "Spa / Bathhouse"
         ],
         "Activity Category": [
           "Heat Therapy",
-          "Cold Therapy",
-          "Recovery Treatments",
-          "Combined Experiences"
+          "Recovery Treatments"
         ],
         "Activity Tags Standardized": [
           "Sauna",
-          "Steam Room",
-          "Contrast Therapy",
-          "Hyperbaric Oxygen Therapy",
-          "IV Therapy"
+          "Steam Room"
         ],
         "Activity Display Labels": [
-          "Sauna & Cold Plunge",
-          "Steam Room",
-          "HBOT",
-          "IV Therapy"
+          "Sauna",
+          "Steam Room"
         ],
         "Venue Type Standardized": "Fitness & Recovery Club",
         "Theme Tags Standardized": [
@@ -1867,7 +1855,7 @@
         ],
         "Experience Type": "Private",
         "Access Type": "Members only",
-        "Access Model": "Standard membership",
+        "Access Model": "Mixed access",
         "Overall Price Range": "££££",
         "Opening Hours": "Mon–Thu: 06:00–21:00\nFri: 06:00–20:00\nSat–Sun: 08:00–16:00",
         "Showers Available": true,
@@ -2109,7 +2097,7 @@
         "Name": "JAB SW1 Victoria",
         "Slug": "jab-sw1-victoria",
         "Website": "https://jabboxing.club/clubs/sw1-victoria/",
-        "Booking Link": "https://jabboxing.club/clubs/sw1-victoria/",
+        "Booking Link": "https://jabboxing.club/sessions/schedule/",
         "Business Name": "JAB Boxing Club",
         "Brand / Operator": "JAB",
         "Address": "Unit 5, Colonnade Walk, 151 Buckingham Palace Road, London SW1W 9SZ",
@@ -2118,7 +2106,7 @@
         "Area of London": "Central London",
         "Description": "Victoria performance club combining boxing and conditioning studios with a dedicated recovery suite containing a six-person Nordic sauna and Glacier cold plunge. The club also includes changing facilities, a lounge and an in-house health café.",
         "Editorial Summary": "JAB SW1 places boxing-led training and contrast recovery in one compact club. Its recovery suite is clearly specified rather than treated as a generic changing-room amenity.",
-        "Good To Know": "The official site offers sessions, class packs and membership, while its membership information describes recovery access as a member benefit. Published membership prices conflict across current pages, so confirm the latest rate directly.",
+        "Good To Know": "The detailed membership selector lists Original membership at £275 per month, including training and recovery, but the same official SW1 page still carries a £225 headline. Confirm the live rate before joining. Public sessions and class packs are also offered.",
         "Editorial Verdict": "A useful Victoria option for users who want coached performance training with sauna and cold plunge built into the same club routine.",
         "Services Offered": [
           "Sauna",
@@ -2185,6 +2173,7 @@
         "Access Type": "Public",
         "Access Model": "Mixed access",
         "Overall Price Range": "£££",
+        "Price From": 275,
         "Opening Hours": "Mon–Fri: 06:00–21:00\nSat: 07:15–16:30\nSun: 08:30–17:30",
         "Showers Available": true,
         "Atmosphere": "A compact, mid-century-inspired club with low-lit training studios, a dedicated recovery suite, lounge and health café.",
@@ -3805,7 +3794,7 @@
         "Name": "The Method Club Notting Hill",
         "Slug": "the-method-club-notting-hill",
         "Website": "https://www.themethod.com/locations/the-club",
-        "Booking Link": "https://www.themethod.com/locations/the-club",
+        "Booking Link": "https://www.themethod.com/timetable",
         "Business Name": "The Method",
         "Brand / Operator": "The Method",
         "Address": "133–137 Westbourne Grove, London W11 2RS",
@@ -3815,7 +3804,7 @@
         "Area of London": "West London",
         "Description": "Notting Hill wellness club combining movement studios, a treatment-led Lab, guided contrast therapy, personalised stretch therapy, a members’ lounge and an on-site café. Classes span strength, cardio, Pilates-inspired movement, mobility and recovery.",
         "Editorial Summary": "The Method brings training, recovery and social space into one Notting Hill club. Its strongest directory distinction is the guided, members-only contrast experience alongside classes, bodywork and personalised stretching.",
-        "Good To Know": "Classes are available through memberships and flexible packages, but the guided sauna and cold-water contrast experience is reserved for members. Check the current package before booking if recovery access is your priority.",
+        "Good To Know": "Club membership is £442 per month plus a £530 joining fee, with a 12-month minimum term. Flexible class and Lab credit packs are also sold, but contrast therapy is reserved for members.",
         "Editorial Verdict": "A broad, design-led wellness club with a stronger recovery offer than a conventional boutique studio, particularly for members who want classes and guided contrast in one place.",
         "Services Offered": [
           "Sauna",
@@ -3893,6 +3882,7 @@
         "Access Type": "Public",
         "Access Model": "Mixed access",
         "Overall Price Range": "££££",
+        "Price From": 442,
         "Opening Hours": "Mon–Fri: 06:00–20:00\nSat: 08:30–19:30\nSun: 08:30–17:00",
         "Showers Available": true,
         "Atmosphere": "A multi-level club organised around studios, treatment and recovery rooms, a members’ lounge, café and terrace rather than a single workout room.",
