@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { AIRTABLE_REVALIDATE_SECONDS } from "@/lib/airtable";
+import { fetchAirtableJson } from "@/lib/airtable-request";
 import { cleanValue } from "@/lib/useful-values";
 
 type AirtableSelect = { name?: string };
@@ -54,20 +55,14 @@ const getSocialProfile = cache(async (slug: string): Promise<SocialProfile | nul
     filterByFormula: `{Slug}='${escapeFormulaValue(slug)}'`,
   });
 
-  const response = await fetch(
+  const payload = await fetchAirtableJson<{ records?: SocialRecord[] }>(
     `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`,
+    apiKey,
     {
-      headers: { Authorization: `Bearer ${apiKey}` },
-      next: {
-        revalidate: AIRTABLE_REVALIDATE_SECONDS,
-        tags: ["airtable-facilities"],
-      },
+      revalidate: AIRTABLE_REVALIDATE_SECONDS,
+      tags: ["airtable-facilities"],
     },
   );
-
-  if (!response.ok) return null;
-
-  const payload = (await response.json()) as { records?: SocialRecord[] };
   const fields = payload.records?.[0]?.fields;
   if (!fields) return null;
 

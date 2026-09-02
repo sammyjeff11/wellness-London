@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { fetchAirtableJson } from "@/lib/airtable-request";
 import { safeImageUrl } from "@/lib/image-utils";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
@@ -479,23 +480,10 @@ async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
 
     const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
 
-    const response = await fetch(url, {
-      cache: "force-cache",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-      },
-      next: {
-        revalidate: AIRTABLE_REVALIDATE_SECONDS,
-        tags: ["airtable-facilities"],
-      },
+    const data = await fetchAirtableJson<AirtableResponse>(url, apiKey, {
+      revalidate: AIRTABLE_REVALIDATE_SECONDS,
+      tags: ["airtable-facilities"],
     });
-
-    if (!response.ok) {
-      console.error("Failed to fetch Airtable facilities", response.status, response.statusText);
-      return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
-    }
-
-    const data = (await response.json()) as AirtableResponse;
     records.push(...(data.records || []));
     offset = data.offset;
   } while (offset);
