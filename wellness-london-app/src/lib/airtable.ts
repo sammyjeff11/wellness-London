@@ -1,5 +1,5 @@
 import { cache } from "react";
-import { fetchAirtableJson } from "@/lib/airtable-request";
+import directorySnapshot from "@/data/generated/directory-snapshot.json";
 import { safeImageUrl } from "@/lib/image-utils";
 import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
 import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
@@ -103,7 +103,7 @@ type AirtableSelectValue = {
 
 type AirtableFieldValue = string | number | boolean | AirtableSelectValue | (string | number | boolean | AirtableSelectValue)[] | null | undefined;
 
-type AirtableRecord = {
+export type AirtableRecord = {
   id: string;
   fields: {
     Name?: string;
@@ -208,13 +208,6 @@ type AirtableRecord = {
     "Noindex Reason"?: AirtableFieldValue;
   };
 };
-
-type AirtableResponse = {
-  records?: AirtableRecord[];
-  offset?: string;
-};
-
-export const AIRTABLE_REVALIDATE_SECONDS = 60 * 60 * 6;
 
 function normaliseFieldItem(value: Exclude<AirtableFieldValue, null | undefined | unknown[]>): string {
   if (value === false) return "";
@@ -458,37 +451,22 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   };
 }
 
-async function fetchFacilitiesFromAirtable(): Promise<AirtableFacility[]> {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
+const snapshotRecords = directorySnapshot.records as unknown as AirtableRecord[];
 
-  if (!apiKey || !baseId) {
-    console.warn("Airtable environment variables are missing. Falling back to no live records.");
-    return [];
-  }
-
-  const records: AirtableRecord[] = [];
-  let offset: string | undefined;
-
-  do {
-    const params = new URLSearchParams({ pageSize: "100" });
-
-    if (offset) {
-      params.set("offset", offset);
-    }
-
-    const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
-
-    const data = await fetchAirtableJson<AirtableResponse>(url, apiKey, {
-      revalidate: AIRTABLE_REVALIDATE_SECONDS,
-      tags: ["airtable-facilities"],
-    });
-    records.push(...(data.records || []));
-    offset = data.offset;
-  } while (offset);
-
-  return records.filter(isPublishedIndexableRecord).map(mapRecordToFacility);
+export function getDirectorySnapshotRecords() {
+  return snapshotRecords;
 }
 
-export const getFacilities = cache(fetchFacilitiesFromAirtable);
+async function loadPublishedFacilities(): Promise<AirtableFacility[]> {
+  const facilities = snapshotRecords
+    .filter(isPublishedIndexableRecord)
+    .map(mapRecordToFacility);
+
+  if (facilities.length === 0) {
+    throw new Error("The published directory snapshot is empty. Refusing to render venue pages.");
+  }
+
+  return facilities;
+}
+
+export const getFacilities = cache(loadPublishedFacilities);

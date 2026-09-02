@@ -1,6 +1,5 @@
 import { cache } from "react";
-import { AIRTABLE_REVALIDATE_SECONDS } from "@/lib/airtable";
-import { fetchAirtableJson } from "@/lib/airtable-request";
+import { getDirectorySnapshotRecords } from "@/lib/airtable";
 
 type AirtableSelect = { name?: string };
 type AirtableValue = string | AirtableSelect | AirtableSelect[] | string[] | null | undefined;
@@ -12,11 +11,6 @@ type SocialRecord = {
     "Community Features"?: AirtableValue;
     "Social & Community Note"?: string;
   };
-};
-
-type SocialResponse = {
-  records?: SocialRecord[];
-  offset?: string;
 };
 
 export type SocialWellnessProfile = {
@@ -40,29 +34,8 @@ function hasUsefulSocialSignal(profile: SocialWellnessProfile) {
 }
 
 export const getSocialWellnessProfiles = cache(async (): Promise<Map<string, SocialWellnessProfile>> => {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
-
-  if (!apiKey || !baseId) return new Map();
-
   const profiles = new Map<string, SocialWellnessProfile>();
-  let offset: string | undefined;
-
-  do {
-    const params = new URLSearchParams({ pageSize: "100" });
-    ["Slug", "Social Format", "Community Features", "Social & Community Note"].forEach((field) => params.append("fields[]", field));
-    if (offset) params.set("offset", offset);
-
-    const payload = await fetchAirtableJson<SocialResponse>(
-      `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`,
-      apiKey,
-      {
-        revalidate: AIRTABLE_REVALIDATE_SECONDS,
-        tags: ["airtable-facilities"],
-      },
-    );
-    (payload.records || []).forEach((record) => {
+  (getDirectorySnapshotRecords() as SocialRecord[]).forEach((record) => {
       const slug = record.fields?.Slug?.trim();
       if (!slug) return;
 
@@ -73,10 +46,7 @@ export const getSocialWellnessProfiles = cache(async (): Promise<Map<string, Soc
       };
 
       if (hasUsefulSocialSignal(profile)) profiles.set(slug, profile);
-    });
-
-    offset = payload.offset;
-  } while (offset);
+  });
 
   return profiles;
 });

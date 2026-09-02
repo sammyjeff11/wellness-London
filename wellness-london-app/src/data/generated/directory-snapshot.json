@@ -1,0 +1,3173 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-02T06:08:58.005Z",
+  "source": {
+    "base": "Wellness Listings",
+    "table": "Wellness London"
+  },
+  "records": [
+    {
+      "id": "recZqA4gDMSNixE5p",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Covent Garden",
+        "Description": "AIRE Ancient Baths London is an adults-only thermal-bathing experience set in a restored historic building near Covent Garden. The visit centres on moving through a sequence of warm, hot and cold baths, steam and flotation spaces, with massages and private rituals available as add-ons or packages. It is closer to an immersive bathing experience than a conventional treatment-led spa.",
+        "Editorial Summary": "Adults-only thermal-bath venue in Covent Garden with hot, warm, cold and saltwater pools, a steam room, massages and longer bathing rituals. Sessions are capacity-controlled and must be booked in advance.",
+        "Phone": "020 3830 4610",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "2-3 Robert St, London WC2N 6BH",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Advance booking is required and weekends can sell out. Arrive early and bring swimwear; towels, robe, footwear and toiletries are provided. The experience is adults-only and is not suitable during pregnancy.",
+        "Type of Experience": [
+          "Solo",
+          "Guided",
+          "Private Room",
+          "Couples"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Thermal Baths",
+          "Ice Bath & Cold Plunge",
+          "Steam Room",
+          "Massage"
+        ],
+        "Business Name": "AIRE Ancient Baths London",
+        "Instagram Link": "@aireancientbaths_uk",
+        "Services Offered": [
+          "Thermal Baths",
+          "Cold Plunge",
+          "Steam Room",
+          "Float Therapy",
+          "Massage Therapy",
+          "Wellness Ritual"
+        ],
+        "Primary Pillar": "Recovery & Performance",
+        "Access Type": "Public",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "aire-ancient-baths-london",
+        "Name": "AIRE Ancient Baths London",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Thermal Baths",
+          "Cold Plunge",
+          "Steam Room",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Couples",
+          "Luxury Seekers",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://beaire.com/en/aire-ancient-baths-london/",
+        "Opening Hours": "Mon–Sun: 09:00–23:00",
+        "Booking Link": "https://beaire.com/en/booking/London",
+        "Email": "london@beaire.com",
+        "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recnmutQHah66nbIe",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Soho",
+        "Description": "Akasha at Hotel Café Royal is a central London hotel wellness club combining a lap pool, Watsu pool, sauna, steam room, private hammam, treatment rooms, gym and studio classes. Public visitors can book treatments and spa-day experiences, while hotel guests and Akasha members have broader access routes. The value is in the breadth of facilities rather than a single headline treatment.",
+        "Editorial Summary": "Akasha sits beneath Hotel Café Royal and combines substantial pool and thermal facilities with spa treatments, personal training and movement classes. Public visitors can book treatments and spa-day packages; broader access also comes through hotel stays or membership.",
+        "Phone": "020 7406 3333",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation"
+        ],
+        "Address": "68 Regent Street, London W1B 4DY",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Treatments and spa-day experiences are publicly bookable, while broader pool, sauna, hammam, gym and class access depends on the package, hotel stay or membership held.",
+        "Type of Experience": [
+          "Solo",
+          "Couples",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Business Name": "Akasha Holistic Wellbeing",
+        "Instagram Link": "@hotelcaferoyal",
+        "Services Offered": [
+          "Hammam",
+          "Sauna",
+          "Steam Room",
+          "Jacuzzi",
+          "Lap Pool",
+          "Watsu Pool",
+          "Aromatherapy Massage",
+          "Facials",
+          "Yoga",
+          "Pilates",
+          "Meditation",
+          "Personal Training",
+          "Nutritional Therapy"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Hotel guests + public bookings",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "akasha-holistic-wellbeing-centre",
+        "Name": "Akasha Holistic Wellbeing Centre",
+        "Area of London": "Central London",
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Couples",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://www.hotelcaferoyal.com/wellness/",
+        "Opening Hours": "Mon–Sun: 07:15–21:00\nGym: open 24 hours",
+        "Booking Link": "https://www.hotelcaferoyal.com/wellness/",
+        "Email": "info@hotelcaferoyal.com",
+        "Venue Type Standardized": "Spa"
+      }
+    },
+    {
+      "id": "recoSo4CLsyBgrsOC",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Shoreditch",
+        "Description": "The Sanctuary is a Shoreditch social wellness club combining open and guided sauna and cold-plunge sessions with Reformer Pilates, hot yoga, strength classes, events and an on-site café.",
+        "Editorial Summary": "A Shoreditch social wellness club where sauna and cold plunge sit alongside guided sessions, movement classes and a café.",
+        "Phone": "+44 20 3504 2859",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social",
+          "Performance"
+        ],
+        "Address": "114-116 Cheshire St, London E2 6EJ, United Kingdom",
+        "Last Checked": "2026-08-05",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Open sauna, guided sauna and movement classes follow separate timetables. Public class packs and memberships are available; check the live schedule for the booking format and current inclusions.",
+        "Type of Experience": [
+          "Guided",
+          "Group",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "&Soul",
+        "Atmosphere": "Social and contemporary, with recovery, movement, events and café time designed to work as one longer visit.",
+        "Google Review Count": 207,
+        "Instagram Link": "@andsoulsanctuary",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Yoga",
+          "Pilates",
+          "Sound Bath"
+        ],
+        "Price From": 18,
+        "Social & Community Note": "The Sanctuary is built around shared and guided activity rather than only individual treatments. Open and guided sauna/cold-plunge sessions sit alongside Reformer Pilates, hot yoga, strength classes, events and a café, giving people several reasons to return and interact beyond a single recovery session.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Guided / Group",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Movement",
+          "Social wellness"
+        ],
+        "Primary Service": "Contrast Therapy",
+        "Slug": "and-soul-shoreditch",
+        "Name": "The Sanctuary — Shoreditch",
+        "Well Suited For": [
+          "Social recovery",
+          "Beginners",
+          "Post-work reset",
+          "Group sessions"
+        ],
+        "Editorial Verdict": "Best for people who want sauna and cold plunge as part of a broader social wellness experience, rather than a purely private recovery session.",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Recurring group sessions",
+          "Communal sauna",
+          "Guided contrast",
+          "Events",
+          "Cafe / social space",
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.6/5 (207 reviews)",
+        "Website": "https://andsoulsanctuary.com/",
+        "Opening Hours": "Mon–Fri: 07:00–22:00\nSat–Sun: 08:45–22:00",
+        "Booking Link": "https://andsoulsanctuary.com/book-now",
+        "Email": "sanctuary@andsoul.com",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recpPMY7y6zLGM8ok",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Images": [
+          {
+            "id": "attXWRmQNFJKSV7QM",
+            "url": "/venues/arc-canary-wharf/attXWRmQNFJKSV7QM.webp",
+            "filename": "Cold Plunge 2.webp"
+          },
+          {
+            "id": "attXulFQclI334Lgj",
+            "url": "/venues/arc-canary-wharf/attXulFQclI334Lgj.webp",
+            "filename": "Venue 2.webp"
+          },
+          {
+            "id": "attHtJhjKvJbZ5UsR",
+            "url": "/venues/arc-canary-wharf/attHtJhjKvJbZ5UsR.webp",
+            "filename": "Venue 3.webp"
+          },
+          {
+            "id": "attrIhZLvAYKXFH9w",
+            "url": "/venues/arc-canary-wharf/attrIhZLvAYKXFH9w.jpg",
+            "filename": "Sauna 3.jpg"
+          },
+          {
+            "id": "attTAWvikBSMQxvpx",
+            "url": "/venues/arc-canary-wharf/attTAWvikBSMQxvpx.webp",
+            "filename": "Venue.webp"
+          },
+          {
+            "id": "attqkdeGyavAmdcDi",
+            "url": "/venues/arc-canary-wharf/attqkdeGyavAmdcDi.webp",
+            "filename": "Sauna Experience 2.webp"
+          },
+          {
+            "id": "att9k5vrrHHimRwWn",
+            "url": "/venues/arc-canary-wharf/att9k5vrrHHimRwWn.webp",
+            "filename": "Sauna.webp"
+          },
+          {
+            "id": "attNyPuuB2d5u19jv",
+            "url": "/venues/arc-canary-wharf/attNyPuuB2d5u19jv.webp",
+            "filename": "Cold Plunge 3.webp"
+          }
+        ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Arc Canary Wharf is a communal contrast-therapy space with social connection built into the experience. The core offer is a large shared sauna and ice baths, with Guided Classes, Free Flow sessions and dedicated evening socials. Arc After Dark turns contrast therapy into a social event with DJs, guided ice baths, immersive sound and aromatherapy, while the Connect Lounge gives people a place to pause, hydrate and spend time together before or after sessions. Arc also runs workshops and community events, so it is designed to be more than a place to complete a sauna-and-plunge circuit and leave.",
+        "Editorial Summary": "Arc is London's first communal contrast therapy club, offering a unique blend of sauna and ice bath experiences designed to promote physical and mental well-being. Located in Canary Wharf, Arc provides guided and self-guided sessions that combine traditional wellness practices with modern social connection.",
+        "Phone": "020 3835 8808",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "Unit 46, Minus Level, 1 Crossrail Place, Canary Wharf, London E14 5AR",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Public booking. Choose between guided and self-directed formats in the live timetable. The sauna and ice baths are communal, so expect a shared session rather than a private room.",
+        "Type of Experience": [
+          "Group",
+          "Guided",
+          "Self-Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Arc",
+        "Instagram Link": "@arccommunity_",
+        "Services Offered": [
+          "Breathwork",
+          "Meditation",
+          "Aromatherapy",
+          "Sound Therapy",
+          "Guided Classes",
+          "Free Flow Sessions",
+          "Evening Socials",
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Social & Community Note": "Community and social connection are a major part of Arc's proposition, not just a by-product of the shared sauna. Alongside Guided Classes and Free Flow, Arc runs evening socials such as Arc After Dark and 'sweat and connect' sessions, as well as workshops and other community events. The 60-person communal sauna and dedicated Connect Lounge are designed to create space for conversation and time together around the contrast-therapy session. Public single sessions, packs and memberships are available; this is not a selective private members' club.",
+        "Primary Pillar": "Recovery & Performance",
+        "Cover Image": [
+          {
+            "id": "attARQ3xqmEjHAYOq",
+            "url": "/venues/arc-canary-wharf/attARQ3xqmEjHAYOq.jpg",
+            "filename": "Sauna.jpg"
+          }
+        ],
+        "Access Type": "Public",
+        "Brand / Operator": "Arc",
+        "Slug": "arc-canary-wharf",
+        "Name": "Arc",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Recurring group sessions",
+          "Communal sauna",
+          "Guided contrast",
+          "Events",
+          "Cafe / social space"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://www.arc-community.com/canary-wharf",
+        "Opening Hours": "Mon–Fri: 06:00–21:00  \nSat–Sun: 09:00–15:00\n",
+        "Booking Link": "https://www.arc-community.com/canary-wharf",
+        "Email": "hello@arc-community.com",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recktLjPxSLzeqKNb",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Images": [
+          {
+            "id": "attc5KzuujHFOrHRS",
+            "url": "/venues/bxr-lab/attc5KzuujHFOrHRS.jpg",
+            "filename": "Gym 2.jpg"
+          },
+          {
+            "id": "attvWByMip2LbIRzQ",
+            "url": "/venues/bxr-lab/attvWByMip2LbIRzQ.jpg",
+            "filename": "Gym.jpg"
+          },
+          {
+            "id": "attIY2clOU3c5nfNr",
+            "url": "/venues/bxr-lab/attIY2clOU3c5nfNr.jpg",
+            "filename": "Sauna 1.jpg"
+          },
+          {
+            "id": "attts7wKCTJhO9kYq",
+            "url": "/venues/bxr-lab/attts7wKCTJhO9kYq.jpg",
+            "filename": "Sauna 2.jpg"
+          },
+          {
+            "id": "attbfp1FLjoJIUArG",
+            "url": "/venues/bxr-lab/attbfp1FLjoJIUArG.jpg",
+            "filename": "Venue 2.jpg"
+          },
+          {
+            "id": "att9z0vLraDRnJUYa",
+            "url": "/venues/bxr-lab/att9z0vLraDRnJUYa.jpg",
+            "filename": "Wellness.jpg"
+          }
+        ],
+        "Neighborhood": "Marylebone",
+        "Description": "BXR LAB is the recovery and treatment space attached to BXR's Marylebone fitness club. The LAB offer is centred on short, bookable recovery appointments such as infrared sauna and cold plunge, alongside steam, massage and body treatments. It is useful for someone who wants a focused recovery session without necessarily joining the wider BXR club.",
+        "Editorial Summary": "A performance-led Marylebone recovery space with infrared sauna, cold plunge, steam and bookable body treatments.",
+        "Phone": "020 3146 3436",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Luxury"
+        ],
+        "Address": "24 Paddington Street, Marylebone, London W1U 5QY",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. LAB appointments can be booked separately from the wider club membership. Choose the live session length and treatment during booking; access to other BXR facilities should not be assumed unless included.",
+        "Type of Experience": [
+          "Solo",
+          "Private Room",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Infrared Sauna",
+          "Ice Bath & Cold Plunge",
+          "Steam Room",
+          "Massage"
+        ],
+        "Business Name": "BXR Recovery",
+        "Instagram Link": "@bxrlondon",
+        "Services Offered": [
+          "Infrared Sauna",
+          "Cold Plunge"
+        ],
+        "Primary Pillar": "Recovery & Performance",
+        "Cover Image": [
+          {
+            "id": "attT3Kc4JMdxnBktt",
+            "url": "/venues/bxr-lab/attT3Kc4JMdxnBktt.jpg",
+            "filename": "Venue 1.jpg"
+          }
+        ],
+        "Access Type": "Public",
+        "Primary Service": "Infrared Sauna",
+        "Slug": "bxr-lab",
+        "Name": "BXR LAB",
+        "Secondary Services": [
+          "Cold Plunge",
+          "Massage"
+        ],
+        "Area of London": "Central London",
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Infrared Sauna",
+          "Cold Plunge"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Post-Workout Recovery",
+          "Luxury Seekers"
+        ],
+        "Google Rating": "4.7/5 (100+ reviews)",
+        "Website": "https://www.bxrlondon.com/lab",
+        "Opening Hours": "Mon–Fri: 06:15–22:00  \nSat: 08:00–20:00  \nSun: 08:00–18:00\n",
+        "Booking Link": "https://bxrlondon.com/lab",
+        "Email": "marylebone@bxrlondon.com",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recoBaqRpQ6PsqySB",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Mayfair",
+        "Description": "Claridge's Spa is the Mayfair hotel's treatment and wellness space, with seven treatment rooms, sauna and steam facilities, a relaxation pool, fitness studio and a rotating programme of resident and visiting practitioners. The experience is treatment-led and hotel-based rather than a public leisure club, with facility access depending on the booking route.",
+        "Editorial Summary": "Claridge’s Spa combines hotel-spa facilities with restorative treatments, specialist residencies and a distinctive relaxation pool in a central Mayfair setting.",
+        "Phone": "+44 20 7409 6565",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "Brook Street, Mayfair, London W1K 4HR",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Treatments can be booked directly, but pool, sauna, steam and other hotel facilities may depend on the treatment, package or hotel stay selected. Check the exact inclusion before booking.",
+        "Type of Experience": [
+          "Solo",
+          "Couples",
+          "Guided",
+          "Luxury",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Business Name": "Claridge’s Spa",
+        "Atmosphere": "Quiet, highly polished and intimate, designed around restorative treatment and luxury hospitality rather than high-volume spa access.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Lap Pool",
+          "Spa",
+          "Massage",
+          "Facials",
+          "Holistic Treatments"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Guided / Group",
+        "Access Type": "Hotel guests + public bookings",
+        "Best For": [
+          "Luxury experience",
+          "Couples",
+          "Quiet recovery",
+          "Visitors to London"
+        ],
+        "Brand / Operator": "Claridge’s / Maybourne",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "claridges-spa",
+        "Name": "Claridge’s Spa",
+        "Well Suited For": [
+          "Luxury wellness",
+          "Spa experience",
+          "Couples wellness",
+          "Quiet reset"
+        ],
+        "Editorial Verdict": "A well-known Mayfair option with publicly bookable treatments; confirm whether the chosen treatment or package includes access to the pool and thermal facilities.",
+        "Area of London": "Central London",
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Couples",
+          "Solo Recovery",
+          "Stress Relief"
+        ],
+        "Website": "https://www.maybourne.com/en/hotels/claridges/claridges-spa",
+        "Opening Hours": "Mon–Sun: 08:00–21:00",
+        "Booking Link": "https://www.maybourne.com/en/hotels/claridges/claridges-spa",
+        "Email": "spa@claridges.co.uk",
+        "Venue Type Standardized": "Spa"
+      }
+    },
+    {
+      "id": "recyo9bzr2fSQrOH7",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Longevity Treatments"
+        ],
+        "Images": [
+          {
+            "id": "attroyyOME26ucmen",
+            "url": "/venues/cloud-twelve/attroyyOME26ucmen.png",
+            "filename": "Venue.png"
+          },
+          {
+            "id": "attyxLp4ZCEuG7HSn",
+            "url": "/venues/cloud-twelve/attyxLp4ZCEuG7HSn.png",
+            "filename": "Venue 2.png"
+          },
+          {
+            "id": "attLzRoYJUh4Op8vb",
+            "url": "/venues/cloud-twelve/attLzRoYJUh4Op8vb.png",
+            "filename": "Venue 3.png"
+          },
+          {
+            "id": "att9iXheWCSkYF7JU",
+            "url": "/venues/cloud-twelve/att9iXheWCSkYF7JU.jpg",
+            "filename": "Venue 4.jpg"
+          },
+          {
+            "id": "attbyuuGcjVnpibkv",
+            "url": "/venues/cloud-twelve/attbyuuGcjVnpibkv.jpg",
+            "filename": "Spa Area 2.jpg"
+          },
+          {
+            "id": "attm6yVWBOVFqBySa",
+            "url": "/venues/cloud-twelve/attm6yVWBOVFqBySa.jpg",
+            "filename": "Spa Area.jpg"
+          },
+          {
+            "id": "attTfqouKLMIFu9GD",
+            "url": "/venues/cloud-twelve/attTfqouKLMIFu9GD.png",
+            "filename": "Red Light Therepy.png"
+          },
+          {
+            "id": "attG6Fsj9VKJHFYGc",
+            "url": "/venues/cloud-twelve/attG6Fsj9VKJHFYGc.png",
+            "filename": "Red Light Therepy 2.png"
+          },
+          {
+            "id": "attI3Jr2G2zv05nus",
+            "url": "/venues/cloud-twelve/attI3Jr2G2zv05nus.jpg",
+            "filename": "Full Body Far Infrared Treatment.jpg"
+          },
+          {
+            "id": "att05YrbUoYkihg76",
+            "url": "/venues/cloud-twelve/att05YrbUoYkihg76.jpg",
+            "filename": "Lymphatic Compression Therapy.jpg"
+          }
+        ],
+        "Neighborhood": "Notting Hill",
+        "Description": "Cloud Twelve is a Notting Hill wellness club and clinic combining a thermal spa with treatment, medical and bio-hacking services. The shared spa side includes infrared and rose saunas, steam, Himalayan salt room and ice bath, while the clinical and longevity offer extends into diagnostics, IV therapies, acupuncture, nutrition, aesthetics and other one-to-one services. Public visitors can book spa visits and treatments without becoming members.",
+        "Editorial Summary": "Three-floor Notting Hill club with a public-booking spa, wellness clinic, salon and family facilities. The spa includes infrared and rose saunas, steam room, salt room and cold plunge, while clinic services range from IV infusions and acupuncture to nutrition and psychotherapy.",
+        "Phone": "020 3301 1012",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "2-5 Colville Mews, Notting Hill, London W11 2DA",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Spa visits and treatments can be booked directly without membership; membership is for ongoing club access and benefits. The thermal facilities are shared, while many clinic and bio-hacking services are individual appointments.",
+        "Type of Experience": [
+          "Solo",
+          "Private Room",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Massage",
+          "IV Therapy"
+        ],
+        "Business Name": "Cloud Twelve",
+        "Instagram Link": "@cloudtwelveclub",
+        "Services Offered": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Rose Sauna",
+          "Himalayan Salt Room",
+          "Sound Therapy",
+          "Massages",
+          "Facials",
+          "Head Spa",
+          "IV Infusions",
+          "Acupuncture",
+          "Colonic Hydrotherapy",
+          "Herbal Medicine",
+          "Naturopathic Nutrition",
+          "Aesthetics",
+          "Psychotherapy",
+          "Trichology",
+          "Cold Plunge"
+        ],
+        "Social & Community Note": "Cloud Twelve combines publicly bookable spa and treatment visits with an ongoing membership model. Thermal facilities such as sauna, steam, salt room and ice bath are shared, while many clinical, treatment and bio-hacking services are individual appointments.",
+        "Primary Pillar": "Wellness Clubs",
+        "Cover Image": [
+          {
+            "id": "attGv2fWz3nlUMnN2",
+            "url": "/venues/cloud-twelve/attGv2fWz3nlUMnN2.png",
+            "filename": "Venue.png"
+          }
+        ],
+        "Access Type": "Public",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "cloud-twelve",
+        "Name": "Cloud Twelve",
+        "Area of London": "West London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Massage",
+          "IV Therapy"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Stress Relief",
+          "Couples"
+        ],
+        "Google Rating": "4.5/5 (23+ reviews)",
+        "Website": "https://www.cloudtwelve.co.uk/",
+        "Opening Hours": "Mon–Wed: 09:00–19:00\nThu: 09:00–20:00\nFri–Sat: 09:00–19:00\nSun: 09:00–18:00\n",
+        "Booking Link": "https://www.cloudtwelve.co.uk/spa",
+        "Email": "hello@cloudtwelve.co.uk",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "rec6z7q7qJA8ErbJ9",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Camberwell",
+        "Description": "Community Sauna Baths Camberwell is part of a not-for-profit community-sauna network focused on affordable, accessible shared bathing. The Ruskin Park site combines communal saunas and cold plunges with the operator's wider programme of community sessions, events and outreach. It is better understood as a local community wellness space than simply an outdoor sauna facility.",
+        "Editorial Summary": "A Ruskin Park sauna-and-plunge site with three saunas, four temperature-graded cold plunges and accessible facilities.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "Ruskin Park, Denmark Hill, London SE5 8EL, United Kingdom",
+        "Last Checked": "2026-08-05",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Standard sessions start from £9.50, with lower concession pricing for eligible visitors. After the park closes, use Denmark Hill Gate; the last session begins at 20:00.",
+        "Type of Experience": [
+          "Recovery",
+          "Wellness",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Community Sauna Baths",
+        "Atmosphere": "Parkside, communal and informal, with sunset views and a more spacious outdoor feel than a studio-based contrast venue.",
+        "Google Review Count": 145,
+        "Instagram Link": "@communitysaunabaths",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Price From": 9.5,
+        "Social & Community Note": "The social element at Camberwell goes beyond sharing a sauna. Community Sauna Baths runs community-focused sessions, events and outreach across its London network, including work with local groups and social-prescribing routes. The communal sauna and plunge format supports repeat local use, while the live timetable determines which organised sessions are running at Camberwell itself.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "First-timers",
+          "Cold exposure users",
+          "Community wellness",
+          "South London locals"
+        ],
+        "Brand / Operator": "Community Sauna Baths",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "community-sauna-baths-camberwell",
+        "Name": "Community Sauna Baths Camberwell",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Well Suited For": [
+          "Sauna",
+          "Cold exposure",
+          "Community wellness",
+          "South London convenience"
+        ],
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Events",
+          "Recurring group sessions"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.7/5 (145 reviews)",
+        "Website": "https://www.community-sauna.co.uk/locations/camberwell",
+        "Opening Hours": "Mon: 07:00–21:30\nTue: 18:00–21:30\nWed: 07:00–21:30\nThu: 07:00–21:30\nFri: 07:00–21:30\nSat: 07:00–21:30\nSun: 07:00–21:30\nLast session: 20:00",
+        "Booking Link": "https://www.community-sauna.co.uk/book",
+        "Email": "support@community-sauna.co.uk",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recqCDh4cTm62CInh",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Hackney Wick",
+        "Description": "Community Sauna Baths Hackney Wick is the operator's flagship community-sauna site, with multiple shared saunas and cold plunges alongside a programme designed to bring people back regularly rather than treat sauna as a one-off appointment. In addition to normal public sessions, the site hosts recurring community sessions and events, including formats created for specific groups, making the social programme a meaningful part of the venue rather than just a consequence of communal bathing.",
+        "Editorial Summary": "A community-led Hackney Wick venue offering Finnish-style sauna, cold plunge and showers in an outdoor, social setting.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "Eastway Baths, 80 Eastway, London E9 5JH",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Community sauna and cold-plunge sessions in Hackney Wick. Book ahead and check the live session listing for current prices, towel policy and accessibility details.",
+        "Type of Experience": [
+          "Recovery",
+          "Wellness",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Hackney Wick Sauna Baths",
+        "Atmosphere": "Communal, outdoor and energetic. More community bathhouse than luxury wellness club, which gives it strong editorial colour.",
+        "Google Review Count": 707,
+        "Instagram Link": "@communitysaunabaths",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Price From": 9,
+        "Social & Community Note": "Hackney Wick has one of the clearest community programmes in the directory. Alongside public sauna sessions, Community Sauna Baths runs recurring sessions such as Trans Sauna, Mamma Swim and 50+ Women's Sauna, as well as wider events and community programming. The operator also works with local organisations and social-prescribing routes. This is a venue where community activity is part of the product, not simply people sharing the same sauna.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "First-timers",
+          "Recovery-focused users",
+          "Community wellness",
+          "Cold exposure users"
+        ],
+        "Brand / Operator": "Community Sauna Baths",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "community-sauna-baths-hackney-wick",
+        "Name": "Community Sauna Baths Hackney Wick",
+        "Well Suited For": [
+          "East London convenience",
+          "Sauna",
+          "Cold exposure",
+          "Social wellness"
+        ],
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Events",
+          "Recurring group sessions"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (707 reviews)",
+        "Website": "https://www.community-sauna.co.uk/locations/hackneywick",
+        "Opening Hours": "Mon: 18:00–21:30\nTue: 07:00–21:30\nWed: 07:00–21:30\nThu: 07:00–21:30\nFri: 07:00–21:30\nSat: 07:00–21:30\nSun: 07:00–21:30",
+        "Booking Link": "https://www.community-sauna.co.uk/book",
+        "Email": "support@community-sauna.co.uk",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recElhMVMCnwQA9sM",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Peckham",
+        "Description": "Community Sauna Baths Peckham is the operator's simpler off-grid site at Glengall Wharf Community Garden, with two shared wood-fired saunas and a refreshing shower rather than cold plunges. It still sits within the same not-for-profit community-sauna model, where affordable access, shared bathing and organised community activity are central to the wider proposition.",
+        "Editorial Summary": "An affordable off-grid Peckham sauna with two wood-fired cabins, a cold shower and no plunge pools, set inside Glengall Wharf Community Garden.",
+        "Theme Tags Standardized": [
+          "Community",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "64 Glengall Road, London SE15 6NF, United Kingdom",
+        "Last Checked": "2026-08-05",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Sessions run Friday to Sunday and cost £8 for 75 minutes. The site has no cold plunge, and its simple off-grid setup is reflected in the lower ticket price.",
+        "Type of Experience": [
+          "Recovery",
+          "Wellness",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna"
+        ],
+        "Business Name": "Community Sauna Baths",
+        "Atmosphere": "Calm, green and tucked away inside a community garden; simpler and more rustic than the operator's larger sauna-and-plunge sites.",
+        "Google Review Count": 27,
+        "Instagram Link": "@communitysaunabaths",
+        "Services Offered": [
+          "Sauna"
+        ],
+        "Price From": 8,
+        "Social & Community Note": "Peckham's facilities are simpler, but the venue is still part of Community Sauna Baths' wider community-led network. The organisation runs events, outreach and community sessions across London, while this site places a shared wood-fired sauna within a community-garden setting. Check the live programme for events specific to Peckham.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "First-timers",
+          "Community wellness",
+          "Budget-conscious users",
+          "South London locals"
+        ],
+        "Brand / Operator": "Community Sauna Baths",
+        "Primary Service": "Sauna",
+        "Slug": "community-sauna-baths-peckham",
+        "Name": "Community Sauna Baths Peckham",
+        "Well Suited For": [
+          "Sauna",
+          "Community wellness",
+          "Budget-friendly recovery",
+          "South London convenience"
+        ],
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Events",
+          "Recurring group sessions"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.5/5 (27 reviews)",
+        "Website": "https://www.community-sauna.co.uk/locations/peckham",
+        "Opening Hours": "Mon: Closed\nTue: Closed\nWed: Closed\nThu: Closed\nFri: 09:00–20:45\nSat: 09:00–20:45\nSun: 09:00–20:45",
+        "Booking Link": "https://www.community-sauna.co.uk/book",
+        "Email": "support@community-sauna.co.uk",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recwwZnbfhnbyLyt8",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Stratford",
+        "Description": "Community Sauna Baths Stratford is a public East London sauna and cold-plunge site within a wider not-for-profit community-sauna network. Three shared saunas and three plunges provide the core experience, while the operator's broader model includes community sessions, events, outreach and lower-cost access initiatives. That makes the venue more than a simple pay-per-session sauna, even though the exact organised programme varies by location and date.",
+        "Editorial Summary": "A community-led Stratford venue for outdoor sauna, cold plunge and social contrast-therapy sessions.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "Penny Brookes Street, London E20 1BL",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Public community-sauna sessions in East Village, Stratford. Check the live booking page for current session times, prices and inclusions before travelling.",
+        "Type of Experience": [
+          "Recovery",
+          "Wellness",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Community Sauna Baths",
+        "Atmosphere": "Accessible, community-led and outdoor sauna/cold-water recovery energy in East London.",
+        "Google Review Count": 196,
+        "Instagram Link": "@communitysaunabaths",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Price From": 9,
+        "Social & Community Note": "Stratford sits within Community Sauna Baths' wider community-led model. The organisation runs events, community sessions, outreach and social-prescribing routes across its London network, while the Stratford venue provides a shared local setting for regular sauna and cold-plunge use. Check the live timetable for organised sessions at this site rather than assuming every network event runs here.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "First-timers",
+          "Cold exposure users",
+          "Community wellness",
+          "East London locals"
+        ],
+        "Brand / Operator": "Community Sauna Baths",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "community-sauna-baths-stratford",
+        "Name": "Community Sauna Baths Stratford",
+        "Well Suited For": [
+          "Sauna",
+          "Cold exposure",
+          "Community wellness",
+          "East London convenience"
+        ],
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Events",
+          "Recurring group sessions"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (196 reviews)",
+        "Website": "https://www.community-sauna.co.uk/stratford-sauna",
+        "Opening Hours": "Mon: 07:00–21:30\nTue: 18:00–21:30\nWed: 07:00–21:30\nThu: 07:00–21:30\nFri: 07:00–21:30\nSat: 08:00–21:00\nSun: 08:00–21:00",
+        "Booking Link": "https://www.community-sauna.co.uk/book",
+        "Email": "support@community-sauna.co.uk",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "rec3jRJNXsfTQUnHS",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Walthamstow",
+        "Description": "Community Sauna Baths Walthamstow is part of a not-for-profit community-sauna network built around affordable, accessible shared bathing rather than private wellness appointments. The Walthamstow site combines communal saunas and cold plunges with the wider operator's programme of community sessions, events and outreach. The emphasis is not simply on using a sauna alongside other people, but on creating a repeat local space where people can meet through sauna and cold-water bathing.",
+        "Editorial Summary": "A large community sauna site in Walthamstow with four saunas, four cold plunges, accessible facilities and bookable social heat-and-cold sessions.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "47 Sutherland Rd, London E17 6BH, United Kingdom",
+        "Last Checked": "2026-08-05",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Standard sessions start from £9.50, with lower concession pricing for eligible visitors. The last session begins at 20:00, and street parking is limited.",
+        "Type of Experience": [
+          "Recovery",
+          "Wellness",
+          "Social"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Community Sauna Baths",
+        "Atmosphere": "Social and outdoors, with a community garden and firepit alongside a larger sauna-and-plunge setup than the operator's smaller sites.",
+        "Google Review Count": 153,
+        "Instagram Link": "@communitysaunabaths",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Price From": 9.5,
+        "Social & Community Note": "Community is part of the operating model at Community Sauna Baths. Alongside normal public sessions, the organisation runs community-focused sessions, events and outreach across its London network, including work with local groups and social-prescribing routes. Walthamstow's shared saunas and plunges give that wider programme a physical setting for repeat local use. Check the live timetable for events running at this specific site.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "First-timers",
+          "Cold exposure users",
+          "Community wellness",
+          "North East London locals"
+        ],
+        "Brand / Operator": "Community Sauna Baths",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "community-sauna-baths-walthamstow",
+        "Name": "Community Sauna Baths Walthamstow",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Well Suited For": [
+          "Sauna",
+          "Cold exposure",
+          "Community wellness",
+          "North East London convenience"
+        ],
+        "Area of London": "North East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Events",
+          "Recurring group sessions"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.9/5 (153 reviews)",
+        "Website": "https://www.community-sauna.co.uk/walthamstow-sauna",
+        "Opening Hours": "Mon: 07:00–21:30\nTue: 07:00–21:30\nWed: 18:00–19:30; 20:00–21:30 FLINTA only\nThu: 07:00–21:30\nFri: 07:00–21:30\nSat: 07:00–21:30\nSun: 07:00–21:30\nLast session: 20:00",
+        "Booking Link": "https://www.community-sauna.co.uk/book",
+        "Email": "support@community-sauna.co.uk",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "rec2sAjcSv4F6thxG",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment",
+          "Individual tests",
+          "Ongoing clinical programme"
+        ],
+        "Activity Category": [
+          "Longevity",
+          "Recovery"
+        ],
+        "Clinic Model": "Comprehensive longevity clinic",
+        "Neighborhood": "Chelsea",
+        "Description": "Chelsea longevity and performance clinic offering physician-led programmes, diagnostic mapping, biological-age and genomic testing, metabolic, hormone, gut and immune assessments, IV and NAD+ therapies, HBOT, cryotherapy, red light therapy and ozone therapy.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "HUM2N combines clinician-led health assessment with recovery and performance services. It suits people looking for a broad, programme-based approach rather than a single test or treatment.",
+        "Phone": "+44 20 4579 7473",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical",
+          "Recovery",
+          "Biohacking"
+        ],
+        "Address": "35 Ixworth Place, London SW3 3QX, United Kingdom",
+        "Last Checked": "2026-07-14",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "HUM2N operates as a clinic rather than a traditional wellness studio. The service catalogue includes a 12-month physician-led longevity programme, diagnostic mapping, biological age/genomic assessments, metabolic and gut health testing, HBOT, whole-body cryotherapy, red light therapy, ozone therapy, IV infusions, NAD+ and performance-focused protocols. Advance consultation is recommended.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Diagnostics",
+          "HBOT",
+          "Cryotherapy",
+          "Red Light Therapy",
+          "IV Therapy"
+        ],
+        "Business Name": "HUM2N",
+        "Google Review Count": 96,
+        "Instagram Link": "https://www.instagram.com/hum2n",
+        "Services Offered": [
+          "Longevity Testing",
+          "Diagnostics",
+          "Blood Testing",
+          "Hyperbaric Oxygen Therapy",
+          "Whole Body Cryotherapy",
+          "Red Light Therapy",
+          "IV Therapy",
+          "NAD+ Therapy",
+          "Ozone Therapy",
+          "Genomic Testing",
+          "Hormone Testing",
+          "Gut Health Testing",
+          "Health Optimisation",
+          "Recovery Therapy"
+        ],
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
+        "Access Type": "Public",
+        "Best For": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Confirmed Diagnostics": [
+          "Blood Biomarkers",
+          "Hormone Testing",
+          "Microbiome / Gut Health Testing",
+          "VO₂ Max Testing"
+        ],
+        "Brand / Operator": "HUM2N",
+        "Primary Service": "Other",
+        "Slug": "hum2n",
+        "Name": "HUM2N",
+        "Well Suited For": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Editorial Verdict": "One of the directory’s broadest clinic-led listings, covering diagnostics, preventative health, cellular therapies and performance support in one location.",
+        "Area of London": "West London",
+        "Results Included": [
+          "Doctor consultation",
+          "Personalised plan"
+        ],
+        "Access Model": "Public / pay as you go",
+        "Activity Tags Standardized": [
+          "Longevity Testing",
+          "Diagnostics",
+          "Blood Testing",
+          "Hyperbaric Oxygen Therapy",
+          "Cryotherapy",
+          "Red Light Therapy",
+          "IV Therapy",
+          "NAD+ Therapy",
+          "Ozone Therapy",
+          "Genomic Testing",
+          "Hormone Testing",
+          "Gut Health Testing",
+          "Health Optimisation",
+          "Recovery Therapy"
+        ],
+        "Service Last Verified": "2026-08-04",
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health",
+          "Executive Health",
+          "Biohackers",
+          "Athletes"
+        ],
+        "Google Rating": "4.8/5 (96 reviews)",
+        "Website": "https://www.hum2n.com",
+        "Opening Hours": "Monday: 9:00am–6:30pm\nTuesday: 9:00am–6:30pm\nWednesday: 9:00am–6:30pm\nThursday: 9:00am–6:30pm\nFriday: 9:00am–6:30pm\nSaturday: 10:00am–6:00pm\nSunday: Closed",
+        "Booking Link": "https://www.hum2n.com/free-discovery-call",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "recjYdVJ9aerbjfy8",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Islington",
+        "Description": "An accessible public spa inside a Grade II listed Islington leisure centre, centred on traditional Turkish baths, sauna and relaxation facilities, with pay-as-you-go, day-pass and membership routes.",
+        "Editorial Summary": "Ironmonger Row Baths provides one of central London’s more accessible traditional bathing experiences, combining Turkish baths and sauna with public leisure-centre pricing and facilities.",
+        "Phone": "+44 20 3642 5520",
+        "Theme Tags Standardized": [
+          "Community",
+          "Relaxation"
+        ],
+        "Address": "1 Norman Street, Islington, London EC1V 3AA",
+        "Last Checked": "2026-08-04",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Different facilities have different timetables. Check the Spa Experience schedule before travel; the official page also identifies a women-only Tuesday morning session.",
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Business Name": "Ironmonger Row Baths",
+        "Atmosphere": "Historic and functional rather than hotel-luxury, with a community leisure-centre setting and traditional bathing focus.",
+        "Services Offered": [
+          "Sauna",
+          "Steam",
+          "Spa"
+        ],
+        "Social & Community Note": "Ironmonger Row offers a shared public-spa format through casual bookings, day passes and memberships. The communal Turkish-bath and sauna setup is the relevant social feature; it is not a private members' club.",
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Budget-conscious users",
+          "Community wellness",
+          "Solo reset",
+          "First-timers"
+        ],
+        "Brand / Operator": "Better / GLL",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "ironmonger-row-baths-spa-experience",
+        "Name": "Ironmonger Row Baths — Spa Experience",
+        "Well Suited For": [
+          "Budget-friendly recovery",
+          "Community wellness",
+          "Heat therapy",
+          "Central London convenience"
+        ],
+        "Editorial Verdict": "A public, comparatively affordable place to use traditional Turkish baths and sauna in a Grade II listed leisure centre.",
+        "Area of London": "North London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Solo Recovery",
+          "Stress Relief"
+        ],
+        "Website": "https://www.better.org.uk/leisure-centre/london/islington/ironmonger-row-baths",
+        "Opening Hours": "Mon: 12:00–20:00\nTue–Fri: 10:00–20:00\nSat–Sun: 09:00–19:30\nWomen-only session: Tue 10:00–12:00",
+        "Booking Link": "https://www.better.org.uk/leisure-centre/london/islington/ironmonger-row-baths",
+        "Email": "ironmongerrowbaths@gll.org",
+        "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recFLdTyVMdgWxP3x",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Chelsea",
+        "Description": "KXU is a Chelsea fitness and wellness club with open-gym access, coach-led classes, personal training and a medi-spa treatment offer. Unlike a traditional private members' club, it is a commercial fitness venue with straightforward paid access routes. The strongest reason to choose it is the ability to combine training, classes and recovery or treatment appointments in one central Chelsea location.",
+        "Editorial Summary": "A pay-as-you-go Chelsea fitness and wellness club offering classes, personal training, massage, spa treatments and a cryotherapy chamber.",
+        "Phone": "+44 20 3948 3840",
+        "Theme Tags Standardized": [
+          "Performance",
+          "Luxury",
+          "Recovery"
+        ],
+        "Address": "241 Pavilion Rd, London SW1X 0BP, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Public paid access rather than selective private-club membership. Classes, open gym and treatments are booked separately; check the live timetable and treatment menu because availability varies by service.",
+        "Type of Experience": [
+          "Fitness",
+          "Recovery",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Massage"
+        ],
+        "Business Name": "KXU",
+        "Atmosphere": "Chelsea boutique fitness/wellness energy. Premium and polished, but not clearly a current specialist recovery destination without further validation.",
+        "Google Review Count": 182,
+        "Services Offered": [
+          "Fitness",
+          "Spa",
+          "Massage",
+          "Wellness",
+          "Other"
+        ],
+        "Price From": 30,
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Fitness users",
+          "Recovery-focused users",
+          "Chelsea locals"
+        ],
+        "Brand / Operator": "KXU / KX",
+        "Primary Service": "Gym / Performance",
+        "Slug": "kxu-chelsea",
+        "Name": "KXU — Chelsea",
+        "Well Suited For": [
+          "Fitness recovery",
+          "Chelsea convenience",
+          "Premium fitness"
+        ],
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.2/5 (182 reviews)",
+        "Website": "https://www.kxu.co.uk/",
+        "Opening Hours": "Mon–Thu: 06:30–21:00\nFri: 06:30–20:00\nSat–Sun: 09:00–18:00",
+        "Booking Link": "https://www.kxu.co.uk/",
+        "Email": "hello@kxu.co.uk",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recwEszikqRweppB1",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment",
+          "Individual tests"
+        ],
+        "Showers Available": true,
+        "Activity Category": [
+          "Recovery Treatments",
+          "Longevity Treatments"
+        ],
+        "Clinic Model": "Comprehensive longevity clinic",
+        "Neighborhood": "Mayfair",
+        "Description": "Lanserhof at The Arts Club is a Mayfair preventative-health clinic offering general and functional medicine, health screening and MRI, musculoskeletal and sports medicine, physiotherapy, osteopathy, cardiology, sleep medicine and nutrition. Its treatment menu also includes cryotherapy, IV infusion therapy, NESA therapy, pain management and massage. Medical appointments do not require Arts Club membership; gym, personal training and studio classes are member services.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "A multidisciplinary Mayfair clinic combining preventative medicine, imaging and performance assessment with treatment and rehabilitation.",
+        "Phone": "+44 20 3967 6969",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "18 Dover St, London W1S 4LT, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Lanserhof's medical clinic is publicly bookable and Arts Club membership is not required for medical appointments. Gym access, personal training and studio classes such as yoga and Reformer Pilates are members' services and require the relevant club access.",
+        "Type of Experience": [
+          "Luxury",
+          "Performance",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Physiotherapy",
+          "Diagnostics"
+        ],
+        "Business Name": "Lanserhof",
+        "Atmosphere": "Clinical, elite and highly polished. More Mayfair medical-wellness club than accessible spa, with strong appeal to longevity and performance audiences.",
+        "Google Review Count": 35,
+        "Instagram Link": "@lanserhof_arts_club",
+        "Services Offered": [
+          "Health Screening",
+          "MRI / Medical Imaging",
+          "General Medicine",
+          "Functional Medicine",
+          "Women's Health",
+          "Musculoskeletal Medicine",
+          "Sports & Exercise Medicine",
+          "Cardiology",
+          "Sleep Medicine",
+          "Physiotherapy",
+          "Osteopathy",
+          "Pain Management",
+          "Nutrition",
+          "Cryotherapy",
+          "IV Therapy",
+          "Ozone Therapy",
+          "NESA Therapy",
+          "Massage",
+          "Personal Training",
+          "Reformer Pilates",
+          "Yoga"
+        ],
+        "Price From": 250,
+        "Social & Community Note": "The medical clinic and the private club should be treated as two different access routes. Medical appointments can be booked without Arts Club membership, while the gym, personal training and studio classes form part of the members' club offer.",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Towels Included": true,
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "High-performance users",
+          "Longevity / biohacking",
+          "Luxury wellness users",
+          "Executives"
+        ],
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "MRI / Medical Imaging"
+        ],
+        "Brand / Operator": "Lanserhof",
+        "Primary Service": "Wellness Club",
+        "Slug": "lanserhof-arts-club",
+        "Name": "Lanserhof at The Arts Club",
+        "Well Suited For": [
+          "Longevity / biohacking",
+          "Medical wellness",
+          "Performance recovery",
+          "Luxury wellness"
+        ],
+        "Area of London": "Central London",
+        "Results Included": [
+          "Personalised plan"
+        ],
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Physiotherapy",
+          "Diagnostics"
+        ],
+        "Service Last Verified": "2026-07-15",
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Athletes"
+        ],
+        "Google Rating": "4.3/5 (35 reviews)",
+        "Website": "https://lhtac.com/medical-facility/",
+        "Opening Hours": "Mon: 06:30–21:00\nTue: 06:30–21:00\nWed: 06:30–21:00\nThu: 06:30–21:00\nFri: 06:30–19:00\nSat: 09:00–17:00\nSun: 10:00–17:00",
+        "Booking Link": "https://lhtac.com/medical-facility/appointment/",
+        "Email": "reception@lhtac.com",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "recRb0rVY0wrbA3ys",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Cold Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "St John's Wood",
+        "Description": "London Cryo St John's Wood offers bookable recovery treatments including whole-body cryotherapy, infrared sauna, red light therapy, compression, HBOT, IV therapy and massage.",
+        "Editorial Summary": "A St John's Wood recovery studio offering cryotherapy alongside infrared sauna, red light, compression, HBOT and other bookable treatments.",
+        "Phone": "0203 371 8900 Ext. 3",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Biohacking"
+        ],
+        "Address": "82 St John's Wood High Street, London NW8 7SH",
+        "Last Checked": "2026-08-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The St John’s Wood clinic is publicly bookable, with walk-ins also welcomed by the venue. Booking ahead is the safer option if you want a specific treatment or time.",
+        "Type of Experience": [
+          "Recovery",
+          "Performance",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Business Name": "London Cryo",
+        "Atmosphere": "Clinical recovery rather than spa. Useful for users who already know they want cryotherapy, sports recovery or cold-treatment protocols.",
+        "Google Review Count": 88,
+        "Instagram Link": "@londoncryo",
+        "Services Offered": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Price From": 50,
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Athletes",
+          "Recovery-focused users",
+          "Biohackers",
+          "Cold therapy users"
+        ],
+        "Brand / Operator": "LondonCryo",
+        "Primary Service": "Cryotherapy",
+        "Slug": "london-cryo",
+        "Name": "London Cryo — St John's Wood",
+        "Secondary Services": [
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Well Suited For": [
+          "Cryotherapy",
+          "Post-workout recovery",
+          "Sports recovery",
+          "Biohacking"
+        ],
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Hyperbaric Oxygen Therapy",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Biohackers",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.6/5 (88 reviews)",
+        "Website": "https://londoncryo.com/",
+        "Opening Hours": "Mon-Fri: 10:00am-7:00pm\nSat-Sun: 10:00am-5:00pm",
+        "Booking Link": "https://www.londoncryo.com/book",
+        "Email": "stjohnswood@londoncryo.com",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "rec6bzLr4O7zLr0tw",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Cold Therapy",
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Images": [
+          {
+            "id": "attV3Rvclh0GnYLvx",
+            "url": "/venues/london-cryo-belgravia/attV3Rvclh0GnYLvx.jpg",
+            "filename": "Compression Therepy.jpg"
+          },
+          {
+            "id": "attsITyYTp7iedsyX",
+            "url": "/venues/london-cryo-belgravia/attsITyYTp7iedsyX.jpeg",
+            "filename": "CryoSlimming.jpeg"
+          },
+          {
+            "id": "attwxWMfXqXoZe4eE",
+            "url": "/venues/london-cryo-belgravia/attwxWMfXqXoZe4eE.jpeg",
+            "filename": "Cryotherepy 1.jpeg"
+          },
+          {
+            "id": "attRsGEvk0LFqzp1J",
+            "url": "/venues/london-cryo-belgravia/attRsGEvk0LFqzp1J.jpeg",
+            "filename": "Cryotherepy 2.jpeg"
+          },
+          {
+            "id": "attyWFpzxUWkWWSBY",
+            "url": "/venues/london-cryo-belgravia/attyWFpzxUWkWWSBY.jpg",
+            "filename": "Cryotherepy.jpg"
+          },
+          {
+            "id": "attfeoLI6YYOYwImj",
+            "url": "/venues/london-cryo-belgravia/attfeoLI6YYOYwImj.jpg",
+            "filename": "Hyperbaric Oxygen Therepy.jpg"
+          },
+          {
+            "id": "attRUWsyoQvEKIzxW",
+            "url": "/venues/london-cryo-belgravia/attRUWsyoQvEKIzxW.jpg",
+            "filename": "Infrared Sauna.jpg"
+          },
+          {
+            "id": "attcCrpKyCtrhtsPq",
+            "url": "/venues/london-cryo-belgravia/attcCrpKyCtrhtsPq.jpeg",
+            "filename": "IV Infussions .jpeg"
+          },
+          {
+            "id": "attUmfxlJQu8yrObq",
+            "url": "/venues/london-cryo-belgravia/attUmfxlJQu8yrObq.webp",
+            "filename": "Recovery.webp"
+          },
+          {
+            "id": "attLg5rppWSmyiQun",
+            "url": "/venues/london-cryo-belgravia/attLg5rppWSmyiQun.jpg",
+            "filename": "LondonCryo-10-©-Agnese-Sanvito-808x1212.jpg"
+          },
+          {
+            "id": "attNMAmhNMNXxf68A",
+            "url": "/venues/london-cryo-belgravia/attNMAmhNMNXxf68A.jpg",
+            "filename": "LondonCryo-19-©-Agnese-Sanvito-808x1212.jpg"
+          }
+        ],
+        "Neighborhood": "Belgravia",
+        "Description": "London Cryo Belgravia offers bookable recovery treatments including whole-body cryotherapy, infrared sauna, red light therapy, compression, HBOT, IV therapy and massage.",
+        "Editorial Summary": "Whole-body cryotherapy in Belgravia, with infrared sauna, red light therapy, compression, HBOT, IV therapy and massage also available.",
+        "Phone": "0203 371 8900 Ext. 2",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Biohacking",
+          "Performance"
+        ],
+        "Address": "15C Eccleston Place, London SW1W 9NF",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Book through LondonCryo’s website or app and select the Belgravia location. Service availability can vary by branch, so confirm the chosen treatment and live appointment time during booking.",
+        "Type of Experience": [
+          "Solo",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Business Name": "LondonCryo",
+        "Google Review Count": 156,
+        "Instagram Link": "@londoncryo",
+        "Services Offered": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Primary Pillar": "Recovery & Performance",
+        "Cover Image": [
+          {
+            "id": "att8B1whN1v64WDre",
+            "url": "/venues/london-cryo-belgravia/att8B1whN1v64WDre.jpg",
+            "filename": "Venue.jpg"
+          }
+        ],
+        "Access Type": "Public",
+        "Brand / Operator": "LondonCryo",
+        "Primary Service": "Cryotherapy",
+        "Slug": "london-cryo-belgravia",
+        "Name": "London Cryo — Belgravia",
+        "Secondary Services": [
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Hyperbaric Oxygen Therapy",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Biohackers",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.8/5 (156 reviews)",
+        "Website": "https://www.londoncryo.com/",
+        "Opening Hours": "Mon-Fri: 10:00am-7:00pm\nSat: 10:00am-6:00pm\nSun: 10:00am-5:00pm",
+        "Booking Link": "https://www.londoncryo.com/book/",
+        "Email": "belgravia@londoncryo.com",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "recFnr9QDDvMYQlQI",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Kentish Town",
+        "Description": "An outdoor sauna village in leafy North London with five saunas, six cold plunges, hot showers and changing facilities. Designed for heat, cold and rest, with social recovery, solo sessions, private sauna hire and full-site private hire available.",
+        "Editorial Summary": "Outdoor Kentish Town venue with five saunas, six cold plunges, hot showers and changing facilities. It offers social sessions, solo bookings and private hire, with lower off-peak prices.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "44 Caversham Rd, London NW5 2DS, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Finnish sauna and cold-plunge sessions in Kentish Town. Peak and off-peak prices can differ; use the live booking flow for the selected time.",
+        "Type of Experience": [
+          "Outdoor",
+          "Group",
+          "Private"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Lowlu",
+        "Atmosphere": "Outdoor sauna village feel: social, functional and recovery-led, with enough scale for solo users, groups, standard sessions, private sauna hire and full-site private hire.",
+        "Google Review Count": 188,
+        "Instagram Link": "@lowlu_sauna",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Price From": 10,
+        "Social & Community Note": "Lowlu Kentish Town combines shared sauna and cold-plunge sessions with solo sessions and private sauna hire. Its social offer comes from the communal session format, while visitors who want less interaction can choose a more private route.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Social wellness",
+          "Private sessions",
+          "Beginners"
+        ],
+        "Brand / Operator": "Lowlu",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "lowlu-kentish-town",
+        "Name": "Lowlu Kentish Town",
+        "Well Suited For": [
+          "Beginners",
+          "Social recovery",
+          "Private recovery",
+          "Post-work reset"
+        ],
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (188 reviews)",
+        "Website": "https://lowlu.com",
+        "Opening Hours": "Mon: 07:00–21:00\nTue: 07:00–21:00\nWed: 07:00–21:00\nThu: 07:00–21:00\nFri: 07:00–21:00\nSat: 07:00–21:00\nSun: 07:00–21:00",
+        "Booking Link": "https://lowlu.com",
+        "Email": "support@lowlu.co",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recCOJUdz7kFLmKGM",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Wandsworth",
+        "Description": "A Wandsworth sauna and cold plunge escape with social and silent saunas, two saunas and three plunges. A strong South London option for group-friendly heat and cold exposure.",
+        "Editorial Summary": "A strong South London addition for Well+, with 2 saunas, 3 plunges and a clear social/silent sauna positioning.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "2 Armoury Way, London SW18 1SH, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "Unknown",
+        "Indexable": true,
+        "Good To Know": "Public sauna and cold-plunge sessions are booked through Lowlu. Check the live booking page for the current session format, availability and price before travelling.",
+        "Type of Experience": [
+          "Outdoor",
+          "Group",
+          "Private"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Lowlu",
+        "Atmosphere": "Polished outdoor social sauna and plunge setting with both social and silent sauna positioning.",
+        "Google Review Count": 83,
+        "Instagram Link": "@lowlu_sauna",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Social & Community Note": "Lowlu Wandsworth offers shared sauna and cold-plunge sessions, with separate social and silent sauna formats. The social element is explicit in the session design rather than inferred from the audience.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Social wellness",
+          "Groups"
+        ],
+        "Brand / Operator": "Lowlu",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "lowlu-wandsworth",
+        "Name": "Lowlu Wandsworth",
+        "Well Suited For": [
+          "Social recovery",
+          "Groups",
+          "Post-work reset",
+          "South London"
+        ],
+        "Editorial Verdict": "Best for users looking for a social sauna and cold plunge experience in South West London, with silent sauna options and three plunges.",
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.7/5 (83 reviews)",
+        "Website": "https://lowlu.com",
+        "Opening Hours": "Mon: 07:00–21:00\nTue: 07:00–21:00\nWed: 07:00–21:00\nThu: 07:00–21:00\nFri: 07:00–21:00\nSat: 07:00–21:00\nSun: 07:00–21:00",
+        "Booking Link": "https://lowlu.com",
+        "Email": "support@lowlu.co",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "rec8niakadYTs37N2",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Mayfair",
+        "Description": "Mandarin Oriental Mayfair's spa is a luxury hotel wellness space with a 25-metre indoor pool, vitality pools, experience shower, fitness centre, treatment rooms and a programme of yoga, Pilates and wellness retreats. Access is not one simple model: hotel guests, treatment clients, spa-day visitors and members can have different levels of access to the facilities.",
+        "Editorial Summary": "Hotel spa beneath Hanover Square with a 25-metre pool, vitality pools, treatment rooms, fitness facilities and movement classes. Public access depends on the treatment, package or membership booked.",
+        "Phone": "+44 20 7123 6263",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Performance",
+          "Recovery"
+        ],
+        "Address": "22 Hanover Square, Mayfair, London W1S 1JP",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Treatments and selected spa-day routes are available to external guests, while pool, vitality and fitness access depends on the booking, hotel stay or membership held. Check the exact package before travelling.",
+        "Type of Experience": [
+          "Solo",
+          "Couples",
+          "Guided",
+          "Gym",
+          "Fitness",
+          "Luxury",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Massage"
+        ],
+        "Business Name": "The Spa at Mandarin Oriental Mayfair",
+        "Atmosphere": "Contemporary, subterranean and highly polished, balancing spa treatments with serious fitness and pool facilities.",
+        "Services Offered": [
+          "Spa",
+          "Lap Pool",
+          "Jacuzzi",
+          "Massage",
+          "Facials",
+          "Yoga",
+          "Pilates",
+          "Personal Training"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Guided / Group",
+        "Access Type": "Hotel guests + public bookings",
+        "Best For": [
+          "Luxury experience",
+          "Couples",
+          "Fitness users",
+          "Visitors to London"
+        ],
+        "Brand / Operator": "Mandarin Oriental Hotel Group",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "mandarin-oriental-mayfair-spa",
+        "Name": "Mandarin Oriental Mayfair Spa",
+        "Well Suited For": [
+          "Luxury wellness",
+          "Spa experience",
+          "Premium fitness",
+          "Couples wellness"
+        ],
+        "Editorial Verdict": "Useful for comparing a Mayfair hotel spa that offers substantial pool and fitness facilities as well as bookable treatments.",
+        "Area of London": "Central London",
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Couples",
+          "Performance",
+          "Stress Relief"
+        ],
+        "Website": "https://www.mandarinoriental.com/en/london/mayfair/wellness",
+        "Opening Hours": "Mon–Sun: 09:00–21:00",
+        "Booking Link": "https://www.mandarinoriental.com/en/london/mayfair/wellness",
+        "Email": "momay-spa@mohg.com",
+        "Venue Type Standardized": "Spa"
+      }
+    },
+    {
+      "id": "recgMQgXvzRY4qGiA",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Bayswater",
+        "Description": "A restored Grade II* listed public spa dating from 1929, with two steam rooms, traditional Turkish hot rooms, sauna, cold plunge pool, cold showers and a relaxation lounge.",
+        "Editorial Summary": "Porchester Spa offers one of London’s most distinctive and affordable traditional thermal-bathing experiences, with scheduled male-only, female-only and mixed sessions.",
+        "Phone": "+44 20 7313 3858",
+        "Theme Tags Standardized": [
+          "Community",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "Queensway, Bayswater, London W2 5HS",
+        "Last Checked": "2026-08-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Over-18s only. Bring clean towels and 20p coins for lockers. Sessions vary by gender, with Sunday designated mixed. Casual bookings open five days in advance and last entry is two hours before closing.",
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Sauna & Cold Plunge",
+          "Massage"
+        ],
+        "Business Name": "Porchester Spa",
+        "Atmosphere": "Historic, practical and communal, retaining original 1920s character rather than adopting a modern hotel-spa aesthetic.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Spa",
+          "Massage"
+        ],
+        "Price From": 31.95,
+        "Social & Community Note": "Porchester is a traditional public-spa experience built around shared steam rooms, hot rooms, sauna, plunge and relaxation areas. The social element comes from the communal spa format rather than organised community programming.",
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Budget-conscious users",
+          "Community wellness",
+          "Sauna",
+          "Cold plunge",
+          "First-timers"
+        ],
+        "Brand / Operator": "Everyone Active / Everyone Spa",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "porchester-spa",
+        "Name": "Porchester Spa",
+        "Well Suited For": [
+          "Budget-friendly recovery",
+          "Community wellness",
+          "Contrast therapy",
+          "Heat therapy"
+        ],
+        "Editorial Verdict": "A rare public bathhouse option with historic Turkish hot rooms, gender-specific and mixed sessions, and prices that are more accessible than most London hotel spas.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Solo Recovery",
+          "Stress Relief"
+        ],
+        "Website": "https://everyonespa.com/our-venues/porchester-spa-westminster/",
+        "Opening Hours": "Mon: 10:00–21:30 (male only)\nTue: 10:00–21:30 (female only)\nWed: 10:00–21:30 (male only)\nThu–Fri: 10:00–21:30 (female only)\nSat: 10:00–20:00 (male only)\nSun: 10:00–20:00 (mixed)\nCleaning closure: weekdays 15:30–16:00; weekends 14:30–15:00\nLast entry: 2 hours before close",
+        "Booking Link": "https://profile.everyoneactive.com/booking",
+        "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "rec61wuoMsOXDjP6N",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Marylebone",
+        "Description": "Rebase Recovery is a Marylebone recovery studio built around combining multiple modalities in one place. The current offer includes communal contrast therapy, HBOT, whole-body cryotherapy, infrared sauna, red light therapy, compression, IV drips, massage and private recovery suites. It works best as a flexible recovery hub rather than a single-treatment clinic, with both shared and private formats depending on the service.",
+        "Editorial Summary": "A Marylebone recovery studio bringing cryotherapy, HBOT, cold exposure, infrared heat, red light and massage together in one treatment menu.",
+        "Phone": "+44 20 4553 5701",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Biohacking",
+          "Longevity"
+        ],
+        "Address": "1a St Vincent St, London W1U 4DA, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Public booking. Communal contrast sessions and individual treatments follow different formats and prices, so check the live booking flow for the exact service, session length and what is included.",
+        "Type of Experience": [
+          "Recovery",
+          "Performance",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Cryotherapy",
+          "HBOT",
+          "Ice Bath & Cold Plunge",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Massage"
+        ],
+        "Business Name": "Rebase Recovery",
+        "Atmosphere": "Premium, clinical-recovery feel with a performance and longevity angle. Better framed as a modern recovery studio than a spa sanctuary, though the Marylebone setting keeps it firmly within the premium wellness lane.",
+        "Google Review Count": 61,
+        "Instagram Link": "@rebaserecovery",
+        "Services Offered": [
+          "Cryotherapy",
+          "HBOT",
+          "Cold Plunge",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Massage"
+        ],
+        "Price From": 30,
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Athletes",
+          "Recovery-focused users",
+          "Biohackers",
+          "First-timers"
+        ],
+        "Brand / Operator": "Rebase Recovery",
+        "Primary Service": "Cryotherapy",
+        "Slug": "rebase",
+        "Name": "Rebase Recovery",
+        "Secondary Services": [
+          "HBOT",
+          "Cold Plunge",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Massage"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Cold exposure",
+          "Heat therapy",
+          "Longevity / biohacking",
+          "Central London convenience"
+        ],
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Hyperbaric Oxygen Therapy",
+          "Cold Plunge",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Biohackers",
+          "Post-Workout Recovery",
+          "Solo Recovery"
+        ],
+        "Google Rating": "4.8/5 (61 reviews)",
+        "Website": "https://www.rebaserecovery.com/",
+        "Opening Hours": "Mon: 07:00–21:00\nTue: 07:00–21:00\nWed: 07:00–21:00\nThu: 07:00–21:00\nFri: 07:00–21:00\nSat: 08:00–20:00\nSun: 08:00–20:00",
+        "Booking Link": "https://www.rebaserecovery.com/appointments",
+        "Email": "info@rebaserecovery.com",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "reclwCgFg1IY36aJ4",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Brixton",
+        "Description": "A private rooftop sauna and outdoor cold plunge experience on top of International House in Brixton, 11 storeys high with views across London. Sessions include a private sauna room, cold plunge pools and waterfall buckets.",
+        "Editorial Summary": "A strong South London recovery listing: private rooftop sauna cabins, outdoor cold plunges and waterfall buckets high above Brixton.",
+        "Phone": "+44 7352 310450",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "International House, 6 Canterbury Cres, London SW9 7QD, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Rooftop sauna and cold-plunge sessions in Brixton. Session length and prices vary in the live booking flow.",
+        "Type of Experience": [
+          "Private",
+          "Group",
+          "Outdoor"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Rooftop Saunas",
+        "Atmosphere": "A rooftop recovery experience with private sauna cabins, London views and outdoor cold plunge pools. The Brixton location has a destination feel because it sits 11 storeys above South London.",
+        "Google Review Count": 62,
+        "Instagram Link": "@rooftopsaunas",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Price From": 22,
+        "Social & Community Note": "Brixton is primarily a private-session experience. The rooftop sauna room is booked for your group, with access to outdoor cold plunges and waterfall buckets, so the format is more private than a shared community sauna.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private / Group",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Private sessions",
+          "Social wellness"
+        ],
+        "Primary Service": "Contrast Therapy",
+        "Slug": "rooftop-saunas-brixton",
+        "Name": "Rooftop Saunas — Brixton",
+        "Well Suited For": [
+          "Small groups",
+          "Private recovery",
+          "Contrast therapy",
+          "South London"
+        ],
+        "Editorial Verdict": "For a private sauna-and-cold-plunge session where the rooftop location and London views are part of the appeal.",
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Couples",
+          "Groups",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.6/5 (62 reviews)",
+        "Website": "https://rooftopsaunas.com/locations/brixton/",
+        "Opening Hours": "Mon: 08:00–22:20\nTue: 08:00–22:20\nWed: 08:00–22:20\nThu: 08:00–22:20\nFri: 08:00–22:20\nSat: 08:00–22:20\nSun: 09:00–19:40",
+        "Booking Link": "https://rooftopsaunas.com/locations/brixton/",
+        "Email": "brixton@rooftopsaunas.com",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recW0BKdZZLE5SyQC",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Hackney",
+        "Description": "A private rooftop sauna and cold plunge experience at Netil Corner in Hackney, between Broadway Market and Victoria Park. Private cabins include access to outdoor contrast cold plunges, waterfall buckets and indoor hot showers.",
+        "Editorial Summary": "A strong East London recovery listing: private rooftop sauna cabins, outdoor cold plunges, waterfall buckets and hot showers in a distinctive Hackney setting.",
+        "Phone": "+44 7769 465044",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "Netil Corner, 2 Bocking St, London E8 4RU, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£",
+        "Indexable": true,
+        "Good To Know": "Rooftop sauna and cold-plunge sessions in Hackney. Session length and peak/off-peak prices vary in the live booking flow.",
+        "Type of Experience": [
+          "Private",
+          "Group",
+          "Outdoor"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Rooftop Saunas",
+        "Atmosphere": "Urban rooftop recovery: private wood-lined sauna cabins, city views and outdoor cold plunge access. More private and experience-led than a standard communal sauna.",
+        "Google Review Count": 125,
+        "Instagram Link": "@rooftopsaunas",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Price From": 11,
+        "Social & Community Note": "Hackney is primarily a private-session experience. The sauna cabin is booked for your group, with shared outdoor contrast facilities around it, so this is better understood as a private booking than a communal social-sauna format.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private / Group",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Private sessions",
+          "Social wellness"
+        ],
+        "Primary Service": "Contrast Therapy",
+        "Slug": "rooftop-saunas-hackney",
+        "Name": "Rooftop Saunas — Hackney",
+        "Well Suited For": [
+          "Small groups",
+          "Private recovery",
+          "Contrast therapy",
+          "Post-work reset"
+        ],
+        "Editorial Verdict": "Best for small groups or solo users who want a private sauna cabin with cold plunge access in a rooftop East London setting.",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Couples",
+          "Groups",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.7/5 (125 reviews)",
+        "Website": "https://rooftopsaunas.com/locations/hackney/",
+        "Opening Hours": "Mon: 07:30–22:20\nTue: 07:30–22:20\nWed: 07:30–22:20\nThu: 07:30–22:20\nFri: 07:30–22:20\nSat: 07:30–22:20\nSun: 10:00–19:50",
+        "Booking Link": "https://rooftopsaunas.com/locations/hackney/",
+        "Email": "hackney@rooftopsaunas.com",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "rec6UNV5MakT7xsAy",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Images": [
+          {
+            "id": "attVEYTnuPYcUJwNs",
+            "url": "/venues/sauna-and-plunge-shoreditch/attVEYTnuPYcUJwNs.webp",
+            "filename": "venue 2.webp"
+          },
+          {
+            "id": "atttH5ec3geAqn2ux",
+            "url": "/venues/sauna-and-plunge-shoreditch/atttH5ec3geAqn2ux.webp",
+            "filename": "venue 3.webp"
+          },
+          {
+            "id": "attP87H23dTzqojI5",
+            "url": "/venues/sauna-and-plunge-shoreditch/attP87H23dTzqojI5.webp",
+            "filename": "sauna and plunge.webp"
+          },
+          {
+            "id": "attwxq6pef63SpuXs",
+            "url": "/venues/sauna-and-plunge-shoreditch/attwxq6pef63SpuXs.webp",
+            "filename": "Sauna & Plunge.webp"
+          },
+          {
+            "id": "attnxvO268Bain3pb",
+            "url": "/venues/sauna-and-plunge-shoreditch/attnxvO268Bain3pb.jpg",
+            "filename": "Sauna & Plunge 3.jpg"
+          },
+          {
+            "id": "attGYgU4P4aV9VZO9",
+            "url": "/venues/sauna-and-plunge-shoreditch/attGYgU4P4aV9VZO9.webp",
+            "filename": "Icebath.webp"
+          },
+          {
+            "id": "atta5LiqN4fMw2tpQ",
+            "url": "/venues/sauna-and-plunge-shoreditch/atta5LiqN4fMw2tpQ.jpg",
+            "filename": "Sauna.jpg"
+          },
+          {
+            "id": "attnxNBU4zccFaXTT",
+            "url": "/venues/sauna-and-plunge-shoreditch/attnxNBU4zccFaXTT.webp",
+            "filename": "Wellness class.webp"
+          }
+        ],
+        "Neighborhood": "Shoreditch",
+        "Description": "Sauna & Plunge is a Shoreditch social-wellness venue built around shared contrast therapy and a recurring programme that gives people reasons to return beyond a single sauna session. Alongside Finnish and infrared saunas and six cold plunges, it runs breathwork, yoga, Pilates and sound sessions, member socials, community events and collaborations such as run-club contrast sessions and women-only socials. The result is a more deliberately social offer than a standard self-led contrast studio.",
+        "Editorial Summary": "A self-led Shoreditch contrast venue with Finnish and infrared saunas, six cold plunges and a separate studio programme.",
+        "Phone": "+44 7943 874030",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "124 Tabernacle Street, Shoreditch, London EC2A 4SA",
+        "Last Checked": "2026-08-05",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Shared, self-led contrast sessions; swimwear is required and towels are provided. Advance booking is recommended because peak sessions can fill, while studio classes are booked separately.",
+        "Type of Experience": [
+          "Solo",
+          "Group",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge",
+          "Infrared Sauna"
+        ],
+        "Business Name": "Sauna & Plunge",
+        "Atmosphere": "Shared and self-directed, with a clear contrast-therapy focus rather than a wider members' club format.",
+        "Instagram Link": "@saunaandplunge",
+        "Services Offered": [
+          "Infrared Sauna",
+          "Finnish Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Breathwork Classes",
+          "Yoga",
+          "Meditation",
+          "Sound Baths"
+        ],
+        "Social & Community Note": "The social layer at Sauna & Plunge is an organised part of the venue, not just the shared sauna format. Its programme includes recurring classes, member socials, community and charity events, run-club collaborations followed by contrast therapy and women-only social sessions. Members also have an ongoing WhatsApp community and complimentary member events. Public sessions remain available, so this is social wellness without selective private-club access.",
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Cover Image": [
+          {
+            "id": "attKR3EIqmkZazome",
+            "url": "/venues/sauna-and-plunge-shoreditch/attKR3EIqmkZazome.webp",
+            "filename": "Venue.webp"
+          }
+        ],
+        "Access Type": "Public",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "sauna-and-plunge-shoreditch",
+        "Name": "Sauna & Plunge",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Recurring group sessions",
+          "Communal sauna",
+          "Group classes",
+          "Events",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Infrared Sauna",
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Best For Standardized": [
+          "First Timers",
+          "Community Experience",
+          "Groups",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://saunaandplunge.life/",
+        "Opening Hours": "Mon–Fri: 07:00–21:00  \nSat–Sun: 09:00–18:00",
+        "Booking Link": "https://saunaandplunge.life/",
+        "Email": "info@saunaandplunge.life",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "rec3rjPtjg4QVPEQP",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Recovery"
+        ],
+        "Neighborhood": "Covent Garden / Strand",
+        "Description": "180 House is Soho House's private members' club at 180 Strand, combining restaurants, bars, work and social spaces, events and a rooftop with a Soho Health Club, daily fitness classes and rooftop pool. It is best understood as a full members' club with wellness built into the experience, rather than a premium gym that sells open memberships. Soho House membership is application-based and access depends on the membership held.",
+        "Editorial Summary": "180 House combines Soho House’s social membership model with a basement health club, daily fitness classes and rooftop swimming in a central Strand location.",
+        "Phone": "+44 20 3985 0000",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Social",
+          "Performance"
+        ],
+        "Address": "180 Strand, London WC2R 1EA, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Private members' club. Membership is application-based and subject to approval; the published membership price is not a day-access or open gym fee. Facilities are for eligible Soho House members and permitted guests under House rules.",
+        "Type of Experience": [
+          "Social",
+          "Private",
+          "Gym",
+          "Fitness",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Business Name": "180 House",
+        "Atmosphere": "Creative private-club atmosphere with design-led social spaces, a substantial gym and skyline rooftop pool.",
+        "Services Offered": [
+          "Fitness",
+          "Wellness",
+          "Lap Pool"
+        ],
+        "Price From": 291.67,
+        "Social & Community Note": "180 House combines its health club and rooftop pool with the wider social life of a private members' club. Members can use the House for dining, meetings, events and social time alongside fitness classes and training, so the wellness offer is part of an ongoing club experience rather than a standalone session.",
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Private / Group",
+        "Access Type": "Members only",
+        "Best For": [
+          "Social wellness",
+          "Fitness users",
+          "Professionals",
+          "Luxury experience"
+        ],
+        "Brand / Operator": "Soho House",
+        "Primary Service": "Gym / Performance",
+        "Slug": "soho-house-180-house",
+        "Name": "Soho House — 180 House",
+        "Well Suited For": [
+          "Social wellness",
+          "Premium fitness",
+          "Central London convenience"
+        ],
+        "Editorial Verdict": "For people who want a central London gym and rooftop pool within Soho House membership, rather than public spa or recovery-studio access.",
+        "Area of London": "Central London",
+        "Access Model": "Private members' club",
+        "Community Features": [
+          "Events",
+          "Members lounge",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Members-club setting",
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Groups",
+          "Performance"
+        ],
+        "Website": "https://www.sohohouse.com/en-us/houses/180-house",
+        "Opening Hours": "Mon–Wed: 08:00–00:00\nThu: 08:00–01:00\nFri: 08:00–03:00\nSat: 09:00–03:00\nSun: 09:00–23:00",
+        "Booking Link": "https://www.sohohouse.com/en-us/houses/180-house",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recxsfNwTfDJMihge",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Recovery"
+        ],
+        "Neighborhood": "Shoreditch",
+        "Description": "Shoreditch House is Soho House's East London private members' club in the Tea Building. It combines restaurants, work and social spaces, events and bedrooms with a dedicated Soho Health Club, daily fitness classes, infrared sauna, spa treatments and a rooftop pool. Soho House positions its membership around the creative community, but the practical distinction for visitors is access: this is an application-based private club, not a gym or wellness membership that can simply be bought on demand.",
+        "Editorial Summary": "Shoreditch House combines an East London creative members’ club with one of Soho House’s more complete wellness offers: gym, spa, classes and rooftop swimming.",
+        "Phone": "+44 20 7739 5040",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Social",
+          "Recovery",
+          "Performance"
+        ],
+        "Address": "1 Ebor Street, London E1 6AW, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Private members' club. Soho House membership is application-based and subject to approval. Members and permitted guests can use House facilities according to membership and guest rules. Hotel guests have access to specified House facilities during their stay, and selected spa treatments can have separate public booking routes; do not assume this means general public access to the health club.",
+        "Type of Experience": [
+          "Social",
+          "Private",
+          "Gym",
+          "Fitness",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Massage"
+        ],
+        "Business Name": "Shoreditch House",
+        "Services Offered": [
+          "Fitness",
+          "Spa",
+          "Lap Pool",
+          "Massage",
+          "Wellness"
+        ],
+        "Price From": 291.67,
+        "Social & Community Note": "The wellness facilities sit inside a wider members' club where people also work, eat, attend events and spend time socially. Daily fitness classes, the rooftop pool and member programming mean the experience can be more social and repeat-led than a one-off treatment venue. Some spa treatments have separate public booking routes, but the House and health club remain primarily members' spaces.",
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Members only",
+        "Brand / Operator": "Soho House",
+        "Primary Service": "Gym / Performance",
+        "Slug": "soho-house-shoreditch-house",
+        "Name": "Soho House — Shoreditch House",
+        "Well Suited For": [
+          "Social wellness",
+          "Luxury wellness",
+          "Spa recovery"
+        ],
+        "Editorial Verdict": "The strongest Soho House wellness listing in East London because it combines social membership with a genuine gym, spa and rooftop pool proposition.",
+        "Area of London": "East London",
+        "Access Model": "Private members' club",
+        "Community Features": [
+          "Events",
+          "Members lounge",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Members-club setting",
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Groups",
+          "Performance",
+          "Recovery"
+        ],
+        "Website": "https://www.sohohouse.com/en-us/houses/shoreditch-house",
+        "Opening Hours": "Sun–Tue: 07:30–00:00\nWed: 07:30–01:00\nThu–Sat: 07:30–03:00",
+        "Booking Link": "https://www.sohohouse.com/en-us/houses/shoreditch-house",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recX4HUzfhUck51Jv",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery"
+        ],
+        "Neighborhood": "White City",
+        "Description": "White City House is Soho House's private members' club at Television Centre, combining restaurants, work and social spaces, events, bedrooms and extensive fitness and wellness facilities. The former BBC setting gives the House a strong media and creative-industry context, while the health offer now includes a large gym, indoor and rooftop pools, sauna, steam, hammam and a longevity room with HBOT, red light therapy, cryotherapy and IV infusions. Access to the House is primarily through approved Soho House membership; it is not a conventional gym membership that can simply be purchased on demand.",
+        "Editorial Summary": "White City House offers Soho House’s strongest West London fitness proposition, combining a large gym and indoor pool with sauna, studios and rooftop swimming.",
+        "Phone": "+44 20 7870 0000",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Social",
+          "Recovery",
+          "Performance"
+        ],
+        "Address": "2 Television Centre, 101 Wood Lane, London W12 7FR, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Private members' club. Soho House membership is application-based and subject to approval rather than a simple gym sign-up. Access depends on membership type and House rules. Hotel bedroom access should not be assumed to include every members-only or health-club facility.",
+        "Type of Experience": [
+          "Social",
+          "Private",
+          "Gym",
+          "Fitness",
+          "Wellness"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna"
+        ],
+        "Business Name": "White City House",
+        "Services Offered": [
+          "Fitness",
+          "Sauna",
+          "Lap Pool",
+          "Spa",
+          "Wellness"
+        ],
+        "Price From": 291.67,
+        "Social & Community Note": "White City House is designed as a members' club rather than a standalone gym or spa. Members use the House for eating, working, events and social time as well as the gym, pools and spa. The club runs regular member programming and fitness classes, creating repeated opportunities to see the same community beyond a single wellness booking.",
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Members only",
+        "Brand / Operator": "Soho House",
+        "Primary Service": "Gym / Performance",
+        "Slug": "soho-house-white-city-house",
+        "Name": "Soho House — White City House",
+        "Well Suited For": [
+          "Social wellness",
+          "Luxury wellness",
+          "Spa recovery"
+        ],
+        "Editorial Verdict": "Its indoor pool, sauna, large gym and rooftop pool make the wellness offer more substantial than at most social clubs.",
+        "Area of London": "West London",
+        "Access Model": "Private members' club",
+        "Community Features": [
+          "Events",
+          "Members lounge",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Members-club setting",
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Groups",
+          "Performance",
+          "Recovery"
+        ],
+        "Website": "https://www.sohohouse.com/en-us/houses/white-city-house",
+        "Opening Hours": "Mon–Wed: 08:00–00:00\nThu–Sat: 08:00–03:00\nSun: 08:00–00:00",
+        "Booking Link": "https://www.sohohouse.com/en-us/houses/white-city-house",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "rec6mWva9YC4FPOCP",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Belgravia",
+        "Description": "The Bath House in Belgravia is a traditional banya-style bathhouse built around heat, steam, cold-water immersion and bathing rituals rather than a conventional hotel-spa format. Visitors can book the public banya or a more private experience, with treatments and food or drink packages available alongside the core thermal circuit.",
+        "Editorial Summary": "A Belgravia banya and bathhouse offering heat, steam, bathing rituals, massage and spa treatments across a range of bookable packages.",
+        "Phone": "+44 20 3906 2060",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "1 Grosvenor Gardens, London SW1W 0BD, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Public booking. Public and private banya sessions have different formats and inclusions, so check the selected package before arrival. The shared banya experience is communal rather than a private treatment room.",
+        "Type of Experience": [
+          "Wellness",
+          "Luxury",
+          "Recovery"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage",
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "The Bath House — Banya London",
+        "Atmosphere": "Spa-led, atmospheric and ritual-focused. More indulgent than athletic, with appeal for users seeking bathhouse-style wellness rather than hard performance recovery.",
+        "Google Review Count": 447,
+        "Instagram Link": "@banya.in.belgravia",
+        "Services Offered": [
+          "Sauna",
+          "Steam",
+          "Spa",
+          "Massage",
+          "Contrast Therapy"
+        ],
+        "Price From": 50,
+        "Social & Community Note": "The Bath House is built around a shared banya and thermal-bathing format rather than a private treatment room. The communal heat and plunge experience is the main social element; treatments and packages sit alongside it.",
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Couples",
+          "Spa users",
+          "First-timers",
+          "Luxury wellness users"
+        ],
+        "Brand / Operator": "Banya London",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "the-bath-house",
+        "Name": "The Bath House — Banya London",
+        "Well Suited For": [
+          "Spa recovery",
+          "Heat therapy",
+          "Couples wellness",
+          "Luxury wellness"
+        ],
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Couples",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (447 reviews)",
+        "Website": "https://banyalondon.co.uk/",
+        "Opening Hours": "Mon: 10:00–23:00\nTue: 10:00–23:00\nWed: 10:00–23:00\nThu: 10:00–23:00\nFri: 10:00–23:00\nSat: 10:00–23:00\nSun: 10:00–22:00",
+        "Booking Link": "https://banyalondon.co.uk/",
+        "Email": "info@banyalondon.co.uk",
+        "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recTlGWD8KS8SIS8k",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Third Space Canary Wharf is a premium fitness club with gym floors, pool, sauna, spa and classes. Access is through a standard paid membership: unlike Soho House, this is not an application-based private members' club. The wellness facilities sit inside the wider club and are intended for members rather than public day-spa access.",
+        "Editorial Summary": "Members’ fitness club in Canary Wharf with gym, pool and sauna facilities. It is not a public day spa, so access depends on current Third Space membership.",
+        "Phone": "+44 20 7970 0900",
+        "Theme Tags Standardized": [
+          "Performance",
+          "Luxury",
+          "Recovery"
+        ],
+        "Address": "Third Space Canary Wharf, 16-19 Canada Square, London E14 5ER, United Kingdom",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "Unknown",
+        "Indexable": true,
+        "Good To Know": "Standard membership required for the main club. This is a paid fitness-club membership rather than a selective private members' club. The existing Recovery Spa offer should be distinguished from the separately advertised larger Wellness Spa that is still marked as coming soon.",
+        "Type of Experience": [
+          "Gym",
+          "Shared"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "Premium corporate health-club environment rather than boutique recovery studio. The Well+ angle is recovery as part of a high-end Canary Wharf membership experience.",
+        "Google Review Count": 2913,
+        "Services Offered": [
+          "Sauna"
+        ],
+        "Social & Community Note": "Third Space Canary Wharf is a conventional premium fitness-club membership rather than a selective private members' club. Members share the gym, pool, sauna and class programme, so any social value comes from repeated use of those communal facilities and classes rather than an application-based club culture.",
+        "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Corporate wellness"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Gym / Performance",
+        "Slug": "third-space-canary-wharf",
+        "Name": "Third Space Canary Wharf",
+        "Well Suited For": [
+          "Corporate wellness",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Area of London": "East London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.7/5 (2,913 reviews)",
+        "Website": "https://www.thirdspace.london/clubs/canary-wharf/",
+        "Opening Hours": "Mon: 05:30–22:30\nTue: 05:30–22:30\nWed: 05:30–22:30\nThu: 05:30–22:30\nFri: 05:30–22:30\nSat: 08:00–20:00\nSun: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/canary-wharf/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recgluQp8sXueSTvU",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Longevity Treatments"
+        ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Third Space Recovery Spa is a treatment-led recovery space connected to the wider Third Space club network. Its menu includes cryotherapy, red light therapy, vibroacoustic therapy, massage, advanced facials, IV infusions, assisted stretch, lymphatic drainage, acupuncture and other bookable treatments. Non-members can book selected spa treatments, but that does not give access to the wider gym, pool, sauna or steam facilities.",
+        "Editorial Summary": "Canary Wharf treatment spa offering cryotherapy, red light therapy, massage, facials, assisted stretching, acupuncture, lymphatic drainage and IV infusions. Treatments are open to non-members, but wider Third Space club facilities are not included.",
+        "Phone": "020 7970 0912",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Luxury"
+        ],
+        "Address": "16–19 Canada Square, London E14 5ER",
+        "Last Checked": "2026-08-04",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Spa treatments are available to members and non-members, but non-members cannot use the wider Third Space club facilities such as the gym, pool, sauna, steam room or changing-room amenities beyond what the booked treatment includes. Photo ID is required on arrival.",
+        "Type of Experience": [
+          "Solo",
+          "Private Room"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Massage",
+          "Assisted Stretching",
+          "IV Therapy"
+        ],
+        "Business Name": "Third Space Spa",
+        "Instagram Link": "@thirdspace_spa",
+        "Services Offered": [
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Vibroacoustic Therapy",
+          "Massage",
+          "Advanced Facials",
+          "TEMPLESPA Facials",
+          "Aesthetics & IV Infusions",
+          "Acupuncture",
+          "Assisted Stretch",
+          "Body Detox Treatment",
+          "Brazilian Lymphatic Drainage",
+          "Meditation Through Breathwork"
+        ],
+        "Social & Community Note": "Third Space Spa has a split access model. Treatments can be booked by non-members, but the wider club facilities remain members-only, so a public treatment booking should not be read as general access to the gym, pool, sauna or steam room.",
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Public",
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "third-space-spa",
+        "Name": "Third Space Spa",
+        "Area of London": "East London",
+        "Access Model": "Mixed access",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Massage",
+          "Assisted Stretching",
+          "Compression Therapy",
+          "IV Therapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://www.thirdspace.london/recovery-spa/",
+        "Opening Hours": "Mon–Fri: 08:00–20:00\nSat: 09:00–18:00\nSun: 10:30–18:00\nBank holidays: 08:00–16:00",
+        "Booking Link": "https://www.thirdspace.london/spa/",
+        "Email": "spa.reception@thirdspace.london",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    }
+  ]
+}

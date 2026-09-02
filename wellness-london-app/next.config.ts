@@ -43,23 +43,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "v5.airtableusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "v6.airtableusercontent.com",
-      },
-      {
-        protocol: "https",
-        hostname: "dl.airtable.com",
-        pathname: "/.attachments/**",
-      },
-    ],
-  },
 };
 
 export default nextConfig;
