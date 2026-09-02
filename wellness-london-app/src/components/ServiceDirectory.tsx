@@ -7,6 +7,7 @@ import { trackEvent } from "@/lib/analytics";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 import { isUsefulValue } from "@/lib/useful-values";
+import { toDirectoryServiceLabel } from "@/lib/discovery-labels";
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
   serviceKeys: string[];
@@ -50,18 +51,8 @@ const initialFilters: FilterState = {
   privateOrShared: "",
 };
 
-const directoryServiceAliases: Record<string, string> = {
-  "assisted stretch": "Assisted Stretching",
-  "assisted stretching": "Assisted Stretching",
-  "sound bath": "Sound Bath",
-  "sound baths": "Sound Bath",
-  steam: "Steam Room",
-  "steam room": "Steam Room",
-};
-
 function normaliseDirectoryService(value: string) {
-  const cleaned = value.trim();
-  return directoryServiceAliases[cleaned.toLowerCase()] || cleaned;
+  return toDirectoryServiceLabel(value);
 }
 
 function getPriceBand(value?: string) {
