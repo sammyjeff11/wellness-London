@@ -7,6 +7,8 @@ test("keeps venue profiles inside the Venues section", () => {
   assert.equal(getActiveNavSection("/brands"), "venues");
   assert.equal(getActiveNavSection("/facility/example-venue"), "venues");
   assert.equal(getActiveNavSection("/brand/example-brand"), "venues");
+  assert.equal(getActiveNavSection("/shortlist"), "venues");
+  assert.equal(getActiveNavSection("/compare"), "venues");
 });
 
 test("maps hubs and detail routes to the promised navigation section", () => {

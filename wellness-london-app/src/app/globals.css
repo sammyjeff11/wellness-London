@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #f4efe6;
@@ -78,6 +79,40 @@ a {
 
 img {
   max-width: 100%;
+}
+
+.well-map .leaflet-control-zoom a {
+  border: 0;
+  background: #fbf8f1;
+  color: #29241d;
+}
+
+.well-map .leaflet-tile-pane {
+  filter: grayscale(0.82) sepia(0.16) saturate(0.62) contrast(0.92) brightness(1.04);
+}
+
+.well-map .leaflet-tooltip {
+  border: 1px solid #b9ab97;
+  border-radius: 999px;
+  background: rgba(251, 248, 241, 0.96);
+  box-shadow: 0 8px 22px rgba(41, 36, 29, 0.14);
+  color: #29241d;
+  padding: 0.35rem 0.65rem;
+}
+
+.well-map .leaflet-tooltip::before {
+  display: none;
+}
+
+.well-map .leaflet-control-attribution {
+  background: rgba(251, 248, 241, 0.88);
+  color: #5f574c;
+  font-family: var(--font-clean-sans);
+  font-size: 10px;
+}
+
+.well-map .leaflet-control-attribution a {
+  color: #29241d;
 }
 
 ::selection {
