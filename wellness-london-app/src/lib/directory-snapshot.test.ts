@@ -47,3 +47,17 @@ test("service mapping snapshot is non-empty with unique canonical names", () => 
   assert.ok(snapshot.records.length > 0);
   assert.equal(new Set(names).size, names.length);
 });
+
+test("priority diagnostic pages retain verified provider coverage", () => {
+  const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
+  const providersFor = (diagnostic: string) => snapshot.records.filter((record) => {
+    const diagnostics = (record.fields["Confirmed Diagnostics"] || []) as string[];
+    return diagnostics.includes(diagnostic);
+  });
+
+  assert.ok(providersFor("DEXA Scan").length >= 4, "DEXA page must retain at least four providers");
+  assert.ok(
+    providersFor("Cardiovascular Screening").length >= 3,
+    "cardiovascular page must retain at least three providers",
+  );
+});

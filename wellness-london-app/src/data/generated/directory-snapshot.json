@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T06:08:58.005Z",
+  "generatedAt": "2026-09-02T11:30:10.000Z",
   "source": {
     "base": "Wellness Listings",
     "table": "Wellness London"
@@ -390,6 +390,308 @@
         "Booking Link": "https://www.arc-community.com/canary-wharf",
         "Email": "hello@arc-community.com",
         "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "rec7s8aBxpsuNrUaF",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "DEXA Body Composition and DEXA Osteo are separate £189 services. Confirm which scan answers your question; the combined Body & Bone package covers both.",
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Price From": 189,
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Specialist testing provider",
+        "Clinical Oversight": "Testing only",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Assessment Format": [
+          "Individual tests"
+        ],
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Brand / Operator": "BodyScan",
+        "Name": "BodyScan City",
+        "Slug": "bodyscan-city",
+        "Website": "https://bodyscanuk.com/locations/city-london",
+        "Booking Link": "https://bodyscanuk.com/locations/city-london",
+        "Business Name": "BodyScan City",
+        "Address": "Lower Ground Floor, 36 Cornhill, London EC3V 3NG",
+        "Phone": "020 3490 4171",
+        "Email": "info@bodyscanuk.com",
+        "Neighborhood": "City of London",
+        "Area of London": "Central London",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+      }
+    },
+    {
+      "id": "recknCMYrJLZ0Yxmd",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "DEXA Body Composition and DEXA Osteo are separate £189 services. Confirm which scan answers your question; the combined Body & Bone package covers both.",
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Price From": 189,
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Specialist testing provider",
+        "Clinical Oversight": "Testing only",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Assessment Format": [
+          "Individual tests"
+        ],
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Brand / Operator": "BodyScan",
+        "Name": "BodyScan W1",
+        "Slug": "bodyscan-w1",
+        "Website": "https://bodyscanuk.com/locations/london-w1",
+        "Booking Link": "https://bodyscanuk.com/locations/london-w1",
+        "Business Name": "BodyScan W1",
+        "Address": "London Medical, 49 Marylebone High Street, London W1U 5HJ",
+        "Phone": "020 3490 4171",
+        "Email": "info@bodyscanuk.com",
+        "Neighborhood": "Marylebone",
+        "Area of London": "Central London",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+      }
+    },
+    {
+      "id": "recRkywFEyfSTpUzS",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "DEXA Body Composition and DEXA Osteo are separate £189 services. Confirm which scan answers your question; the combined Body & Bone package covers both.",
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Price From": 189,
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Specialist testing provider",
+        "Clinical Oversight": "Testing only",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Assessment Format": [
+          "Individual tests"
+        ],
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Brand / Operator": "BodyScan",
+        "Name": "BodyView Oxford Circus",
+        "Slug": "bodyview-oxford-circus",
+        "Website": "https://bodyscanuk.com/locations/london-oxford-circus",
+        "Booking Link": "https://bodyscanuk.com/locations/london-oxford-circus",
+        "Business Name": "BodyView Oxford Circus",
+        "Address": "36 Great Titchfield Street, London W1W 8BQ",
+        "Phone": "0330 043 7001",
+        "Email": "info@bodyview.co.uk",
+        "Neighborhood": "Fitzrovia",
+        "Area of London": "Central London",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also offers 3D body scanning.",
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+      }
+    },
+    {
+      "id": "rec2zU63JTRRf9x3u",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "DEXA Body Composition and DEXA Osteo are separate £189 services. Confirm which scan answers your question; the combined Body & Bone package covers both.",
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Price From": 189,
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Specialist testing provider",
+        "Clinical Oversight": "Testing only",
+        "Confirmed Diagnostics": [
+          "DEXA Scan",
+          "VO₂ Max Testing",
+          "Resting Metabolic Rate"
+        ],
+        "Assessment Format": [
+          "Individual tests"
+        ],
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Brand / Operator": "BodyScan",
+        "Name": "BodyView Richmond",
+        "Slug": "bodyview-richmond",
+        "Website": "https://bodyscanuk.com/locations/richmond",
+        "Booking Link": "https://bodyscanuk.com/locations/richmond",
+        "Business Name": "BodyView Richmond",
+        "Address": "26–30 Paradise Road, Richmond, Greater London TW9 1SE",
+        "Phone": "0330 043 7001",
+        "Email": "info@bodyview.co.uk",
+        "Neighborhood": "Richmond",
+        "Area of London": "Greater London",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also publishes VO₂ max, resting metabolic rate, FatMax and 3D body-scanning services.",
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
       }
     },
     {
@@ -1205,6 +1507,84 @@
       }
     },
     {
+      "id": "rec9i4lVau6s6QbnQ",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Blood Testing"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Preventative health screening clinic",
+        "Clinical Oversight": "Doctor-led",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Results Included": [
+          "Doctor consultation",
+          "Written report",
+          "Personalised plan",
+          "Referral pathway"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Name": "Echelon Health",
+        "Slug": "echelon-health",
+        "Website": "https://www.echelon.health/heart-ct-scan-in-london-what-to-expect/",
+        "Business Name": "Echelon Health",
+        "Brand / Operator": "Echelon Health",
+        "Address": "68 Harley Street, London W1G 7HE",
+        "Phone": "+44 (0)20 7580 7688",
+        "Email": "info@echelon.health",
+        "Neighborhood": "Marylebone",
+        "Area of London": "Central London",
+        "Description": "Harley Street preventative-health provider offering a Healthy Heart assessment with CT heart imaging, CT coronary angiography, ECG, carotid ultrasound and blood testing, followed by senior-physician review.",
+        "Editorial Summary": "A comprehensive imaging-led heart assessment rather than a basic ECG check. It combines coronary imaging and risk measures with physician interpretation and an onward referral route.",
+        "Good To Know": "This is a medical, imaging-led assessment rather than a simple heart-health check. Ask about suitability, contrast and radiation exposure, and why each investigation is appropriate for your risk profile.",
+        "Editorial Verdict": "Strongest fit for users specifically comparing advanced, physician-reviewed cardiovascular imaging within a wider preventative assessment.",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Cardiovascular Screening",
+          "Blood Biomarkers",
+          "MRI / Medical Imaging"
+        ]
+      }
+    },
+    {
       "id": "rec2sAjcSv4F6thxG",
       "fields": {
         "Publish Status": "Published",
@@ -1529,7 +1909,7 @@
           "Performance"
         ],
         "Address": "18 Dover St, London W1S 4LT, United Kingdom",
-        "Last Checked": "2026-08-09",
+        "Last Checked": "2026-09-02",
         "Overall Price Range": "££££",
         "Indexable": true,
         "Good To Know": "Mixed access. Lanserhof's medical clinic is publicly bookable and Arts Club membership is not required for medical appointments. Gym access, personal training and studio classes such as yoga and Reformer Pilates are members' services and require the relevant club access.",
@@ -1584,7 +1964,8 @@
         ],
         "Confirmed Diagnostics": [
           "Health Screening",
-          "MRI / Medical Imaging"
+          "MRI / Medical Imaging",
+          "Cardiovascular Screening"
         ],
         "Brand / Operator": "Lanserhof",
         "Primary Service": "Wellness Club",
@@ -1609,7 +1990,7 @@
           "Physiotherapy",
           "Diagnostics"
         ],
-        "Service Last Verified": "2026-07-15",
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Luxury Seekers",
           "Athletes"
@@ -3167,6 +3548,83 @@
         "Booking Link": "https://www.thirdspace.london/spa/",
         "Email": "spa.reception@thirdspace.london",
         "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recef4FRUlTalZEnR",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Type of Experience": [
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Experience Type": "Guided",
+        "Well Suited For": [
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Blood Testing"
+        ],
+        "Venue Type Standardized": "Longevity Clinic",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical"
+        ],
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
+        "Primary Service": "Other",
+        "Clinic Model": "Preventative health screening clinic",
+        "Clinical Oversight": "Doctor-led",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Results Included": [
+          "Doctor consultation",
+          "Written report",
+          "Personalised plan",
+          "Referral pathway"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Access Model": "Public / pay as you go",
+        "Name": "Welbeck Heart Health",
+        "Slug": "welbeck-heart-health",
+        "Website": "https://welbeck.com/tests-and-treatments/heart-health-screening",
+        "Booking Link": "https://welbeck.com/tests-and-treatments/heart-health-screening",
+        "Business Name": "Welbeck",
+        "Brand / Operator": "Welbeck",
+        "Address": "1 Welbeck Street, Marylebone, London W1G 0AR",
+        "Phone": "020 3653 2005",
+        "Neighborhood": "Marylebone",
+        "Area of London": "Central London",
+        "Price From": 1500,
+        "Description": "Marylebone heart-health screening service combining 12-lead ECG, echocardiogram, ambulatory blood-pressure monitoring, QRISK assessment and blood tests, with cardiologist review and follow-up.",
+        "Editorial Summary": "A defined cardiovascular-risk assessment with transparent inclusions, a personalised written report and a dedicated cardiologist follow-up. Self-referral is available for people without current symptoms.",
+        "Good To Know": "The published £1,500 package includes a 90-minute testing appointment, 24-hour blood-pressure monitoring and a follow-up cardiologist consultation. It is intended for screening without current cardiac symptoms.",
+        "Editorial Verdict": "One of the clearest published heart-screening packages in the directory, particularly on test inclusions, consultant interpretation and follow-up.",
+        "Confirmed Diagnostics": [
+          "Cardiovascular Screening",
+          "Blood Biomarkers"
+        ]
       }
     }
   ]
