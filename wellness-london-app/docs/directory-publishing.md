@@ -32,3 +32,14 @@ The publisher:
 - leaves the existing production website unchanged if Airtable or validation fails.
 
 For an intentional reduction greater than 20%, run the publisher locally with `ALLOW_LARGE_DIRECTORY_REDUCTION=true` after reviewing the planned removals.
+
+## Post-deployment search checklist
+
+After merging a directory update that materially changes indexable pages:
+
+1. Confirm the production deployment has completed and the changed pages show the expected venues.
+2. In Google Search Console, inspect the changed URLs and request indexing. For diagnostic coverage changes, prioritise `/longevity`, `/dexa-scan-london` and `/cardiovascular-screening-london`.
+3. Resubmit `/sitemap.xml` in Search Console when a release adds or removes venue URLs.
+4. Recheck indexing and impressions after 7–14 days. Record the comparison period so ranking changes are not confused with normal daily volatility.
+
+Indexing requests require an authenticated Search Console user and should be reserved for pages with material changes.
