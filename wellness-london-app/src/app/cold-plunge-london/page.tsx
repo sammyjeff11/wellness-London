@@ -5,8 +5,8 @@ import { getActivityPage } from "@/lib/activity-pages";
 const activity = getActivityPage("cold-plunge-london")!;
 
 export const metadata: Metadata = {
-  title: activity.metaTitle,
-  description: activity.description,
+  title: "Cold Plunge London: Ice Baths, Prices & Locations | Well+",
+  description: "Compare London cold plunge and ice bath venues by price, location, access, facilities and whether sauna or full contrast therapy is included.",
   alternates: { canonical: activity.canonicalHref },
 };
 
