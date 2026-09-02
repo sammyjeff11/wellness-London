@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T11:30:10.000Z",
+  "generatedAt": "2026-09-02T12:01:42.000Z",
   "source": {
     "base": "Wellness Listings",
     "table": "Wellness London"
@@ -1585,6 +1585,306 @@
       }
     },
     {
+      "id": "recybxWgvAQ6Fuqyk",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-02",
+        "Service Last Verified": "2026-09-02",
+        "Name": "Equinox Bishopsgate",
+        "Slug": "equinox-bishopsgate",
+        "Website": "https://www.equinox.com/clubs/london/bishopsgate",
+        "Booking Link": "https://www.equinox.com/clubs/london/bishopsgate",
+        "Business Name": "Equinox Bishopsgate",
+        "Brand / Operator": "Equinox",
+        "Address": "8 Clerk’s Place, London EC3A 8AQ",
+        "Phone": "+44 (0) 20 3057 4497",
+        "Neighborhood": "City of London",
+        "Area of London": "Central London",
+        "Description": "City of London membership club with expansive cardio and strength training, yoga, group fitness, cycling and Pilates studios, personal training, eucalyptus steam rooms and a full-service spa.",
+        "Editorial Summary": "A performance-led City club with substantial training space and a practical recovery offer through eucalyptus steam rooms, spa bodywork and Pilates.",
+        "Good To Know": "The club is membership-led. The official location page publishes separate spa hours but does not clearly confirm non-member spa access; check eligibility directly before booking.",
+        "Editorial Verdict": "A strong fit for City professionals who want premium training, group classes and steam-room recovery in one club.",
+        "Services Offered": [
+          "Spa",
+          "Steam Room",
+          "Yoga",
+          "Pilates",
+          "Personal Training"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Yoga / Movement"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery"
+        ],
+        "Activity Tags Standardized": [
+          "Steam Room"
+        ],
+        "Activity Display Labels": [
+          "Steam Room"
+        ],
+        "Venue Type Standardized": "Fitness & Recovery Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Best For": [
+          "Athletes",
+          "Fitness users",
+          "Professionals",
+          "Post-work recovery"
+        ],
+        "Well Suited For": [
+          "Premium fitness",
+          "Fitness recovery",
+          "After-work recovery",
+          "Central London convenience"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery",
+          "Performance"
+        ],
+        "Type of Experience": [
+          "Gym",
+          "Group",
+          "One-to-one"
+        ],
+        "Experience Type": "Private / Group",
+        "Access Type": "Members only",
+        "Access Model": "Standard membership",
+        "Overall Price Range": "££££",
+        "Opening Hours": "Mon–Thu: 05:30–22:00\nFri: 05:30–21:00\nSat–Sun: 08:00–17:00",
+        "Showers Available": true,
+        "Atmosphere": "A five-floor City club centred on large cardio and strength areas, dedicated studios, member spaces and spa facilities.",
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social & Community Note": "Membership and recurring studio classes support repeat use, with shared training, lounge and recovery spaces serving the City audience."
+      }
+    },
+    {
+      "id": "recARUP9ohq1A00nz",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-02",
+        "Service Last Verified": "2026-09-02",
+        "Name": "Equinox Kensington",
+        "Slug": "equinox-kensington",
+        "Website": "https://www.equinox.com/clubs/london/kensington",
+        "Booking Link": "https://www.equinox.com/clubs/london/kensington",
+        "Business Name": "Equinox Kensington",
+        "Brand / Operator": "Equinox",
+        "Address": "99 Kensington High Street, London W8 5SA",
+        "Phone": "+44 (0) 20 7666 6000",
+        "Neighborhood": "Kensington",
+        "Area of London": "West London",
+        "Description": "Kensington membership club with an open-plan strength floor, boxing, yoga, cycling and Pilates studios, personal training, a steam room and a full-service spa. Spa appointments are offered to non-members.",
+        "Editorial Summary": "A broad West London fitness and wellness club where the strongest recovery elements are the steam room and full-service spa, supported by extensive training and studio facilities.",
+        "Good To Know": "Club facilities require membership. The official club page states that spa appointments are open to non-members, so access depends on whether you are booking the spa or using the wider club.",
+        "Editorial Verdict": "Best suited to users who want premium training and studio choice with spa and steam-room recovery in the same Kensington membership.",
+        "Services Offered": [
+          "Spa",
+          "Steam Room",
+          "Yoga",
+          "Pilates",
+          "Personal Training"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Yoga / Movement"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery"
+        ],
+        "Activity Tags Standardized": [
+          "Steam Room"
+        ],
+        "Activity Display Labels": [
+          "Steam Room"
+        ],
+        "Venue Type Standardized": "Fitness & Recovery Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Best For": [
+          "Athletes",
+          "Fitness users",
+          "Luxury wellness users",
+          "West London locals"
+        ],
+        "Well Suited For": [
+          "Premium fitness",
+          "Fitness recovery",
+          "West London convenience",
+          "Luxury wellness"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery",
+          "Performance"
+        ],
+        "Type of Experience": [
+          "Gym",
+          "Group",
+          "One-to-one"
+        ],
+        "Experience Type": "Private / Group",
+        "Access Type": "Members only",
+        "Access Model": "Mixed access",
+        "Overall Price Range": "££££",
+        "Opening Hours": "Mon–Thu: 06:00–22:00\nFri: 06:00–21:00\nSat–Sun: 08:00–19:00",
+        "Showers Available": true,
+        "Atmosphere": "A large premium club built around a naturally lit strength floor, dedicated studios, member lounge and spa.",
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social & Community Note": "Membership, scheduled group classes and a member lounge create repeat interaction, while spa treatments can also be booked independently by non-members."
+      }
+    },
+    {
+      "id": "recTSzou0Mbtxx49K",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-02",
+        "Service Last Verified": "2026-09-02",
+        "Name": "E by Equinox St James’s",
+        "Slug": "equinox-st-jamess",
+        "Website": "https://www.equinox.com/clubs/london/stjames",
+        "Booking Link": "https://www.equinox.com/clubs/london/stjames",
+        "Business Name": "E by Equinox St James’s",
+        "Brand / Operator": "Equinox",
+        "Address": "12 St James’s Street, London SW1A 1ER",
+        "Phone": "+44 (0) 20 3884 2071",
+        "Neighborhood": "Mayfair",
+        "Area of London": "Central London",
+        "Description": "Executive-membership club in St James’s combining personal training, Studio Pilates, strength and cardio floors, sauna and steam facilities, spa bodywork and advanced recovery services including contrast therapy, IV drips and hyperbaric oxygen sessions.",
+        "Editorial Summary": "The most recovery-focused Equinox in London. Alongside premium training and spa facilities, the official E Club offer includes contrast therapy, IV drips and hyperbaric oxygen sessions.",
+        "Good To Know": "Access is restricted to Executive Members. Confirm how advanced recovery sessions are scheduled and whether they carry separate charges before joining.",
+        "Editorial Verdict": "The clearest Equinox fit for Well+ users prioritising integrated training and advanced recovery, but it sits behind the brand’s highest membership tier.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Contrast Therapy",
+          "IV Drips",
+          "Hyperbaric Oxygen Therapy",
+          "Spa",
+          "Pilates",
+          "Elite Personal Training"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Contrast Therapy",
+          "Sauna",
+          "HBOT",
+          "IV Therapy"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Contrast Therapy",
+          "Hyperbaric Oxygen Therapy",
+          "IV Therapy"
+        ],
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge",
+          "Steam Room",
+          "HBOT",
+          "IV Therapy"
+        ],
+        "Venue Type Standardized": "Fitness & Recovery Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Best For": [
+          "Athletes",
+          "Executives",
+          "High-performance users",
+          "Luxury wellness users",
+          "Recovery-focused users"
+        ],
+        "Well Suited For": [
+          "Premium fitness",
+          "Performance recovery",
+          "Luxury recovery",
+          "HBOT"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery",
+          "Performance",
+          "Executive Health"
+        ],
+        "Type of Experience": [
+          "Gym",
+          "Private",
+          "One-to-one"
+        ],
+        "Experience Type": "Private",
+        "Access Type": "Members only",
+        "Access Model": "Standard membership",
+        "Overall Price Range": "££££",
+        "Opening Hours": "Mon–Thu: 06:00–21:00\nFri: 06:00–20:00\nSat–Sun: 08:00–16:00",
+        "Showers Available": true,
+        "Towels Included": true,
+        "Atmosphere": "A smaller executive club combining private coaching, refined member facilities, spa treatment rooms and specialised recovery services.",
+        "Social Format": [
+          "Members-club setting",
+          "Private / individual"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Member programming"
+        ],
+        "Social & Community Note": "The format is more private and individually coached than group-led, with shared member facilities supporting a club setting around the training and recovery programme."
+      }
+    },
+    {
       "id": "rec2sAjcSv4F6thxG",
       "fields": {
         "Publish Status": "Published",
@@ -1796,6 +2096,111 @@
         "Booking Link": "https://www.better.org.uk/leisure-centre/london/islington/ironmonger-row-baths",
         "Email": "ironmongerrowbaths@gll.org",
         "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "rec2YOHIJEgWSwlB0",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-02",
+        "Service Last Verified": "2026-09-02",
+        "Name": "JAB SW1 Victoria",
+        "Slug": "jab-sw1-victoria",
+        "Website": "https://jabboxing.club/clubs/sw1-victoria/",
+        "Booking Link": "https://jabboxing.club/clubs/sw1-victoria/",
+        "Business Name": "JAB Boxing Club",
+        "Brand / Operator": "JAB",
+        "Address": "Unit 5, Colonnade Walk, 151 Buckingham Palace Road, London SW1W 9SZ",
+        "Phone": "020 4618 4605",
+        "Neighborhood": "Victoria",
+        "Area of London": "Central London",
+        "Description": "Victoria performance club combining boxing and conditioning studios with a dedicated recovery suite containing a six-person Nordic sauna and Glacier cold plunge. The club also includes changing facilities, a lounge and an in-house health café.",
+        "Editorial Summary": "JAB SW1 places boxing-led training and contrast recovery in one compact club. Its recovery suite is clearly specified rather than treated as a generic changing-room amenity.",
+        "Good To Know": "The official site offers sessions, class packs and membership, while its membership information describes recovery access as a member benefit. Published membership prices conflict across current pages, so confirm the latest rate directly.",
+        "Editorial Verdict": "A useful Victoria option for users who want coached performance training with sauna and cold plunge built into the same club routine.",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Fitness",
+          "Personal Training"
+        ],
+        "Primary Service": "Gym / Performance",
+        "Secondary Services": [
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery",
+          "Combined Experiences"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Venue Type Standardized": "Fitness & Recovery Club",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Community",
+          "Social"
+        ],
+        "Primary Pillar": "Recovery & Performance",
+        "Best For": [
+          "Athletes",
+          "Fitness users",
+          "Post-work recovery",
+          "Social wellness",
+          "Groups"
+        ],
+        "Well Suited For": [
+          "Performance recovery",
+          "Fitness recovery",
+          "After-work recovery",
+          "Social recovery"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Groups",
+          "Community Experience",
+          "Post-Workout Recovery",
+          "Performance"
+        ],
+        "Type of Experience": [
+          "Guided",
+          "Group",
+          "Social",
+          "Gym"
+        ],
+        "Experience Type": "Guided / Group",
+        "Access Type": "Public",
+        "Access Model": "Mixed access",
+        "Overall Price Range": "£££",
+        "Opening Hours": "Mon–Fri: 06:00–21:00\nSat: 07:15–16:30\nSun: 08:30–17:30",
+        "Showers Available": true,
+        "Atmosphere": "A compact, mid-century-inspired club with low-lit training studios, a dedicated recovery suite, lounge and health café.",
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Cafe / social space",
+          "Group classes",
+          "Member programming",
+          "Events",
+          "Members lounge"
+        ],
+        "Social & Community Note": "Group training, member programming, a lounge, health café and published social events create several repeat points of interaction beyond the boxing sessions."
       }
     },
     {
@@ -3387,6 +3792,122 @@
         "Booking Link": "https://banyalondon.co.uk/",
         "Email": "info@banyalondon.co.uk",
         "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recq1EweNTXta0bE2",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-02",
+        "Service Last Verified": "2026-09-02",
+        "Name": "The Method Club Notting Hill",
+        "Slug": "the-method-club-notting-hill",
+        "Website": "https://www.themethod.com/locations/the-club",
+        "Booking Link": "https://www.themethod.com/locations/the-club",
+        "Business Name": "The Method",
+        "Brand / Operator": "The Method",
+        "Address": "133–137 Westbourne Grove, London W11 2RS",
+        "Phone": "+44 20 3883 9940",
+        "Email": "hello@themethod.com",
+        "Neighborhood": "Notting Hill",
+        "Area of London": "West London",
+        "Description": "Notting Hill wellness club combining movement studios, a treatment-led Lab, guided contrast therapy, personalised stretch therapy, a members’ lounge and an on-site café. Classes span strength, cardio, Pilates-inspired movement, mobility and recovery.",
+        "Editorial Summary": "The Method brings training, recovery and social space into one Notting Hill club. Its strongest directory distinction is the guided, members-only contrast experience alongside classes, bodywork and personalised stretching.",
+        "Good To Know": "Classes are available through memberships and flexible packages, but the guided sauna and cold-water contrast experience is reserved for members. Check the current package before booking if recovery access is your priority.",
+        "Editorial Verdict": "A broad, design-led wellness club with a stronger recovery offer than a conventional boutique studio, particularly for members who want classes and guided contrast in one place.",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Assisted Stretch",
+          "Yoga",
+          "Pilates",
+          "Lymphatic Drainage"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge",
+          "Yoga / Movement"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Combined Experiences",
+          "Mobility"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Assisted Stretching"
+        ],
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge",
+          "Assisted Stretching"
+        ],
+        "Venue Type Standardized": "Wellness Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance",
+          "Community",
+          "Mobility"
+        ],
+        "Primary Pillar": "Wellness Clubs",
+        "Best For": [
+          "Movement",
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Social wellness",
+          "Luxury wellness users"
+        ],
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Social wellness",
+          "Luxury wellness"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Community Experience",
+          "Post-Workout Recovery",
+          "Mobility",
+          "Recovery",
+          "Performance"
+        ],
+        "Type of Experience": [
+          "Guided",
+          "Group",
+          "Social",
+          "Gym"
+        ],
+        "Experience Type": "Guided / Group",
+        "Access Type": "Public",
+        "Access Model": "Mixed access",
+        "Overall Price Range": "££££",
+        "Opening Hours": "Mon–Fri: 06:00–20:00\nSat: 08:30–19:30\nSun: 08:30–17:00",
+        "Showers Available": true,
+        "Atmosphere": "A multi-level club organised around studios, treatment and recovery rooms, a members’ lounge, café and terrace rather than a single workout room.",
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social & Community Note": "Group classes, a members’ lounge, café, terrace and member events create several repeat-use social settings beyond the workout itself."
       }
     },
     {
