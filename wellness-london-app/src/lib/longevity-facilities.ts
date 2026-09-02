@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { fetchAirtableJson } from "@/lib/airtable-request";
 import {
   AIRTABLE_REVALIDATE_SECONDS,
   getFacilities,
@@ -95,21 +96,10 @@ async function fetchClinicalFields() {
     if (offset) params.set("offset", offset);
 
     const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
-    const response = await fetch(url, {
-      cache: "force-cache",
-      headers: { Authorization: `Bearer ${apiKey}` },
-      next: {
-        revalidate: AIRTABLE_REVALIDATE_SECONDS,
-        tags: ["airtable-longevity-fields"],
-      },
+    const data = await fetchAirtableJson<ClinicalResponse>(url, apiKey, {
+      revalidate: AIRTABLE_REVALIDATE_SECONDS,
+      tags: ["airtable-longevity-fields"],
     });
-
-    if (!response.ok) {
-      console.error("Failed to fetch Airtable longevity fields", response.status, response.statusText);
-      return clinicalBySlug;
-    }
-
-    const data = (await response.json()) as ClinicalResponse;
     (data.records || []).forEach((record) => {
       const slug = record.fields.Slug?.trim();
       if (!slug) return;

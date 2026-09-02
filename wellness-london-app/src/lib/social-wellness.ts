@@ -1,5 +1,6 @@
 import { cache } from "react";
 import { AIRTABLE_REVALIDATE_SECONDS } from "@/lib/airtable";
+import { fetchAirtableJson } from "@/lib/airtable-request";
 
 type AirtableSelect = { name?: string };
 type AirtableValue = string | AirtableSelect | AirtableSelect[] | string[] | null | undefined;
@@ -53,20 +54,14 @@ export const getSocialWellnessProfiles = cache(async (): Promise<Map<string, Soc
     ["Slug", "Social Format", "Community Features", "Social & Community Note"].forEach((field) => params.append("fields[]", field));
     if (offset) params.set("offset", offset);
 
-    const response = await fetch(
+    const payload = await fetchAirtableJson<SocialResponse>(
       `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`,
+      apiKey,
       {
-        headers: { Authorization: `Bearer ${apiKey}` },
-        next: {
-          revalidate: AIRTABLE_REVALIDATE_SECONDS,
-          tags: ["airtable-facilities"],
-        },
+        revalidate: AIRTABLE_REVALIDATE_SECONDS,
+        tags: ["airtable-facilities"],
       },
     );
-
-    if (!response.ok) return profiles;
-
-    const payload = (await response.json()) as SocialResponse;
     (payload.records || []).forEach((record) => {
       const slug = record.fields?.Slug?.trim();
       if (!slug) return;
