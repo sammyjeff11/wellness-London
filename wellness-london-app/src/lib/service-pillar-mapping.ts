@@ -1,6 +1,6 @@
 import { cache } from "react";
+import servicePillarSnapshot from "@/data/generated/service-pillar-mappings.json";
 import type { AirtableFacility } from "@/lib/airtable";
-import { AIRTABLE_REVALIDATE_SECONDS } from "@/lib/airtable";
 
 export type ServicePillarName =
   | "Recovery & Performance"
@@ -34,14 +34,6 @@ type ServicePillarMappingRecord = {
     Notes?: AirtableFieldValue;
   };
 };
-
-type AirtableResponse = {
-  records?: ServicePillarMappingRecord[];
-  offset?: string;
-};
-
-const SERVICE_PILLAR_MAPPING_TABLE_ID = "tbla50fh3UBUk3LKw";
-const SERVICE_PILLAR_MAPPING_TAG = "airtable-service-pillar-mappings";
 
 const fallbackByPillar: Record<ServicePillarName, string[]> = {
   "Recovery & Performance": [
@@ -288,54 +280,10 @@ export function debugVenuePillarDerivations(
   }));
 }
 
-async function fetchServicePillarMappingsFromAirtable(): Promise<ServicePillarMapping[]> {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-
-  if (!apiKey || !baseId) {
-    console.warn("Airtable environment variables are missing. Falling back to service pillar mapping defaults.");
-    return fallbackServicePillarMappings;
-  }
-
-  const records: ServicePillarMappingRecord[] = [];
-  let offset: string | undefined;
-
-  try {
-    do {
-      const params = new URLSearchParams({ pageSize: "100" });
-
-      if (offset) {
-        params.set("offset", offset);
-      }
-
-      const url = `https://api.airtable.com/v0/${baseId}/${SERVICE_PILLAR_MAPPING_TABLE_ID}?${params.toString()}`;
-      const response = await fetch(url, {
-        cache: "force-cache",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-        },
-        next: {
-          revalidate: AIRTABLE_REVALIDATE_SECONDS,
-          tags: [SERVICE_PILLAR_MAPPING_TAG],
-        },
-      });
-
-      if (!response.ok) {
-        console.error("Failed to fetch Airtable service pillar mappings", response.status, response.statusText);
-        return fallbackServicePillarMappings;
-      }
-
-      const data = (await response.json()) as AirtableResponse;
-      records.push(...(data.records || []));
-      offset = data.offset;
-    } while (offset);
-  } catch (error) {
-    console.error("Failed to fetch Airtable service pillar mappings", error);
-    return fallbackServicePillarMappings;
-  }
-
+async function loadServicePillarMappings(): Promise<ServicePillarMapping[]> {
+  const records = servicePillarSnapshot.records as unknown as ServicePillarMappingRecord[];
+  if (records.length === 0) return fallbackServicePillarMappings;
   return records.map(mapRecordToServicePillarMapping);
 }
 
-export const getServicePillarMappings = cache(fetchServicePillarMappingsFromAirtable);
-export const AIRTABLE_SERVICE_PILLAR_MAPPING_TAG = SERVICE_PILLAR_MAPPING_TAG;
+export const getServicePillarMappings = cache(loadServicePillarMappings);

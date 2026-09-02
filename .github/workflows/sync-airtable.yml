@@ -1,0 +1,64 @@
+name: Publish Airtable directory
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: publish-airtable-directory
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: wellness-london-app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: wellness-london-app/package-lock.json
+
+      - run: npm ci
+      - run: npm run sync:airtable
+        env:
+          AIRTABLE_API_KEY: ${{ secrets.AIRTABLE_API_KEY }}
+          AIRTABLE_BASE_ID: ${{ secrets.AIRTABLE_BASE_ID }}
+
+      - run: npm run validate:directory
+      - run: npm test
+      - run: npm run build
+
+      - name: Open or refresh the directory update PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- src/data/generated public/venues; then
+            echo "Directory snapshot is already current."
+            exit 0
+          fi
+
+          branch="content/airtable-directory-sync"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -C "$branch"
+          git add src/data/generated public/venues
+          git commit -m "Update published Airtable directory snapshot"
+          git push --force origin "HEAD:$branch"
+
+          if gh pr view "$branch" --json url >/dev/null 2>&1; then
+            gh pr edit "$branch" --title "Update published Airtable directory snapshot" --body "Automated, validated directory update from Airtable. No live website request depends on the Airtable API."
+          else
+            gh pr create --base main --head "$branch" --title "Update published Airtable directory snapshot" --body "Automated, validated directory update from Airtable. No live website request depends on the Airtable API."
+          fi

@@ -18,8 +18,7 @@ import { absoluteUrl, truncateMetaText } from "@/lib/site";
 import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
 
-export const dynamicParams = true;
-export const revalidate = 21600;
+export const dynamicParams = false;
 
 type FacilityPageProps = {
   params: Promise<{ slug: string }>;

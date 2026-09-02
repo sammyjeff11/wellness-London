@@ -1,7 +1,6 @@
 import { cache } from "react";
-import { fetchAirtableJson } from "@/lib/airtable-request";
 import {
-  AIRTABLE_REVALIDATE_SECONDS,
+  getDirectorySnapshotRecords,
   getFacilities,
   type AirtableFacility,
 } from "@/lib/airtable";
@@ -24,11 +23,6 @@ type ClinicalRecord = {
     "Venue Confirmed"?: boolean;
     "Service Last Verified"?: string;
   };
-};
-
-type ClinicalResponse = {
-  records?: ClinicalRecord[];
-  offset?: string;
 };
 
 export type LongevityFacility = AirtableFacility & {
@@ -70,37 +64,10 @@ function normaliseSingle(value: ClinicalFieldValue) {
   return normaliseList(value).join(", ");
 }
 
-async function fetchClinicalFields() {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
+function getClinicalFields() {
   const clinicalBySlug = new Map<string, Omit<LongevityFacility, keyof AirtableFacility>>();
 
-  if (!apiKey || !baseId) return clinicalBySlug;
-
-  let offset: string | undefined;
-  const fields = [
-    "Slug",
-    "Clinic Model",
-    "Clinical Oversight",
-    "Confirmed Diagnostics",
-    "Assessment Format",
-    "Results Included",
-    "Venue Confirmed",
-    "Service Last Verified",
-  ];
-
-  do {
-    const params = new URLSearchParams({ pageSize: "100" });
-    fields.forEach((field) => params.append("fields[]", field));
-    if (offset) params.set("offset", offset);
-
-    const url = `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`;
-    const data = await fetchAirtableJson<ClinicalResponse>(url, apiKey, {
-      revalidate: AIRTABLE_REVALIDATE_SECONDS,
-      tags: ["airtable-longevity-fields"],
-    });
-    (data.records || []).forEach((record) => {
+  (getDirectorySnapshotRecords() as ClinicalRecord[]).forEach((record) => {
       const slug = record.fields.Slug?.trim();
       if (!slug) return;
 
@@ -113,19 +80,14 @@ async function fetchClinicalFields() {
         venueConfirmed: record.fields["Venue Confirmed"] === true,
         serviceLastVerified: record.fields["Service Last Verified"] || "",
       });
-    });
-
-    offset = data.offset;
-  } while (offset);
+  });
 
   return clinicalBySlug;
 }
 
 async function fetchLongevityFacilities(): Promise<LongevityFacility[]> {
-  const [facilities, clinicalBySlug] = await Promise.all([
-    getFacilities(),
-    fetchClinicalFields(),
-  ]);
+  const facilities = await getFacilities();
+  const clinicalBySlug = getClinicalFields();
 
   return facilities.map((facility) => ({
     ...facility,

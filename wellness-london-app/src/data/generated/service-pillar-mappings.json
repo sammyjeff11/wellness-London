@@ -1,0 +1,878 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-02T06:08:58.005Z",
+  "source": {
+    "base": "Wellness Listings",
+    "table": "Service Pillar Mapping"
+  },
+  "records": [
+    {
+      "id": "recCONLEzuYgOCkGB",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Acupuncture",
+        "Canonical Service Slug": "acupuncture",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recqCOtgKjqBQMCPg",
+      "fields": {
+        "Service Name": "Advanced Facials",
+        "Canonical Service Slug": "advanced-facials",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recRyVCtmvec3lAz1",
+      "fields": {
+        "Service Name": "Aesthetics",
+        "Canonical Service Slug": "aesthetics",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recKHKEcpJH84YOL6",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Aesthetics & IV Infusions",
+        "Canonical Service Slug": "aesthetics-iv-infusions",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec08qRYAy76mXRlA",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Altitude Therapy",
+        "Canonical Service Slug": "altitude-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recYwsb3jMpl20glO",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Antigravity Fitness",
+        "Canonical Service Slug": "antigravity-fitness",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recaTOZmuBv182Rky",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Aromatherapy",
+        "Canonical Service Slug": "aromatherapy",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recXj579D46pIvbXx",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Aromatherapy Massage",
+        "Canonical Service Slug": "aromatherapy-massage",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recWV8xFRIDK19vBS",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Assisted Stretch",
+        "Canonical Service Slug": "assisted-stretch",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recziUEWWh7n9ghpg",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Assisted Stretching",
+        "Canonical Service Slug": "assisted-stretching",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recbBIIWyhvXUAC7b",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Barre",
+        "Canonical Service Slug": "barre",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "rec5l18sZ3aYjmDOv",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Blood Testing",
+        "Canonical Service Slug": "blood-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec9IQOcdMyLV2LwC",
+      "fields": {
+        "Service Name": "Body Detox Treatment",
+        "Canonical Service Slug": "body-detox-treatment",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recjVogl02FDQUluy",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Breathwork",
+        "Canonical Service Slug": "breathwork",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "rec4GVGwKRlbIIX55",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Breathwork Classes",
+        "Canonical Service Slug": "breathwork-classes",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recblvmEpPCmkuRUy",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Cold Plunge",
+        "Canonical Service Slug": "cold-plunge",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recWBTTdb7bgr3sUk",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Colonic Hydrotherapy",
+        "Canonical Service Slug": "colonic-hydrotherapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recIdqngfk3EIADx9",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Compression Therapy",
+        "Canonical Service Slug": "compression-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "reccjOYhXMFzVKXyQ",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Contrast Therapy",
+        "Canonical Service Slug": "contrast-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recRhaCawQTqL0p8k",
+      "fields": {
+        "Service Name": "Cryofacial",
+        "Canonical Service Slug": "cryofacial",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recQBrObzQiRSssFI",
+      "fields": {
+        "Service Name": "Cryolipolysis",
+        "Canonical Service Slug": "cryolipolysis",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "reczrBnQaMTvLnkLh",
+      "fields": {
+        "Service Name": "Cryolipolysis (Fat Freezing)",
+        "Canonical Service Slug": "cryolipolysis-fat-freezing",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recqnkw9G59MeUXrS",
+      "fields": {
+        "Service Name": "CryoPen",
+        "Canonical Service Slug": "cryopen",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recOJgxeDtmK6hnRc",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Cryotherapy",
+        "Canonical Service Slug": "cryotherapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "rec9GOBi7ot9O4RxX",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Cupping",
+        "Canonical Service Slug": "cupping",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recnh05irwZCaHwVu",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Deep Tissue Massage",
+        "Canonical Service Slug": "deep-tissue-massage",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "rec9xvPrGuA2Oab6J",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Diagnostic Testing",
+        "Canonical Service Slug": "diagnostic-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recYnrimxsmJDtJxF",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Diagnostics",
+        "Canonical Service Slug": "diagnostics",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recCE6RnxAtBPR4Qu",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Elite Personal Training",
+        "Canonical Service Slug": "elite-personal-training",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recXIgHtAvPlvvh7c",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "EMS Medisculpt",
+        "Canonical Service Slug": "ems-medisculpt",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recGNtpWYMawHV3Xa",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Evening Socials",
+        "Canonical Service Slug": "evening-socials",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "rec0IlndODDcxU2oK",
+      "fields": {
+        "Service Name": "Facials",
+        "Canonical Service Slug": "facials",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recJ4CQsMCiMY6TzX",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Finnish Sauna",
+        "Canonical Service Slug": "finnish-sauna",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recbDcVmup0VNCeR3",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Fitness",
+        "Canonical Service Slug": "fitness",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recO3DEMxIAvkLQLi",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Float Therapy",
+        "Canonical Service Slug": "float-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recC1ZvZQazjQPuK7",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Floatation Therapy",
+        "Canonical Service Slug": "floatation-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recoKYqznEm49ZOj6",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Free Flow Sessions",
+        "Canonical Service Slug": "free-flow-sessions",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recjTYlQouqIcvW49",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Genomic Testing",
+        "Canonical Service Slug": "genomic-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec6b7V5nRHQpQLMn",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Guided Classes",
+        "Canonical Service Slug": "guided-classes",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recojpkv55ICtBnp3",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Guided Meditation Pod",
+        "Canonical Service Slug": "guided-meditation-pod",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recb4GJylGI4k8LnN",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Gut Health Testing",
+        "Canonical Service Slug": "gut-health-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recsbiORRCTfKd10J",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Gut Therapy",
+        "Canonical Service Slug": "gut-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recVhICk3UULSfYsR",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Hammam",
+        "Canonical Service Slug": "hammam",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recosZRKFtshDzST4",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "HBOT",
+        "Canonical Service Slug": "hbot",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recQ5Ue2WqnwuklbS",
+      "fields": {
+        "Service Name": "Head Spa",
+        "Canonical Service Slug": "head-spa",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recYbV4MD0Iwt9pmP",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Health Optimisation",
+        "Canonical Service Slug": "health-optimisation",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recLXI7WazuHzlXHY",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Herbal Medicine",
+        "Canonical Service Slug": "herbal-medicine",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recltEef46YomuEcB",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Himalayan Salt Room",
+        "Canonical Service Slug": "himalayan-salt-room",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recPuJu2ulhSAEXym",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Hormone Testing",
+        "Canonical Service Slug": "hormone-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recJ16eYNYSYV5YiY",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Hyperbaric Oxygen Therapy",
+        "Canonical Service Slug": "hyperbaric-oxygen-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recR1tg5zfWvQ6PhW",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Infrared Sauna",
+        "Canonical Service Slug": "infrared-sauna",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recOnZjFKpncvtrmd",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "IV Drips",
+        "Canonical Service Slug": "iv-drips",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec3yHTCaxPWdQv3o",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "IV Infusions",
+        "Canonical Service Slug": "iv-infusions",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recVq9PXRg7R1GyHS",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "IV Therapy",
+        "Canonical Service Slug": "iv-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recmttkZCPXsIUGyP",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Jacuzzi",
+        "Canonical Service Slug": "jacuzzi",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recESUL3uuMmXBQzt",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Lap Pool",
+        "Canonical Service Slug": "lap-pool",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recWHQx5hrSDUznqd",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Longevity",
+        "Canonical Service Slug": "longevity",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec4j4tLfhO1I7wqL",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Longevity Testing",
+        "Canonical Service Slug": "longevity-testing",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recHw7LJg1S7TFLCs",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Lymphatic Drainage",
+        "Canonical Service Slug": "lymphatic-drainage",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recFPaUZy3ycbSrQP",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Massage",
+        "Canonical Service Slug": "massage",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recpymMuCCIk3HcEG",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Massage Therapy",
+        "Canonical Service Slug": "massage-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recP1DZsxXZoxlJdG",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Medical Wellness",
+        "Canonical Service Slug": "medical-wellness",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recHwVQOZoY7GXLC4",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Meditation",
+        "Canonical Service Slug": "meditation",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recV6Jx8JzwpwppNC",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Meditation Through Breathwork",
+        "Canonical Service Slug": "meditation-through-breathwork",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recFjt6sXJitQ4xhc",
+      "fields": {
+        "Service Name": "Murad Method™ Facials",
+        "Canonical Service Slug": "murad-method-facials",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recgKoFCYRA9w8s3i",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "NAD+ Therapy",
+        "Canonical Service Slug": "nad-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recDonldvWRchXPLF",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Naturopathic Nutrition",
+        "Canonical Service Slug": "naturopathic-nutrition",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recJPNzy5UJJ6aBSa",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Nutrition Coaching",
+        "Canonical Service Slug": "nutrition-coaching",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recXPuPZXBSMjaX4j",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Nutritional Therapy",
+        "Canonical Service Slug": "nutritional-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "rec17lbZVUwJOcje4",
+      "fields": {
+        "Service Name": "Other",
+        "Canonical Service Slug": "other",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recnqymCZPfGkPFx0",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Ozone Therapy",
+        "Canonical Service Slug": "ozone-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recZjmBQidJsdM97O",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "PEMF Therapy",
+        "Canonical Service Slug": "pemf-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recbtQhpTlNgaSi4c",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Personal Training",
+        "Canonical Service Slug": "personal-training",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recBJoJ4yFV9Xhu3g",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Physiotherapy",
+        "Canonical Service Slug": "physiotherapy",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "rec1GvDhINfUeaz0y",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Pilates",
+        "Canonical Service Slug": "pilates",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "recKQwP1nw4gxtuTA",
+      "fields": {
+        "Service Name": "Psychotherapy",
+        "Canonical Service Slug": "psychotherapy",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "recCx9dQJbtLEj2SR",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Recovery Therapy",
+        "Canonical Service Slug": "recovery-therapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recV7WKGPUWWbemrW",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Red Light Therapy",
+        "Canonical Service Slug": "red-light-therapy",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recnMRSisBrVxk54I",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Reformer Pilates",
+        "Canonical Service Slug": "reformer-pilates",
+        "Primary Pillar": "Mobility"
+      }
+    },
+    {
+      "id": "reclNSU2NtWGxSTyu",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Rose Sauna",
+        "Canonical Service Slug": "rose-sauna",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "rec3UuZHc9V0uFerO",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sauna",
+        "Canonical Service Slug": "sauna",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recVfc7GDFkuhz3OB",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sensory Treatments",
+        "Canonical Service Slug": "sensory-treatments",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recXhKWBZPLFqDic6",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sound Bath",
+        "Canonical Service Slug": "sound-bath",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recUaOdqucBzAAfhk",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sound Baths",
+        "Canonical Service Slug": "sound-baths",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recXyOSVCsiV4MoaT",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sound Therapy",
+        "Canonical Service Slug": "sound-therapy",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recPUKurOH3Hs8aFp",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Spa",
+        "Canonical Service Slug": "spa",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recxHjSKprVQv9dYR",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Sports Massage",
+        "Canonical Service Slug": "sports-massage",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recL7ZwJB93ECOgRy",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Steam Room",
+        "Canonical Service Slug": "steam-room",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recLvu8eoX4DrEA16",
+      "fields": {
+        "Service Name": "TEMPLESPA Facials",
+        "Canonical Service Slug": "templespa-facials",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "rechAWH39mXT3KkpY",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Thermal Baths",
+        "Canonical Service Slug": "thermal-baths",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recPzzrLyHQU9mi7v",
+      "fields": {
+        "Service Name": "Trichology",
+        "Canonical Service Slug": "trichology",
+        "Primary Pillar": "Exclude from Pillar Pages"
+      }
+    },
+    {
+      "id": "rec2m0L5zdzPMrpdB",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Vibroacoustic Bed",
+        "Canonical Service Slug": "vibroacoustic-bed",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recc9a0nlPNliuJNu",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Vitamin Injections",
+        "Canonical Service Slug": "vitamin-injections",
+        "Primary Pillar": "Longevity & Diagnostics"
+      }
+    },
+    {
+      "id": "recUKINms6wlR1QSO",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Watsu Pool",
+        "Canonical Service Slug": "watsu-pool",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recJdZk8Vgif2him8",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Wellness",
+        "Canonical Service Slug": "wellness",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recKSdHofa396Rh07",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Wellness Ritual",
+        "Canonical Service Slug": "wellness-ritual",
+        "Primary Pillar": "Wellness Clubs"
+      }
+    },
+    {
+      "id": "recbWeKdWvjTvj5q0",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Whole Body Cryotherapy",
+        "Canonical Service Slug": "whole-body-cryotherapy",
+        "Primary Pillar": "Recovery & Performance"
+      }
+    },
+    {
+      "id": "recg2V5CGkY0Vembd",
+      "fields": {
+        "Display on Pillar Page?": true,
+        "Service Name": "Yoga",
+        "Canonical Service Slug": "yoga",
+        "Primary Pillar": "Mobility"
+      }
+    }
+  ]
+}

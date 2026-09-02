@@ -1,6 +1,5 @@
 import { cache } from "react";
-import { AIRTABLE_REVALIDATE_SECONDS } from "@/lib/airtable";
-import { fetchAirtableJson } from "@/lib/airtable-request";
+import { getDirectorySnapshotRecords } from "@/lib/airtable";
 import { cleanValue } from "@/lib/useful-values";
 
 type AirtableSelect = { name?: string };
@@ -39,31 +38,12 @@ function normaliseSingle(value: AirtableValue) {
   return normaliseList(value)[0] || "";
 }
 
-function escapeFormulaValue(value: string) {
-  return value.replace(/\\/g, "\\\\").replace(/'/g, "\\'");
-}
-
 const getSocialProfile = cache(async (slug: string): Promise<SocialProfile | null> => {
-  const apiKey = process.env.AIRTABLE_API_KEY;
-  const baseId = process.env.AIRTABLE_BASE_ID;
-  const tableName = process.env.AIRTABLE_TABLE_NAME || "Wellness London";
+  if (!slug) return null;
 
-  if (!apiKey || !baseId || !slug) return null;
-
-  const params = new URLSearchParams({
-    maxRecords: "1",
-    filterByFormula: `{Slug}='${escapeFormulaValue(slug)}'`,
-  });
-
-  const payload = await fetchAirtableJson<{ records?: SocialRecord[] }>(
-    `https://api.airtable.com/v0/${baseId}/${encodeURIComponent(tableName)}?${params.toString()}`,
-    apiKey,
-    {
-      revalidate: AIRTABLE_REVALIDATE_SECONDS,
-      tags: ["airtable-facilities"],
-    },
-  );
-  const fields = payload.records?.[0]?.fields;
+  const record = (getDirectorySnapshotRecords() as SocialRecord[])
+    .find((item) => item.fields?.Slug?.trim() === slug);
+  const fields = record?.fields;
   if (!fields) return null;
 
   const profile = {
