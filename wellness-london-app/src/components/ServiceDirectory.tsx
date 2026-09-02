@@ -280,8 +280,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   );
 
   return (
-    <div className="space-y-8 md:space-y-12">
-      <section className="rounded-[1.35rem] border border-[#b9ab97]/80 bg-[#ded4c5] p-4 shadow-[0_18px_46px_rgba(41,36,29,0.07)] sm:p-6 md:p-8">
+    <div className="space-y-8 pb-20 md:space-y-12 md:pb-0">
+      <section id={`directory-filters-${serviceType}`} className="scroll-mt-24 rounded-[1.35rem] border border-[#b9ab97]/80 bg-[#ded4c5] p-4 shadow-[0_18px_46px_rgba(41,36,29,0.07)] sm:p-6 md:sticky md:top-[5.75rem] md:z-30 md:p-8">
         <div className="surface-paper-strong rounded-[1.2rem] px-4 py-3 sm:px-5">
           <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#6f6048]">
             Search venues
@@ -401,6 +401,19 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </section>
       )}
+
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d8cebf] bg-[#fbf8f1]/95 px-4 py-3 shadow-[0_-16px_38px_rgba(41,36,29,0.12)] backdrop-blur-xl md:hidden">
+        <div className="mx-auto flex max-w-md items-center gap-3">
+          <a href={`#directory-filters-${serviceType}`} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]">
+            Filters · {filteredFacilities.length} {filteredFacilities.length === 1 ? "venue" : "venues"}
+          </a>
+          {activeFilters.length > 0 || hasActiveSearch ? (
+            <button type="button" onClick={clearFilters} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8cebf] px-4 text-sm text-[#29241d]">
+              Clear
+            </button>
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 }

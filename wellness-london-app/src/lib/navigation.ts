@@ -1,4 +1,4 @@
-export type NavSection = "venues" | "services" | "areas" | "guides" | "longevity";
+export type NavSection = "venues" | "services" | "areas" | "guides";
 
 const longevityPaths = new Set([
   "/longevity",
@@ -34,8 +34,8 @@ const areaPaths = new Set([
 ]);
 
 export function getActiveNavSection(pathname: string): NavSection | null {
-  if (pathname === "/explore" || pathname.startsWith("/facility/") || pathname.startsWith("/brand/")) return "venues";
-  if (longevityPaths.has(pathname) || pathname === "/longevity-london") return "longevity";
+  if (pathname === "/explore" || pathname === "/brands" || pathname.startsWith("/facility/") || pathname.startsWith("/brand/")) return "venues";
+  if (longevityPaths.has(pathname) || pathname === "/longevity-london") return "services";
   if (pathname.startsWith("/neighbourhoods/") || areaPaths.has(pathname)) return "areas";
   if (
     pathname === "/editorial" ||

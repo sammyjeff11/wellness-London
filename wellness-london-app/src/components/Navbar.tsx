@@ -11,9 +11,46 @@ const serviceLinks = [
   { href: "/cold-plunge-london", label: "Cold plunge" },
   { href: "/contrast-therapy-london", label: "Contrast therapy" },
   { href: "/cryotherapy-london", label: "Cryotherapy" },
-  { href: "/red-light-therapy-london", label: "Red light therapy" },
-  { href: "/hbot-london", label: "HBOT" },
-  { href: "/recovery-london", label: "Recovery" },
+  { href: "/longevity", label: "Longevity clinics" },
+  { href: "/health-screening-london", label: "Health screening" },
+  { href: "/vo2-max-testing-london", label: "VO₂ max testing" },
+  { href: "/assisted-stretching-london", label: "Assisted stretching" },
+];
+
+const serviceGroups = [
+  {
+    label: "Recovery & performance",
+    links: [
+      { href: "/sauna-london", label: "Sauna" },
+      { href: "/cold-plunge-london", label: "Cold plunge" },
+      { href: "/contrast-therapy-london", label: "Contrast therapy" },
+      { href: "/cryotherapy-london", label: "Cryotherapy" },
+      { href: "/red-light-therapy-london", label: "Red light therapy" },
+      { href: "/hbot-london", label: "HBOT" },
+    ],
+  },
+  {
+    label: "Longevity",
+    links: [
+      { href: "/longevity", label: "Clinics overview" },
+      { href: "/health-screening-london", label: "Health screening" },
+      { href: "/blood-testing-london", label: "Blood testing" },
+      { href: "/dexa-scan-london", label: "DEXA scans" },
+      { href: "/vo2-max-testing-london", label: "VO₂ max testing" },
+    ],
+  },
+  {
+    label: "Mobility",
+    links: [
+      { href: "/assisted-stretching-london", label: "Assisted stretching" },
+    ],
+  },
+];
+
+const exploreLinks = [
+  { href: "/explore", label: "All venues" },
+  { href: "/brands", label: "Multi-location brands" },
+  { href: "/shortlist", label: "Saved venues" },
 ];
 
 const areaLinks = [
@@ -35,23 +72,21 @@ const guideLinks = [
   { href: "/editorial-standards", label: "Editorial standards" },
 ];
 
-const longevityLinks = [
-  { href: "/longevity", label: "Clinics overview" },
-  { href: "/health-screening-london", label: "Health screening" },
-  { href: "/blood-testing-london", label: "Blood testing" },
-  { href: "/cardiovascular-screening-london", label: "Heart health" },
-  { href: "/dexa-scan-london", label: "DEXA" },
-  { href: "/vo2-max-testing-london", label: "VO₂ max" },
-  { href: "/medical-imaging-london", label: "Medical imaging" },
-];
-
 const primaryLinks: { href: string; label: string; section: NavSection; children?: typeof serviceLinks }[] = [
-  { href: "/explore", label: "Venues", section: "venues" },
+  { href: "/explore", label: "Explore", section: "venues", children: exploreLinks },
   { href: "/services", label: "Services", section: "services", children: serviceLinks },
   { href: "/neighbourhoods", label: "Areas", section: "areas", children: areaLinks },
   { href: "/editorial", label: "Guides", section: "guides", children: guideLinks },
-  { href: "/longevity", label: "Longevity", section: "longevity", children: longevityLinks },
 ];
+
+function SearchIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[1.15rem] w-[1.15rem]" fill="none" stroke="currentColor" strokeWidth="1.7">
+      <circle cx="10.8" cy="10.8" r="6.4" />
+      <path d="m15.6 15.6 4 4" strokeLinecap="round" />
+    </svg>
+  );
+}
 
 function DesktopDropdown({ links }: { links: { href: string; label: string }[] }) {
   return (
@@ -62,6 +97,30 @@ function DesktopDropdown({ links }: { links: { href: string; label: string }[] }
             {link.label}
           </Link>
         ))}
+      </div>
+    </div>
+  );
+}
+
+function DesktopServicesDropdown() {
+  return (
+    <div className="invisible fixed left-1/2 top-[4.6rem] z-50 w-[min(46rem,calc(100vw-2rem))] -translate-x-1/2 pt-4 opacity-0 transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+      <div className="surface-paper-strong rounded-[1rem] p-3 shadow-[0_24px_65px_rgba(41,36,29,0.16)]">
+        <Link href="/services" className="mb-2 flex items-center justify-between rounded-[0.7rem] px-4 py-3 text-[13px] normal-case tracking-normal text-[#29241d] transition hover:bg-[#eee7da] focus:bg-[#eee7da] focus:outline-none">
+          <span>Explore all services</span><span aria-hidden="true">→</span>
+        </Link>
+        <div className="grid grid-cols-3 border-t border-[#d8cebf] pt-2">
+          {serviceGroups.map((group, index) => (
+            <div key={group.label} className={`px-2 ${index > 0 ? "border-l border-[#d8cebf]/80" : ""}`}>
+              <p className="px-3 pb-2 pt-3 text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{group.label}</p>
+              {group.links.map((link) => (
+                <Link key={link.href} href={link.href} className="block rounded-[0.7rem] px-3 py-2.5 text-[13px] normal-case tracking-normal text-[#5f574c] transition hover:bg-[#eee7da] hover:text-[#29241d] focus:bg-[#eee7da] focus:outline-none">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -102,14 +161,17 @@ export default function Navbar() {
                 <Link href={link.href} aria-current={isActive ? "page" : undefined} className={`inline-flex min-h-11 items-center border-b underline-offset-4 transition hover:text-[#29241d] ${isActive ? "border-[#29241d] text-[#29241d]" : "border-transparent"}`}>
                   {link.label}
                 </Link>
-                {link.children ? <DesktopDropdown links={link.children} /> : null}
+                {link.section === "services" ? <DesktopServicesDropdown /> : link.children ? <DesktopDropdown links={link.children} /> : null}
               </div>
             );
           })}
+          <Link href="/explore" aria-label="Search venues" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-transparent text-[#29241d] transition hover:border-[#d8cebf] hover:bg-[#fbf8f1]">
+            <SearchIcon />
+          </Link>
         </nav>
 
         <div className="flex items-center gap-1 md:hidden">
-          <Link href="/explore" aria-label="Search venues" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full text-xl text-[#29241d] transition hover:bg-[#eee7da]">⌕</Link>
+          <Link href="/explore" aria-label="Search venues" className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full text-[#29241d] transition hover:bg-[#eee7da]"><SearchIcon /></Link>
           <Link href="/shortlist" className="inline-flex min-h-11 items-center rounded-full px-3 text-xs font-medium text-[#29241d] transition hover:bg-[#eee7da]">Saved</Link>
           <button type="button" aria-expanded={menuOpen} aria-controls="mobile-primary-menu" onClick={() => setMenuOpen((open) => !open)} className="inline-flex min-h-11 items-center rounded-full border border-[#b9ab97] px-4 text-xs font-medium text-[#29241d] transition hover:bg-[#eee7da]">
             {menuOpen ? "Close" : "Menu"}
@@ -129,7 +191,22 @@ export default function Navbar() {
                     {link.label}
                     <span aria-hidden="true" className="text-base">→</span>
                   </Link>
-                  {link.children ? (
+                  {link.section === "services" ? (
+                    <div className="mt-3 space-y-4">
+                      {serviceGroups.map((group) => (
+                        <div key={group.label}>
+                          <p className="mb-2 text-[10px] uppercase tracking-[0.18em] text-[#8d7d67]">{group.label}</p>
+                          <div className="flex flex-wrap gap-2">
+                            {group.links.map((child) => (
+                              <Link key={child.href} href={child.href} onClick={() => setMenuOpen(false)} className="inline-flex min-h-11 items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 text-sm text-[#5f574c] transition hover:border-[#29241d] hover:text-[#29241d]">
+                                {child.label}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : link.children ? (
                     <div className="mt-2 flex flex-wrap gap-2">
                       {link.children.slice(1).map((child) => (
                         <Link key={child.href} href={child.href} onClick={() => setMenuOpen(false)} className="inline-flex min-h-11 items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 text-sm text-[#5f574c] transition hover:border-[#29241d] hover:text-[#29241d]">

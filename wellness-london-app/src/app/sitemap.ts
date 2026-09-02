@@ -9,6 +9,7 @@ import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { longevityServicePages } from "@/lib/longevity-service-pages";
 import { absoluteUrl } from "@/lib/site";
+import { brandPages } from "@/lib/brand-pages";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 const defaultLastModified = new Date("2026-08-04T00:00:00.000Z");
@@ -16,6 +17,8 @@ const defaultLastModified = new Date("2026-08-04T00:00:00.000Z");
 const staticRoutes = [
   { path: "", priority: 1 },
   { path: "/explore", priority: 0.95 },
+  { path: "/brands", priority: 0.82 },
+  ...brandPages.map((brand) => ({ path: `/brand/${brand.slug}`, priority: 0.76 })),
   { path: "/services", priority: 0.9 },
   ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
   ...longevityServicePages.map((page) => ({ path: page.href, priority: 0.84 })),

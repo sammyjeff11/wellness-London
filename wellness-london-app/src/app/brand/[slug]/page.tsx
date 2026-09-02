@@ -71,7 +71,9 @@ export default async function BrandPage({ params }: BrandPageProps) {
           <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#d8cebf]">
             <Link href="/" className="underline underline-offset-4 hover:text-white">Well+</Link>
             <span>/</span>
-            <span>{brand.name}</span>
+            <Link href="/brands" className="underline underline-offset-4 hover:text-white">Brands</Link>
+            <span>/</span>
+            <span aria-current="page">{brand.name}</span>
           </nav>
           <p className="mb-4 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#d8cebf] sm:text-[11px] sm:tracking-[0.28em]">
             {brand.eyebrow}

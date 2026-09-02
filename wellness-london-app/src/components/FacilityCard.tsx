@@ -158,6 +158,13 @@ function getCardImages(facility: FacilityCardFacility) {
   return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
 }
 
+function formatCheckedDate(value?: string) {
+  if (!value) return "";
+  const date = new Date(`${value.slice(0, 10)}T12:00:00Z`);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(date);
+}
+
 export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = false }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
@@ -173,6 +180,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
   const cardHref = `/facility/${facility.slug}`;
   const imageAspect = compact ? "aspect-[1.04/1]" : "aspect-[1.08/1]";
   const comparisonDetails = getComparisonDetails(facility);
+  const checkedDate = formatCheckedDate(facility.lastCheckedDate);
 
   const trackCardClick = () =>
     trackEvent("listing_card_click", {
@@ -282,6 +290,10 @@ export default function FacilityCard({ facility, source = "directory", compact =
         ) : null}
         <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
           <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
+          <span className="mt-4 flex items-center justify-between gap-3 border-t border-[#d8cebf]/70 pt-3 text-xs">
+            <span className="text-[#8d7d67]">{checkedDate ? `Information checked ${checkedDate}` : "Published venue profile"}</span>
+            <span className="shrink-0 font-medium text-[#29241d]">View venue →</span>
+          </span>
         </Link>
       </div>
     </article>

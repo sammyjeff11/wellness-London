@@ -4,6 +4,7 @@ import { getActiveNavSection } from "./navigation.ts";
 
 test("keeps venue profiles inside the Venues section", () => {
   assert.equal(getActiveNavSection("/explore"), "venues");
+  assert.equal(getActiveNavSection("/brands"), "venues");
   assert.equal(getActiveNavSection("/facility/example-venue"), "venues");
   assert.equal(getActiveNavSection("/brand/example-brand"), "venues");
 });
@@ -16,9 +17,9 @@ test("maps hubs and detail routes to the promised navigation section", () => {
   assert.equal(getActiveNavSection("/guides/sauna-london-guide"), "guides");
 });
 
-test("keeps diagnostic routes inside Longevity", () => {
-  assert.equal(getActiveNavSection("/longevity"), "longevity");
-  assert.equal(getActiveNavSection("/health-screening-london"), "longevity");
-  assert.equal(getActiveNavSection("/dexa-scan-london"), "longevity");
-  assert.equal(getActiveNavSection("/vo2-max-testing-london"), "longevity");
+test("keeps diagnostic routes inside Services", () => {
+  assert.equal(getActiveNavSection("/longevity"), "services");
+  assert.equal(getActiveNavSection("/health-screening-london"), "services");
+  assert.equal(getActiveNavSection("/dexa-scan-london"), "services");
+  assert.equal(getActiveNavSection("/vo2-max-testing-london"), "services");
 });
