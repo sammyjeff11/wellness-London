@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import SafeImage from "@/components/SafeImage";
 import type { FacilityCardFacility } from "@/components/FacilityCard";
@@ -82,6 +82,7 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
   });
   const [addSlug, setAddSlug] = useState("");
   const [shareStatus, setShareStatus] = useState("");
+  const lastTrackedComparison = useRef("");
   const selectedSlugs = useMemo(
     () => chosenSlugs ?? savedSlugs.filter((slug) => facilities.some((facility) => facility.slug === slug)).slice(0, 4),
     [chosenSlugs, facilities, savedSlugs],
@@ -92,6 +93,17 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
     const url = new URL(window.location.href);
     url.searchParams.set("venues", selectedSlugs.join(","));
     window.history.replaceState({}, "", url);
+  }, [selectedSlugs]);
+
+  useEffect(() => {
+    const signature = selectedSlugs.join(",");
+    if (!signature || signature === lastTrackedComparison.current) return;
+    lastTrackedComparison.current = signature;
+    trackEvent("venue_comparison_view", {
+      comparison_size: selectedSlugs.length,
+      facility_slugs: signature,
+      page_path: window.location.pathname,
+    });
   }, [selectedSlugs]);
 
   const selectedFacilities = selectedSlugs
@@ -180,7 +192,7 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
                   <h2 className="text-xl font-medium leading-6 tracking-[-0.03em]">{facility.name}</h2>
                   <p className="mt-1 text-sm text-[#6f6048]">{facility.neighbourhood || facility.location || "London"}</p>
                   <div className="mt-4 flex flex-wrap gap-3">
-                    <Link href={`/facility/${facility.slug}`} className="text-sm font-medium underline underline-offset-4">View profile</Link>
+                    <Link href={`/facility/${facility.slug}`} onClick={() => trackEvent("comparison_venue_open", { facility_slug: facility.slug, comparison_size: selectedFacilities.length, page_path: window.location.pathname })} className="text-sm font-medium underline underline-offset-4">View profile</Link>
                     <button type="button" onClick={() => removeVenue(facility.slug)} className="text-sm text-[#70695d] underline underline-offset-4" aria-label={`Remove ${facility.name} from comparison`}>Remove</button>
                   </div>
                 </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import FacilityGallery from "@/components/FacilityGallery";
 import FacilitySocialContext from "@/components/FacilitySocialContext";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import JsonLd from "@/components/JsonLd";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
 import VenueLocationSection from "@/components/VenueLocationSection";
@@ -301,6 +302,16 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
+      <AnalyticsPageView
+        eventName="facility_page_view"
+        properties={{
+          facility_name: facility.name,
+          facility_slug: facility.slug,
+          area: cleanValue(facility.areaOfLondon),
+          neighbourhood: cleanValue(facility.neighbourhood),
+          page_path: `/facility/${facility.slug}`,
+        }}
+      />
       <JsonLd data={venueJsonLd(facility)} />
 
       <section className="px-5 py-6 sm:px-6 sm:py-10 md:py-14">

@@ -1,6 +1,7 @@
 import { mkdir, readFile, rename, stat, writeFile } from "node:fs/promises";
 import { extname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { generateDirectoryInsights } from "./generate-directory-insights.mjs";
 
 const appRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const directoryPath = join(appRoot, "src/data/generated/directory-snapshot.json");
@@ -283,6 +284,7 @@ async function publishSnapshots(rawDirectoryRecords, rawMappingRecords) {
   await mkdir(join(appRoot, "src/data/generated"), { recursive: true });
   await writeFile(directoryPath, `${JSON.stringify(nextDirectory, null, 2)}\n`);
   await writeFile(mappingPath, `${JSON.stringify(nextMappings, null, 2)}\n`);
+  await generateDirectoryInsights();
   console.log(`Published snapshot: ${directoryRecords.length} venues, ${serviceMappingRecords.length} service mappings.`);
 }
 

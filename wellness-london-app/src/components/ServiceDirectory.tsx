@@ -265,6 +265,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       setNearbyLocation({ latitude: data.result.latitude, longitude: data.result.longitude }, data.result.postcode);
     } catch {
       setLocationStatus("We could not find that postcode. Check it and try again.");
+      trackEvent("location_search_failed", {
+        location_type: "postcode",
+        service_type: serviceType,
+        page_path: window.location.pathname,
+      });
     }
   }
 
@@ -276,7 +281,14 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     setLocationStatus("Requesting your location…");
     navigator.geolocation.getCurrentPosition(
       (position) => setNearbyLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }, "Current location"),
-      () => setLocationStatus("Location permission was not granted. You can use a postcode instead."),
+      () => {
+        setLocationStatus("Location permission was not granted. You can use a postcode instead.");
+        trackEvent("location_search_failed", {
+          location_type: "device",
+          service_type: serviceType,
+          page_path: window.location.pathname,
+        });
+      },
       { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
     );
   }
@@ -286,6 +298,55 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     setLocationStatus("");
     setPostcode("");
     if (sort === "nearest") setSort("recommended");
+  }
+
+  function updateSort(value: string) {
+    setSort(value);
+    trackEvent("directory_sort_changed", {
+      sort_order: value,
+      result_count: filteredFacilities.length,
+      service_type: serviceType,
+      page_path: window.location.pathname,
+    });
+  }
+
+  function updateViewMode(value: "list" | "map") {
+    setViewMode(value);
+    trackEvent("directory_view_changed", {
+      view_mode: value,
+      result_count: filteredFacilities.length,
+      service_type: serviceType,
+      page_path: window.location.pathname,
+    });
+  }
+
+  function selectMapVenue(slug: string) {
+    setSelectedMapSlug(slug);
+    trackEvent("map_venue_selected", {
+      facility_slug: slug,
+      result_count: filteredFacilities.length,
+      service_type: serviceType,
+      page_path: window.location.pathname,
+    });
+  }
+
+  function searchMapArea(slugs?: string[]) {
+    setMapAreaSlugs(slugs);
+    trackEvent("map_area_changed", {
+      action: slugs ? "search" : "clear",
+      result_count: slugs?.length ?? uniqueFacilities.length,
+      service_type: serviceType,
+      page_path: window.location.pathname,
+    });
+  }
+
+  function trackComparisonCta() {
+    trackEvent("comparison_cta_click", {
+      saved_count: savedSlugs.length,
+      comparison_size: Math.min(savedSlugs.length, 4),
+      source: "directory",
+      page_path: window.location.pathname,
+    });
   }
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
@@ -342,7 +403,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </FilterSelect>
         </>
       ) : null}
-      <FilterSelect label="Sort" value={sort} onChange={setSort}>
+      <FilterSelect label="Sort" value={sort} onChange={updateSort}>
         <option value="recommended">Recommended</option>
         {userLocation ? <option value="nearest">Nearest first</option> : null}
         <option value="price-low">Price low to high</option>
@@ -423,7 +484,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
                 </MobileFilterPill>
               </>
             )}
-            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={setSort}>
+            <MobileFilterPill label="Sort" value={sort === "recommended" ? "" : sort.replace("price-low", "Price").replace("premium", "Premium").replace("recently-checked", "Recent")} onChange={updateSort}>
               <option value="recommended">Sort</option>
               <option value="price-low">Price</option>
               <option value="premium">Premium</option>
@@ -472,10 +533,10 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
               {directoryMode ? (
                 <>
                   <div className="inline-flex rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1" aria-label="Directory view">
-                    <button type="button" onClick={() => setViewMode("list")} aria-pressed={viewMode === "list"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "list" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>List</button>
-                    <button type="button" onClick={() => setViewMode("map")} aria-pressed={viewMode === "map"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "map" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>Map</button>
+                    <button type="button" onClick={() => updateViewMode("list")} aria-pressed={viewMode === "list"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "list" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>List</button>
+                    <button type="button" onClick={() => updateViewMode("map")} aria-pressed={viewMode === "map"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "map" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>Map</button>
                   </div>
-                  <Link href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-5 text-sm font-medium text-[#29241d] transition hover:bg-white">
+                  <Link onClick={trackComparisonCta} href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-5 text-sm font-medium text-[#29241d] transition hover:bg-white">
                     {savedSlugs.length >= 2 ? `Compare ${Math.min(savedSlugs.length, 4)}` : `Saved${savedSlugs.length ? ` · ${savedSlugs.length}` : ""}`}
                   </Link>
                 </>
@@ -483,7 +544,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
             </div>
           </div>
           {directoryMode && viewMode === "map" ? (
-            <VenueMap facilities={filteredFacilities} selectedSlug={selectedMapSlug} userLocation={userLocation} distanceBySlug={distanceBySlug} mapAreaActive={Boolean(mapAreaSlugs)} onSelect={setSelectedMapSlug} onSearchArea={setMapAreaSlugs} />
+            <VenueMap facilities={filteredFacilities} selectedSlug={selectedMapSlug} userLocation={userLocation} distanceBySlug={distanceBySlug} mapAreaActive={Boolean(mapAreaSlugs)} onSelect={selectMapVenue} onSearchArea={searchMapArea} />
           ) : (
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {filteredFacilities.map((facility) => (
@@ -514,8 +575,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           <a href={`#directory-filters-${serviceType}`} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">
             Filters · {filteredFacilities.length} {filteredFacilities.length === 1 ? "venue" : "venues"}
           </a>
-          {directoryMode ? <button type="button" onClick={() => setViewMode((current) => current === "list" ? "map" : "list")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{viewMode === "list" ? "Map" : "List"}</button> : null}
-          {directoryMode && savedSlugs.length > 0 ? <Link href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{savedSlugs.length >= 2 ? "Compare" : "Saved"} · {Math.min(savedSlugs.length, 4)}</Link> : null}
+          {directoryMode ? <button type="button" onClick={() => updateViewMode(viewMode === "list" ? "map" : "list")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{viewMode === "list" ? "Map" : "List"}</button> : null}
+          {directoryMode && savedSlugs.length > 0 ? <Link onClick={trackComparisonCta} href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{savedSlugs.length >= 2 ? "Compare" : "Saved"} · {Math.min(savedSlugs.length, 4)}</Link> : null}
         </div>
       </div>
     </div>

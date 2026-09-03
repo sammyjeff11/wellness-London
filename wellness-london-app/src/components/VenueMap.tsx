@@ -7,6 +7,7 @@ import type { LatLngBounds } from "leaflet";
 import SaveVenueButton from "@/components/SaveVenueButton";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import { formatDistance } from "@/lib/geo";
+import { trackEvent } from "@/lib/analytics";
 
 type UserLocation = { latitude: number; longitude: number };
 
@@ -79,6 +80,14 @@ export default function VenueMap({ facilities, selectedSlug, userLocation, dista
     [facilities],
   );
   const selectedFacility = mappedFacilities.find((facility) => facility.slug === selectedSlug) || mappedFacilities[0];
+
+  function trackVenueOpen(facility: ServiceDirectoryFacility) {
+    trackEvent("map_venue_open", {
+      facility_name: facility.name,
+      facility_slug: facility.slug,
+      page_path: window.location.pathname,
+    });
+  }
 
   function searchVisibleArea() {
     if (mapAreaActive) {
@@ -156,7 +165,7 @@ export default function VenueMap({ facilities, selectedSlug, userLocation, dista
               </div>
               <SaveVenueButton slug={selectedFacility.slug} name={selectedFacility.name} />
             </div>
-            <Link href={`/facility/${selectedFacility.slug}`} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]">
+            <Link href={`/facility/${selectedFacility.slug}`} onClick={() => trackVenueOpen(selectedFacility)} className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]">
               View venue
             </Link>
           </article>
@@ -180,7 +189,7 @@ export default function VenueMap({ facilities, selectedSlug, userLocation, dista
                     <span className="mt-1 block truncate text-xs text-[#70695d]">{resultLocation(facility)} · {resultPrice(facility)}</span>
                   </button>
                   {distanceBySlug[facility.slug] !== undefined ? <span className="mt-1 block text-xs text-[#8d7d67]">{formatDistance(distanceBySlug[facility.slug])}</span> : null}
-                  {isSelected ? <Link href={`/facility/${facility.slug}`} className="mt-3 inline-flex text-xs font-medium underline underline-offset-4">View venue →</Link> : null}
+                  {isSelected ? <Link href={`/facility/${facility.slug}`} onClick={() => trackVenueOpen(facility)} className="mt-3 inline-flex text-xs font-medium underline underline-offset-4">View venue →</Link> : null}
                 </span>
               </div>
             );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AnalyticsPageView from "@/components/AnalyticsPageView";
 import SavedVenueList from "@/components/SavedVenueList";
 import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
@@ -15,6 +16,7 @@ export default async function ShortlistPage() {
 
   return (
     <main className="min-h-screen bg-[#f4efe6] px-5 py-12 text-[#29241d] sm:px-6 sm:py-18">
+      <AnalyticsPageView eventName="venue_shortlist_view" properties={{ page_path: "/shortlist" }} />
       <div className="mx-auto max-w-6xl">
         <p className="editorial-eyebrow">Saved for later</p>
         <h1 className="mt-4 max-w-3xl font-serif text-5xl font-normal leading-[0.96] tracking-[-0.05em] sm:text-7xl">
