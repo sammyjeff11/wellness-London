@@ -1,0 +1,879 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-03T05:31:04.890Z",
+  "sourceGeneratedAt": "2026-09-02T12:01:42.000Z",
+  "thresholds": {
+    "staleAfterDays": 90,
+    "publishableSampleSize": 5,
+    "publishableFieldCompleteness": 70
+  },
+  "summary": {
+    "publishedVenues": 43,
+    "neighbourhoods": 28,
+    "services": 91,
+    "averageCompleteness": 95.9,
+    "staleVenues": 0
+  },
+  "fields": [
+    {
+      "key": "editorial",
+      "label": "Useful description",
+      "complete": 43,
+      "missing": 0,
+      "percentage": 100
+    },
+    {
+      "key": "location",
+      "label": "Location",
+      "complete": 43,
+      "missing": 0,
+      "percentage": 100
+    },
+    {
+      "key": "services",
+      "label": "Services",
+      "complete": 37,
+      "missing": 6,
+      "percentage": 86
+    },
+    {
+      "key": "price",
+      "label": "Price",
+      "complete": 41,
+      "missing": 2,
+      "percentage": 95.3
+    },
+    {
+      "key": "access",
+      "label": "Access",
+      "complete": 43,
+      "missing": 0,
+      "percentage": 100
+    },
+    {
+      "key": "booking",
+      "label": "Booking route",
+      "complete": 43,
+      "missing": 0,
+      "percentage": 100
+    },
+    {
+      "key": "hours",
+      "label": "Opening hours",
+      "complete": 37,
+      "missing": 6,
+      "percentage": 86
+    },
+    {
+      "key": "checked",
+      "label": "Checked date",
+      "complete": 43,
+      "missing": 0,
+      "percentage": 100
+    }
+  ],
+  "coverage": {
+    "areas": [
+      {
+        "name": "Central London",
+        "count": 18
+      },
+      {
+        "name": "East London",
+        "count": 9
+      },
+      {
+        "name": "West London",
+        "count": 7
+      },
+      {
+        "name": "South London",
+        "count": 4
+      },
+      {
+        "name": "North London",
+        "count": 3
+      },
+      {
+        "name": "Greater London",
+        "count": 1
+      },
+      {
+        "name": "North East London",
+        "count": 1
+      }
+    ],
+    "neighbourhoods": [
+      {
+        "name": "Marylebone",
+        "count": 5
+      },
+      {
+        "name": "Mayfair",
+        "count": 4
+      },
+      {
+        "name": "Canary Wharf",
+        "count": 3
+      },
+      {
+        "name": "Shoreditch",
+        "count": 3
+      },
+      {
+        "name": "Belgravia",
+        "count": 2
+      },
+      {
+        "name": "Chelsea",
+        "count": 2
+      },
+      {
+        "name": "City of London",
+        "count": 2
+      },
+      {
+        "name": "Notting Hill",
+        "count": 2
+      },
+      {
+        "name": "Bayswater",
+        "count": 1
+      },
+      {
+        "name": "Brixton",
+        "count": 1
+      },
+      {
+        "name": "Camberwell",
+        "count": 1
+      },
+      {
+        "name": "Covent Garden",
+        "count": 1
+      },
+      {
+        "name": "Covent Garden / Strand",
+        "count": 1
+      },
+      {
+        "name": "Fitzrovia",
+        "count": 1
+      },
+      {
+        "name": "Hackney",
+        "count": 1
+      },
+      {
+        "name": "Hackney Wick",
+        "count": 1
+      },
+      {
+        "name": "Islington",
+        "count": 1
+      },
+      {
+        "name": "Kensington",
+        "count": 1
+      },
+      {
+        "name": "Kentish Town",
+        "count": 1
+      },
+      {
+        "name": "Peckham",
+        "count": 1
+      },
+      {
+        "name": "Richmond",
+        "count": 1
+      },
+      {
+        "name": "Soho",
+        "count": 1
+      },
+      {
+        "name": "St John's Wood",
+        "count": 1
+      },
+      {
+        "name": "Stratford",
+        "count": 1
+      },
+      {
+        "name": "Victoria",
+        "count": 1
+      },
+      {
+        "name": "Walthamstow",
+        "count": 1
+      },
+      {
+        "name": "Wandsworth",
+        "count": 1
+      },
+      {
+        "name": "White City",
+        "count": 1
+      }
+    ],
+    "services": [
+      {
+        "name": "Sauna",
+        "count": 21
+      },
+      {
+        "name": "Cold Plunge",
+        "count": 18
+      },
+      {
+        "name": "Contrast Therapy",
+        "count": 11
+      },
+      {
+        "name": "Massage",
+        "count": 11
+      },
+      {
+        "name": "Spa",
+        "count": 11
+      },
+      {
+        "name": "Steam Room",
+        "count": 8
+      },
+      {
+        "name": "Yoga",
+        "count": 8
+      },
+      {
+        "name": "Pilates",
+        "count": 7
+      },
+      {
+        "name": "Infrared Sauna",
+        "count": 6
+      },
+      {
+        "name": "Lap Pool",
+        "count": 6
+      },
+      {
+        "name": "Personal Training",
+        "count": 6
+      },
+      {
+        "name": "Cryotherapy",
+        "count": 5
+      },
+      {
+        "name": "Fitness",
+        "count": 5
+      },
+      {
+        "name": "Red Light Therapy",
+        "count": 5
+      },
+      {
+        "name": "Facials",
+        "count": 4
+      },
+      {
+        "name": "IV Therapy",
+        "count": 4
+      },
+      {
+        "name": "Wellness",
+        "count": 4
+      },
+      {
+        "name": "Compression Therapy",
+        "count": 3
+      },
+      {
+        "name": "HBOT",
+        "count": 3
+      },
+      {
+        "name": "Meditation",
+        "count": 3
+      },
+      {
+        "name": "Acupuncture",
+        "count": 2
+      },
+      {
+        "name": "Assisted Stretch",
+        "count": 2
+      },
+      {
+        "name": "Jacuzzi",
+        "count": 2
+      },
+      {
+        "name": "Ozone Therapy",
+        "count": 2
+      },
+      {
+        "name": "Sound Therapy",
+        "count": 2
+      },
+      {
+        "name": "Steam",
+        "count": 2
+      },
+      {
+        "name": "Advanced Facials",
+        "count": 1
+      },
+      {
+        "name": "Aesthetics",
+        "count": 1
+      },
+      {
+        "name": "Aesthetics & IV Infusions",
+        "count": 1
+      },
+      {
+        "name": "Aromatherapy",
+        "count": 1
+      },
+      {
+        "name": "Aromatherapy Massage",
+        "count": 1
+      },
+      {
+        "name": "Blood Testing",
+        "count": 1
+      },
+      {
+        "name": "Body Detox Treatment",
+        "count": 1
+      },
+      {
+        "name": "Brazilian Lymphatic Drainage",
+        "count": 1
+      },
+      {
+        "name": "Breathwork",
+        "count": 1
+      },
+      {
+        "name": "Breathwork Classes",
+        "count": 1
+      },
+      {
+        "name": "Cardiology",
+        "count": 1
+      },
+      {
+        "name": "Colonic Hydrotherapy",
+        "count": 1
+      },
+      {
+        "name": "Diagnostics",
+        "count": 1
+      },
+      {
+        "name": "Elite Personal Training",
+        "count": 1
+      },
+      {
+        "name": "Evening Socials",
+        "count": 1
+      },
+      {
+        "name": "Finnish Sauna",
+        "count": 1
+      },
+      {
+        "name": "Float Therapy",
+        "count": 1
+      },
+      {
+        "name": "Free Flow Sessions",
+        "count": 1
+      },
+      {
+        "name": "Functional Medicine",
+        "count": 1
+      },
+      {
+        "name": "General Medicine",
+        "count": 1
+      },
+      {
+        "name": "Genomic Testing",
+        "count": 1
+      },
+      {
+        "name": "Guided Classes",
+        "count": 1
+      },
+      {
+        "name": "Gut Health Testing",
+        "count": 1
+      },
+      {
+        "name": "Hammam",
+        "count": 1
+      },
+      {
+        "name": "Head Spa",
+        "count": 1
+      },
+      {
+        "name": "Health Optimisation",
+        "count": 1
+      },
+      {
+        "name": "Health Screening",
+        "count": 1
+      },
+      {
+        "name": "Herbal Medicine",
+        "count": 1
+      },
+      {
+        "name": "Himalayan Salt Room",
+        "count": 1
+      },
+      {
+        "name": "Holistic Treatments",
+        "count": 1
+      },
+      {
+        "name": "Hormone Testing",
+        "count": 1
+      },
+      {
+        "name": "Hyperbaric Oxygen Therapy",
+        "count": 1
+      },
+      {
+        "name": "IV Infusions",
+        "count": 1
+      },
+      {
+        "name": "Longevity Testing",
+        "count": 1
+      },
+      {
+        "name": "Lymphatic Drainage",
+        "count": 1
+      },
+      {
+        "name": "Massage Therapy",
+        "count": 1
+      },
+      {
+        "name": "Massages",
+        "count": 1
+      },
+      {
+        "name": "Meditation Through Breathwork",
+        "count": 1
+      },
+      {
+        "name": "MRI / Medical Imaging",
+        "count": 1
+      },
+      {
+        "name": "Musculoskeletal Medicine",
+        "count": 1
+      },
+      {
+        "name": "NAD+ Therapy",
+        "count": 1
+      },
+      {
+        "name": "Naturopathic Nutrition",
+        "count": 1
+      },
+      {
+        "name": "NESA Therapy",
+        "count": 1
+      },
+      {
+        "name": "Nutrition",
+        "count": 1
+      },
+      {
+        "name": "Nutritional Therapy",
+        "count": 1
+      },
+      {
+        "name": "Osteopathy",
+        "count": 1
+      },
+      {
+        "name": "Other",
+        "count": 1
+      },
+      {
+        "name": "Pain Management",
+        "count": 1
+      },
+      {
+        "name": "Physiotherapy",
+        "count": 1
+      },
+      {
+        "name": "Psychotherapy",
+        "count": 1
+      },
+      {
+        "name": "Recovery Therapy",
+        "count": 1
+      },
+      {
+        "name": "Reformer Pilates",
+        "count": 1
+      },
+      {
+        "name": "Rose Sauna",
+        "count": 1
+      },
+      {
+        "name": "Sleep Medicine",
+        "count": 1
+      },
+      {
+        "name": "Sound Bath",
+        "count": 1
+      },
+      {
+        "name": "Sound Baths",
+        "count": 1
+      },
+      {
+        "name": "Sports & Exercise Medicine",
+        "count": 1
+      },
+      {
+        "name": "TEMPLESPA Facials",
+        "count": 1
+      },
+      {
+        "name": "Thermal Baths",
+        "count": 1
+      },
+      {
+        "name": "Trichology",
+        "count": 1
+      },
+      {
+        "name": "Vibroacoustic Therapy",
+        "count": 1
+      },
+      {
+        "name": "Watsu Pool",
+        "count": 1
+      },
+      {
+        "name": "Wellness Ritual",
+        "count": 1
+      },
+      {
+        "name": "Whole Body Cryotherapy",
+        "count": 1
+      },
+      {
+        "name": "Women's Health",
+        "count": 1
+      }
+    ]
+  },
+  "staleVenues": [],
+  "lowestCompleteness": [
+    {
+      "slug": "bodyscan-city",
+      "name": "BodyScan City",
+      "neighbourhood": "City of London",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "bodyscan-w1",
+      "name": "BodyScan W1",
+      "neighbourhood": "Marylebone",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "bodyview-oxford-circus",
+      "name": "BodyView Oxford Circus",
+      "neighbourhood": "Fitzrovia",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "bodyview-richmond",
+      "name": "BodyView Richmond",
+      "neighbourhood": "Richmond",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "echelon-health",
+      "name": "Echelon Health",
+      "neighbourhood": "Marylebone",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "welbeck-heart-health",
+      "name": "Welbeck Heart Health",
+      "neighbourhood": "Marylebone",
+      "completeness": 75,
+      "missing": [
+        "services",
+        "hours"
+      ],
+      "checkedAgeDays": 1,
+      "stale": false
+    },
+    {
+      "slug": "lowlu-wandsworth",
+      "name": "Lowlu Wandsworth",
+      "neighbourhood": "Wandsworth",
+      "completeness": 87.5,
+      "missing": [
+        "price"
+      ],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "third-space-canary-wharf",
+      "name": "Third Space Canary Wharf",
+      "neighbourhood": "Canary Wharf",
+      "completeness": 87.5,
+      "missing": [
+        "price"
+      ],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "aire-ancient-baths-london",
+      "name": "AIRE Ancient Baths London",
+      "neighbourhood": "Covent Garden",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "akasha-holistic-wellbeing-centre",
+      "name": "Akasha Holistic Wellbeing Centre",
+      "neighbourhood": "Soho",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "arc-canary-wharf",
+      "name": "Arc",
+      "neighbourhood": "Canary Wharf",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "bxr-lab",
+      "name": "BXR LAB",
+      "neighbourhood": "Marylebone",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "claridges-spa",
+      "name": "Claridge’s Spa",
+      "neighbourhood": "Mayfair",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "cloud-twelve",
+      "name": "Cloud Twelve",
+      "neighbourhood": "Notting Hill",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 25,
+      "stale": false
+    },
+    {
+      "slug": "community-sauna-baths-camberwell",
+      "name": "Community Sauna Baths Camberwell",
+      "neighbourhood": "Camberwell",
+      "completeness": 100,
+      "missing": [],
+      "checkedAgeDays": 29,
+      "stale": false
+    }
+  ],
+  "publishable": {
+    "fields": [
+      {
+        "key": "editorial",
+        "label": "Useful description",
+        "complete": 43,
+        "missing": 0,
+        "percentage": 100
+      },
+      {
+        "key": "location",
+        "label": "Location",
+        "complete": 43,
+        "missing": 0,
+        "percentage": 100
+      },
+      {
+        "key": "services",
+        "label": "Services",
+        "complete": 37,
+        "missing": 6,
+        "percentage": 86
+      },
+      {
+        "key": "price",
+        "label": "Price",
+        "complete": 41,
+        "missing": 2,
+        "percentage": 95.3
+      },
+      {
+        "key": "access",
+        "label": "Access",
+        "complete": 43,
+        "missing": 0,
+        "percentage": 100
+      },
+      {
+        "key": "booking",
+        "label": "Booking route",
+        "complete": 43,
+        "missing": 0,
+        "percentage": 100
+      },
+      {
+        "key": "hours",
+        "label": "Opening hours",
+        "complete": 37,
+        "missing": 6,
+        "percentage": 86
+      },
+      {
+        "key": "checked",
+        "label": "Checked date",
+        "complete": 43,
+        "missing": 0,
+        "percentage": 100
+      }
+    ],
+    "areas": [
+      {
+        "name": "Central London",
+        "count": 18
+      },
+      {
+        "name": "East London",
+        "count": 9
+      },
+      {
+        "name": "West London",
+        "count": 7
+      }
+    ],
+    "services": [
+      {
+        "name": "Sauna",
+        "count": 21
+      },
+      {
+        "name": "Cold Plunge",
+        "count": 18
+      },
+      {
+        "name": "Contrast Therapy",
+        "count": 11
+      },
+      {
+        "name": "Massage",
+        "count": 11
+      },
+      {
+        "name": "Spa",
+        "count": 11
+      },
+      {
+        "name": "Steam Room",
+        "count": 8
+      },
+      {
+        "name": "Yoga",
+        "count": 8
+      },
+      {
+        "name": "Pilates",
+        "count": 7
+      },
+      {
+        "name": "Infrared Sauna",
+        "count": 6
+      },
+      {
+        "name": "Lap Pool",
+        "count": 6
+      },
+      {
+        "name": "Personal Training",
+        "count": 6
+      },
+      {
+        "name": "Cryotherapy",
+        "count": 5
+      },
+      {
+        "name": "Fitness",
+        "count": 5
+      },
+      {
+        "name": "Red Light Therapy",
+        "count": 5
+      }
+    ]
+  }
+}

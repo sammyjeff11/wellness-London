@@ -10,7 +10,8 @@
     "lint": "eslint",
     "test": "node --experimental-strip-types --test src/lib/*.test.ts",
     "sync:airtable": "node scripts/sync-airtable.mjs",
-    "validate:directory": "node scripts/sync-airtable.mjs --validate-only"
+    "validate:directory": "node scripts/sync-airtable.mjs --validate-only",
+    "insights:directory": "node scripts/generate-directory-insights.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
