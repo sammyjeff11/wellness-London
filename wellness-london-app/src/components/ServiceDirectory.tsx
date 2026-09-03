@@ -1,13 +1,21 @@
 "use client";
 
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 import { isUsefulValue } from "@/lib/useful-values";
 import { toDirectoryServiceLabel } from "@/lib/discovery-labels";
+import { distanceInKm } from "@/lib/geo";
+import { getSavedVenueSnapshot, parseSavedVenueSlugs, subscribeToSavedVenues } from "@/lib/saved-venues";
+
+const VenueMap = dynamic(() => import("@/components/VenueMap"), {
+  ssr: false,
+  loading: () => <div className="min-h-[32rem] animate-pulse rounded-[1.35rem] border border-[#b9ab97] bg-[#ded4c5] lg:min-h-[42rem]" aria-label="Loading venue map" />,
+});
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
   serviceKeys: string[];
@@ -133,6 +141,14 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const [filters, setFilters] = useState<FilterState>(initialFilters);
   const [sort, setSort] = useState("recommended");
   const [searchQuery, setSearchQuery] = useState("");
+  const [viewMode, setViewMode] = useState<"list" | "map">("list");
+  const [selectedMapSlug, setSelectedMapSlug] = useState<string>();
+  const [mapAreaSlugs, setMapAreaSlugs] = useState<string[]>();
+  const [postcode, setPostcode] = useState("");
+  const [locationStatus, setLocationStatus] = useState("");
+  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number }>();
+  const savedSnapshot = useSyncExternalStore(subscribeToSavedVenues, getSavedVenueSnapshot, () => "[]");
+  const savedSlugs = useMemo(() => parseSavedVenueSlugs(savedSnapshot), [savedSnapshot]);
   const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
 
   const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
@@ -144,6 +160,14 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const experienceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => facility.experienceType || []));
   const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
   const searchValue = searchQuery.trim();
+  const distanceBySlug = useMemo(() => {
+    if (!userLocation) return {};
+    return Object.fromEntries(
+      uniqueFacilities
+        .filter((facility) => facility.latitude !== undefined && facility.longitude !== undefined)
+        .map((facility) => [facility.slug, distanceInKm(userLocation, { latitude: facility.latitude as number, longitude: facility.longitude as number })]),
+    );
+  }, [uniqueFacilities, userLocation]);
 
   const filteredFacilities = useMemo(() => {
     const result = uniqueFacilities.filter((facility) => {
@@ -154,6 +178,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
       return (
         matchesVenueSearch(facility, searchValue) &&
+        (!mapAreaSlugs || mapAreaSlugs.includes(facility.slug)) &&
         (!filters.area || area === filters.area) &&
         (!filters.service || facilityServices.includes(filters.service)) &&
         (!filters.venueType || facility.venueType === filters.venueType) &&
@@ -166,6 +191,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     });
 
     return [...result].sort((a, b) => {
+      if (sort === "nearest" && userLocation) return (distanceBySlug[a.slug] ?? Number.POSITIVE_INFINITY) - (distanceBySlug[b.slug] ?? Number.POSITIVE_INFINITY);
       if (searchValue && sort === "recommended") {
         return rankVenueSearch(b, searchValue) - rankVenueSearch(a, searchValue) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
       }
@@ -174,10 +200,11 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       if (sort === "recently-checked") return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
       return (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
     });
-  }, [uniqueFacilities, filters, sort, searchValue]);
+  }, [uniqueFacilities, filters, sort, searchValue, mapAreaSlugs, userLocation, distanceBySlug]);
 
   function updateFilter(key: keyof FilterState, value: string) {
     setFilters((current) => ({ ...current, [key]: value }));
+    setMapAreaSlugs(undefined);
     trackEvent(value ? "filter_applied" : "filter_cleared", {
       filter_name: key,
       filter_value: value || "cleared",
@@ -189,6 +216,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   function clearFilters() {
     setFilters(initialFilters);
     setSearchQuery("");
+    setMapAreaSlugs(undefined);
     trackEvent("filter_cleared", {
       filter_name: "all",
       service_type: serviceType,
@@ -198,6 +226,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   function updateSearch(value: string) {
     setSearchQuery(value);
+    setMapAreaSlugs(undefined);
     if (value.length === 1 || value.length % 4 === 0) {
       trackEvent("venue_search_used", {
         search_length: value.length,
@@ -205,6 +234,58 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
         page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
       });
     }
+  }
+
+  function setNearbyLocation(location: { latitude: number; longitude: number }, label: string) {
+    setUserLocation(location);
+    setSort("nearest");
+    setViewMode("map");
+    setMapAreaSlugs(undefined);
+    setLocationStatus(label);
+    trackEvent("location_search_used", {
+      location_type: label === "Current location" ? "device" : "postcode",
+      service_type: serviceType,
+      page_path: window.location.pathname,
+    });
+  }
+
+  async function findPostcode(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const query = postcode.trim();
+    if (!query) {
+      setLocationStatus("Enter a UK postcode first.");
+      return;
+    }
+
+    setLocationStatus("Finding nearby venues…");
+    try {
+      const response = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(query)}`);
+      const data = await response.json();
+      if (!response.ok || !data.result) throw new Error("Postcode not found");
+      setNearbyLocation({ latitude: data.result.latitude, longitude: data.result.longitude }, data.result.postcode);
+    } catch {
+      setLocationStatus("We could not find that postcode. Check it and try again.");
+    }
+  }
+
+  function useCurrentLocation() {
+    if (!navigator.geolocation) {
+      setLocationStatus("Location is not available in this browser.");
+      return;
+    }
+    setLocationStatus("Requesting your location…");
+    navigator.geolocation.getCurrentPosition(
+      (position) => setNearbyLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }, "Current location"),
+      () => setLocationStatus("Location permission was not granted. You can use a postcode instead."),
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 },
+    );
+  }
+
+  function clearNearbyLocation() {
+    setUserLocation(undefined);
+    setLocationStatus("");
+    setPostcode("");
+    if (sort === "nearest") setSort("recommended");
   }
 
   const activeFilters = Object.entries(filters).filter(([, value]) => value);
@@ -263,6 +344,7 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       ) : null}
       <FilterSelect label="Sort" value={sort} onChange={setSort}>
         <option value="recommended">Recommended</option>
+        {userLocation ? <option value="nearest">Nearest first</option> : null}
         <option value="price-low">Price low to high</option>
         <option value="premium">Premium/luxury</option>
         <option value="recently-checked">Recently checked</option>
@@ -350,6 +432,27 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
           </div>
         </div>
 
+        {directoryMode ? (
+          <div className="mt-4 rounded-[1rem] border border-[#c8baa6] bg-[#eee7dc] p-3 sm:p-4">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-sm font-medium text-[#29241d]">Find what is close to you</p>
+                <p className="mt-1 text-xs leading-5 text-[#70695d]">Your location is only used on this device.</p>
+              </div>
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <form onSubmit={findPostcode} className="flex min-w-0 rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1">
+                  <label htmlFor={`postcode-${serviceType}`} className="sr-only">UK postcode</label>
+                  <input id={`postcode-${serviceType}`} value={postcode} onChange={(event) => setPostcode(event.target.value)} placeholder="UK postcode" autoComplete="postal-code" className="min-w-0 flex-1 bg-transparent px-3 text-sm uppercase text-[#29241d] outline-none placeholder:normal-case placeholder:text-[#8d7d67] sm:w-36" />
+                  <button type="submit" className="min-h-10 rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">Find</button>
+                </form>
+                <button type="button" onClick={useCurrentLocation} className="min-h-11 rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-4 text-sm font-medium text-[#29241d] transition hover:bg-white">Use my location</button>
+                {userLocation ? <button type="button" onClick={clearNearbyLocation} className="min-h-11 px-2 text-sm underline underline-offset-4">Reset</button> : null}
+              </div>
+            </div>
+            {locationStatus ? <p className="mt-2 text-xs font-medium text-[#5f574c]" role="status">{locationStatus}{userLocation ? " · sorted nearest first" : ""}</p> : null}
+          </div>
+        ) : null}
+
         <div className={`mt-6 hidden grid-cols-2 gap-5 md:grid ${directoryMode ? "lg:grid-cols-6" : "lg:grid-cols-5"}`}>
           {filterControls}
         </div>
@@ -357,24 +460,37 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
       {filteredFacilities.length > 0 ? (
         <section>
-          <div className="mb-5 flex items-end justify-between gap-4">
+          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="editorial-eyebrow mb-2">Directory</p>
               <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl">
                 Compare venues.
               </h2>
             </div>
-            {activeFilters.length > 0 || hasActiveSearch ? (
-              <button type="button" onClick={clearFilters} className="hidden text-sm text-[#29241d] underline underline-offset-4 md:inline-flex">
-                Clear filters
-              </button>
-            ) : null}
+            <div className="flex flex-wrap items-center gap-2">
+              {activeFilters.length > 0 || hasActiveSearch ? <button type="button" onClick={clearFilters} className="hidden min-h-11 px-2 text-sm text-[#29241d] underline underline-offset-4 md:inline-flex md:items-center">Clear filters</button> : null}
+              {directoryMode ? (
+                <>
+                  <div className="inline-flex rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1" aria-label="Directory view">
+                    <button type="button" onClick={() => setViewMode("list")} aria-pressed={viewMode === "list"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "list" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>List</button>
+                    <button type="button" onClick={() => setViewMode("map")} aria-pressed={viewMode === "map"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "map" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>Map</button>
+                  </div>
+                  <Link href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-5 text-sm font-medium text-[#29241d] transition hover:bg-white">
+                    {savedSlugs.length >= 2 ? `Compare ${Math.min(savedSlugs.length, 4)}` : `Saved${savedSlugs.length ? ` · ${savedSlugs.length}` : ""}`}
+                  </Link>
+                </>
+              ) : null}
+            </div>
           </div>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredFacilities.map((facility) => (
-              <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} showSaveButton={directoryMode} />
-            ))}
-          </div>
+          {directoryMode && viewMode === "map" ? (
+            <VenueMap facilities={filteredFacilities} selectedSlug={selectedMapSlug} userLocation={userLocation} distanceBySlug={distanceBySlug} mapAreaActive={Boolean(mapAreaSlugs)} onSelect={setSelectedMapSlug} onSearchArea={setMapAreaSlugs} />
+          ) : (
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {filteredFacilities.map((facility) => (
+                <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} showSaveButton={directoryMode} distanceKm={distanceBySlug[facility.slug]} />
+              ))}
+            </div>
+          )}
         </section>
       ) : (
         <section className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
@@ -394,15 +510,12 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       )}
 
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d8cebf] bg-[#fbf8f1]/95 px-4 py-3 shadow-[0_-16px_38px_rgba(41,36,29,0.12)] backdrop-blur-xl md:hidden">
-        <div className="mx-auto flex max-w-md items-center gap-3">
-          <a href={`#directory-filters-${serviceType}`} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]">
+        <div className="mx-auto flex max-w-md items-center gap-2">
+          <a href={`#directory-filters-${serviceType}`} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">
             Filters · {filteredFacilities.length} {filteredFacilities.length === 1 ? "venue" : "venues"}
           </a>
-          {activeFilters.length > 0 || hasActiveSearch ? (
-            <button type="button" onClick={clearFilters} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#d8cebf] px-4 text-sm text-[#29241d]">
-              Clear
-            </button>
-          ) : null}
+          {directoryMode ? <button type="button" onClick={() => setViewMode((current) => current === "list" ? "map" : "list")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{viewMode === "list" ? "Map" : "List"}</button> : null}
+          {directoryMode && savedSlugs.length > 0 ? <Link href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{savedSlugs.length >= 2 ? "Compare" : "Saved"} · {Math.min(savedSlugs.length, 4)}</Link> : null}
         </div>
       </div>
     </div>

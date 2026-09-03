@@ -7,6 +7,7 @@ import { trackEvent } from "@/lib/analytics";
 import { canonicalServiceHref } from "@/lib/taxonomy";
 import { filterSuitabilityLabels, getUsefulServiceLabels } from "@/lib/discovery-labels";
 import SaveVenueButton from "@/components/SaveVenueButton";
+import { formatDistance } from "@/lib/geo";
 
 export type FacilityCardFacility = {
   slug: string;
@@ -37,6 +38,19 @@ export type FacilityCardFacility = {
   venueType?: string;
   lastCheckedDate?: string;
   verificationStatus?: string;
+  openingHours?: string;
+  bookingRequired?: string;
+  saunaType?: string[];
+  coldPlungeType?: string;
+  cryoType?: string;
+  contrastTherapyAvailable?: string;
+  guidedSessionsAvailable?: string;
+  towelsIncluded?: string;
+  showersAvailable?: string;
+  changingRooms?: string;
+  postcode?: string;
+  latitude?: number;
+  longitude?: number;
 };
 
 type FacilityCardProps = {
@@ -45,6 +59,7 @@ type FacilityCardProps = {
   compact?: boolean;
   prioritisedService?: string;
   showSaveButton?: boolean;
+  distanceKm?: number;
 };
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
@@ -164,7 +179,7 @@ function formatCheckedDate(value?: string) {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(date);
 }
 
-export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = false }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = false, distanceKm }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
@@ -257,7 +272,9 @@ export default function FacilityCard({ facility, source = "directory", compact =
             <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
             {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
           </div>
-          <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">{locationLine || "London"}</p>
+          <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">
+            {locationLine || "London"}{distanceKm !== undefined ? ` · ${formatDistance(distanceKm)}` : ""}
+          </p>
         </Link>
         {comparisonDetails.length > 0 ? (
           <div className="mt-2 flex flex-wrap gap-1.5">

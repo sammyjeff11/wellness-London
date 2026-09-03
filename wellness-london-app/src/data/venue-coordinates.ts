@@ -1,0 +1,52 @@
+export type VenueCoordinate = {
+  latitude: number;
+  longitude: number;
+  postcode: string;
+};
+
+// Postcode centroids sourced from postcodes.io on 2 September 2026.
+export const venueCoordinates: Record<string, VenueCoordinate> = {
+  "aire-ancient-baths-london": { latitude: 51.508749, longitude: -0.122672, postcode: "WC2N 6BH" },
+  "akasha-holistic-wellbeing-centre": { latitude: 51.509792, longitude: -0.135628, postcode: "W1B 4DY" },
+  "and-soul-shoreditch": { latitude: 51.523717, longitude: -0.066484, postcode: "E2 6EJ" },
+  "arc-canary-wharf": { latitude: 51.506133, longitude: -0.017816, postcode: "E14 5AR" },
+  "bodyscan-city": { latitude: 51.513275, longitude: -0.086095, postcode: "EC3V 3NG" },
+  "bodyscan-w1": { latitude: 51.521488, longitude: -0.151309, postcode: "W1U 5HJ" },
+  "bodyview-oxford-circus": { latitude: 51.517585, longitude: -0.139922, postcode: "W1W 8BQ" },
+  "bodyview-richmond": { latitude: 51.460375, longitude: -0.301895, postcode: "TW9 1SE" },
+  "bxr-lab": { latitude: 51.520677, longitude: -0.15522, postcode: "W1U 5QY" },
+  "claridges-spa": { latitude: 51.512428, longitude: -0.147612, postcode: "W1K 4HR" },
+  "cloud-twelve": { latitude: 51.515368, longitude: -0.200763, postcode: "W11 2DA" },
+  "community-sauna-baths-camberwell": { latitude: 51.465077, longitude: -0.090761, postcode: "SE5 8EL" },
+  "community-sauna-baths-hackney-wick": { latitude: 51.547667, longitude: -0.028314, postcode: "E9 5JH" },
+  "community-sauna-baths-peckham": { latitude: 51.483108, longitude: -0.071559, postcode: "SE15 6NF" },
+  "community-sauna-baths-stratford": { latitude: 51.546324, longitude: -0.00681, postcode: "E20 1BL" },
+  "community-sauna-baths-walthamstow": { latitude: 51.591816, longitude: -0.038748, postcode: "E17 6BH" },
+  "echelon-health": { latitude: 51.51973, longitude: -0.147071, postcode: "W1G 7HE" },
+  "equinox-bishopsgate": { latitude: 51.515571, longitude: -0.080824, postcode: "EC3A 8AQ" },
+  "equinox-kensington": { latitude: 51.500933, longitude: -0.191246, postcode: "W8 5SA" },
+  "equinox-st-jamess": { latitude: 51.50633, longitude: -0.138507, postcode: "SW1A 1ER" },
+  hum2n: { latitude: 51.491946, longitude: -0.168438, postcode: "SW3 3QX" },
+  "ironmonger-row-baths-spa-experience": { latitude: 51.526578, longitude: -0.094576, postcode: "EC1V 3AA" },
+  "jab-sw1-victoria": { latitude: 51.493103, longitude: -0.146494, postcode: "SW1W 9SZ" },
+  "kxu-chelsea": { latitude: 51.493219, longitude: -0.158475, postcode: "SW1X 0BP" },
+  "lanserhof-arts-club": { latitude: 51.508683, longitude: -0.142274, postcode: "W1S 4LT" },
+  "london-cryo": { latitude: 51.532852, longitude: -0.169535, postcode: "NW8 7SH" },
+  "london-cryo-belgravia": { latitude: 51.493534, longitude: -0.148206, postcode: "SW1W 9NF" },
+  "lowlu-kentish-town": { latitude: 51.548786, longitude: -0.137423, postcode: "NW5 2DS" },
+  "lowlu-wandsworth": { latitude: 51.45935, longitude: -0.19122, postcode: "SW18 1SH" },
+  "mandarin-oriental-mayfair-spa": { latitude: 51.513311, longitude: -0.144305, postcode: "W1S 1JP" },
+  "porchester-spa": { latitude: 51.517282, longitude: -0.188984, postcode: "W2 5HS" },
+  rebase: { latitude: 51.518871, longitude: -0.152439, postcode: "W1U 4DA" },
+  "rooftop-saunas-brixton": { latitude: 51.463981, longitude: -0.113021, postcode: "SW9 7QD" },
+  "rooftop-saunas-hackney": { latitude: 51.537825, longitude: -0.057205, postcode: "E8 4RU" },
+  "sauna-and-plunge-shoreditch": { latitude: 51.525529, longitude: -0.084283, postcode: "EC2A 4SA" },
+  "soho-house-180-house": { latitude: 51.512422, longitude: -0.115084, postcode: "WC2R 1EA" },
+  "soho-house-shoreditch-house": { latitude: 51.523755, longitude: -0.075896, postcode: "E1 6AW" },
+  "soho-house-white-city-house": { latitude: 51.510696, longitude: -0.225806, postcode: "W12 7FR" },
+  "the-bath-house": { latitude: 51.49771, longitude: -0.146091, postcode: "SW1W 0BD" },
+  "the-method-club-notting-hill": { latitude: 51.514683, longitude: -0.196552, postcode: "W11 2RS" },
+  "third-space-canary-wharf": { latitude: 51.504577, longitude: -0.016227, postcode: "E14 5ER" },
+  "third-space-spa": { latitude: 51.504577, longitude: -0.016227, postcode: "E14 5ER" },
+  "welbeck-heart-health": { latitude: 51.516185, longitude: -0.148094, postcode: "W1G 0AR" },
+};

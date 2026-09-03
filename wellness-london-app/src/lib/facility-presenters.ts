@@ -1,6 +1,7 @@
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import type { AirtableFacility } from "@/lib/airtable";
 import { canonicaliseServiceList } from "@/lib/taxonomy";
+import { venueCoordinates } from "@/data/venue-coordinates";
 
 export function getFacilityLocation(facility: AirtableFacility) {
   return facility.neighbourhood || facility.areaOfLondon || facility.areaGroup || "London";
@@ -18,6 +19,8 @@ export function getFacilityImageAlt(facility: AirtableFacility, index = 0) {
 }
 
 export function toDirectoryFacility(facility: AirtableFacility): ServiceDirectoryFacility {
+  const coordinates = venueCoordinates[facility.slug];
+
   return {
     slug: facility.slug,
     name: facility.name,
@@ -47,6 +50,19 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     venueType: facility.venueTypeStandardized,
     lastCheckedDate: facility.lastCheckedDate,
     verificationStatus: facility.verificationStatus,
+    openingHours: facility.openingHours,
+    bookingRequired: facility.bookingRequired,
+    saunaType: facility.saunaType,
+    coldPlungeType: facility.coldPlungeType,
+    cryoType: facility.cryoType,
+    contrastTherapyAvailable: facility.contrastTherapyAvailable,
+    guidedSessionsAvailable: facility.guidedSessionsAvailable,
+    towelsIncluded: facility.towelsIncluded,
+    showersAvailable: facility.showersAvailable,
+    changingRooms: facility.changingRooms,
+    postcode: coordinates?.postcode || facility.postcode,
+    latitude: coordinates?.latitude,
+    longitude: coordinates?.longitude,
     isFeatured: facility.isFeatured,
     profileCompletenessScore: facility.profileCompletenessScore,
   };

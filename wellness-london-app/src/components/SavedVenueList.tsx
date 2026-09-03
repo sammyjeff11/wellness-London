@@ -36,9 +36,19 @@ export default function SavedVenueList({ facilities }: { facilities: FacilityCar
 
   return (
     <div>
-      <p className="mb-7 text-sm leading-6 text-[#5f574c]">
-        {savedFacilities.length} saved {savedFacilities.length === 1 ? "venue" : "venues"}. Saved locally on this device.
-      </p>
+      <div className="mb-7 flex flex-col gap-4 rounded-[1.1rem] border border-[#c8baa6] bg-[#ded4c5] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+        <div>
+          <p className="text-base font-medium text-[#29241d]">{savedFacilities.length} saved {savedFacilities.length === 1 ? "venue" : "venues"}</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f574c]">Saved locally on this device.</p>
+        </div>
+        {savedFacilities.length >= 2 ? (
+          <Link href={`/compare?venues=${savedFacilities.slice(0, 4).map((facility) => facility.slug).join(",")}`} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#29241d] px-6 text-sm font-medium text-[#fbf8f1] transition hover:bg-[#463c31]">
+            Compare saved venues
+          </Link>
+        ) : (
+          <p className="text-sm text-[#6f6048]">Save one more venue to compare.</p>
+        )}
+      </div>
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {savedFacilities.map((facility) => (
           <FacilityCard key={facility.slug} facility={facility} source="saved_shortlist" showSaveButton />

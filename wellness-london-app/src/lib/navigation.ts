@@ -34,7 +34,7 @@ const areaPaths = new Set([
 ]);
 
 export function getActiveNavSection(pathname: string): NavSection | null {
-  if (pathname === "/explore" || pathname === "/brands" || pathname.startsWith("/facility/") || pathname.startsWith("/brand/")) return "venues";
+  if (["/explore", "/brands", "/shortlist", "/compare"].includes(pathname) || pathname.startsWith("/facility/") || pathname.startsWith("/brand/")) return "venues";
   if (longevityPaths.has(pathname) || pathname === "/longevity-london") return "services";
   if (pathname.startsWith("/neighbourhoods/") || areaPaths.has(pathname)) return "areas";
   if (
