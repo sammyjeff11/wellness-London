@@ -85,10 +85,10 @@ export const brandPages: BrandPage[] = [
     intro:
       "Lowlu brings outdoor sauna villages, cold plunges and social contrast therapy to London, with app-led booking and a clear focus on heat, cold and rest.",
     description:
-      "Browse Lowlu locations in London, including live sauna and plunge villages in Kentish Town and Wandsworth, plus new openings as they become available.",
+      "Browse Lowlu locations in London, including its live sauna and plunge venues in Kentish Town, Wandsworth and Ilford.",
     seoTitle: "Lowlu London locations | Well+ London",
     seoDescription:
-      "Compare Lowlu sauna and cold plunge locations in London, including Kentish Town, Wandsworth and upcoming openings.",
+      "Compare Lowlu sauna and cold plunge locations in Kentish Town, Wandsworth and Ilford, with access, pricing and booking details.",
   },
   {
     slug: "rooftop-saunas",
@@ -116,6 +116,71 @@ export const brandPages: BrandPage[] = [
     seoDescription:
       "Compare LondonCryo locations in Belgravia and St John's Wood, with cryotherapy, recovery and booking details.",
   },
+  {
+    slug: "neko-health",
+    name: "Neko Health",
+    operator: "Neko Health",
+    eyebrow: "Preventive health screening provider",
+    intro:
+      "Neko Health offers a one-hour preventive health scan at four London clinics, combining skin, cardiovascular, blood-biomarker and body-composition measurements with doctor review.",
+    description:
+      "Compare Neko Health clinics by neighbourhood and opening hours. The core £299 scan is consistent across London, while availability and appointment times vary by location.",
+    seoTitle: "Neko Health London locations and scan price | Well+",
+    seoDescription:
+      "Compare Neko Health clinics in Covent Garden, Spitalfields, Marylebone and Victoria, including addresses, opening hours and the published £299 scan price.",
+  },
+  {
+    slug: "stretchlab",
+    name: "StretchLAB",
+    operator: "StretchLAB",
+    eyebrow: "Assisted stretching studio operator",
+    intro:
+      "StretchLAB operates physiotherapist-supervised assisted stretching studios across London, with one-to-one sessions focused on mobility, posture and recovery.",
+    description:
+      "Compare the seven current StretchLAB studios by neighbourhood and choose the most convenient branch. Introductory sessions and studio credits can be used across the London network.",
+    seoTitle: "StretchLAB London locations and prices | Well+",
+    seoDescription:
+      "Compare all seven StretchLAB London studios, with addresses, opening hours and the published £60 introductory session price.",
+  },
+  {
+    slug: "pulse-club-sauna",
+    name: "Pulse Club Sauna",
+    operator: "Pulse Club Sauna",
+    eyebrow: "Contrast therapy operator",
+    intro:
+      "Pulse Club Sauna runs Finnish-sauna and cold-plunge clubs in Fulham and Putney, with 75-minute sessions, showers, lockers and towels included.",
+    description:
+      "Compare Pulse's two south-west London clubs by address and opening hours. Both publish the same drop-in and introductory pricing, but their weekly maintenance opening differs.",
+    seoTitle: "Pulse Club Sauna Fulham and Putney | Well+",
+    seoDescription:
+      "Compare Pulse Club Sauna locations in Fulham and Putney, including addresses, opening hours, facilities and drop-in prices from £17.",
+  },
+  {
+    slug: "banya-no-1",
+    name: "Banya No.1",
+    operator: "Banya No.1",
+    eyebrow: "Traditional steam-banya operator",
+    intro:
+      "Banya No.1 brings traditional high-humidity steam, cold immersion and Parenie treatments to bathhouses in Hoxton and Chiswick.",
+    description:
+      "Compare the two London banyas by location, access and published price. Both centre on steam-and-cold ritual, while treatment spaces and current packages differ by branch.",
+    seoTitle: "Banya No.1 Hoxton and Chiswick | Well+",
+    seoDescription:
+      "Compare Banya No.1 locations in Hoxton and Chiswick, with steam room, cold plunge, Parenie, access and pricing information.",
+  },
+  {
+    slug: "rebody",
+    name: "Rebody",
+    operator: "Rebody",
+    eyebrow: "HBOT and red-light operator",
+    intro:
+      "Rebody combines mild hyperbaric oxygen at 1.4 ATA with targeted red-light therapy at private studios in Wandsworth and Islington.",
+    description:
+      "Compare Rebody's two London studios by location and access. Both publish the same consultation-led introductory session and standard session price.",
+    seoTitle: "Rebody London locations and HBOT prices | Well+",
+    seoDescription:
+      "Compare Rebody studios in Wandsworth and Islington, including addresses, opening hours and mild-HBOT plus red-light pricing.",
+  },
 ];
 
 export function createSlug(value: string) {
@@ -141,6 +206,10 @@ export function inferOperatorFromName(name: string) {
   if (normalisedName.includes("rooftop saunas")) return "Rooftop Saunas";
   if (normalisedName.includes("third space")) return "Third Space";
   if (normalisedName.includes("banya no.1") || normalisedName.includes("banya no 1")) return "Banya No.1";
+  if (normalisedName.includes("neko health")) return "Neko Health";
+  if (normalisedName.includes("stretchlab") || normalisedName.includes("stretch lab")) return "StretchLAB";
+  if (normalisedName.includes("pulse club sauna")) return "Pulse Club Sauna";
+  if (normalisedName.includes("rebody")) return "Rebody";
   if (normalisedName.includes("sauna & plunge") || normalisedName.includes("sauna and plunge")) return "Sauna & Plunge";
   return "";
 }
