@@ -167,7 +167,7 @@ export default async function ShoreditchNeighbourhoodPage() {
             Sauna, cold plunge and wellness in Shoreditch.
           </h1>
           <p className="mt-7 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
-            Shoreditch is one of London's clearest clusters for modern contrast therapy: shared saunas, cold-water immersion, guided heat-and-cold sessions and movement studios built around regular use rather than an occasional spa day.
+            Shoreditch is one of London&apos;s clearest clusters for modern contrast therapy: shared saunas, cold-water immersion, guided heat-and-cold sessions and movement studios built around regular use rather than an occasional spa day.
           </p>
         </div>
       </section>

@@ -366,7 +366,7 @@ export default async function HbotLondonPage() {
             <h2 className="mt-4 font-serif text-4xl leading-none tracking-[-0.04em]">Screening and monitoring should be visible.</h2>
             <div className="mt-6 space-y-4 text-sm leading-7 text-[#fbf8f1]/72 sm:text-base sm:leading-8">
               <p>Pressure can cause ear or sinus discomfort and enclosed chambers can be difficult for people with claustrophobia. Providers should explain how pressure equalisation and communication work.</p>
-              <p>The FDA's 2025 safety reminder emphasises trained staff, patient monitoring, maintenance and strict fire-prevention controls for HBOT devices.</p>
+              <p>The FDA&apos;s 2025 safety reminder emphasises trained staff, patient monitoring, maintenance and strict fire-prevention controls for HBOT devices.</p>
               <p>Be cautious when a provider sells a large package before clearly documenting suitability, protocol and expected outcome.</p>
             </div>
           </article>
@@ -385,7 +385,7 @@ export default async function HbotLondonPage() {
       <section className="px-5 pb-16 sm:px-6 sm:pb-24">
         <div className="mx-auto max-w-6xl rounded-[1.5rem] border border-[#d8cebf] bg-[#fbf8f1] p-6 sm:p-9">
           <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">Editorial basis</p>
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-[#5f574c]">Our medical context and safety framing is grounded in current public guidance. Provider-specific formats and prices come from the providers' own current pages and should be reconfirmed before booking.</p>
+          <p className="mt-4 max-w-3xl text-sm leading-7 text-[#5f574c]">Our medical context and safety framing is grounded in current public guidance. Provider-specific formats and prices come from the providers&apos; own current pages and should be reconfirmed before booking.</p>
           <div className="mt-6 flex flex-wrap gap-3">
             {editorialSources.map((source) => <a key={source.href} href={source.href} target="_blank" rel="noreferrer" className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">{source.label}</a>)}
           </div>

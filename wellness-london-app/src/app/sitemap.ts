@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import directorySnapshot from "@/data/generated/directory-snapshot.json";
 import { getFacilities } from "@/lib/airtable";
 import { activityPages } from "@/lib/activity-pages";
 import { collections } from "@/lib/collections";
@@ -9,16 +10,18 @@ import { neighbourhoodPages } from "@/lib/neighbourhood-pages";
 import { pillarPages } from "@/lib/pillar-pages";
 import { longevityServicePages } from "@/lib/longevity-service-pages";
 import { absoluteUrl } from "@/lib/site";
-import { brandPages } from "@/lib/brand-pages";
+import { getPublishedMultiLocationBrands } from "@/lib/brand-pages";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
-const defaultLastModified = new Date("2026-08-04T00:00:00.000Z");
+const directorySnapshotLastModified = new Date(directorySnapshot.generatedAt);
+const brandPagesLastModified = new Date("2026-09-04T10:41:18.000Z");
 
-const staticRoutes = [
+type SitemapRoute = { path: string; priority: number; lastModified?: Date };
+
+const staticRoutes: SitemapRoute[] = [
   { path: "", priority: 1 },
   { path: "/explore", priority: 0.95 },
   { path: "/brands", priority: 0.82 },
-  ...brandPages.map((brand) => ({ path: `/brand/${brand.slug}`, priority: 0.76 })),
   { path: "/services", priority: 0.9 },
   ...pillarPages.map((pillar) => ({ path: pillar.href, priority: 0.9 })),
   ...longevityServicePages.map((page) => ({ path: page.href, priority: 0.84 })),
@@ -53,22 +56,16 @@ const staticRoutes = [
 
 function parseLastModified(value?: string) {
   const cleaned = cleanValue(value);
-  if (!cleaned) return defaultLastModified;
+  if (!cleaned) return directorySnapshotLastModified;
 
   const parsed = new Date(cleaned);
-  return Number.isNaN(parsed.getTime()) ? defaultLastModified : parsed;
+  return Number.isNaN(parsed.getTime()) ? directorySnapshotLastModified : parsed;
 }
 
-function isSitemapFacility(facility: Awaited<ReturnType<typeof getFacilities>>[number]) {
-  const hasUsefulEditorialField = [
-    facility.editorialVerdict,
-    facility.editorialSummary,
-    facility.description,
-  ].some(isUsefulValue);
-
+function isSitemapFacility(facility: ReturnType<typeof toDirectoryFacility>) {
   return Boolean(
     isUsefulValue(facility.slug) &&
-    hasUsefulEditorialField &&
+    isUsefulValue(facility.description) &&
     facility.slug === facility.slug.toLowerCase()
   );
 }
@@ -76,17 +73,23 @@ function isSitemapFacility(facility: Awaited<ReturnType<typeof getFacilities>>[n
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const facilities = await getFacilities();
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
-  const neighbourhoodRoutes = getAvailableNeighbourhoods(directoryFacilities, neighbourhoodPages)
+  const brandRoutes: SitemapRoute[] = getPublishedMultiLocationBrands(facilities)
+    .map(({ brand }) => ({
+      path: `/brand/${brand.slug}`,
+      priority: 0.76,
+      lastModified: brandPagesLastModified,
+    }));
+  const neighbourhoodRoutes: SitemapRoute[] = getAvailableNeighbourhoods(directoryFacilities, neighbourhoodPages)
     .map(({ page }) => ({ path: page.href, priority: 0.78 }));
 
-  const routeEntries = [...staticRoutes, ...neighbourhoodRoutes].map((route) => ({
+  const routeEntries = [...staticRoutes, ...brandRoutes, ...neighbourhoodRoutes].map((route) => ({
     url: absoluteUrl(route.path),
-    lastModified: defaultLastModified,
+    lastModified: route.lastModified ?? directorySnapshotLastModified,
     changeFrequency: "weekly" as const,
     priority: route.priority,
   }));
 
-  const facilityEntries = facilities
+  const facilityEntries = directoryFacilities
     .filter(isSitemapFacility)
     .map((facility) => ({
       url: absoluteUrl(`/facility/${facility.slug}`),

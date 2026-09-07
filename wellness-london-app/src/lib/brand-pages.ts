@@ -1,4 +1,5 @@
-import { type AirtableFacility } from "@/lib/airtable";
+import type { AirtableFacility } from "./airtable.ts";
+import { dedupeFacilities } from "./dedupe-facilities.ts";
 
 export type BrandPage = {
   slug: string;
@@ -235,7 +236,10 @@ export function getFacilitiesForBrand(facilities: AirtableFacility[], brand: Bra
 
 export function getPublishedMultiLocationBrands(facilities: AirtableFacility[]) {
   return brandPages
-    .map((brand) => ({ brand, facilities: getFacilitiesForBrand(facilities, brand) }))
+    .map((brand) => ({
+      brand,
+      facilities: dedupeFacilities(getFacilitiesForBrand(facilities, brand)),
+    }))
     .filter(({ facilities: brandFacilities }) => brandFacilities.length > 1)
     .sort((a, b) => b.facilities.length - a.facilities.length || a.brand.name.localeCompare(b.brand.name));
 }
