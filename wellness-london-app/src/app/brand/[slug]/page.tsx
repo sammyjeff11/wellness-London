@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
-import { brandPages, getBrandPageBySlug, getFacilitiesForBrand, facilityIsComingSoon } from "@/lib/brand-pages";
+import { getBrandPageBySlug, getFacilitiesForBrand, getPublishedMultiLocationBrands, facilityIsComingSoon } from "@/lib/brand-pages";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
@@ -17,8 +17,9 @@ function comparisonValue(value?: string, fallback = "Check venue") {
   return isUsefulValue(value) ? value : fallback;
 }
 
-export function generateStaticParams() {
-  return brandPages.map((brand) => ({ slug: brand.slug }));
+export async function generateStaticParams() {
+  const publishedBrands = getPublishedMultiLocationBrands(await getFacilities());
+  return publishedBrands.map(({ brand }) => ({ slug: brand.slug }));
 }
 
 export async function generateMetadata({ params }: BrandPageProps): Promise<Metadata> {
@@ -46,6 +47,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
   const facilities = await getFacilities();
   const brandFacilities = getFacilitiesForBrand(facilities, brand);
   const uniqueBrandFacilities = dedupeFacilities(brandFacilities);
+  if (uniqueBrandFacilities.length < 2) notFound();
   const directoryFacilities = uniqueBrandFacilities.map(toDirectoryFacility);
   const liveFacilities = uniqueBrandFacilities.filter((facility) => !facilityIsComingSoon(facility));
   const comingSoonFacilities = uniqueBrandFacilities.filter(facilityIsComingSoon);
