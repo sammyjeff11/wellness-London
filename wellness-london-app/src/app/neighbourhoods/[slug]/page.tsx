@@ -128,6 +128,8 @@ function getWhatYouWillFind(facilities: ReturnType<typeof toDirectoryFacility>[]
 }
 
 function getEditorNote(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
+  if (page.editorNote) return page.editorNote;
+
   if (facilities.length >= 2) {
     const [first, second] = facilities;
     const firstServices = first.services?.slice(0, 2).join(" and ").toLowerCase() || "its listed services";
@@ -144,7 +146,7 @@ function getEditorNote(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>
 }
 
 function buildSchema(page: NonNullable<ReturnType<typeof getNeighbourhoodPage>>, facilities: ReturnType<typeof toDirectoryFacility>[]) {
-  const itemList = facilities.slice(0, 6).map((facility, index) => ({
+  const itemList = facilities.map((facility, index) => ({
     "@type": "ListItem",
     position: index + 1,
     url: absoluteUrl(`/facility/${facility.slug}`),
@@ -188,9 +190,8 @@ export default async function NeighbourhoodPage({ params }: { params: Promise<{ 
   if (!page) notFound();
 
   const allFacilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
-  const displayFacilities = getFacilitiesForNeighbourhood(allFacilities, page.shortTitle)
-    .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
-    .slice(0, 6);
+  const displayFacilities = getFacilitiesForNeighbourhood(allFacilities, page.locationTerms || page.shortTitle)
+    .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0));
 
   if (displayFacilities.length === 0) notFound();
 

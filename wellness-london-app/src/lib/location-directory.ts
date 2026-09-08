@@ -9,10 +9,14 @@ function equalsLocation(value: string | undefined, expected: string) {
 
 export function getFacilitiesForNeighbourhood(
   facilities: ServiceDirectoryFacility[],
-  neighbourhood: string,
+  neighbourhood: string | string[],
 ) {
+  const neighbourhoods = Array.isArray(neighbourhood) ? neighbourhood : [neighbourhood];
+
   return dedupeFacilities(
-    facilities.filter((facility) => equalsLocation(facility.neighbourhood, neighbourhood)),
+    facilities.filter((facility) =>
+      neighbourhoods.some((candidate) => equalsLocation(facility.neighbourhood, candidate)),
+    ),
   );
 }
 
@@ -39,7 +43,7 @@ export function getAvailableNeighbourhoods(
   return pages
     .map((page) => ({
       page,
-      facilities: getFacilitiesForNeighbourhood(facilities, page.shortTitle),
+      facilities: getFacilitiesForNeighbourhood(facilities, page.locationTerms || page.shortTitle),
     }))
     .filter((entry) => entry.facilities.length > 0);
 }

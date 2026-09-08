@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T12:13:04.662Z",
+  "generatedAt": "2026-09-08T12:28:54.511Z",
   "source": {
     "base": "Wellness Listings",
     "table": "Wellness London"
@@ -268,6 +268,86 @@
           "Cold Therapy",
           "Combined Experiences"
         ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Arc Canary Wharf is a communal contrast-therapy space with social connection built into the experience. The core offer is a large shared sauna and ice baths, with Guided Classes, Free Flow sessions and dedicated evening socials. Arc After Dark turns contrast therapy into a social event with DJs, guided ice baths, immersive sound and aromatherapy, while the Connect Lounge gives people a place to pause, hydrate and spend time together before or after sessions. Arc also runs workshops and community events, so it is designed to be more than a place to complete a sauna-and-plunge circuit and leave.",
+        "Editorial Summary": "Arc is London's first communal contrast therapy club, offering a unique blend of sauna and ice bath experiences designed to promote physical and mental well-being. Located in Canary Wharf, Arc provides guided and self-guided sessions that combine traditional wellness practices with modern social connection.",
+        "Phone": "020 3835 8808",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social",
+          "Relaxation"
+        ],
+        "Address": "Unit 46, Minus Level, 1 Crossrail Place, Canary Wharf, London E14 5AR",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "Public booking. Choose between guided and self-directed formats in the live timetable. The sauna and ice baths are communal, so expect a shared session rather than a private room.",
+        "Type of Experience": [
+          "Group",
+          "Guided",
+          "Self-Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Arc",
+        "Instagram Link": "@arccommunity_",
+        "Services Offered": [
+          "Breathwork",
+          "Meditation",
+          "Aromatherapy",
+          "Sound Therapy",
+          "Guided Classes",
+          "Free Flow Sessions",
+          "Evening Socials",
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Social & Community Note": "Community and social connection are a major part of Arc's proposition, not just a by-product of the shared sauna. Alongside Guided Classes and Free Flow, Arc runs evening socials such as Arc After Dark and 'sweat and connect' sessions, as well as workshops and other community events. The 60-person communal sauna and dedicated Connect Lounge are designed to create space for conversation and time together around the contrast-therapy session. Public single sessions, packs and memberships are available; this is not a selective private members' club.",
+        "Primary Pillar": "Recovery & Performance",
+        "Access Type": "Public",
+        "Brand / Operator": "Arc",
+        "Slug": "arc-canary-wharf",
+        "Name": "Arc",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Recurring group sessions",
+          "Communal sauna",
+          "Guided contrast",
+          "Events",
+          "Cafe / social space"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Google Rating": "4.8/5 (100+ reviews)",
+        "Website": "https://www.arc-community.com/canary-wharf",
+        "Opening Hours": "Mon–Fri: 06:00–21:00  \nSat–Sun: 09:00–15:00\n",
+        "Booking Link": "https://www.arc-community.com/canary-wharf",
+        "Email": "hello@arc-community.com",
+        "Venue Type Standardized": "Wellness Club",
+        "Cover Image": [
+          {
+            "id": "attARQ3xqmEjHAYOq",
+            "url": "/venues/arc-canary-wharf/attARQ3xqmEjHAYOq.jpg",
+            "filename": "Sauna.jpg"
+          }
+        ],
         "Images": [
           {
             "id": "attXWRmQNFJKSV7QM",
@@ -309,65 +389,48 @@
             "url": "/venues/arc-canary-wharf/attNyPuuB2d5u19jv.webp",
             "filename": "Cold Plunge 3.webp"
           }
+        ]
+      }
+    },
+    {
+      "id": "recA9VXyycHCsfM7w",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
         ],
-        "Neighborhood": "Canary Wharf",
-        "Description": "Arc Canary Wharf is a communal contrast-therapy space with social connection built into the experience. The core offer is a large shared sauna and ice baths, with Guided Classes, Free Flow sessions and dedicated evening socials. Arc After Dark turns contrast therapy into a social event with DJs, guided ice baths, immersive sound and aromatherapy, while the Connect Lounge gives people a place to pause, hydrate and spend time together before or after sessions. Arc also runs workshops and community events, so it is designed to be more than a place to complete a sauna-and-plunge circuit and leave.",
-        "Editorial Summary": "Arc is London's first communal contrast therapy club, offering a unique blend of sauna and ice bath experiences designed to promote physical and mental well-being. Located in Canary Wharf, Arc provides guided and self-guided sessions that combine traditional wellness practices with modern social connection.",
-        "Phone": "020 3835 8808",
-        "Theme Tags Standardized": [
-          "Recovery",
-          "Community",
-          "Social",
-          "Relaxation"
-        ],
-        "Address": "Unit 46, Minus Level, 1 Crossrail Place, Canary Wharf, London E14 5AR",
-        "Last Checked": "2026-08-09",
-        "Overall Price Range": "££",
+        "Neighborhood": "Chiswick",
+        "Description": "A west-London steam-banya and bathhouse with plunge pool, treatment rooms and a dedicated booth and lounge area.",
+        "Editorial Summary": "Banya No.1 Chiswick combines traditional steam-banya sessions with cold plunge and optional treatments in a full bathhouse setting.",
+        "Phone": "0208 189 9777",
+        "Address": "404–406 Chiswick High Road, London W4 5TF",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
         "Indexable": true,
-        "Good To Know": "Public booking. Choose between guided and self-directed formats in the live timetable. The sauna and ice baths are communal, so expect a shared session rather than a private room.",
-        "Type of Experience": [
-          "Group",
-          "Guided",
-          "Self-Guided"
-        ],
+        "Good To Know": "Published access starts from £35 for 90 minutes. Treatments and Parenie are booked separately.",
         "Verification Status": "Public information",
-        "Activity Display Labels": [
-          "Sauna & Cold Plunge"
-        ],
-        "Business Name": "Arc",
-        "Instagram Link": "@arccommunity_",
-        "Services Offered": [
-          "Breathwork",
-          "Meditation",
-          "Aromatherapy",
-          "Sound Therapy",
-          "Guided Classes",
-          "Free Flow Sessions",
-          "Evening Socials",
-          "Contrast Therapy",
-          "Sauna",
-          "Cold Plunge"
-        ],
-        "Social & Community Note": "Community and social connection are a major part of Arc's proposition, not just a by-product of the shared sauna. Alongside Guided Classes and Free Flow, Arc runs evening socials such as Arc After Dark and 'sweat and connect' sessions, as well as workshops and other community events. The 60-person communal sauna and dedicated Connect Lounge are designed to create space for conversation and time together around the contrast-therapy session. Public single sessions, packs and memberships are available; this is not a selective private members' club.",
+        "Business Name": "Banya No.1",
+        "Price From": 35,
         "Primary Pillar": "Recovery & Performance",
-        "Cover Image": [
-          {
-            "id": "attARQ3xqmEjHAYOq",
-            "url": "/venues/arc-canary-wharf/attARQ3xqmEjHAYOq.jpg",
-            "filename": "Sauna.jpg"
-          }
-        ],
+        "Experience Type": "Shared",
         "Access Type": "Public",
-        "Brand / Operator": "Arc",
-        "Slug": "arc-canary-wharf",
-        "Name": "Arc",
-        "Area of London": "East London",
+        "Brand / Operator": "Banya No.1",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "banya-no-1-chiswick",
+        "Name": "Banya No.1 — Chiswick",
+        "Secondary Services": [
+          "Cold Plunge",
+          "Massage"
+        ],
+        "Editorial Verdict": "A substantial west-London bathhouse option with transparent entry pricing and a more ritual-led experience than a standard sauna studio.",
+        "Area of London": "West London",
         "Access Model": "Public / pay as you go",
         "Community Features": [
-          "Recurring group sessions",
           "Communal sauna",
           "Guided contrast",
-          "Events",
           "Cafe / social space"
         ],
         "Social Format": [
@@ -375,31 +438,98 @@
           "Group-led"
         ],
         "Activity Tags Standardized": [
-          "Sauna",
+          "Steam Room",
           "Cold Plunge",
-          "Contrast Therapy"
+          "Massage",
+          "Thermal Baths"
         ],
-        "Best For Standardized": [
-          "Groups",
-          "Community Experience",
-          "Stress Relief"
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://gobanyachiswick.co.uk/",
+        "Opening Hours": "Monday–Sunday 09:30–22:30",
+        "Booking Link": "https://gobanyachiswick.co.uk/",
+        "Email": "reception@gobanyachiswick.co.uk",
+        "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recNba1WLNvrqVpxh",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
         ],
-        "Google Rating": "4.8/5 (100+ reviews)",
-        "Website": "https://www.arc-community.com/canary-wharf",
-        "Opening Hours": "Mon–Fri: 06:00–21:00  \nSat–Sun: 09:00–15:00\n",
-        "Booking Link": "https://www.arc-community.com/canary-wharf",
-        "Email": "hello@arc-community.com",
-        "Venue Type Standardized": "Wellness Club"
+        "Neighborhood": "Hoxton",
+        "Description": "An authentic Russian-style steam-banya experience with cold plunge, bucket shower, Parenie treatments and public or private sessions.",
+        "Editorial Summary": "Banya No.1 Hoxton centres on high-humidity steam, cold immersion and traditional Parenie treatments rather than a conventional dry sauna circuit.",
+        "Phone": "0207 253 6723",
+        "Address": "17 Micawber Street, London N1 7TB",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Public, private and gender-specific sessions are available. Check the live booking calendar for current packages and prices.",
+        "Verification Status": "Public information",
+        "Business Name": "Banya No.1",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Banya No.1",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "banya-no-1-hoxton",
+        "Name": "Banya No.1 — Hoxton",
+        "Secondary Services": [
+          "Cold Plunge",
+          "Massage"
+        ],
+        "Editorial Verdict": "A distinctive bathhouse listing whose ritual-led format and private-hire option broaden the directory beyond Nordic-style sauna.",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna",
+          "Guided contrast"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Steam Room",
+          "Cold Plunge",
+          "Massage",
+          "Thermal Baths"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://gobanya.co.uk/",
+        "Opening Hours": "Monday–Sunday 09:30–22:30",
+        "Booking Link": "https://gobanya.co.uk/",
+        "Email": "hoxton@gobanya.co.uk",
+        "Venue Type Standardized": "Bathhouse"
       }
     },
     {
       "id": "rec7s8aBxpsuNrUaF",
       "fields": {
         "Publish Status": "Published",
+        "Assessment Format": [
+          "Individual tests"
+        ],
         "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Specialist testing provider",
+        "Neighborhood": "City of London",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
+        "Clinical Oversight": "Testing only",
         "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Phone": "020 3490 4171",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Address": "Lower Ground Floor, 36 Cornhill, London EC3V 3NG",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££",
         "Indexable": true,
@@ -408,73 +538,73 @@
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "BodyScan City",
+        "Price From": 189,
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Price From": 189,
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Brand / Operator": "BodyScan",
+        "Primary Service": "Other",
+        "Slug": "bodyscan-city",
+        "Name": "BodyScan City",
         "Well Suited For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
         "Activity Tags Standardized": [
           "Diagnostics"
         ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Performance",
-          "Medical"
-        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Longevity",
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Primary Service": "Other",
-        "Clinic Model": "Specialist testing provider",
-        "Clinical Oversight": "Testing only",
-        "Confirmed Diagnostics": [
-          "DEXA Scan"
-        ],
-        "Assessment Format": [
-          "Individual tests"
-        ],
-        "Results Included": [
-          "Written report",
-          "Repeat testing option"
-        ],
-        "Service Last Verified": "2026-09-02",
-        "Access Model": "Public / pay as you go",
-        "Brand / Operator": "BodyScan",
-        "Name": "BodyScan City",
-        "Slug": "bodyscan-city",
         "Website": "https://bodyscanuk.com/locations/city-london",
         "Booking Link": "https://bodyscanuk.com/locations/city-london",
-        "Business Name": "BodyScan City",
-        "Address": "Lower Ground Floor, 36 Cornhill, London EC3V 3NG",
-        "Phone": "020 3490 4171",
         "Email": "info@bodyscanuk.com",
-        "Neighborhood": "City of London",
-        "Area of London": "Central London",
-        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
-        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
       "id": "recknCMYrJLZ0Yxmd",
       "fields": {
         "Publish Status": "Published",
+        "Assessment Format": [
+          "Individual tests"
+        ],
         "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Specialist testing provider",
+        "Neighborhood": "Marylebone",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
+        "Clinical Oversight": "Testing only",
         "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Phone": "020 3490 4171",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Address": "London Medical, 49 Marylebone High Street, London W1U 5HJ",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££",
         "Indexable": true,
@@ -483,73 +613,73 @@
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "BodyScan W1",
+        "Price From": 189,
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Price From": 189,
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Brand / Operator": "BodyScan",
+        "Primary Service": "Other",
+        "Slug": "bodyscan-w1",
+        "Name": "BodyScan W1",
         "Well Suited For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
         "Activity Tags Standardized": [
           "Diagnostics"
         ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Performance",
-          "Medical"
-        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Longevity",
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Primary Service": "Other",
-        "Clinic Model": "Specialist testing provider",
-        "Clinical Oversight": "Testing only",
-        "Confirmed Diagnostics": [
-          "DEXA Scan"
-        ],
-        "Assessment Format": [
-          "Individual tests"
-        ],
-        "Results Included": [
-          "Written report",
-          "Repeat testing option"
-        ],
-        "Service Last Verified": "2026-09-02",
-        "Access Model": "Public / pay as you go",
-        "Brand / Operator": "BodyScan",
-        "Name": "BodyScan W1",
-        "Slug": "bodyscan-w1",
         "Website": "https://bodyscanuk.com/locations/london-w1",
         "Booking Link": "https://bodyscanuk.com/locations/london-w1",
-        "Business Name": "BodyScan W1",
-        "Address": "London Medical, 49 Marylebone High Street, London W1U 5HJ",
-        "Phone": "020 3490 4171",
         "Email": "info@bodyscanuk.com",
-        "Neighborhood": "Marylebone",
-        "Area of London": "Central London",
-        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment.",
-        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
       "id": "recRkywFEyfSTpUzS",
       "fields": {
         "Publish Status": "Published",
+        "Assessment Format": [
+          "Individual tests"
+        ],
         "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Specialist testing provider",
+        "Neighborhood": "Fitzrovia",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also offers 3D body scanning.",
+        "Clinical Oversight": "Testing only",
         "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Phone": "0330 043 7001",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Address": "36 Great Titchfield Street, London W1W 8BQ",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££",
         "Indexable": true,
@@ -558,73 +688,73 @@
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "BodyView Oxford Circus",
+        "Price From": 189,
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Price From": 189,
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "DEXA Scan"
+        ],
+        "Brand / Operator": "BodyScan",
+        "Primary Service": "Other",
+        "Slug": "bodyview-oxford-circus",
+        "Name": "BodyView Oxford Circus",
         "Well Suited For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
         "Activity Tags Standardized": [
           "Diagnostics"
         ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Performance",
-          "Medical"
-        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Longevity",
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Primary Service": "Other",
-        "Clinic Model": "Specialist testing provider",
-        "Clinical Oversight": "Testing only",
-        "Confirmed Diagnostics": [
-          "DEXA Scan"
-        ],
-        "Assessment Format": [
-          "Individual tests"
-        ],
-        "Results Included": [
-          "Written report",
-          "Repeat testing option"
-        ],
-        "Service Last Verified": "2026-09-02",
-        "Access Model": "Public / pay as you go",
-        "Brand / Operator": "BodyScan",
-        "Name": "BodyView Oxford Circus",
-        "Slug": "bodyview-oxford-circus",
         "Website": "https://bodyscanuk.com/locations/london-oxford-circus",
         "Booking Link": "https://bodyscanuk.com/locations/london-oxford-circus",
-        "Business Name": "BodyView Oxford Circus",
-        "Address": "36 Great Titchfield Street, London W1W 8BQ",
-        "Phone": "0330 043 7001",
         "Email": "info@bodyview.co.uk",
-        "Neighborhood": "Fitzrovia",
-        "Area of London": "Central London",
-        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also offers 3D body scanning.",
-        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
       "id": "rec2zU63JTRRf9x3u",
       "fields": {
         "Publish Status": "Published",
+        "Assessment Format": [
+          "Individual tests"
+        ],
         "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Specialist testing provider",
+        "Neighborhood": "Richmond",
+        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also publishes VO₂ max, resting metabolic rate, FatMax and 3D body-scanning services.",
+        "Clinical Oversight": "Testing only",
         "Editorial Summary": "A specialist DEXA location for users who want a body-composition baseline, a separate bone-density assessment, or both. The scan purpose matters because the two reports answer different questions.",
+        "Phone": "0330 043 7001",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Performance",
+          "Medical"
+        ],
+        "Address": "26–30 Paradise Road, Richmond, Greater London TW9 1SE",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££",
         "Indexable": true,
@@ -633,65 +763,51 @@
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "BodyView Richmond",
+        "Price From": 189,
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Price From": 189,
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "DEXA Scan",
+          "VO₂ Max Testing",
+          "Resting Metabolic Rate"
+        ],
+        "Brand / Operator": "BodyScan",
+        "Primary Service": "Other",
+        "Slug": "bodyview-richmond",
+        "Name": "BodyView Richmond",
         "Well Suited For": [
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
+        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated.",
+        "Area of London": "West London",
+        "Results Included": [
+          "Written report",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
         "Activity Tags Standardized": [
           "Diagnostics"
         ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Performance",
-          "Medical"
-        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Longevity",
           "Preventative Health",
           "Performance Optimisation",
           "Data-Driven Health"
         ],
-        "Primary Service": "Other",
-        "Clinic Model": "Specialist testing provider",
-        "Clinical Oversight": "Testing only",
-        "Confirmed Diagnostics": [
-          "DEXA Scan",
-          "VO₂ Max Testing",
-          "Resting Metabolic Rate"
-        ],
-        "Assessment Format": [
-          "Individual tests"
-        ],
-        "Results Included": [
-          "Written report",
-          "Repeat testing option"
-        ],
-        "Service Last Verified": "2026-09-02",
-        "Access Model": "Public / pay as you go",
-        "Brand / Operator": "BodyScan",
-        "Name": "BodyView Richmond",
-        "Slug": "bodyview-richmond",
         "Website": "https://bodyscanuk.com/locations/richmond",
         "Booking Link": "https://bodyscanuk.com/locations/richmond",
-        "Business Name": "BodyView Richmond",
-        "Address": "26–30 Paradise Road, Richmond, Greater London TW9 1SE",
-        "Phone": "0330 043 7001",
         "Email": "info@bodyview.co.uk",
-        "Neighborhood": "Richmond",
-        "Area of London": "Greater London",
-        "Description": "London testing location offering DEXA body-composition and DEXA osteo scans. Published services cover fat and lean mass, visceral-fat estimates, and separate hip-and-spine bone-density assessment. The location also publishes VO₂ max, resting metabolic rate, FatMax and 3D body-scanning services.",
-        "Editorial Verdict": "A focused option for repeatable DEXA measurement, with body-composition and bone-density services clearly separated."
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
@@ -703,38 +819,6 @@
           "Cold Therapy",
           "Recovery Treatments",
           "Combined Experiences"
-        ],
-        "Images": [
-          {
-            "id": "attc5KzuujHFOrHRS",
-            "url": "/venues/bxr-lab/attc5KzuujHFOrHRS.jpg",
-            "filename": "Gym 2.jpg"
-          },
-          {
-            "id": "attvWByMip2LbIRzQ",
-            "url": "/venues/bxr-lab/attvWByMip2LbIRzQ.jpg",
-            "filename": "Gym.jpg"
-          },
-          {
-            "id": "attIY2clOU3c5nfNr",
-            "url": "/venues/bxr-lab/attIY2clOU3c5nfNr.jpg",
-            "filename": "Sauna 1.jpg"
-          },
-          {
-            "id": "attts7wKCTJhO9kYq",
-            "url": "/venues/bxr-lab/attts7wKCTJhO9kYq.jpg",
-            "filename": "Sauna 2.jpg"
-          },
-          {
-            "id": "attbfp1FLjoJIUArG",
-            "url": "/venues/bxr-lab/attbfp1FLjoJIUArG.jpg",
-            "filename": "Venue 2.jpg"
-          },
-          {
-            "id": "att9z0vLraDRnJUYa",
-            "url": "/venues/bxr-lab/att9z0vLraDRnJUYa.jpg",
-            "filename": "Wellness.jpg"
-          }
         ],
         "Neighborhood": "Marylebone",
         "Description": "BXR LAB is the recovery and treatment space attached to BXR's Marylebone fitness club. The LAB offer is centred on short, bookable recovery appointments such as infrared sauna and cold plunge, alongside steam, massage and body treatments. It is useful for someone who wants a focused recovery session without necessarily joining the wider BXR club.",
@@ -769,13 +853,6 @@
           "Cold Plunge"
         ],
         "Primary Pillar": "Recovery & Performance",
-        "Cover Image": [
-          {
-            "id": "attT3Kc4JMdxnBktt",
-            "url": "/venues/bxr-lab/attT3Kc4JMdxnBktt.jpg",
-            "filename": "Venue 1.jpg"
-          }
-        ],
         "Access Type": "Public",
         "Primary Service": "Infrared Sauna",
         "Slug": "bxr-lab",
@@ -803,7 +880,46 @@
         "Opening Hours": "Mon–Fri: 06:15–22:00  \nSat: 08:00–20:00  \nSun: 08:00–18:00\n",
         "Booking Link": "https://bxrlondon.com/lab",
         "Email": "marylebone@bxrlondon.com",
-        "Venue Type Standardized": "Fitness & Recovery Club"
+        "Venue Type Standardized": "Fitness & Recovery Club",
+        "Cover Image": [
+          {
+            "id": "attT3Kc4JMdxnBktt",
+            "url": "/venues/bxr-lab/attT3Kc4JMdxnBktt.jpg",
+            "filename": "Venue 1.jpg"
+          }
+        ],
+        "Images": [
+          {
+            "id": "attc5KzuujHFOrHRS",
+            "url": "/venues/bxr-lab/attc5KzuujHFOrHRS.jpg",
+            "filename": "Gym 2.jpg"
+          },
+          {
+            "id": "attvWByMip2LbIRzQ",
+            "url": "/venues/bxr-lab/attvWByMip2LbIRzQ.jpg",
+            "filename": "Gym.jpg"
+          },
+          {
+            "id": "attIY2clOU3c5nfNr",
+            "url": "/venues/bxr-lab/attIY2clOU3c5nfNr.jpg",
+            "filename": "Sauna 1.jpg"
+          },
+          {
+            "id": "attts7wKCTJhO9kYq",
+            "url": "/venues/bxr-lab/attts7wKCTJhO9kYq.jpg",
+            "filename": "Sauna 2.jpg"
+          },
+          {
+            "id": "attbfp1FLjoJIUArG",
+            "url": "/venues/bxr-lab/attbfp1FLjoJIUArG.jpg",
+            "filename": "Venue 2.jpg"
+          },
+          {
+            "id": "att9z0vLraDRnJUYa",
+            "url": "/venues/bxr-lab/att9z0vLraDRnJUYa.jpg",
+            "filename": "Wellness.jpg"
+          }
+        ]
       }
     },
     {
@@ -907,6 +1023,94 @@
           "Recovery Treatments",
           "Longevity Treatments"
         ],
+        "Neighborhood": "Notting Hill",
+        "Description": "Cloud Twelve is a Notting Hill wellness club and clinic combining a thermal spa with treatment, medical and bio-hacking services. The shared spa side includes infrared and rose saunas, steam, Himalayan salt room and ice bath, while the clinical and longevity offer extends into diagnostics, IV therapies, acupuncture, nutrition, aesthetics and other one-to-one services. Public visitors can book spa visits and treatments without becoming members.",
+        "Editorial Summary": "Three-floor Notting Hill club with a public-booking spa, wellness clinic, salon and family facilities. The spa includes infrared and rose saunas, steam room, salt room and cold plunge, while clinic services range from IV infusions and acupuncture to nutrition and psychotherapy.",
+        "Phone": "020 3301 1012",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Relaxation",
+          "Recovery"
+        ],
+        "Address": "2-5 Colville Mews, Notting Hill, London W11 2DA",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Mixed access. Spa visits and treatments can be booked directly without membership; membership is for ongoing club access and benefits. The thermal facilities are shared, while many clinic and bio-hacking services are individual appointments.",
+        "Type of Experience": [
+          "Solo",
+          "Private Room",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Massage",
+          "IV Therapy"
+        ],
+        "Business Name": "Cloud Twelve",
+        "Instagram Link": "@cloudtwelveclub",
+        "Services Offered": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Rose Sauna",
+          "Himalayan Salt Room",
+          "Sound Therapy",
+          "Massages",
+          "Facials",
+          "Head Spa",
+          "IV Infusions",
+          "Acupuncture",
+          "Colonic Hydrotherapy",
+          "Herbal Medicine",
+          "Naturopathic Nutrition",
+          "Aesthetics",
+          "Psychotherapy",
+          "Trichology",
+          "Cold Plunge"
+        ],
+        "Social & Community Note": "Cloud Twelve combines publicly bookable spa and treatment visits with an ongoing membership model. Thermal facilities such as sauna, steam, salt room and ice bath are shared, while many clinical, treatment and bio-hacking services are individual appointments.",
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Public",
+        "Primary Service": "Spa / Bathhouse",
+        "Slug": "cloud-twelve",
+        "Name": "Cloud Twelve",
+        "Area of London": "West London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Infrared Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Massage",
+          "IV Therapy"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Stress Relief",
+          "Couples"
+        ],
+        "Google Rating": "4.5/5 (23+ reviews)",
+        "Website": "https://www.cloudtwelve.co.uk/",
+        "Opening Hours": "Mon–Wed: 09:00–19:00\nThu: 09:00–20:00\nFri–Sat: 09:00–19:00\nSun: 09:00–18:00\n",
+        "Booking Link": "https://www.cloudtwelve.co.uk/spa",
+        "Email": "hello@cloudtwelve.co.uk",
+        "Venue Type Standardized": "Wellness Club",
+        "Cover Image": [
+          {
+            "id": "attGv2fWz3nlUMnN2",
+            "url": "/venues/cloud-twelve/attGv2fWz3nlUMnN2.png",
+            "filename": "Venue.png"
+          }
+        ],
         "Images": [
           {
             "id": "attroyyOME26ucmen",
@@ -958,95 +1162,7 @@
             "url": "/venues/cloud-twelve/att05YrbUoYkihg76.jpg",
             "filename": "Lymphatic Compression Therapy.jpg"
           }
-        ],
-        "Neighborhood": "Notting Hill",
-        "Description": "Cloud Twelve is a Notting Hill wellness club and clinic combining a thermal spa with treatment, medical and bio-hacking services. The shared spa side includes infrared and rose saunas, steam, Himalayan salt room and ice bath, while the clinical and longevity offer extends into diagnostics, IV therapies, acupuncture, nutrition, aesthetics and other one-to-one services. Public visitors can book spa visits and treatments without becoming members.",
-        "Editorial Summary": "Three-floor Notting Hill club with a public-booking spa, wellness clinic, salon and family facilities. The spa includes infrared and rose saunas, steam room, salt room and cold plunge, while clinic services range from IV infusions and acupuncture to nutrition and psychotherapy.",
-        "Phone": "020 3301 1012",
-        "Theme Tags Standardized": [
-          "Luxury",
-          "Relaxation",
-          "Recovery"
-        ],
-        "Address": "2-5 Colville Mews, Notting Hill, London W11 2DA",
-        "Last Checked": "2026-08-09",
-        "Overall Price Range": "£££",
-        "Indexable": true,
-        "Good To Know": "Mixed access. Spa visits and treatments can be booked directly without membership; membership is for ongoing club access and benefits. The thermal facilities are shared, while many clinic and bio-hacking services are individual appointments.",
-        "Type of Experience": [
-          "Solo",
-          "Private Room",
-          "Guided"
-        ],
-        "Verification Status": "Public information",
-        "Activity Display Labels": [
-          "Infrared Sauna",
-          "Steam Room",
-          "Ice Bath & Cold Plunge",
-          "Massage",
-          "IV Therapy"
-        ],
-        "Business Name": "Cloud Twelve",
-        "Instagram Link": "@cloudtwelveclub",
-        "Services Offered": [
-          "Infrared Sauna",
-          "Steam Room",
-          "Rose Sauna",
-          "Himalayan Salt Room",
-          "Sound Therapy",
-          "Massages",
-          "Facials",
-          "Head Spa",
-          "IV Infusions",
-          "Acupuncture",
-          "Colonic Hydrotherapy",
-          "Herbal Medicine",
-          "Naturopathic Nutrition",
-          "Aesthetics",
-          "Psychotherapy",
-          "Trichology",
-          "Cold Plunge"
-        ],
-        "Social & Community Note": "Cloud Twelve combines publicly bookable spa and treatment visits with an ongoing membership model. Thermal facilities such as sauna, steam, salt room and ice bath are shared, while many clinical, treatment and bio-hacking services are individual appointments.",
-        "Primary Pillar": "Wellness Clubs",
-        "Cover Image": [
-          {
-            "id": "attGv2fWz3nlUMnN2",
-            "url": "/venues/cloud-twelve/attGv2fWz3nlUMnN2.png",
-            "filename": "Venue.png"
-          }
-        ],
-        "Access Type": "Public",
-        "Primary Service": "Spa / Bathhouse",
-        "Slug": "cloud-twelve",
-        "Name": "Cloud Twelve",
-        "Area of London": "West London",
-        "Access Model": "Mixed access",
-        "Community Features": [
-          "Communal sauna"
-        ],
-        "Social Format": [
-          "Private / individual",
-          "Shared / communal"
-        ],
-        "Activity Tags Standardized": [
-          "Infrared Sauna",
-          "Steam Room",
-          "Cold Plunge",
-          "Massage",
-          "IV Therapy"
-        ],
-        "Best For Standardized": [
-          "Luxury Seekers",
-          "Stress Relief",
-          "Couples"
-        ],
-        "Google Rating": "4.5/5 (23+ reviews)",
-        "Website": "https://www.cloudtwelve.co.uk/",
-        "Opening Hours": "Mon–Wed: 09:00–19:00\nThu: 09:00–20:00\nFri–Sat: 09:00–19:00\nSun: 09:00–18:00\n",
-        "Booking Link": "https://www.cloudtwelve.co.uk/spa",
-        "Email": "hello@cloudtwelve.co.uk",
-        "Venue Type Standardized": "Wellness Club"
+        ]
       }
     },
     {
@@ -1510,102 +1626,114 @@
       "id": "rec9i4lVau6s6QbnQ",
       "fields": {
         "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
         "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Marylebone",
+        "Description": "Harley Street preventative-health provider offering a Healthy Heart assessment with CT heart imaging, CT coronary angiography, ECG, carotid ultrasound and blood testing, followed by senior-physician review.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "A comprehensive imaging-led heart assessment rather than a basic ECG check. It combines coronary imaging and risk measures with physician interpretation and an onward referral route.",
+        "Phone": "+44 (0)20 7580 7688",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical"
+        ],
+        "Address": "68 Harley Street, London W1G 7HE",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££££",
         "Indexable": true,
+        "Good To Know": "This is a medical, imaging-led assessment rather than a simple heart-health check. Ask about suitability, contrast and radiation exposure, and why each investigation is appropriate for your risk profile.",
         "Type of Experience": [
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "Echelon Health",
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Data-Driven Health",
           "Executive Health"
         ],
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Cardiovascular Screening",
+          "Blood Biomarkers",
+          "MRI / Medical Imaging"
+        ],
+        "Brand / Operator": "Echelon Health",
+        "Primary Service": "Other",
+        "Slug": "echelon-health",
+        "Name": "Echelon Health",
         "Well Suited For": [
           "Preventative Health",
           "Data-Driven Health",
           "Executive Health"
         ],
-        "Activity Tags Standardized": [
-          "Diagnostics",
-          "Blood Testing"
-        ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Medical"
-        ],
-        "Best For Standardized": [
-          "Longevity",
-          "Preventative Health",
-          "Data-Driven Health",
-          "Executive Health"
-        ],
-        "Primary Service": "Other",
-        "Clinic Model": "Preventative health screening clinic",
-        "Clinical Oversight": "Doctor-led",
-        "Assessment Format": [
-          "One-off assessment"
-        ],
+        "Editorial Verdict": "Strongest fit for users specifically comparing advanced, physician-reviewed cardiovascular imaging within a wider preventative assessment.",
+        "Area of London": "Central London",
         "Results Included": [
           "Doctor consultation",
           "Written report",
           "Personalised plan",
           "Referral pathway"
         ],
-        "Service Last Verified": "2026-09-02",
         "Access Model": "Public / pay as you go",
-        "Name": "Echelon Health",
-        "Slug": "echelon-health",
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Blood Testing"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
         "Website": "https://www.echelon.health/heart-ct-scan-in-london-what-to-expect/",
-        "Business Name": "Echelon Health",
-        "Brand / Operator": "Echelon Health",
-        "Address": "68 Harley Street, London W1G 7HE",
-        "Phone": "+44 (0)20 7580 7688",
         "Email": "info@echelon.health",
-        "Neighborhood": "Marylebone",
-        "Area of London": "Central London",
-        "Description": "Harley Street preventative-health provider offering a Healthy Heart assessment with CT heart imaging, CT coronary angiography, ECG, carotid ultrasound and blood testing, followed by senior-physician review.",
-        "Editorial Summary": "A comprehensive imaging-led heart assessment rather than a basic ECG check. It combines coronary imaging and risk measures with physician interpretation and an onward referral route.",
-        "Good To Know": "This is a medical, imaging-led assessment rather than a simple heart-health check. Ask about suitability, contrast and radiation exposure, and why each investigation is appropriate for your risk profile.",
-        "Editorial Verdict": "Strongest fit for users specifically comparing advanced, physician-reviewed cardiovascular imaging within a wider preventative assessment.",
-        "Confirmed Diagnostics": [
-          "Health Screening",
-          "Cardiovascular Screening",
-          "Blood Biomarkers",
-          "MRI / Medical Imaging"
-        ]
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
       "id": "recybxWgvAQ6Fuqyk",
       "fields": {
         "Publish Status": "Published",
-        "Indexable": true,
-        "Verification Status": "Public information",
-        "Last Checked": "2026-09-02",
-        "Service Last Verified": "2026-09-02",
-        "Name": "Equinox Bishopsgate",
-        "Slug": "equinox-bishopsgate",
-        "Website": "https://www.equinox.com/clubs/london/bishopsgate",
-        "Booking Link": "https://www.equinox.com/join/step1",
-        "Business Name": "Equinox Bishopsgate",
-        "Brand / Operator": "Equinox",
-        "Address": "8 Clerk’s Place, London EC3A 8AQ",
-        "Phone": "+44 (0) 20 3057 4497",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery"
+        ],
         "Neighborhood": "City of London",
-        "Area of London": "Central London",
         "Description": "City of London membership club with expansive cardio and strength training, yoga, group fitness, cycling and Pilates studios, personal training, eucalyptus steam rooms and a full-service spa.",
         "Editorial Summary": "A performance-led City club with substantial training space and a practical recovery offer through eucalyptus steam rooms, spa bodywork and Pilates.",
+        "Phone": "+44 (0) 20 3057 4497",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Address": "8 Clerk’s Place, London EC3A 8AQ",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
         "Good To Know": "The club is membership-led. The official location page publishes separate spa hours but does not clearly confirm non-member spa access; check eligibility directly before booking.",
-        "Editorial Verdict": "A strong fit for City professionals who want premium training, group classes and steam-room recovery in one club.",
+        "Type of Experience": [
+          "Gym",
+          "Group",
+          "One-to-one"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Steam Room"
+        ],
+        "Business Name": "Equinox Bishopsgate",
+        "Atmosphere": "A five-floor City club centred on large cardio and strength areas, dedicated studios, member spaces and spa facilities.",
         "Services Offered": [
           "Spa",
           "Steam Room",
@@ -1613,34 +1741,24 @@
           "Pilates",
           "Personal Training"
         ],
-        "Primary Service": "Wellness Club",
-        "Secondary Services": [
-          "Gym / Performance",
-          "Spa / Bathhouse",
-          "Yoga / Movement"
-        ],
-        "Activity Category": [
-          "Heat Therapy",
-          "Recovery"
-        ],
-        "Activity Tags Standardized": [
-          "Steam Room"
-        ],
-        "Activity Display Labels": [
-          "Steam Room"
-        ],
-        "Venue Type Standardized": "Fitness & Recovery Club",
-        "Theme Tags Standardized": [
-          "Luxury",
-          "Recovery",
-          "Performance"
-        ],
+        "Social & Community Note": "Membership and recurring studio classes support repeat use, with shared training, lounge and recovery spaces serving the City audience.",
         "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Private / Group",
+        "Access Type": "Members only",
         "Best For": [
           "Athletes",
           "Fitness users",
           "Professionals",
           "Post-work recovery"
+        ],
+        "Brand / Operator": "Equinox",
+        "Primary Service": "Wellness Club",
+        "Slug": "equinox-bishopsgate",
+        "Name": "Equinox Bishopsgate",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Yoga / Movement"
         ],
         "Well Suited For": [
           "Premium fitness",
@@ -1648,59 +1766,69 @@
           "After-work recovery",
           "Central London convenience"
         ],
+        "Editorial Verdict": "A strong fit for City professionals who want premium training, group classes and steam-room recovery in one club.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Steam Room"
+        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Athletes",
           "Luxury Seekers",
           "Post-Workout Recovery",
           "Performance"
         ],
-        "Type of Experience": [
-          "Gym",
-          "Group",
-          "One-to-one"
-        ],
-        "Experience Type": "Private / Group",
-        "Access Type": "Members only",
-        "Access Model": "Standard membership",
-        "Overall Price Range": "££££",
+        "Website": "https://www.equinox.com/clubs/london/bishopsgate",
         "Opening Hours": "Mon–Thu: 05:30–22:00\nFri: 05:30–21:00\nSat–Sun: 08:00–17:00",
-        "Showers Available": true,
-        "Atmosphere": "A five-floor City club centred on large cardio and strength areas, dedicated studios, member spaces and spa facilities.",
-        "Social Format": [
-          "Group-led",
-          "Members-club setting",
-          "Shared / communal"
-        ],
-        "Community Features": [
-          "Members lounge",
-          "Group classes",
-          "Member programming"
-        ],
-        "Social & Community Note": "Membership and recurring studio classes support repeat use, with shared training, lounge and recovery spaces serving the City audience."
+        "Booking Link": "https://www.equinox.com/join/step1",
+        "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },
     {
       "id": "recARUP9ohq1A00nz",
       "fields": {
         "Publish Status": "Published",
-        "Indexable": true,
-        "Verification Status": "Public information",
-        "Last Checked": "2026-09-02",
-        "Service Last Verified": "2026-09-02",
-        "Name": "Equinox Kensington",
-        "Slug": "equinox-kensington",
-        "Website": "https://www.equinox.com/clubs/london/kensington",
-        "Booking Link": "https://www.equinox.com/join/step1/871",
-        "Business Name": "Equinox Kensington",
-        "Brand / Operator": "Equinox",
-        "Address": "99 Kensington High Street, London W8 5SA",
-        "Phone": "+44 (0) 20 7666 6000",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery"
+        ],
         "Neighborhood": "Kensington",
-        "Area of London": "West London",
         "Description": "Kensington membership club with an open-plan strength floor, boxing, yoga, cycling and Pilates studios, personal training, a steam room and a full-service spa. Spa appointments are offered to non-members.",
         "Editorial Summary": "A broad West London fitness and wellness club where the strongest recovery elements are the steam room and full-service spa, supported by extensive training and studio facilities.",
+        "Phone": "+44 (0) 20 7666 6000",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Address": "99 Kensington High Street, London W8 5SA",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
         "Good To Know": "Club facilities require membership. The official club page states that spa appointments are open to non-members, so access depends on whether you are booking the spa or using the wider club.",
-        "Editorial Verdict": "Best suited to users who want premium training and studio choice with spa and steam-room recovery in the same Kensington membership.",
+        "Type of Experience": [
+          "Gym",
+          "Group",
+          "One-to-one"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Steam Room"
+        ],
+        "Business Name": "Equinox Kensington",
+        "Atmosphere": "A large premium club built around a naturally lit strength floor, dedicated studios, member lounge and spa.",
         "Services Offered": [
           "Spa",
           "Steam Room",
@@ -1708,34 +1836,24 @@
           "Pilates",
           "Personal Training"
         ],
-        "Primary Service": "Wellness Club",
-        "Secondary Services": [
-          "Gym / Performance",
-          "Spa / Bathhouse",
-          "Yoga / Movement"
-        ],
-        "Activity Category": [
-          "Heat Therapy",
-          "Recovery"
-        ],
-        "Activity Tags Standardized": [
-          "Steam Room"
-        ],
-        "Activity Display Labels": [
-          "Steam Room"
-        ],
-        "Venue Type Standardized": "Fitness & Recovery Club",
-        "Theme Tags Standardized": [
-          "Luxury",
-          "Recovery",
-          "Performance"
-        ],
+        "Social & Community Note": "Membership, scheduled group classes and a member lounge create repeat interaction, while spa treatments can also be booked independently by non-members.",
         "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Private / Group",
+        "Access Type": "Members only",
         "Best For": [
           "Athletes",
           "Fitness users",
           "Luxury wellness users",
           "West London locals"
+        ],
+        "Brand / Operator": "Equinox",
+        "Primary Service": "Wellness Club",
+        "Slug": "equinox-kensington",
+        "Name": "Equinox Kensington",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Yoga / Movement"
         ],
         "Well Suited For": [
           "Premium fitness",
@@ -1743,59 +1861,70 @@
           "West London convenience",
           "Luxury wellness"
         ],
+        "Editorial Verdict": "Best suited to users who want premium training and studio choice with spa and steam-room recovery in the same Kensington membership.",
+        "Area of London": "West London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Steam Room"
+        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Athletes",
           "Luxury Seekers",
           "Post-Workout Recovery",
           "Performance"
         ],
-        "Type of Experience": [
-          "Gym",
-          "Group",
-          "One-to-one"
-        ],
-        "Experience Type": "Private / Group",
-        "Access Type": "Members only",
-        "Access Model": "Mixed access",
-        "Overall Price Range": "££££",
+        "Website": "https://www.equinox.com/clubs/london/kensington",
         "Opening Hours": "Mon–Thu: 06:00–22:00\nFri: 06:00–21:00\nSat–Sun: 08:00–19:00",
-        "Showers Available": true,
-        "Atmosphere": "A large premium club built around a naturally lit strength floor, dedicated studios, member lounge and spa.",
-        "Social Format": [
-          "Group-led",
-          "Members-club setting",
-          "Shared / communal"
-        ],
-        "Community Features": [
-          "Members lounge",
-          "Group classes",
-          "Member programming"
-        ],
-        "Social & Community Note": "Membership, scheduled group classes and a member lounge create repeat interaction, while spa treatments can also be booked independently by non-members."
+        "Booking Link": "https://www.equinox.com/join/step1/871",
+        "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },
     {
       "id": "recTSzou0Mbtxx49K",
       "fields": {
         "Publish Status": "Published",
-        "Indexable": true,
-        "Verification Status": "Public information",
-        "Last Checked": "2026-09-02",
-        "Service Last Verified": "2026-09-02",
-        "Name": "E by Equinox St James’s",
-        "Slug": "equinox-st-jamess",
-        "Website": "https://www.equinox.com/clubs/london/stjames",
-        "Booking Link": "https://www.equinox.com/join/step1/873",
-        "Business Name": "E by Equinox St James’s",
-        "Brand / Operator": "Equinox",
-        "Address": "12 St James’s Street, London SW1A 1ER",
-        "Phone": "+44 (0) 20 3884 2071",
-        "Neighborhood": "Mayfair",
-        "Area of London": "Central London",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "St James's",
         "Description": "Premium St James’s fitness club combining personalised coaching, strength and cardio floors, Studio Pilates, hot dry sauna and eucalyptus steam facilities, spa bodywork and skincare, and Hypervolt recovery.",
         "Editorial Summary": "A highly personalised Equinox club with premium training, Pilates, sauna and steam facilities, plus a full-service spa that can be booked separately by non-members.",
+        "Phone": "+44 (0) 20 3884 2071",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance"
+        ],
+        "Address": "12 St James’s Street, London SW1A 1ER",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
         "Good To Know": "The wider club is membership-led, while the official location page states that spa appointments are open to non-members. Confirm current membership pricing and any separately charged recovery services directly.",
-        "Editorial Verdict": "Best for users seeking personalised premium training with sauna, steam and spa recovery in St James’s; non-members can book spa appointments.",
+        "Type of Experience": [
+          "Gym",
+          "Private",
+          "One-to-one"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Business Name": "E by Equinox St James’s",
+        "Atmosphere": "A smaller executive club combining private coaching, refined member facilities, spa treatment rooms and specialised recovery services.",
         "Services Offered": [
           "Sauna",
           "Steam Room",
@@ -1803,31 +1932,11 @@
           "Pilates",
           "Elite Personal Training"
         ],
-        "Primary Service": "Wellness Club",
-        "Secondary Services": [
-          "Gym / Performance",
-          "Sauna",
-          "Spa / Bathhouse"
-        ],
-        "Activity Category": [
-          "Heat Therapy",
-          "Recovery Treatments"
-        ],
-        "Activity Tags Standardized": [
-          "Sauna",
-          "Steam Room"
-        ],
-        "Activity Display Labels": [
-          "Sauna",
-          "Steam Room"
-        ],
-        "Venue Type Standardized": "Fitness & Recovery Club",
-        "Theme Tags Standardized": [
-          "Luxury",
-          "Recovery",
-          "Performance"
-        ],
+        "Social & Community Note": "The format is more private and individually coached than group-led, with shared member facilities supporting a club setting around the training and recovery programme.",
         "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Private",
+        "Access Type": "Members only",
         "Best For": [
           "Athletes",
           "Executives",
@@ -1835,12 +1944,37 @@
           "Luxury wellness users",
           "Recovery-focused users"
         ],
+        "Brand / Operator": "Equinox",
+        "Primary Service": "Wellness Club",
+        "Slug": "equinox-st-jamess",
+        "Name": "E by Equinox St James’s",
+        "Secondary Services": [
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Sauna"
+        ],
         "Well Suited For": [
           "Premium fitness",
           "Performance recovery",
           "Luxury recovery",
           "HBOT"
         ],
+        "Editorial Verdict": "Best for users seeking personalised premium training with sauna, steam and spa recovery in St James’s; non-members can book spa appointments.",
+        "Area of London": "Central London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Members lounge",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Members-club setting",
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Athletes",
           "Luxury Seekers",
@@ -1848,28 +1982,10 @@
           "Performance",
           "Executive Health"
         ],
-        "Type of Experience": [
-          "Gym",
-          "Private",
-          "One-to-one"
-        ],
-        "Experience Type": "Private",
-        "Access Type": "Members only",
-        "Access Model": "Mixed access",
-        "Overall Price Range": "££££",
+        "Website": "https://www.equinox.com/clubs/london/stjames",
         "Opening Hours": "Mon–Thu: 06:00–21:00\nFri: 06:00–20:00\nSat–Sun: 08:00–16:00",
-        "Showers Available": true,
-        "Towels Included": true,
-        "Atmosphere": "A smaller executive club combining private coaching, refined member facilities, spa treatment rooms and specialised recovery services.",
-        "Social Format": [
-          "Members-club setting",
-          "Private / individual"
-        ],
-        "Community Features": [
-          "Members lounge",
-          "Member programming"
-        ],
-        "Social & Community Note": "The format is more private and individually coached than group-led, with shared member facilities supporting a club setting around the training and recovery programme."
+        "Booking Link": "https://www.equinox.com/join/step1/873",
+        "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },
     {
@@ -2090,24 +2206,40 @@
       "id": "rec2YOHIJEgWSwlB0",
       "fields": {
         "Publish Status": "Published",
-        "Indexable": true,
-        "Verification Status": "Public information",
-        "Last Checked": "2026-09-02",
-        "Service Last Verified": "2026-09-02",
-        "Name": "JAB SW1 Victoria",
-        "Slug": "jab-sw1-victoria",
-        "Website": "https://jabboxing.club/clubs/sw1-victoria/",
-        "Booking Link": "https://jabboxing.club/sessions/schedule/",
-        "Business Name": "JAB Boxing Club",
-        "Brand / Operator": "JAB",
-        "Address": "Unit 5, Colonnade Walk, 151 Buckingham Palace Road, London SW1W 9SZ",
-        "Phone": "020 4618 4605",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery",
+          "Combined Experiences"
+        ],
         "Neighborhood": "Victoria",
-        "Area of London": "Central London",
         "Description": "Victoria performance club combining boxing and conditioning studios with a dedicated recovery suite containing a six-person Nordic sauna and Glacier cold plunge. The club also includes changing facilities, a lounge and an in-house health café.",
         "Editorial Summary": "JAB SW1 places boxing-led training and contrast recovery in one compact club. Its recovery suite is clearly specified rather than treated as a generic changing-room amenity.",
+        "Phone": "020 4618 4605",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Performance",
+          "Community",
+          "Social"
+        ],
+        "Address": "Unit 5, Colonnade Walk, 151 Buckingham Palace Road, London SW1W 9SZ",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "£££",
+        "Indexable": true,
         "Good To Know": "The detailed membership selector lists Original membership at £275 per month, including training and recovery, but the same official SW1 page still carries a £225 headline. Confirm the live rate before joining. Public sessions and class packs are also offered.",
-        "Editorial Verdict": "A useful Victoria option for users who want coached performance training with sauna and cold plunge built into the same club routine.",
+        "Type of Experience": [
+          "Guided",
+          "Group",
+          "Social",
+          "Gym"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "JAB Boxing Club",
+        "Atmosphere": "A compact, mid-century-inspired club with low-lit training studios, a dedicated recovery suite, lounge and health café.",
         "Services Offered": [
           "Sauna",
           "Cold Plunge",
@@ -2115,34 +2247,11 @@
           "Fitness",
           "Personal Training"
         ],
-        "Primary Service": "Gym / Performance",
-        "Secondary Services": [
-          "Contrast Therapy",
-          "Sauna",
-          "Cold Plunge"
-        ],
-        "Activity Category": [
-          "Heat Therapy",
-          "Cold Therapy",
-          "Recovery",
-          "Combined Experiences"
-        ],
-        "Activity Tags Standardized": [
-          "Sauna",
-          "Cold Plunge",
-          "Contrast Therapy"
-        ],
-        "Activity Display Labels": [
-          "Sauna & Cold Plunge"
-        ],
-        "Venue Type Standardized": "Fitness & Recovery Club",
-        "Theme Tags Standardized": [
-          "Recovery",
-          "Performance",
-          "Community",
-          "Social"
-        ],
+        "Price From": 275,
+        "Social & Community Note": "Group training, member programming, a lounge, health café and published social events create several repeat points of interaction beyond the boxing sessions.",
         "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Guided / Group",
+        "Access Type": "Public",
         "Best For": [
           "Athletes",
           "Fitness users",
@@ -2150,38 +2259,24 @@
           "Social wellness",
           "Groups"
         ],
+        "Brand / Operator": "JAB",
+        "Primary Service": "Gym / Performance",
+        "Slug": "jab-sw1-victoria",
+        "Name": "JAB SW1 Victoria",
+        "Secondary Services": [
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge"
+        ],
         "Well Suited For": [
           "Performance recovery",
           "Fitness recovery",
           "After-work recovery",
           "Social recovery"
         ],
-        "Best For Standardized": [
-          "Athletes",
-          "Groups",
-          "Community Experience",
-          "Post-Workout Recovery",
-          "Performance"
-        ],
-        "Type of Experience": [
-          "Guided",
-          "Group",
-          "Social",
-          "Gym"
-        ],
-        "Experience Type": "Guided / Group",
-        "Access Type": "Public",
+        "Editorial Verdict": "A useful Victoria option for users who want coached performance training with sauna and cold plunge built into the same club routine.",
+        "Area of London": "Central London",
         "Access Model": "Mixed access",
-        "Overall Price Range": "£££",
-        "Price From": 275,
-        "Opening Hours": "Mon–Fri: 06:00–21:00\nSat: 07:15–16:30\nSun: 08:30–17:30",
-        "Showers Available": true,
-        "Atmosphere": "A compact, mid-century-inspired club with low-lit training studios, a dedicated recovery suite, lounge and health café.",
-        "Social Format": [
-          "Group-led",
-          "Members-club setting",
-          "Shared / communal"
-        ],
         "Community Features": [
           "Cafe / social space",
           "Group classes",
@@ -2189,7 +2284,28 @@
           "Events",
           "Members lounge"
         ],
-        "Social & Community Note": "Group training, member programming, a lounge, health café and published social events create several repeat points of interaction beyond the boxing sessions."
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Best For Standardized": [
+          "Athletes",
+          "Groups",
+          "Community Experience",
+          "Post-Workout Recovery",
+          "Performance"
+        ],
+        "Website": "https://jabboxing.club/clubs/sw1-victoria/",
+        "Opening Hours": "Mon–Fri: 06:00–21:00\nSat: 07:15–16:30\nSun: 08:30–17:30",
+        "Booking Link": "https://jabboxing.club/sessions/schedule/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },
     {
@@ -2510,6 +2626,91 @@
           "Heat Therapy",
           "Recovery Treatments"
         ],
+        "Neighborhood": "Belgravia",
+        "Description": "London Cryo Belgravia offers bookable recovery treatments including whole-body cryotherapy, infrared sauna, red light therapy, compression, HBOT, IV therapy and massage.",
+        "Editorial Summary": "Whole-body cryotherapy in Belgravia, with infrared sauna, red light therapy, compression, HBOT, IV therapy and massage also available.",
+        "Phone": "0203 371 8900 Ext. 2",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Biohacking",
+          "Performance"
+        ],
+        "Address": "15C Eccleston Place, London SW1W 9NF",
+        "Last Checked": "2026-08-09",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "Book through LondonCryo’s website or app and select the Belgravia location. Service availability can vary by branch, so confirm the chosen treatment and live appointment time during booking.",
+        "Type of Experience": [
+          "Solo",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Business Name": "LondonCryo",
+        "Google Review Count": 156,
+        "Instagram Link": "@londoncryo",
+        "Services Offered": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Primary Pillar": "Recovery & Performance",
+        "Access Type": "Public",
+        "Brand / Operator": "LondonCryo",
+        "Primary Service": "Cryotherapy",
+        "Slug": "london-cryo-belgravia",
+        "Name": "London Cryo — Belgravia",
+        "Secondary Services": [
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "HBOT",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Red Light Therapy",
+          "Compression Therapy",
+          "Hyperbaric Oxygen Therapy",
+          "IV Therapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Biohackers",
+          "Post-Workout Recovery"
+        ],
+        "Google Rating": "4.8/5 (156 reviews)",
+        "Website": "https://www.londoncryo.com/",
+        "Opening Hours": "Mon-Fri: 10:00am-7:00pm\nSat: 10:00am-6:00pm\nSun: 10:00am-5:00pm",
+        "Booking Link": "https://www.londoncryo.com/book/",
+        "Email": "belgravia@londoncryo.com",
+        "Venue Type Standardized": "Recovery Studio",
+        "Cover Image": [
+          {
+            "id": "att8B1whN1v64WDre",
+            "url": "/venues/london-cryo-belgravia/att8B1whN1v64WDre.jpg",
+            "filename": "Venue.jpg"
+          }
+        ],
         "Images": [
           {
             "id": "attV3Rvclh0GnYLvx",
@@ -2566,92 +2767,7 @@
             "url": "/venues/london-cryo-belgravia/attNMAmhNMNXxf68A.jpg",
             "filename": "LondonCryo-19-©-Agnese-Sanvito-808x1212.jpg"
           }
-        ],
-        "Neighborhood": "Belgravia",
-        "Description": "London Cryo Belgravia offers bookable recovery treatments including whole-body cryotherapy, infrared sauna, red light therapy, compression, HBOT, IV therapy and massage.",
-        "Editorial Summary": "Whole-body cryotherapy in Belgravia, with infrared sauna, red light therapy, compression, HBOT, IV therapy and massage also available.",
-        "Phone": "0203 371 8900 Ext. 2",
-        "Theme Tags Standardized": [
-          "Recovery",
-          "Biohacking",
-          "Performance"
-        ],
-        "Address": "15C Eccleston Place, London SW1W 9NF",
-        "Last Checked": "2026-08-09",
-        "Overall Price Range": "£££",
-        "Indexable": true,
-        "Good To Know": "Book through LondonCryo’s website or app and select the Belgravia location. Service availability can vary by branch, so confirm the chosen treatment and live appointment time during booking.",
-        "Type of Experience": [
-          "Solo",
-          "Guided"
-        ],
-        "Verification Status": "Public information",
-        "Activity Display Labels": [
-          "Cryotherapy",
-          "Infrared Sauna",
-          "Red Light Therapy",
-          "Compression Therapy",
-          "HBOT",
-          "IV Therapy",
-          "Massage"
-        ],
-        "Business Name": "LondonCryo",
-        "Google Review Count": 156,
-        "Instagram Link": "@londoncryo",
-        "Services Offered": [
-          "Cryotherapy",
-          "Infrared Sauna",
-          "Red Light Therapy",
-          "Compression Therapy",
-          "HBOT",
-          "IV Therapy",
-          "Massage"
-        ],
-        "Primary Pillar": "Recovery & Performance",
-        "Cover Image": [
-          {
-            "id": "att8B1whN1v64WDre",
-            "url": "/venues/london-cryo-belgravia/att8B1whN1v64WDre.jpg",
-            "filename": "Venue.jpg"
-          }
-        ],
-        "Access Type": "Public",
-        "Brand / Operator": "LondonCryo",
-        "Primary Service": "Cryotherapy",
-        "Slug": "london-cryo-belgravia",
-        "Name": "London Cryo — Belgravia",
-        "Secondary Services": [
-          "Infrared Sauna",
-          "Red Light Therapy",
-          "HBOT",
-          "IV Therapy",
-          "Massage"
-        ],
-        "Area of London": "Central London",
-        "Access Model": "Public / pay as you go",
-        "Social Format": [
-          "Private / individual"
-        ],
-        "Activity Tags Standardized": [
-          "Cryotherapy",
-          "Infrared Sauna",
-          "Red Light Therapy",
-          "Compression Therapy",
-          "Hyperbaric Oxygen Therapy",
-          "IV Therapy",
-          "Massage"
-        ],
-        "Best For Standardized": [
-          "Athletes",
-          "Biohackers",
-          "Post-Workout Recovery"
-        ],
-        "Google Rating": "4.8/5 (156 reviews)",
-        "Website": "https://www.londoncryo.com/",
-        "Opening Hours": "Mon-Fri: 10:00am-7:00pm\nSat: 10:00am-6:00pm\nSun: 10:00am-5:00pm",
-        "Booking Link": "https://www.londoncryo.com/book/",
-        "Email": "belgravia@londoncryo.com",
-        "Venue Type Standardized": "Recovery Studio"
+        ]
       }
     },
     {
@@ -2740,6 +2856,95 @@
         "Website": "https://lowlu.com",
         "Opening Hours": "Mon: 07:00–21:00\nTue: 07:00–21:00\nWed: 07:00–21:00\nThu: 07:00–21:00\nFri: 07:00–21:00\nSat: 07:00–21:00\nSun: 07:00–21:00",
         "Booking Link": "https://lowlu.com",
+        "Email": "support@lowlu.co",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recrcurNkwQIfXxNh",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Ilford",
+        "Description": "A purpose-built communal contrast-therapy venue inside Rocket Padel, with two Finnish saunas, three cold plunges and both social and silent session formats.",
+        "Editorial Summary": "Lowlu Ilford combines spacious Finnish sauna and cold immersion with a choice between sociable and quieter session formats.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Community",
+          "Social"
+        ],
+        "Address": "Wellness Suite, Rocket Padel, 2 The Drive, Ilford IG1 3PS",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "Unknown",
+        "Indexable": true,
+        "Good To Know": "Bring two towels: one to sit on and one to dry with. Peak sessions are £16.50; off-peak sessions start at £12.50.",
+        "Type of Experience": [
+          "Outdoor",
+          "Group"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Lowlu",
+        "Atmosphere": "Purpose-built communal sauna and plunge space inside Rocket Padel, with separate social and silent saunas plus rest areas.",
+        "Instagram Link": "@lowlu_sauna",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Price From": 12.5,
+        "Social & Community Note": "Social Sauna is conversation-friendly; Silent Sauna provides a quieter shared session.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Social recovery"
+        ],
+        "Brand / Operator": "Lowlu",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "lowlu-sauna-ilford",
+        "Name": "Lowlu Sauna — Ilford",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Well Suited For": [
+          "Sauna",
+          "Cold plunge",
+          "Social recovery"
+        ],
+        "Editorial Verdict": "A useful east-London contrast option with unusually clear session formats, long opening hours and transparent off-peak pricing.",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Groups",
+          "Community Experience",
+          "Stress Relief"
+        ],
+        "Website": "https://lowlu.com/locations/ilford",
+        "Opening Hours": "Monday–Sunday 07:00–22:00",
+        "Booking Link": "https://lowlu.com/locations/ilford",
         "Email": "support@lowlu.co",
         "Venue Type Standardized": "Community Sauna"
       }
@@ -2922,6 +3127,366 @@
       }
     },
     {
+      "id": "rec08mFHZyk26hGa1",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Activity Category": [
+          "Longevity Treatments",
+          "Longevity"
+        ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Covent Garden",
+        "Description": "A one-hour preventive health scan combining clinician-led measurements with a doctor consultation, app-based results and follow-up recommendations.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "Neko Health provides a structured one-hour preventive health scan covering skin, cardiovascular, blood-biomarker and body-composition measures.",
+        "Phone": "+44 7701 411315",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical",
+          "Biohacking"
+        ],
+        "Address": "1 Endell Street, London WC2H 9BB",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "£££",
+        "Indexable": true,
+        "Good To Know": "The scan takes around one hour and costs £299. Availability may involve a waitlist; use the live booking page for current access.",
+        "Type of Experience": [
+          "Private",
+          "Guided",
+          "One-to-one"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Diagnostics"
+        ],
+        "Business Name": "Neko Health",
+        "Services Offered": [
+          "Health Screening",
+          "Blood Testing",
+          "Diagnostics"
+        ],
+        "Price From": 299,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Blood Biomarkers",
+          "Cardiovascular Screening",
+          "Skin / Mole Screening"
+        ],
+        "Brand / Operator": "Neko Health",
+        "Primary Service": "Other",
+        "Slug": "neko-health-covent-garden",
+        "Name": "Neko Health — Covent Garden",
+        "Secondary Services": [
+          "Other"
+        ],
+        "Well Suited For": [
+          "Longevity / biohacking",
+          "Medical wellness"
+        ],
+        "Editorial Verdict": "A clear, consumer-friendly health-screening proposition at a substantially lower entry price than London's full-day executive assessments.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Doctor consultation",
+          "Results dashboard",
+          "Personalised plan",
+          "Referral pathway",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Longevity Testing",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "First Timers",
+          "Preventative Health",
+          "Data-Driven Health",
+          "Longevity"
+        ],
+        "Website": "https://www.nekohealth.com/gb/en/locations/london/covent-garden",
+        "Opening Hours": "Monday–Thursday 08:15–21:00; Friday–Saturday 08:15–17:00",
+        "Booking Link": "https://www.nekohealth.com/gb/en/locations/london/covent-garden",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "recHH920zVQBK0r0h",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Activity Category": [
+          "Longevity Treatments",
+          "Longevity"
+        ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Marylebone",
+        "Description": "A one-hour preventive health scan combining clinician-led measurements with a doctor consultation, app-based results and follow-up recommendations.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "Neko Health provides a structured one-hour preventive health scan covering skin, cardiovascular, blood-biomarker and body-composition measures.",
+        "Phone": "+44 7701 411315",
+        "Address": "9 St Vincent Street, London W1U 4DA",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "The scan takes around one hour and costs £299. Availability may involve a waitlist; use the live booking page for current access.",
+        "Verification Status": "Public information",
+        "Business Name": "Neko Health",
+        "Services Offered": [
+          "Health Screening",
+          "Blood Testing",
+          "Diagnostics"
+        ],
+        "Price From": 299,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Blood Biomarkers",
+          "Cardiovascular Screening",
+          "Skin / Mole Screening"
+        ],
+        "Brand / Operator": "Neko Health",
+        "Primary Service": "Other",
+        "Slug": "neko-health-marylebone",
+        "Name": "Neko Health — Marylebone",
+        "Secondary Services": [
+          "Other"
+        ],
+        "Editorial Verdict": "A clear, consumer-friendly health-screening proposition at a substantially lower entry price than London's full-day executive assessments.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Doctor consultation",
+          "Results dashboard",
+          "Personalised plan",
+          "Referral pathway",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Longevity Testing",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.nekohealth.com/gb/en/locations/london/marylebone",
+        "Opening Hours": "Monday 08:15–20:30; Tuesday–Thursday 08:15–21:00; Friday–Saturday 08:15–17:00",
+        "Booking Link": "https://www.nekohealth.com/gb/en/locations/london/marylebone",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "recAM6rCTpPCfgcuJ",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Activity Category": [
+          "Longevity Treatments",
+          "Longevity"
+        ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Spitalfields",
+        "Description": "A one-hour preventive health scan combining clinician-led measurements with a doctor consultation, app-based results and follow-up recommendations.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "Neko Health provides a structured one-hour preventive health scan covering skin, cardiovascular, blood-biomarker and body-composition measures.",
+        "Phone": "+44 7701 411315",
+        "Address": "1 Lamb Street, London E1 6EA",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "The scan takes around one hour and costs £299. Availability may involve a waitlist; use the live booking page for current access.",
+        "Verification Status": "Public information",
+        "Business Name": "Neko Health",
+        "Services Offered": [
+          "Health Screening",
+          "Blood Testing",
+          "Diagnostics"
+        ],
+        "Price From": 299,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Blood Biomarkers",
+          "Cardiovascular Screening",
+          "Skin / Mole Screening"
+        ],
+        "Brand / Operator": "Neko Health",
+        "Primary Service": "Other",
+        "Slug": "neko-health-spitalfields",
+        "Name": "Neko Health — Spitalfields",
+        "Secondary Services": [
+          "Other"
+        ],
+        "Editorial Verdict": "A clear, consumer-friendly health-screening proposition at a substantially lower entry price than London's full-day executive assessments.",
+        "Area of London": "East London",
+        "Results Included": [
+          "Doctor consultation",
+          "Results dashboard",
+          "Personalised plan",
+          "Referral pathway",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Longevity Testing",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.nekohealth.com/gb/en/locations/london/spitalfields",
+        "Opening Hours": "Monday–Thursday 08:30–21:00; Friday 08:30–16:30; Saturday 09:00–16:30",
+        "Booking Link": "https://www.nekohealth.com/gb/en/locations/london/spitalfields",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "recghtKdzoHyyaZ07",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Activity Category": [
+          "Longevity Treatments",
+          "Longevity"
+        ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Victoria",
+        "Description": "A one-hour preventive health scan combining clinician-led measurements with a doctor consultation, app-based results and follow-up recommendations.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "Neko Health provides a structured one-hour preventive health scan covering skin, cardiovascular, blood-biomarker and body-composition measures.",
+        "Phone": "+44 7701 411315",
+        "Address": "151 Buckingham Palace Road, London SW1W 9SZ",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "The scan takes around one hour and costs £299. Availability may involve a waitlist; use the live booking page for current access.",
+        "Verification Status": "Public information",
+        "Business Name": "Neko Health",
+        "Services Offered": [
+          "Health Screening",
+          "Blood Testing",
+          "Diagnostics"
+        ],
+        "Price From": 299,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Blood Biomarkers",
+          "Cardiovascular Screening",
+          "Skin / Mole Screening"
+        ],
+        "Brand / Operator": "Neko Health",
+        "Primary Service": "Other",
+        "Slug": "neko-health-victoria",
+        "Name": "Neko Health — Victoria",
+        "Secondary Services": [
+          "Other"
+        ],
+        "Editorial Verdict": "A clear, consumer-friendly health-screening proposition at a substantially lower entry price than London's full-day executive assessments.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Doctor consultation",
+          "Results dashboard",
+          "Personalised plan",
+          "Referral pathway",
+          "Repeat testing option"
+        ],
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Longevity Testing",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.nekohealth.com/gb/en/locations/london/victoria",
+        "Opening Hours": "Monday–Thursday 08:30–20:45; Friday–Saturday 08:30–17:30",
+        "Booking Link": "https://www.nekohealth.com/gb/en/locations/london/victoria",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "reczqsvl3bTBHg00n",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Recovery Treatments",
+          "Longevity Treatments"
+        ],
+        "Clinic Model": "Specialist testing provider",
+        "Neighborhood": "Marylebone",
+        "Description": "A doctor-led medical hyperbaric oxygen clinic with eight chambers operating at pressures up to 2.0 ATA.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "NUMA provides medically supervised HBOT from a purpose-built central London clinic with consultation-led access.",
+        "Phone": "0203 823 1212",
+        "Address": "Lower Ground Floor, 4–6 York Street, London W1U 6QD",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "A £250 consultation is required; treatment packages are priced separately, including three 60-minute sessions from £630.",
+        "Verification Status": "Public information",
+        "Business Name": "NUMA",
+        "Price From": 250,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Brand / Operator": "NUMA",
+        "Primary Service": "HBOT",
+        "Slug": "numa-oxygen-marylebone",
+        "Name": "NUMA",
+        "Editorial Verdict": "One of the directory's clearer medical-HBOT propositions, with published consultation and package pricing plus CQC registration.",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Hyperbaric Oxygen Therapy",
+          "Recovery Therapy",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://numaoxygen.com/hyperbaric-oxygen-therapy-cost",
+        "Opening Hours": "Monday–Friday 09:00–20:00; Saturday 09:00–17:00",
+        "Booking Link": "https://numaoxygen.com/hyperbaric-oxygen-therapy-cost",
+        "Email": "info@numaoxygen.com",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
       "id": "recgMQgXvzRY4qGiA",
       "fields": {
         "Publish Status": "Published",
@@ -3017,6 +3582,216 @@
         "Opening Hours": "Mon: 10:00–21:30 (male only)\nTue: 10:00–21:30 (female only)\nWed: 10:00–21:30 (male only)\nThu–Fri: 10:00–21:30 (female only)\nSat: 10:00–20:00 (male only)\nSun: 10:00–20:00 (mixed)\nCleaning closure: weekdays 15:30–16:00; weekends 14:30–15:00\nLast entry: 2 hours before close",
         "Booking Link": "https://profile.everyoneactive.com/booking",
         "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recvjEUPzLjibF6iW",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment",
+          "Corporate / executive programme"
+        ],
+        "Activity Category": [
+          "Longevity"
+        ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Holborn",
+        "Description": "A premium preventive-health clinic providing doctor-led, single-day assessments combining MRI, ultrasound, cardiac testing and clinical consultations, with results delivered before the client leaves.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "Preventicum specialises in comprehensive one-day health assessments designed to identify early disease signs and risk factors using advanced imaging and clinical testing.",
+        "Phone": "+44 20 7605 6900",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical",
+          "Luxury"
+        ],
+        "Address": "Cursitor Street, off Chancery Lane, London WC2A 1EN",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Assessments are high-cost clinical services rather than casual wellness visits. Published entry pricing starts with the Ultimate assessment; exact inclusions and medical suitability should be confirmed directly.",
+        "Type of Experience": [
+          "Private",
+          "Guided",
+          "One-to-one"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Diagnostics"
+        ],
+        "Business Name": "Preventicum UK",
+        "Atmosphere": "Luxury-clinic environment built around intensive diagnostic assessment, private consultation and same-day interpretation.",
+        "Services Offered": [
+          "Longevity Testing",
+          "Diagnostics",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Price From": 8500,
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
+        "Access Type": "Public",
+        "Best For": [
+          "Preventative Health",
+          "Executive Health",
+          "Data-Driven Health",
+          "Longevity"
+        ],
+        "Confirmed Diagnostics": [
+          "Health Screening",
+          "Blood Biomarkers",
+          "MRI / Medical Imaging",
+          "Cardiovascular Screening",
+          "VO₂ Max Testing"
+        ],
+        "Brand / Operator": "Preventicum",
+        "Primary Service": "Other",
+        "Slug": "preventicum-london",
+        "Name": "Preventicum London",
+        "Well Suited For": [
+          "Preventative Health",
+          "Executive Health",
+          "Data-Driven Health",
+          "Medical wellness"
+        ],
+        "Editorial Verdict": "A strong fit for the upper end of the Longevity & Diagnostics pillar, with unusually transparent assessment pricing and a clearly defined single-day clinical proposition.",
+        "Area of London": "Central London",
+        "Results Included": [
+          "Doctor consultation",
+          "Written report",
+          "Results dashboard",
+          "Referral pathway"
+        ],
+        "Activity Tags Standardized": [
+          "Longevity Testing",
+          "Diagnostics",
+          "Blood Testing",
+          "Health Optimisation"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Preventative Health",
+          "Executive Health",
+          "Data-Driven Health",
+          "Longevity"
+        ],
+        "Website": "https://preventicum.co.uk/",
+        "Booking Link": "https://preventicum.as.me/",
+        "Email": "info@preventicum.co.uk",
+        "Venue Type Standardized": "Longevity Clinic"
+      }
+    },
+    {
+      "id": "rec1BvR54jiEuA6Bf",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Fulham",
+        "Description": "A Finnish-sauna and cold-plunge club offering 75-minute contrast sessions, showers, lockers and towels.",
+        "Editorial Summary": "Pulse Fulham offers a straightforward 75-minute sauna-and-plunge circuit with three cold temperatures and practical changing facilities.",
+        "Phone": "0207 459 4694",
+        "Address": "340 North End Road, London SW6 1NB",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Drop-ins start at £17 off peak and £22 peak; the introductory offer is three sessions for £39.",
+        "Verification Status": "Public information",
+        "Business Name": "Pulse Club Sauna",
+        "Price From": 17,
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Pulse Club Sauna",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "pulse-club-sauna-fulham",
+        "Name": "Pulse Club Sauna — Fulham",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Editorial Verdict": "A strong repeat-use contrast option with long hours, transparent peak/off-peak pricing and a useful introductory offer.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.pulseclubsauna.com/",
+        "Opening Hours": "Monday–Tuesday and Thursday–Sunday 07:00–21:00; Wednesday 11:30–21:00",
+        "Booking Link": "https://www.pulseclubsauna.com/",
+        "Email": "fulham@pulseclubsauna.com",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recA6FQae2lJeuN0r",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Putney",
+        "Description": "A Finnish-sauna and cold-plunge club offering 75-minute contrast sessions, showers, lockers and towels.",
+        "Editorial Summary": "Pulse Putney offers a straightforward 75-minute sauna-and-plunge circuit with three cold temperatures and practical changing facilities.",
+        "Phone": "0207 088 8464",
+        "Address": "228 Upper Richmond Road, London SW15 6TG",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Drop-ins start at £17 off peak and £22 peak; the introductory offer is three sessions for £39.",
+        "Verification Status": "Public information",
+        "Business Name": "Pulse Club Sauna",
+        "Price From": 17,
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Pulse Club Sauna",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "pulse-club-sauna-putney",
+        "Name": "Pulse Club Sauna — Putney",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Editorial Verdict": "A strong repeat-use contrast option for south-west London with long hours and transparent peak/off-peak pricing.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.pulseclubsauna.com/",
+        "Opening Hours": "Monday and Wednesday–Sunday 07:00–21:00; Tuesday 11:30–21:00",
+        "Booking Link": "https://www.pulseclubsauna.com/",
+        "Email": "putney@pulseclubsauna.com",
+        "Venue Type Standardized": "Community Sauna"
       }
     },
     {
@@ -3124,6 +3899,165 @@
         "Booking Link": "https://www.rebaserecovery.com/appointments",
         "Email": "info@rebaserecovery.com",
         "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "reclaR1s1SCvvzVwR",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Clinic Model": "Not applicable",
+        "Neighborhood": "Islington",
+        "Description": "A private recovery studio combining mild hyperbaric oxygen at 1.4 ATA with targeted red-light therapy.",
+        "Clinical Oversight": "Not confirmed",
+        "Editorial Summary": "Rebody pairs every mild-HBOT session with targeted red light in a private Islington studio.",
+        "Phone": "+44 7397 381 723",
+        "Address": "Unit 4, The Ivories, 6 Northampton Street, London N1 2HY",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "The £59 introductory booking includes the mandatory consultation and first session; standard sessions are £79.",
+        "Verification Status": "Public information",
+        "Business Name": "Rebody",
+        "Price From": 59,
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Brand / Operator": "Rebody",
+        "Primary Service": "HBOT",
+        "Slug": "rebody-islington",
+        "Name": "Rebody — Islington",
+        "Secondary Services": [
+          "Red Light Therapy"
+        ],
+        "Editorial Verdict": "A clearly packaged HBOT-and-red-light option with transparent introductory and standard pricing.",
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Hyperbaric Oxygen Therapy",
+          "Red Light Therapy",
+          "Recovery Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.rebody.club/",
+        "Opening Hours": "Monday–Tuesday and Thursday–Sunday 10:00–20:00; Wednesday closed",
+        "Booking Link": "https://www.rebody.club/pricing-plans/list",
+        "Email": "contact@rebody.club",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "recm3myL8REUxZ1uN",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Clinic Model": "Not applicable",
+        "Neighborhood": "Wandsworth",
+        "Description": "A private recovery studio combining mild hyperbaric oxygen at 1.4 ATA with targeted red-light therapy.",
+        "Clinical Oversight": "Not confirmed",
+        "Editorial Summary": "Rebody pairs every mild-HBOT session with targeted red light in a private, accessible studio setting.",
+        "Phone": "+44 7397 381 723",
+        "Address": "325 The Light Bulb, Phase 2, Filament Walk, London SW18 4GQ",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "The £59 introductory booking includes the mandatory consultation and first session; standard sessions are £79.",
+        "Verification Status": "Public information",
+        "Business Name": "Rebody",
+        "Price From": 59,
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Brand / Operator": "Rebody",
+        "Primary Service": "HBOT",
+        "Slug": "rebody-wandsworth",
+        "Name": "Rebody — Wandsworth",
+        "Secondary Services": [
+          "Red Light Therapy"
+        ],
+        "Editorial Verdict": "A clearly packaged HBOT-and-red-light option with transparent introductory and standard pricing.",
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Hyperbaric Oxygen Therapy",
+          "Red Light Therapy",
+          "Recovery Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.rebody.club/",
+        "Opening Hours": "Monday–Tuesday and Thursday–Sunday 10:00–20:00; Wednesday closed",
+        "Booking Link": "https://www.rebody.club/pricing-plans/list",
+        "Email": "contact@rebody.club",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "recMJ5hp4B4N17Q53",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Islington",
+        "Description": "A community-focused sauna and cold-immersion venue offering free-flow, guided and themed sessions on Upper Street.",
+        "Editorial Summary": "Reset pairs communal heat and cold with optional breathwork, guided sessions, talks and workshops.",
+        "Address": "240 Upper Street, London N1 1RU",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Choose between free-flow, guided and Ember sessions. Towels are provided; live pricing is shown in the booking flow.",
+        "Verification Status": "Public information",
+        "Business Name": "Reset Sauna",
+        "Social & Community Note": "The programme mixes free-flow communal sessions with guided breathwork and events.",
+        "Primary Pillar": "Recovery & Performance",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Reset Sauna",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "reset-sauna-islington",
+        "Name": "Reset Sauna",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Editorial Verdict": "A strong social-recovery listing with enough session variety to work for both independent contrast and guided group experiences.",
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Events",
+          "Recurring group sessions",
+          "Communal sauna",
+          "Guided contrast"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://resetsauna.com/",
+        "Opening Hours": "Monday–Friday 07:15–21:15; Saturday–Sunday 08:30–21:15",
+        "Booking Link": "https://resetsauna.com/",
+        "Venue Type Standardized": "Community Sauna"
       }
     },
     {
@@ -3297,6 +4231,180 @@
       }
     },
     {
+      "id": "recLc5lqHuKONPnvC",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "Membership programme",
+          "Ongoing clinical programme"
+        ],
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Longevity Treatments",
+          "Recovery",
+          "Longevity"
+        ],
+        "Clinic Model": "Ongoing clinical programme",
+        "Neighborhood": "Fulham",
+        "Description": "Sæl Spa is a private members’ wellness club at Fulham Pier combining a rooftop thermal spa with recovery technology, movement and clinician-supported longevity programmes. Facilities include sauna, steam room, cold plunge and a private contrast suite, alongside red light and photobiomodulation, hyperbaric oxygen therapy, hydrogen inhalation and a PEMF-equipped Recovery Lounge. Higher-tier memberships add clinical consultations, comprehensive blood testing and structured pathways spanning metabolic health, sleep, cognitive health and performance.",
+        "Clinical Oversight": "Clinician-led",
+        "Editorial Summary": "Riverside private wellness club at Fulham Pier combining a rooftop thermal spa, contrast and recovery technologies with higher-tier clinical longevity pathways.",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Longevity",
+          "Biohacking",
+          "Luxury",
+          "Performance",
+          "Relaxation",
+          "Medical"
+        ],
+        "Address": "Stevenage Rd, Fulham, London SW6 6HH",
+        "Last Checked": "2026-09-05",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members only. Restore starts at £3,000/year for an individual plus a £250 joining fee. Evolve (£7,000) and Ascend (£11,000) add structured clinical pathways and more diagnostics/recovery inclusions; clinical services are provided by 3Peaks Health and are subject to clinical assessment.",
+        "Type of Experience": [
+          "Private",
+          "Shared",
+          "Group",
+          "Guided",
+          "Gym",
+          "Recovery",
+          "Performance",
+          "Wellness",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Infrared Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Red Light Therapy",
+          "HBOT",
+          "Diagnostics",
+          "Sauna & Cold Plunge"
+        ],
+        "Business Name": "Sæl Spa",
+        "Atmosphere": "Riverside, design-led and intentionally private, with natural light, Thames views and a rooftop spa setting.",
+        "Services Offered": [
+          "Sauna",
+          "Finnish Sauna",
+          "Infrared Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Red Light Therapy",
+          "Photobiomodulation",
+          "Hyperbaric Oxygen Therapy",
+          "PEMF Therapy",
+          "Spa",
+          "Fitness",
+          "Diagnostic Testing",
+          "Longevity Testing",
+          "Blood Testing",
+          "Health Optimisation",
+          "IV Therapy"
+        ],
+        "Price From": 3000,
+        "Social & Community Note": "Membership includes movement classes plus an annual calendar of wellbeing events, talks and member experiences. The Pantrī provides an on-site food-and-beverage space alongside the club’s shared spa and recovery facilities.",
+        "Primary Pillar": "Wellness Clubs",
+        "Access Type": "Members only",
+        "Best For": [
+          "Luxury experience",
+          "Recovery-focused users",
+          "High-performance users",
+          "Longevity / biohacking",
+          "West London locals",
+          "Preventative Health",
+          "Data-Driven Health"
+        ],
+        "Confirmed Diagnostics": [
+          "Blood Biomarkers",
+          "Microbiome / Gut Health Testing",
+          "Cognitive Assessment",
+          "Sleep Assessment"
+        ],
+        "Brand / Operator": "Sæl Spa",
+        "Primary Service": "Wellness Club",
+        "Slug": "sael-spa",
+        "Name": "Sæl Spa",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Red Light Therapy",
+          "HBOT",
+          "Gym / Performance",
+          "Spa / Bathhouse",
+          "Infrared Sauna",
+          "IV Therapy"
+        ],
+        "Well Suited For": [
+          "Luxury wellness",
+          "Performance recovery",
+          "Longevity / biohacking",
+          "Medical wellness",
+          "West London convenience"
+        ],
+        "Editorial Verdict": "One of London’s most complete recovery-and-longevity clubs in a single setting; compelling breadth, but members-only access and £3,000+ annual pricing make it firmly premium.",
+        "Area of London": "West London",
+        "Results Included": [
+          "Clinician consultation",
+          "Personalised plan",
+          "Repeat testing option"
+        ],
+        "Access Model": "Private members' club",
+        "Community Features": [
+          "Events",
+          "Recurring group sessions",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Infrared Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Red Light Therapy",
+          "Hyperbaric Oxygen Therapy",
+          "Diagnostics",
+          "Contrast Therapy",
+          "Longevity Testing",
+          "Blood Testing",
+          "Recovery Therapy",
+          "Health Optimisation",
+          "Gut Health Testing"
+        ],
+        "Service Last Verified": "2026-09-05",
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Biohackers",
+          "Recovery",
+          "Performance",
+          "Longevity",
+          "Preventative Health",
+          "Performance Optimisation",
+          "Data-Driven Health"
+        ],
+        "Website": "https://saelspa.com/",
+        "Opening Hours": "Mon–Fri: 07:00–21:00\nSat–Sun: 08:00–21:00",
+        "Booking Link": "https://saelspa.com/membership-application",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
       "id": "rec6UNV5MakT7xsAy",
       "fields": {
         "Publish Status": "Published",
@@ -3304,48 +4412,6 @@
           "Heat Therapy",
           "Cold Therapy",
           "Combined Experiences"
-        ],
-        "Images": [
-          {
-            "id": "attVEYTnuPYcUJwNs",
-            "url": "/venues/sauna-and-plunge-shoreditch/attVEYTnuPYcUJwNs.webp",
-            "filename": "venue 2.webp"
-          },
-          {
-            "id": "atttH5ec3geAqn2ux",
-            "url": "/venues/sauna-and-plunge-shoreditch/atttH5ec3geAqn2ux.webp",
-            "filename": "venue 3.webp"
-          },
-          {
-            "id": "attP87H23dTzqojI5",
-            "url": "/venues/sauna-and-plunge-shoreditch/attP87H23dTzqojI5.webp",
-            "filename": "sauna and plunge.webp"
-          },
-          {
-            "id": "attwxq6pef63SpuXs",
-            "url": "/venues/sauna-and-plunge-shoreditch/attwxq6pef63SpuXs.webp",
-            "filename": "Sauna & Plunge.webp"
-          },
-          {
-            "id": "attnxvO268Bain3pb",
-            "url": "/venues/sauna-and-plunge-shoreditch/attnxvO268Bain3pb.jpg",
-            "filename": "Sauna & Plunge 3.jpg"
-          },
-          {
-            "id": "attGYgU4P4aV9VZO9",
-            "url": "/venues/sauna-and-plunge-shoreditch/attGYgU4P4aV9VZO9.webp",
-            "filename": "Icebath.webp"
-          },
-          {
-            "id": "atta5LiqN4fMw2tpQ",
-            "url": "/venues/sauna-and-plunge-shoreditch/atta5LiqN4fMw2tpQ.jpg",
-            "filename": "Sauna.jpg"
-          },
-          {
-            "id": "attnxNBU4zccFaXTT",
-            "url": "/venues/sauna-and-plunge-shoreditch/attnxNBU4zccFaXTT.webp",
-            "filename": "Wellness class.webp"
-          }
         ],
         "Neighborhood": "Shoreditch",
         "Description": "Sauna & Plunge is a Shoreditch social-wellness venue built around shared contrast therapy and a recurring programme that gives people reasons to return beyond a single sauna session. Alongside Finnish and infrared saunas and six cold plunges, it runs breathwork, yoga, Pilates and sound sessions, member socials, community events and collaborations such as run-club contrast sessions and women-only socials. The result is a more deliberately social offer than a standard self-led contrast studio.",
@@ -3388,13 +4454,6 @@
         "Social & Community Note": "The social layer at Sauna & Plunge is an organised part of the venue, not just the shared sauna format. Its programme includes recurring classes, member socials, community and charity events, run-club collaborations followed by contrast therapy and women-only social sessions. Members also have an ongoing WhatsApp community and complimentary member events. Public sessions remain available, so this is social wellness without selective private-club access.",
         "Primary Pillar": "Recovery & Performance",
         "Towels Included": true,
-        "Cover Image": [
-          {
-            "id": "attKR3EIqmkZazome",
-            "url": "/venues/sauna-and-plunge-shoreditch/attKR3EIqmkZazome.webp",
-            "filename": "Venue.webp"
-          }
-        ],
         "Access Type": "Public",
         "Primary Service": "Contrast Therapy",
         "Slug": "sauna-and-plunge-shoreditch",
@@ -3432,6 +4491,167 @@
         "Opening Hours": "Mon–Fri: 07:00–21:00  \nSat–Sun: 09:00–18:00",
         "Booking Link": "https://saunaandplunge.life/",
         "Email": "info@saunaandplunge.life",
+        "Venue Type Standardized": "Community Sauna",
+        "Cover Image": [
+          {
+            "id": "attKR3EIqmkZazome",
+            "url": "/venues/sauna-and-plunge-shoreditch/attKR3EIqmkZazome.webp",
+            "filename": "Venue.webp"
+          }
+        ],
+        "Images": [
+          {
+            "id": "attVEYTnuPYcUJwNs",
+            "url": "/venues/sauna-and-plunge-shoreditch/attVEYTnuPYcUJwNs.webp",
+            "filename": "venue 2.webp"
+          },
+          {
+            "id": "atttH5ec3geAqn2ux",
+            "url": "/venues/sauna-and-plunge-shoreditch/atttH5ec3geAqn2ux.webp",
+            "filename": "venue 3.webp"
+          },
+          {
+            "id": "attP87H23dTzqojI5",
+            "url": "/venues/sauna-and-plunge-shoreditch/attP87H23dTzqojI5.webp",
+            "filename": "sauna and plunge.webp"
+          },
+          {
+            "id": "attwxq6pef63SpuXs",
+            "url": "/venues/sauna-and-plunge-shoreditch/attwxq6pef63SpuXs.webp",
+            "filename": "Sauna & Plunge.webp"
+          },
+          {
+            "id": "attnxvO268Bain3pb",
+            "url": "/venues/sauna-and-plunge-shoreditch/attnxvO268Bain3pb.jpg",
+            "filename": "Sauna & Plunge 3.jpg"
+          },
+          {
+            "id": "attGYgU4P4aV9VZO9",
+            "url": "/venues/sauna-and-plunge-shoreditch/attGYgU4P4aV9VZO9.webp",
+            "filename": "Icebath.webp"
+          },
+          {
+            "id": "atta5LiqN4fMw2tpQ",
+            "url": "/venues/sauna-and-plunge-shoreditch/atta5LiqN4fMw2tpQ.jpg",
+            "filename": "Sauna.jpg"
+          },
+          {
+            "id": "attnxNBU4zccFaXTT",
+            "url": "/venues/sauna-and-plunge-shoreditch/attnxNBU4zccFaXTT.webp",
+            "filename": "Wellness class.webp"
+          }
+        ]
+      }
+    },
+    {
+      "id": "recxzeLaPVnYMRqUy",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Peckham",
+        "Description": "A Peckham community sauna built around two Finnish-style saunas, four ice baths and a lounge with tea bar.",
+        "Editorial Summary": "Sauna Social Club combines communal sauna and ice baths with distinct social, quiet, creative-wellbeing and aufguss-led sessions.",
+        "Address": "Railway Arch 842, Brayards Road, Peckham, London SE15 2AG",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Unwaged sessions start at £9.99; standard session prices vary by format. Check the session calendar before travelling.",
+        "Verification Status": "Public information",
+        "Business Name": "Sauna Social Club",
+        "Price From": 9.99,
+        "Social & Community Note": "Session types range from conversation-friendly Social to quieter Essential and Ambient formats.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Sauna Social Club",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "sauna-social-club-peckham",
+        "Name": "Sauna Social Club",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Editorial Verdict": "One of the clearest community-led sauna propositions in south London, with transparent session types and pricing.",
+        "Area of London": "South London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Events",
+          "Recurring group sessions",
+          "Communal sauna",
+          "Guided contrast",
+          "Cafe / social space"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.saunasocialclub.co.uk/",
+        "Booking Link": "https://www.saunasocialclub.co.uk/pricing",
+        "Venue Type Standardized": "Community Sauna"
+      }
+    },
+    {
+      "id": "recpit7TEV8SwwnDq",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Wood-fired floating saunas moored at West India Quay, paired with cold plunges and practical waterside changing facilities.",
+        "Editorial Summary": "Skuna turns sauna and cold immersion into a distinctive dockside shared or private experience at Canary Wharf.",
+        "Address": "West India Quay, off Hertsmere Road, London E14 4AL",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Shared sessions start at £15. Bring a towel or buy one on site; private boat pricing varies by capacity.",
+        "Verification Status": "Public information",
+        "Business Name": "Skuna",
+        "Price From": 15,
+        "Social & Community Note": "Book a shared 75-minute session or reserve a sauna boat privately.",
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Shared",
+        "Access Type": "Public",
+        "Brand / Operator": "Skuna",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "skuna-sauna-boat-canary-wharf",
+        "Name": "Skuna Sauna Boat — Canary Wharf",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge"
+        ],
+        "Editorial Verdict": "A memorable location-led contrast option with clear shared, private and membership pricing.",
+        "Area of London": "East London",
+        "Access Model": "Public / pay as you go",
+        "Community Features": [
+          "Communal sauna"
+        ],
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://www.skunaboats.com/sauna-boat",
+        "Opening Hours": "Monday–Sunday 07:30–21:00",
+        "Booking Link": "https://www.skunaboats.com/canary-wharf-london",
         "Venue Type Standardized": "Community Sauna"
       }
     },
@@ -3688,6 +4908,589 @@
       }
     },
     {
+      "id": "recxfGXrixsAxHjgZ",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Chelsea",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB Chelsea is part of the brand’s London assisted stretching studio network, offering physiotherapist-supervised one-to-one sessions focused on mobility, flexibility, posture and recovery.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "98 Draycott Avenue, London SW3 3AD",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-chelsea",
+        "Name": "StretchLAB — Chelsea",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong fit for Well+ as a premium mobility and recovery concept in west/central London.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recCos1K1s431fmJb",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Fitzrovia",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB Fitzrovia is the brand’s flagship assisted stretching studio, offering physiotherapist-supervised one-to-one stretch sessions designed around mobility, recovery, posture and movement quality.",
+        "Phone": "020 7123 9423",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "18 Wells Street, London W1T 3PG",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-fitzrovia",
+        "Name": "StretchLAB — Fitzrovia",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong Well+ fit for mobility, recovery and desk-body reset, with a clear one-to-one format and central London access.",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Email": "fitzrovia@stretch-lab.co.uk",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recLNi0jM8T4S2LiB",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Hampstead",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB Hampstead is part of the brand’s London assisted stretching studio network, offering physiotherapist-supervised one-to-one sessions focused on mobility, flexibility, posture and recovery.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "8 Heath Street, London NW3 6TE",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-hampstead",
+        "Name": "StretchLAB — Hampstead",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong fit for Well+ as a mobility-led recovery studio serving north London.",
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recL1xEh4wF9MZ6GN",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Islington",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB is a dedicated assisted stretching studio brand offering physiotherapist-supervised, one-to-one stretch sessions across London. Sessions are designed around mobility, recovery, posture and movement quality, with a 50-minute intro session available from £60.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "Islington Square, 116F Upper Street, London N1 1QP",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-islington",
+        "Name": "StretchLAB — Islington",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong fit for Well+ as a dedicated mobility and recovery concept, especially for people looking beyond heat, cold and clinic-led longevity services.",
+        "Area of London": "North London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "rec21fq1YMkku3Ja8",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Notting Hill",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB is a dedicated assisted stretching studio brand offering physiotherapist-supervised, one-to-one stretch sessions across London. Sessions are designed around mobility, recovery, posture and movement quality, with a 50-minute intro session available from £60.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "110 Talbot Road, London W11 1JR",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-notting-hill",
+        "Name": "StretchLAB — Notting Hill",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong fit for Well+ as a dedicated mobility and recovery concept, especially for people looking beyond heat, cold and clinic-led longevity services.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recC23zOq17FtoO0m",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "Soho",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB Soho offers physiotherapist-supervised one-to-one assisted stretching from Ham Yard Village, aimed at mobility, recovery, posture and movement quality in a central West End setting.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "3 Denman Place, Ham Yard Village, London W1D 7AH",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-soho",
+        "Name": "StretchLAB — Soho",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong Well+ fit for mobility and recovery, particularly for West End workers, creatives and people wanting a guided reset between work and evening plans.",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recNgqCVpiDT3g1JE",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Mobility",
+          "Recovery"
+        ],
+        "Neighborhood": "White City",
+        "Description": "Physiotherapist-supervised, one-to-one assisted stretching studio offering 50-minute sessions designed to improve mobility, flexibility, recovery, posture and movement quality.",
+        "Editorial Summary": "StretchLAB Westfield White City is part of the brand’s London assisted stretching studio network, offering physiotherapist-supervised one-to-one sessions focused on mobility, flexibility, posture and recovery.",
+        "Theme Tags Standardized": [
+          "Mobility",
+          "Recovery",
+          "Performance",
+          "Beginner Friendly"
+        ],
+        "Address": "Level 1, The Village, Westfield London, Ariel Way, London W12 7GF",
+        "Last Checked": "2026-09-04",
+        "Overall Price Range": "££",
+        "Indexable": true,
+        "Good To Know": "The £60 introductory option is a 50-minute one-to-one session. Credits can be used across the current London studio network.",
+        "Type of Experience": [
+          "One-to-one",
+          "Guided"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Assisted Stretching"
+        ],
+        "Business Name": "StretchLAB",
+        "Google Review Count": 732,
+        "Services Offered": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Price From": 60,
+        "Primary Pillar": "Mobility",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Best For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Brand / Operator": "StretchLAB",
+        "Primary Service": "Other",
+        "Slug": "stretchlab-westfield-white-city",
+        "Name": "StretchLAB — Westfield White City",
+        "Well Suited For": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Editorial Verdict": "A strong fit for Well+ as a mobility and recovery studio in a major west London destination.",
+        "Area of London": "West London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Assisted Stretching",
+          "Physiotherapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Best For Standardized": [
+          "Mobility",
+          "Recovery",
+          "Flexibility",
+          "Posture",
+          "Performance"
+        ],
+        "Google Rating": "4.9/5 (1,200+ verified reviews) / 4.9/5 (732 Google reviews listed on site)",
+        "Website": "https://stretch-lab.co.uk/",
+        "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+        "Booking Link": "https://stretch-lab.co.uk/",
+        "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
       "id": "rec6mWva9YC4FPOCP",
       "fields": {
         "Publish Status": "Published",
@@ -3787,25 +5590,43 @@
       "id": "recq1EweNTXta0bE2",
       "fields": {
         "Publish Status": "Published",
-        "Indexable": true,
-        "Verification Status": "Public information",
-        "Last Checked": "2026-09-02",
-        "Service Last Verified": "2026-09-02",
-        "Name": "The Method Club Notting Hill",
-        "Slug": "the-method-club-notting-hill",
-        "Website": "https://www.themethod.com/locations/the-club",
-        "Booking Link": "https://www.themethod.com/timetable",
-        "Business Name": "The Method",
-        "Brand / Operator": "The Method",
-        "Address": "133–137 Westbourne Grove, London W11 2RS",
-        "Phone": "+44 20 3883 9940",
-        "Email": "hello@themethod.com",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery Treatments",
+          "Combined Experiences",
+          "Mobility"
+        ],
         "Neighborhood": "Notting Hill",
-        "Area of London": "West London",
         "Description": "Notting Hill wellness club combining movement studios, a treatment-led Lab, guided contrast therapy, personalised stretch therapy, a members’ lounge and an on-site café. Classes span strength, cardio, Pilates-inspired movement, mobility and recovery.",
         "Editorial Summary": "The Method brings training, recovery and social space into one Notting Hill club. Its strongest directory distinction is the guided, members-only contrast experience alongside classes, bodywork and personalised stretching.",
+        "Phone": "+44 20 3883 9940",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Performance",
+          "Community",
+          "Mobility"
+        ],
+        "Address": "133–137 Westbourne Grove, London W11 2RS",
+        "Last Checked": "2026-09-02",
+        "Overall Price Range": "££££",
+        "Indexable": true,
         "Good To Know": "Club membership is £442 per month plus a £530 joining fee, with a 12-month minimum term. Flexible class and Lab credit packs are also sold, but contrast therapy is reserved for members.",
-        "Editorial Verdict": "A broad, design-led wellness club with a stronger recovery offer than a conventional boutique studio, particularly for members who want classes and guided contrast in one place.",
+        "Type of Experience": [
+          "Guided",
+          "Group",
+          "Social",
+          "Gym"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna & Cold Plunge",
+          "Assisted Stretching"
+        ],
+        "Business Name": "The Method",
+        "Atmosphere": "A multi-level club organised around studios, treatment and recovery rooms, a members’ lounge, café and terrace rather than a single workout room.",
         "Services Offered": [
           "Sauna",
           "Cold Plunge",
@@ -3815,39 +5636,11 @@
           "Pilates",
           "Lymphatic Drainage"
         ],
-        "Primary Service": "Wellness Club",
-        "Secondary Services": [
-          "Contrast Therapy",
-          "Sauna",
-          "Cold Plunge",
-          "Yoga / Movement"
-        ],
-        "Activity Category": [
-          "Heat Therapy",
-          "Cold Therapy",
-          "Recovery Treatments",
-          "Combined Experiences",
-          "Mobility"
-        ],
-        "Activity Tags Standardized": [
-          "Sauna",
-          "Cold Plunge",
-          "Contrast Therapy",
-          "Assisted Stretching"
-        ],
-        "Activity Display Labels": [
-          "Sauna & Cold Plunge",
-          "Assisted Stretching"
-        ],
-        "Venue Type Standardized": "Wellness Club",
-        "Theme Tags Standardized": [
-          "Luxury",
-          "Recovery",
-          "Performance",
-          "Community",
-          "Mobility"
-        ],
+        "Price From": 442,
+        "Social & Community Note": "Group classes, a members’ lounge, café, terrace and member events create several repeat-use social settings beyond the workout itself.",
         "Primary Pillar": "Wellness Clubs",
+        "Experience Type": "Guided / Group",
+        "Access Type": "Public",
         "Best For": [
           "Movement",
           "Mobility",
@@ -3856,6 +5649,16 @@
           "Social wellness",
           "Luxury wellness users"
         ],
+        "Brand / Operator": "The Method",
+        "Primary Service": "Wellness Club",
+        "Slug": "the-method-club-notting-hill",
+        "Name": "The Method Club Notting Hill",
+        "Secondary Services": [
+          "Contrast Therapy",
+          "Sauna",
+          "Cold Plunge",
+          "Yoga / Movement"
+        ],
         "Well Suited For": [
           "Mobility",
           "Recovery",
@@ -3863,6 +5666,27 @@
           "Social wellness",
           "Luxury wellness"
         ],
+        "Editorial Verdict": "A broad, design-led wellness club with a stronger recovery offer than a conventional boutique studio, particularly for members who want classes and guided contrast in one place.",
+        "Area of London": "West London",
+        "Access Model": "Mixed access",
+        "Community Features": [
+          "Members lounge",
+          "Cafe / social space",
+          "Group classes",
+          "Member programming"
+        ],
+        "Social Format": [
+          "Group-led",
+          "Members-club setting",
+          "Shared / communal"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Assisted Stretching"
+        ],
+        "Service Last Verified": "2026-09-02",
         "Best For Standardized": [
           "Athletes",
           "Luxury Seekers",
@@ -3872,32 +5696,64 @@
           "Recovery",
           "Performance"
         ],
-        "Type of Experience": [
-          "Guided",
-          "Group",
-          "Social",
-          "Gym"
-        ],
-        "Experience Type": "Guided / Group",
-        "Access Type": "Public",
-        "Access Model": "Mixed access",
-        "Overall Price Range": "££££",
-        "Price From": 442,
+        "Website": "https://www.themethod.com/locations/the-club",
         "Opening Hours": "Mon–Fri: 06:00–20:00\nSat: 08:30–19:30\nSun: 08:30–17:00",
-        "Showers Available": true,
-        "Atmosphere": "A multi-level club organised around studios, treatment and recovery rooms, a members’ lounge, café and terrace rather than a single workout room.",
+        "Booking Link": "https://www.themethod.com/timetable",
+        "Email": "hello@themethod.com",
+        "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recMzTA58E8ncJZJa",
+      "fields": {
+        "Publish Status": "Published",
+        "Activity Category": [
+          "Recovery Treatments",
+          "Longevity Treatments",
+          "Combined Experiences"
+        ],
+        "Clinic Model": "Comprehensive longevity clinic",
+        "Neighborhood": "Knightsbridge",
+        "Description": "A CQC-registered medical-wellness clinic offering consultation-led programmes across HBOT, ozone, photobiomodulation, molecular hydrogen, IV therapy and lymphatic drainage.",
+        "Clinical Oversight": "Clinician-led",
+        "Editorial Summary": "The Wellness Lab combines multiple clinical-wellness modalities within a personalised, consultation-led protocol.",
+        "Phone": "0203 687 0536",
+        "Address": "21 Knightsbridge, London SW1X 7LY",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "Treatment plans and pricing are personalised; no universal entry price was published on the pages reviewed.",
+        "Verification Status": "Public information",
+        "Business Name": "The Wellness Lab",
+        "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Brand / Operator": "The Wellness Lab",
+        "Primary Service": "HBOT",
+        "Slug": "the-wellness-lab-knightsbridge",
+        "Name": "The Wellness Lab",
+        "Secondary Services": [
+          "Red Light Therapy",
+          "IV Therapy"
+        ],
+        "Editorial Verdict": "A broad medical-wellness listing with a confirmed clinical team and regulated setting; request a current protocol and price before booking.",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
         "Social Format": [
-          "Group-led",
-          "Members-club setting",
-          "Shared / communal"
+          "Private / individual"
         ],
-        "Community Features": [
-          "Members lounge",
-          "Cafe / social space",
-          "Group classes",
-          "Member programming"
+        "Activity Tags Standardized": [
+          "Hyperbaric Oxygen Therapy",
+          "Red Light Therapy",
+          "IV Therapy",
+          "Ozone Therapy",
+          "Health Optimisation"
         ],
-        "Social & Community Note": "Group classes, a members’ lounge, café, terrace and member events create several repeat-use social settings beyond the workout itself."
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://thewellnesslab.com/",
+        "Opening Hours": "Monday–Friday 09:30–19:30; Saturday 09:30–18:30",
+        "Booking Link": "https://thewellnesslab.com/",
+        "Venue Type Standardized": "Longevity Clinic"
       }
     },
     {
@@ -3908,7 +5764,7 @@
         "Activity Category": [
           "Heat Therapy"
         ],
-        "Neighborhood": "Wandsworth",
+        "Neighborhood": "Battersea",
         "Description": "Members’ health club at Battersea Power Station with a sunken Finnish sauna, marble steam room, hydropool and 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
         "Editorial Summary": "Members’ health club at Battersea Power Station with a sunken Finnish sauna, marble steam room, hydropool and 20-metre pool.",
         "Phone": "020 7970 0913",
@@ -4283,7 +6139,7 @@
           "Heat Therapy",
           "Recovery Treatments"
         ],
-        "Neighborhood": "Wandsworth",
+        "Neighborhood": "Clapham Junction",
         "Description": "Clapham Junction club with sauna, steam, Normatec and Hyperice recovery equipment plus on-site physiotherapy and sports massage. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
         "Editorial Summary": "Clapham Junction club with sauna, steam, Normatec and Hyperice recovery equipment plus on-site physiotherapy and sports massage.",
         "Phone": "020 7970 0957",
@@ -5235,7 +7091,7 @@
           "Cold Therapy",
           "Combined Experiences"
         ],
-        "Neighborhood": "London",
+        "Neighborhood": "London Bridge",
         "Description": "Riverside club with a juniper-log sauna, aroma steam room and ice bath alongside a 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
         "Editorial Summary": "Riverside club with a juniper-log sauna, aroma steam room and ice bath alongside a 20-metre pool.",
         "Phone": "020 7940 4937",
@@ -5332,7 +7188,7 @@
           "Cold Therapy",
           "Combined Experiences"
         ],
-        "Neighborhood": "London",
+        "Neighborhood": "Wimbledon",
         "Description": "Large Wimbledon club with an 18,000 sq ft wet spa, cold plunge, dry Finnish sauna, Löyly sauna, steam room and hydropool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
         "Editorial Summary": "Large Wimbledon club with an 18,000 sq ft wet spa, cold plunge, dry Finnish sauna, Löyly sauna, steam room and hydropool.",
         "Phone": "020 7970 0901",
@@ -5524,80 +7380,129 @@
       }
     },
     {
-      "id": "recef4FRUlTalZEnR",
+      "id": "recdqQObaqrIgIKw3",
       "fields": {
         "Publish Status": "Published",
         "Activity Category": [
+          "Recovery Treatments",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Mayfair",
+        "Description": "A multi-modal recovery circuit combining 3D body scanning, oxygen and infrared, compression therapy, whole-body cryotherapy and dry water massage.",
+        "Editorial Summary": "Vidavii packages several recovery modalities into a sequenced circuit rather than selling only a single treatment.",
+        "Address": "58 South Molton Street, London W1K 5SL",
+        "Venue Confirmed": true,
+        "Last Checked": "2026-09-04",
+        "Indexable": true,
+        "Good To Know": "A single circuit is £150; the published monthly membership is £295. Confirm the exact sequence when booking.",
+        "Verification Status": "Public information",
+        "Business Name": "Vidavii",
+        "Price From": 150,
+        "Primary Pillar": "Recovery & Performance",
+        "Experience Type": "Private",
+        "Access Type": "Public",
+        "Brand / Operator": "Vidavii",
+        "Primary Service": "Cryotherapy",
+        "Slug": "vidavii-mayfair",
+        "Name": "Vidavii",
+        "Secondary Services": [
+          "Infrared Sauna",
+          "Massage"
+        ],
+        "Editorial Verdict": "A differentiated Mayfair recovery format for users who want a structured multi-treatment session with transparent single-visit pricing.",
+        "Area of London": "Central London",
+        "Access Model": "Public / pay as you go",
+        "Social Format": [
+          "Private / individual"
+        ],
+        "Activity Tags Standardized": [
+          "Cryotherapy",
+          "Compression Therapy",
+          "Infrared Sauna",
+          "Massage",
+          "Recovery Therapy"
+        ],
+        "Service Last Verified": "2026-09-04",
+        "Website": "https://vidavii.com/pages/pricing",
+        "Booking Link": "https://vidavii.com/pages/pricing",
+        "Venue Type Standardized": "Recovery Studio"
+      }
+    },
+    {
+      "id": "recef4FRUlTalZEnR",
+      "fields": {
+        "Publish Status": "Published",
+        "Assessment Format": [
+          "One-off assessment"
+        ],
+        "Activity Category": [
           "Longevity"
         ],
+        "Clinic Model": "Preventative health screening clinic",
+        "Neighborhood": "Marylebone",
+        "Description": "Marylebone heart-health screening service combining 12-lead ECG, echocardiogram, ambulatory blood-pressure monitoring, QRISK assessment and blood tests, with cardiologist review and follow-up.",
+        "Clinical Oversight": "Doctor-led",
+        "Editorial Summary": "A defined cardiovascular-risk assessment with transparent inclusions, a personalised written report and a dedicated cardiologist follow-up. Self-referral is available for people without current symptoms.",
+        "Phone": "020 3653 2005",
+        "Theme Tags Standardized": [
+          "Longevity",
+          "Medical"
+        ],
+        "Address": "1 Welbeck Street, Marylebone, London W1G 0AR",
         "Last Checked": "2026-09-02",
         "Overall Price Range": "££££",
         "Indexable": true,
+        "Good To Know": "The published £1,500 package includes a 90-minute testing appointment, 24-hour blood-pressure monitoring and a follow-up cardiologist consultation. It is intended for screening without current cardiac symptoms.",
         "Type of Experience": [
           "Guided"
         ],
         "Verification Status": "Public information",
+        "Business Name": "Welbeck",
+        "Price From": 1500,
         "Primary Pillar": "Longevity & Diagnostics",
+        "Experience Type": "Guided",
         "Access Type": "Public",
         "Best For": [
           "Preventative Health",
           "Data-Driven Health",
           "Executive Health"
         ],
-        "Experience Type": "Guided",
+        "Confirmed Diagnostics": [
+          "Cardiovascular Screening",
+          "Blood Biomarkers"
+        ],
+        "Brand / Operator": "Welbeck",
+        "Primary Service": "Other",
+        "Slug": "welbeck-heart-health",
+        "Name": "Welbeck Heart Health",
         "Well Suited For": [
           "Preventative Health",
           "Data-Driven Health",
           "Executive Health"
         ],
-        "Activity Tags Standardized": [
-          "Diagnostics",
-          "Blood Testing"
-        ],
-        "Venue Type Standardized": "Longevity Clinic",
-        "Theme Tags Standardized": [
-          "Longevity",
-          "Medical"
-        ],
-        "Best For Standardized": [
-          "Longevity",
-          "Preventative Health",
-          "Data-Driven Health",
-          "Executive Health"
-        ],
-        "Primary Service": "Other",
-        "Clinic Model": "Preventative health screening clinic",
-        "Clinical Oversight": "Doctor-led",
-        "Assessment Format": [
-          "One-off assessment"
-        ],
+        "Editorial Verdict": "One of the clearest published heart-screening packages in the directory, particularly on test inclusions, consultant interpretation and follow-up.",
+        "Area of London": "Central London",
         "Results Included": [
           "Doctor consultation",
           "Written report",
           "Personalised plan",
           "Referral pathway"
         ],
-        "Service Last Verified": "2026-09-02",
         "Access Model": "Public / pay as you go",
-        "Name": "Welbeck Heart Health",
-        "Slug": "welbeck-heart-health",
+        "Activity Tags Standardized": [
+          "Diagnostics",
+          "Blood Testing"
+        ],
+        "Service Last Verified": "2026-09-02",
+        "Best For Standardized": [
+          "Longevity",
+          "Preventative Health",
+          "Data-Driven Health",
+          "Executive Health"
+        ],
         "Website": "https://welbeck.com/tests-and-treatments/heart-health-screening",
         "Booking Link": "https://welbeck.com/tests-and-treatments/heart-health-screening",
-        "Business Name": "Welbeck",
-        "Brand / Operator": "Welbeck",
-        "Address": "1 Welbeck Street, Marylebone, London W1G 0AR",
-        "Phone": "020 3653 2005",
-        "Neighborhood": "Marylebone",
-        "Area of London": "Central London",
-        "Price From": 1500,
-        "Description": "Marylebone heart-health screening service combining 12-lead ECG, echocardiogram, ambulatory blood-pressure monitoring, QRISK assessment and blood tests, with cardiologist review and follow-up.",
-        "Editorial Summary": "A defined cardiovascular-risk assessment with transparent inclusions, a personalised written report and a dedicated cardiologist follow-up. Self-referral is available for people without current symptoms.",
-        "Good To Know": "The published £1,500 package includes a 90-minute testing appointment, 24-hour blood-pressure monitoring and a follow-up cardiologist consultation. It is intended for screening without current cardiac symptoms.",
-        "Editorial Verdict": "One of the clearest published heart-screening packages in the directory, particularly on test inclusions, consultant interpretation and follow-up.",
-        "Confirmed Diagnostics": [
-          "Cardiovascular Screening",
-          "Blood Biomarkers"
-        ]
+        "Venue Type Standardized": "Longevity Clinic"
       }
     }
   ]
