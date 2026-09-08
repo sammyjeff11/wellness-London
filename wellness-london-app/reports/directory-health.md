@@ -1,27 +1,27 @@
 # Well+ directory health
 
-Generated 2026-09-03T05:31:04.890Z. This report is internal and is rebuilt whenever the Airtable directory is published.
+Generated 2026-09-08T12:15:38.981Z. This report is internal and is rebuilt whenever the Airtable directory is published.
 
 ## Snapshot
 
-- **43** published venues
-- **28** neighbourhoods
-- **91** services
-- **95.9%** average profile completeness
+- **58** published venues
+- **29** neighbourhoods
+- **94** services
+- **97%** average profile completeness
 - **0** venues stale or missing a checked date
 
 ## Field completeness
 
 | Field | Complete | Coverage | Missing |
 | --- | ---: | ---: | ---: |
-| Useful description | 43/43 | 100% | 0 |
-| Location | 43/43 | 100% | 0 |
-| Services | 37/43 | 86% | 6 |
-| Price | 41/43 | 95.3% | 2 |
-| Access | 43/43 | 100% | 0 |
-| Booking route | 43/43 | 100% | 0 |
-| Opening hours | 37/43 | 86% | 6 |
-| Checked date | 43/43 | 100% | 0 |
+| Useful description | 58/58 | 100% | 0 |
+| Location | 58/58 | 100% | 0 |
+| Services | 52/58 | 89.7% | 6 |
+| Price | 56/58 | 96.6% | 2 |
+| Access | 58/58 | 100% | 0 |
+| Booking route | 58/58 | 100% | 0 |
+| Opening hours | 52/58 | 89.7% | 6 |
+| Checked date | 58/58 | 100% | 0 |
 
 ## Lowest-completeness profiles
 

@@ -4,7 +4,7 @@ export type VenueCoordinate = {
   postcode: string;
 };
 
-// Postcode centroids sourced from postcodes.io on 2 September 2026.
+// Postcode centroids and official-address geocoding reviewed on 8 September 2026.
 export const venueCoordinates: Record<string, VenueCoordinate> = {
   "aire-ancient-baths-london": { latitude: 51.508749, longitude: -0.122672, postcode: "WC2N 6BH" },
   "akasha-holistic-wellbeing-centre": { latitude: 51.509792, longitude: -0.135628, postcode: "W1B 4DY" },
@@ -46,7 +46,22 @@ export const venueCoordinates: Record<string, VenueCoordinate> = {
   "soho-house-white-city-house": { latitude: 51.510696, longitude: -0.225806, postcode: "W12 7FR" },
   "the-bath-house": { latitude: 51.49771, longitude: -0.146091, postcode: "SW1W 0BD" },
   "the-method-club-notting-hill": { latitude: 51.514683, longitude: -0.196552, postcode: "W11 2RS" },
+  "third-space-battersea": { latitude: 51.480301, longitude: -0.143496, postcode: "SW11 8BH" },
   "third-space-canary-wharf": { latitude: 51.504577, longitude: -0.016227, postcode: "E14 5ER" },
+  "third-space-chelsea": { latitude: 51.485566, longitude: -0.174609, postcode: "SW3 6AP" },
+  "third-space-city": { latitude: 51.510245, longitude: -0.080564, postcode: "EC3R 7AT" },
+  "third-space-clapham-junction": { latitude: 51.463677, longitude: -0.167219, postcode: "SW11 1LN" },
+  "third-space-islington": { latitude: 51.538561, longitude: -0.103581, postcode: "N1 1UL" },
+  "third-space-marylebone": { latitude: 51.518085, longitude: -0.150436, postcode: "W1U 2HU" },
+  "third-space-mayfair": { latitude: 51.506706, longitude: -0.144865, postcode: "W1J 5FA" },
+  "third-space-moorgate": { latitude: 51.518986, longitude: -0.087239, postcode: "EC2M 2AQ" },
+  "third-space-paternoster-square": { latitude: 51.515451, longitude: -0.100503, postcode: "EC4M 7BW" },
+  "third-space-richmond": { latitude: 51.460224, longitude: -0.306258, postcode: "TW9 1EU" },
+  "third-space-soho": { latitude: 51.511191, longitude: -0.13596, postcode: "W1F 9US" },
   "third-space-spa": { latitude: 51.504577, longitude: -0.016227, postcode: "E14 5ER" },
+  "third-space-the-whiteley": { latitude: 51.514842, longitude: -0.188836, postcode: "W2 4YN" },
+  "third-space-tower-bridge": { latitude: 51.505285, longitude: -0.080363, postcode: "SE1 2AP" },
+  "third-space-wimbledon": { latitude: 51.420754, longitude: -0.204768, postcode: "SW19 8YE" },
+  "third-space-wood-wharf": { latitude: 51.50313, longitude: -0.012737, postcode: "E14 5GZ" },
   "welbeck-heart-health": { latitude: 51.516185, longitude: -0.148094, postcode: "W1G 0AR" },
 };

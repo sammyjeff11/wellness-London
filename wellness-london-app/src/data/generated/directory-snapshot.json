@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T12:01:42.000Z",
+  "generatedAt": "2026-09-08T12:13:04.662Z",
   "source": {
     "base": "Wellness Listings",
     "table": "Wellness London"
@@ -3901,6 +3901,95 @@
       }
     },
     {
+      "id": "recR1sUJJhwLCuAzv",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Wandsworth",
+        "Description": "Members’ health club at Battersea Power Station with a sunken Finnish sauna, marble steam room, hydropool and 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Members’ health club at Battersea Power Station with a sunken Finnish sauna, marble steam room, hydropool and 20-metre pool.",
+        "Phone": "020 7970 0913",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "Ground Floor, Prospect Way, Battersea Power Station, London SW11 8BH",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Club membership is required for the current gym and wet-spa facilities. The separate Battersea Studios contrast area is advertised for December 2026, so its ice baths are not listed here as currently available.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A design-led club in the Power Station district, combining reclaimed brick, natural light and a poolside wet-spa setting.",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Steam Room",
+          "Spa",
+          "Lap Pool"
+        ],
+        "Social & Community Note": "Third Space Battersea is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-battersea",
+        "Name": "Third Space Battersea",
+        "Secondary Services": [
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A strong option for members who want a full wet-spa reset alongside serious training, with more atmosphere than a standard changing-room sauna.",
+        "Area of London": "South London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/battersea/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/battersea/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
       "id": "recTlGWD8KS8SIS8k",
       "fields": {
         "Publish Status": "Published",
@@ -3974,6 +4063,968 @@
         "Website": "https://www.thirdspace.london/clubs/canary-wharf/",
         "Opening Hours": "Mon: 05:30–22:30\nTue: 05:30–22:30\nWed: 05:30–22:30\nThu: 05:30–22:30\nFri: 05:30–22:30\nSat: 08:00–20:00\nSun: 08:00–20:00",
         "Booking Link": "https://www.thirdspace.london/clubs/canary-wharf/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "rec82BSeeoQd1HVDF",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Chelsea",
+        "Description": "Chelsea club with an eight-person cold plunge, Finnish Löyly sauna, steam room, Normatec recovery equipment, red light therapy and cryotherapy. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Chelsea club with an eight-person cold plunge, Finnish Löyly sauna, steam room, Normatec recovery equipment, red light therapy and cryotherapy.",
+        "Phone": "020 7534 2877",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "19 Mallord Street, London SW3 6AP",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only club access. Chelsea is excluded from standard Group membership; confirm Group Plus access and whether individual recovery services require separate booking or payment.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A highly finished five-floor Chelsea club with marble wet-spa surfaces, heated loungers and dedicated recovery areas.",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy",
+          "Spa"
+        ],
+        "Social & Community Note": "Third Space Chelsea is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-chelsea",
+        "Name": "Third Space Chelsea",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "The broadest technology-led recovery mix in the network, combining a proper wet spa and contrast circuit with bookable recovery modalities.",
+        "Area of London": "West London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/chelsea/",
+        "Opening Hours": "Mon–Fri: 06:00–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/chelsea/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recZXcrysLWau2t0I",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "City of London",
+        "Description": "City club with a glass-fronted sauna, menthol steam room and ice baths beside a 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "City club with a glass-fronted sauna, menthol steam room and ice baths beside a 20-metre pool.",
+        "Phone": "020 7534 2888",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "40 Mark Lane, London EC3R 7AT",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only club access. The sauna, steam room and ice baths form the on-site contrast circuit; Sports Med services may be booked separately.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A polished concrete-and-bronze club near Fenchurch Street, with the thermal facilities overlooking its pool.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Social & Community Note": "Third Space City is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-city",
+        "Name": "Third Space City",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "One of Third Space’s clearer hot-and-cold propositions, particularly useful for City workers who want contrast therapy built into a gym membership.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/city/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/city/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recUXM142SQxVbCQe",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Wandsworth",
+        "Description": "Clapham Junction club with sauna, steam, Normatec and Hyperice recovery equipment plus on-site physiotherapy and sports massage. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Clapham Junction club with sauna, steam, Normatec and Hyperice recovery equipment plus on-site physiotherapy and sports massage.",
+        "Phone": "020 7970 0957",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "Lavender Hill, London SW11 1LN",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Recovery equipment is part of the club; Sports Med appointments may be separately bookable.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A Grade II-listed neighbourhood club mixing original beams and windows with modern industrial finishes.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Sports Massage"
+        ],
+        "Social & Community Note": "Third Space Clapham Junction is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-clapham-junction",
+        "Name": "Third Space Clapham Junction",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A practical post-workout recovery club rather than a destination spa, strongest for members who will regularly use the equipment and classes.",
+        "Area of London": "South London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/clapham-junction/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–20:00\nBank holidays: 07:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/clapham-junction/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "rec6a9Tq9QAP2ygiE",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Islington",
+        "Description": "Islington club with a red-cedar sauna, eucalyptus steam room, hydropool and Normatec recovery equipment. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Islington club with a red-cedar sauna, eucalyptus steam room, hydropool and Normatec recovery equipment.",
+        "Phone": "020 7534 2820",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "15 Esther Anne Place, London N1 1UL",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Third Space currently marks the expanded wellness spa and recovery services—including infrared sauna, cold plunge, cryotherapy and red light—as coming soon, so those are excluded from the active service list.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A substantial neighbourhood club with pool, wet spa, quiet rooms and a dedicated recovery zone.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Social & Community Note": "Third Space Islington is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-islington",
+        "Name": "Third Space Islington",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A useful north-London recovery base now, with a much broader recovery offer planned but not yet treated as live.",
+        "Area of London": "North London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/islington/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/islington/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recRs5aKIJ5L2xWve",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Marylebone",
+        "Description": "Marylebone members’ club with sauna and steam facilities attached to a 16-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Marylebone members’ club with sauna and steam facilities attached to a 16-metre pool.",
+        "Phone": "020 7042 6333",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "Bulstrode Place, Marylebone, London W1U 2HU",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. The pool, sauna and steam room sit inside the wider club rather than operating as a separately bookable day spa.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "An established urban health club with a compact pool and hotel-style changing facilities.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Lap Pool",
+          "Physiotherapy"
+        ],
+        "Social & Community Note": "Third Space Marylebone is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-marylebone",
+        "Name": "Third Space Marylebone",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A convenient central-London option for members who value pool, sauna and steam together, but it has a simpler recovery offer than the newest Third Space clubs.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Physiotherapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/marylebone/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/marylebone/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recw0h5Ebmsnxeksx",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Mayfair",
+        "Description": "Premium Mayfair club with a Himalayan salt-wall sauna, marble steam room, ice baths and Normatec recovery equipment. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Premium Mayfair club with a Himalayan salt-wall sauna, marble steam room, ice baths and Normatec recovery equipment.",
+        "Phone": "020 7042 6440",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "22 Clarges Street, London W1J 5FA",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Mayfair is excluded from standard Group membership, so check the current Group Plus or club-specific access terms before joining.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Compression Therapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A discreet, high-spec Mayfair club with boutique training rooms and a refined changing-room recovery circuit.",
+        "Services Offered": [
+          "Salt Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Compression Therapy"
+        ],
+        "Social & Community Note": "Third Space Mayfair is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-mayfair",
+        "Name": "Third Space Mayfair",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "The most compact luxury contrast option in the network, pairing a distinctive salt sauna with ice baths and a focused recovery area.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Compression Therapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/mayfair/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/mayfair/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recdnCKhrxQJtANHk",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "City of London",
+        "Description": "Moorgate club with Himalayan salt-wall saunas and a recovery lounge equipped with Normatec and Hyperice tools. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Moorgate club with Himalayan salt-wall saunas and a recovery lounge equipped with Normatec and Hyperice tools.",
+        "Phone": "020 7970 0930",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "16 South Place, London EC2M 2AQ",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Club membership is required. The official club page confirms sauna and recovery equipment but does not currently list an ice bath or public day access.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Compression Therapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "Industrial, low-lit interiors with warm timber, stone and a quieter recovery lounge away from the gym floor.",
+        "Services Offered": [
+          "Salt Sauna",
+          "Compression Therapy"
+        ],
+        "Social & Community Note": "Third Space Moorgate is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-moorgate",
+        "Name": "Third Space Moorgate",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "Best considered for repeat post-workout recovery rather than a destination spa: the draw is a well-equipped recovery lounge plus atmospheric saunas.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Compression Therapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/moorgate/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/moorgate/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recgNM78stJMq19YT",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "City of London",
+        "Description": "St Paul’s club with two ice baths, Finnish Löyly sauna, steam room, hydropool, Normatec recovery equipment, red light therapy and cryotherapy. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "St Paul’s club with two ice baths, Finnish Löyly sauna, steam room, hydropool, Normatec recovery equipment, red light therapy and cryotherapy.",
+        "Phone": "020 7534 2950",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "31 Warwick Lane, London EC4M 7BW",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Recovery services may require separate booking even where the wet-spa facilities are included with club access.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A new two-level City club with a warm members’ lounge and a purpose-built wet spa designed for pre- and post-work recovery.",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy",
+          "Spa"
+        ],
+        "Social & Community Note": "Third Space Paternoster Square is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-paternoster-square",
+        "Name": "Third Space Paternoster Square",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "One of the network’s strongest City recovery clubs, combining a full wet spa with recovery technology rather than relying on sauna alone.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/paternoster-square/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/paternoster-square/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recsCmTaSdC7G1sjY",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Richmond",
+        "Description": "Richmond club with sauna, steam room, hydropool, a 20-metre pool and a Normatec-equipped recovery zone. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Richmond club with sauna, steam room, hydropool, a 20-metre pool and a Normatec-equipped recovery zone.",
+        "Phone": "020 7970 0938",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "4 Golden Court, Richmond TW9 1EU",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Sauna, steam, hydropool and recovery tools sit inside the wider club; Sports Med appointments may be booked separately.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A light-filled Richmond club with natural stone, glass and sculptural arches giving the pool and spa a calm, residential feel.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Sports Massage",
+          "Lap Pool"
+        ],
+        "Social & Community Note": "Third Space Richmond is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-richmond",
+        "Name": "Third Space Richmond",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A particularly complete neighbourhood-club option for south-west London, balancing wet-spa relaxation with credible recovery equipment.",
+        "Area of London": "West London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Compression Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/richmond/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/richmond/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recnayPFQR99P2W4Z",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy"
+        ],
+        "Neighborhood": "Soho",
+        "Description": "Original Soho club with sauna and steam facilities attached to a four-lane, 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Original Soho club with sauna and steam facilities attached to a four-lane, 20-metre pool.",
+        "Phone": "020 7439 6333",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "67 Brewer Street, Soho, London W1F 9US",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. The sauna and steam room are club amenities, not standalone bookable wellness sessions.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A long-established, energetic Soho club spread over three training floors with a quieter pool level below.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Lap Pool"
+        ],
+        "Social & Community Note": "Third Space Soho is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Sauna",
+        "Slug": "third-space-soho",
+        "Name": "Third Space Soho",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A useful central pool-and-heat option for existing members, although the recovery offer is more conventional than at Chelsea, Wimbledon or The Whiteley.",
+        "Area of London": "Central London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/soho/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/soho/",
         "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },
@@ -4058,6 +5109,417 @@
         "Opening Hours": "Mon–Fri: 08:00–20:00\nSat: 09:00–18:00\nSun: 10:30–18:00\nBank holidays: 08:00–16:00",
         "Booking Link": "https://www.thirdspace.london/spa/",
         "Email": "spa.reception@thirdspace.london",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recCcGbjpteeYrfdb",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Neighborhood": "Bayswater",
+        "Description": "Bayswater club with Finnish sauna, infrared sauna, steam room, 4–8°C ice bath, hydropool, Normatec, red light therapy and dry cryotherapy. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Bayswater club with Finnish sauna, infrared sauna, steam room, 4–8°C ice bath, hydropool, Normatec, red light therapy and dry cryotherapy.",
+        "Phone": "020 7534 2833",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "The Whiteley, Queensway, London W2 4YN",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only club access. Some recovery services may require a separate appointment or charge; check the current club terms before travelling.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Infrared Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A design-led club within the restored Whiteley building, combining original architecture with a refined poolside spa and members’ lounge.",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy",
+          "Infrared Sauna",
+          "Spa"
+        ],
+        "Social & Community Note": "Third Space The Whiteley is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-the-whiteley",
+        "Name": "Third Space The Whiteley",
+        "Secondary Services": [
+          "Sauna",
+          "Infrared Sauna",
+          "Cold Plunge",
+          "Cryotherapy",
+          "Red Light Therapy",
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A flagship recovery location with the network’s most rounded mix of wet-spa facilities and technology-led treatments in west London.",
+        "Area of London": "West London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Compression Therapy",
+          "Red Light Therapy",
+          "Cryotherapy",
+          "Infrared Sauna"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/the-whiteley/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/the-whiteley/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recbgcrMCrgXCUIHJ",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "London",
+        "Description": "Riverside club with a juniper-log sauna, aroma steam room and ice bath alongside a 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Riverside club with a juniper-log sauna, aroma steam room and ice bath alongside a 20-metre pool.",
+        "Phone": "020 7940 4937",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "2b More London Riverside, London SE1 2AP",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. Sauna, steam and ice bath are included within the club’s pool and changing facilities rather than sold as a public session.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A dramatic double-height club overlooking the river, with a dark pool and aromatic thermal facilities.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Physiotherapy"
+        ],
+        "Social & Community Note": "Third Space Tower Bridge is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-tower-bridge",
+        "Name": "Third Space Tower Bridge",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "A distinctive central contrast circuit with better thermal variety than many gym clubs, especially if pool access matters too.",
+        "Area of London": "South London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Physiotherapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/tower-bridge/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/tower-bridge/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recqZKzjBlMY3AT50",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "London",
+        "Description": "Large Wimbledon club with an 18,000 sq ft wet spa, cold plunge, dry Finnish sauna, Löyly sauna, steam room and hydropool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Large Wimbledon club with an 18,000 sq ft wet spa, cold plunge, dry Finnish sauna, Löyly sauna, steam room and hydropool.",
+        "Phone": "020 7970 0901",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "4 Queen’s Road, Wimbledon, London SW19 8YE",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only access. The cold plunge is published at 8–10°C; facilities also include heated loungers and a 15-person hydropool.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A large wellness-led club where the pool, hydrotherapy and thermal suite feel more like a destination spa than changing-room extras.",
+        "Services Offered": [
+          "Finnish Sauna",
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Spa",
+          "Lap Pool",
+          "Physiotherapy",
+          "Sports Massage"
+        ],
+        "Social & Community Note": "Third Space Wimbledon is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-wimbledon",
+        "Name": "Third Space Wimbledon",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "One of Third Space’s most complete thermal destinations, with enough spa depth to justify choosing the branch specifically for recovery.",
+        "Area of London": "South London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Physiotherapy",
+          "Massage"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/wimbledon/",
+        "Opening Hours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/wimbledon/",
+        "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recZKY9I30Mfi1xNY",
+      "fields": {
+        "Publish Status": "Published",
+        "Showers Available": true,
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Neighborhood": "Canary Wharf",
+        "Description": "Wood Wharf club with sauna, steam room, ice bath, hydropool and 20-metre pool. Access is through a paid Third Space membership, so this is not a public day-spa listing.",
+        "Editorial Summary": "Wood Wharf club with sauna, steam room, ice bath, hydropool and 20-metre pool.",
+        "Phone": "020 7970 0926",
+        "Theme Tags Standardized": [
+          "Recovery",
+          "Luxury",
+          "Performance"
+        ],
+        "Address": "14 Charter Street, London E14 5GZ",
+        "Last Checked": "2026-09-08",
+        "Overall Price Range": "££££",
+        "Indexable": true,
+        "Good To Know": "Members-only club facilities. Do not confuse this listing with the separately bookable Third Space Recovery Spa at Canada Square.",
+        "Type of Experience": [
+          "Gym",
+          "Shared",
+          "Recovery",
+          "Luxury"
+        ],
+        "Verification Status": "Public information",
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge"
+        ],
+        "Business Name": "Third Space",
+        "Atmosphere": "A modern waterside club with hot yoga, pool and spa facilities integrated into a large performance-led gym.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath",
+          "Contrast Therapy",
+          "Spa",
+          "Lap Pool"
+        ],
+        "Social & Community Note": "Third Space Wood Wharf is a paid health-club membership rather than an application-based private members’ club. Shared facilities and scheduled group classes provide the repeat-use social setting.",
+        "Primary Pillar": "Wellness Clubs",
+        "Towels Included": true,
+        "Experience Type": "Shared",
+        "Access Type": "Members only",
+        "Best For": [
+          "Sauna",
+          "Post-work reset",
+          "Gym members"
+        ],
+        "Brand / Operator": "Third Space",
+        "Primary Service": "Contrast Therapy",
+        "Slug": "third-space-wood-wharf",
+        "Name": "Third Space Wood Wharf",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Spa / Bathhouse",
+          "Gym / Performance"
+        ],
+        "Well Suited For": [
+          "Post-workout recovery",
+          "Gym members"
+        ],
+        "Editorial Verdict": "The stronger all-round club-based recovery option in Canary Wharf when you want a complete heat-and-cold circuit rather than treatments alone.",
+        "Area of London": "East London",
+        "Access Model": "Standard membership",
+        "Community Features": [
+          "Group classes"
+        ],
+        "Social Format": [
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Best For Standardized": [
+          "Athletes",
+          "Luxury Seekers",
+          "Post-Workout Recovery"
+        ],
+        "Website": "https://www.thirdspace.london/clubs/wood-wharf/",
+        "Opening Hours": "Mon–Fri: 05:30–22:30\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+        "Booking Link": "https://www.thirdspace.london/clubs/wood-wharf/",
         "Venue Type Standardized": "Fitness & Recovery Club"
       }
     },

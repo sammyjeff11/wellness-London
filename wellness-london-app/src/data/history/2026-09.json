@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-09-02T12:01:42.000Z",
-  "sourceGeneratedAt": "2026-09-02T12:01:42.000Z",
+  "capturedAt": "2026-09-08T12:16:15.348Z",
+  "sourceGeneratedAt": "2026-09-08T12:13:04.662Z",
   "records": [
     {
       "slug": "aire-ancient-baths-london",
@@ -812,6 +812,25 @@
       "lastChecked": "2026-09-02"
     },
     {
+      "slug": "third-space-battersea",
+      "name": "Third Space Battersea",
+      "brand": "Third Space",
+      "neighbourhood": "Wandsworth",
+      "area": "South London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Spa",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
       "slug": "third-space-canary-wharf",
       "name": "Third Space Canary Wharf",
       "brand": "Third Space",
@@ -826,6 +845,208 @@
       "openingHours": "Mon: 05:30–22:30\nTue: 05:30–22:30\nWed: 05:30–22:30\nThu: 05:30–22:30\nFri: 05:30–22:30\nSat: 08:00–20:00\nSun: 08:00–20:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-09"
+    },
+    {
+      "slug": "third-space-chelsea",
+      "name": "Third Space Chelsea",
+      "brand": "Third Space",
+      "neighbourhood": "Chelsea",
+      "area": "West London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 06:00–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-city",
+      "name": "Third Space City",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Physiotherapy",
+        "Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-clapham-junction",
+      "name": "Third Space Clapham Junction",
+      "brand": "Third Space",
+      "neighbourhood": "Wandsworth",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Sports Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–20:00\nBank holidays: 07:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-islington",
+      "name": "Third Space Islington",
+      "brand": "Third Space",
+      "neighbourhood": "Islington",
+      "area": "North London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-marylebone",
+      "name": "Third Space Marylebone",
+      "brand": "Third Space",
+      "neighbourhood": "Marylebone",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Lap Pool",
+        "Physiotherapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-mayfair",
+      "name": "Third Space Mayfair",
+      "brand": "Third Space",
+      "neighbourhood": "Mayfair",
+      "area": "Central London",
+      "services": [
+        "Salt Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-moorgate",
+      "name": "Third Space Moorgate",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Salt Sauna",
+        "Compression Therapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-paternoster-square",
+      "name": "Third Space Paternoster Square",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-richmond",
+      "name": "Third Space Richmond",
+      "brand": "Third Space",
+      "neighbourhood": "Richmond",
+      "area": "West London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Sports Massage",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-soho",
+      "name": "Third Space Soho",
+      "brand": "Third Space",
+      "neighbourhood": "Soho",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "third-space-spa",
@@ -853,6 +1074,95 @@
       "openingHours": "Mon–Fri: 08:00–20:00\nSat: 09:00–18:00\nSun: 10:30–18:00\nBank holidays: 08:00–16:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-04"
+    },
+    {
+      "slug": "third-space-the-whiteley",
+      "name": "Third Space The Whiteley",
+      "brand": "Third Space",
+      "neighbourhood": "Bayswater",
+      "area": "West London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Infrared Sauna",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-tower-bridge",
+      "name": "Third Space Tower Bridge",
+      "brand": "Third Space",
+      "neighbourhood": "London",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Physiotherapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-wimbledon",
+      "name": "Third Space Wimbledon",
+      "brand": "Third Space",
+      "neighbourhood": "London",
+      "area": "South London",
+      "services": [
+        "Finnish Sauna",
+        "Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy",
+        "Spa",
+        "Lap Pool",
+        "Physiotherapy",
+        "Sports Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-wood-wharf",
+      "name": "Third Space Wood Wharf",
+      "brand": "Third Space",
+      "neighbourhood": "Canary Wharf",
+      "area": "East London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Spa",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:30\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "welbeck-heart-health",

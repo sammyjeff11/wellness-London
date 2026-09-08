@@ -48,6 +48,32 @@ test("service mapping snapshot is non-empty with unique canonical names", () => 
   assert.equal(new Set(names).size, names.length);
 });
 
+test("Third Space coverage includes every current London club and excludes announced openings", () => {
+  const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
+  const slugs = new Set(snapshot.records.map((record) => String(record.fields.Slug || "")));
+  const currentClubSlugs = [
+    "third-space-battersea",
+    "third-space-canary-wharf",
+    "third-space-chelsea",
+    "third-space-city",
+    "third-space-clapham-junction",
+    "third-space-islington",
+    "third-space-marylebone",
+    "third-space-mayfair",
+    "third-space-moorgate",
+    "third-space-paternoster-square",
+    "third-space-richmond",
+    "third-space-soho",
+    "third-space-the-whiteley",
+    "third-space-tower-bridge",
+    "third-space-wimbledon",
+    "third-space-wood-wharf",
+  ];
+
+  assert.ok(currentClubSlugs.every((slug) => slugs.has(slug)));
+  assert.equal(slugs.has("third-space-queens-park"), false);
+});
+
 test("priority diagnostic pages retain verified provider coverage", () => {
   const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
   const providersFor = (diagnostic: string) => snapshot.records.filter((record) => {

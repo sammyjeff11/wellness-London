@@ -8,6 +8,7 @@ const facilities = [
   { name: "Lowlu Wandsworth", slug: "lowlu-wandsworth", brandOperator: "Lowlu", neighbourhood: "Wandsworth", address: "2 Armoury Way, London", servicesOffered: [] },
   { name: "Third Space Canary Wharf", slug: "third-space-canary-wharf", brandOperator: "Third Space", neighbourhood: "Canary Wharf", address: "16-19 Canada Square, London", servicesOffered: [] },
   { name: "Third Space Spa", slug: "third-space-spa", brandOperator: "Third Space", neighbourhood: "Canary Wharf", address: "16–19 Canada Square, London", servicesOffered: [] },
+  { name: "Third Space City", slug: "third-space-city", brandOperator: "Third Space", neighbourhood: "City", address: "40 Mark Lane, London", servicesOffered: [] },
 ] as Parameters<typeof getPublishedMultiLocationBrands>[0];
 
 test("publishes brand hubs only when at least two distinct physical locations exist", () => {
@@ -20,10 +21,13 @@ test("publishes brand hubs only when at least two distinct physical locations ex
   }
 });
 
-test("does not treat duplicate records at one address as a multi-location brand", () => {
-  const publishedSlugs = getPublishedMultiLocationBrands(facilities)
-    .map(({ brand }) => brand.slug);
+test("deduplicates records at one address before publishing a multi-location brand", () => {
+  const thirdSpace = getPublishedMultiLocationBrands(facilities)
+    .find(({ brand }) => brand.slug === "third-space");
 
-  assert.equal(publishedSlugs.includes("third-space"), false);
-  assert.equal(publishedSlugs.includes("lowlu"), true);
+  assert.ok(thirdSpace);
+  assert.deepEqual(thirdSpace.facilities.map(({ slug }) => slug), [
+    "third-space-canary-wharf",
+    "third-space-city",
+  ]);
 });
