@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-09-02T12:01:42.000Z",
-  "sourceGeneratedAt": "2026-09-02T12:01:42.000Z",
+  "capturedAt": "2026-09-08T12:48:19.960Z",
+  "sourceGeneratedAt": "2026-09-08T12:28:54.511Z",
   "records": [
     {
       "slug": "aire-ancient-baths-london",
@@ -99,6 +99,34 @@
       "lastChecked": "2026-08-09"
     },
     {
+      "slug": "banya-no-1-chiswick",
+      "name": "Banya No.1 — Chiswick",
+      "brand": "Banya No.1",
+      "neighbourhood": "Chiswick",
+      "area": "West London",
+      "services": [],
+      "priceFrom": 35,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Sunday 09:30–22:30",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "banya-no-1-hoxton",
+      "name": "Banya No.1 — Hoxton",
+      "brand": "Banya No.1",
+      "neighbourhood": "Hoxton",
+      "area": "East London",
+      "services": [],
+      "priceFrom": null,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Sunday 09:30–22:30",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
       "slug": "bodyscan-city",
       "name": "BodyScan City",
       "brand": "BodyScan",
@@ -145,7 +173,7 @@
       "name": "BodyView Richmond",
       "brand": "BodyScan",
       "neighbourhood": "Richmond",
-      "area": "Greater London",
+      "area": "West London",
       "services": [],
       "priceFrom": 189,
       "priceRange": "££",
@@ -371,7 +399,7 @@
       "slug": "equinox-st-jamess",
       "name": "E by Equinox St James’s",
       "brand": "Equinox",
-      "neighbourhood": "Mayfair",
+      "neighbourhood": "St James's",
       "area": "Central London",
       "services": [
         "Sauna",
@@ -572,6 +600,24 @@
       "lastChecked": "2026-08-09"
     },
     {
+      "slug": "lowlu-sauna-ilford",
+      "name": "Lowlu Sauna — Ilford",
+      "brand": "Lowlu",
+      "neighbourhood": "Ilford",
+      "area": "East London",
+      "services": [
+        "Finnish Sauna",
+        "Cold Plunge",
+        "Contrast Therapy"
+      ],
+      "priceFrom": 12.5,
+      "priceRange": "Unknown",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Sunday 07:00–22:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
       "slug": "lowlu-wandsworth",
       "name": "Lowlu Wandsworth",
       "brand": "Lowlu",
@@ -612,6 +658,92 @@
       "lastChecked": "2026-08-09"
     },
     {
+      "slug": "neko-health-covent-garden",
+      "name": "Neko Health — Covent Garden",
+      "brand": "Neko Health",
+      "neighbourhood": "Covent Garden",
+      "area": "Central London",
+      "services": [
+        "Health Screening",
+        "Blood Testing",
+        "Diagnostics"
+      ],
+      "priceFrom": 299,
+      "priceRange": "£££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Thursday 08:15–21:00; Friday–Saturday 08:15–17:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "neko-health-marylebone",
+      "name": "Neko Health — Marylebone",
+      "brand": "Neko Health",
+      "neighbourhood": "Marylebone",
+      "area": "Central London",
+      "services": [
+        "Health Screening",
+        "Blood Testing",
+        "Diagnostics"
+      ],
+      "priceFrom": 299,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday 08:15–20:30; Tuesday–Thursday 08:15–21:00; Friday–Saturday 08:15–17:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "neko-health-spitalfields",
+      "name": "Neko Health — Spitalfields",
+      "brand": "Neko Health",
+      "neighbourhood": "Spitalfields",
+      "area": "East London",
+      "services": [
+        "Health Screening",
+        "Blood Testing",
+        "Diagnostics"
+      ],
+      "priceFrom": 299,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Thursday 08:30–21:00; Friday 08:30–16:30; Saturday 09:00–16:30",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "neko-health-victoria",
+      "name": "Neko Health — Victoria",
+      "brand": "Neko Health",
+      "neighbourhood": "Victoria",
+      "area": "Central London",
+      "services": [
+        "Health Screening",
+        "Blood Testing",
+        "Diagnostics"
+      ],
+      "priceFrom": 299,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Thursday 08:30–20:45; Friday–Saturday 08:30–17:30",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "numa-oxygen-marylebone",
+      "name": "NUMA",
+      "brand": "NUMA",
+      "neighbourhood": "Marylebone",
+      "area": "Central London",
+      "services": [],
+      "priceFrom": 250,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 09:00–20:00; Saturday 09:00–17:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
       "slug": "porchester-spa",
       "name": "Porchester Spa",
       "brand": "Everyone Active / Everyone Spa",
@@ -631,6 +763,53 @@
       "openingHours": "Mon: 10:00–21:30 (male only)\nTue: 10:00–21:30 (female only)\nWed: 10:00–21:30 (male only)\nThu–Fri: 10:00–21:30 (female only)\nSat: 10:00–20:00 (male only)\nSun: 10:00–20:00 (mixed)\nCleaning closure: weekdays 15:30–16:00; weekends 14:30–15:00\nLast entry: 2 hours before close",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-04"
+    },
+    {
+      "slug": "preventicum-london",
+      "name": "Preventicum London",
+      "brand": "Preventicum",
+      "neighbourhood": "Holborn",
+      "area": "Central London",
+      "services": [
+        "Longevity Testing",
+        "Diagnostics",
+        "Blood Testing",
+        "Health Optimisation"
+      ],
+      "priceFrom": 8500,
+      "priceRange": "££££",
+      "access": "Public",
+      "openingHours": "",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "pulse-club-sauna-fulham",
+      "name": "Pulse Club Sauna — Fulham",
+      "brand": "Pulse Club Sauna",
+      "neighbourhood": "Fulham",
+      "area": "West London",
+      "services": [],
+      "priceFrom": 17,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Tuesday and Thursday–Sunday 07:00–21:00; Wednesday 11:30–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "pulse-club-sauna-putney",
+      "name": "Pulse Club Sauna — Putney",
+      "brand": "Pulse Club Sauna",
+      "neighbourhood": "Putney",
+      "area": "West London",
+      "services": [],
+      "priceFrom": 17,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday and Wednesday–Sunday 07:00–21:00; Tuesday 11:30–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
     },
     {
       "slug": "rebase",
@@ -653,6 +832,48 @@
       "openingHours": "Mon: 07:00–21:00\nTue: 07:00–21:00\nWed: 07:00–21:00\nThu: 07:00–21:00\nFri: 07:00–21:00\nSat: 08:00–20:00\nSun: 08:00–20:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-09"
+    },
+    {
+      "slug": "rebody-islington",
+      "name": "Rebody — Islington",
+      "brand": "Rebody",
+      "neighbourhood": "Islington",
+      "area": "North London",
+      "services": [],
+      "priceFrom": 59,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Tuesday and Thursday–Sunday 10:00–20:00; Wednesday closed",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "rebody-wandsworth",
+      "name": "Rebody — Wandsworth",
+      "brand": "Rebody",
+      "neighbourhood": "Wandsworth",
+      "area": "South London",
+      "services": [],
+      "priceFrom": 59,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Tuesday and Thursday–Sunday 10:00–20:00; Wednesday closed",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "reset-sauna-islington",
+      "name": "Reset Sauna",
+      "brand": "Reset Sauna",
+      "neighbourhood": "Islington",
+      "area": "North London",
+      "services": [],
+      "priceFrom": null,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 07:15–21:15; Saturday–Sunday 08:30–21:15",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
     },
     {
       "slug": "rooftop-saunas-brixton",
@@ -689,6 +910,39 @@
       "lastChecked": "2026-08-09"
     },
     {
+      "slug": "sael-spa",
+      "name": "Sæl Spa",
+      "brand": "Sæl Spa",
+      "neighbourhood": "Fulham",
+      "area": "West London",
+      "services": [
+        "Sauna",
+        "Finnish Sauna",
+        "Infrared Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Red Light Therapy",
+        "Photobiomodulation",
+        "Hyperbaric Oxygen Therapy",
+        "PEMF Therapy",
+        "Spa",
+        "Fitness",
+        "Diagnostic Testing",
+        "Longevity Testing",
+        "Blood Testing",
+        "Health Optimisation",
+        "IV Therapy"
+      ],
+      "priceFrom": 3000,
+      "priceRange": "££££",
+      "access": "Private members' club",
+      "openingHours": "Mon–Fri: 07:00–21:00\nSat–Sun: 08:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-05"
+    },
+    {
       "slug": "sauna-and-plunge-shoreditch",
       "name": "Sauna & Plunge",
       "brand": "Sauna & Plunge",
@@ -710,6 +964,34 @@
       "openingHours": "Mon–Fri: 07:00–21:00  \nSat–Sun: 09:00–18:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-05"
+    },
+    {
+      "slug": "sauna-social-club-peckham",
+      "name": "Sauna Social Club",
+      "brand": "Sauna Social Club",
+      "neighbourhood": "Peckham",
+      "area": "South London",
+      "services": [],
+      "priceFrom": 9.99,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "skuna-sauna-boat-canary-wharf",
+      "name": "Skuna Sauna Boat — Canary Wharf",
+      "brand": "Skuna",
+      "neighbourhood": "Canary Wharf",
+      "area": "East London",
+      "services": [],
+      "priceFrom": 15,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Sunday 07:30–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
     },
     {
       "slug": "soho-house-180-house",
@@ -770,6 +1052,125 @@
       "lastChecked": "2026-08-09"
     },
     {
+      "slug": "stretchlab-chelsea",
+      "name": "StretchLAB — Chelsea",
+      "brand": "StretchLAB",
+      "neighbourhood": "Chelsea",
+      "area": "West London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-fitzrovia",
+      "name": "StretchLAB — Fitzrovia",
+      "brand": "StretchLAB",
+      "neighbourhood": "Fitzrovia",
+      "area": "Central London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-hampstead",
+      "name": "StretchLAB — Hampstead",
+      "brand": "StretchLAB",
+      "neighbourhood": "Hampstead",
+      "area": "North London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-islington",
+      "name": "StretchLAB — Islington",
+      "brand": "StretchLAB",
+      "neighbourhood": "Islington",
+      "area": "North London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-notting-hill",
+      "name": "StretchLAB — Notting Hill",
+      "brand": "StretchLAB",
+      "neighbourhood": "Notting Hill",
+      "area": "West London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-soho",
+      "name": "StretchLAB — Soho",
+      "brand": "StretchLAB",
+      "neighbourhood": "Soho",
+      "area": "Central London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "stretchlab-westfield-white-city",
+      "name": "StretchLAB — Westfield White City",
+      "brand": "StretchLAB",
+      "neighbourhood": "White City",
+      "area": "West London",
+      "services": [
+        "Assisted Stretching",
+        "Physiotherapy"
+      ],
+      "priceFrom": 60,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
       "slug": "the-bath-house",
       "name": "The Bath House — Banya London",
       "brand": "Banya London",
@@ -812,6 +1213,39 @@
       "lastChecked": "2026-09-02"
     },
     {
+      "slug": "the-wellness-lab-knightsbridge",
+      "name": "The Wellness Lab",
+      "brand": "The Wellness Lab",
+      "neighbourhood": "Knightsbridge",
+      "area": "Central London",
+      "services": [],
+      "priceFrom": null,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "Monday–Friday 09:30–19:30; Saturday 09:30–18:30",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "third-space-battersea",
+      "name": "Third Space Battersea",
+      "brand": "Third Space",
+      "neighbourhood": "Battersea",
+      "area": "South London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Spa",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
       "slug": "third-space-canary-wharf",
       "name": "Third Space Canary Wharf",
       "brand": "Third Space",
@@ -826,6 +1260,208 @@
       "openingHours": "Mon: 05:30–22:30\nTue: 05:30–22:30\nWed: 05:30–22:30\nThu: 05:30–22:30\nFri: 05:30–22:30\nSat: 08:00–20:00\nSun: 08:00–20:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-09"
+    },
+    {
+      "slug": "third-space-chelsea",
+      "name": "Third Space Chelsea",
+      "brand": "Third Space",
+      "neighbourhood": "Chelsea",
+      "area": "West London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 06:00–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-city",
+      "name": "Third Space City",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Physiotherapy",
+        "Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-clapham-junction",
+      "name": "Third Space Clapham Junction",
+      "brand": "Third Space",
+      "neighbourhood": "Clapham Junction",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Sports Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–20:00\nBank holidays: 07:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-islington",
+      "name": "Third Space Islington",
+      "brand": "Third Space",
+      "neighbourhood": "Islington",
+      "area": "North London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-marylebone",
+      "name": "Third Space Marylebone",
+      "brand": "Third Space",
+      "neighbourhood": "Marylebone",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Lap Pool",
+        "Physiotherapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-mayfair",
+      "name": "Third Space Mayfair",
+      "brand": "Third Space",
+      "neighbourhood": "Mayfair",
+      "area": "Central London",
+      "services": [
+        "Salt Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-moorgate",
+      "name": "Third Space Moorgate",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Salt Sauna",
+        "Compression Therapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-paternoster-square",
+      "name": "Third Space Paternoster Square",
+      "brand": "Third Space",
+      "neighbourhood": "City of London",
+      "area": "Central London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-richmond",
+      "name": "Third Space Richmond",
+      "brand": "Third Space",
+      "neighbourhood": "Richmond",
+      "area": "West London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Compression Therapy",
+        "Physiotherapy",
+        "Sports Massage",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–21:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-soho",
+      "name": "Third Space Soho",
+      "brand": "Third Space",
+      "neighbourhood": "Soho",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "third-space-spa",
@@ -853,6 +1489,109 @@
       "openingHours": "Mon–Fri: 08:00–20:00\nSat: 09:00–18:00\nSun: 10:30–18:00\nBank holidays: 08:00–16:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-04"
+    },
+    {
+      "slug": "third-space-the-whiteley",
+      "name": "Third Space The Whiteley",
+      "brand": "Third Space",
+      "neighbourhood": "Bayswater",
+      "area": "West London",
+      "services": [
+        "Finnish Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Compression Therapy",
+        "Red Light Therapy",
+        "Cryotherapy",
+        "Infrared Sauna",
+        "Spa"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-tower-bridge",
+      "name": "Third Space Tower Bridge",
+      "brand": "Third Space",
+      "neighbourhood": "London Bridge",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Physiotherapy"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-wimbledon",
+      "name": "Third Space Wimbledon",
+      "brand": "Third Space",
+      "neighbourhood": "Wimbledon",
+      "area": "South London",
+      "services": [
+        "Finnish Sauna",
+        "Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy",
+        "Spa",
+        "Lap Pool",
+        "Physiotherapy",
+        "Sports Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:00\nSat–Sun: 07:00–21:00\nBank holidays: 07:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "third-space-wood-wharf",
+      "name": "Third Space Wood Wharf",
+      "brand": "Third Space",
+      "neighbourhood": "Canary Wharf",
+      "area": "East London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Ice Bath",
+        "Contrast Therapy",
+        "Spa",
+        "Lap Pool"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Standard membership",
+      "openingHours": "Mon–Fri: 05:30–22:30\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "vidavii-mayfair",
+      "name": "Vidavii",
+      "brand": "Vidavii",
+      "neighbourhood": "Mayfair",
+      "area": "Central London",
+      "services": [],
+      "priceFrom": 150,
+      "priceRange": "",
+      "access": "Public / pay as you go",
+      "openingHours": "",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-04"
     },
     {
       "slug": "welbeck-heart-health",

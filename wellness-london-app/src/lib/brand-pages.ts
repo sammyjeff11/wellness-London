@@ -71,12 +71,12 @@ export const brandPages: BrandPage[] = [
     operator: "Third Space",
     eyebrow: "London health club operator",
     intro:
-      "Third Space operates London health clubs that bring training, recovery and spa facilities together under a membership model.",
+      "Third Space operates a network of London health clubs that bring training, recovery and spa facilities together under a paid membership model.",
     description:
-      "Browse the Third Space venues currently covered by Well+. Each location page separates the services and access information available for that specific club.",
+      "Compare the current Third Space clubs covered by Well+, from sauna-and-steam locations to branches with cold plunges, cryotherapy and recovery technology. Club facilities are members-only; the separate Canary Wharf Recovery Spa has its own access terms.",
     seoTitle: "Third Space London locations and wellness facilities | Well+",
     seoDescription:
-      "Compare Third Space London locations covered by Well+, with club-specific recovery, spa, access and booking information.",
+      "Compare current Third Space London clubs, including their sauna, steam, cold-plunge, recovery and members-only access details.",
   },
   {
     slug: "lowlu",

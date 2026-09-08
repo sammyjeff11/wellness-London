@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
+import { neighbourhoodPages } from "./neighbourhood-pages.ts";
 
 function readSnapshot(relativePath: string) {
   return JSON.parse(readFileSync(new URL(relativePath, import.meta.url), "utf8")) as {
@@ -46,6 +47,75 @@ test("service mapping snapshot is non-empty with unique canonical names", () => 
 
   assert.ok(snapshot.records.length > 0);
   assert.equal(new Set(names).size, names.length);
+});
+
+test("Third Space coverage includes every current London club and excludes announced openings", () => {
+  const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
+  const slugs = new Set(snapshot.records.map((record) => String(record.fields.Slug || "")));
+  const currentClubSlugs = [
+    "third-space-battersea",
+    "third-space-canary-wharf",
+    "third-space-chelsea",
+    "third-space-city",
+    "third-space-clapham-junction",
+    "third-space-islington",
+    "third-space-marylebone",
+    "third-space-mayfair",
+    "third-space-moorgate",
+    "third-space-paternoster-square",
+    "third-space-richmond",
+    "third-space-soho",
+    "third-space-the-whiteley",
+    "third-space-tower-bridge",
+    "third-space-wimbledon",
+    "third-space-wood-wharf",
+  ];
+
+  assert.ok(currentClubSlugs.every((slug) => slugs.has(slug)));
+  assert.equal(slugs.has("third-space-queens-park"), false);
+});
+
+test("every neighbourhood with at least two published listings has a dedicated page", () => {
+  const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
+  const counts = new Map<string, number>();
+  const supportedLocations = new Set(
+    neighbourhoodPages.flatMap((page) => page.locationTerms || [page.shortTitle]),
+  );
+
+  for (const record of snapshot.records) {
+    const neighbourhood = String(record.fields.Neighborhood || "").trim();
+    if (neighbourhood) counts.set(neighbourhood, (counts.get(neighbourhood) || 0) + 1);
+  }
+
+  const unsupportedClusters = [...counts]
+    .filter(([, count]) => count >= 2)
+    .map(([neighbourhood]) => neighbourhood)
+    .filter((neighbourhood) => !supportedLocations.has(neighbourhood));
+
+  assert.deepEqual(unsupportedClusters, []);
+});
+
+test("published location labels are specific enough for neighbourhood matching", () => {
+  const snapshot = readSnapshot("../data/generated/directory-snapshot.json");
+  const neighbourhoodBySlug = new Map(
+    snapshot.records.map((record) => [String(record.fields.Slug), String(record.fields.Neighborhood || "")]),
+  );
+  const expected = {
+    "banya-no-1-chiswick": "Chiswick",
+    "banya-no-1-hoxton": "Hoxton",
+    "neko-health-spitalfields": "Spitalfields",
+    "pulse-club-sauna-fulham": "Fulham",
+    "stretchlab-islington": "Islington",
+    "stretchlab-notting-hill": "Notting Hill",
+    "third-space-battersea": "Battersea",
+    "third-space-clapham-junction": "Clapham Junction",
+    "third-space-tower-bridge": "London Bridge",
+    "third-space-wimbledon": "Wimbledon",
+  };
+
+  for (const [slug, neighbourhood] of Object.entries(expected)) {
+    assert.equal(neighbourhoodBySlug.get(slug), neighbourhood);
+  }
 });
 
 test("priority diagnostic pages retain verified provider coverage", () => {

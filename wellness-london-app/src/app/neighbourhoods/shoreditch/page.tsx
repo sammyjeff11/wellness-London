@@ -136,8 +136,7 @@ function buildSchema(facilities: DirectoryFacility[]) {
 export default async function ShoreditchNeighbourhoodPage() {
   const allFacilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
   const facilities = getFacilitiesForNeighbourhood(allFacilities, "Shoreditch")
-    .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0))
-    .slice(0, 6);
+    .sort((a, b) => (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0));
 
   if (facilities.length === 0) notFound();
 
