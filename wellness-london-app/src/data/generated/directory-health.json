@@ -1,73 +1,73 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T12:48:19.869Z",
-  "sourceGeneratedAt": "2026-09-08T12:28:54.511Z",
+  "generatedAt": "2026-09-08T20:18:21.063Z",
+  "sourceGeneratedAt": "2026-09-08T20:14:22.057Z",
   "thresholds": {
     "staleAfterDays": 90,
     "publishableSampleSize": 5,
     "publishableFieldCompleteness": 70
   },
   "summary": {
-    "publishedVenues": 84,
-    "neighbourhoods": 42,
-    "services": 98,
-    "averageCompleteness": 95.2,
+    "publishedVenues": 94,
+    "neighbourhoods": 45,
+    "services": 100,
+    "averageCompleteness": 95.7,
     "staleVenues": 0
   },
   "fields": [
     {
       "key": "editorial",
       "label": "Useful description",
-      "complete": 84,
+      "complete": 94,
       "missing": 0,
       "percentage": 100
     },
     {
       "key": "location",
       "label": "Location",
-      "complete": 84,
+      "complete": 94,
       "missing": 0,
       "percentage": 100
     },
     {
       "key": "services",
       "label": "Services",
-      "complete": 66,
+      "complete": 76,
       "missing": 18,
-      "percentage": 78.6
+      "percentage": 80.9
     },
     {
       "key": "price",
       "label": "Price",
-      "complete": 79,
+      "complete": 89,
       "missing": 5,
-      "percentage": 94
+      "percentage": 94.7
     },
     {
       "key": "access",
       "label": "Access",
-      "complete": 84,
+      "complete": 94,
       "missing": 0,
       "percentage": 100
     },
     {
       "key": "booking",
       "label": "Booking route",
-      "complete": 84,
+      "complete": 94,
       "missing": 0,
       "percentage": 100
     },
     {
       "key": "hours",
       "label": "Opening hours",
-      "complete": 75,
+      "complete": 85,
       "missing": 9,
-      "percentage": 89.3
+      "percentage": 90.4
     },
     {
       "key": "checked",
       "label": "Checked date",
-      "complete": 84,
+      "complete": 94,
       "missing": 0,
       "percentage": 100
     }
@@ -76,19 +76,19 @@
     "areas": [
       {
         "name": "Central London",
-        "count": 33
+        "count": 36
       },
       {
         "name": "West London",
-        "count": 18
+        "count": 20
       },
       {
         "name": "East London",
-        "count": 14
+        "count": 16
       },
       {
         "name": "South London",
-        "count": 10
+        "count": 12
       },
       {
         "name": "North London",
@@ -96,7 +96,7 @@
       },
       {
         "name": "North East London",
-        "count": 1
+        "count": 2
       }
     ],
     "neighbourhoods": [
@@ -106,7 +106,11 @@
       },
       {
         "name": "Canary Wharf",
-        "count": 5
+        "count": 6
+      },
+      {
+        "name": "Mayfair",
+        "count": 6
       },
       {
         "name": "City of London",
@@ -117,12 +121,16 @@
         "count": 5
       },
       {
-        "name": "Mayfair",
-        "count": 5
-      },
-      {
         "name": "Chelsea",
         "count": 4
+      },
+      {
+        "name": "Bayswater",
+        "count": 3
+      },
+      {
+        "name": "Belgravia",
+        "count": 3
       },
       {
         "name": "Notting Hill",
@@ -137,14 +145,6 @@
         "count": 3
       },
       {
-        "name": "Bayswater",
-        "count": 2
-      },
-      {
-        "name": "Belgravia",
-        "count": 2
-      },
-      {
         "name": "Covent Garden",
         "count": 2
       },
@@ -154,6 +154,10 @@
       },
       {
         "name": "Fulham",
+        "count": 2
+      },
+      {
+        "name": "Kensington",
         "count": 2
       },
       {
@@ -169,11 +173,19 @@
         "count": 2
       },
       {
+        "name": "Walthamstow",
+        "count": 2
+      },
+      {
         "name": "Wandsworth",
         "count": 2
       },
       {
         "name": "White City",
+        "count": 2
+      },
+      {
+        "name": "Wimbledon",
         "count": 2
       },
       {
@@ -186,6 +198,10 @@
       },
       {
         "name": "Camberwell",
+        "count": 1
+      },
+      {
+        "name": "Canning Town",
         "count": 1
       },
       {
@@ -225,10 +241,6 @@
         "count": 1
       },
       {
-        "name": "Kensington",
-        "count": 1
-      },
-      {
         "name": "Kentish Town",
         "count": 1
       },
@@ -261,57 +273,61 @@
         "count": 1
       },
       {
-        "name": "Walthamstow",
+        "name": "Westminster",
         "count": 1
       },
       {
-        "name": "Wimbledon",
+        "name": "Woolwich",
         "count": 1
       }
     ],
     "services": [
       {
         "name": "Sauna",
-        "count": 31
+        "count": 41
       },
       {
         "name": "Steam Room",
-        "count": 23
+        "count": 31
       },
       {
         "name": "Cold Plunge",
-        "count": 22
-      },
-      {
-        "name": "Contrast Therapy",
-        "count": 21
+        "count": 26
       },
       {
         "name": "Spa",
-        "count": 18
+        "count": 25
       },
       {
-        "name": "Physiotherapy",
-        "count": 15
+        "name": "Contrast Therapy",
+        "count": 23
       },
       {
         "name": "Massage",
-        "count": 13
+        "count": 16
+      },
+      {
+        "name": "Physiotherapy",
+        "count": 16
       },
       {
         "name": "Lap Pool",
-        "count": 12
+        "count": 14
       },
       {
         "name": "Compression Therapy",
-        "count": 11
+        "count": 12
       },
       {
         "name": "Red Light Therapy",
-        "count": 9
+        "count": 10
       },
       {
         "name": "Cryotherapy",
+        "count": 9
+      },
+      {
+        "name": "Facials",
         "count": 8
       },
       {
@@ -319,7 +335,15 @@
         "count": 8
       },
       {
+        "name": "Fitness",
+        "count": 8
+      },
+      {
         "name": "Infrared Sauna",
+        "count": 8
+      },
+      {
+        "name": "Pilates",
         "count": 8
       },
       {
@@ -335,48 +359,44 @@
         "count": 7
       },
       {
+        "name": "Diagnostics",
+        "count": 7
+      },
+      {
         "name": "Ice Bath",
         "count": 7
       },
       {
-        "name": "Pilates",
+        "name": "Personal Training",
         "count": 7
       },
       {
-        "name": "Diagnostics",
+        "name": "IV Therapy",
         "count": 6
       },
       {
-        "name": "Fitness",
-        "count": 6
+        "name": "Hammam",
+        "count": 5
       },
       {
-        "name": "Personal Training",
-        "count": 6
+        "name": "Health Optimisation",
+        "count": 5
       },
       {
         "name": "Health Screening",
         "count": 5
       },
       {
-        "name": "IV Therapy",
+        "name": "Massage Therapy",
         "count": 5
       },
       {
-        "name": "Facials",
+        "name": "HBOT",
         "count": 4
       },
       {
         "name": "Wellness",
         "count": 4
-      },
-      {
-        "name": "HBOT",
-        "count": 3
-      },
-      {
-        "name": "Health Optimisation",
-        "count": 3
       },
       {
         "name": "Longevity Testing",
@@ -408,6 +428,10 @@
       },
       {
         "name": "Ozone Therapy",
+        "count": 2
+      },
+      {
+        "name": "Reformer Pilates",
         "count": 2
       },
       {
@@ -483,6 +507,10 @@
         "count": 1
       },
       {
+        "name": "Floatation Therapy",
+        "count": 1
+      },
+      {
         "name": "Free Flow Sessions",
         "count": 1
       },
@@ -504,10 +532,6 @@
       },
       {
         "name": "Gut Health Testing",
-        "count": 1
-      },
-      {
-        "name": "Hammam",
         "count": 1
       },
       {
@@ -535,11 +559,11 @@
         "count": 1
       },
       {
-        "name": "Lymphatic Drainage",
+        "name": "Longevity",
         "count": 1
       },
       {
-        "name": "Massage Therapy",
+        "name": "Lymphatic Drainage",
         "count": 1
       },
       {
@@ -604,10 +628,6 @@
       },
       {
         "name": "Recovery Therapy",
-        "count": 1
-      },
-      {
-        "name": "Reformer Pilates",
         "count": 1
       },
       {
@@ -848,56 +868,56 @@
       {
         "key": "editorial",
         "label": "Useful description",
-        "complete": 84,
+        "complete": 94,
         "missing": 0,
         "percentage": 100
       },
       {
         "key": "location",
         "label": "Location",
-        "complete": 84,
+        "complete": 94,
         "missing": 0,
         "percentage": 100
       },
       {
         "key": "services",
         "label": "Services",
-        "complete": 66,
+        "complete": 76,
         "missing": 18,
-        "percentage": 78.6
+        "percentage": 80.9
       },
       {
         "key": "price",
         "label": "Price",
-        "complete": 79,
+        "complete": 89,
         "missing": 5,
-        "percentage": 94
+        "percentage": 94.7
       },
       {
         "key": "access",
         "label": "Access",
-        "complete": 84,
+        "complete": 94,
         "missing": 0,
         "percentage": 100
       },
       {
         "key": "booking",
         "label": "Booking route",
-        "complete": 84,
+        "complete": 94,
         "missing": 0,
         "percentage": 100
       },
       {
         "key": "hours",
         "label": "Opening hours",
-        "complete": 75,
+        "complete": 85,
         "missing": 9,
-        "percentage": 89.3
+        "percentage": 90.4
       },
       {
         "key": "checked",
         "label": "Checked date",
-        "complete": 84,
+        "complete": 94,
         "missing": 0,
         "percentage": 100
       }
@@ -905,19 +925,19 @@
     "areas": [
       {
         "name": "Central London",
-        "count": 33
+        "count": 36
       },
       {
         "name": "West London",
-        "count": 18
+        "count": 20
       },
       {
         "name": "East London",
-        "count": 14
+        "count": 16
       },
       {
         "name": "South London",
-        "count": 10
+        "count": 12
       },
       {
         "name": "North London",
@@ -927,46 +947,50 @@
     "services": [
       {
         "name": "Sauna",
-        "count": 31
+        "count": 41
       },
       {
         "name": "Steam Room",
-        "count": 23
+        "count": 31
       },
       {
         "name": "Cold Plunge",
-        "count": 22
-      },
-      {
-        "name": "Contrast Therapy",
-        "count": 21
+        "count": 26
       },
       {
         "name": "Spa",
-        "count": 18
+        "count": 25
       },
       {
-        "name": "Physiotherapy",
-        "count": 15
+        "name": "Contrast Therapy",
+        "count": 23
       },
       {
         "name": "Massage",
-        "count": 13
+        "count": 16
+      },
+      {
+        "name": "Physiotherapy",
+        "count": 16
       },
       {
         "name": "Lap Pool",
-        "count": 12
+        "count": 14
       },
       {
         "name": "Compression Therapy",
-        "count": 11
+        "count": 12
       },
       {
         "name": "Red Light Therapy",
-        "count": 9
+        "count": 10
       },
       {
         "name": "Cryotherapy",
+        "count": 9
+      },
+      {
+        "name": "Facials",
         "count": 8
       },
       {
@@ -974,7 +998,15 @@
         "count": 8
       },
       {
+        "name": "Fitness",
+        "count": 8
+      },
+      {
         "name": "Infrared Sauna",
+        "count": 8
+      },
+      {
+        "name": "Pilates",
         "count": 8
       },
       {
@@ -990,31 +1022,35 @@
         "count": 7
       },
       {
+        "name": "Diagnostics",
+        "count": 7
+      },
+      {
         "name": "Ice Bath",
         "count": 7
       },
       {
-        "name": "Pilates",
+        "name": "Personal Training",
         "count": 7
       },
       {
-        "name": "Diagnostics",
+        "name": "IV Therapy",
         "count": 6
       },
       {
-        "name": "Fitness",
-        "count": 6
+        "name": "Hammam",
+        "count": 5
       },
       {
-        "name": "Personal Training",
-        "count": 6
+        "name": "Health Optimisation",
+        "count": 5
       },
       {
         "name": "Health Screening",
         "count": 5
       },
       {
-        "name": "IV Therapy",
+        "name": "Massage Therapy",
         "count": 5
       }
     ]

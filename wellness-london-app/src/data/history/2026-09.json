@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "capturedAt": "2026-09-08T12:48:19.960Z",
-  "sourceGeneratedAt": "2026-09-08T12:28:54.511Z",
+  "capturedAt": "2026-09-08T20:18:21.063Z",
+  "sourceGeneratedAt": "2026-09-08T20:14:22.057Z",
   "records": [
     {
       "slug": "aire-ancient-baths-london",
@@ -125,6 +125,27 @@
       "openingHours": "Monday–Sunday 09:30–22:30",
       "verificationStatus": "Public information",
       "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "biome-corinthia-london",
+      "name": "Biome by Corinthia London",
+      "brand": "Corinthia London",
+      "neighbourhood": "Westminster",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy",
+        "Spa",
+        "Massage"
+      ],
+      "priceFrom": 175,
+      "priceRange": "££££",
+      "access": "Mixed access",
+      "openingHours": "Spa: daily 07:00–21:00. Treatments: daily 10:00–20:00.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "bodyscan-city",
@@ -730,6 +751,25 @@
       "lastChecked": "2026-09-04"
     },
     {
+      "slug": "new-docklands-steam-baths",
+      "name": "New Docklands Steam Baths",
+      "brand": "Popular Baths",
+      "neighbourhood": "Canning Town",
+      "area": "East London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Cold Plunge",
+        "Contrast Therapy"
+      ],
+      "priceFrom": 27,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Mon: closed. Tue–Sun: scheduled male, female and mixed sessions; see the live booking calendar for the applicable session.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
       "slug": "numa-oxygen-marylebone",
       "name": "NUMA",
       "brand": "NUMA",
@@ -980,6 +1020,47 @@
       "lastChecked": "2026-09-04"
     },
     {
+      "slug": "sea-lanes-canary-wharf",
+      "name": "Sea Lanes Canary Wharf",
+      "brand": "Sea Lanes",
+      "neighbourhood": "Canary Wharf",
+      "area": "East London",
+      "services": [
+        "Sauna",
+        "Lap Pool"
+      ],
+      "priceFrom": 18,
+      "priceRange": "£",
+      "access": "Public / pay as you go",
+      "openingHours": "Mon–Fri: 06:00–21:00. Sat–Sun: 07:00–19:00.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "six-senses-london-spa",
+      "name": "Six Senses London Spa",
+      "brand": "Six Senses / IHG",
+      "neighbourhood": "Bayswater",
+      "area": "West London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Hammam",
+        "Cold Plunge",
+        "Floatation Therapy",
+        "Cryotherapy",
+        "Compression Therapy",
+        "Spa",
+        "Massage"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Mixed access",
+      "openingHours": "Spa facilities and treatment times vary by access route; confirm current hours when booking.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
       "slug": "skuna-sauna-boat-canary-wharf",
       "name": "Skuna Sauna Boat — Canary Wharf",
       "brand": "Skuna",
@@ -1050,6 +1131,88 @@
       "openingHours": "Mon–Wed: 08:00–00:00\nThu–Sat: 08:00–03:00\nSun: 08:00–00:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-08-09"
+    },
+    {
+      "slug": "spa-experience-kensington",
+      "name": "Spa Experience Kensington",
+      "brand": "Spa Experience by Better",
+      "neighbourhood": "Kensington",
+      "area": "West London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Spa",
+        "Massage Therapy",
+        "Facials"
+      ],
+      "priceFrom": null,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "See the live booking timetable for current spa-session availability.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "spa-experience-waltham-forest",
+      "name": "Spa Experience Waltham Forest",
+      "brand": "Spa Experience by Better",
+      "neighbourhood": "Walthamstow",
+      "area": "North East London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Hammam",
+        "Spa",
+        "Massage Therapy",
+        "Facials"
+      ],
+      "priceFrom": null,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Mon–Thu: 12:00–21:00. Fri: 10:00–21:00. Sat–Sun: 09:00–19:30.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "spa-experience-wimbledon",
+      "name": "Spa Experience Wimbledon",
+      "brand": "Spa Experience by Better",
+      "neighbourhood": "Wimbledon",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Hammam",
+        "Spa",
+        "Massage Therapy",
+        "Facials"
+      ],
+      "priceFrom": null,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Mon–Fri: 11:00–20:00. Sat–Sun: 09:00–17:00.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "spa-experience-woolwich-waves",
+      "name": "Spa Experience Woolwich Waves",
+      "brand": "Spa Experience by Better",
+      "neighbourhood": "Woolwich",
+      "area": "South London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Spa",
+        "Massage Therapy",
+        "Facials"
+      ],
+      "priceFrom": null,
+      "priceRange": "££",
+      "access": "Public / pay as you go",
+      "openingHours": "Centre hours: Mon–Fri 06:30–22:00; Sat–Sun 08:00–20:00. Check the booking page for spa-session times.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "stretchlab-chelsea",
@@ -1169,6 +1332,32 @@
       "openingHours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
       "verificationStatus": "Public information",
       "lastChecked": "2026-09-04"
+    },
+    {
+      "slug": "surrenne",
+      "name": "Surrenne Belgravia",
+      "brand": "Maybourne",
+      "neighbourhood": "Belgravia",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Steam Room",
+        "Hammam",
+        "Lap Pool",
+        "Spa",
+        "Massage",
+        "Fitness",
+        "Pilates",
+        "Personal Training",
+        "Longevity",
+        "Health Optimisation"
+      ],
+      "priceFrom": null,
+      "priceRange": "££££",
+      "access": "Private members’ club",
+      "openingHours": "Mon–Fri: 06:00–22:00. Sat–Sun: 07:00–21:00.",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
     },
     {
       "slug": "the-bath-house",
@@ -1576,6 +1765,31 @@
       "priceRange": "££££",
       "access": "Standard membership",
       "openingHours": "Mon–Fri: 05:30–22:30\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
+      "verificationStatus": "Public information",
+      "lastChecked": "2026-09-08"
+    },
+    {
+      "slug": "tramp-health",
+      "name": "Tramp Health",
+      "brand": "Tramp",
+      "neighbourhood": "Mayfair",
+      "area": "Central London",
+      "services": [
+        "Sauna",
+        "Cold Plunge",
+        "HBOT",
+        "Red Light Therapy",
+        "IV Therapy",
+        "Physiotherapy",
+        "Reformer Pilates",
+        "Diagnostics",
+        "Health Optimisation",
+        "Fitness"
+      ],
+      "priceFrom": 390,
+      "priceRange": "££££",
+      "access": "Private members’ club",
+      "openingHours": "Contact the club for current member and treatment hours.",
       "verificationStatus": "Public information",
       "lastChecked": "2026-09-08"
     },
