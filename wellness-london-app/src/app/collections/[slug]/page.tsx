@@ -9,9 +9,8 @@ import {
   collections,
   directoryFacilityScore,
   facilityMatchesCollection,
-  facilityMatchesFeaturedSection,
   getCollection,
-  type CollectionFeaturedSection,
+  getCuratedPicks,
 } from "@/lib/collections";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
@@ -22,11 +21,6 @@ export const dynamicParams = false;
 
 type CollectionPageProps = {
   params: Promise<{ slug: string }>;
-};
-
-type CuratedPick = {
-  section: CollectionFeaturedSection;
-  facility?: ServiceDirectoryFacility;
 };
 
 export function generateStaticParams() {
@@ -52,28 +46,6 @@ export async function generateMetadata({ params }: CollectionPageProps): Promise
       type: "website",
     },
   };
-}
-
-function getCuratedPicks(
-  facilities: ServiceDirectoryFacility[],
-  sections: readonly CollectionFeaturedSection[],
-  socialProfiles: Map<string, SocialWellnessProfile>,
-) {
-  const usedSlugs = new Set<string>();
-
-  return sections.map<CuratedPick>((section) => {
-    const facility = facilities
-      .filter((candidate) => !usedSlugs.has(candidate.slug))
-      .filter((candidate) => facilityMatchesFeaturedSection(candidate, section.match, socialProfiles.get(candidate.slug)))
-      .sort((a, b) =>
-        directoryFacilityScore(b, section.match, socialProfiles.get(b.slug)) -
-        directoryFacilityScore(a, section.match, socialProfiles.get(a.slug))
-      )[0];
-
-    if (facility) usedSlugs.add(facility.slug);
-
-    return { section, facility };
-  });
 }
 
 function itemListJsonLd(collectionTitle: string, collectionHref: string, facilities: ServiceDirectoryFacility[]) {
@@ -200,8 +172,8 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
               {isSocialDiscovery
-                ? "Picks use observable format and programming signals such as recurring sessions, events, communal sauna and social spaces."
-                : "One best-matched venue per editorial angle, selected from matching facilities using service, venue type and listing quality signals."}
+                ? "Editorial selections use observable programming such as recurring sessions, events, communal sauna and social spaces."
+                : "Each selection is set editorially and must continue to satisfy the confirmed service and format requirements for its use case."}
             </p>
           </div>
 
@@ -211,10 +183,15 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                 <p className="editorial-eyebrow mb-3">{section.label}</p>
                 <p className="mb-5 text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">{section.description}</p>
                 {facility ? (
-                  <FacilityCard facility={facility} source={`collection_${collection.slug}`} compact />
+                  <FacilityCard
+                    facility={facility}
+                    source={`collection_${collection.slug}`}
+                    compact
+                    prioritisedService={section.prioritisedService}
+                  />
                 ) : (
                   <div className="rounded-[1.1rem] border border-dashed border-[#d8cebf] bg-[#f4efe6] p-5 text-sm leading-6 text-[#5f574c]">
-                    No live venue currently has enough matching signals for this pick. Browse the full directory below instead.
+                    This editorial selection is being reviewed. Browse the matching directory below in the meantime.
                   </div>
                 )}
               </article>

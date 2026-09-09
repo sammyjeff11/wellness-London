@@ -5,71 +5,11 @@ import PillarPage from "@/components/PillarPage";
 import { getFacilities } from "@/lib/airtable";
 import {
   getLongevityFacilities,
-  hasStructuredLongevityData,
+  isClinicalLongevityFacility,
   type LongevityFacility,
 } from "@/lib/longevity-facilities";
 import { getFacilitiesForPillar, getPillarPage, pillarPages } from "@/lib/pillar-pages";
 import { getServicePillarMappings } from "@/lib/service-pillar-mapping";
-
-const clinicalLongevitySignals = [
-  "diagnostic",
-  "health screening",
-  "medical screening",
-  "preventative health",
-  "preventive health",
-  "health assessment",
-  "medical assessment",
-  "executive health",
-  "blood testing",
-  "blood test",
-  "biomarker",
-  "biological age",
-  "epigenetic",
-  "genomic",
-  "genetic testing",
-  "hormone testing",
-  "microbiome",
-  "gut health testing",
-  "mri",
-  "ct scan",
-  "medical imaging",
-  "cardiovascular screening",
-  "cardiac screening",
-  "dexa",
-  "vo2 max",
-  "vo₂ max",
-  "resting metabolic rate",
-  "physician-led",
-  "doctor-led",
-  "medical consultation",
-  "precision medicine",
-];
-
-function isClinicalLongevityFacility(facility: LongevityFacility) {
-  if (hasStructuredLongevityData(facility)) return true;
-
-  const searchable = [
-    facility.name,
-    facility.description,
-    facility.editorialSummary,
-    facility.venueTypeStandardized,
-    facility.primaryService,
-    ...facility.secondaryServices,
-    ...facility.serviceNames,
-    ...facility.servicesOffered,
-    ...facility.activityCategories,
-    ...facility.activityTagsStandardized,
-    ...facility.activityDisplayLabels,
-    ...facility.themeTagsStandardized,
-    ...facility.bestFor,
-    ...facility.bestForStandardized,
-  ]
-    .filter(Boolean)
-    .join(" ")
-    .toLowerCase();
-
-  return clinicalLongevitySignals.some((signal) => searchable.includes(signal));
-}
 
 function longevitySortScore(facility: LongevityFacility) {
   return (

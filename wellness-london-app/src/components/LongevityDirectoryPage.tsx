@@ -34,6 +34,7 @@ const oversightFilters = [
   { value: "clinician", label: "Clinician-led" },
   { value: "testing", label: "Testing with review" },
   { value: "testing-only", label: "Testing only" },
+  { value: "unconfirmed", label: "Not publicly confirmed" },
 ] as const;
 
 const priceFilters = [
@@ -119,29 +120,16 @@ type ClinicProfile = {
   verificationLabel: string;
 };
 
-function searchableText(facility: LongevityFacility) {
+function explicitServiceText(facility: LongevityFacility) {
   return [
-    facility.name,
-    facility.description,
-    facility.editorialSummary,
-    facility.editorialVerdict,
-    facility.venueTypeStandardized,
     facility.primaryService,
-    facility.clinicModel,
-    facility.clinicalOversight,
     ...facility.confirmedDiagnostics,
-    ...facility.assessmentFormat,
-    ...facility.resultsIncluded,
     ...(facility.secondaryServices || []),
     ...(facility.serviceNames || []),
     ...(facility.servicesOffered || []),
     ...(facility.activityCategories || []),
     ...(facility.activityTagsStandardized || []),
     ...(facility.activityDisplayLabels || []),
-    ...(facility.themeTagsStandardized || []),
-    ...(facility.bestFor || []),
-    ...(facility.bestForStandardized || []),
-    ...(facility.typeOfExperience || []),
   ]
     .filter(Boolean)
     .join(" ")
@@ -184,7 +172,10 @@ function parsePrice(value: string) {
   return matches?.length ? Number(matches[0].replace(/,/g, "")) : undefined;
 }
 
-function deriveNeed(facility: LongevityFacility, text: string): Pick<ClinicProfile, "need" | "clinicType" | "bestFor"> {
+function deriveNeed(
+  facility: LongevityFacility,
+  diagnostics: Exclude<Diagnostic, "all">[],
+): Pick<ClinicProfile, "need" | "clinicType" | "bestFor"> {
   const model = facility.clinicModel;
 
   if (model === "Comprehensive longevity clinic" || model === "Preventative health screening clinic") {
@@ -227,46 +218,46 @@ function deriveNeed(facility: LongevityFacility, text: string): Pick<ClinicProfi
     };
   }
 
-  if (containsAny(text, ["comprehensive health", "executive health", "full health assessment", "longevity assessment"])) {
-    return {
-      need: "comprehensive",
-      clinicType: "Comprehensive longevity clinic",
-      bestFor: "Building a broad preventative-health baseline",
-    };
-  }
-
-  if (containsAny(text, ["mri", "ct scan", "medical imaging", "full body scan", "cancer screening"])) {
-    return {
-      need: "imaging",
-      clinicType: "Imaging and screening provider",
-      bestFor: "Advanced screening and structural investigation",
-    };
-  }
-
-  if (containsAny(text, ["vo2 max", "vo₂ max", "dexa", "resting metabolic rate", "performance testing"])) {
-    return {
-      need: "performance",
-      clinicType: "Performance diagnostics clinic",
-      bestFor: "Fitness, body composition and metabolic insight",
-    };
-  }
-
-  if (containsAny(text, ["membership", "annual programme", "ongoing", "repeat testing", "follow-up programme"])) {
+  if (facility.assessmentFormat.some((format) => /ongoing|membership|annual programme/i.test(format))) {
     return {
       need: "ongoing",
       clinicType: "Ongoing longevity programme",
-      bestFor: "Repeat testing and longer-term clinical support",
+      bestFor: "Comparing repeat testing and longer-term support",
+    };
+  }
+
+  if (diagnostics.includes("imaging")) {
+    return {
+      need: "imaging",
+      clinicType: "Imaging and screening provider",
+      bestFor: "Comparing confirmed imaging and screening services",
+    };
+  }
+
+  if (diagnostics.includes("vo2") || diagnostics.includes("dexa")) {
+    return {
+      need: "performance",
+      clinicType: "Performance diagnostics clinic",
+      bestFor: "Comparing fitness and body-composition testing",
+    };
+  }
+
+  if (diagnostics.includes("screening") && diagnostics.length > 1) {
+    return {
+      need: "comprehensive",
+      clinicType: "Preventative health screening provider",
+      bestFor: "Comparing a broader preventative-health baseline",
     };
   }
 
   return {
     need: "specific",
-    clinicType: "Specialist testing provider",
+    clinicType: "Diagnostic testing provider",
     bestFor: "A focused test or defined health question",
   };
 }
 
-function deriveOversight(facility: LongevityFacility, text: string): Pick<ClinicProfile, "oversight" | "oversightLabel"> {
+function deriveOversight(facility: LongevityFacility): Pick<ClinicProfile, "oversight" | "oversightLabel"> {
   const oversight = facility.clinicalOversight;
 
   if (oversight === "Doctor-led") return { oversight: "doctor", oversightLabel: oversight };
@@ -274,23 +265,12 @@ function deriveOversight(facility: LongevityFacility, text: string): Pick<Clinic
   if (oversight === "Testing only") return { oversight: "testing-only", oversightLabel: oversight };
   if (oversight === "Testing with clinical review") return { oversight: "testing", oversightLabel: oversight };
 
-  if (containsAny(text, ["doctor-led", "physician-led", "medical director", "doctor consultation", "consultant physician"])) {
-    return { oversight: "doctor", oversightLabel: "Doctor-led" };
-  }
-
-  if (containsAny(text, ["clinician-led", "clinical team", "nurse-led", "physiologist"])) {
-    return { oversight: "clinician", oversightLabel: "Clinician-led" };
-  }
-
-  return { oversight: "testing", oversightLabel: "Testing with review not yet confirmed" };
+  return { oversight: "unconfirmed", oversightLabel: "Not publicly confirmed" };
 }
 
-function deriveFormat(facility: LongevityFacility, text: string) {
+function deriveFormat(facility: LongevityFacility) {
   if (facility.assessmentFormat.length > 0) return facility.assessmentFormat.join(" · ");
-
-  const ongoing = containsAny(text, ["membership", "annual programme", "ongoing", "repeat testing", "follow-up programme"]);
-  const oneOff = containsAny(text, ["assessment", "screening", "scan", "test", "consultation"]);
-  return ongoing && oneOff ? "One-off and ongoing" : ongoing ? "Ongoing programme" : "One-off assessment";
+  return "Not publicly confirmed";
 }
 
 function formatVerificationDate(value: string) {
@@ -301,17 +281,17 @@ function formatVerificationDate(value: string) {
 }
 
 function profileClinic(facility: LongevityFacility): ClinicProfile {
-  const text = searchableText(facility);
-  const { diagnostics, labels } = deriveDiagnostics(facility, text);
-  const needProfile = deriveNeed(facility, text);
-  const oversightProfile = deriveOversight(facility, text);
+  const serviceText = explicitServiceText(facility);
+  const { diagnostics, labels } = deriveDiagnostics(facility, serviceText);
+  const needProfile = deriveNeed(facility, diagnostics);
+  const oversightProfile = deriveOversight(facility);
   const price = parsePrice(`${facility.priceFrom} ${facility.priceNotes} ${facility.overallPriceRange}`);
   const priceBand: ClinicProfile["priceBand"] = price === undefined ? "unknown" : price < 500 ? "under-500" : price < 1500 ? "500-1500" : "1500-plus";
   const verifiedDate = formatVerificationDate(facility.serviceLastVerified);
-  const verificationLabel = facility.venueConfirmed
-    ? "Venue confirmed"
-    : verifiedDate
-      ? `Service checked ${verifiedDate}`
+  const verificationLabel = verifiedDate
+    ? `Information checked ${verifiedDate}`
+    : facility.venueConfirmed
+      ? "Venue listing confirmed"
       : "Provider information";
 
   return {
@@ -319,9 +299,9 @@ function profileClinic(facility: LongevityFacility): ClinicProfile {
     ...needProfile,
     ...oversightProfile,
     diagnostics,
-    diagnosticLabels: labels.length ? labels : ["Clinical assessment"],
+    diagnosticLabels: labels.length ? labels : ["Diagnostic services not yet itemised"],
     featuredServiceLabels: labels.filter((label) => Boolean(featuredServiceHrefs[label])),
-    format: deriveFormat(facility, text),
+    format: deriveFormat(facility),
     priceBand,
     resultsIncluded: facility.resultsIncluded,
     verificationLabel,
