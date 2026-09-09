@@ -89,7 +89,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
-  const facilityEntries = directoryFacilities
+  const facilityEntries = facilities.map(toDirectoryFacility)
     .filter(isSitemapFacility)
     .map((facility) => ({
       url: absoluteUrl(`/facility/${facility.slug}`),

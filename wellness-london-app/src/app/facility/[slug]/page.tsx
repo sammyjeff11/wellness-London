@@ -1,7 +1,11 @@
+import { sessionDuration } from "@/lib/venue-facts";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import SaveVenueButton from "@/components/SaveVenueButton";
+import { venuePrice } from "@/lib/venue-pricing";
+import { getUsefulServiceLabels } from "@/lib/discovery-labels";
 import FacilityGallery from "@/components/FacilityGallery";
 import FacilitySocialContext from "@/components/FacilitySocialContext";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
@@ -80,7 +84,7 @@ function getEditorialCandidates(facility: AirtableFacility) {
 
 function getMetaDescription(facility: AirtableFacility) {
   const description = getEditorialCandidates(facility)[0] || `View services, access and booking details for ${facility.name} in London.`;
-  return truncateMetaText(description);
+  return truncateMetaText(`${facility.name} in ${getCleanLocation(facility)}. ${getUsefulServiceLabels([...facility.servicesOffered, ...(facility.confirmedDiagnostics || [])], undefined, 3).join(", ")}. ${description}`);
 }
 
 export async function generateMetadata({ params }: FacilityPageProps): Promise<Metadata> {
@@ -92,14 +96,14 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
 
   const description = getMetaDescription(facility);
   const image = facility.images.find((item) => cleanUrl(item.url));
-  const title = truncateMetaText(`${facility.name} | Well+`, 60);
+  const title = truncateMetaText(`${facility.name}${facility.name.toLowerCase().includes(getCleanLocation(facility).toLowerCase()) ? "" : ` in ${getCleanLocation(facility)}`} | Well+`, 70);
 
   return {
     title,
     description,
     alternates: { canonical: `/facility/${facility.slug}` },
     openGraph: {
-      title: `${facility.name} | Well+`,
+      title,
       description,
       url: absoluteUrl(`/facility/${facility.slug}`),
       type: "website",
@@ -262,7 +266,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const editorialCandidates = getEditorialCandidates(facility);
   const heroSummary = editorialCandidates[0] || "Compare the services, access model and booking details before deciding whether this venue suits your visit.";
   const whyCopy = editorialCandidates.find((candidate) => candidate !== heroSummary);
-  const services = canonicaliseServiceList(cleanList(facility.servicesOffered));
+  const services = getUsefulServiceLabels([...cleanList(facility.servicesOffered), ...(facility.confirmedDiagnostics || [])], undefined, Infinity);
   const relatedGuides = getRelatedGuides(services);
   const similarVenues = getSimilarVenues(facility, facilities, servicePillarMappings);
   const website = cleanUrl(facility.website);
@@ -270,8 +274,8 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const instagramLink = normaliseInstagramUrl(facility.instagramLink);
   const hasGallery = facility.images.some((image) => Boolean(cleanUrl(image.url)));
   const primaryCtaHref = bookingLink || website;
-  const primaryCtaLabel = bookingLink ? "Book this venue" : "Visit website";
-  const price = cleanValue(facility.priceFrom) || cleanValue(facility.overallPriceRange);
+  const primaryCtaLabel = "Check prices & availability ↗";
+  const price = venuePrice(facility).label;
   const access = cleanValue(facility.accessType);
   const address = cleanValue(facility.address);
   const postcode = cleanValue(facility.postcode);
@@ -280,6 +284,9 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
     cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor),
   ).slice(0, 8);
   const quickFacts: DetailItem[] = [
+    { label: "Services", value: services.join(" · ") },
+    { label: "Session duration", value: sessionDuration(facility) || "Not confirmed — check the chosen booking" },
+    { label: "Session format", value: cleanValue(facility.privateOrShared) || "Not confirmed" },
     { label: "Nearest station", value: cleanValue(facility.nearestStation) },
     { label: "Booking", value: cleanValue(facility.bookingRequired) },
     { label: "Opening hours", value: cleanValue(facility.openingHours) },
@@ -341,12 +348,15 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
               <p className="mt-5 max-w-2xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">{heroSummary}</p>
 
               <div className="mt-5 flex flex-wrap gap-2">
-                {cleanValue(facility.googleRating) ? <Pill>{facility.googleRating}</Pill> : null}
+
                 {price ? <Pill>{price}</Pill> : null}
                 {access ? <Pill>{access}</Pill> : null}
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <p className="mt-4 text-xs leading-6 text-[#5f574c]">Published by Well+ · {cleanValue(facility.lastCheckedDate) ? `Information checked ${facility.lastCheckedDate.slice(0, 10)}` : "Check date not confirmed"}. {website ? <a href={website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Operator source ↗</a> : null} · <Link href="/editorial-standards" className="underline underline-offset-4">How we check information</Link></p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <SaveVenueButton slug={facility.slug} name={facility.name} />
+                <Link href={`/compare?venues=${facility.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-[#d8cebf] px-5 text-sm">Compare venue</Link>
                 {primaryCtaHref ? (
                   <TrackedExternalLink
                     href={primaryCtaHref}
@@ -398,7 +408,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
       {bestFor.length > 0 ? (
         <section className="surface-band-sage px-5 py-12 sm:px-6 md:py-16">
           <div className="mx-auto max-w-6xl">
-            <SectionHeading eyebrow="Suitability" title="Particularly good for" />
+            <SectionHeading eyebrow="Suitability" title="Published venue tags" />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
               {bestFor.map((item) => <Pill key={item}>{item}</Pill>)}
             </div>
@@ -436,7 +446,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
           <div className="mx-auto max-w-6xl">
             <SectionHeading eyebrow="Services" title="Available here" />
             <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
-              {services.slice(0, 8).map((service) => {
+              {services.map((service) => {
                 const href = canonicalServiceHref(service);
                 return href ? (
                   <Link key={service} href={href} className="inline-flex items-center rounded-full border border-[#d8cebf] bg-[#fbf8f1] px-4 py-2 text-sm leading-none text-[#5f574c] transition hover:border-[#6f6048] hover:text-[#29241d] sm:px-5 sm:py-3">

@@ -64,7 +64,7 @@ export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntro
 
 export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectorySectionProps) {
   return (
-    <section className="surface-band-stone px-5 py-14 sm:px-6 sm:py-20 md:py-24">
+    <section id="venues" className="surface-band-stone scroll-mt-24 px-5 py-6 sm:px-6 sm:py-8">
       <div className="mx-auto max-w-6xl">
         <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} prioritisedService={prioritisedService} />
       </div>

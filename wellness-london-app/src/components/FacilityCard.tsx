@@ -1,11 +1,12 @@
 "use client";
 
+import { venuePrice } from "@/lib/venue-pricing";
 import { useState } from "react";
 import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
 import { trackEvent } from "@/lib/analytics";
 import { canonicalServiceHref } from "@/lib/taxonomy";
-import { filterSuitabilityLabels, getUsefulServiceLabels } from "@/lib/discovery-labels";
+import { getUsefulServiceLabels } from "@/lib/discovery-labels";
 import SaveVenueButton from "@/components/SaveVenueButton";
 import { formatDistance } from "@/lib/geo";
 
@@ -31,6 +32,10 @@ export type FacilityCardFacility = {
   bestFor?: string[];
   experienceType?: string[];
   priceFrom?: string;
+  priceNotes?: string;
+  goodToKnow?: string;
+  bookingLink?: string;
+  sessionDuration?: string;
   privateOrShared?: string;
   beginnerFriendly?: string;
   premiumLevel?: string;
@@ -64,10 +69,10 @@ type FacilityCardProps = {
 
 const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
 
-const pricePillClass = "inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
+const pricePillClass = "max-w-[calc(100%-6rem)] normal-case tracking-normal inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
 
 function primaryBestFor(facility: FacilityCardFacility) {
-  return filterSuitabilityLabels(facility.bestFor)[0] || facility.description;
+  return facility.description;
 }
 
 function conciseSummary(facility: FacilityCardFacility, serviceLine: string) {
@@ -94,48 +99,6 @@ function getAreaLabel(facility: FacilityCardFacility) {
 
 function getCanonicalServices(services?: string[], prioritisedService?: string) {
   return getUsefulServiceLabels(services, prioritisedService, 3);
-}
-
-function formatRating(value?: string) {
-  if (!value) return "";
-
-  const trimmed = value.replace(/\s+/g, " ").replace(/,\s+(?=\d)/g, ",").trim();
-  const ratingMatch = trimmed.match(/\d+(?:\.\d+)?/);
-  const reviewMatch = trimmed.match(/\(([^)]*review[^)]*)\)/i);
-
-  if (!ratingMatch) return trimmed.replace(/\s*\(based on.*?\)\s*/i, " ").trim();
-
-  const rating = ratingMatch[0];
-  const ratingDisplay = trimmed.includes("/5") ? rating : `${rating}/5`;
-
-  if (reviewMatch) {
-    const reviewText = reviewMatch[1]
-      .replace(/^based on\s+/i, "")
-      .replace(/^(\d[\d,]*\+?)$/i, "$1 reviews")
-      .trim();
-    return `${ratingDisplay} (${reviewText})`;
-  }
-
-  return ratingDisplay;
-}
-
-function priceScaleFromAmount(amount: number) {
-  if (amount <= 25) return "£";
-  if (amount <= 50) return "££";
-  if (amount <= 100) return "£££";
-  return "££££";
-}
-
-function formatPrice(value?: string) {
-  if (!value) return "";
-  const trimmed = value.trim();
-  const lower = trimmed.toLowerCase();
-  if (["unknown", "not specified", "not available", "details not yet confirmed", "n/a", "na"].includes(lower) || lower.includes("pricing requires")) return "";
-  const scaleMatch = trimmed.match(/£{1,4}/)?.[0];
-  const amountMatch = trimmed.replace(/,/g, "").match(/£\s*(\d+(?:\.\d+)?)/);
-  if (amountMatch) return priceScaleFromAmount(Number(amountMatch[1]));
-  if (scaleMatch) return scaleMatch;
-  return trimmed;
 }
 
 function cleanDetailValue(value?: string) {
@@ -179,20 +142,20 @@ function formatCheckedDate(value?: string) {
   return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(date);
 }
 
-export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = false, distanceKm }: FacilityCardProps) {
+export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = true, distanceKm }: FacilityCardProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const neighbourhoodLabel = getNeighbourhoodLabel(facility);
   const areaLabel = getAreaLabel(facility);
   const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" · ");
-  const price = formatPrice(facility.priceRange || facility.priceFrom);
+  const price = venuePrice(facility).label;
   const serviceLabels = getCanonicalServices(facility.services, prioritisedService);
   const serviceLine = serviceLabels.join(" · ");
   const summary = conciseSummary(facility, serviceLine);
-  const rating = formatRating(facility.rating);
+
   const cardImages = getCardImages(facility);
   const activeImage = cardImages[activeImageIndex] || cardImages[0];
   const cardHref = `/facility/${facility.slug}`;
-  const imageAspect = compact ? "aspect-[1.04/1]" : "aspect-[1.08/1]";
+  const imageAspect = cardImages.length ? "aspect-[3/2]" : "min-h-20";
   const comparisonDetails = getComparisonDetails(facility);
   const checkedDate = formatCheckedDate(facility.lastCheckedDate);
 
@@ -225,7 +188,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
             </Link>
 
             <div className="pointer-events-none absolute left-4 top-4 z-10">
-              {price ? <span className={pricePillClass}>{price}</span> : <span />}
+              <span className={pricePillClass}>Venue details</span>
             </div>
 
             {showSaveButton ? (
@@ -256,7 +219,7 @@ export default function FacilityCard({ facility, source = "directory", compact =
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]">
             <div className="absolute inset-x-5 top-1/2 h-px bg-[#fbf8f1]/65" />
             <div className="absolute inset-y-5 left-1/2 w-px bg-[#fbf8f1]/45" />
-            <div className="absolute left-4 top-4 z-10">{price ? <span className={pricePillClass}>{price}</span> : null}</div>
+            <div className="absolute left-4 top-4 z-10"><span className={pricePillClass}>Venue details</span></div>
             {showSaveButton ? (
               <div className="absolute right-4 top-4 z-30">
                 <SaveVenueButton slug={facility.slug} name={facility.name} />
@@ -269,13 +232,14 @@ export default function FacilityCard({ facility, source = "directory", compact =
       <div className={compact ? "px-4 pb-4 pt-3" : "px-5 pb-5 pt-4"}>
         <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
           <div className="flex items-start justify-between gap-3">
-            <h3 className="min-w-0 truncate text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
-            {rating ? <span className="shrink-0 text-right text-sm leading-6 text-[#29241d]">★ {rating}</span> : null}
+            <h3 className="min-w-0 line-clamp-2 text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
+
           </div>
           <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">
             {locationLine || "London"}{distanceKm !== undefined ? ` · ${formatDistance(distanceKm)}` : ""}
           </p>
         </Link>
+        <p className="mt-3 text-sm font-medium leading-6 text-[#29241d]">{price}</p>
         {comparisonDetails.length > 0 ? (
           <div className="mt-2 flex flex-wrap gap-1.5">
             {comparisonDetails.map((detail) => (

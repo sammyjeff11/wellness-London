@@ -241,7 +241,12 @@ export function canonicalServiceSlug(value?: string | null) {
 }
 
 export function canonicalServiceHref(value?: string | null) {
-  return findCanonicalService(value)?.href;
+  const diagnosticLinks: Record<string, string> = {
+    "dexa scan": "/dexa-scan-london", "dexa": "/dexa-scan-london",
+    "vo2 max testing": "/vo2-max-testing-london", "vo2 max": "/vo2-max-testing-london",
+    "health screening": "/health-screening-london",
+  };
+  return diagnosticLinks[(value || "").normalize("NFKD").toLowerCase().trim()] || findCanonicalService(value)?.href;
 }
 
 export function canonicaliseServiceList(values: string[] = []) {

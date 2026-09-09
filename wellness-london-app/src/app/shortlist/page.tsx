@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import AnalyticsPageView from "@/components/AnalyticsPageView";
 import SavedVenueList from "@/components/SavedVenueList";
 import { getFacilities } from "@/lib/airtable";
-import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
@@ -12,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ShortlistPage() {
-  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
+  const facilities = (await getFacilities()).map(toDirectoryFacility);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] px-5 py-12 text-[#29241d] sm:px-6 sm:py-18">

@@ -1,6 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useDirectoryUrl } from "@/lib/use-directory-url";
+import { venuePrice } from "@/lib/venue-pricing";
+
+import { useMemo } from "react";
 import Link from "next/link";
 import FacilityCard from "@/components/FacilityCard";
 import LongevityJourney from "@/components/LongevityJourney";
@@ -167,11 +170,6 @@ function deriveDiagnostics(facility: LongevityFacility, text: string) {
   return { diagnostics, labels };
 }
 
-function parsePrice(value: string) {
-  const matches = value.match(/[\d,]+/g);
-  return matches?.length ? Number(matches[0].replace(/,/g, "")) : undefined;
-}
-
 function deriveNeed(
   facility: LongevityFacility,
   diagnostics: Exclude<Diagnostic, "all">[],
@@ -285,7 +283,8 @@ function profileClinic(facility: LongevityFacility): ClinicProfile {
   const { diagnostics, labels } = deriveDiagnostics(facility, serviceText);
   const needProfile = deriveNeed(facility, diagnostics);
   const oversightProfile = deriveOversight(facility);
-  const price = parsePrice(`${facility.priceFrom} ${facility.priceNotes} ${facility.overallPriceRange}`);
+  const publishedPrice = venuePrice(facility);
+  const price = /assessment|DEXA|preventive health scan/.test(publishedPrice.basis) ? Number(facility.priceFrom.replace(/,/g, "").match(/\d+(?:\.\d+)?/)?.[0]) || undefined : undefined;
   const priceBand: ClinicProfile["priceBand"] = price === undefined ? "unknown" : price < 500 ? "under-500" : price < 1500 ? "500-1500" : "1500-plus";
   const verifiedDate = formatVerificationDate(facility.serviceLastVerified);
   const verificationLabel = verifiedDate
@@ -320,10 +319,15 @@ function FilterSelect({ label, value, onChange, options }: { label: string; valu
 }
 
 export default function LongevityDirectoryPage({ facilities }: { facilities: LongevityFacility[] }) {
-  const [need, setNeed] = useState<Need>("all");
-  const [diagnostic, setDiagnostic] = useState<Diagnostic>("all");
-  const [oversight, setOversight] = useState<Oversight>("all");
-  const [price, setPrice] = useState<Price>("all");
+  const [urlState, updateUrl] = useDirectoryUrl();
+  const need = (urlState.clinicalNeed || "all") as Need;
+  const diagnostic = (urlState.diagnostic || "all") as Diagnostic;
+  const oversight = (urlState.oversight || "all") as Oversight;
+  const price = (urlState.assessmentPrice || "all") as Price;
+  const setNeed = (value: Need) => updateUrl({ clinicalNeed: value });
+  const setDiagnostic = (value: Diagnostic) => updateUrl({ diagnostic: value });
+  const setOversight = (value: Oversight) => updateUrl({ oversight: value });
+  const setPrice = (value: Price) => updateUrl({ assessmentPrice: value });
 
   const profiles = useMemo(() => facilities.map(profileClinic), [facilities]);
   const filteredProfiles = useMemo(() => profiles.filter((profile) =>
@@ -404,10 +408,10 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
             <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
             <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
             <FilterSelect label="Clinical oversight" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
-            <FilterSelect label="Starting price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
+            <FilterSelect label="Published assessment price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
             <div className="flex items-end sm:col-span-2 lg:col-span-4">
               <p className="text-xs text-[#6f6048]">Showing {visibleProfiles.length} of {profiles.length} listed providers.</p>
-              {hasFilters && <button type="button" onClick={() => { setNeed("all"); setDiagnostic("all"); setOversight("all"); setPrice("all"); }} className="ml-auto text-xs underline underline-offset-4">Clear filters</button>}
+              {hasFilters && <button type="button" onClick={() => { updateUrl({ clinicalNeed: "", diagnostic: "", oversight: "", assessmentPrice: "" }); }} className="ml-auto text-xs underline underline-offset-4">Clear filters</button>}
             </div>
           </div>
 

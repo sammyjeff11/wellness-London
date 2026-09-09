@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import VenueComparison from "@/components/VenueComparison";
 import { getFacilities } from "@/lib/airtable";
-import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 
 export const metadata: Metadata = {
@@ -22,7 +21,7 @@ export default async function ComparePage({ searchParams }: ComparePageProps) {
     .map((slug) => slug.trim())
     .filter(Boolean)
     .slice(0, 4);
-  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
+  const facilities = (await getFacilities()).map(toDirectoryFacility);
 
   return (
     <main className="min-h-screen bg-[#f4efe6] px-5 py-10 text-[#29241d] sm:px-6 sm:py-14">

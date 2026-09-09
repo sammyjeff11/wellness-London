@@ -8,12 +8,15 @@ export const metadata: Metadata = {
 };
 
 const standards = [
-  "We aim to prioritise accuracy, clarity and usefulness over volume publishing.",
-  "Where possible, listings are reviewed against publicly available venue information including websites, facilities, pricing signals and service descriptions.",
-  "Editorial language should remain calm, practical and non-sensational.",
-  "We avoid exaggerated health claims, miracle language and unsupported wellness promises.",
-  "The directory is designed around user discovery intent rather than paid placement-first ranking.",
-  "Articles and guides should support real decision-making through comparison, context and practical detail.",
+  "Publisher and responsibility. Well+ publishes this London directory and its researched guides. The publisher is responsible for listing accuracy, corrections and clearly separating editorial selections from commercial offers.",
+  "Sources and dates. We use operator websites, current booking pages and explicit service information. Venue profiles link to an operator source and show the recorded information-check date. That date is a research check, not a visit, certification or guarantee that prices remain unchanged.",
+  "What qualifies. A service must be explicitly listed for the relevant venue or branch. Future openings, generic brand capabilities and broad longevity language do not establish current availability of a specific test or treatment. Diagnostic pages use confirmed services and clinical eligibility criteria.",
+  "Research versus visits. Researched shortlists compare published facts. They are not first-hand reviews. Any future personally visited review will say who visited and when, and distinguish direct observations from operator claims. We do not assign best-overall awards from profile completeness or use generic first-timer tags as recommendations.",
+  "Prices and unknowns. We distinguish memberships, joining fees, consultations, concessions, introductory offers and individual sessions. A venue-wide starting price is not automatically a treatment price. Unknown durations, inclusions and prices remain unconfirmed rather than being estimated. Always check the selected booking and cancellation terms with the operator.",
+  "Commercial independence. Directory eligibility and researched shortlist inclusion are not purchased. Any future paid placement will be visibly labelled Sponsored; affiliate links will be disclosed near the relevant link. Payment will not establish a quality ranking or medical endorsement. Operator performance reporting must distinguish referral clicks from confirmed bookings.",
+  "Corrections. When an operator source changes or a discrepancy is found, we recheck the relevant listing, update the affected facts and their check date, and remove unsupported service claims. We keep the directory snapshot and its change history under version control. We do not update check dates simply because a page was rebuilt.",
+  "Health information. These pages help compare providers and booking details. They do not diagnose, prescribe or establish individual suitability. We avoid unsupported health promises and distinguish availability of a service from evidence that it delivers a claimed benefit. Clinical decisions belong with an appropriately qualified professional.",
+  "Ratings and images. We do not display unattributed review scores as endorsements. Images represent the identified venue only; where a usable venue image is unavailable, the listing uses a compact text layout instead of a substitute photograph.",
 ];
 
 export default function EditorialStandardsPage() {

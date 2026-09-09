@@ -1,3 +1,4 @@
+import { sessionDuration } from "@/lib/venue-facts";
 import type { ServiceDirectoryFacility } from "@/components/ServiceDirectory";
 import type { AirtableFacility } from "@/lib/airtable";
 import { canonicaliseServiceList } from "@/lib/taxonomy";
@@ -36,7 +37,7 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     neighbourhood: facility.neighbourhood,
     areaOfLondon: facility.areaOfLondon,
     areaGroup: facility.areaGroup,
-    services: canonicaliseServiceList(facility.servicesOffered),
+    services: canonicaliseServiceList([...(facility.confirmedDiagnostics || []), ...facility.servicesOffered]),
     serviceKeys: facility.serviceKeys,
     priceRange: facility.overallPriceRange,
     rating: facility.googleRating,
@@ -44,6 +45,10 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     bestFor: facility.bestFor,
     experienceType: facility.experienceType,
     priceFrom: facility.priceFrom,
+    priceNotes: facility.priceNotes,
+    goodToKnow: facility.goodToKnow,
+    bookingLink: facility.bookingLink,
+    sessionDuration: sessionDuration(facility),
     privateOrShared: facility.privateOrShared,
     premiumLevel: facility.premiumLevel,
     nearestStation: facility.nearestStation,

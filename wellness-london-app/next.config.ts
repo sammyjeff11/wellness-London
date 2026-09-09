@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
   },
+  async headers() {
+    const queryKeys = ["q", "area", "service", "venueType", "accessType", "priceBand", "premiumLevel", "experienceType", "privateOrShared", "sort", "view", "clinicalNeed", "diagnostic", "oversight", "assessmentPrice"];
+    return [
+      { source: "/:path*", headers: [{ key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(self)" }] },
+      ...queryKeys.map((key) => ({ source: "/:path*", has: [{ type: "query" as const, key }], headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }] })),
+    ];
+  },
   async redirects() {
     return [
       {

@@ -48,8 +48,11 @@ function queryVariants(query: string) {
     const normalisedAliases = aliases.map(normaliseSearch);
     const allTerms = [normalisedCanonical, ...normalisedAliases];
 
-    if (allTerms.some((term) => term === normalisedQuery || (normalisedQuery.length >= 3 && term.includes(normalisedQuery)) || normalisedQuery.includes(term))) {
-      variants.push(...allTerms);
+    for (const term of allTerms) {
+      if (term === normalisedQuery) variants.push(...allTerms);
+      else if (` ${normalisedQuery} `.includes(` ${term} `)) {
+        variants.push(...allTerms.map((replacement) => ` ${normalisedQuery} `.replace(` ${term} `, ` ${replacement} `).trim()));
+      }
     }
   });
 
@@ -135,7 +138,7 @@ function facilitySearchFields(facility: VenueSearchFacility): SearchField[] {
 function scoreTokenAgainstField(queryToken: string, fieldTokens: string[]): number {
   if (fieldTokens.some((token) => token === queryToken)) return 1;
   if (queryToken.length >= 2 && fieldTokens.some((token) => token.startsWith(queryToken))) return 0.9;
-  if (queryToken.length >= 3 && fieldTokens.some((token) => token.includes(queryToken) || queryToken.includes(token))) return 0.74;
+  if (queryToken.length >= 3 && fieldTokens.some((token) => token.length >= 3 && token.includes(queryToken))) return 0.74;
 
   const allowedDistance = allowedFuzzyDistance(queryToken);
   if (!allowedDistance) return 0;
@@ -173,7 +176,12 @@ export function rankVenueSearch(facility: VenueSearchFacility, query: string) {
   if (!variants.length) return 0;
 
   const fields = facilitySearchFields(facility);
-  return Math.max(...variants.map((variant) => Math.max(...fields.map((field) => scoreField(field, variant)))));
+  return Math.max(0, ...variants.map((variant) => {
+    const tokens = variant.split(" ").filter((token) => token.length > 1 && !["in", "and", "the"].includes(token));
+    const allTokens = fields.flatMap((field) => normaliseSearch(field.value || "").split(" "));
+    if (!tokens.every((token) => scoreTokenAgainstField(token, allTokens) > 0)) return 0;
+    return Math.max(...fields.map((field) => scoreField(field, variant)));
+  }));
 }
 
 export function matchesVenueSearch(facility: VenueSearchFacility, query: string) {

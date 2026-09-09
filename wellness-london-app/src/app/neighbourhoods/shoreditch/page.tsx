@@ -1,3 +1,4 @@
+import { venuePrice } from "@/lib/venue-pricing";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
@@ -74,8 +75,7 @@ const faqs = [
 ];
 
 function formatPrice(facility: DirectoryFacility) {
-  if (facility.priceFrom) return facility.priceFrom;
-  return facility.priceRange || "Check current price";
+  return venuePrice(facility).label;
 }
 
 function formatAccess(facility: DirectoryFacility) {

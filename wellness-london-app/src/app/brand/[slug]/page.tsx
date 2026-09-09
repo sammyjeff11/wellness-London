@@ -1,3 +1,4 @@
+import { venuePrice } from "@/lib/venue-pricing";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -179,7 +180,7 @@ export default async function BrandPage({ params }: BrandPageProps) {
                         </div>
                         <div>
                           <p className="mb-1 text-[10px] uppercase tracking-[0.15em] text-[#8d7d67] md:hidden">Price</p>
-                          <p className="text-sm leading-6 text-[#4f473d]">{comparisonValue(facility.priceFrom || facility.priceRange)}</p>
+                          <p className="text-sm leading-6 text-[#4f473d]">{venuePrice(facility).label}</p>
                         </div>
                         <Link href={`/facility/${facility.slug}`} className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d] transition hover:bg-[#29241d] hover:text-[#fbf8f1]">
                           View venue
