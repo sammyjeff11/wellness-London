@@ -8,93 +8,196 @@ export type ServicePageContent = {
 
 export const saunaContent: ServicePageContent = {
   editorialIntro: [
-    "London’s sauna scene now stretches well beyond the traditional spa. You can find design-led infrared rooms, communal Finnish-style heat sessions, private recovery cabins and modern contrast therapy studios that pair heat with cold immersion.",
-    "The right choice depends less on the word sauna and more on the ritual you want. Some spaces are built for quiet nervous-system reset; others are better for post-training recovery, social sessions or a more premium spa-style experience with showers, towels and recovery areas included.",
-    "Use this guide to compare sauna spaces by atmosphere, access, price, location and whether they offer supporting recovery services such as cold plunge, compression, red light or guided contrast therapy."
+    "Compare London sauna bookings by heating method, private or shared access, session length and price.",
+    "Check whether the advertised price includes showers, towels and cold-water facilities. A club or spa listing may require membership or a specific treatment package.",
   ],
   internalLinks: [
-    { href: "/cold-plunge-london", label: "Cold plunge", text: "Pair heat with cold exposure for a fuller contrast therapy routine." },
-    { href: "/cryotherapy-london", label: "Cryotherapy", text: "Compare sauna with shorter cold-therapy treatments used by recovery studios." }
+    {
+      href: "/cold-plunge-london",
+      label: "Cold plunge",
+      text: "Compare cold-water facilities and bookings.",
+    },
+    {
+      href: "/infrared-sauna-london",
+      label: "Infrared sauna",
+      text: "Compare infrared cabin bookings.",
+    },
   ],
   guidancePoints: [
-    { title: "Sauna type", text: "Infrared tends to feel gentler and more private; Finnish or traditional heat usually feels hotter, more social and more ritual-led." },
-    { title: "Private or shared", text: "Private rooms suit quiet recovery and couples; shared studios can be better for energy, community and guided sessions." },
-    { title: "Recovery setup", text: "Look for showers, towel provision, cooling space and whether cold plunge or other recovery services are available on-site." },
-    { title: "Price and rhythm", text: "Single sessions are useful for trying a space, but memberships or packs matter if sauna becomes part of a weekly routine." }
+    {
+      title: "Heating method",
+      text: "Ask whether the room uses traditional or infrared heating. Check its operating temperature and session duration.",
+    },
+    {
+      title: "Room occupancy",
+      text: "Confirm whether you have exclusive use or share with other visitors, and how many people a ticket covers.",
+    },
+    {
+      title: "Inclusions",
+      text: "Check towels, showers, changing time and whether cold-water facilities cost extra.",
+    },
   ],
   insightPanels: [
-    { title: "What a good sauna space should make clear", text: "Before booking, check session length, heat type, whether the sauna is private or shared, what is included, how busy the space feels, and whether there is somewhere calm to cool down afterwards." },
-    { title: "Best for beginners", text: "Beginners usually benefit from shorter sessions, clear staff guidance, easy access to water and showers, and a venue that does not feel intimidating or overly performance-led." },
-    { title: "Typical London pricing", text: "Expect pricing to vary significantly. Budget or gym-based access can be much cheaper, while private infrared cabins, luxury clubs and contrast therapy studios usually command a premium." }
+    {
+      title: "Access",
+      text: "A listed sauna can be available through public sessions, private hire, membership or a spa package. Check the route for this venue.",
+    },
+    {
+      title: "First appointment",
+      text: "Ask what briefing and screening are provided, whether staff are available and what the operator requires you to bring.",
+    },
   ],
   faqs: [
-    { question: "What are the best saunas in London?", answer: "The best sauna depends on what you want from the session. For quiet recovery, look for private infrared or boutique wellness studios. For a more social ritual, consider traditional or communal sauna spaces. For recovery, prioritise venues that also offer cold plunge, showers and calm post-session areas." },
-    { question: "Is infrared sauna better than a traditional sauna?", answer: "Neither is universally better. Infrared saunas often feel gentler and are popular in private wellness studios, while traditional saunas create a hotter, more intense heat experience. The better option depends on comfort, budget, location and the kind of recovery ritual you prefer." },
-    { question: "How much does a sauna session cost in London?", answer: "Prices vary by format. Gym access may be relatively affordable, while private infrared cabins, luxury wellness clubs and contrast therapy studios are typically more expensive. Always check whether towels, showers, plunge access or extra facilities are included." },
-    { question: "Can I combine sauna with cold plunge in London?", answer: "Yes. Many London recovery studios now offer contrast therapy, where sauna heat is alternated with cold plunge or ice bath exposure. This can be a more complete recovery experience than sauna alone, provided the session is well guided and sensibly paced." },
-    { question: "What should I look for before booking a sauna?", answer: "Check the sauna type, session length, access model, cleanliness, changing facilities, shower availability, location, price and whether the venue suits your preferred atmosphere — quiet, social, premium, athletic or beginner-friendly." },
-    { question: "Are London saunas beginner-friendly?", answer: "Many are, but the experience varies. If you are new to sauna, choose a venue with clear instructions, shorter session options, accessible staff and easy cooling facilities. Avoid pushing session length or heat intensity too quickly." }
-  ]
+    {
+      question: "How should I compare saunas in London?",
+      answer:
+        "Compare the heating method, room occupancy, exact branch, booking duration and included facilities.",
+    },
+    {
+      question: "Does infrared mean private or quiet?",
+      answer:
+        "No. The heating method does not establish room occupancy or noise level. Check the particular session listing.",
+    },
+    {
+      question: "How much does a sauna booking cost?",
+      answer:
+        "Use the published price and its basis on each profile. Introductory offers, concessions, memberships and individual sessions are different purchases.",
+    },
+    {
+      question: "Is cold plunge included?",
+      answer:
+        "Only when the selected booking says so. A venue offering both services does not mean every ticket includes both.",
+    },
+  ],
 };
 
 export const coldPlungeContent: ServicePageContent = {
   editorialIntro: [
-    "Cold plunge has moved from a niche recovery habit into one of London’s fastest-growing wellness treatments. Across the city, ice baths and cold tubs now appear in boutique recovery studios, luxury wellness clubs, gyms and contrast therapy spaces.",
-    "The best cold plunge experience is not just about how cold the water is. Clean facilities, calm guidance, sensible session structure, showers, towels and somewhere to regulate afterwards all matter — especially for beginners.",
-    "Use this guide to compare London cold plunge and ice bath spaces by atmosphere, support, price, access and whether they can be combined with sauna for a complete contrast therapy ritual."
+    "Compare London ice-bath and cold-plunge bookings by water facilities, guidance, session format and price.",
+    "Check whether you are booking cold-water access alone or a sauna-and-plunge session. Club facilities may require membership.",
   ],
   internalLinks: [
-    { href: "/sauna-london", label: "Saunas", text: "Explore heat-led spaces that often pair naturally with cold immersion." },
-    { href: "/cryotherapy-london", label: "Cryotherapy", text: "Compare cold plunge with shorter cold-therapy treatments across London." }
+    {
+      href: "/sauna-london",
+      label: "Sauna",
+      text: "Compare sauna bookings and facilities.",
+    },
+    {
+      href: "/contrast-therapy-london",
+      label: "Sauna and cold plunge",
+      text: "Find venues listing both heat and cold facilities.",
+    },
   ],
   guidancePoints: [
-    { title: "Guided or self-led", text: "Beginners may prefer guided sessions, while experienced users may value flexible self-led access." },
-    { title: "Water and facilities", text: "Clean plunge tubs, showers, towel provision and recovery space make a big difference to the overall experience." },
-    { title: "Contrast therapy", text: "If you want sauna and plunge together, choose a venue designed for alternating heat and cold rather than a standalone ice bath." },
-    { title: "Repeatability", text: "The best option is often the one you can realistically revisit, based on location, price and session format." }
+    {
+      title: "Water and maintenance",
+      text: "Ask about water temperature, filtration or water changes, cleaning and shower requirements.",
+    },
+    {
+      title: "Staff guidance",
+      text: "Confirm whether the booking is a led class or self-directed access and what screening is required.",
+    },
+    {
+      title: "Facilities",
+      text: "Check changing rooms, towels, showers and what you need to bring.",
+    },
   ],
   insightPanels: [
-    { title: "What makes a cold plunge studio worth choosing", text: "Look for clean water management, clear timing guidance, non-intimidating staff, simple changing facilities and a space that helps you warm up and regulate afterwards." },
-    { title: "Best for first-timers", text: "Choose a venue that offers instruction, allows short exposure times and does not frame cold immersion as a toughness test. A calm environment matters." },
-    { title: "Typical London pricing", text: "Pricing varies from lower-cost gym or group access through to premium private recovery studios. Contrast therapy sessions usually cost more than standalone plunge access." }
+    {
+      title: "Time and access",
+      text: "Confirm the total booking duration and any separate limits on use of the plunge.",
+    },
+    {
+      title: "Price basis",
+      text: "Compare the same booking type. A group class, private session and membership are different purchases.",
+    },
   ],
   faqs: [
-    { question: "Where can I do cold plunge in London?", answer: "You can find cold plunge and ice bath sessions in specialist recovery studios, contrast therapy spaces, some gyms and luxury wellness clubs. The best option depends on whether you want guided support, private access, sauna pairing or a more social recovery environment." },
-    { question: "Is cold plunge good for beginners?", answer: "Cold plunge can be beginner-friendly when the environment is well managed. Start with short exposure, choose a venue with clear guidance, and avoid treating the session as an endurance challenge. People with medical concerns should seek professional advice before cold exposure." },
-    { question: "What is the difference between cold plunge and cryotherapy?", answer: "Cold plunge usually involves immersion in cold water, often for a few minutes. Cryotherapy usually involves brief exposure to very cold air in a chamber or targeted treatment. The experience, sensation and setting are different, even though both sit within cold-therapy routines." },
-    { question: "Can I combine cold plunge with sauna?", answer: "Yes. Many London venues offer contrast therapy, combining sauna and cold plunge in alternating rounds. If that is your goal, look for a venue specifically designed for heat-to-cold transitions, with showers and a calm recovery area." },
-    { question: "How much does cold plunge cost in London?", answer: "Costs vary depending on whether it is standalone access, a guided session, part of a gym membership or a premium contrast therapy experience. Compare what is included, not just the headline session price." },
-    { question: "What should I bring to a cold plunge session?", answer: "Check the venue instructions first. Many studios provide towels and showers, but you may need swimwear, sliders or a change of clothes. For first sessions, prioritise comfort and simple logistics." }
-  ]
+    {
+      question: "How is cold plunge different from cryotherapy?",
+      answer:
+        "Cold plunge involves water immersion. A cryotherapy listing can refer to a cold-air chamber or a localised treatment; check the exact service.",
+    },
+    {
+      question: "Can I book sauna and cold plunge together?",
+      answer:
+        "Some listed venues offer combined bookings. Confirm that both facilities are included in the selected ticket.",
+    },
+    {
+      question: "What should I bring?",
+      answer:
+        "Read the operator’s instructions for swimwear, footwear and towels. Do not assume towels or changing facilities are included.",
+    },
+    {
+      question: "What should I check before my first booking?",
+      answer:
+        "Ask about screening, briefing, staff availability and the session rules. A beginner label does not establish individual suitability.",
+    },
+  ],
 };
 
 export const cryotherapyContent: ServicePageContent = {
   editorialIntro: [
-    "Cryotherapy in London ranges from specialist cold-therapy studios to wider recovery clubs offering whole-body chambers, localised treatments and complementary services such as compression, infrared sauna or sports recovery support.",
-    "Unlike cold plunge, cryotherapy is usually shorter and more controlled, often using very cold air rather than water immersion. For users, the quality of staff guidance, safety briefing, treatment type and wider recovery setup matter more than novelty alone.",
-    "Use this guide to compare cryotherapy studios by treatment format, atmosphere, location, pricing, beginner support and whether the venue offers a broader recovery routine beyond the chamber itself."
+    "Compare London cryotherapy bookings by whole-body or localised treatment, appointment duration, supervision and price.",
+    "Check the exact treatment on the booking page. A venue offering several services may quote a starting price for a different appointment.",
   ],
   internalLinks: [
-    { href: "/cold-plunge-london", label: "Cold plunge", text: "Compare cryotherapy with water-based cold exposure and ice bath sessions." },
-    { href: "/sauna-london", label: "Saunas", text: "Explore heat-led recovery spaces that can complement cold therapy." }
+    {
+      href: "/cold-plunge-london",
+      label: "Cold plunge",
+      text: "Compare cold-water immersion bookings.",
+    },
+    {
+      href: "/recovery-london",
+      label: "Recovery venues",
+      text: "See which other services are listed at London studios.",
+    },
   ],
   guidancePoints: [
-    { title: "Treatment type", text: "Check whether the venue offers whole-body cryotherapy, localised cryotherapy or both." },
-    { title: "Staff guidance", text: "Good onboarding, contraindication checks and calm instructions are especially important for first-time users." },
-    { title: "Wider recovery", text: "Some studios are cryotherapy specialists; others combine it with compression, sauna, cold plunge or recovery treatments." },
-    { title: "Convenience", text: "Because sessions are short, location, booking ease and opening hours can matter as much as the treatment itself." }
+    {
+      title: "Treatment type",
+      text: "Confirm whether the appointment is whole-body, localised or facial cryotherapy.",
+    },
+    {
+      title: "Supervision",
+      text: "Ask who supervises the session, what screening is required and what protective clothing is provided.",
+    },
+    {
+      title: "Price and duration",
+      text: "Check exposure time, total appointment length and whether the price is for one session or a package.",
+    },
   ],
   insightPanels: [
-    { title: "What a credible cryotherapy studio should make clear", text: "Look for clear treatment descriptions, session duration, preparation guidance, contraindications, staff supervision and transparent pricing before you book." },
-    { title: "Best for first-timers", text: "First-time users should prioritise calm staff, clear safety checks and a studio that explains what to expect before, during and after the session." },
-    { title: "Typical London pricing", text: "Cryotherapy pricing varies by treatment type, package and studio positioning. Whole-body sessions, bundles and premium recovery clubs are usually priced differently from localised treatments." }
+    {
+      title: "Claims",
+      text: "A booking page can establish what is offered. It does not independently establish that the treatment produces an advertised health outcome.",
+    },
+    {
+      title: "Other services",
+      text: "Check which add-ons are separate purchases and whether they require their own assessment or booking.",
+    },
   ],
   faqs: [
-    { question: "Where can I find cryotherapy in London?", answer: "London has specialist cryotherapy studios, recovery clubs and premium wellness spaces offering whole-body or localised cryotherapy. The right venue depends on treatment type, staff guidance, location and whether you want other recovery services on-site." },
-    { question: "What is cryotherapy used for?", answer: "People commonly use cryotherapy as part of recovery, performance or general wellness routines. Claims and individual responses vary, so it is best treated as one component of a wider routine rather than a standalone solution." },
-    { question: "What is the difference between whole-body and localised cryotherapy?", answer: "Whole-body cryotherapy exposes the body to very cold air for a short period. Localised cryotherapy targets a specific area. The right option depends on why you are booking and what the studio is equipped to provide." },
-    { question: "Is cryotherapy suitable for beginners?", answer: "Many studios accommodate beginners, but the quality of onboarding matters. Look for clear safety guidance, contraindication checks and staff who explain the process calmly. Seek medical advice if you have relevant health concerns." },
-    { question: "How much does cryotherapy cost in London?", answer: "Pricing depends on the treatment type, venue and whether you buy a single session, package or membership. Compare what is included and whether the studio offers proper guidance rather than choosing purely on price." },
-    { question: "Can cryotherapy be combined with other recovery treatments?", answer: "Yes. Some London recovery spaces combine cryotherapy with compression, sauna, cold plunge, red light or sports recovery services. These broader studios can be useful if you want a more complete recovery routine." }
-  ]
+    {
+      question: "Where can I book cryotherapy in London?",
+      answer:
+        "Use the listed providers below and check the branch, treatment type and current booking page.",
+    },
+    {
+      question:
+        "What is the difference between whole-body and localised cryotherapy?",
+      answer:
+        "Whole-body and localised bookings target different areas and may use different equipment. Ask the provider to explain the treatment offered.",
+    },
+    {
+      question: "Does a listing establish a health benefit?",
+      answer:
+        "No. Well+ lists published services and practical details. Ask the provider for evidence for a specific treatment claim and for an assessment of suitability.",
+    },
+    {
+      question: "How do I compare prices?",
+      answer:
+        "Compare the same treatment type and check whether a consultation, introductory condition or course commitment applies.",
+    },
+  ],
 };

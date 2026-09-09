@@ -1,8 +1,17 @@
+import { reviewedVenueDescription } from "@/lib/reviewed-venue-copy";
 import { cache } from "react";
 import directorySnapshot from "@/data/generated/directory-snapshot.json";
 import { safeImageUrl } from "@/lib/image-utils";
-import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "@/lib/facility-formatting";
-import { canonicaliseServiceList, canonicalServiceSlug, type ServiceSlug } from "@/lib/taxonomy";
+import {
+  extractUkPostcode,
+  formatPriceFrom,
+  normaliseAccessType,
+} from "@/lib/facility-formatting";
+import {
+  canonicaliseServiceList,
+  canonicalServiceSlug,
+  type ServiceSlug,
+} from "@/lib/taxonomy";
 import { cleanPublicEditorialText } from "@/lib/useful-values";
 
 export type AirtableImage = {
@@ -103,7 +112,14 @@ type AirtableSelectValue = {
   name?: string;
 };
 
-type AirtableFieldValue = string | number | boolean | AirtableSelectValue | (string | number | boolean | AirtableSelectValue)[] | null | undefined;
+type AirtableFieldValue =
+  | string
+  | number
+  | boolean
+  | AirtableSelectValue
+  | (string | number | boolean | AirtableSelectValue)[]
+  | null
+  | undefined;
 
 export type AirtableRecord = {
   id: string;
@@ -214,7 +230,9 @@ export type AirtableRecord = {
   };
 };
 
-function normaliseFieldItem(value: Exclude<AirtableFieldValue, null | undefined | unknown[]>): string {
+function normaliseFieldItem(
+  value: Exclude<AirtableFieldValue, null | undefined | unknown[]>,
+): string {
   if (value === false) return "";
   if (typeof value === "object") return value.name || "";
   return String(value);
@@ -238,7 +256,10 @@ function normaliseSingle(value: AirtableFieldValue): string {
   return normaliseList(value).join(", ");
 }
 
-function normaliseBooleanLabel(value: AirtableFieldValue, fallback = "Unknown"): string {
+function normaliseBooleanLabel(
+  value: AirtableFieldValue,
+  fallback = "Unknown",
+): string {
   if (value === true) return "Yes";
   if (value === false) return "No";
   const text = normaliseSingle(value);
@@ -246,10 +267,15 @@ function normaliseBooleanLabel(value: AirtableFieldValue, fallback = "Unknown"):
 }
 
 function firstDefined<T>(...values: (T | undefined)[]): T | undefined {
-  return values.find((value) => value !== undefined && value !== "") as T | undefined;
+  return values.find((value) => value !== undefined && value !== "") as
+    | T
+    | undefined;
 }
 
-function formatGoogleRating(ratingValue: AirtableFieldValue, reviewCountValue: AirtableFieldValue): string {
+function formatGoogleRating(
+  ratingValue: AirtableFieldValue,
+  reviewCountValue: AirtableFieldValue,
+): string {
   const ratingText = normaliseSingle(ratingValue);
   const reviewCountText = normaliseSingle(reviewCountValue).replace(/,/g, "");
   const ratingMatch = ratingText.match(/\d+(?:\.\d+)?/);
@@ -261,7 +287,9 @@ function formatGoogleRating(ratingValue: AirtableFieldValue, reviewCountValue: A
 
   if (reviewCountMatch) {
     const count = Number(reviewCountMatch[0]);
-    const formattedCount = Number.isFinite(count) ? count.toLocaleString("en-GB") : reviewCountMatch[0];
+    const formattedCount = Number.isFinite(count)
+      ? count.toLocaleString("en-GB")
+      : reviewCountMatch[0];
     return `${rating}/5 (${formattedCount} reviews)`;
   }
 
@@ -298,7 +326,9 @@ function uniqueStrings(values: string[]) {
   }, []);
 }
 
-function normaliseImages(value: AirtableAttachment[] | undefined): AirtableImage[] {
+function normaliseImages(
+  value: AirtableAttachment[] | undefined,
+): AirtableImage[] {
   if (!value) return [];
 
   return value.reduce<AirtableImage[]>((images, image) => {
@@ -333,12 +363,20 @@ function normaliseServiceKeys(services: string[]): ServiceKey[] {
 
   services.forEach((service) => {
     const taxonomySlug = canonicalServiceSlug(service);
-    if (taxonomySlug) serviceKeyAliases[taxonomySlug]?.forEach((key) => keys.add(key));
+    if (taxonomySlug)
+      serviceKeyAliases[taxonomySlug]?.forEach((key) => keys.add(key));
 
     const value = service.toLowerCase();
-    if (value.includes("recovery") || value.includes("compression") || value.includes("physiotherapy") || value.includes("stretch")) keys.add("recovery");
+    if (
+      value.includes("recovery") ||
+      value.includes("compression") ||
+      value.includes("physiotherapy") ||
+      value.includes("stretch")
+    )
+      keys.add("recovery");
     if (value.includes("yoga")) keys.add("yoga");
-    if (value.includes("meditation") || value.includes("sound bath")) keys.add("meditation");
+    if (value.includes("meditation") || value.includes("sound bath"))
+      keys.add("meditation");
   });
 
   return Array.from(keys);
@@ -350,14 +388,22 @@ function hasStableSlug(record: AirtableRecord): boolean {
 
 function isPublishedIndexableRecord(record: AirtableRecord): boolean {
   const publishStatus = normaliseSingle(record.fields["Publish Status"]);
-  return publishStatus === "Published" && record.fields.Indexable === true && hasStableSlug(record);
+  return (
+    publishStatus === "Published" &&
+    record.fields.Indexable === true &&
+    hasStableSlug(record)
+  );
 }
 
 function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
   const name = record.fields.Name || "Unnamed wellness space";
   const servicesOfferedRaw = normaliseList(record.fields["Services Offered"]);
-  const activityTagsStandardized = normaliseList(record.fields["Activity Tags Standardized"]);
-  const activityDisplayLabels = normaliseList(record.fields["Activity Display Labels"]);
+  const activityTagsStandardized = normaliseList(
+    record.fields["Activity Tags Standardized"],
+  );
+  const activityDisplayLabels = normaliseList(
+    record.fields["Activity Display Labels"],
+  );
   const primaryService = normaliseSingle(record.fields["Primary Service"]);
   const secondaryServices = normaliseList(record.fields["Secondary Services"]);
   const serviceNames = uniqueStrings([
@@ -368,22 +414,57 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     primaryService,
     ...secondaryServices,
   ]);
-  const servicesOffered = canonicaliseServiceList(uniqueStrings([
+  const servicesOffered = canonicaliseServiceList(
+    uniqueStrings([
+      primaryService,
+      ...secondaryServices,
+      ...activityDisplayLabels,
+      ...activityTagsStandardized,
+      ...servicesOfferedRaw,
+      ...normaliseList(record.fields.Services),
+    ]),
+  );
+  const serviceKeySource = [
     primaryService,
     ...secondaryServices,
-    ...activityDisplayLabels,
     ...activityTagsStandardized,
-    ...servicesOfferedRaw,
-    ...normaliseList(record.fields.Services),
-  ]));
-  const serviceKeySource = [primaryService, ...secondaryServices, ...activityTagsStandardized, ...activityDisplayLabels, ...servicesOffered];
-  const neighbourhood = normaliseSingle(firstDefined(record.fields.Neighbourhood, record.fields.Neighborhood, record.fields["Neighbourhood / Area"], record.fields["Neighbourhood/Area"], record.fields["Neighborhood / Area"], record.fields.Location));
+    ...activityDisplayLabels,
+    ...servicesOffered,
+  ];
+  const neighbourhood = normaliseSingle(
+    firstDefined(
+      record.fields.Neighbourhood,
+      record.fields.Neighborhood,
+      record.fields["Neighbourhood / Area"],
+      record.fields["Neighbourhood/Area"],
+      record.fields["Neighborhood / Area"],
+      record.fields.Location,
+    ),
+  );
   const areaOfLondon = normaliseSingle(record.fields["Area of London"]);
   const stableSlug = createSlug(record.fields.Slug || "", record.id);
-  const experienceType = normaliseList(firstDefined(record.fields["Experience Type"], record.fields.experience_type, record.fields["Type of Experience"]));
-  const bestForStandardized = normaliseList(record.fields["Best For Standardized"]);
-  const bestFor = normaliseList(firstDefined(record.fields["Best For Standardized"], record.fields["Best For"], record.fields.best_for, record.fields["Type of Experience"]));
-  const priceFromValue = firstDefined(record.fields["Price From"], record.fields.price_from);
+  const experienceType = normaliseList(
+    firstDefined(
+      record.fields["Experience Type"],
+      record.fields.experience_type,
+      record.fields["Type of Experience"],
+    ),
+  );
+  const bestForStandardized = normaliseList(
+    record.fields["Best For Standardized"],
+  );
+  const bestFor = normaliseList(
+    firstDefined(
+      record.fields["Best For Standardized"],
+      record.fields["Best For"],
+      record.fields.best_for,
+      record.fields["Type of Experience"],
+    ),
+  );
+  const priceFromValue = firstDefined(
+    record.fields["Price From"],
+    record.fields.price_from,
+  );
   const overallPriceRange = record.fields["Overall Price Range"] || "";
   const publishStatus = normaliseSingle(record.fields["Publish Status"]);
 
@@ -397,8 +478,14 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     address: record.fields.Address || "",
     phone: record.fields.Phone || "",
     email: record.fields.Email || "",
-    description: record.fields.Description || "",
-    images: normaliseImages([...(record.fields["Cover Image"] || []), ...(record.fields.Images || [])]),
+    description: reviewedVenueDescription(
+      record.fields.Slug?.trim() || "",
+      record.fields.Description || "",
+    ),
+    images: normaliseImages([
+      ...(record.fields["Cover Image"] || []),
+      ...(record.fields.Images || []),
+    ]),
     servicesOffered,
     confirmedDiagnostics: normaliseList(record.fields["Confirmed Diagnostics"]),
     sessionDuration: normaliseSingle(record.fields["Session Duration"]),
@@ -409,14 +496,23 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     activityCategories: normaliseList(record.fields["Activity Category"]),
     activityTagsStandardized,
     activityDisplayLabels,
-    venueTypeStandardized: normaliseSingle(record.fields["Venue Type Standardized"]),
-    themeTagsStandardized: normaliseList(record.fields["Theme Tags Standardized"]),
+    venueTypeStandardized: normaliseSingle(
+      record.fields["Venue Type Standardized"],
+    ),
+    themeTagsStandardized: normaliseList(
+      record.fields["Theme Tags Standardized"],
+    ),
     primaryPillar: normaliseSingle(record.fields["Primary Pillar"]),
     bestForStandardized,
     typeOfExperience: normaliseList(record.fields["Type of Experience"]),
-    accessType: normaliseAccessType(normaliseSingle(record.fields["Access Type"])),
+    accessType: normaliseAccessType(
+      normaliseSingle(record.fields["Access Type"]),
+    ),
     overallPriceRange,
-    googleRating: formatGoogleRating(record.fields["Google Rating"], record.fields["Google Review Count"]),
+    googleRating: formatGoogleRating(
+      record.fields["Google Rating"],
+      record.fields["Google Review Count"],
+    ),
     bookingLink: record.fields["Booking Link"] || "",
     openingHours: record.fields["Opening Hours"] || "",
     editorialSummary: record.fields["Editorial Summary"] || "",
@@ -425,40 +521,158 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     areaOfLondon,
     instagramLink: record.fields["Instagram Link"] || "",
     bestFor,
-    editorialVerdict: firstDefined(record.fields["Editorial Verdict"], record.fields.editorial_verdict) || "",
+    editorialVerdict:
+      firstDefined(
+        record.fields["Editorial Verdict"],
+        record.fields.editorial_verdict,
+      ) || "",
     experienceType,
-    ambience: normaliseSingle(firstDefined(record.fields.Ambience, record.fields.ambience)),
-    beginnerFriendly: normaliseBooleanLabel(firstDefined(record.fields["Beginner Friendly"], record.fields.beginner_friendly)),
-    premiumLevel: normaliseSingle(firstDefined(record.fields["Premium Level"], record.fields.premium_level, overallPriceRange)) || "Details not yet confirmed",
-    saunaType: normaliseList(firstDefined(record.fields["Sauna Type"], record.fields.sauna_type)),
-    coldPlungeType: normaliseSingle(firstDefined(record.fields["Cold Plunge Type"], record.fields.cold_plunge_type)) || "Unknown",
-    cryoType: normaliseSingle(firstDefined(record.fields["Cryo Type"], record.fields.cryo_type)) || "Unknown",
-    contrastTherapyAvailable: normaliseBooleanLabel(firstDefined(record.fields["Contrast Therapy Available"], record.fields.contrast_therapy_available)),
-    guidedSessionsAvailable: normaliseBooleanLabel(firstDefined(record.fields["Guided Sessions Available"], record.fields.guided_sessions_available)),
+    ambience: normaliseSingle(
+      firstDefined(record.fields.Ambience, record.fields.ambience),
+    ),
+    beginnerFriendly: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Beginner Friendly"],
+        record.fields.beginner_friendly,
+      ),
+    ),
+    premiumLevel:
+      normaliseSingle(
+        firstDefined(
+          record.fields["Premium Level"],
+          record.fields.premium_level,
+          overallPriceRange,
+        ),
+      ) || "Details not yet confirmed",
+    saunaType: normaliseList(
+      firstDefined(record.fields["Sauna Type"], record.fields.sauna_type),
+    ),
+    coldPlungeType:
+      normaliseSingle(
+        firstDefined(
+          record.fields["Cold Plunge Type"],
+          record.fields.cold_plunge_type,
+        ),
+      ) || "Unknown",
+    cryoType:
+      normaliseSingle(
+        firstDefined(record.fields["Cryo Type"], record.fields.cryo_type),
+      ) || "Unknown",
+    contrastTherapyAvailable: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Contrast Therapy Available"],
+        record.fields.contrast_therapy_available,
+      ),
+    ),
+    guidedSessionsAvailable: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Guided Sessions Available"],
+        record.fields.guided_sessions_available,
+      ),
+    ),
     priceFrom: formatPriceFrom(normaliseSingle(priceFromValue)),
-    priceNotes: firstDefined(record.fields["Price Notes"], record.fields.price_notes) || "",
-    bookingRequired: normaliseSingle(firstDefined(record.fields["Booking Required"], record.fields.booking_required)) || "Booking details unclear",
-    privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared)) || normaliseList(record.fields["Social Format"]).filter((value) => /shared|private/i.test(value)).join(" · ") || "Private/shared not confirmed",
-    towelsIncluded: normaliseBooleanLabel(firstDefined(record.fields["Towels Included"], record.fields.towels_included), "Details not yet confirmed"),
-    showersAvailable: normaliseBooleanLabel(firstDefined(record.fields["Showers Available"], record.fields.showers_available), "Details not yet confirmed"),
-    changingRooms: normaliseBooleanLabel(firstDefined(record.fields["Changing Rooms"], record.fields.changing_rooms), "Details not yet confirmed"),
-    relaxationArea: normaliseBooleanLabel(firstDefined(record.fields["Relaxation Area"], record.fields.relaxation_area), "Details not yet confirmed"),
-    nearestStation: firstDefined(record.fields["Nearest Station"], record.fields.nearest_station) || "",
-    postcode: firstDefined(record.fields.Postcode, record.fields.postcode) || extractUkPostcode(record.fields.Address || ""),
+    priceNotes:
+      firstDefined(record.fields["Price Notes"], record.fields.price_notes) ||
+      "",
+    bookingRequired:
+      normaliseSingle(
+        firstDefined(
+          record.fields["Booking Required"],
+          record.fields.booking_required,
+        ),
+      ) || "Booking details unclear",
+    privateOrShared:
+      normaliseSingle(
+        firstDefined(
+          record.fields["Private or Shared"],
+          record.fields.private_or_shared,
+        ),
+      ) ||
+      normaliseList(record.fields["Social Format"])
+        .filter((value) => /shared|private/i.test(value))
+        .join(" · ") ||
+      "Private/shared not confirmed",
+    towelsIncluded: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Towels Included"],
+        record.fields.towels_included,
+      ),
+      "Details not yet confirmed",
+    ),
+    showersAvailable: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Showers Available"],
+        record.fields.showers_available,
+      ),
+      "Details not yet confirmed",
+    ),
+    changingRooms: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Changing Rooms"],
+        record.fields.changing_rooms,
+      ),
+      "Details not yet confirmed",
+    ),
+    relaxationArea: normaliseBooleanLabel(
+      firstDefined(
+        record.fields["Relaxation Area"],
+        record.fields.relaxation_area,
+      ),
+      "Details not yet confirmed",
+    ),
+    nearestStation:
+      firstDefined(
+        record.fields["Nearest Station"],
+        record.fields.nearest_station,
+      ) || "",
+    postcode:
+      firstDefined(record.fields.Postcode, record.fields.postcode) ||
+      extractUkPostcode(record.fields.Address || ""),
     borough: firstDefined(record.fields.Borough, record.fields.borough) || "",
-    areaGroup: normaliseSingle(firstDefined(record.fields["Area Group"], record.fields.area_group, record.fields["Area of London"])),
-    lastCheckedDate: firstDefined(record.fields["Last Checked"], record.fields["Last Checked Date"], record.fields.last_checked_date) || "",
-    verificationStatus: normaliseSingle(firstDefined(record.fields["Verification Status"], record.fields.verification_status)) || "Unverified listing",
-    dataSource: normaliseSingle(firstDefined(record.fields["Data Source"], record.fields.data_source)) || "Public sources",
-    profileCompletenessScore: firstDefined(record.fields["Profile Completeness Score"], record.fields.profile_completeness_score) || 0,
-    isFeatured: Boolean(firstDefined(record.fields.Featured, record.fields["Is Featured"], record.fields.is_featured)),
+    areaGroup: normaliseSingle(
+      firstDefined(
+        record.fields["Area Group"],
+        record.fields.area_group,
+        record.fields["Area of London"],
+      ),
+    ),
+    lastCheckedDate:
+      firstDefined(
+        record.fields["Last Checked"],
+        record.fields["Last Checked Date"],
+        record.fields.last_checked_date,
+      ) || "",
+    verificationStatus:
+      normaliseSingle(
+        firstDefined(
+          record.fields["Verification Status"],
+          record.fields.verification_status,
+        ),
+      ) || "Unverified listing",
+    dataSource:
+      normaliseSingle(
+        firstDefined(record.fields["Data Source"], record.fields.data_source),
+      ) || "Public sources",
+    profileCompletenessScore:
+      firstDefined(
+        record.fields["Profile Completeness Score"],
+        record.fields.profile_completeness_score,
+      ) || 0,
+    isFeatured: Boolean(
+      firstDefined(
+        record.fields.Featured,
+        record.fields["Is Featured"],
+        record.fields.is_featured,
+      ),
+    ),
     publishStatus,
     indexable: record.fields.Indexable === true,
     noindexReason: normaliseSingle(record.fields["Noindex Reason"]),
   };
 }
 
-const snapshotRecords = directorySnapshot.records as unknown as AirtableRecord[];
+const snapshotRecords =
+  directorySnapshot.records as unknown as AirtableRecord[];
 
 export function getDirectorySnapshotRecords() {
   return snapshotRecords;
@@ -470,7 +684,9 @@ async function loadPublishedFacilities(): Promise<AirtableFacility[]> {
     .map(mapRecordToFacility);
 
   if (facilities.length === 0) {
-    throw new Error("The published directory snapshot is empty. Refusing to render venue pages.");
+    throw new Error(
+      "The published directory snapshot is empty. Refusing to render venue pages.",
+    );
   }
 
   return facilities;

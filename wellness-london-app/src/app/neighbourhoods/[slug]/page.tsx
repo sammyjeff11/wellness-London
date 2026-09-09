@@ -445,7 +445,7 @@ export default async function NeighbourhoodPage({
           <div className="mb-7 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Know the neighbourhood</p>
             <h2 className="font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">
-              What the area feels like — and what it does best.
+              What the listed venues offer.
             </h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
@@ -459,7 +459,7 @@ export default async function NeighbourhoodPage({
             </article>
             <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
               <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
-                Atmosphere
+                Venue formats
               </p>
               <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
                 {page.character}
