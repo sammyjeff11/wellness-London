@@ -21,6 +21,17 @@ test("introductory and concession prices are labelled and not sorted against ord
   assert.match(venuePrice(concession).label, /unwaged concession/);
   assert.equal(sessionPriceBand(concession), "");
 });
-test("missing or non-numeric prices stay unknown", () => {
-  for (const priceFrom of [undefined, "£££", "Not confirmed", "0"]) assert.equal(venuePrice({ priceFrom }).label, "Price not confirmed");
+test("verified homepage venue prices keep their actual session basis", () => {
+  const bxr = venuePrice({ slug: "bxr-lab", priceFrom: "£45" });
+  assert.match(bxr.label, /£45.*introductory 45-minute LAB session/);
+  assert.equal(bxr.comparable, 45);
+  const cloudTwelve = venuePrice({ slug: "cloud-twelve", priceFrom: "£65" });
+  assert.match(cloudTwelve.label, /£65.*30-minute infrared sauna/);
+  assert.equal(cloudTwelve.comparable, 65);
+});
+test("missing or non-numeric prices stay internal rather than rendering a placeholder", () => {
+  for (const priceFrom of [undefined, "£££", "Not confirmed", "0"]) {
+    assert.equal(venuePrice({ priceFrom }).label, "");
+    assert.equal(sessionPriceBand({ priceFrom }), "");
+  }
 });

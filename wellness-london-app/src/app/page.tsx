@@ -49,22 +49,10 @@ const websiteJsonLd = {
 };
 
 const featuredPicks = [
-  {
-    slug: "arc-canary-wharf",
-    reason:
-      "Communal sauna and ice baths, with guided classes, self-directed sessions and evening socials.",
-  },
-  {
-    slug: "bxr-lab",
-    reason:
-      "Focused infrared sauna and cold-plunge appointments, bookable separately from the wider fitness club.",
-  },
-  {
-    slug: "cloud-twelve",
-    reason:
-      "A shared thermal spa alongside individual treatments; spa visits can be booked without membership.",
-  },
-];
+  "arc-canary-wharf",
+  "bxr-lab",
+  "cloud-twelve",
+] as const;
 
 export default async function Home() {
   const facilities = await getFacilities();
@@ -75,11 +63,9 @@ export default async function Home() {
     directoryFacilities,
     neighbourhoodPages,
   ).map(({ page }) => page);
-  const selectedFacilities = featuredPicks.flatMap((pick) => {
-    const facility = directoryFacilities.find(
-      (venue) => venue.slug === pick.slug,
-    );
-    return facility ? [{ facility, reason: pick.reason }] : [];
+  const selectedFacilities = featuredPicks.flatMap((slug) => {
+    const facility = directoryFacilities.find((venue) => venue.slug === slug);
+    return facility ? [facility] : [];
   });
   const heroFacility = facilities.find(
     (facility) => facility.images.length > 0,
@@ -90,8 +76,8 @@ export default async function Home() {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <JsonLd data={websiteJsonLd} />
 
-      <section className="px-5 pt-4 sm:px-6 sm:pt-6 md:pt-8">
-        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.35rem] bg-[#211d17] shadow-[0_18px_55px_rgba(41,36,29,0.1)] md:rounded-[1.75rem]">
+      <section className="px-4 pt-3 sm:px-6 sm:pt-6 md:pt-8">
+        <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[1.2rem] bg-[#211d17] shadow-[0_18px_55px_rgba(41,36,29,0.1)] sm:rounded-[1.35rem] md:rounded-[1.75rem]">
           <div className="absolute inset-0">
             {heroImage ? (
               <SafeImage
@@ -112,19 +98,18 @@ export default async function Home() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
           </div>
 
-          <div className="relative flex min-h-[34rem] items-end px-5 py-8 text-[#fbf8f1] sm:min-h-[34rem] sm:px-9 sm:py-10 md:px-12 md:py-12">
+          <div className="relative flex min-h-[28rem] items-end px-5 py-6 text-[#fbf8f1] sm:min-h-[34rem] sm:px-9 sm:py-10 md:px-12 md:py-12">
             <div className="max-w-4xl">
-              <p className="mb-4 text-xs uppercase tracking-[0.25em] text-[#fbf8f1]/66 sm:text-xs">
+              <p className="mb-3 text-[11px] uppercase tracking-[0.23em] text-[#fbf8f1]/66 sm:mb-4 sm:text-xs sm:tracking-[0.25em]">
                 Well+ / The London wellness edit
               </p>
-              <h1 className="max-w-4xl font-serif text-[3.15rem] font-normal leading-[0.9] tracking-[-0.055em] sm:text-[4.8rem] md:text-[5.25rem]">
+              <h1 className="max-w-4xl font-serif text-[2.65rem] font-normal leading-[0.94] tracking-[-0.05em] sm:text-[4.8rem] sm:leading-[0.9] sm:tracking-[-0.055em] md:text-[5.25rem]">
                 Find and compare London wellness venues.
               </h1>
-              <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#fbf8f1]/82 sm:text-lg sm:leading-8">
-                Compare saunas, cold plunges, recovery studios and
-                health-testing clinics across London. Check services, access and
-                available pricing, save your favourites, then book directly with
-                the venue.
+              <p className="mt-4 max-w-2xl text-[15px] leading-6 text-[#fbf8f1]/82 sm:mt-5 sm:text-lg sm:leading-8">
+                Compare saunas, cold plunges, recovery studios and health-testing
+                clinics across London. Check services, access and pricing, then
+                book direct with the venue.
               </p>
               <HomeVenueSearch facilities={directoryFacilities} />
             </div>
@@ -201,19 +186,15 @@ export default async function Home() {
             </div>
 
             <div className="grid gap-9 sm:grid-cols-2 md:grid-cols-3">
-              {selectedFacilities.map(({ facility, reason }) => (
-                <div key={facility.slug}>
-                  <FacilityCard
-                    facility={facility}
-                    source="homepage_featured"
-                    variant="feature"
-                    compact
-                    showSaveButton
-                  />
-                  <p className="mt-4 text-sm leading-7 text-[#5f574c]">
-                    {reason}
-                  </p>
-                </div>
+              {selectedFacilities.map((facility) => (
+                <FacilityCard
+                  key={facility.slug}
+                  facility={facility}
+                  source="homepage_featured"
+                  variant="feature"
+                  compact
+                  showSaveButton
+                />
               ))}
             </div>
           </div>

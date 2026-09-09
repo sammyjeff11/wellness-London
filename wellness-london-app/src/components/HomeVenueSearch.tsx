@@ -54,10 +54,10 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
   }
 
   return (
-    <div className="relative mt-6 max-w-2xl sm:mt-8">
+    <div className="relative mt-5 max-w-2xl sm:mt-8">
       <label
         htmlFor="homepage-venue-search"
-        className="mb-2 block text-xs uppercase tracking-[0.22em] text-[#fbf8f1]/85"
+        className="mb-2 block text-[11px] uppercase tracking-[0.2em] text-[#fbf8f1]/85 sm:text-xs sm:tracking-[0.22em]"
       >
         Search the directory
       </label>
@@ -81,13 +81,13 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
           name="q"
           value={query}
           onChange={(event) => updateQuery(event.target.value)}
-          placeholder="Try Shoreditch, sauna or a venue name"
+          placeholder="Search area, service or venue"
           autoComplete="off"
-          className="block w-full rounded-full border border-[#fbf8f1]/40 bg-[#fbf8f1] px-5 py-3.5 pr-24 text-[16px] leading-6 text-[#29241d] shadow-[0_12px_32px_rgba(0,0,0,0.16)] outline-none transition placeholder:text-[#8d7d67] focus:border-white focus:ring-2 focus:ring-[#fbf8f1]/38 sm:py-4"
+          className="block w-full rounded-full border border-[#fbf8f1]/40 bg-[#fbf8f1] px-4 py-3 pr-24 text-[16px] leading-6 text-[#29241d] shadow-[0_12px_32px_rgba(0,0,0,0.16)] outline-none transition placeholder:text-[#8d7d67] focus:border-white focus:ring-2 focus:ring-[#fbf8f1]/38 sm:px-5 sm:py-4"
         />
         <button
           type="submit"
-          className="absolute right-2 top-1/2 min-h-11 -translate-y-1/2 rounded-full bg-[#29241d] px-4 text-sm text-[#fbf8f1]"
+          className="absolute right-1.5 top-1/2 min-h-10 -translate-y-1/2 rounded-full bg-[#29241d] px-4 text-sm text-[#fbf8f1] sm:right-2 sm:min-h-11"
         >
           Search
         </button>
@@ -147,7 +147,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
         </div>
       ) : null}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2">
+      <div className="mt-3 hidden flex-wrap items-center gap-2 sm:flex">
         <span className="mr-1 text-xs uppercase tracking-[0.18em] text-[#fbf8f1]/85">
           Popular
         </span>
