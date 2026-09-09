@@ -4,6 +4,10 @@ import {
   getFacilities,
   type AirtableFacility,
 } from "@/lib/airtable";
+export {
+  hasStructuredLongevityData,
+  isClinicalLongevityFacility,
+} from "./longevity-eligibility.ts";
 
 type AirtableSelectValue = {
   name?: string;
@@ -96,25 +100,5 @@ async function fetchLongevityFacilities(): Promise<LongevityFacility[]> {
   }));
 }
 
-export function hasStructuredLongevityData(facility: LongevityFacility) {
-  const hasClinicalModel = Boolean(
-    facility.clinicModel && facility.clinicModel !== "Not applicable",
-  );
-  const hasMeaningfulOversight = Boolean(
-    facility.clinicalOversight &&
-    facility.clinicalOversight !== "Not applicable" &&
-    facility.clinicalOversight !== "Not confirmed",
-  );
-
-  return Boolean(
-    hasClinicalModel ||
-    hasMeaningfulOversight ||
-    facility.confirmedDiagnostics.length ||
-    facility.assessmentFormat.length ||
-    facility.resultsIncluded.length ||
-    facility.venueConfirmed ||
-    facility.serviceLastVerified
-  );
-}
 
 export const getLongevityFacilities = cache(fetchLongevityFacilities);

@@ -137,6 +137,13 @@ function hasSpecificAddress(facility: DedupeFacility) {
   return Boolean(address && !isBroadLocation(address) && !parentRecordSignals.some((signal) => address.includes(signal)));
 }
 
+function getAddressPostcodeKey(address?: string | null) {
+  return address
+    ?.match(/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/i)?.[0]
+    ?.toLowerCase()
+    .replace(/\s+/g, "") || "";
+}
+
 function specificLocationValue(facility: DedupeFacility) {
   return [facility.neighbourhood, facility.location, facility.nearestStation, facility.areaOfLondon, facility.areaGroup]
     .map((value) => canonicalLocationValue(value))
@@ -219,14 +226,17 @@ export function isPhysicalVenueRecord(facility: DedupeFacility) {
 export function getPhysicalVenueKey(facility: DedupeFacility) {
   const operator = getOperatorKey(facility);
   const address = normaliseFacilityValue(facility.address);
+  const postcode = getAddressPostcodeKey(facility.address);
   const location = specificLocationValue(facility);
   const slug = normaliseSlug(facility.slug);
   const name = normaliseFacilityValue(facility.name);
 
-  // Prefer operator + canonical neighbourhood over address because Airtable rows for
-  // the same physical venue can have slightly different address text.
-  if (operator && location) return `venue:${operator}:${location}`;
+  // A brand can operate more than one physical venue in the same neighbourhood.
+  // Operator + postcode tolerates minor address wording differences at one site,
+  // while keeping branches with distinct postcodes separate.
+  if (operator && postcode) return `postcode:${operator}:${postcode}`;
   if (hasSpecificAddress(facility)) return operator ? `address:${operator}:${address}` : `address:${address}`;
+  if (operator && location) return `venue:${operator}:${location}`;
   if (isClearlyPhysicalSlug(facility)) return `slug:${slug}`;
   return `name:${name || slug}`;
 }

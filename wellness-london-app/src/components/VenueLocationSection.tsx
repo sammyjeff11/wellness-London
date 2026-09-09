@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import TrackedExternalLink from "@/components/TrackedExternalLink";
+import { formatFullAddress } from "@/lib/facility-formatting";
 import { cleanValue, isUsefulValue } from "@/lib/useful-values";
 
 type VenueLocationSectionProps = {
@@ -42,10 +43,10 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
     .filter(isUsefulValue)
     .join(" / ") || "London";
 
-  const fullAddress = [cleanValue(address), cleanValue(postcode)].filter(isUsefulValue).join(", ");
+  const fullAddress = formatFullAddress(cleanValue(address), cleanValue(postcode));
   const cleanNearestStation = cleanValue(nearestStation);
 
-  const mapQuery = [name, cleanValue(address), cleanValue(postcode), "London"]
+  const mapQuery = [name, fullAddress, "London"]
     .filter(isUsefulValue)
     .join(" ");
 

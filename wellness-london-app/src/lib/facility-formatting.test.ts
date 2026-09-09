@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { extractUkPostcode, formatPriceFrom, normaliseAccessType } from "./facility-formatting.ts";
+import {
+  extractUkPostcode,
+  formatFullAddress,
+  formatPriceFrom,
+  normaliseAccessType,
+  stripUkPostcode,
+} from "./facility-formatting.ts";
 import { truncateMetaText } from "./site.ts";
 import { prioritiseCanonicalServiceList } from "./taxonomy.ts";
 import { cleanPublicEditorialText } from "./useful-values.ts";
@@ -16,6 +22,15 @@ test("extracts UK postcodes from complete venue addresses", () => {
   assert.equal(extractUkPostcode("124 Tabernacle Street, London EC2A 4SA"), "EC2A 4SA");
   assert.equal(extractUkPostcode("54 High Street, Sevenoaks, Kent TN13 1JG"), "TN13 1JG");
   assert.equal(extractUkPostcode("London"), "");
+});
+
+test("formats addresses without duplicating an embedded postcode", () => {
+  assert.equal(
+    formatFullAddress("1 Crossrail Place, Canary Wharf, London E14 5AR", "E14 5AR"),
+    "1 Crossrail Place, Canary Wharf, London E14 5AR",
+  );
+  assert.equal(formatFullAddress("1 Crossrail Place, Canary Wharf", "E14 5AR"), "1 Crossrail Place, Canary Wharf, E14 5AR");
+  assert.equal(stripUkPostcode("1 Crossrail Place, London E14 5AR"), "1 Crossrail Place, London");
 });
 
 test("normalises access eligibility without mixing in booking terminology", () => {

@@ -20,6 +20,7 @@ import { absoluteUrl, truncateMetaText } from "@/lib/site";
 import { canonicaliseServiceList, canonicalServiceHref } from "@/lib/taxonomy";
 import { cleanList, cleanValue, isUsefulValue } from "@/lib/useful-values";
 import { filterSuitabilityLabels } from "@/lib/discovery-labels";
+import { formatFullAddress, stripUkPostcode } from "@/lib/facility-formatting";
 
 export const dynamicParams = false;
 
@@ -108,7 +109,7 @@ export async function generateMetadata({ params }: FacilityPageProps): Promise<M
 }
 
 function venueJsonLd(facility: AirtableFacility) {
-  const addressParts = [cleanValue(facility.address), cleanValue(facility.postcode)].filter(Boolean);
+  const fullAddress = formatFullAddress(cleanValue(facility.address), cleanValue(facility.postcode));
   const sameAs = [cleanUrl(facility.website), normaliseInstagramUrl(facility.instagramLink)].filter(Boolean);
   const images = facility.images.map((image) => cleanUrl(image.url)).filter(Boolean);
 
@@ -118,10 +119,10 @@ function venueJsonLd(facility: AirtableFacility) {
     name: facility.name,
     url: absoluteUrl(`/facility/${facility.slug}`),
     image: images.length > 0 ? images : undefined,
-    address: addressParts.length > 0
+    address: fullAddress
       ? {
           "@type": "PostalAddress",
-          streetAddress: cleanValue(facility.address),
+          streetAddress: stripUkPostcode(cleanValue(facility.address)),
           postalCode: cleanValue(facility.postcode),
           addressLocality: cleanValue(facility.neighbourhood) || "London",
           addressRegion: cleanValue(facility.borough) || (cleanValue(facility.areaOfLondon)?.includes("London") ? "London" : undefined),
@@ -274,6 +275,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   const access = cleanValue(facility.accessType);
   const address = cleanValue(facility.address);
   const postcode = cleanValue(facility.postcode);
+  const fullAddress = formatFullAddress(address, postcode);
   const bestFor = filterSuitabilityLabels(
     cleanList(facility.bestForStandardized.length > 0 ? facility.bestForStandardized : facility.bestFor),
   ).slice(0, 8);
@@ -298,7 +300,7 @@ export default async function FacilityPage({ params }: FacilityPageProps) {
   ].filter((item) => isUsefulValue(item.value));
   const goodToKnow = cleanValue(facility.goodToKnow);
   const brandPage = getBrandPageForFacility(facility);
-  const directionsHref = address ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${facility.name} ${address}`)}` : undefined;
+  const directionsHref = fullAddress ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${facility.name} ${fullAddress}`)}` : undefined;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">

@@ -11,6 +11,32 @@ export function extractUkPostcode(address: string) {
   return address.match(/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/i)?.[0]?.toUpperCase() || "";
 }
 
+function postcodeKey(value: string) {
+  return value.toUpperCase().replace(/\s+/g, "");
+}
+
+export function formatFullAddress(address?: string | null, postcode?: string | null) {
+  const cleanAddress = String(address || "").trim().replace(/,\s*$/, "");
+  const cleanPostcode = String(postcode || "").trim().toUpperCase();
+
+  if (!cleanAddress) return cleanPostcode;
+  if (!cleanPostcode) return cleanAddress;
+
+  const addressPostcode = extractUkPostcode(cleanAddress);
+  if (addressPostcode && postcodeKey(addressPostcode) === postcodeKey(cleanPostcode)) return cleanAddress;
+
+  return `${cleanAddress}, ${cleanPostcode}`;
+}
+
+export function stripUkPostcode(address?: string | null) {
+  return String(address || "")
+    .replace(/\b(?:GIR\s?0AA|[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2})\b/gi, "")
+    .replace(/\s+,/g, ",")
+    .replace(/,\s*$/, "")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
 export const accessTypes = [
   "Public",
   "Members only",
