@@ -86,6 +86,7 @@ export default function FacilityCard({
     2,
   );
   const photo = facility.imageUrl || facility.galleryImages?.[0]?.url;
+  const price = venuePrice(facility);
   const facts = [
     cleanValue(facility.accessType),
     cleanValue(normaliseSessionFormat(facility.privateOrShared)),
@@ -153,10 +154,12 @@ export default function FacilityCard({
             cleanValue(facility.venueType) ||
             "Wellness venue"}
         </p>
-        <p className="mt-5 text-base font-semibold leading-6">
-          {venuePrice(facility).label}
-        </p>
-        <ul className="mt-3 space-y-1 text-sm leading-6 text-[#5f574c]">
+        {price.label ? (
+          <p className="mt-5 text-base font-semibold leading-6">
+            {price.label}
+          </p>
+        ) : null}
+        <ul className={`${price.label ? "mt-3" : "mt-5"} space-y-1 text-sm leading-6 text-[#5f574c]`}>
           {Array.from(new Set(facts)).map((fact) => (
             <li key={fact}>{fact}</li>
           ))}
