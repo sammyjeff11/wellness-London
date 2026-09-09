@@ -38,7 +38,7 @@ const venueGuidance: Record<
     label: "Best for self-led contrast",
     summary:
       "Finnish and infrared sauna with cold plunges, plus a separate studio programme.",
-    note: "A stronger fit when you want to control your own heat-and-cold rhythm rather than follow a fully guided ritual.",
+    note: "Check the self-directed session rules and time limits before booking.",
   },
   "and-soul-shoreditch": {
     label: "Best for guided and social recovery",
@@ -441,24 +441,22 @@ export default async function ShoreditchNeighbourhoodPage() {
           <div className="grid gap-4 lg:grid-cols-3">
             <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
               <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
-                What the area does well
+                Listed services
               </p>
               <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-                Heat and cold are the local strength. The best-known venues
-                combine sauna and plunge in one visit, with options ranging from
-                independent self-led rounds to instructor-led classes and
-                broader social-wellness clubs.
+                The listed venues include sauna-and-plunge sessions, led classes
+                and club facilities. Check the booking type and whether both
+                heat and cold access are included.
               </p>
             </article>
             <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">
               <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
-                Atmosphere
+                Published format
               </p>
               <p className="text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-                Urban, social and design-conscious rather than hushed or
-                hotel-like. These spaces tend to sit alongside cafés, movement
-                studios and community events, making them easier to build into a
-                working week.
+                The Sanctuary lists classes, events and a café alongside sauna
+                and cold plunge. Check individual timetables for group sessions;
+                noise level and atmosphere have not been assessed first-hand.
               </p>
             </article>
             <article className="surface-paper rounded-[1.25rem] p-6 sm:p-8">

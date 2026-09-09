@@ -33,7 +33,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Shoreditch currently offers three distinct wellness formats: public contrast therapy, a broader social-wellness club and a private members' club with gym, spa and rooftop pool.",
     summary:
       "The public options are strongest for sauna and cold plunge. The Sanctuary adds guided sessions, movement classes and a café; Sauna & Plunge focuses on self-led contrast. Shoreditch House is relevant only to members and eligible guests.",
-    bestFor: ["Contrast therapy", "Social wellness", "Post-work recovery", "Cold exposure", "Modern studios"],
+    bestFor: [
+      "Contrast therapy",
+      "Social wellness",
+      "Post-work recovery",
+      "Cold exposure",
+      "Modern studios",
+    ],
     character:
       "The public contrast venues are shared and session-led rather than quiet day spas. Shoreditch House offers the broader club setting, but its application-based access is materially different.",
     visitNotes: [
@@ -64,7 +70,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Canary Wharf has six listings spanning public contrast sessions, dockside sauna, outdoor swimming with sauna, two Third Space health clubs and a separately bookable recovery spa.",
     summary:
       "Arc offers guided and self-directed communal contrast sessions. Skuna provides shared or private dockside sauna. Sea Lanes pairs its floating 50-metre pool with waterfront sauna. Third Space Canary Wharf and Wood Wharf are members' clubs, while selected Recovery Spa treatments at Canada Square can be booked by non-members.",
-    bestFor: ["Outdoor swimming", "Post-work recovery", "Sauna", "Cold plunge", "Contrast therapy"],
+    bestFor: [
+      "Outdoor swimming",
+      "Post-work recovery",
+      "Sauna",
+      "Cold plunge",
+      "Contrast therapy",
+    ],
     character:
       "The formats differ more than the addresses suggest: communal contrast at Arc, dockside sauna at Skuna, swim-and-sauna at Sea Lanes, and full health-club facilities at Third Space.",
     visitNotes: [
@@ -97,9 +109,15 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Kensington's two listings provide different access routes: Spa Experience offers public thermal-spa sessions, while Equinox combines fitness, movement, steam and treatments within a membership-led health club.",
     summary:
       "Spa Experience Kensington is the straightforward option for shared sauna, steam and treatments without a club commitment. Equinox has the broader training offer, including personal training, yoga and Pilates; non-members can book spa appointments, but wider club access is separate.",
-    bestFor: ["Sauna", "Steam room", "Spa treatments", "Personal training", "Yoga"],
+    bestFor: [
+      "Sauna",
+      "Steam room",
+      "Spa treatments",
+      "Personal training",
+      "Yoga",
+    ],
     character:
-      "The local choice is between an accessible leisure-centre spa and a premium full-service health club. Neither listing currently supports claims of a Kensington cryotherapy, red-light or HBOT cluster.",
+      "The local choice is between an accessible leisure-centre spa and a membership health club. Neither listing currently supports claims of a Kensington cryotherapy, red-light or HBOT cluster.",
     visitNotes: [
       "Spa Experience thermal sessions and treatments use separate timetables; check the exact booking before travelling.",
       "At Equinox, do not assume a spa appointment includes access to the gym, steam room or classes.",
@@ -108,7 +126,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedAreas: ["Notting Hill", "West London", "Central London"],
     relatedLinks: [
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
-      { href: "/red-light-therapy-london", label: "Red Light Therapy in London" },
+      {
+        href: "/red-light-therapy-london",
+        label: "Red Light Therapy in London",
+      },
       { href: "/hbot-london", label: "HBOT in London" },
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/west-london-wellness", label: "West London wellness spaces" },
@@ -125,14 +146,20 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     metaTitle: "Wellness in Marylebone | Well+ London Neighbourhood Guide",
     metaDescription:
       "Compare recovery, longevity and clinical wellness venues in Marylebone, with practical access and location guidance.",
-    eyebrow: "Refined central wellness",
+    eyebrow: "Screening, recovery and club facilities",
     intro:
-      "Marylebone has the directory's broadest mix of preventive screening, specialist recovery treatments and members' club facilities in one neighbourhood.",
+      "The Marylebone listings include preventive screening, recovery appointments and members-only club facilities.",
     summary:
       "BodyScan, Echelon, Neko Health and Welbeck cover different forms of assessment and screening. BXR LAB, NUMA and Rebase provide recovery services, while Third Space adds a members-only pool, sauna and steam room.",
-    bestFor: ["Premium wellness", "Longevity routines", "Clinical treatments", "Calm recovery", "Central access"],
+    bestFor: [
+      "Health screening",
+      "DEXA scans",
+      "HBOT",
+      "Contrast therapy",
+      "Club facilities",
+    ],
     character:
-      "Most listings are appointment-led clinics or treatment studios. BXR and Third Space are the exceptions with a stronger training-club context, and their access terms differ from the public clinics.",
+      "Most listings are appointment-led clinics or treatment studios. BXR and Third Space are the exceptions with gym and club facilities, and their access terms differ from the public clinics.",
     visitNotes: [
       "Start with the purpose: diagnostic screening, HBOT, contrast recovery and club facilities are not interchangeable.",
       "BodyScan's body-composition and bone-density scans are separate services; choose the correct assessment.",
@@ -142,10 +169,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedLinks: [
       { href: "/longevity", label: "Longevity in London" },
       { href: "/recovery-london", label: "Recovery spaces in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
-      "Use BodyScan, Neko Health, Echelon or Welbeck for assessment-led visits; NUMA for medically supervised HBOT; Rebase for the widest public recovery menu; BXR for bookable treatments in a performance setting; and Third Space for members-only pool and thermal facilities.",
+      "Use BodyScan, Neko Health, Echelon or Welbeck for assessment-led visits; NUMA for medically supervised HBOT; Rebase for several bookable recovery services; BXR for bookable treatments in a performance setting; and Third Space for members-only pool and thermal facilities.",
   },
   {
     slug: "notting-hill",
@@ -156,14 +186,19 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     metaTitle: "Wellness in Notting Hill | Well+ London Neighbourhood Guide",
     metaDescription:
       "Compare sauna, spa, movement and treatment-led wellness venues in Notting Hill and nearby West London neighbourhoods.",
-    eyebrow: "West London lifestyle",
+    eyebrow: "Spa visits, club access and stretching",
     intro:
       "Notting Hill's three current listings cover a multidisciplinary spa and clinic, a training-and-recovery club, and one-to-one assisted stretching.",
     summary:
-      "Cloud Twelve has the broadest treatment range and allows direct spa bookings. The Method combines classes, bodywork and members-only contrast therapy. StretchLAB is the focused option for physiotherapist-supervised assisted stretching.",
-    bestFor: ["Slow wellness", "Lifestyle rituals", "Premium studios", "Weekend resets", "Calm atmosphere"],
+      "Cloud Twelve lists spa and clinic services and allows direct spa bookings. The Method combines classes, bodywork and members-only contrast therapy. StretchLAB is the focused option for practitioner-led assisted stretching.",
+    bestFor: [
+      "Spa visits",
+      "Clinic appointments",
+      "Assisted stretching",
+      "Membership access",
+    ],
     character:
-      "These are polished, appointment-led venues, but their formats are materially different: shared spa facilities, a membership-led club and a private one-to-one stretch session.",
+      "The listed formats are shared spa facilities, a membership-led club and one-to-one stretching appointments.",
     visitNotes: [
       "Cloud Twelve spa visits can be booked without membership; check exactly which thermal facilities the booking includes.",
       "The Method sells some classes and Lab credits separately, but contrast therapy is reserved for members.",
@@ -176,7 +211,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
     editorNote:
-      "Cloud Twelve is the broadest public spa-and-clinic option, The Method is the membership-led training and contrast choice, and StretchLAB is the specialist one-to-one mobility appointment.",
+      "Cloud Twelve offers public spa and clinic bookings, The Method is the membership-led training and contrast choice, and StretchLAB is the specialist one-to-one mobility appointment.",
   },
   {
     slug: "soho",
@@ -187,12 +222,12 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     metaTitle: "Wellness in Soho | Well+ London Neighbourhood Guide",
     metaDescription:
       "A Well+ guide to wellness in Soho, covering central London recovery, sauna, treatments and quick rituals around work, food and city life.",
-    eyebrow: "Central city rituals",
+    eyebrow: "Spa, fitness club and stretching",
     intro:
       "Soho's current listings span a hotel-based spa, a members' health club and a public assisted-stretching studio.",
     summary:
-      "Akasha has the widest spa and thermal offer, with public treatment and spa-day routes. Third Space provides pool, sauna and steam to members. StretchLAB offers physiotherapist-supervised one-to-one mobility sessions.",
-    bestFor: ["Convenient recovery", "After-work resets", "Central treatments", "Short sessions", "City routines"],
+      "Akasha lists spa treatments and thermal facilities, with public treatment and spa-day bookings. Third Space provides pool, sauna and steam to members. StretchLAB offers practitioner-led one-to-one mobility sessions.",
+    bestFor: ["Spa visits", "Sauna", "Steam room", "Assisted stretching"],
     character:
       "The experience depends on the access model: hotel spa, paid health-club membership or a single public appointment. Treat the three as alternatives for different needs, not direct substitutes.",
     visitNotes: [
@@ -204,10 +239,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedLinks: [
       { href: "/perform", label: "Performance recovery" },
       { href: "/recovery-london", label: "Recovery spaces in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
-      "Choose Akasha for the broadest spa and thermal facilities, Third Space for members-only training and wet facilities, or StretchLAB for a focused public assisted-stretching session.",
+      "Compare Akasha for spa and thermal facilities, Third Space for members-only training and wet facilities, or StretchLAB for a focused public assisted-stretching session.",
   },
   {
     slug: "hampstead",
@@ -217,13 +255,19 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "North London",
     metaTitle: "Wellness in Hampstead | Well+ London Neighbourhood Guide",
     metaDescription:
-      "Explore the currently verified Hampstead wellness listing, focused on physiotherapist-supervised assisted stretching and mobility.",
+      "Explore the published Hampstead wellness listing, focused on practitioner-led assisted stretching and mobility.",
     eyebrow: "North London calm",
     intro:
       "Hampstead currently has one verified directory listing: StretchLAB on Heath Street, offering one-to-one assisted stretching supervised by physiotherapists.",
     summary:
       "The local evidence is about mobility rather than a broad wellness cluster. The directory does not currently verify a Hampstead sauna, cold plunge or spa listing.",
-    bestFor: ["Assisted stretching", "Mobility", "Flexibility", "Posture", "One-to-one sessions"],
+    bestFor: [
+      "Assisted stretching",
+      "Mobility",
+      "Flexibility",
+      "Posture",
+      "One-to-one sessions",
+    ],
     character:
       "The listed experience is a private, appointment-led session rather than shared spa access or a group class.",
     visitNotes: [
@@ -234,7 +278,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedAreas: ["Belsize Park", "Highgate", "Kentish Town", "Primrose Hill"],
     relatedLinks: [
       { href: "/recover", label: "Quiet recovery" },
-      { href: "/stress-regulation-london", label: "Stress regulation in London" },
+      {
+        href: "/stress-regulation-london",
+        label: "Stress regulation in London",
+      },
       { href: "/north-london-wellness", label: "North London wellness spaces" },
     ],
     editorNote:
@@ -254,7 +301,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "The City of London listings are concentrated around membership-led health clubs, with one public DEXA scanning clinic as a distinct alternative.",
     summary:
       "Third Space City, Moorgate and Paternoster Square vary substantially in recovery facilities. Equinox Bishopsgate adds steam, spa and training. BodyScan City is a public appointment for body-composition or bone-density assessment, not a club.",
-    bestFor: ["Sauna", "Ice bath", "Contrast therapy", "DEXA scan", "Post-workout recovery"],
+    bestFor: [
+      "Sauna",
+      "Ice bath",
+      "Contrast therapy",
+      "DEXA scan",
+      "Post-workout recovery",
+    ],
     character:
       "Four of the five listings are full health clubs requiring membership. BodyScan is the only straightforward public appointment, so access should be the first filter.",
     visitNotes: [
@@ -267,7 +320,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
       { href: "/dexa-scan-london", label: "DEXA scans in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
       "Choose BodyScan for a public DEXA appointment. For club facilities, Paternoster has the most extensive recovery list; Third Space City adds a simpler wet contrast circuit; Moorgate focuses on sauna and compression; Equinox centres on training, steam and spa.",
@@ -286,7 +342,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Islington's five listings cover public bathing, communal sauna and cold, mild HBOT with red light, assisted stretching and a members-only health club.",
     summary:
       "Ironmonger Row is the lower-cost traditional spa option. Reset is built around shared heat and cold. Rebody and StretchLAB provide private appointments, while Third Space combines sauna, steam and recovery equipment with full club membership.",
-    bestFor: ["Sauna", "Cold plunge", "HBOT", "Red light therapy", "Assisted stretching"],
+    bestFor: [
+      "Sauna",
+      "Cold plunge",
+      "HBOT",
+      "Red light therapy",
+      "Assisted stretching",
+    ],
     character:
       "This is not one uniform scene: the listings range from a public leisure-centre spa to specialist studios and a premium club. Price and access vary accordingly.",
     visitNotes: [
@@ -298,7 +360,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedLinks: [
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/hbot-london", label: "HBOT in London" },
-      { href: "/assisted-stretching-london", label: "Assisted stretching in London" },
+      {
+        href: "/assisted-stretching-london",
+        label: "Assisted stretching in London",
+      },
       { href: "/north-london-wellness", label: "North London wellness spaces" },
     ],
     editorNote:
@@ -318,9 +383,15 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Mayfair's six listings span two hotel spas, a multidisciplinary medical clinic, two members-only health clubs and a publicly bookable recovery circuit.",
     summary:
       "Claridge's and Mandarin Oriental suit treatment or spa-day bookings. Lanserhof is the assessment and medical option. Third Space offers sauna, steam, ice bath and compression within membership. Tramp Health adds diagnostics, training and a broad technology-led recovery menu. Vidavii packages several modalities into one public circuit.",
-    bestFor: ["Hotel spa", "Health screening", "Sauna", "Ice bath", "Recovery circuit"],
+    bestFor: [
+      "Hotel spa",
+      "Health screening",
+      "Sauna",
+      "Ice bath",
+      "Recovery circuit",
+    ],
     character:
-      "The common factor is premium pricing, but the formats are not comparable: hotel treatment, clinical appointment, club membership and sequenced recovery each solve a different need.",
+      "The listed formats differ: hotel treatment, clinical appointment, club membership and sequenced recovery each solve a different need.",
     visitNotes: [
       "A hotel treatment or spa-day booking may not include every pool or thermal facility; check the package.",
       "Lanserhof's clinic can be booked publicly, while its gym and classes require the relevant club access.",
@@ -332,7 +403,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/health-screening-london", label: "Health screening in London" },
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/recovery-london", label: "Recovery spaces in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
       "Claridge's and Mandarin Oriental are the spa choices; Lanserhof is clinic-led; Third Space and Tramp Health are membership options with different depths of training, diagnostics and recovery; Vidavii is the straightforward public circuit.",
@@ -351,7 +425,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Chelsea's four listings range from clinician-led longevity assessment to pay-as-you-go training, one-to-one mobility work and a members-only recovery club.",
     summary:
       "HUM2N has the broadest diagnostics and health-optimisation programme. KXU sells classes, gym and treatments separately. StretchLAB focuses on assisted stretching. Third Space has the most complete heat, cold and recovery-technology facilities, but requires membership.",
-    bestFor: ["Longevity testing", "Blood testing", "Cryotherapy", "Red light therapy", "Assisted stretching"],
+    bestFor: [
+      "Longevity testing",
+      "Blood testing",
+      "Cryotherapy",
+      "Red light therapy",
+      "Assisted stretching",
+    ],
     character:
       "The listings are performance- and appointment-led rather than traditional day spas. The main decision is whether you need clinical oversight, a single session or ongoing club access.",
     visitNotes: [
@@ -363,7 +443,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedLinks: [
       { href: "/longevity", label: "Longevity in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
-      { href: "/red-light-therapy-london", label: "Red Light Therapy in London" },
+      {
+        href: "/red-light-therapy-london",
+        label: "Red Light Therapy in London",
+      },
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
     editorNote:
@@ -383,7 +466,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "The local listings offer three unrelated formats: an adults-only thermal bath, a preventive health scan and a private members' club with gym and rooftop pool.",
     summary:
       "AIRE is the immersive bathing option, built around hot, warm, cold and saltwater pools. Neko Health provides a structured one-hour preventive scan. 180 House adds fitness and swimming for approved Soho House members and eligible guests.",
-    bestFor: ["Thermal baths", "Cold plunge", "Health screening", "Blood testing", "Lap pool"],
+    bestFor: [
+      "Thermal baths",
+      "Cold plunge",
+      "Health screening",
+      "Blood testing",
+      "Lap pool",
+    ],
     character:
       "AIRE and Neko are public but require advance booking. 180 House is fundamentally different because club access is tied to Soho House membership rather than a day ticket.",
     visitNotes: [
@@ -396,7 +485,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/cold-plunge-london", label: "Cold Plunge in London" },
       { href: "/health-screening-london", label: "Health screening in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     locationTerms: ["Covent Garden", "Covent Garden / Strand"],
     editorNote:
@@ -416,7 +508,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Bayswater has three substantial but very different thermal-wellness listings: public sessions at Porchester Spa, Third Space The Whiteley for members, and the Six Senses London hotel spa.",
     summary:
       "Porchester is the accessible traditional bathhouse, with sauna, steam, cold plunge and scheduled session formats. Third Space combines training with a broad members-only recovery suite. Six Senses adds a hotel-spa thermal circuit, flotation, cryotherapy, treatments and personalised programmes through mixed access routes.",
-    bestFor: ["Sauna", "Steam room", "Cold plunge", "Infrared sauna", "Cryotherapy"],
+    bestFor: [
+      "Sauna",
+      "Steam room",
+      "Cold plunge",
+      "Infrared sauna",
+      "Cryotherapy",
+    ],
     character:
       "The decision is principally about format and access: historic public bathing, an ongoing premium gym membership, or a high-service hotel-spa booking whose facility inclusions vary.",
     visitNotes: [
@@ -449,7 +547,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Belgravia's three listings answer different needs: The Bath House provides a bookable banya experience, London Cryo offers individual recovery treatments, and Surrenne is a private health club for members and eligible hotel guests.",
     summary:
       "The Bath House combines sauna, steam, bathing rituals and massage across public and private packages. London Cryo lists appointment-led recovery treatments. Surrenne combines a 22-metre pool, sauna, steam, hammam, spa, training and longevity support within an ongoing club model.",
-    bestFor: ["Sauna", "Steam room", "Cryotherapy", "Red light therapy", "HBOT"],
+    bestFor: [
+      "Sauna",
+      "Steam room",
+      "Cryotherapy",
+      "Red light therapy",
+      "HBOT",
+    ],
     character:
       "The Bath House and London Cryo are publicly bookable in different session formats. Surrenne is materially different: general day access is not advertised.",
     visitNotes: [
@@ -463,7 +567,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/cryotherapy-london", label: "Cryotherapy in London" },
       { href: "/hbot-london", label: "HBOT in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
       "The Bath House is the social thermal-bathing choice; London Cryo suits a focused public treatment; Surrenne is for repeated private-club access across training, pool, thermal, spa and health services.",
@@ -476,13 +583,19 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "Central London",
     metaTitle: "Wellness in Fitzrovia | DEXA & Assisted Stretching | Well+",
     metaDescription:
-      "Compare Fitzrovia DEXA scanning and physiotherapist-supervised assisted stretching with public prices and booking details.",
+      "Compare Fitzrovia DEXA scanning and practitioner-led assisted stretching with public prices and booking details.",
     eyebrow: "Assessment and mobility",
     intro:
       "Fitzrovia currently has two specialist public appointments rather than a broad spa cluster: DEXA scanning and one-to-one assisted stretching.",
     summary:
-      "BodyView provides separate body-composition and bone-density DEXA scans. StretchLAB provides physiotherapist-supervised sessions focused on mobility, flexibility, posture and recovery.",
-    bestFor: ["DEXA scan", "Body composition", "Bone density", "Assisted stretching", "Mobility"],
+      "BodyView provides separate body-composition and bone-density DEXA scans. StretchLAB provides practitioner-led sessions focused on mobility, flexibility, posture and recovery.",
+    bestFor: [
+      "DEXA scan",
+      "Body composition",
+      "Bone density",
+      "Assisted stretching",
+      "Mobility",
+    ],
     character:
       "Both listings are functional, appointment-led services. Choose BodyView when you need measurement and StretchLAB when you want hands-on mobility work.",
     visitNotes: [
@@ -493,8 +606,14 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedAreas: ["Soho", "Marylebone", "Covent Garden & Strand", "Mayfair"],
     relatedLinks: [
       { href: "/dexa-scan-london", label: "DEXA scans in London" },
-      { href: "/assisted-stretching-london", label: "Assisted stretching in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/assisted-stretching-london",
+        label: "Assisted stretching in London",
+      },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
       "BodyView provides the measurement; StretchLAB provides the intervention. They are complementary specialist appointments rather than competing spa venues.",
@@ -513,7 +632,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Fulham's two current listings sit at opposite ends of the access and price spectrum: a public sauna-and-plunge circuit and an annual private wellness club.",
     summary:
       "Pulse offers 75-minute sauna-and-plunge sessions with three cold temperatures. Sæl Spa combines rooftop thermal facilities and recovery technology with higher-tier clinical pathways through annual membership.",
-    bestFor: ["Sauna", "Cold plunge", "Contrast therapy", "Red light therapy", "Longevity testing"],
+    bestFor: [
+      "Sauna",
+      "Cold plunge",
+      "Contrast therapy",
+      "Red light therapy",
+      "Longevity testing",
+    ],
     character:
       "Pulse is a straightforward session booking. Sæl is an ongoing, members-only proposition with materially higher commitment and a wider service range.",
     visitNotes: [
@@ -545,9 +670,15 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Peckham's two listings make communal sauna comparatively accessible, but only one currently confirms ice baths.",
     summary:
       "Community Sauna Baths runs simple £8 wood-fired sauna sessions with a cold shower and no plunge pools. Sauna Social Club combines communal sauna and ice baths across social, quiet, creative-wellbeing and aufguss-led formats.",
-    bestFor: ["Sauna", "Ice bath", "Contrast therapy", "Social wellness", "Affordable sessions"],
+    bestFor: [
+      "Sauna",
+      "Ice bath",
+      "Contrast therapy",
+      "Social wellness",
+      "Public bookings",
+    ],
     character:
-      "Both are public and communal. The meaningful choice is a low-cost off-grid sauna-only visit or a more structured session with cold-water immersion.",
+      "Both are public and communal. The meaningful choice is a off-grid sauna-only visit or a more structured session with cold-water immersion.",
     visitNotes: [
       "Community Sauna Baths Peckham currently operates Friday to Sunday.",
       "Do not expect a plunge pool at the Community Sauna Baths site; the cold element is a shower.",
@@ -577,7 +708,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Richmond's two current listings divide cleanly between a public DEXA appointment and a members-only health club with wet and sports-recovery facilities.",
     summary:
       "BodyView offers separate body-composition and bone-density scans. Third Space provides sauna, steam, hydropool, lap pool, compression equipment and sports-medicine services within its club model.",
-    bestFor: ["DEXA scan", "Body composition", "Sauna", "Steam room", "Post-workout recovery"],
+    bestFor: [
+      "DEXA scan",
+      "Body composition",
+      "Sauna",
+      "Steam room",
+      "Post-workout recovery",
+    ],
     character:
       "BodyView is a focused public assessment. Third Space is useful for ongoing training and recovery but requires membership for the core club facilities.",
     visitNotes: [
@@ -601,7 +738,8 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     shortTitle: "Victoria",
     href: "/neighbourhoods/victoria",
     region: "Central London",
-    metaTitle: "Wellness in Victoria | Health Screening & Contrast Therapy | Well+",
+    metaTitle:
+      "Wellness in Victoria | Health Screening & Contrast Therapy | Well+",
     metaDescription:
       "Compare Victoria preventive health screening with boxing-led fitness, sauna, cold plunge and contrast recovery.",
     eyebrow: "Screening or training recovery",
@@ -609,7 +747,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Victoria currently has two very different wellness listings in the same development: a preventive health scan and a boxing-led fitness club with contrast recovery.",
     summary:
       "Neko Health provides a structured one-hour scan covering cardiovascular, skin, blood-biomarker and body-composition measures. JAB SW1 combines training with sauna and cold plunge through public sessions, packs and membership.",
-    bestFor: ["Health screening", "Blood testing", "Sauna", "Cold plunge", "Contrast therapy"],
+    bestFor: [
+      "Health screening",
+      "Blood testing",
+      "Sauna",
+      "Cold plunge",
+      "Contrast therapy",
+    ],
     character:
       "Both can be booked without a selective club application, but one is an assessment and the other is an ongoing training-and-recovery setting.",
     visitNotes: [
@@ -622,7 +766,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/health-screening-london", label: "Health screening in London" },
       { href: "/sauna-london", label: "Saunas in London" },
       { href: "/contrast-therapy-london", label: "Contrast Therapy in London" },
-      { href: "/central-london-wellness", label: "Central London wellness spaces" },
+      {
+        href: "/central-london-wellness",
+        label: "Central London wellness spaces",
+      },
     ],
     editorNote:
       "Neko Health is the defined preventive assessment; JAB SW1 is the option for boxing-led training with sauna and cold plunge built into the wider offer.",
@@ -641,7 +788,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Wandsworth's two listings offer public recovery in opposite formats: shared sauna and cold plunge at Lowlu, or private mild-HBOT with targeted red light at Rebody.",
     summary:
       "Lowlu is the social heat-and-cold option with two saunas and three plunges. Rebody is an appointment-led studio where each mild-HBOT session is paired with red light.",
-    bestFor: ["Sauna", "Cold plunge", "Contrast therapy", "HBOT", "Red light therapy"],
+    bestFor: [
+      "Sauna",
+      "Cold plunge",
+      "Contrast therapy",
+      "HBOT",
+      "Red light therapy",
+    ],
     character:
       "Choose by format rather than a generic idea of recovery: communal and self-directed at Lowlu, private and protocol-led at Rebody.",
     visitNotes: [
@@ -665,15 +818,22 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     shortTitle: "White City",
     href: "/neighbourhoods/white-city",
     region: "West London",
-    metaTitle: "Wellness in White City | Health Club & Assisted Stretching | Well+",
+    metaTitle:
+      "Wellness in White City | Health Club & Assisted Stretching | Well+",
     metaDescription:
-      "Compare White City private-club fitness, sauna and pools with public physiotherapist-supervised assisted stretching.",
+      "Compare White City private-club fitness, sauna and pools with public practitioner-led assisted stretching.",
     eyebrow: "Private club or public mobility",
     intro:
       "White City's two listings are access opposites: a private members' club with gym, sauna and pools, and a publicly bookable assisted-stretching studio.",
     summary:
-      "White City House provides extensive fitness and wellness facilities for eligible Soho House members and guests. StretchLAB at Westfield offers physiotherapist-supervised one-to-one mobility sessions without club membership.",
-    bestFor: ["Sauna", "Lap pool", "Fitness", "Assisted stretching", "Mobility"],
+      "White City House provides extensive fitness and wellness facilities for eligible Soho House members and guests. StretchLAB at Westfield offers practitioner-led one-to-one mobility sessions without club membership.",
+    bestFor: [
+      "Sauna",
+      "Lap pool",
+      "Fitness",
+      "Assisted stretching",
+      "Mobility",
+    ],
     character:
       "The facilities list is broader at White City House, but StretchLAB is the straightforward option for a single public appointment.",
     visitNotes: [
@@ -684,7 +844,10 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     relatedAreas: ["Notting Hill", "Kensington", "Bayswater", "Chelsea"],
     relatedLinks: [
       { href: "/sauna-london", label: "Saunas in London" },
-      { href: "/assisted-stretching-london", label: "Assisted stretching in London" },
+      {
+        href: "/assisted-stretching-london",
+        label: "Assisted stretching in London",
+      },
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
     editorNote:
@@ -704,7 +867,13 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Walthamstow now has two publicly bookable thermal options: Community Sauna Baths for communal sauna and cold plunge, and Spa Experience Waltham Forest for sauna, steam, hammam and treatments.",
     summary:
       "Community Sauna Baths is centred on shared heat-and-cold sessions. Spa Experience sits inside the Feel Good Centre and offers a more conventional, self-directed thermal-spa visit with massages and facials booked separately.",
-    bestFor: ["Sauna", "Cold plunge", "Steam room", "Hammam", "Affordable spa access"],
+    bestFor: [
+      "Sauna",
+      "Cold plunge",
+      "Steam room",
+      "Hammam",
+      "Public spa access",
+    ],
     character:
       "Both are practical neighbourhood venues rather than hotel spas. Choose by whether cold exposure and communal atmosphere matter more than steam, hammam and treatment availability.",
     visitNotes: [

@@ -62,9 +62,10 @@ export const collections = [
     metaDescription:
       "Find London wellness spaces built around shared sauna, guided contrast, recurring group sessions, events and genuine community programming.",
     eyebrow: "London social wellness",
-    heroText: "Find wellness spaces where meeting people, returning for group sessions and spending time together are part of the experience — not an accidental by-product.",
+    heroText:
+      "Compare venues with published group sessions, social events or shared spaces alongside their wellness services.",
     introParagraphs: [
-      "Social wellness is broader than simply sharing a sauna with other people. The strongest examples deliberately create repeat interaction through guided sessions, events, member programming, communal rituals or spaces designed for people to stay and connect before or after a session.",
+      "This collection looks for published group sessions, events, workshops, member programmes or shared lounges and cafés. Check the current timetable; a communal sauna alone does not establish that organised social activities are offered.",
       "This collection separates community-led venues from places that are simply communal. A shared sauna can still be a social experience, but we only give stronger community emphasis where the operator runs concrete programming such as recurring group sessions, socials, workshops, events or member activity.",
       "That distinction matters when choosing a venue. Some people want a quiet individual treatment; others want contrast therapy, sauna or movement to double as a way to meet people and become part of a regular local community.",
     ],
@@ -72,37 +73,54 @@ export const collections = [
     socialDiscovery: true,
     featuredSections: [
       {
-        label: "Best for social contrast",
-        description: "For a deliberately social sauna-and-cold experience with organised group sessions or events around the core contrast ritual.",
+        label: "For social contrast",
+        description:
+          "For a deliberately social sauna-and-cold experience with organised group sessions or events around the core contrast ritual.",
         editorialPickSlug: "arc-canary-wharf",
         prioritisedService: "Contrast Therapy",
         match: {
           socialFormatIncludes: ["shared", "communal", "group-led"],
-          communityFeatureIncludes: ["guided contrast", "events", "recurring group sessions"],
+          communityFeatureIncludes: [
+            "guided contrast",
+            "events",
+            "recurring group sessions",
+          ],
         },
       },
       {
-        label: "Best community-led sauna",
-        description: "For a sauna where organised community sessions and repeat local participation are part of the operating model, not just the room layout.",
+        label: "Community-led sauna",
+        description:
+          "For a sauna where organised community sessions and repeat local participation are part of the operating model, not just the room layout.",
         editorialPickSlug: "community-sauna-baths-hackney-wick",
         prioritisedService: "Sauna",
         match: {
           socialFormatIncludes: ["shared", "communal", "group-led"],
-          communityFeatureIncludes: ["communal sauna", "events", "recurring group sessions"],
+          communityFeatureIncludes: [
+            "communal sauna",
+            "events",
+            "recurring group sessions",
+          ],
         },
       },
       {
-        label: "Best recurring social programme",
-        description: "For people who want reasons to return beyond a single booking: events, member activity, group sessions or other recurring programming.",
+        label: "Recurring social programme",
+        description:
+          "For people who want reasons to return beyond a single booking: events, member activity, group sessions or other recurring programming.",
         editorialPickSlug: "sauna-social-club-peckham",
         prioritisedService: "Sauna",
         match: {
-          communityFeatureIncludes: ["events", "member programming", "recurring group sessions", "group classes"],
+          communityFeatureIncludes: [
+            "events",
+            "member programming",
+            "recurring group sessions",
+            "group classes",
+          ],
         },
       },
       {
-        label: "Best for staying and connecting",
-        description: "For venues that combine the wellness session with a lounge, café or other social space designed for time together around the activity itself.",
+        label: "For staying and connecting",
+        description:
+          "For venues that combine the wellness session with a lounge, café or other social space designed for time together around the activity itself.",
         editorialPickSlug: "and-soul-shoreditch",
         prioritisedService: "Contrast Therapy",
         match: {
@@ -116,9 +134,11 @@ export const collections = [
     href: "/collections/best-cold-plunge-london",
     title: "Best cold plunges in London",
     metaTitle: "Best Cold Plunges in London (2026) | Well+",
-    metaDescription: "Compare London cold plunge and ice bath venues, including contrast therapy spaces where sauna and cold water are used together.",
+    metaDescription:
+      "Compare London cold plunge and ice bath venues, including contrast therapy spaces where sauna and cold water are used together.",
     eyebrow: "London cold-plunge shortlist",
-    heroText: "Compare standalone cold-water sessions, guided dips and venues that include sauna for contrast therapy.",
+    heroText:
+      "Compare standalone cold-water sessions, guided dips and venues that include sauna for contrast therapy.",
     introParagraphs: [
       "Cold plunge in London covers cold-water immersion formats such as ice baths, cold tubs and plunge pools. These may be booked as a standalone cold session or as part of a wider contrast therapy ritual.",
       "Contrast therapy usually means alternating sauna with a cold plunge or ice bath. This shortlist separates standalone cold sessions from full hot-and-cold setups and highlights whether the experience is guided, shared or private and whether sauna access is included.",
@@ -126,29 +146,39 @@ export const collections = [
     serviceKeys: ["cold-plunge", "contrast-therapy"],
     featuredSections: [
       {
-        label: "Best overall",
-        description: "A well-documented cold-plunge option with clear access, session format and practical facilities.",
+        label: "Selected shared-session venue",
+        description:
+          "A well-documented cold-plunge option with clear access, session format and practical facilities.",
         editorialPickSlug: "sauna-and-plunge-shoreditch",
         prioritisedService: "Cold Plunge",
         match: { serviceKeys: ["cold-plunge", "contrast-therapy"] },
       },
       {
-        label: "Best guided cold plunge",
-        description: "A better fit if you want structure, coaching or a supported cold-water experience rather than a solo dip.",
+        label: "Guided cold plunge",
+        description:
+          "A better fit if you want structure, coaching or a supported cold-water experience rather than a solo dip.",
         editorialPickSlug: "arc-canary-wharf",
         prioritisedService: "Cold Plunge",
-        match: { serviceKeys: ["cold-plunge", "contrast-therapy"], experienceTypeIncludes: ["guided", "class", "group", "breath"] },
+        match: {
+          serviceKeys: ["cold-plunge", "contrast-therapy"],
+          experienceTypeIncludes: ["guided", "class", "group", "breath"],
+        },
       },
       {
-        label: "Best for a more private session",
-        description: "For people who would rather book a private or small-format cold-water session than enter a larger shared setting.",
+        label: "For a more private session",
+        description:
+          "For people who would rather book a private or small-format cold-water session than enter a larger shared setting.",
         editorialPickSlug: "rooftop-saunas-brixton",
         prioritisedService: "Cold Plunge",
-        match: { serviceKeys: ["cold-plunge", "contrast-therapy"], privateOrSharedIncludes: ["private"] },
+        match: {
+          serviceKeys: ["cold-plunge", "contrast-therapy"],
+          privateOrSharedIncludes: ["private"],
+        },
       },
       {
-        label: "Best sauna and cold plunge",
-        description: "A stronger option when the goal is contrast therapy: hot and cold in the same visit.",
+        label: "Sauna and cold plunge",
+        description:
+          "Sauna and cold plunge included in the same booking format.",
         editorialPickSlug: "community-sauna-baths-hackney-wick",
         prioritisedService: "Contrast Therapy",
         match: saunaAndColdPlungeMatch,
@@ -163,9 +193,10 @@ export const collections = [
     metaDescription:
       "Compare the best contrast therapy venues in London, including sauna and ice bath, sauna and cold plunge, hot-and-cold recovery and guided contrast sessions.",
     eyebrow: "London hot-and-cold shortlist",
-    heroText: "Compare venues where sauna and cold-water immersion are available as one coherent session.",
+    heroText:
+      "Compare venues where sauna and cold-water immersion are available as one coherent session.",
     introParagraphs: [
-      "Contrast therapy is the umbrella term for moving between heat and cold. In London, people may search for it as sauna and cold plunge, sauna and ice bath, hot-and-cold therapy, contrast bathing or a thermal circuit. The strongest venues make that sequence clear rather than simply listing a sauna in one place and a cold tub somewhere else.",
+      "Contrast therapy is the umbrella term for moving between heat and cold. In London, people may search for it as sauna and cold plunge, sauna and ice bath, hot-and-cold therapy, contrast bathing or a thermal circuit. Check whether both facilities are included in one booking and whether sessions are guided.",
       "The practical difference is flow. A good contrast therapy venue should make it easy to move between sauna or heat exposure, cold-water immersion, showers and a calmer recovery space. Guidance also matters if you want a staff-led sequence rather than a self-directed visit.",
       "This shortlist includes venues with both sauna and cold-water access, then separates guided sessions, higher-service settings and shared formats. The aim is to compare the whole setup, not simply find the nearest ice bath.",
     ],
@@ -173,29 +204,45 @@ export const collections = [
     allServiceKeys: ["sauna", "cold-plunge"],
     featuredSections: [
       {
-        label: "Best overall contrast therapy",
-        description: "A well-documented hot-and-cold venue with sauna, cold-water access and a practical route between the two.",
+        label: "Selected contrast-therapy venue",
+        description:
+          "A well-documented hot-and-cold venue with sauna, cold-water access and a practical route between the two.",
         editorialPickSlug: "sauna-and-plunge-shoreditch",
         prioritisedService: "Contrast Therapy",
         match: contrastTherapyCoreMatch,
       },
       {
-        label: "Best guided hot-and-cold session",
-        description: "For users who want more structure around breathing, timing, rounds and how to move between sauna and ice bath or cold plunge.",
+        label: "Guided hot-and-cold session",
+        description:
+          "For users who want more structure around breathing, timing, rounds and how to move between sauna and ice bath or cold plunge.",
         editorialPickSlug: "arc-canary-wharf",
         prioritisedService: "Contrast Therapy",
-        match: { allServiceKeys: ["sauna", "cold-plunge"], experienceTypeIncludes: ["guided", "class", "group", "breath", "contrast"] },
+        match: {
+          allServiceKeys: ["sauna", "cold-plunge"],
+          experienceTypeIncludes: [
+            "guided",
+            "class",
+            "group",
+            "breath",
+            "contrast",
+          ],
+        },
       },
       {
-        label: "Best premium contrast space",
-        description: "For people who value privacy, staff support, towels, showers and a higher-service setting as well as the equipment.",
+        label: "Premium contrast space",
+        description:
+          "For people who value privacy, staff support, towels, showers and a higher-service setting as well as the equipment.",
         editorialPickSlug: "sael-spa",
         prioritisedService: "Contrast Therapy",
-        match: { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
+        match: {
+          allServiceKeys: ["sauna", "cold-plunge"],
+          premiumLevelIncludes: ["premium", "luxury"],
+        },
       },
       {
-        label: "Best social contrast ritual",
-        description: "For group sessions, shared sauna culture or a communal hot-and-cold format rather than a private booking.",
+        label: "Social contrast ritual",
+        description:
+          "For group sessions, shared sauna culture or a communal hot-and-cold format rather than a private booking.",
         editorialPickSlug: "and-soul-shoreditch",
         prioritisedService: "Contrast Therapy",
         match: saunaAndColdPlungeMatch,
@@ -210,41 +257,93 @@ export const collections = [
     metaDescription:
       "Explore London recovery clubs and studios offering saunas, cold plunges, cryotherapy, red light therapy and recovery-focused treatments.",
     eyebrow: "London recovery shortlist",
-    heroText: "Compare multi-service clubs and studios for heat, cold, light, oxygen and post-training recovery.",
+    heroText:
+      "Compare multi-service clubs and studios for heat, cold, light, oxygen and post-training recovery.",
     introParagraphs: [
       "Recovery clubs bring several modalities into one setting: sauna, cold plunge, cryotherapy, red light therapy, compression, HBOT or other appointment-led recovery treatments.",
       "This collection gives priority to venues that look routine-friendly rather than one-off only — places where location, practical amenities, technology and repeat booking models matter.",
     ],
-    serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "red-light-therapy", "contrast-therapy", "hyperbaric-oxygen-therapy"],
+    serviceKeys: [
+      "sauna",
+      "cold-plunge",
+      "cryotherapy",
+      "red-light-therapy",
+      "contrast-therapy",
+      "hyperbaric-oxygen-therapy",
+    ],
     venueTypeIncludes: ["recovery", "club", "studio", "clinic", "wellness"],
     featuredSections: [
       {
-        label: "Best overall recovery club",
-        description: "A multi-service recovery venue with enough access, facility and booking detail to compare confidently.",
+        label: "Selected multi-service club",
+        description:
+          "A multi-service recovery venue with enough access, facility and booking detail to compare confidently.",
         editorialPickSlug: "rebase",
         prioritisedService: "Cryotherapy",
-        match: { serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "red-light-therapy", "contrast-therapy", "hyperbaric-oxygen-therapy"], venueTypeIncludes: ["recovery", "club", "studio", "wellness"] },
+        match: {
+          serviceKeys: [
+            "sauna",
+            "cold-plunge",
+            "cryotherapy",
+            "red-light-therapy",
+            "contrast-therapy",
+            "hyperbaric-oxygen-therapy",
+          ],
+          venueTypeIncludes: ["recovery", "club", "studio", "wellness"],
+        },
       },
       {
-        label: "Best premium recovery space",
-        description: "For people comparing more private, facility-rich or hospitality-led recovery settings.",
+        label: "Premium recovery space",
+        description:
+          "For people comparing more private, facility-rich or hospitality-led recovery settings.",
         editorialPickSlug: "cloud-twelve",
         prioritisedService: "Infrared Sauna",
-        match: { serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "red-light-therapy", "contrast-therapy", "hyperbaric-oxygen-therapy"], premiumLevelIncludes: ["premium", "luxury"] },
+        match: {
+          serviceKeys: [
+            "sauna",
+            "cold-plunge",
+            "cryotherapy",
+            "red-light-therapy",
+            "contrast-therapy",
+            "hyperbaric-oxygen-therapy",
+          ],
+          premiumLevelIncludes: ["premium", "luxury"],
+        },
       },
       {
-        label: "Best for post-gym recovery",
-        description: "A practical choice when the visit is about repeatable post-training recovery rather than a spa day.",
+        label: "For post-gym recovery",
+        description:
+          "A practical choice when the visit is about repeatable post-training recovery rather than a spa day.",
         editorialPickSlug: "bxr-lab",
         prioritisedService: "Cold Plunge",
-        match: { serviceKeys: ["sauna", "cold-plunge", "cryotherapy", "contrast-therapy"], experienceTypeIncludes: ["recovery", "performance", "sport", "fitness", "guided"] },
+        match: {
+          serviceKeys: [
+            "sauna",
+            "cold-plunge",
+            "cryotherapy",
+            "contrast-therapy",
+          ],
+          experienceTypeIncludes: [
+            "recovery",
+            "performance",
+            "sport",
+            "fitness",
+            "guided",
+          ],
+        },
       },
       {
-        label: "Best technology-led recovery",
-        description: "A stronger fit for users looking for cryotherapy, red light therapy, HBOT or other equipment-led recovery formats.",
+        label: "Technology-led recovery",
+        description:
+          "A venue listing cryotherapy, red light therapy, HBOT or other equipment-based services.",
         editorialPickSlug: "london-cryo-belgravia",
         prioritisedService: "Cryotherapy",
-        match: { serviceKeys: ["cryotherapy", "red-light-therapy", "hyperbaric-oxygen-therapy"] },
+        match: {
+          serviceKeys: [
+            "cryotherapy",
+            "red-light-therapy",
+            "hyperbaric-oxygen-therapy",
+          ],
+        },
       },
     ],
   },
@@ -269,14 +368,26 @@ function normaliseText(value?: string) {
   return value?.toLowerCase().trim() || "";
 }
 
-function includesAny(value: string | undefined, needles: readonly string[] | undefined) {
+function includesAny(
+  value: string | undefined,
+  needles: readonly string[] | undefined,
+) {
   const normalisedValue = normaliseText(value);
-  return Boolean(needles?.some((needle) => normalisedValue.includes(needle.toLowerCase())));
+  return Boolean(
+    needles?.some((needle) => normalisedValue.includes(needle.toLowerCase())),
+  );
 }
 
-function listIncludesAny(values: string[] | undefined, needles: readonly string[] | undefined) {
+function listIncludesAny(
+  values: string[] | undefined,
+  needles: readonly string[] | undefined,
+) {
   const normalisedValues = values?.map((value) => value.toLowerCase()) || [];
-  return Boolean(needles?.some((needle) => normalisedValues.some((value) => value.includes(needle.toLowerCase()))));
+  return Boolean(
+    needles?.some((needle) =>
+      normalisedValues.some((value) => value.includes(needle.toLowerCase())),
+    ),
+  );
 }
 
 function isPremiumFacility(facility: ServiceDirectoryFacility) {
@@ -287,15 +398,31 @@ function isPremiumFacility(facility: ServiceDirectoryFacility) {
   );
 }
 
-function socialProfileMatches(profile: SocialWellnessProfile | undefined, match: CollectionMatch) {
+function socialProfileMatches(
+  profile: SocialWellnessProfile | undefined,
+  match: CollectionMatch,
+) {
   if (!profile) return false;
-  if (match.socialFormatIncludes && !listIncludesAny(profile.socialFormats, match.socialFormatIncludes)) return false;
-  if (match.communityFeatureIncludes && !listIncludesAny(profile.communityFeatures, match.communityFeatureIncludes)) return false;
+  if (
+    match.socialFormatIncludes &&
+    !listIncludesAny(profile.socialFormats, match.socialFormatIncludes)
+  )
+    return false;
+  if (
+    match.communityFeatureIncludes &&
+    !listIncludesAny(profile.communityFeatures, match.communityFeatureIncludes)
+  )
+    return false;
   return true;
 }
 
-export function facilityHasCollectionService(facility: ServiceDirectoryFacility, serviceKey: ServiceSlug) {
-  const exactServiceMatch = (facility.services || []).some((service) => canonicalServiceSlug(service) === serviceKey);
+export function facilityHasCollectionService(
+  facility: ServiceDirectoryFacility,
+  serviceKey: ServiceSlug,
+) {
+  const exactServiceMatch = (facility.services || []).some(
+    (service) => canonicalServiceSlug(service) === serviceKey,
+  );
   if (exactServiceMatch) return true;
 
   const key = directoryServiceKey[serviceKey];
@@ -308,12 +435,24 @@ export function facilityMatchesCollection(
   socialProfile?: SocialWellnessProfile,
 ) {
   if (collection.socialDiscovery) {
-    return Boolean(socialProfile && (socialProfile.socialNote || socialProfile.socialFormats.length || socialProfile.communityFeatures.length));
+    return Boolean(
+      socialProfile &&
+        (socialProfile.socialNote ||
+          socialProfile.socialFormats.length ||
+          socialProfile.communityFeatures.length),
+    );
   }
 
-  const serviceMatch = collection.serviceKeys.some((serviceKey) => facilityHasCollectionService(facility, serviceKey));
-  const allServicesMatch = collection.allServiceKeys?.every((serviceKey) => facilityHasCollectionService(facility, serviceKey));
-  const venueTypeMatch = includesAny(facility.venueType, collection.venueTypeIncludes);
+  const serviceMatch = collection.serviceKeys.some((serviceKey) =>
+    facilityHasCollectionService(facility, serviceKey),
+  );
+  const allServicesMatch = collection.allServiceKeys?.every((serviceKey) =>
+    facilityHasCollectionService(facility, serviceKey),
+  );
+  const venueTypeMatch = includesAny(
+    facility.venueType,
+    collection.venueTypeIncludes,
+  );
 
   if (collection.allServiceKeys?.length) {
     return Boolean(allServicesMatch || venueTypeMatch);
@@ -327,18 +466,51 @@ export function facilityMatchesFeaturedSection(
   match: CollectionMatch,
   socialProfile?: SocialWellnessProfile,
 ) {
-  if (match.serviceKey && !facilityHasCollectionService(facility, match.serviceKey)) return false;
-  if (match.serviceKeys && !match.serviceKeys.some((serviceKey) => facilityHasCollectionService(facility, serviceKey))) return false;
-  if (match.allServiceKeys && !match.allServiceKeys.every((serviceKey) => facilityHasCollectionService(facility, serviceKey))) return false;
+  if (
+    match.serviceKey &&
+    !facilityHasCollectionService(facility, match.serviceKey)
+  )
+    return false;
+  if (
+    match.serviceKeys &&
+    !match.serviceKeys.some((serviceKey) =>
+      facilityHasCollectionService(facility, serviceKey),
+    )
+  )
+    return false;
+  if (
+    match.allServiceKeys &&
+    !match.allServiceKeys.every((serviceKey) =>
+      facilityHasCollectionService(facility, serviceKey),
+    )
+  )
+    return false;
   if (
     match.premiumLevelIncludes &&
     !includesAny(facility.premiumLevel, match.premiumLevelIncludes) &&
     !isPremiumFacility(facility)
-  ) return false;
-  if (match.privateOrSharedIncludes && !includesAny(facility.privateOrShared, match.privateOrSharedIncludes)) return false;
-  if (match.venueTypeIncludes && !includesAny(facility.venueType, match.venueTypeIncludes)) return false;
-  if (match.experienceTypeIncludes && !listIncludesAny(facility.experienceType, match.experienceTypeIncludes)) return false;
-  if ((match.socialFormatIncludes || match.communityFeatureIncludes) && !socialProfileMatches(socialProfile, match)) return false;
+  )
+    return false;
+  if (
+    match.privateOrSharedIncludes &&
+    !includesAny(facility.privateOrShared, match.privateOrSharedIncludes)
+  )
+    return false;
+  if (
+    match.venueTypeIncludes &&
+    !includesAny(facility.venueType, match.venueTypeIncludes)
+  )
+    return false;
+  if (
+    match.experienceTypeIncludes &&
+    !listIncludesAny(facility.experienceType, match.experienceTypeIncludes)
+  )
+    return false;
+  if (
+    (match.socialFormatIncludes || match.communityFeatureIncludes) &&
+    !socialProfileMatches(socialProfile, match)
+  )
+    return false;
 
   return true;
 }
@@ -349,13 +521,21 @@ export function directoryFacilityScore(
   socialProfile?: SocialWellnessProfile,
 ) {
   const serviceMatchCount = match
-    ? [...(match.serviceKeys || []), ...(match.allServiceKeys || []), ...(match.serviceKey ? [match.serviceKey] : [])].filter((serviceKey) => facilityHasCollectionService(facility, serviceKey)).length
+    ? [
+        ...(match.serviceKeys || []),
+        ...(match.allServiceKeys || []),
+        ...(match.serviceKey ? [match.serviceKey] : []),
+      ].filter((serviceKey) =>
+        facilityHasCollectionService(facility, serviceKey),
+      ).length
     : facility.serviceKeys.length;
 
   const premiumBonus = isPremiumFacility(facility) ? 12 : 0;
   const completeness = facility.profileCompletenessScore || 0;
   const socialBonus = socialProfile
-    ? socialProfile.communityFeatures.length * 14 + socialProfile.socialFormats.length * 8 + (socialProfile.socialNote ? 12 : 0)
+    ? socialProfile.communityFeatures.length * 14 +
+      socialProfile.socialFormats.length * 8 +
+      (socialProfile.socialNote ? 12 : 0)
     : 0;
 
   return serviceMatchCount * 20 + premiumBonus + completeness + socialBonus;
@@ -367,7 +547,9 @@ export function getCuratedPicks(
   socialProfiles: Map<string, SocialWellnessProfile>,
 ): CuratedPick[] {
   return sections.map((section) => {
-    const facility = facilities.find((candidate) => candidate.slug === section.editorialPickSlug);
+    const facility = facilities.find(
+      (candidate) => candidate.slug === section.editorialPickSlug,
+    );
 
     if (!facility) return { section };
 

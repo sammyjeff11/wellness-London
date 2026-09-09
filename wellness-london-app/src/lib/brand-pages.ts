@@ -136,7 +136,7 @@ export const brandPages: BrandPage[] = [
     operator: "StretchLAB",
     eyebrow: "Assisted stretching studio operator",
     intro:
-      "StretchLAB operates physiotherapist-supervised assisted stretching studios across London, with one-to-one sessions focused on mobility, posture and recovery.",
+      "StretchLAB operates practitioner-led assisted stretching studios across London, with one-to-one sessions focused on mobility, posture and recovery.",
     description:
       "Compare the seven current StretchLAB studios by neighbourhood and choose the most convenient branch. Introductory sessions and studio credits can be used across the London network.",
     seoTitle: "StretchLAB London locations and prices | Well+",
@@ -197,8 +197,15 @@ export function createSlug(value: string) {
 }
 
 export function getBrandOperator(facility: AirtableFacility) {
-  const maybeFacility = facility as AirtableFacility & { brandOperator?: string; businessName?: string };
-  return maybeFacility.brandOperator || maybeFacility.businessName || inferOperatorFromName(facility.name);
+  const maybeFacility = facility as AirtableFacility & {
+    brandOperator?: string;
+    businessName?: string;
+  };
+  return (
+    maybeFacility.brandOperator ||
+    maybeFacility.businessName ||
+    inferOperatorFromName(facility.name)
+  );
 }
 
 export function inferOperatorFromName(name: string) {
@@ -206,12 +213,24 @@ export function inferOperatorFromName(name: string) {
   if (normalisedName.includes("lowlu")) return "Lowlu";
   if (normalisedName.includes("rooftop saunas")) return "Rooftop Saunas";
   if (normalisedName.includes("third space")) return "Third Space";
-  if (normalisedName.includes("banya no.1") || normalisedName.includes("banya no 1")) return "Banya No.1";
+  if (
+    normalisedName.includes("banya no.1") ||
+    normalisedName.includes("banya no 1")
+  )
+    return "Banya No.1";
   if (normalisedName.includes("neko health")) return "Neko Health";
-  if (normalisedName.includes("stretchlab") || normalisedName.includes("stretch lab")) return "StretchLAB";
+  if (
+    normalisedName.includes("stretchlab") ||
+    normalisedName.includes("stretch lab")
+  )
+    return "StretchLAB";
   if (normalisedName.includes("pulse club sauna")) return "Pulse Club Sauna";
   if (normalisedName.includes("rebody")) return "Rebody";
-  if (normalisedName.includes("sauna & plunge") || normalisedName.includes("sauna and plunge")) return "Sauna & Plunge";
+  if (
+    normalisedName.includes("sauna & plunge") ||
+    normalisedName.includes("sauna and plunge")
+  )
+    return "Sauna & Plunge";
   return "";
 }
 
@@ -221,31 +240,53 @@ export function getBrandPageBySlug(slug: string) {
 
 export function getBrandPageForFacility(facility: AirtableFacility) {
   const operator = getBrandOperator(facility);
-  return brandPages.find((brand) => brand.operator.toLowerCase() === operator.toLowerCase());
+  return brandPages.find(
+    (brand) => brand.operator.toLowerCase() === operator.toLowerCase(),
+  );
 }
 
-export function getFacilitiesForBrand(facilities: AirtableFacility[], brand: BrandPage) {
+export function getFacilitiesForBrand(
+  facilities: AirtableFacility[],
+  brand: BrandPage,
+) {
   return facilities
-    .filter((facility) => getBrandOperator(facility).toLowerCase() === brand.operator.toLowerCase())
+    .filter(
+      (facility) =>
+        getBrandOperator(facility).toLowerCase() ===
+        brand.operator.toLowerCase(),
+    )
     .sort((a, b) => {
-      const liveScore = (facilityIsComingSoon(a) ? 0 : 1) - (facilityIsComingSoon(b) ? 0 : 1);
+      const liveScore =
+        (facilityIsComingSoon(a) ? 0 : 1) - (facilityIsComingSoon(b) ? 0 : 1);
       if (liveScore !== 0) return -liveScore;
       return a.name.localeCompare(b.name);
     });
 }
 
-export function getPublishedMultiLocationBrands(facilities: AirtableFacility[]) {
+export function getPublishedMultiLocationBrands(
+  facilities: AirtableFacility[],
+) {
   return brandPages
     .map((brand) => ({
       brand,
       facilities: dedupeFacilities(getFacilitiesForBrand(facilities, brand)),
     }))
     .filter(({ facilities: brandFacilities }) => brandFacilities.length > 1)
-    .sort((a, b) => b.facilities.length - a.facilities.length || a.brand.name.localeCompare(b.brand.name));
+    .sort(
+      (a, b) =>
+        b.facilities.length - a.facilities.length ||
+        a.brand.name.localeCompare(b.brand.name),
+    );
 }
 
 export function facilityIsComingSoon(facility: AirtableFacility) {
-  const text = [facility.name, facility.description, facility.editorialSummary, facility.editorialVerdict, facility.overallPriceRange]
+  const text = [
+    facility.name,
+    facility.description,
+    facility.editorialSummary,
+    facility.editorialVerdict,
+    facility.overallPriceRange,
+  ]
     .join(" ")
     .toLowerCase();
   return text.includes("coming soon");

@@ -8,6 +8,8 @@ export const metadata: Metadata = {
 };
 
 const standards = [
+  "Useful copy. Describe the service, format, access, session length, price basis and inclusions. Avoid superlatives, assumed atmosphere and claims about who a venue suits unless the wording is supported by identified evidence or a clearly labelled first-hand observation.",
+  "Evidence for each claim. An operator page can support a statement about its published offer; it does not independently prove a health benefit. Staff training, professional qualification and direct clinical supervision are different claims. Health-effect claims require a relevant citation and limitations, not a general disclaimer.",
   "Publisher and responsibility. Well+ publishes this London directory and its researched guides. The publisher is responsible for listing accuracy, corrections and clearly separating editorial selections from commercial offers.",
   "Sources and dates. We use operator websites, current booking pages and explicit service information. Venue profiles link to an operator source and show the recorded information-check date. That date is a research check, not a visit, certification or guarantee that prices remain unchanged.",
   "What qualifies. A service must be explicitly listed for the relevant venue or branch. Future openings, generic brand capabilities and broad longevity language do not establish current availability of a specific test or treatment. Diagnostic pages use confirmed services and clinical eligibility criteria.",
@@ -23,18 +25,25 @@ export default function EditorialStandardsPage() {
   return (
     <main className="bg-[#fbf8f1] px-5 py-16 text-[#29241d] sm:px-6 md:py-24">
       <div className="mx-auto max-w-4xl">
-        <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">Editorial standards</p>
+        <p className="mb-5 text-[11px] uppercase tracking-[0.26em] text-[#6f6048]">
+          Editorial standards
+        </p>
         <h1 className="font-serif text-5xl font-normal leading-[0.98] sm:text-6xl md:text-7xl">
           Publishing principles for Well+.
         </h1>
 
         <p className="mt-8 max-w-3xl text-lg leading-8 text-[#5f574c]">
-          Well+ combines editorial storytelling with practical wellness discovery. Our aim is to help people navigate London wellness spaces with more confidence and less overwhelm.
+          Well+ combines editorial storytelling with practical wellness
+          discovery. Our aim is to help people navigate London wellness spaces
+          with more confidence and less overwhelm.
         </p>
 
         <div className="mt-14 space-y-4 border-t border-[#d8cebf] pt-8">
           {standards.map((standard) => (
-            <div key={standard} className="border border-[#d8cebf] bg-[#f4efe6] p-6 text-sm leading-7 text-[#5f574c] sm:p-7">
+            <div
+              key={standard}
+              className="border border-[#d8cebf] bg-[#f4efe6] p-6 text-sm leading-7 text-[#5f574c] sm:p-7"
+            >
               {standard}
             </div>
           ))}

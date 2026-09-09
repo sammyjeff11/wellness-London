@@ -86,10 +86,7 @@ function getCleanLocation(facility: AirtableFacility) {
 }
 
 function getEditorialCandidates(facility: AirtableFacility) {
-  return [
-    cleanValue(facility.editorialSummary),
-    cleanValue(facility.description),
-  ].filter(Boolean) as string[];
+  return [cleanValue(facility.description)].filter(Boolean) as string[];
 }
 
 function getMetaDescription(facility: AirtableFacility) {

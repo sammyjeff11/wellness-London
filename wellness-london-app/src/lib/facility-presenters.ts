@@ -5,11 +5,16 @@ import { canonicaliseServiceList } from "@/lib/taxonomy";
 import { venueCoordinates } from "@/data/venue-coordinates";
 
 export function getFacilityLocation(facility: AirtableFacility) {
-  return facility.neighbourhood || facility.areaOfLondon || facility.areaGroup || "London";
+  return (
+    facility.neighbourhood ||
+    facility.areaOfLondon ||
+    facility.areaGroup ||
+    "London"
+  );
 }
 
 export function getPublicFacilityDescription(facility: AirtableFacility) {
-  return facility.editorialSummary || facility.description;
+  return facility.description;
 }
 
 export function getFacilityImageAlt(facility: AirtableFacility, index = 0) {
@@ -19,7 +24,9 @@ export function getFacilityImageAlt(facility: AirtableFacility, index = 0) {
     : `${facility.name} wellness venue in ${location}, photo ${index + 1}`;
 }
 
-export function toDirectoryFacility(facility: AirtableFacility): ServiceDirectoryFacility {
+export function toDirectoryFacility(
+  facility: AirtableFacility,
+): ServiceDirectoryFacility {
   const coordinates = venueCoordinates[facility.slug];
 
   return {
@@ -32,12 +39,20 @@ export function toDirectoryFacility(facility: AirtableFacility): ServiceDirector
     address: facility.address,
     imageUrl: facility.images[0]?.url,
     imageAlt: getFacilityImageAlt(facility),
-    galleryImages: facility.images.map((image, index) => ({ url: image.url, filename: getFacilityImageAlt(facility, index) })).filter((image) => Boolean(image.url)),
+    galleryImages: facility.images
+      .map((image, index) => ({
+        url: image.url,
+        filename: getFacilityImageAlt(facility, index),
+      }))
+      .filter((image) => Boolean(image.url)),
     location: getFacilityLocation(facility),
     neighbourhood: facility.neighbourhood,
     areaOfLondon: facility.areaOfLondon,
     areaGroup: facility.areaGroup,
-    services: canonicaliseServiceList([...(facility.confirmedDiagnostics || []), ...facility.servicesOffered]),
+    services: canonicaliseServiceList([
+      ...(facility.confirmedDiagnostics || []),
+      ...facility.servicesOffered,
+    ]),
     serviceKeys: facility.serviceKeys,
     priceRange: facility.overallPriceRange,
     rating: facility.googleRating,

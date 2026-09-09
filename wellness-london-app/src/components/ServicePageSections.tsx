@@ -1,5 +1,7 @@
 import Link from "next/link";
-import ServiceDirectory, { type ServiceDirectoryFacility } from "@/components/ServiceDirectory";
+import ServiceDirectory, {
+  type ServiceDirectoryFacility,
+} from "@/components/ServiceDirectory";
 import type { ServicePageContent } from "@/content/service-page-content";
 import type { ActivityEvidenceNote } from "@/lib/activity-pages";
 
@@ -24,6 +26,7 @@ type ServiceGuidanceSectionProps = {
 };
 
 type ServiceEvidenceSectionProps = {
+  clinical?: boolean;
   title?: string;
   notes?: ActivityEvidenceNote[];
 };
@@ -44,17 +47,27 @@ type ServiceFaqSectionProps = {
   faqs: ServicePageContent["faqs"];
 };
 
-export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntroSectionProps) {
+export function ServiceIntroSection({
+  eyebrow,
+  title,
+  paragraphs,
+}: ServiceIntroSectionProps) {
   return (
     <section className="bg-[#fbf8f1] px-5 py-14 sm:px-6 sm:py-20 md:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-9 md:grid-cols-[0.95fr_1.05fr] md:items-start">
           <div>
-            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">{eyebrow}</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">{title}</h2>
+            <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+              {eyebrow}
+            </p>
+            <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl md:text-7xl">
+              {title}
+            </h2>
           </div>
           <div className="space-y-5 text-base leading-8 text-[#5f574c]">
-            {paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
         </div>
       </div>
@@ -62,27 +75,57 @@ export function ServiceIntroSection({ eyebrow, title, paragraphs }: ServiceIntro
   );
 }
 
-export function ServiceDirectorySection({ facilities, serviceType, emptyTitle, emptyText, prioritisedService }: ServiceDirectorySectionProps) {
+export function ServiceDirectorySection({
+  facilities,
+  serviceType,
+  emptyTitle,
+  emptyText,
+  prioritisedService,
+}: ServiceDirectorySectionProps) {
   return (
-    <section id="venues" className="surface-band-stone scroll-mt-24 px-5 py-6 sm:px-6 sm:py-8">
+    <section
+      id="venues"
+      className="surface-band-stone scroll-mt-24 px-5 py-6 sm:px-6 sm:py-8"
+    >
       <div className="mx-auto max-w-6xl">
-        <ServiceDirectory facilities={facilities} serviceType={serviceType} emptyTitle={emptyTitle} emptyText={emptyText} prioritisedService={prioritisedService} />
+        <ServiceDirectory
+          facilities={facilities}
+          serviceType={serviceType}
+          emptyTitle={emptyTitle}
+          emptyText={emptyText}
+          prioritisedService={prioritisedService}
+        />
       </div>
     </section>
   );
 }
 
-export function ServiceGuidanceSection({ eyebrow = "How to choose", title, points }: ServiceGuidanceSectionProps) {
+export function ServiceGuidanceSection({
+  eyebrow = "How to choose",
+  title,
+  points,
+}: ServiceGuidanceSectionProps) {
   return (
     <section className="border-y border-[#cbbda9] bg-[#29241d] px-5 py-16 text-[#fbf8f1] sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">{eyebrow}</p>
-        <h2 className="mb-12 max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
+        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#d8cebf]">
+          {eyebrow}
+        </p>
+        <h2 className="mb-12 max-w-3xl font-serif text-4xl font-normal leading-tight sm:text-5xl">
+          {title}
+        </h2>
         <div className="grid gap-8 sm:gap-10 md:grid-cols-4">
           {points.map((point) => (
-            <article key={point.title} className="border-t border-[#fbf8f1]/22 pt-5">
-              <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#fbf8f1]">{point.title}</h3>
-              <p className="text-sm leading-7 text-[#fbf8f1]/72">{point.text}</p>
+            <article
+              key={point.title}
+              className="border-t border-[#fbf8f1]/22 pt-5"
+            >
+              <h3 className="mb-3 text-sm uppercase tracking-[0.18em] text-[#fbf8f1]">
+                {point.title}
+              </h3>
+              <p className="text-sm leading-7 text-[#fbf8f1]/72">
+                {point.text}
+              </p>
             </article>
           ))}
         </div>
@@ -91,23 +134,38 @@ export function ServiceGuidanceSection({ eyebrow = "How to choose", title, point
   );
 }
 
-export function ServiceEvidenceSection({ title = "What the evidence suggests", notes = [] }: ServiceEvidenceSectionProps) {
+export function ServiceEvidenceSection({
+  title = "Questions to ask before booking",
+  notes = [],
+  clinical = false,
+}: ServiceEvidenceSectionProps) {
   if (notes.length === 0) return null;
 
   return (
     <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16 md:py-20">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 max-w-3xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">Science-informed guide</p>
-          <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">{title}</h2>
+          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+            {clinical ? "Assessment guide" : "Booking checklist"}
+          </p>
+          <h2 className="font-serif text-4xl font-normal leading-tight sm:text-5xl">
+            {title}
+          </h2>
           <p className="mt-5 text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-            A measured summary of likely benefits, limitations and timing considerations. This is not medical advice.
+            {clinical
+              ? "Check what the assessment measures, how results are interpreted and what follow-up is included."
+              : "These questions help establish what the booking includes. Availability of a service does not establish its effectiveness or your suitability."}
           </p>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {notes.map((note) => (
-            <article key={note.title} className="surface-inset rounded-[1rem] p-5 sm:p-6">
-              <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d]">{note.title}</h3>
+            <article
+              key={note.title}
+              className="surface-inset rounded-[1rem] p-5 sm:p-6"
+            >
+              <h3 className="mb-3 text-xl font-medium tracking-normal text-[#29241d]">
+                {note.title}
+              </h3>
               <p className="text-sm leading-7 text-[#5f574c]">{note.text}</p>
             </article>
           ))}
@@ -117,15 +175,25 @@ export function ServiceEvidenceSection({ title = "What the evidence suggests", n
   );
 }
 
-export function ServiceInsightSection({ eyebrow = "Before you book", panels }: ServiceInsightSectionProps) {
+export function ServiceInsightSection({
+  eyebrow = "Before you book",
+  panels,
+}: ServiceInsightSectionProps) {
   return (
     <section className="surface-band-sage px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">{eyebrow}</p>
+        <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
+          {eyebrow}
+        </p>
         <div className="grid gap-5 md:grid-cols-3">
           {panels.map((panel) => (
-            <article key={panel.title} className="surface-paper-strong rounded-[1rem] p-6 sm:p-7">
-              <h3 className="mb-4 text-xl font-medium tracking-normal">{panel.title}</h3>
+            <article
+              key={panel.title}
+              className="surface-paper-strong rounded-[1rem] p-6 sm:p-7"
+            >
+              <h3 className="mb-4 text-xl font-medium tracking-normal">
+                {panel.title}
+              </h3>
               <p className="text-sm leading-7 text-[#5f574c]">{panel.text}</p>
             </article>
           ))}
@@ -135,21 +203,35 @@ export function ServiceInsightSection({ eyebrow = "Before you book", panels }: S
   );
 }
 
-export function ServiceRelatedSection({ eyebrow = "Continue exploring", title = "Related recovery guides", links }: ServiceRelatedSectionProps) {
+export function ServiceRelatedSection({
+  eyebrow = "Continue exploring",
+  title = "Related recovery guides",
+  links,
+}: ServiceRelatedSectionProps) {
   return (
     <section className="bg-[#fbf8f1] px-5 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 border-b border-[#d8cebf] pb-5">
-          <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">{eyebrow}</p>
-          <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">{title}</h2>
+          <p className="mb-2 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+            {eyebrow}
+          </p>
+          <h2 className="text-2xl font-medium tracking-normal sm:text-3xl">
+            {title}
+          </h2>
         </div>
         <div className="grid gap-5 md:grid-cols-2">
           {links.map((link) => {
             const href = link.href;
 
             return (
-              <Link key={href} href={href} className="surface-inset group block rounded-[1rem] p-6 transition hover:bg-[#e7ddcf] sm:p-7">
-                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">{link.label}</h3>
+              <Link
+                key={href}
+                href={href}
+                className="surface-inset group block rounded-[1rem] p-6 transition hover:bg-[#e7ddcf] sm:p-7"
+              >
+                <h3 className="mb-3 text-2xl font-medium tracking-normal group-hover:underline group-hover:underline-offset-4">
+                  {link.label}
+                </h3>
                 <p className="text-sm leading-7 text-[#5f574c]">{link.text}</p>
                 <p className="mt-6 text-sm text-[#29241d]">Explore guide →</p>
               </Link>
@@ -165,11 +247,18 @@ export function ServiceFaqSection({ title, faqs }: ServiceFaqSectionProps) {
   return (
     <section className="surface-band-stone px-5 py-16 sm:px-6 sm:py-24">
       <div className="surface-paper-strong mx-auto max-w-3xl rounded-[1.25rem] p-6 sm:p-8 md:p-10">
-        <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Questions</p>
-        <h2 className="mb-8 text-2xl font-medium tracking-normal sm:mb-10 sm:text-3xl md:text-4xl">{title}</h2>
+        <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">
+          Questions
+        </p>
+        <h2 className="mb-8 text-2xl font-medium tracking-normal sm:mb-10 sm:text-3xl md:text-4xl">
+          {title}
+        </h2>
         <div className="space-y-7 sm:space-y-8">
           {faqs.map((faq) => (
-            <article key={faq.question} className="border-t border-[#d8cebf] pt-6">
+            <article
+              key={faq.question}
+              className="border-t border-[#d8cebf] pt-6"
+            >
               <h3 className="mb-3 text-lg text-[#29241d]">{faq.question}</h3>
               <p className="text-sm leading-7 text-[#5f574c]">{faq.answer}</p>
             </article>
