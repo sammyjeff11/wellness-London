@@ -18,11 +18,18 @@ This change implements the website-side improvements from the September 2026 gro
 - Sauna and cryotherapy editorials now use explicit researched selections and factual reasons/trade-offs, with sources and method. Automatic quality winners, generic first-timer recommendations and unsourced medical benefit summaries were removed from these two shortlist articles.
 - Editorial standards explain sourcing, visits versus research, commercial disclosures, corrections, prices and health-content boundaries.
 - Geolocation policy permits same-origin use; the directory accurately explains the postcode lookup provider. Device-location permission remains a user choice.
-- Outbound intent is measured as `venue_outbound_click`, with `venue_unique_referral` once per venue per browser session when session storage works. Existing analytics events remain. These events are referrals, not bookings.
+- Outbound intent is measured as `venue_outbound_click`, with `venue_unique_referral` once per venue per browser-tab session when session storage works. Existing analytics events remain. These events are referrals, not bookings.
 
 ## Pricing maintenance
 
 `venue-pricing.ts` carries the offer context already recorded in the reviewed directory snapshot. Check the corresponding operator source and Good To Know field when changing a venue's entry price or offer. Do not reuse a membership, concession or intro amount as a standard treatment/session price. Missing information is preferable to an invented unit or inferred inclusion. Extend the typed offer context and regression tests when additional prices are confirmed.
+
+## Verification completed
+
+- Production build and ESLint pass.
+- 53 automated tests pass, including search, pricing, URL state, referral deduplication and blocked-storage shortlist behaviour.
+- All 181 sitemap routes return successfully with one H1, unique titles/descriptions and matching self-canonical URLs. Filter-query noindex headers and the geolocation policy were verified against the production build.
+- Vercel successfully builds the pull request preview. Desktop/mobile interactive and visual checks remain outstanding: the local browser route is inaccessible and the Vercel preview requires account login. No visual pass or Core Web Vitals score is claimed.
 
 ## Release acceptance
 

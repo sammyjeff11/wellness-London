@@ -1,4 +1,6 @@
 export const SAVED_VENUES_KEY = "well-plus-saved-venues:v1";
+let inMemorySnapshot = "[]";
+
 export const SAVED_VENUES_EVENT = "well-plus-saved-venues-change";
 
 export function parseSavedVenueSlugs(value: string | null) {
@@ -14,7 +16,8 @@ export function parseSavedVenueSlugs(value: string | null) {
 
 export function getSavedVenueSnapshot() {
   if (typeof window === "undefined") return "[]";
-  return window.localStorage.getItem(SAVED_VENUES_KEY) || "[]";
+  try { return window.localStorage.getItem(SAVED_VENUES_KEY) || inMemorySnapshot; }
+  catch { return inMemorySnapshot; }
 }
 
 export function subscribeToSavedVenues(callback: () => void) {
@@ -28,6 +31,8 @@ export function subscribeToSavedVenues(callback: () => void) {
 }
 
 export function setSavedVenueSlugs(slugs: string[]) {
-  window.localStorage.setItem(SAVED_VENUES_KEY, JSON.stringify(Array.from(new Set(slugs))));
+  inMemorySnapshot = JSON.stringify(Array.from(new Set(slugs)));
+  try { window.localStorage.setItem(SAVED_VENUES_KEY, inMemorySnapshot); }
+  catch { /* Keep the shortlist usable for this visit if storage is unavailable. */ }
   window.dispatchEvent(new Event(SAVED_VENUES_EVENT));
 }

@@ -25,7 +25,7 @@ export default function SavedVenueList({ facilities }: { facilities: FacilityCar
           Save the places you want to compare.
         </h2>
         <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base">
-          Use the Save button on selected venue cards. Your shortlist stays on this device, so you can return without creating an account.
+          Use the Save button on venue cards or profiles. Save without an account; returning to your shortlist depends on this browser allowing local storage.
         </p>
         <Link href="/" className="mt-6 inline-flex rounded-full bg-[#29241d] px-6 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#463c31]">
           Discover venues
@@ -39,7 +39,7 @@ export default function SavedVenueList({ facilities }: { facilities: FacilityCar
       <div className="mb-7 flex flex-col gap-4 rounded-[1.1rem] border border-[#c8baa6] bg-[#ded4c5] p-4 sm:flex-row sm:items-center sm:justify-between sm:p-5">
         <div>
           <p className="text-base font-medium text-[#29241d]">{savedFacilities.length} saved {savedFacilities.length === 1 ? "venue" : "venues"}</p>
-          <p className="mt-1 text-sm leading-6 text-[#5f574c]">Saved locally on this device.</p>
+          <p className="mt-1 text-sm leading-6 text-[#5f574c]">Saved in this browser. If local storage is blocked, saves last for this visit.</p>
         </div>
         {savedFacilities.length >= 2 ? (
           <Link href={`/compare?venues=${savedFacilities.slice(0, 4).map((facility) => facility.slug).join(",")}`} className="inline-flex min-h-12 items-center justify-center rounded-full bg-[#29241d] px-6 text-sm font-medium text-[#fbf8f1] transition hover:bg-[#463c31]">

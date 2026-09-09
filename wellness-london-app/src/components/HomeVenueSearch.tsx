@@ -51,7 +51,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
       <label htmlFor="homepage-venue-search" className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">
         Search the directory
       </label>
-      <form action="/explore" method="get" className="relative" onSubmit={() => trackEvent(results.length ? "venue_search_submitted" : "venue_search_no_results", { search_length: trimmedQuery.length, source: "homepage" })}>
+      <form action="/explore" method="get" className="relative" onSubmit={() => trimmedQuery && trackEvent(results.length ? "venue_search_submitted" : "venue_search_no_results", { search_length: trimmedQuery.length, source: "homepage" })}>
         <input
           id="homepage-venue-search"
           type="search"
