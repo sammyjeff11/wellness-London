@@ -6,13 +6,15 @@ export type PriceInput = {
 /** Keep the published amount and its basis together. Unknown units are never session prices. */
 export function venuePrice(venue: PriceInput) {
   const amount = Number(venue.priceFrom?.replace(/,/g, "").match(/£?\s*(\d+(?:\.\d+)?)/)?.[1]);
-  if (!amount || !Number.isFinite(amount)) return { label: "Price not confirmed", comparable: Infinity, basis: "unconfirmed" };
+  if (!amount || !Number.isFinite(amount)) return { label: "", comparable: Infinity, basis: "unconfirmed" };
   const money = new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 2 }).format(amount).replace(/\.00$/, "");
   const notes = `${venue.priceNotes || ""} ${venue.goodToKnow || ""}`;
   const slug = venue.slug || "";
   let basis = "basis unconfirmed";
   let comparable = Infinity;
-  if (slug === "sael-spa") basis = "annual membership · £250 joining fee";
+  if (slug === "bxr-lab") { basis = "introductory 45-minute LAB session"; comparable = amount; }
+  else if (slug === "cloud-twelve") { basis = "30-minute infrared sauna"; comparable = amount; }
+  else if (slug === "sael-spa") basis = "annual membership · £250 joining fee";
   else if (slug === "the-method-club-notting-hill") basis = "monthly membership · £530 joining fee · 12-month minimum";
   else if (slug === "jab-sw1-victoria") basis = "monthly membership · published rates conflict; confirm current rate";
   else if (slug === "numa-oxygen-marylebone") basis = "consultation · treatment costs extra";
