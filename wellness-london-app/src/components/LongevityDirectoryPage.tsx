@@ -5,7 +5,7 @@ import { venuePrice } from "@/lib/venue-pricing";
 
 import { useMemo } from "react";
 import Link from "next/link";
-import FacilityCard from "@/components/FacilityCard";
+import SaveVenueButton from "@/components/SaveVenueButton";
 import LongevityJourney from "@/components/LongevityJourney";
 import type { LongevityFacility } from "@/lib/longevity-facilities";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
@@ -80,16 +80,6 @@ const featuredServices = [
   },
 ] as const;
 
-const featuredServiceHrefs: Record<string, string> = {
-  "Health Screening": "/health-screening-london",
-  "Blood Biomarkers": "/blood-testing-london",
-  "Hormone Testing": "/blood-testing-london",
-  "Cardiovascular Screening": "/cardiovascular-screening-london",
-  "DEXA Scan": "/dexa-scan-london",
-  "VO₂ Max Testing": "/vo2-max-testing-london",
-  "MRI / Medical Imaging": "/medical-imaging-london",
-};
-
 type Need = (typeof needs)[number]["value"];
 type Diagnostic = (typeof diagnosticFilters)[number]["value"];
 type Oversight = (typeof oversightFilters)[number]["value"];
@@ -115,7 +105,6 @@ type ClinicProfile = {
   oversightLabel: string;
   diagnostics: Exclude<Diagnostic, "all">[];
   diagnosticLabels: string[];
-  featuredServiceLabels: string[];
   format: string;
   priceBand: Exclude<Price, "all"> | "unknown";
   bestFor: string;
@@ -158,13 +147,64 @@ function deriveDiagnostics(facility: LongevityFacility, text: string) {
   });
 
   if (facility.confirmedDiagnostics.length === 0) {
-    if (containsAny(text, ["health screening", "health assessment", "executive health", "full health check", "preventative health", "preventive health"])) add("screening", "Health Screening");
-    if (containsAny(text, ["blood test", "blood testing", "biomarker", "blood panel", "hormone testing"])) add("blood", "Blood Biomarkers");
-    if (containsAny(text, ["cardiovascular", "cardiac", "ecg", "heart screening"])) add("cardiovascular", "Cardiovascular Screening");
-    if (containsAny(text, ["dexa", "dual-energy x-ray absorptiometry", "body composition scan", "bone density scan"])) add("dexa", "DEXA Scan");
-    if (containsAny(text, ["vo2 max", "vo₂ max", "vo2max", "cardiorespiratory fitness", "cpet"])) add("vo2", "VO₂ Max Testing");
-    if (containsAny(text, ["mri", "ct scan", "medical imaging", "ultrasound", "full body scan"])) add("imaging", "MRI / Medical Imaging");
-    if (containsAny(text, ["genetic", "genomic", "epigenetic", "biological age"])) add("genetics", "Genetics / Biological Age");
+    if (
+      containsAny(text, [
+        "health screening",
+        "health assessment",
+        "executive health",
+        "full health check",
+        "preventative health",
+        "preventive health",
+      ])
+    )
+      add("screening", "Health Screening");
+    if (
+      containsAny(text, [
+        "blood test",
+        "blood testing",
+        "biomarker",
+        "blood panel",
+        "hormone testing",
+      ])
+    )
+      add("blood", "Blood Biomarkers");
+    if (
+      containsAny(text, ["cardiovascular", "cardiac", "ecg", "heart screening"])
+    )
+      add("cardiovascular", "Cardiovascular Screening");
+    if (
+      containsAny(text, [
+        "dexa",
+        "dual-energy x-ray absorptiometry",
+        "body composition scan",
+        "bone density scan",
+      ])
+    )
+      add("dexa", "DEXA Scan");
+    if (
+      containsAny(text, [
+        "vo2 max",
+        "vo₂ max",
+        "vo2max",
+        "cardiorespiratory fitness",
+        "cpet",
+      ])
+    )
+      add("vo2", "VO₂ Max Testing");
+    if (
+      containsAny(text, [
+        "mri",
+        "ct scan",
+        "medical imaging",
+        "ultrasound",
+        "full body scan",
+      ])
+    )
+      add("imaging", "MRI / Medical Imaging");
+    if (
+      containsAny(text, ["genetic", "genomic", "epigenetic", "biological age"])
+    )
+      add("genetics", "Genetics / Biological Age");
   }
 
   return { diagnostics, labels };
@@ -176,7 +216,10 @@ function deriveNeed(
 ): Pick<ClinicProfile, "need" | "clinicType" | "bestFor"> {
   const model = facility.clinicModel;
 
-  if (model === "Comprehensive longevity clinic" || model === "Preventative health screening clinic") {
+  if (
+    model === "Comprehensive longevity clinic" ||
+    model === "Preventative health screening clinic"
+  ) {
     return {
       need: "comprehensive",
       clinicType: model,
@@ -216,7 +259,11 @@ function deriveNeed(
     };
   }
 
-  if (facility.assessmentFormat.some((format) => /ongoing|membership|annual programme/i.test(format))) {
+  if (
+    facility.assessmentFormat.some((format) =>
+      /ongoing|membership|annual programme/i.test(format),
+    )
+  ) {
     return {
       need: "ongoing",
       clinicType: "Ongoing longevity programme",
@@ -255,19 +302,26 @@ function deriveNeed(
   };
 }
 
-function deriveOversight(facility: LongevityFacility): Pick<ClinicProfile, "oversight" | "oversightLabel"> {
+function deriveOversight(
+  facility: LongevityFacility,
+): Pick<ClinicProfile, "oversight" | "oversightLabel"> {
   const oversight = facility.clinicalOversight;
 
-  if (oversight === "Doctor-led") return { oversight: "doctor", oversightLabel: oversight };
-  if (oversight === "Clinician-led") return { oversight: "clinician", oversightLabel: oversight };
-  if (oversight === "Testing only") return { oversight: "testing-only", oversightLabel: oversight };
-  if (oversight === "Testing with clinical review") return { oversight: "testing", oversightLabel: oversight };
+  if (oversight === "Doctor-led")
+    return { oversight: "doctor", oversightLabel: oversight };
+  if (oversight === "Clinician-led")
+    return { oversight: "clinician", oversightLabel: oversight };
+  if (oversight === "Testing only")
+    return { oversight: "testing-only", oversightLabel: oversight };
+  if (oversight === "Testing with clinical review")
+    return { oversight: "testing", oversightLabel: oversight };
 
   return { oversight: "unconfirmed", oversightLabel: "Not publicly confirmed" };
 }
 
 function deriveFormat(facility: LongevityFacility) {
-  if (facility.assessmentFormat.length > 0) return facility.assessmentFormat.join(" · ");
+  if (facility.assessmentFormat.length > 0)
+    return facility.assessmentFormat.join(" · ");
   return "Not publicly confirmed";
 }
 
@@ -275,7 +329,11 @@ function formatVerificationDate(value: string) {
   if (!value) return "";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(date);
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(date);
 }
 
 function profileClinic(facility: LongevityFacility): ClinicProfile {
@@ -284,8 +342,21 @@ function profileClinic(facility: LongevityFacility): ClinicProfile {
   const needProfile = deriveNeed(facility, diagnostics);
   const oversightProfile = deriveOversight(facility);
   const publishedPrice = venuePrice(facility);
-  const price = /assessment|DEXA|preventive health scan/.test(publishedPrice.basis) ? Number(facility.priceFrom.replace(/,/g, "").match(/\d+(?:\.\d+)?/)?.[0]) || undefined : undefined;
-  const priceBand: ClinicProfile["priceBand"] = price === undefined ? "unknown" : price < 500 ? "under-500" : price < 1500 ? "500-1500" : "1500-plus";
+  const price = /assessment|DEXA|preventive health scan/.test(
+    publishedPrice.basis,
+  )
+    ? Number(
+        facility.priceFrom.replace(/,/g, "").match(/\d+(?:\.\d+)?/)?.[0],
+      ) || undefined
+    : undefined;
+  const priceBand: ClinicProfile["priceBand"] =
+    price === undefined
+      ? "unknown"
+      : price < 500
+        ? "under-500"
+        : price < 1500
+          ? "500-1500"
+          : "1500-plus";
   const verifiedDate = formatVerificationDate(facility.serviceLastVerified);
   const verificationLabel = verifiedDate
     ? `Information checked ${verifiedDate}`
@@ -298,8 +369,9 @@ function profileClinic(facility: LongevityFacility): ClinicProfile {
     ...needProfile,
     ...oversightProfile,
     diagnostics,
-    diagnosticLabels: labels.length ? labels : ["Diagnostic services not yet itemised"],
-    featuredServiceLabels: labels.filter((label) => Boolean(featuredServiceHrefs[label])),
+    diagnosticLabels: labels.length
+      ? labels
+      : ["Diagnostic services not yet itemised"],
     format: deriveFormat(facility),
     priceBand,
     resultsIncluded: facility.resultsIncluded,
@@ -307,18 +379,42 @@ function profileClinic(facility: LongevityFacility): ClinicProfile {
   };
 }
 
-function FilterSelect({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: readonly { value: string; label: string }[] }) {
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  options: readonly { value: string; label: string }[];
+}) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[10px] uppercase tracking-[0.18em] text-[#6f6048]">{label}</span>
-      <select value={value} onChange={(event) => onChange(event.target.value)} className="w-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-3 text-sm outline-none focus:border-[#29241d]">
-        {options.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+      <span className="mb-2 block text-xs uppercase tracking-[0.18em] text-[#6f6048]">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className="w-full border border-[#cfc3b2] bg-[#fbf8f1] px-4 py-3 text-sm outline-none focus:border-[#29241d]"
+      >
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
     </label>
   );
 }
 
-export default function LongevityDirectoryPage({ facilities }: { facilities: LongevityFacility[] }) {
+export default function LongevityDirectoryPage({
+  facilities,
+}: {
+  facilities: LongevityFacility[];
+}) {
   const [urlState, updateUrl] = useDirectoryUrl();
   const need = (urlState.clinicalNeed || "all") as Need;
   const diagnostic = (urlState.diagnostic || "all") as Diagnostic;
@@ -330,143 +426,295 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
   const setPrice = (value: Price) => updateUrl({ assessmentPrice: value });
 
   const profiles = useMemo(() => facilities.map(profileClinic), [facilities]);
-  const filteredProfiles = useMemo(() => profiles.filter((profile) =>
-    (need === "all" || profile.need === need) &&
-    (diagnostic === "all" || profile.diagnostics.includes(diagnostic)) &&
-    (oversight === "all" || profile.oversight === oversight) &&
-    (price === "all" || profile.priceBand === price)
-  ), [profiles, need, diagnostic, oversight, price]);
+  const filteredProfiles = useMemo(
+    () =>
+      profiles.filter(
+        (profile) =>
+          (need === "all" || profile.need === need) &&
+          (diagnostic === "all" || profile.diagnostics.includes(diagnostic)) &&
+          (oversight === "all" || profile.oversight === oversight) &&
+          (price === "all" || profile.priceBand === price),
+      ),
+    [profiles, need, diagnostic, oversight, price],
+  );
 
-  const directoryFacilities = dedupeFacilities(filteredProfiles.map((profile) => toDirectoryFacility(profile.facility)));
+  const directoryFacilities = dedupeFacilities(
+    filteredProfiles.map((profile) => toDirectoryFacility(profile.facility)),
+  );
   const visibleProfiles = directoryFacilities
-    .map((directoryFacility) => profiles.find((profile) => profile.facility.slug === directoryFacility.slug))
+    .map((directoryFacility) =>
+      profiles.find(
+        (profile) => profile.facility.slug === directoryFacility.slug,
+      ),
+    )
     .filter(Boolean) as ClinicProfile[];
-  const hasFilters = need !== "all" || diagnostic !== "all" || oversight !== "all" || price !== "all";
+  const hasFilters =
+    need !== "all" ||
+    diagnostic !== "all" ||
+    oversight !== "all" ||
+    price !== "all";
 
   return (
     <main className="bg-[#f4efe6] text-[#29241d]">
-      <section className="px-5 pb-12 pt-8 sm:px-6 sm:py-20 md:py-24">
+      <section className="px-5 py-8 sm:px-6 sm:py-10">
         <div className="mx-auto max-w-6xl">
-          <nav aria-label="Breadcrumb" className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#6f6048]">
-            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-8 flex flex-wrap items-center gap-2 text-sm text-[#6f6048]"
+          >
+            <Link href="/" className="underline-offset-4 hover:underline">
+              Home
+            </Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page" className="text-[#29241d]">Longevity</span>
+            <span aria-current="page" className="text-[#29241d]">
+              Longevity
+            </span>
           </nav>
-          <p className="mb-4 text-[10px] uppercase tracking-[0.22em] text-[#6f6048] sm:text-[11px]">London longevity and diagnostics</p>
-          <h1 className="max-w-5xl font-serif text-[2.8rem] font-normal leading-[0.92] tracking-[-0.055em] sm:text-6xl md:text-8xl">Know your baseline. Track what changes.</h1>
-          <p className="mt-6 max-w-3xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">Compare London clinics by what they measure, who interprets the results, what happens next and whether the service supports meaningful follow-up over time.</p>
+          <p className="mb-4 text-xs uppercase tracking-[0.22em] text-[#6f6048] sm:text-xs">
+            London longevity and diagnostics
+          </p>
+          <h1 className="max-w-5xl font-serif text-[2.8rem] font-normal leading-[0.92] tracking-[-0.055em] sm:text-6xl">
+            Know your baseline. Track what changes.
+          </h1>
+          <p className="mt-6 max-w-3xl text-base leading-7 text-[#5f574c] sm:text-lg sm:leading-8">
+            Compare London clinics by what they measure, who interprets the
+            results, what happens next and whether the service supports
+            meaningful follow-up over time.
+          </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#services" className="rounded-full bg-[#29241d] px-5 py-3 text-sm text-[#fbf8f1]">Choose what to measure</a>
-            <a href="#clinics" className="rounded-full border border-[#b8aa96] px-5 py-3 text-sm">Compare clinics</a>
+            <a
+              href="#services"
+              className="rounded-full bg-[#29241d] px-5 py-3 text-sm text-[#fbf8f1]"
+            >
+              Choose what to measure
+            </a>
+            <a
+              href="#clinics"
+              className="rounded-full border border-[#b8aa96] px-5 py-3 text-sm"
+            >
+              Compare clinics
+            </a>
           </div>
         </div>
       </section>
 
-      <LongevityJourney />
+      <LongevityJourney compact />
 
-      <section id="services" className="surface-band-sage scroll-mt-24 px-5 py-12 sm:px-6 sm:py-16">
+      <nav
+        id="services"
+        aria-label="Assessment guides"
+        className="editorial-shell flex flex-wrap gap-x-5 gap-y-1 py-4"
+      >
+        {featuredServices.map((service) => (
+          <Link
+            key={service.href}
+            href={service.href}
+            className="inline-flex min-h-11 items-center text-sm underline"
+          >
+            {service.label}
+          </Link>
+        ))}
+      </nav>
+
+      <section id="clinics" className="scroll-mt-24 px-5 py-6 sm:px-6 md:py-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">Explore by health question</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Start with what you need to understand.</h2>
-          </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((service) => (
-              <Link key={service.href} href={service.href} className="surface-paper-strong group rounded-[1rem] p-6 transition hover:-translate-y-[2px] hover:bg-[#f5f0e7]">
-                <h3 className="font-serif text-2xl font-normal leading-tight group-hover:underline group-hover:underline-offset-4">{service.label}</h3>
-                <p className="mt-3 text-sm leading-7 text-[#5f574c]">{service.question}</p>
-                <span className="mt-5 inline-block text-sm underline underline-offset-4">Understand the assessment</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="how-to-compare" className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
-          <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">What belongs here</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Diagnostics before optimisation.</h2>
-          </div>
-          <div className="space-y-5 text-base leading-8 text-[#5f574c]">
-            <p>Longevity becomes useful when objective measurements help establish a baseline, identify priorities and guide an appropriate next step. The test itself is not the outcome.</p>
-            <p>Well+ separates diagnostics from general wellness treatments. A clinic belongs here when it offers meaningful screening, testing, medical imaging or clinician-led assessment—not because it also offers IV therapy, red light, HBOT or recovery treatments.</p>
-            <p>Results should be interpreted in context. Screening can produce false-positive, false-negative or incidental findings, so more tests are not automatically better and concerning symptoms should follow an appropriate medical pathway.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="clinics" className="scroll-mt-24 px-5 py-12 sm:px-6 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-8 max-w-3xl">
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">London directory</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Compare the full assessment, not only the test list.</h2>
-            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">We prioritise clinics that explain what they test, who reviews the results and what follow-up is included. Where those details are not publicly clear, we say so.</p>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
+              London directory
+            </p>
+            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">
+              Compare London clinics.
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-[#5f574c] sm:text-base">
+              We prioritise clinics that explain what they test, who reviews the
+              results and what follow-up is included. Where those details are
+              not publicly clear, we say so.
+            </p>
           </div>
 
           <div className="surface-paper-strong mb-10 grid gap-4 rounded-[1.2rem] p-5 sm:grid-cols-2 lg:grid-cols-4">
-            <FilterSelect label="I am looking for" value={need} onChange={(value) => setNeed(value as Need)} options={needs} />
-            <FilterSelect label="Diagnostic" value={diagnostic} onChange={(value) => setDiagnostic(value as Diagnostic)} options={diagnosticFilters} />
-            <FilterSelect label="Clinical oversight" value={oversight} onChange={(value) => setOversight(value as Oversight)} options={oversightFilters} />
-            <FilterSelect label="Published assessment price" value={price} onChange={(value) => setPrice(value as Price)} options={priceFilters} />
+            <FilterSelect
+              label="I am looking for"
+              value={need}
+              onChange={(value) => setNeed(value as Need)}
+              options={needs}
+            />
+            <FilterSelect
+              label="Diagnostic"
+              value={diagnostic}
+              onChange={(value) => setDiagnostic(value as Diagnostic)}
+              options={diagnosticFilters}
+            />
+            <FilterSelect
+              label="Clinical oversight"
+              value={oversight}
+              onChange={(value) => setOversight(value as Oversight)}
+              options={oversightFilters}
+            />
+            <FilterSelect
+              label="Published assessment price"
+              value={price}
+              onChange={(value) => setPrice(value as Price)}
+              options={priceFilters}
+            />
             <div className="flex items-end sm:col-span-2 lg:col-span-4">
-              <p className="text-xs text-[#6f6048]">Showing {visibleProfiles.length} of {profiles.length} listed providers.</p>
-              {hasFilters && <button type="button" onClick={() => { updateUrl({ clinicalNeed: "", diagnostic: "", oversight: "", assessmentPrice: "" }); }} className="ml-auto text-xs underline underline-offset-4">Clear filters</button>}
+              <p className="text-xs text-[#6f6048]">
+                Showing {visibleProfiles.length} of {profiles.length} listed
+                providers.
+              </p>
+              {hasFilters && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    updateUrl({
+                      clinicalNeed: "",
+                      diagnostic: "",
+                      oversight: "",
+                      assessmentPrice: "",
+                    });
+                  }}
+                  className="ml-auto text-xs underline underline-offset-4"
+                >
+                  Clear filters
+                </button>
+              )}
             </div>
           </div>
 
           {visibleProfiles.length > 0 ? (
             <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {visibleProfiles.map((profile) => {
-                const directoryFacility = toDirectoryFacility(profile.facility);
-                const prioritisedServices = Array.from(new Set([...profile.featuredServiceLabels, ...(directoryFacility.services || [])]));
-                const visibleLabels = profile.diagnosticLabels.slice(0, 3);
-                const moreCount = Math.max(profile.diagnosticLabels.length - visibleLabels.length, 0);
-                const visibleResults = profile.resultsIncluded.slice(0, 2);
-
                 return (
-                  <article key={profile.facility.slug} className="flex flex-col">
-                    <div className="surface-inset mb-3 rounded-[1rem] p-4">
-                      <div className="flex items-start justify-between gap-3">
-                        <p className="text-[10px] uppercase tracking-[0.16em] text-[#6f6048]">{profile.clinicType}</p>
-                        <span className="shrink-0 text-right text-[9px] uppercase tracking-[0.12em] text-[#6f6048]">{profile.verificationLabel}</span>
-                      </div>
-                      <p className="mt-3 text-sm leading-6"><span className="text-[#6f6048]">Best for:</span> {profile.bestFor}</p>
-                      <dl className="mt-4 grid grid-cols-2 gap-3 border-t border-[#d8cebf] pt-4 text-xs">
-                        <div><dt className="text-[#6f6048]">Clinical oversight</dt><dd className="mt-1">{profile.oversightLabel}</dd></div>
-                        <div><dt className="text-[#6f6048]">Assessment format</dt><dd className="mt-1">{profile.format}</dd></div>
-                      </dl>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {visibleLabels.map((label) => {
-                          const href = featuredServiceHrefs[label];
-                          const className = `rounded-full border px-2.5 py-1 text-[10px] ${href ? "border-[#29241d] bg-[#29241d] text-[#fbf8f1]" : "border-[#cfc3b2]"}`;
-                          return href ? <Link key={label} href={href} className={className}>{label}</Link> : <span key={label} className={className}>{label}</span>;
-                        })}
-                        {moreCount > 0 && <Link href={`/facility/${profile.facility.slug}`} className="px-1 py-1 text-[10px] underline underline-offset-4">+{moreCount} more</Link>}
-                      </div>
-                      {visibleResults.length > 0 ? (
-                        <p className="mt-4 border-t border-[#d8cebf] pt-3 text-xs leading-5 text-[#5f574c]"><span className="text-[#6f6048]">Results include:</span> {visibleResults.join(" · ")}{profile.resultsIncluded.length > 2 ? " · more" : ""}</p>
-                      ) : null}
+                  <article
+                    key={profile.facility.slug}
+                    className="rounded-xl border border-[#d8cebf] bg-[#fbf8f1] p-5 sm:p-6"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <Link
+                        href={`/facility/${profile.facility.slug}`}
+                        className="hover:underline"
+                      >
+                        <h3 className="font-sans text-xl font-semibold leading-7 tracking-tight">
+                          {profile.facility.name}
+                        </h3>
+                      </Link>
+                      <SaveVenueButton
+                        slug={profile.facility.slug}
+                        name={profile.facility.name}
+                      />
                     </div>
-                    <FacilityCard facility={{ ...directoryFacility, services: prioritisedServices }} source="longevity_directory" prioritisedService={profile.featuredServiceLabels[0]} />
+                    <p className="mt-2 text-sm text-[#5f574c]">
+                      {profile.facility.neighbourhood ||
+                        profile.facility.areaOfLondon}{" "}
+                      · {profile.clinicType}
+                    </p>
+                    <p className="mt-4 text-sm leading-6">
+                      {profile.diagnosticLabels.join(" · ") ||
+                        "Check available assessments with the clinic"}
+                    </p>
+                    <p className="mt-4 text-base font-semibold">
+                      {venuePrice(profile.facility).label}
+                    </p>
+                    <dl className="mt-4 space-y-3 border-t border-[#d8cebf] pt-4 text-sm">
+                      <div>
+                        <dt className="text-[#5f574c]">Clinical review</dt>
+                        <dd className="mt-1">{profile.oversightLabel}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[#5f574c]">Assessment format</dt>
+                        <dd className="mt-1">{profile.format}</dd>
+                      </div>
+                      <div>
+                        <dt className="text-[#5f574c]">Results & follow-up</dt>
+                        <dd className="mt-1 leading-6">
+                          {profile.resultsIncluded.join(" · ") ||
+                            "Not publicly confirmed"}
+                        </dd>
+                      </div>
+                    </dl>
+                    <div className="mt-5 flex flex-wrap items-center justify-between gap-2 border-t border-[#d8cebf] pt-3">
+                      <Link
+                        href={`/facility/${profile.facility.slug}`}
+                        className="inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
+                      >
+                        View clinic →
+                      </Link>
+                      <span className="text-xs text-[#5f574c]">
+                        {profile.verificationLabel}
+                      </span>
+                    </div>
                   </article>
                 );
               })}
             </div>
           ) : (
-            <div className="border border-[#d8cebf] bg-[#f4efe6] p-8 text-sm leading-7 text-[#5f574c]">No clinics currently match every selected filter. Clear one or more filters to broaden the comparison.</div>
+            <div className="border border-[#d8cebf] bg-[#f4efe6] p-8 text-sm leading-7 text-[#5f574c]">
+              No clinics currently match every selected filter. Clear one or
+              more filters to broaden the comparison.
+            </div>
           )}
+        </div>
+      </section>
+
+      <section
+        id="how-to-compare"
+        className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16"
+      >
+        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.78fr_1.22fr]">
+          <div>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
+              What belongs here
+            </p>
+            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">
+              Diagnostics before optimisation.
+            </h2>
+          </div>
+          <div className="space-y-5 text-base leading-8 text-[#5f574c]">
+            <p>
+              Longevity becomes useful when objective measurements help
+              establish a baseline, identify priorities and guide an appropriate
+              next step. The test itself is not the outcome.
+            </p>
+            <p>
+              Well+ separates diagnostics from general wellness treatments. A
+              clinic belongs here when it offers meaningful screening, testing,
+              medical imaging or clinician-led assessment—not because it also
+              offers IV therapy, red light, HBOT or recovery treatments.
+            </p>
+            <p>
+              Results should be interpreted in context. Screening can produce
+              false-positive, false-negative or incidental findings, so more
+              tests are not automatically better and concerning symptoms should
+              follow an appropriate medical pathway.
+            </p>
+          </div>
         </div>
       </section>
 
       <section className="bg-[#29241d] px-5 py-14 text-[#fbf8f1] sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[0.8fr_1.2fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#d8cebf]">Before booking</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">Compare what happens after the test.</h2>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#d8cebf]">
+              Before booking
+            </p>
+            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em] sm:text-5xl">
+              Compare what happens after the test.
+            </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
-            {["Who selects, reviews and explains the tests?", "Do you receive the full results and a written report?", "Which findings lead to action, repeat testing or referral?", "Can future results be compared using the same method?"].map((item) => <div key={item} className="border border-[#fbf8f1]/14 p-5 text-sm leading-7 text-[#fbf8f1]/78">{item}</div>)}
+            {[
+              "Who selects, reviews and explains the tests?",
+              "Do you receive the full results and a written report?",
+              "Which findings lead to action, repeat testing or referral?",
+              "Can future results be compared using the same method?",
+            ].map((item) => (
+              <div
+                key={item}
+                className="border border-[#fbf8f1]/14 p-5 text-sm leading-7 text-[#fbf8f1]/78"
+              >
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -474,12 +722,38 @@ export default function LongevityDirectoryPage({ facilities }: { facilities: Lon
       <section className="surface-band-stone px-5 py-12 sm:px-6 md:py-20">
         <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-[#6f6048]">The Well+ role</p>
-            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em]">Understand what to measure before choosing where.</h2>
+            <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#6f6048]">
+              The Well+ role
+            </p>
+            <h2 className="font-serif text-4xl font-normal leading-tight tracking-[-0.045em]">
+              Understand what to measure before choosing where.
+            </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <Link href="/editorial" className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"><h3 className="font-serif text-2xl font-normal">Testing and tracking guides</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Editorial explaining what different assessments can and cannot tell you.</p></Link>
-            <Link href="/editorial-standards" className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"><h3 className="font-serif text-2xl font-normal">How Well+ handles health claims</h3><p className="mt-3 text-sm leading-7 text-[#5f574c]">Our approach to evidence, uncertainty and medical-adjacent services.</p></Link>
+            <Link
+              href="/editorial"
+              className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"
+            >
+              <h3 className="font-serif text-2xl font-normal">
+                Testing and tracking guides
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-[#5f574c]">
+                Editorial explaining what different assessments can and cannot
+                tell you.
+              </p>
+            </Link>
+            <Link
+              href="/editorial-standards"
+              className="surface-paper-strong rounded-[1rem] p-6 transition hover:bg-[#f5f0e7]"
+            >
+              <h3 className="font-serif text-2xl font-normal">
+                How Well+ handles health claims
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-[#5f574c]">
+                Our approach to evidence, uncertainty and medical-adjacent
+                services.
+              </p>
+            </Link>
           </div>
         </div>
       </section>

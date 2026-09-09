@@ -37,22 +37,53 @@ export default function LongevityJourney({
   eyebrow = "The diagnostic journey",
   title = "A useful test should lead somewhere.",
 }: LongevityJourneyProps) {
+  if (compact)
+    return (
+      <nav
+        aria-label="Diagnostic journey"
+        className="border-y border-[#d8cebf] bg-[#e7ddcf] px-5 py-4"
+      >
+        <ol className="mx-auto flex max-w-6xl flex-wrap gap-x-6 gap-y-2 text-sm">
+          {stages.map((stage) => (
+            <li key={stage.step}>
+              <span className="mr-2 text-[#5f574c]">{stage.step}</span>
+              {stage.title}
+            </li>
+          ))}
+        </ol>
+      </nav>
+    );
   return (
-    <section className={`border-y border-[#d8cebf] bg-[#29241d] px-5 text-[#fbf8f1] sm:px-6 ${compact ? "py-10 sm:py-12" : "py-12 sm:py-16"}`}>
+    <section
+      className={`border-y border-[#d8cebf] bg-[#29241d] px-5 text-[#fbf8f1] sm:px-6 ${compact ? "py-10 sm:py-12" : "py-12 sm:py-16"}`}
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mb-7 max-w-3xl sm:mb-9">
-          <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-[#d8cebf] sm:text-[11px]">{eyebrow}</p>
-          <h2 className={`font-serif font-normal leading-tight tracking-[-0.045em] ${compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}>
+          <p className="mb-3 text-xs uppercase tracking-[0.22em] text-[#d8cebf] sm:text-xs">
+            {eyebrow}
+          </p>
+          <h2
+            className={`font-serif font-normal leading-tight tracking-[-0.045em] ${compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"}`}
+          >
             {title}
           </h2>
         </div>
 
         <div className="-mx-5 flex snap-x snap-mandatory gap-3 overflow-x-auto px-5 pb-2 sm:mx-0 sm:grid sm:snap-none sm:grid-cols-5 sm:overflow-visible sm:px-0">
           {stages.map((stage) => (
-            <article key={stage.step} className="min-w-[76%] snap-start border border-[#fbf8f1]/16 p-5 sm:min-w-0">
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#d8cebf]">{stage.step}</p>
-              <h3 className="mt-4 font-serif text-2xl font-normal leading-tight">{stage.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">{stage.text}</p>
+            <article
+              key={stage.step}
+              className="min-w-[76%] snap-start border border-[#fbf8f1]/16 p-5 sm:min-w-0"
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-[#d8cebf]">
+                {stage.step}
+              </p>
+              <h3 className="mt-4 font-serif text-2xl font-normal leading-tight">
+                {stage.title}
+              </h3>
+              <p className="mt-3 text-sm leading-6 text-[#fbf8f1]/72">
+                {stage.text}
+              </p>
             </article>
           ))}
         </div>

@@ -9,7 +9,7 @@ const facilities = [
   { name: "Third Space Canary Wharf", slug: "third-space-canary-wharf", brandOperator: "Third Space", neighbourhood: "Canary Wharf", address: "16-19 Canada Square, London", servicesOffered: [] },
   { name: "Third Space Spa", slug: "third-space-spa", brandOperator: "Third Space", neighbourhood: "Canary Wharf", address: "16–19 Canada Square, London", servicesOffered: [] },
   { name: "Third Space City", slug: "third-space-city", brandOperator: "Third Space", neighbourhood: "City", address: "40 Mark Lane, London", servicesOffered: [] },
-] as Parameters<typeof getPublishedMultiLocationBrands>[0];
+] as unknown as Parameters<typeof getPublishedMultiLocationBrands>[0];
 
 test("publishes brand hubs only when at least two distinct physical locations exist", () => {
   const publishedBrands = getPublishedMultiLocationBrands(facilities);

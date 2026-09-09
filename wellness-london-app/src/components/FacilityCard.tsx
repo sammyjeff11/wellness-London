@@ -1,13 +1,12 @@
 "use client";
-
-import { venuePrice } from "@/lib/venue-pricing";
-import { useState } from "react";
-import SafeImage from "@/components/SafeImage";
 import Link from "next/link";
-import { trackEvent } from "@/lib/analytics";
-import { canonicalServiceHref } from "@/lib/taxonomy";
-import { getUsefulServiceLabels } from "@/lib/discovery-labels";
+import SafeImage from "@/components/SafeImage";
 import SaveVenueButton from "@/components/SaveVenueButton";
+import { normaliseSessionFormat } from "@/lib/comparison-values";
+import { venuePrice } from "@/lib/venue-pricing";
+import { trackEvent } from "@/lib/analytics";
+import { getUsefulServiceLabels } from "@/lib/discovery-labels";
+import { cleanValue } from "@/lib/useful-values";
 import { formatDistance } from "@/lib/geo";
 
 export type FacilityCardFacility = {
@@ -65,216 +64,118 @@ type FacilityCardProps = {
   prioritisedService?: string;
   showSaveButton?: boolean;
   distanceKm?: number;
+  variant?: "feature" | "directory";
 };
 
-const broadAreaLabels = new Set(["central", "north", "south", "east", "west", "central london", "north london", "south london", "east london", "west london"]);
-
-const pricePillClass = "max-w-[calc(100%-6rem)] normal-case tracking-normal inline-flex min-h-8 items-center rounded-full bg-[#fbf8f1]/92 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#29241d] shadow-[0_12px_28px_rgba(0,0,0,0.14)] backdrop-blur-sm";
-
-function primaryBestFor(facility: FacilityCardFacility) {
-  return facility.description;
-}
-
-function conciseSummary(facility: FacilityCardFacility, serviceLine: string) {
-  const summary = primaryBestFor(facility).trim();
-  const fallback = serviceLine ? `${facility.name} offers ${serviceLine.toLowerCase()} in ${getNeighbourhoodLabel(facility)}.` : facility.description;
-  const value = summary || fallback;
-  return value.length > 118 ? `${value.slice(0, 115).trim()}…` : value;
-}
-
-function isBroadAreaLabel(value?: string) {
-  return value ? broadAreaLabels.has(value.trim().toLowerCase()) : false;
-}
-
-function getNeighbourhoodLabel(facility: FacilityCardFacility) {
-  if (facility.neighbourhood) return facility.neighbourhood;
-  if (facility.location && !isBroadAreaLabel(facility.location)) return facility.location;
-  if (facility.nearestStation) return facility.nearestStation;
-  return "London";
-}
-
-function getAreaLabel(facility: FacilityCardFacility) {
-  return facility.areaOfLondon || facility.areaGroup || (isBroadAreaLabel(facility.location) ? facility.location : undefined) || "London";
-}
-
-function getCanonicalServices(services?: string[], prioritisedService?: string) {
-  return getUsefulServiceLabels(services, prioritisedService, 3);
-}
-
-function cleanDetailValue(value?: string) {
-  if (!value) return "";
-  const trimmed = value.trim();
-  const lower = trimmed.toLowerCase();
-  if (["n/a", "na", "unknown", "not specified", "not available", "none", "other", "private/shared not confirmed", "details not yet confirmed"].includes(lower)) return "";
-  return trimmed;
-}
-
-function formatBeginnerFriendly(value?: string) {
-  const cleaned = cleanDetailValue(value);
-  if (!cleaned) return "";
-  const lower = cleaned.toLowerCase();
-  if (["yes", "true", "y"].includes(lower)) return "Beginner-friendly";
-  if (["no", "false", "n"].includes(lower)) return "Advanced";
-  return cleaned;
-}
-
-function getComparisonDetails(facility: FacilityCardFacility) {
-  const details = [
-    cleanDetailValue(facility.privateOrShared),
-    cleanDetailValue(facility.accessType),
-    formatBeginnerFriendly(facility.beginnerFriendly),
-    cleanDetailValue(facility.venueType),
-  ];
-
-  return Array.from(new Set(details.filter(Boolean))).slice(0, 3);
-}
-
-function getCardImages(facility: FacilityCardFacility) {
-  const images = facility.galleryImages?.filter((image) => image.url) || [];
-  if (images.length > 0) return images.slice(0, 5);
-  return facility.imageUrl ? [{ url: facility.imageUrl, filename: facility.imageAlt || facility.name }] : [];
-}
-
-function formatCheckedDate(value?: string) {
-  if (!value) return "";
-  const date = new Date(`${value.slice(0, 10)}T12:00:00Z`);
-  if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }).format(date);
-}
-
-export default function FacilityCard({ facility, source = "directory", compact = false, prioritisedService, showSaveButton = true, distanceKm }: FacilityCardProps) {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const neighbourhoodLabel = getNeighbourhoodLabel(facility);
-  const areaLabel = getAreaLabel(facility);
-  const locationLine = [neighbourhoodLabel, areaLabel && areaLabel !== neighbourhoodLabel ? areaLabel : undefined].filter(Boolean).join(" · ");
-  const price = venuePrice(facility).label;
-  const serviceLabels = getCanonicalServices(facility.services, prioritisedService);
-  const serviceLine = serviceLabels.join(" · ");
-  const summary = conciseSummary(facility, serviceLine);
-
-  const cardImages = getCardImages(facility);
-  const activeImage = cardImages[activeImageIndex] || cardImages[0];
-  const cardHref = `/facility/${facility.slug}`;
-  const imageAspect = cardImages.length ? "aspect-[3/2]" : "min-h-20";
-  const comparisonDetails = getComparisonDetails(facility);
-  const checkedDate = formatCheckedDate(facility.lastCheckedDate);
-
-  const trackCardClick = () =>
+export default function FacilityCard({
+  facility,
+  source = "directory",
+  compact = false,
+  prioritisedService,
+  showSaveButton = true,
+  distanceKm,
+  variant = "directory",
+}: FacilityCardProps) {
+  const location =
+    cleanValue(facility.neighbourhood) ||
+    cleanValue(facility.location) ||
+    "London";
+  const services = getUsefulServiceLabels(
+    facility.services,
+    prioritisedService,
+    2,
+  );
+  const photo = facility.imageUrl || facility.galleryImages?.[0]?.url;
+  const facts = [
+    cleanValue(facility.accessType),
+    cleanValue(normaliseSessionFormat(facility.privateOrShared)),
+    cleanValue(facility.sessionDuration),
+  ].filter(Boolean);
+  const date = facility.lastCheckedDate && new Date(facility.lastCheckedDate);
+  const checked =
+    date && !Number.isNaN(date.getTime())
+      ? new Intl.DateTimeFormat("en-GB", {
+          month: "short",
+          year: "numeric",
+          timeZone: "UTC",
+        }).format(date)
+      : "";
+  function trackClick() {
     trackEvent("listing_card_click", {
       facility_name: facility.name,
       facility_slug: facility.slug,
       service_type: source,
-      area: areaLabel,
-      neighbourhood: neighbourhoodLabel,
+      neighbourhood: location,
       page_path: window.location.pathname,
     });
-
-  function showPreviousImage() {
-    setActiveImageIndex((index) => (index - 1 + cardImages.length) % cardImages.length);
   }
-
-  function showNextImage() {
-    setActiveImageIndex((index) => (index + 1) % cardImages.length);
-  }
-
   return (
-    <article className="group min-w-0 overflow-hidden rounded-[1.45rem] border border-[#b9ab97]/80 bg-[#fbf8f1] shadow-[0_16px_42px_rgba(41,36,29,0.07)]">
-      <div className={`relative overflow-hidden rounded-[1.45rem] bg-[#d8cebf] ${imageAspect}`}>
-        {cardImages.length > 0 ? (
-          <>
-            <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="absolute inset-0 block">
-              <SafeImage src={activeImage.url} alt={activeImage.filename || facility.name} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover transition duration-700 group-hover:scale-[1.025]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-black/8" />
-            </Link>
-
-            <div className="pointer-events-none absolute left-4 top-4 z-10">
-              <span className={pricePillClass}>Venue details</span>
-            </div>
-
-            {showSaveButton ? (
-              <div className="absolute right-4 top-4 z-30">
-                <SaveVenueButton slug={facility.slug} name={facility.name} />
-              </div>
-            ) : null}
-
-            {cardImages.length > 1 ? (
-              <>
-                <button type="button" onClick={showPreviousImage} className="absolute left-3 top-1/2 z-20 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:inline-flex" aria-label={`Previous image for ${facility.name}`}>
-                  ←
-                </button>
-                <button type="button" onClick={showNextImage} className="absolute right-3 top-1/2 z-20 hidden min-h-11 min-w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#fbf8f1]/92 px-3 py-2 text-sm text-[#29241d] opacity-0 shadow-[0_8px_22px_rgba(41,36,29,0.16)] transition hover:bg-white focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-[#6f6048] group-hover:opacity-100 sm:inline-flex" aria-label={`Next image for ${facility.name}`}>
-                  →
-                </button>
-                <div className="absolute bottom-1 left-0 right-0 z-10 flex justify-center gap-0.5">
-                  {cardImages.slice(0, 5).map((image, index) => (
-                    <button key={`${image.url}-dot-${index}`} type="button" onClick={() => setActiveImageIndex(index)} className="inline-flex min-h-8 min-w-8 items-center justify-center rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-white/90" aria-label={`Show image ${index + 1} for ${facility.name}`} aria-pressed={index === activeImageIndex}>
-                      <span className={`block h-1.5 rounded-full transition ${index === activeImageIndex ? "w-4 bg-white" : "w-1.5 bg-white/55"}`} />
-                    </button>
-                  ))}
-                </div>
-              </>
-            ) : null}
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(251,248,241,0.68),transparent_30%),radial-gradient(circle_at_82%_20%,rgba(216,206,191,0.58),transparent_28%),linear-gradient(145deg,rgba(244,239,230,0.92),rgba(194,177,153,0.58)_48%,rgba(41,36,29,0.22))]">
-            <div className="absolute inset-x-5 top-1/2 h-px bg-[#fbf8f1]/65" />
-            <div className="absolute inset-y-5 left-1/2 w-px bg-[#fbf8f1]/45" />
-            <div className="absolute left-4 top-4 z-10"><span className={pricePillClass}>Venue details</span></div>
-            {showSaveButton ? (
-              <div className="absolute right-4 top-4 z-30">
-                <SaveVenueButton slug={facility.slug} name={facility.name} />
-              </div>
-            ) : null}
-          </div>
-        )}
-      </div>
-
-      <div className={compact ? "px-4 pb-4 pt-3" : "px-5 pb-5 pt-4"}>
-        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="min-w-0 line-clamp-2 text-[1.08rem] font-semibold leading-6 tracking-[-0.02em] text-[#29241d] sm:text-lg">{facility.name}</h3>
-
-          </div>
-          <p className="mt-0.5 truncate text-[15px] leading-6 text-[#6f6048]">
-            {locationLine || "London"}{distanceKm !== undefined ? ` · ${formatDistance(distanceKm)}` : ""}
-          </p>
+    <article
+      className={`venue-card flex h-full min-w-0 flex-col overflow-hidden rounded-xl border border-[#d8cebf] bg-[#fbf8f1] ${compact ? "text-sm" : "text-base"}`}
+    >
+      {variant === "feature" && photo ? (
+        <Link
+          href={`/facility/${facility.slug}`}
+          onClick={trackClick}
+          aria-label={`View ${facility.name}`}
+          className="relative block aspect-[4/3] overflow-hidden"
+        >
+          <SafeImage
+            src={photo}
+            alt={facility.imageAlt || facility.name}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover transition duration-500 hover:scale-[1.025]"
+          />
         </Link>
-        <p className="mt-3 text-sm font-medium leading-6 text-[#29241d]">{price}</p>
-        {comparisonDetails.length > 0 ? (
-          <div className="mt-2 flex flex-wrap gap-1.5">
-            {comparisonDetails.map((detail) => (
-              <span key={`${facility.slug}-${detail}`} className="rounded-full border border-[#d8cebf] px-2.5 py-1 text-[11px] leading-4 text-[#5f574c]">
-                {detail}
-              </span>
-            ))}
-          </div>
-        ) : null}
-        {serviceLabels.length > 0 ? (
-          <div className="mt-1.5 flex flex-wrap gap-x-1.5 gap-y-1 text-[15px] leading-6 text-[#6f6048]">
-            {serviceLabels.map((service, index) => {
-              const href = canonicalServiceHref(service);
-              return (
-                <span key={`${facility.slug}-${service}`} className="inline-flex items-center gap-1.5">
-                  {href ? (
-                    <Link href={href} className="underline-offset-4 hover:text-[#29241d] hover:underline">
-                      {service}
-                    </Link>
-                  ) : (
-                    <span>{service}</span>
-                  )}
-                  {index < serviceLabels.length - 1 ? <span aria-hidden="true">·</span> : null}
-                </span>
-              );
-            })}
-          </div>
-        ) : null}
-        <Link href={cardHref} aria-label={`View ${facility.name}`} onClick={trackCardClick} className="block">
-          <p className="mt-1 line-clamp-2 text-sm leading-6 text-[#5f574c]">{summary}</p>
-          <span className="mt-4 flex items-center justify-between gap-3 border-t border-[#d8cebf]/70 pt-3 text-xs">
-            <span className="text-[#8d7d67]">{checkedDate ? `Information checked ${checkedDate}` : "Published venue profile"}</span>
-            <span className="shrink-0 font-medium text-[#29241d]">View venue →</span>
+      ) : null}
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-3">
+          <Link
+            href={`/facility/${facility.slug}`}
+            onClick={trackClick}
+            className="min-w-0 underline-offset-4 hover:underline"
+          >
+            <h3 className="font-sans text-xl font-semibold leading-7 tracking-tight">
+              {facility.name}
+            </h3>
+          </Link>
+          {showSaveButton ? (
+            <SaveVenueButton slug={facility.slug} name={facility.name} />
+          ) : null}
+        </div>
+        <p className="mt-2 text-sm leading-6 text-[#5f574c]">
+          {location}
+          {distanceKm !== undefined ? ` · ${formatDistance(distanceKm)}` : ""}
+        </p>
+        <p className="mt-1 text-sm leading-6 text-[#5f574c]">
+          {services.join(" · ") ||
+            cleanValue(facility.venueType) ||
+            "Wellness venue"}
+        </p>
+        <p className="mt-5 text-base font-semibold leading-6">
+          {venuePrice(facility).label}
+        </p>
+        <ul className="mt-3 space-y-1 text-sm leading-6 text-[#5f574c]">
+          {Array.from(new Set(facts)).map((fact) => (
+            <li key={fact}>{fact}</li>
+          ))}
+          {facts.length === 0 ? (
+            <li>Check session format and access with the venue.</li>
+          ) : null}
+        </ul>
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-[#d8cebf] pt-4">
+          <Link
+            href={`/facility/${facility.slug}`}
+            onClick={trackClick}
+            className="inline-flex min-h-11 items-center text-sm font-semibold underline-offset-4 hover:underline"
+          >
+            View venue →
+          </Link>
+          <span className="text-xs text-[#5f574c]">
+            {checked ? `Checked ${checked}` : "Researched profile"}
           </span>
-        </Link>
+        </div>
       </div>
     </article>
   );
