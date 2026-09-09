@@ -18,7 +18,9 @@ export const metadata: Metadata = {
 };
 
 export default async function ExplorePage() {
-  const facilities = dedupeFacilities((await getFacilities()).map(toDirectoryFacility));
+  const facilities = dedupeFacilities(
+    (await getFacilities()).map(toDirectoryFacility),
+  );
 
   const schema = {
     "@context": "https://schema.org",
@@ -42,8 +44,18 @@ export default async function ExplorePage() {
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-          { "@type": "ListItem", position: 2, name: "Venues", item: absoluteUrl("/explore") },
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: absoluteUrl("/"),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Venues",
+            item: absoluteUrl("/explore"),
+          },
         ],
       },
     ],
@@ -55,29 +67,37 @@ export default async function ExplorePage() {
 
       <section className="px-5 py-6 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-6xl">
-          <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-2 text-sm text-[#6f6048]">
-            <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
+          <nav
+            aria-label="Breadcrumb"
+            className="mb-4 flex items-center gap-2 text-sm text-[#6f6048]"
+          >
+            <Link href="/" className="underline-offset-4 hover:underline">
+              Home
+            </Link>
             <span aria-hidden="true">/</span>
-            <span aria-current="page" className="text-[#29241d]">Venues</span>
+            <span aria-current="page" className="text-[#29241d]">
+              Venues
+            </span>
           </nav>
           <p className="editorial-eyebrow mb-4">The London directory</p>
           <h1 className="max-w-4xl font-serif text-4xl font-normal leading-[0.92] tracking-[-0.05em] sm:text-5xl">
             London wellness venues.
           </h1>
           <p className="mt-4 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
-            Compare published saunas, cold plunges, recovery studios, spas and longevity clinics. Search by venue, service or neighbourhood, then narrow the directory using the details that matter before you book.
+            Find a session that fits. Search by service or neighbourhood, check
+            the practical details and save your favourites.
           </p>
         </div>
       </section>
 
-      <section className="surface-band-stone px-5 py-6 sm:px-6 sm:py-8" aria-labelledby="directory-heading">
+      <section
+        className="px-5 pb-8 sm:px-6"
+        aria-labelledby="directory-heading"
+      >
         <div className="mx-auto max-w-6xl">
-          <div className="mb-5 max-w-3xl">
-            <p className="editorial-eyebrow mb-3">Search and compare</p>
-            <h2 id="directory-heading" className="font-serif text-2xl font-normal leading-tight sm:text-3xl">
-            Compare {facilities.length} London wellness venues.
-            </h2>
-          </div>
+          <h2 id="directory-heading" className="sr-only">
+            Search and compare venues
+          </h2>
           <ServiceDirectory
             facilities={facilities}
             serviceType="all_venues"
@@ -88,26 +108,47 @@ export default async function ExplorePage() {
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="goals-heading">
+      <section
+        className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16"
+        aria-labelledby="goals-heading"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 grid gap-4 md:grid-cols-[0.8fr_1.2fr] md:items-end">
             <div>
               <p className="editorial-eyebrow mb-3">Not sure which service?</p>
-              <h2 id="goals-heading" className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl">Explore by goal.</h2>
+              <h2
+                id="goals-heading"
+                className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl"
+              >
+                Explore by goal.
+              </h2>
             </div>
             <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">
-              These routes help when you know the outcome you want but not the service or venue that best fits it.
+              These routes help when you know the outcome you want but not the
+              service or venue that best fits it.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {pillarPages.map((pillar) => (
-              <Link key={pillar.slug} href={pillar.href} className="surface-paper group flex min-h-56 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]">
+              <Link
+                key={pillar.slug}
+                href={pillar.href}
+                className="surface-paper group flex min-h-56 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]"
+              >
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{pillar.eyebrow}</p>
-                  <h3 className="mt-4 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">{pillar.label}</h3>
-                  <p className="mt-4 text-sm leading-6 text-[#5f574c]">{pillar.descriptor}</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">
+                    {pillar.eyebrow}
+                  </p>
+                  <h3 className="mt-4 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">
+                    {pillar.label}
+                  </h3>
+                  <p className="mt-4 text-sm leading-6 text-[#5f574c]">
+                    {pillar.descriptor}
+                  </p>
                 </div>
-                <span className="mt-5 text-sm underline underline-offset-4">Explore →</span>
+                <span className="mt-5 text-sm underline underline-offset-4">
+                  Explore →
+                </span>
               </Link>
             ))}
           </div>

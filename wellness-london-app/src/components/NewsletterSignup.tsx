@@ -21,6 +21,7 @@ export default function NewsletterSignup({
   const endpoint = process.env.NEXT_PUBLIC_NEWSLETTER_FORM_ACTION?.trim();
   const isConfigured = Boolean(endpoint);
   const isDark = variant === "dark";
+  if (!isConfigured) return null;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     if (!endpoint) {
@@ -39,13 +40,19 @@ export default function NewsletterSignup({
           : "rounded-[1.2rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 shadow-[0_18px_48px_rgba(41,36,29,0.04)] sm:p-8"
       }
     >
-      <p className={`text-[10px] uppercase tracking-[0.22em] ${isDark ? "text-[#fbf8f1]/58" : "text-[#8a7f70]"}`}>
+      <p
+        className={`text-[10px] uppercase tracking-[0.22em] ${isDark ? "text-[#fbf8f1]/58" : "text-[#8a7f70]"}`}
+      >
         Occasional updates
       </p>
-      <h2 className={`${compact ? "mt-3 text-2xl sm:text-3xl" : "mt-4 text-3xl sm:text-4xl"} font-serif font-normal leading-tight tracking-[-0.04em]`}>
+      <h2
+        className={`${compact ? "mt-3 text-2xl sm:text-3xl" : "mt-4 text-3xl sm:text-4xl"} font-serif font-normal leading-tight tracking-[-0.04em]`}
+      >
         {title}
       </h2>
-      <p className={`${compact ? "mt-3 text-sm leading-6" : "mt-4 max-w-2xl text-base leading-7"} ${isDark ? "text-[#fbf8f1]/72" : "text-[#5f574c]"}`}>
+      <p
+        className={`${compact ? "mt-3 text-sm leading-6" : "mt-4 max-w-2xl text-base leading-7"} ${isDark ? "text-[#fbf8f1]/72" : "text-[#5f574c]"}`}
+      >
         {copy}
       </p>
 
@@ -86,7 +93,10 @@ export default function NewsletterSignup({
         </button>
       </form>
 
-      <p className={`mt-3 text-xs leading-5 ${isDark ? "text-[#fbf8f1]/52" : "text-[#8a7f70]"}`} aria-live="polite">
+      <p
+        className={`mt-3 text-xs leading-5 ${isDark ? "text-[#fbf8f1]/52" : "text-[#8a7f70]"}`}
+        aria-live="polite"
+      >
         {isConfigured
           ? "Occasional emails only. Unsubscribe at any time."
           : "Email updates are not open yet."}

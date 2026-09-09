@@ -39,11 +39,15 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
 
   const [isMapActive, setIsMapActive] = useState(false);
 
-  const locationLabel = [cleanValue(neighbourhood), cleanValue(borough) || cleanValue(areaOfLondon)]
-    .filter(isUsefulValue)
-    .join(" / ") || "London";
+  const locationLabel =
+    [cleanValue(neighbourhood), cleanValue(borough) || cleanValue(areaOfLondon)]
+      .filter(isUsefulValue)
+      .join(" / ") || "London";
 
-  const fullAddress = formatFullAddress(cleanValue(address), cleanValue(postcode));
+  const fullAddress = formatFullAddress(
+    cleanValue(address),
+    cleanValue(postcode),
+  );
   const cleanNearestStation = cleanValue(nearestStation);
 
   const mapQuery = [name, fullAddress, "London"]
@@ -59,166 +63,74 @@ export default function VenueLocationSection(props: VenueLocationSectionProps) {
   const claimHref = `/claim-listing?venue=${encodeURIComponent(name)}&url=${encodeURIComponent(`/facility/${slug}`)}`;
 
   return (
-    <section className="surface-band-sage px-5 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-3xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.24em] text-[#6f6048]">
-            Location & arrival
+    <section className="editorial-shell grid gap-6 border-t border-[#d8cebf] py-8 sm:grid-cols-2 sm:py-10">
+      <div>
+        <h2 className="text-3xl sm:text-4xl">Location & arrival</h2>
+        <p className="mt-4 text-base leading-7">
+          {fullAddress || locationLabel}
+        </p>
+        {cleanNearestStation ? (
+          <p className="mt-2 text-sm text-[#5f574c]">
+            Nearest station: {cleanNearestStation}
           </p>
-
-          <h2 className="font-serif text-4xl font-normal leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-7xl">Getting there.</h2>
-
-          <p className="mt-6 max-w-2xl text-base leading-8 text-[#70695d] sm:text-lg sm:leading-9">
-            {fullAddress ? `${name} is at ${fullAddress}, in ${locationLabel}.` : `${name} is in ${locationLabel}.`}
-            {cleanNearestStation ? ` The nearest listed station is ${cleanNearestStation}.` : ""}
-          </p>
+        ) : null}
+        <div className="mt-4 flex flex-wrap gap-4">
+          {directionsHref ? (
+            <TrackedExternalLink
+              href={directionsHref}
+              eventName="map_click"
+              properties={{
+                facility_slug: slug,
+                cta_type: "google_maps_location_module",
+              }}
+              className="inline-flex min-h-11 items-center text-sm font-medium underline"
+            >
+              Google Maps ↗
+            </TrackedExternalLink>
+          ) : null}
+          <TrackedExternalLink
+            href={resolvedAppleMapsHref}
+            eventName="map_click"
+            properties={{
+              facility_slug: slug,
+              cta_type: "apple_maps_location_module",
+            }}
+            className="inline-flex min-h-11 items-center text-sm underline"
+          >
+            Apple Maps ↗
+          </TrackedExternalLink>
         </div>
-
-        <div className="surface-paper-strong overflow-hidden rounded-[1.25rem]">
-          <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-            <div className="relative min-h-[380px] border-b border-[#d8cebf]/70 lg:min-h-[640px] lg:border-b-0 lg:border-r">
-              {!isMapActive ? (
-                <button
-                  type="button"
-                  onClick={() => setIsMapActive(true)}
-                  aria-label={`Load map for ${name}`}
-                  className="group relative flex h-full w-full items-end overflow-hidden text-left"
-                >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(251,248,241,0.82),transparent_28rem),linear-gradient(135deg,#efe7da_0%,#d8cebf_52%,#b7a690_100%)]" />
-
-                  <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(90deg,rgba(41,36,29,0.14)_1px,transparent_1px),linear-gradient(rgba(41,36,29,0.12)_1px,transparent_1px)] [background-size:64px_64px]" />
-
-                  <div className="absolute left-[12%] top-[22%] h-px w-[58%] rotate-[-11deg] bg-[#29241d]/18" />
-                  <div className="absolute left-[36%] top-[58%] h-px w-[44%] rotate-[14deg] bg-[#29241d]/16" />
-                  <div className="absolute right-[24%] top-[16%] h-[42%] w-px rotate-[12deg] bg-[#29241d]/14" />
-
-                  <div className="absolute left-1/2 top-1/2 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-[#29241d]/15 bg-[#fbf8f1]/82 shadow-[0_25px_60px_rgba(41,36,29,0.14)] backdrop-blur-sm transition duration-500 group-hover:scale-[1.03]">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#29241d] text-[#fbf8f1]">
-                      <span className="h-3 w-3 rounded-full bg-[#fbf8f1]" />
-                    </div>
-                  </div>
-
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#29241d]/58 via-[#29241d]/10 to-transparent" />
-
-                  <div className="relative z-10 flex w-full flex-col gap-5 p-6 text-[#fbf8f1] sm:p-8 lg:p-10">
-                    <div>
-                      <p className="mb-3 text-[10px] uppercase tracking-[0.24em] text-[#fbf8f1]/74">
-                        Map preview
-                      </p>
-
-                      <h3 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl lg:text-5xl">
-                        {name}
-                      </h3>
-
-                      <p className="mt-3 max-w-xl text-sm leading-7 text-[#fbf8f1]/82 sm:text-base">
-                        {fullAddress || locationLabel}
-                      </p>
-                    </div>
-
-                    <div className="mt-auto inline-flex w-fit rounded-full bg-[#fbf8f1] px-5 py-3 text-sm text-[#29241d] transition group-hover:bg-[#eee7da]">
-                      Load map
-                    </div>
-                  </div>
-                </button>
-              ) : (
-                <iframe
-                  title={`${name} map`}
-                  src={mapSrc}
-                  className="h-full min-h-[380px] w-full border-0 grayscale-[0.32] contrast-[0.96] lg:min-h-[640px]"
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                />
-              )}
-            </div>
-
-            <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
-              <div>
-                <p className="mb-5 text-[10px] uppercase tracking-[0.24em] text-[#8a7f70]">
-                  Arrival notes
-                </p>
-
-                <div className="space-y-8 border-y border-[#d8cebf]/70 py-8">
-                  <div>
-                    <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
-                      Area
-                    </p>
-                    <p className="font-serif text-3xl leading-tight text-[#29241d] sm:text-4xl">
-                      {locationLabel}
-                    </p>
-                  </div>
-
-                  {fullAddress ? (
-                    <div>
-                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
-                        Address
-                      </p>
-                      <p className="text-base leading-8 text-[#5f574c]">
-                        {fullAddress}
-                      </p>
-                    </div>
-                  ) : null}
-
-                  {cleanNearestStation ? (
-                    <div>
-                      <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">
-                        Nearest station
-                      </p>
-                      <p className="text-base leading-8 text-[#5f574c]">
-                        {cleanNearestStation}
-                      </p>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-
-              <div className="mt-10 flex flex-col gap-3">
-                {directionsHref ? (
-                  <TrackedExternalLink
-                    href={directionsHref}
-                    eventName="map_click"
-                    properties={{
-                      facility_name: name,
-                      facility_slug: slug,
-                      cta_type: "google_maps_location_module",
-                      area: cleanValue(neighbourhood) || cleanValue(areaOfLondon),
-                    }}
-                    className="inline-flex justify-center rounded-full bg-[#29241d] px-6 py-3 text-sm text-[#fbf8f1] transition hover:bg-[#463c31]"
-                  >
-                    Open live directions
-                  </TrackedExternalLink>
-                ) : null}
-
-                <TrackedExternalLink
-                  href={resolvedAppleMapsHref}
-                  eventName="map_click"
-                  properties={{
-                    facility_name: name,
-                    facility_slug: slug,
-                    cta_type: "apple_maps_location_module",
-                    area: cleanValue(neighbourhood) || cleanValue(areaOfLondon),
-                  }}
-                  className="inline-flex justify-center rounded-full border border-[#cfc5b6] px-6 py-3 text-sm text-[#29241d] transition hover:border-[#29241d] hover:bg-[#eee8dd]"
-                >
-                  Open in Apple Maps
-                </TrackedExternalLink>
-
-                <div className="mt-4 border-t border-[#d8cebf]/70 pt-6">
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#8a7f70]">Represent this venue?</p>
-                  <p className="mt-2 text-sm leading-6 text-[#5f574c]">
-                    Verify the listing, correct practical details or supply approved imagery.
-                  </p>
-                  <Link
-                    href={claimHref}
-                    className="mt-4 inline-flex text-sm font-medium text-[#29241d] underline underline-offset-4"
-                  >
-                    Claim or update this listing
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Link
+          href={claimHref}
+          className="mt-4 inline-flex min-h-11 items-center text-sm text-[#5f574c] underline"
+        >
+          Claim or update this listing
+        </Link>
+      </div>
+      <div className="relative min-h-60 overflow-hidden rounded-xl border border-[#d8cebf] bg-[#e7ddcf]">
+        {isMapActive ? (
+          <iframe
+            title={`${name} map`}
+            src={mapSrc}
+            className="h-64 w-full border-0"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        ) : (
+          <button
+            type="button"
+            onClick={() => setIsMapActive(true)}
+            className="flex min-h-60 w-full flex-col items-center justify-center gap-3 p-6"
+          >
+            <span className="text-sm text-[#5f574c]">
+              Map of {locationLabel}
+            </span>
+            <span className="rounded-full bg-[#29241d] px-5 py-3 text-sm text-[#fbf8f1]">
+              Load Google map
+            </span>
+          </button>
+        )}
       </div>
     </section>
   );

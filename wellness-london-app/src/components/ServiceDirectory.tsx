@@ -1,23 +1,42 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore, type FormEvent, type ReactNode } from "react";
+import {
+  useMemo,
+  useState,
+  useSyncExternalStore,
+  type FormEvent,
+  type ReactNode,
+} from "react";
 import { guidanceOptions } from "@/lib/venue-facts";
 import { useDirectoryUrl } from "@/lib/use-directory-url";
+import { normaliseSessionFormat } from "@/lib/comparison-values";
 import { venuePrice, sessionPriceBand } from "@/lib/venue-pricing";
+import OverlayDialog from "@/components/OverlayDialog";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import FacilityCard, { type FacilityCardFacility } from "@/components/FacilityCard";
+import FacilityCard, {
+  type FacilityCardFacility,
+} from "@/components/FacilityCard";
 import { trackEvent } from "@/lib/analytics";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { matchesVenueSearch, rankVenueSearch } from "@/lib/search";
 import { isUsefulValue } from "@/lib/useful-values";
 import { toDirectoryServiceLabel } from "@/lib/discovery-labels";
 import { distanceInKm } from "@/lib/geo";
-import { getSavedVenueSnapshot, parseSavedVenueSlugs, subscribeToSavedVenues } from "@/lib/saved-venues";
+import {
+  getSavedVenueSnapshot,
+  parseSavedVenueSlugs,
+  subscribeToSavedVenues,
+} from "@/lib/saved-venues";
 
 const VenueMap = dynamic(() => import("@/components/VenueMap"), {
   ssr: false,
-  loading: () => <div className="min-h-[32rem] animate-pulse rounded-[1.35rem] border border-[#b9ab97] bg-[#ded4c5] lg:min-h-[42rem]" aria-label="Loading venue map" />,
+  loading: () => (
+    <div
+      className="min-h-[32rem] animate-pulse rounded-[1.35rem] border border-[#b9ab97] bg-[#ded4c5] lg:min-h-[42rem]"
+      aria-label="Loading venue map"
+    />
+  ),
 });
 
 export type ServiceDirectoryFacility = FacilityCardFacility & {
@@ -67,7 +86,9 @@ function normaliseDirectoryService(value: string) {
 }
 
 function uniqueValues(values: (string | undefined)[]) {
-  return Array.from(new Set(values.filter((value): value is string => isUsefulValue(value)))).sort();
+  return Array.from(
+    new Set(values.filter((value): value is string => isUsefulValue(value))),
+  ).sort();
 }
 
 function premiumRank(value?: string) {
@@ -85,9 +106,19 @@ function checkedTime(value?: string) {
   return Number.isNaN(time) ? 0 : time;
 }
 
-function FilterSelect({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
+function FilterSelect({
+  label,
+  value,
+  onChange,
+  children,
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  children: ReactNode;
+}) {
   return (
-    <label className="grid gap-2 text-[11px] uppercase tracking-[0.18em] text-[#5f574c]">
+    <label className="grid gap-2 text-sm font-medium text-[#5f574c]">
       {label}
       <select
         aria-label={label}
@@ -101,26 +132,14 @@ function FilterSelect({ label, value, onChange, children }: { label: string; val
   );
 }
 
-function MobileFilterPill({ label, value, onChange, children }: { label: string; value: string; onChange: (value: string) => void; children: ReactNode }) {
-  return (
-    <label className="relative shrink-0">
-      <span className="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 text-sm font-medium text-[#29241d]">
-        {value || label}
-      </span>
-      <select
-        aria-label={label}
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        className="h-11 max-w-[11rem] appearance-none rounded-full border border-[#d8cebf] bg-[#fbf8f1] pl-4 pr-9 text-sm text-transparent outline-none focus:ring-2 focus:ring-[#6f6048] [&_option]:text-[#29241d] [&_option]:bg-[#fbf8f1]"
-      >
-        {children}
-      </select>
-      <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-[#70695d]">⌄</span>
-    </label>
-  );
-}
-
-export default function ServiceDirectory({ facilities, serviceType, emptyTitle, emptyText, prioritisedService, directoryMode = false }: ServiceDirectoryProps) {
+export default function ServiceDirectory({
+  facilities,
+  serviceType,
+  emptyTitle,
+  emptyText,
+  prioritisedService,
+  directoryMode = false,
+}: ServiceDirectoryProps) {
   const [urlState, updateUrl] = useDirectoryUrl();
   const filters: FilterState = urlState;
   const sort = urlState.sort || "recommended";
@@ -131,27 +150,68 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
   const setViewMode = (value: "list" | "map") => updateUrl({ view: value });
   const [selectedMapSlug, setSelectedMapSlug] = useState<string>();
   const [mapAreaSlugs, setMapAreaSlugs] = useState<string[]>();
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const [postcode, setPostcode] = useState("");
   const [locationStatus, setLocationStatus] = useState("");
-  const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number }>();
-  const savedSnapshot = useSyncExternalStore(subscribeToSavedVenues, getSavedVenueSnapshot, () => "[]");
-  const savedSlugs = useMemo(() => parseSavedVenueSlugs(savedSnapshot), [savedSnapshot]);
-  const uniqueFacilities = useMemo(() => dedupeFacilities(facilities), [facilities]);
+  const [userLocation, setUserLocation] = useState<{
+    latitude: number;
+    longitude: number;
+  }>();
+  const savedSnapshot = useSyncExternalStore(
+    subscribeToSavedVenues,
+    getSavedVenueSnapshot,
+    () => "[]",
+  );
+  const savedSlugs = useMemo(
+    () => parseSavedVenueSlugs(savedSnapshot),
+    [savedSnapshot],
+  );
+  const uniqueFacilities = useMemo(
+    () => dedupeFacilities(facilities),
+    [facilities],
+  );
 
-  const areaOptions = uniqueValues(uniqueFacilities.map((facility) => facility.areaGroup || facility.location));
-  const serviceOptions = uniqueValues(uniqueFacilities.flatMap((facility) => (facility.services || []).map(normaliseDirectoryService)));
-  const venueTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.venueType));
-  const accessTypeOptions = uniqueValues(uniqueFacilities.map((facility) => facility.accessType));
-  const priceBandOptions = uniqueValues(uniqueFacilities.map((facility) => sessionPriceBand(facility)));
-  const privateOptions = uniqueValues(uniqueFacilities.map((facility) => facility.privateOrShared));
-  const experienceOptions = uniqueValues(uniqueFacilities.flatMap(guidanceOptions));
+  const areaOptions = uniqueValues(
+    uniqueFacilities.map((facility) => facility.areaGroup || facility.location),
+  );
+  const serviceOptions = uniqueValues(
+    uniqueFacilities.flatMap((facility) =>
+      (facility.services || []).map(normaliseDirectoryService),
+    ),
+  );
+  const venueTypeOptions = uniqueValues(
+    uniqueFacilities.map((facility) => facility.venueType),
+  );
+  const accessTypeOptions = uniqueValues(
+    uniqueFacilities.map((facility) => facility.accessType),
+  );
+  const priceBandOptions = uniqueValues(
+    uniqueFacilities.map((facility) => sessionPriceBand(facility)),
+  );
+  const privateOptions = uniqueValues(
+    uniqueFacilities.map((facility) =>
+      normaliseSessionFormat(facility.privateOrShared),
+    ),
+  );
+  const experienceOptions = uniqueValues(
+    uniqueFacilities.flatMap(guidanceOptions),
+  );
   const searchValue = searchQuery.trim();
   const distanceBySlug = useMemo(() => {
     if (!userLocation) return {};
     return Object.fromEntries(
       uniqueFacilities
-        .filter((facility) => facility.latitude !== undefined && facility.longitude !== undefined)
-        .map((facility) => [facility.slug, distanceInKm(userLocation, { latitude: facility.latitude as number, longitude: facility.longitude as number })]),
+        .filter(
+          (facility) =>
+            facility.latitude !== undefined && facility.longitude !== undefined,
+        )
+        .map((facility) => [
+          facility.slug,
+          distanceInKm(userLocation, {
+            latitude: facility.latitude as number,
+            longitude: facility.longitude as number,
+          }),
+        ]),
     );
   }, [uniqueFacilities, userLocation]);
 
@@ -160,33 +220,65 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       const area = facility.areaGroup || facility.location || "";
       const experiences = guidanceOptions(facility);
       const priceBand = sessionPriceBand(facility);
-      const facilityServices = (facility.services || []).map(normaliseDirectoryService);
+      const facilityServices = (facility.services || []).map(
+        normaliseDirectoryService,
+      );
 
       return (
         matchesVenueSearch(facility, searchValue) &&
         (!mapAreaSlugs || mapAreaSlugs.includes(facility.slug)) &&
         (!filters.area || area === filters.area) &&
-        (!filters.service || (facilityServices.includes(filters.service) || (filters.service === "Sauna" && facilityServices.includes("Infrared Sauna")))) &&
+        (!filters.service ||
+          facilityServices.includes(filters.service) ||
+          (filters.service === "Sauna" &&
+            facilityServices.includes("Infrared Sauna"))) &&
         (!filters.venueType || facility.venueType === filters.venueType) &&
         (!filters.accessType || facility.accessType === filters.accessType) &&
         (!filters.priceBand || priceBand === filters.priceBand) &&
-        (!filters.premiumLevel || facility.premiumLevel === filters.premiumLevel) &&
-        (!filters.experienceType || experiences.includes(filters.experienceType)) &&
-        (!filters.privateOrShared || facility.privateOrShared === filters.privateOrShared)
+        (!filters.premiumLevel ||
+          facility.premiumLevel === filters.premiumLevel) &&
+        (!filters.experienceType ||
+          experiences.includes(filters.experienceType)) &&
+        (!filters.privateOrShared ||
+          normaliseSessionFormat(facility.privateOrShared) ===
+            normaliseSessionFormat(filters.privateOrShared))
       );
     });
 
     return [...result].sort((a, b) => {
-      if (sort === "nearest" && userLocation) return (distanceBySlug[a.slug] ?? Number.POSITIVE_INFINITY) - (distanceBySlug[b.slug] ?? Number.POSITIVE_INFINITY);
+      if (sort === "nearest" && userLocation)
+        return (
+          (distanceBySlug[a.slug] ?? Number.POSITIVE_INFINITY) -
+          (distanceBySlug[b.slug] ?? Number.POSITIVE_INFINITY)
+        );
       if (searchValue && sort === "recommended") {
-        return rankVenueSearch(b, searchValue) - rankVenueSearch(a, searchValue) || (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
+        return (
+          rankVenueSearch(b, searchValue) - rankVenueSearch(a, searchValue) ||
+          (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0)
+        );
       }
-      if (sort === "price-low") return venuePrice(a).comparable - venuePrice(b).comparable;
-      if (sort === "premium") return premiumRank(b.premiumLevel || b.priceRange) - premiumRank(a.premiumLevel || a.priceRange);
-      if (sort === "recently-checked") return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
-      return (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0);
+      if (sort === "price-low")
+        return venuePrice(a).comparable - venuePrice(b).comparable;
+      if (sort === "premium")
+        return (
+          premiumRank(b.premiumLevel || b.priceRange) -
+          premiumRank(a.premiumLevel || a.priceRange)
+        );
+      if (sort === "recently-checked")
+        return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
+      return (
+        (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0)
+      );
     });
-  }, [uniqueFacilities, filters, sort, searchValue, mapAreaSlugs, userLocation, distanceBySlug]);
+  }, [
+    uniqueFacilities,
+    filters,
+    sort,
+    searchValue,
+    mapAreaSlugs,
+    userLocation,
+    distanceBySlug,
+  ]);
 
   function updateFilter(key: keyof FilterState, value: string) {
     updateUrl({ [key]: value });
@@ -195,7 +287,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       filter_name: key,
       filter_value: value || "cleared",
       service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      page_path:
+        typeof window !== "undefined" ? window.location.pathname : undefined,
     });
   }
 
@@ -205,7 +298,8 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     trackEvent("filter_cleared", {
       filter_name: "all",
       service_type: serviceType,
-      page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+      page_path:
+        typeof window !== "undefined" ? window.location.pathname : undefined,
     });
   }
 
@@ -216,12 +310,16 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
       trackEvent("venue_search_used", {
         search_length: value.length,
         service_type: serviceType,
-        page_path: typeof window !== "undefined" ? window.location.pathname : undefined,
+        page_path:
+          typeof window !== "undefined" ? window.location.pathname : undefined,
       });
     }
   }
 
-  function setNearbyLocation(location: { latitude: number; longitude: number }, label: string) {
+  function setNearbyLocation(
+    location: { latitude: number; longitude: number },
+    label: string,
+  ) {
     setUserLocation(location);
     setSort("nearest");
     setViewMode("map");
@@ -244,12 +342,19 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
     setLocationStatus("Finding nearby venues…");
     try {
-      const response = await fetch(`https://api.postcodes.io/postcodes/${encodeURIComponent(query)}`);
+      const response = await fetch(
+        `https://api.postcodes.io/postcodes/${encodeURIComponent(query)}`,
+      );
       const data = await response.json();
       if (!response.ok || !data.result) throw new Error("Postcode not found");
-      setNearbyLocation({ latitude: data.result.latitude, longitude: data.result.longitude }, data.result.postcode);
+      setNearbyLocation(
+        { latitude: data.result.latitude, longitude: data.result.longitude },
+        data.result.postcode,
+      );
     } catch {
-      setLocationStatus("We could not find that postcode. Check it and try again.");
+      setLocationStatus(
+        "We could not find that postcode. Check it and try again.",
+      );
       trackEvent("location_search_failed", {
         location_type: "postcode",
         service_type: serviceType,
@@ -265,9 +370,18 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     }
     setLocationStatus("Requesting your location…");
     navigator.geolocation.getCurrentPosition(
-      (position) => setNearbyLocation({ latitude: position.coords.latitude, longitude: position.coords.longitude }, "Current location"),
+      (position) =>
+        setNearbyLocation(
+          {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          },
+          "Current location",
+        ),
       () => {
-        setLocationStatus("Location permission was not granted. You can use a postcode instead.");
+        setLocationStatus(
+          "Location permission was not granted. You can use a postcode instead.",
+        );
         trackEvent("location_search_failed", {
           location_type: "device",
           service_type: serviceType,
@@ -334,7 +448,9 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
     });
   }
 
-  const activeFilters = Object.keys(initialFilters).filter((key) => filters[key as keyof FilterState]);
+  const activeFilters = Object.keys(initialFilters).filter(
+    (key) => filters[key as keyof FilterState],
+  );
   const hasActiveSearch = searchQuery.trim().length > 0;
 
   if (uniqueFacilities.length === 0) {
@@ -348,214 +464,411 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
   const filterControls = (
     <>
-      <FilterSelect label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
+      <FilterSelect
+        label="Area"
+        value={filters.area}
+        onChange={(value) => updateFilter("area", value)}
+      >
         <option value="">Any area</option>
-        {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {areaOptions.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </FilterSelect>
       {directoryMode ? (
         <>
-          <FilterSelect label="Service" value={filters.service} onChange={(value) => updateFilter("service", value)}>
+          <FilterSelect
+            label="Service"
+            value={filters.service}
+            onChange={(value) => updateFilter("service", value)}
+          >
             <option value="">Any service</option>
-            {serviceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {serviceOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
-          <FilterSelect label="Venue type" value={filters.venueType} onChange={(value) => updateFilter("venueType", value)}>
+          <FilterSelect
+            label="Venue type"
+            value={filters.venueType}
+            onChange={(value) => updateFilter("venueType", value)}
+          >
             <option value="">Any type</option>
-            {venueTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {venueTypeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
-          <FilterSelect label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
+          <FilterSelect
+            label="Access"
+            value={filters.accessType}
+            onChange={(value) => updateFilter("accessType", value)}
+          >
             <option value="">Any access</option>
-            {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {accessTypeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
-          <FilterSelect label="Session price" value={filters.priceBand} onChange={(value) => updateFilter("priceBand", value)}>
+          <FilterSelect
+            label="Session price"
+            value={filters.priceBand}
+            onChange={(value) => updateFilter("priceBand", value)}
+          >
             <option value="">Any session price</option>
-            {priceBandOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {priceBandOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
         </>
       ) : null}
-      <FilterSelect label="Session format" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
+      <FilterSelect
+        label="Session format"
+        value={filters.privateOrShared}
+        onChange={(value) => updateFilter("privateOrShared", value)}
+      >
         <option value="">Any format</option>
-        {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+        {privateOptions.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
       </FilterSelect>
       {!directoryMode ? (
         <>
-
-          <FilterSelect label="Guidance" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
+          <FilterSelect
+            label="Guidance"
+            value={filters.experienceType}
+            onChange={(value) => updateFilter("experienceType", value)}
+          >
             <option value="">Any experience</option>
-            {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {experienceOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
-          <FilterSelect label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
+          <FilterSelect
+            label="Access"
+            value={filters.accessType}
+            onChange={(value) => updateFilter("accessType", value)}
+          >
             <option value="">Any access</option>
-            {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
+            {accessTypeOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </FilterSelect>
         </>
       ) : null}
-      <FilterSelect label="Sort" value={sort} onChange={updateSort}>
-        <option value="recommended">Recommended</option>
-        {userLocation ? <option value="nearest">Nearest first</option> : null}
-        <option value="price-low">Confirmed session price</option>
-        <option value="premium">Premium/luxury</option>
-        <option value="recently-checked">Recently checked</option>
-      </FilterSelect>
     </>
   );
 
   return (
-    <div className="space-y-8 pb-20 md:space-y-12 md:pb-0">
-      <Link href="/shortlist" className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">Saved venues & comparison ({savedSlugs.length})</Link>
-      <section id={`directory-filters-${serviceType}`} className="scroll-mt-24 rounded-[1.35rem] border border-[#b9ab97]/80 bg-[#ded4c5] p-4 shadow-[0_18px_46px_rgba(41,36,29,0.07)] sm:p-6 md:p-5">
-        <div className="surface-paper-strong rounded-[1.2rem] px-4 py-3 sm:px-5">
-          <label htmlFor={`venue-search-${serviceType}`} className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#6f6048]">
+    <div className="space-y-5 pb-20 md:pb-0">
+      <section
+        id={`directory-filters-${serviceType}`}
+        aria-label="Find venues"
+        className="scroll-mt-24 border-y border-[#d8cebf] py-5"
+      >
+        <div
+          className={`grid items-end gap-4 ${directoryMode ? "sm:grid-cols-[2fr_1fr_1fr_auto]" : "sm:grid-cols-[2fr_1fr_auto]"}`}
+        >
+          <label className="grid gap-2 text-sm font-medium">
             Search venues
-          </label>
-          <div className="flex items-center gap-3">
             <input
-              id={`venue-search-${serviceType}`}
               type="search"
               value={searchQuery}
               onChange={(event) => updateSearch(event.target.value)}
-              onKeyDown={(event) => { if (event.key === "Enter") trackEvent(filteredFacilities.length ? "venue_search_submitted" : "venue_search_no_results", { search_length: searchQuery.length, result_count: filteredFacilities.length, service_type: serviceType }); }}
-              placeholder="Try a venue, area or service"
+              placeholder="Venue, neighbourhood or service"
               autoComplete="off"
-              className="min-w-0 flex-1 bg-transparent py-1 text-base text-[#29241d] outline-none placeholder:text-[#8d7d67]"
+              className="min-h-12 min-w-0 rounded-lg border border-[#b9ab97] bg-[#fbf8f1] px-4 text-base font-normal"
             />
-            {hasActiveSearch ? (
-              <button type="button" onClick={() => updateSearch("")} className="relative z-30 text-sm text-[#29241d] underline underline-offset-4">
-                Clear
-              </button>
-            ) : null}
-          </div>
-          <p role="status" aria-live="polite" className="mt-2 text-xs leading-5 text-[#70695d]">{filteredFacilities.length} of {uniqueFacilities.length} spaces shown</p>
+          </label>
+          <FilterSelect
+            label="Area"
+            value={filters.area}
+            onChange={(value) => updateFilter("area", value)}
+          >
+            <option value="">Any area</option>
+            {areaOptions.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
+          </FilterSelect>
+          {directoryMode ? (
+            <FilterSelect
+              label="Service"
+              value={filters.service}
+              onChange={(value) => updateFilter("service", value)}
+            >
+              <option value="">Any service</option>
+              {serviceOptions.map((option) => (
+                <option key={option}>{option}</option>
+              ))}
+            </FilterSelect>
+          ) : null}
+          <button
+            type="button"
+            onClick={() => setFiltersOpen(true)}
+            className="min-h-12 rounded-lg border border-[#b9ab97] px-4 text-sm font-medium"
+          >
+            More filters
+            {activeFilters.length ? ` (${activeFilters.length})` : ""}
+          </button>
         </div>
-
-        <div className="mt-4 md:hidden">
-          <div className="mb-3 flex items-center justify-between gap-4">
-            <p className="text-sm text-[#5f574c]">{filteredFacilities.length} spaces found</p>
-            {activeFilters.length > 0 || hasActiveSearch ? (
-              <button type="button" onClick={clearFilters} className="relative z-30 text-sm text-[#29241d] underline underline-offset-4">
-                Clear all
-              </button>
-            ) : null}
-          </div>
-          <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-2">
-            <MobileFilterPill label="Area" value={filters.area} onChange={(value) => updateFilter("area", value)}>
-              <option value="">Area</option>
-              {areaOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            <MobileFilterPill label="Session format" value={filters.privateOrShared} onChange={(value) => updateFilter("privateOrShared", value)}>
-              <option value="">Any format</option>
-              {privateOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-            </MobileFilterPill>
-            {directoryMode ? (
-              <>
-                <MobileFilterPill label="Service" value={filters.service} onChange={(value) => updateFilter("service", value)}>
-                  <option value="">Service</option>
-                  {serviceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-                <MobileFilterPill label="Venue type" value={filters.venueType} onChange={(value) => updateFilter("venueType", value)}>
-                  <option value="">Venue type</option>
-                  {venueTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-                <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
-                  <option value="">Access</option>
-                  {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-                <MobileFilterPill label="Session price" value={filters.priceBand} onChange={(value) => updateFilter("priceBand", value)}>
-                  <option value="">Price</option>
-                  {priceBandOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-              </>
-            ) : (
-              <>
-                <MobileFilterPill label="Guidance" value={filters.experienceType} onChange={(value) => updateFilter("experienceType", value)}>
-                  <option value="">Type</option>
-                  {experienceOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-                <MobileFilterPill label="Access" value={filters.accessType} onChange={(value) => updateFilter("accessType", value)}>
-                  <option value="">Access</option>
-                  {accessTypeOptions.map((option) => <option key={option} value={option}>{option}</option>)}
-                </MobileFilterPill>
-              </>
-            )}
-            <MobileFilterPill label="Sort" value={sort} onChange={updateSort}>
-              <option value="recommended">Sort</option>
-              <option value="price-low">Price</option>
-              <option value="premium">Premium</option>
-              <option value="recently-checked">Recent</option>
-            </MobileFilterPill>
-          </div>
-        </div>
-
         {directoryMode ? (
-          <div className="mt-4 rounded-[1rem] border border-[#c8baa6] bg-[#eee7dc] p-3 sm:p-4">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-              <div>
-                <p className="text-sm font-medium text-[#29241d]">Find what is close to you</p>
-                <p className="mt-1 text-xs leading-5 text-[#70695d]">Device coordinates stay in your browser. Postcode searches are sent to postcodes.io.</p>
-              </div>
-              <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-                <form onSubmit={findPostcode} className="flex min-w-0 rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1">
-                  <label htmlFor={`postcode-${serviceType}`} className="sr-only">UK postcode</label>
-                  <input id={`postcode-${serviceType}`} value={postcode} onChange={(event) => setPostcode(event.target.value)} placeholder="UK postcode" autoComplete="postal-code" className="min-w-0 flex-1 bg-transparent px-3 text-sm uppercase text-[#29241d] outline-none placeholder:normal-case placeholder:text-[#8d7d67] sm:w-36" />
-                  <button type="submit" className="min-h-10 rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">Find</button>
-                </form>
-                <button type="button" onClick={useCurrentLocation} className="min-h-11 rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-4 text-sm font-medium text-[#29241d] transition hover:bg-white">Use my location</button>
-                {userLocation ? <button type="button" onClick={clearNearbyLocation} className="min-h-11 px-2 text-sm underline underline-offset-4">Reset</button> : null}
-              </div>
+          <details className="mt-3">
+            <summary className="w-fit cursor-pointer py-2 text-sm underline underline-offset-4">
+              Find nearby · postcode or current location
+            </summary>
+            <div className="mt-2 flex flex-wrap items-center gap-3">
+              <form onSubmit={findPostcode} className="flex min-w-0 gap-2">
+                <label className="sr-only" htmlFor={`postcode-${serviceType}`}>
+                  UK postcode
+                </label>
+                <input
+                  id={`postcode-${serviceType}`}
+                  value={postcode}
+                  onChange={(event) => setPostcode(event.target.value)}
+                  placeholder="UK postcode"
+                  autoComplete="postal-code"
+                  className="min-h-11 w-36 min-w-0 rounded-lg border border-[#b9ab97] bg-[#fbf8f1] px-3 text-base"
+                />
+                <button
+                  type="submit"
+                  className="min-h-11 rounded-lg bg-[#29241d] px-4 text-sm text-[#fbf8f1]"
+                >
+                  Find
+                </button>
+              </form>
+              <button
+                type="button"
+                onClick={useCurrentLocation}
+                className="min-h-11 px-2 text-sm underline"
+              >
+                Use my location
+              </button>
+              {userLocation ? (
+                <button
+                  type="button"
+                  onClick={clearNearbyLocation}
+                  className="min-h-11 text-sm underline"
+                >
+                  Reset location
+                </button>
+              ) : null}
             </div>
-            {locationStatus ? <p className="mt-2 text-xs font-medium text-[#5f574c]" role="status">{locationStatus}{userLocation ? " · sorted nearest first" : ""}</p> : null}
+            <p className="mt-2 text-xs leading-5 text-[#5f574c]">
+              Device coordinates stay in your browser. Postcodes are sent to
+              postcodes.io.
+            </p>
+          </details>
+        ) : null}
+        {locationStatus ? (
+          <p role="status" className="mt-2 text-sm">
+            {locationStatus}
+          </p>
+        ) : null}
+        {activeFilters.length || hasActiveSearch || mapAreaSlugs ? (
+          <div
+            className="mt-3 flex flex-wrap gap-2"
+            aria-label="Selected filters"
+          >
+            {hasActiveSearch ? (
+              <button
+                type="button"
+                onClick={() => updateSearch("")}
+                className="min-h-11 rounded-full border border-[#b9ab97] px-3 text-sm"
+                aria-label={`Remove search ${searchQuery}`}
+              >
+                Search: {searchQuery} ×
+              </button>
+            ) : null}
+            {activeFilters.map((key) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => updateFilter(key as keyof FilterState, "")}
+                className="min-h-11 rounded-full border border-[#b9ab97] px-3 text-sm"
+                aria-label={`Remove ${key} filter: ${filters[key as keyof FilterState]}`}
+              >
+                {filters[key as keyof FilterState]} ×
+              </button>
+            ))}
+            {mapAreaSlugs ? (
+              <button
+                type="button"
+                onClick={() => searchMapArea(undefined)}
+                className="min-h-11 rounded-full border border-[#b9ab97] px-3 text-sm"
+              >
+                Map area ×
+              </button>
+            ) : null}
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="min-h-11 px-3 text-sm underline"
+            >
+              Clear all
+            </button>
           </div>
         ) : null}
-
-        <div className={`mt-6 hidden grid-cols-2 gap-5 md:grid ${directoryMode ? "lg:grid-cols-7" : "lg:grid-cols-5"}`}>
-          {filterControls}
-        </div>
       </section>
+      <OverlayDialog
+        open={filtersOpen}
+        onClose={() => setFiltersOpen(false)}
+        title="Filter venues"
+      >
+        <div className="grid gap-5 sm:grid-cols-2">{filterControls}</div>
+        <div className="sticky bottom-0 mt-6 flex gap-3 bg-[#fbf8f1] py-3">
+          <button
+            type="button"
+            onClick={() => setFiltersOpen(false)}
+            className="min-h-12 flex-1 rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]"
+          >
+            Show {filteredFacilities.length} venues
+          </button>
+          <button
+            type="button"
+            onClick={clearFilters}
+            className="min-h-12 px-4 text-sm underline"
+          >
+            Reset
+          </button>
+        </div>
+      </OverlayDialog>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p role="status" className="text-sm font-medium">
+          {filteredFacilities.length}{" "}
+          {filteredFacilities.length === 1 ? "venue" : "venues"}
+        </p>
+        <label className="flex items-center gap-2 text-sm">
+          Sort
+          <select
+            value={sort}
+            onChange={(event) => updateSort(event.target.value)}
+            className="min-h-11 max-w-52 rounded-lg border border-[#b9ab97] bg-[#fbf8f1] px-2"
+          >
+            <option value="recommended">Recommended</option>
+            {userLocation ? (
+              <option value="nearest">Nearest first</option>
+            ) : null}
+            <option value="price-low">Confirmed session price</option>
+            <option value="premium">Premium/luxury</option>
+            <option value="recently-checked">Recently checked</option>
+          </select>
+        </label>
+      </div>
 
       {filteredFacilities.length > 0 ? (
         <section>
           <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="editorial-eyebrow mb-2">Directory</p>
-              <h2 className="font-serif text-3xl font-normal leading-tight tracking-[-0.04em] sm:text-4xl">
-                Compare venues.
-              </h2>
+              <h2 className="sr-only">Find your next venue.</h2>
             </div>
             <div className="flex flex-wrap items-center gap-2">
-              {activeFilters.length > 0 || hasActiveSearch ? <button type="button" onClick={clearFilters} className="hidden min-h-11 px-2 text-sm text-[#29241d] underline underline-offset-4 md:inline-flex md:items-center">Clear filters</button> : null}
+              {activeFilters.length > 0 || hasActiveSearch ? (
+                <button
+                  type="button"
+                  onClick={clearFilters}
+                  className="hidden min-h-11 px-2 text-sm text-[#29241d] underline underline-offset-4 md:inline-flex md:items-center"
+                >
+                  Clear filters
+                </button>
+              ) : null}
               {directoryMode ? (
                 <>
-                  <div className="inline-flex rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1" aria-label="Directory view">
-                    <button type="button" onClick={() => updateViewMode("list")} aria-pressed={viewMode === "list"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "list" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>List</button>
-                    <button type="button" onClick={() => updateViewMode("map")} aria-pressed={viewMode === "map"} className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "map" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}>Map</button>
+                  <div
+                    className="inline-flex rounded-full border border-[#b9ab97] bg-[#fbf8f1] p-1"
+                    aria-label="Directory view"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => updateViewMode("list")}
+                      aria-pressed={viewMode === "list"}
+                      className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "list" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}
+                    >
+                      List
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => updateViewMode("map")}
+                      aria-pressed={viewMode === "map"}
+                      className={`min-h-10 rounded-full px-4 text-sm font-medium transition ${viewMode === "map" ? "bg-[#29241d] text-[#fbf8f1]" : "text-[#5f574c]"}`}
+                    >
+                      Map
+                    </button>
                   </div>
-                  <Link onClick={trackComparisonCta} href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-5 text-sm font-medium text-[#29241d] transition hover:bg-white">
-                    {savedSlugs.length >= 2 ? `Compare ${Math.min(savedSlugs.length, 4)}` : `Saved${savedSlugs.length ? ` · ${savedSlugs.length}` : ""}`}
+                  <Link
+                    onClick={trackComparisonCta}
+                    href={
+                      savedSlugs.length >= 2
+                        ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}`
+                        : "/shortlist"
+                    }
+                    className="inline-flex min-h-12 items-center rounded-full border border-[#b9ab97] bg-[#fbf8f1] px-5 text-sm font-medium text-[#29241d] transition hover:bg-white"
+                  >
+                    {savedSlugs.length >= 2
+                      ? `Compare ${Math.min(savedSlugs.length, 4)}`
+                      : `Saved${savedSlugs.length ? ` · ${savedSlugs.length}` : ""}`}
                   </Link>
                 </>
               ) : null}
             </div>
           </div>
           {directoryMode && viewMode === "map" ? (
-            <VenueMap facilities={filteredFacilities} selectedSlug={selectedMapSlug} userLocation={userLocation} distanceBySlug={distanceBySlug} mapAreaActive={Boolean(mapAreaSlugs)} onSelect={selectMapVenue} onSearchArea={searchMapArea} />
+            <VenueMap
+              facilities={filteredFacilities}
+              selectedSlug={selectedMapSlug}
+              userLocation={userLocation}
+              distanceBySlug={distanceBySlug}
+              mapAreaActive={Boolean(mapAreaSlugs)}
+              onSelect={selectMapVenue}
+              onSearchArea={searchMapArea}
+            />
           ) : (
             <div className="grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {filteredFacilities.map((facility) => (
-                <FacilityCard key={facility.slug} facility={facility} source={serviceType} prioritisedService={prioritisedService} showSaveButton distanceKm={distanceBySlug[facility.slug]} />
+                <FacilityCard
+                  key={facility.slug}
+                  facility={facility}
+                  source={serviceType}
+                  prioritisedService={prioritisedService}
+                  showSaveButton
+                  distanceKm={distanceBySlug[facility.slug]}
+                />
               ))}
             </div>
           )}
         </section>
       ) : (
         <section className="rounded-[1.25rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-6 sm:p-8">
-          <h3 className="mb-3 text-2xl font-medium tracking-[-0.03em]">No matching spaces found.</h3>
+          <h3 className="mb-3 text-2xl font-medium tracking-[-0.03em]">
+            No matching spaces found.
+          </h3>
           <p className="max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base sm:leading-8">
-            Try clearing one filter, searching a nearby neighbourhood, or browsing all venues.
+            Try clearing one filter, searching a nearby neighbourhood, or
+            browsing all venues.
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <button type="button" onClick={clearFilters} className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]"
+            >
               Clear filters
             </button>
-            <Link href="/explore" className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]">
+            <Link
+              href="/explore"
+              className="rounded-full border border-[#d8cebf] px-4 py-2 text-sm transition hover:bg-[#f4efe6]"
+            >
               Explore all venues
             </Link>
           </div>
@@ -564,11 +877,39 @@ export default function ServiceDirectory({ facilities, serviceType, emptyTitle, 
 
       <div className="fixed inset-x-0 bottom-0 z-30 border-t border-[#d8cebf] bg-[#fbf8f1]/95 px-4 py-3 shadow-[0_-16px_38px_rgba(41,36,29,0.12)] backdrop-blur-xl md:hidden">
         <div className="mx-auto flex max-w-md items-center gap-2">
-          <a href={`#directory-filters-${serviceType}`} className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]">
-            Filters · {filteredFacilities.length} {filteredFacilities.length === 1 ? "venue" : "venues"}
-          </a>
-          {directoryMode ? <button type="button" onClick={() => updateViewMode(viewMode === "list" ? "map" : "list")} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{viewMode === "list" ? "Map" : "List"}</button> : null}
-          {savedSlugs.length > 0 ? <Link onClick={trackComparisonCta} href={savedSlugs.length >= 2 ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}` : "/shortlist"} className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]">{savedSlugs.length >= 2 ? "Compare" : "Saved"} · {Math.min(savedSlugs.length, 4)}</Link> : null}
+          <button
+            type="button"
+            onClick={() => setFiltersOpen(true)}
+            className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[#29241d] px-4 text-sm font-medium text-[#fbf8f1]"
+          >
+            Filters · {filteredFacilities.length}{" "}
+            {filteredFacilities.length === 1 ? "venue" : "venues"}
+          </button>
+          {directoryMode ? (
+            <button
+              type="button"
+              onClick={() =>
+                updateViewMode(viewMode === "list" ? "map" : "list")
+              }
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]"
+            >
+              {viewMode === "list" ? "Map" : "List"}
+            </button>
+          ) : null}
+          {savedSlugs.length > 0 ? (
+            <Link
+              onClick={trackComparisonCta}
+              href={
+                savedSlugs.length >= 2
+                  ? `/compare?venues=${savedSlugs.slice(0, 4).join(",")}`
+                  : "/shortlist"
+              }
+              className="inline-flex min-h-12 items-center justify-center rounded-full border border-[#b9ab97] px-4 text-sm font-medium text-[#29241d]"
+            >
+              {savedSlugs.length >= 2 ? "Compare" : "Saved"} ·{" "}
+              {Math.min(savedSlugs.length, 4)}
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>

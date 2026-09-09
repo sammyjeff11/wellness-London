@@ -79,12 +79,14 @@ const standardsEntries = [
   {
     href: "/how-we-curate",
     title: "How we curate",
-    description: "What gets a venue into the directory, how listings are weighted and what the editorial picks are based on.",
+    description:
+      "What gets a venue into the directory, how listings are weighted and what the editorial picks are based on.",
   },
   {
     href: "/editorial-standards",
     title: "Editorial standards",
-    description: "How Well+ writes about venues: sourcing, independence and the line between editorial and listing data.",
+    description:
+      "How Well+ writes about venues: sourcing, independence and the line between editorial and listing data.",
   },
 ];
 
@@ -108,7 +110,12 @@ const breadcrumbJsonLd = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-    { "@type": "ListItem", position: 2, name: "Guides", item: absoluteUrl("/editorial") },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Guides",
+      item: absoluteUrl("/editorial"),
+    },
   ],
 };
 
@@ -119,38 +126,59 @@ export default function EditorialHubPage() {
 
       <section className="relative isolate overflow-hidden bg-[#29241d] text-[#fbf8f1]">
         <div className="absolute inset-0 opacity-[0.07] [background-image:linear-gradient(90deg,#fbf8f1_1px,transparent_1px),linear-gradient(#fbf8f1_1px,transparent_1px)] [background-size:44px_44px]" />
-        <div className="relative mx-auto max-w-6xl px-5 py-16 sm:px-6 sm:py-24 md:py-28">
-          <nav aria-label="Breadcrumb" className="flex flex-wrap gap-2 text-sm text-[#fbf8f1]/62">
-            <Link href="/" className="underline-offset-4 hover:text-[#fbf8f1] hover:underline">Home</Link>
+        <div className="relative mx-auto max-w-6xl px-5 py-8 sm:px-6 sm:py-12">
+          <nav
+            aria-label="Breadcrumb"
+            className="flex flex-wrap gap-2 text-sm text-[#fbf8f1]/62"
+          >
+            <Link
+              href="/"
+              className="underline-offset-4 hover:text-[#fbf8f1] hover:underline"
+            >
+              Home
+            </Link>
             <span>/</span>
             <span className="text-[#fbf8f1]/86">Guides</span>
           </nav>
 
           <div className="mt-16 grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
             <div>
-              <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">Well+ Guides</p>
-              <h1 className="font-serif text-[4.2rem] font-normal leading-[0.86] tracking-[-0.03em] sm:text-8xl lg:text-[7.5rem]">
+              <p className="mb-6 text-[11px] uppercase tracking-[0.3em] text-[#cbbda8]">
+                Well+ Guides
+              </p>
+              <h1 className="font-serif text-5xl font-normal leading-[0.86] tracking-[-0.03em] sm:text-6xl">
                 Guides for choosing well.
               </h1>
               <p className="mt-8 max-w-2xl text-lg leading-8 text-[#fbf8f1]/74 sm:text-xl sm:leading-9">
-                Compare different services, understand what changes the experience and find the London venues best suited to a particular kind of visit.
+                Compare different services, understand what changes the
+                experience and find the London venues best suited to a
+                particular kind of visit.
               </p>
             </div>
 
             <div className="border-t border-[#fbf8f1]/16 pt-5 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">What the guides answer</p>
+              <p className="text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/42">
+                What the guides answer
+              </p>
               <p className="mt-4 max-w-xs font-serif text-2xl font-normal leading-[1.12] tracking-[-0.02em] text-[#fbf8f1]/92">
-                Which format suits you, where to book it and what to check before committing.
+                Which format suits you, where to book it and what to check
+                before committing.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-contents">
+      <section
+        className="bg-[#fbf8f1] px-5 py-12 sm:px-6 sm:py-16"
+        aria-labelledby="editorial-contents"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[#29241d]/22 pb-5">
-            <h2 id="editorial-contents" className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
+            <h2
+              id="editorial-contents"
+              className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]"
+            >
               Contents
             </h2>
             <p className="text-sm text-[#5f574c]">Latest guidance first</p>
@@ -163,7 +191,7 @@ export default function EditorialHubPage() {
                   href={entry.href}
                   className="group grid gap-5 py-9 transition-colors duration-300 hover:bg-[#29241d] hover:text-[#fbf8f1] sm:py-11 lg:grid-cols-[0.16fr_0.2fr_0.64fr] lg:items-start lg:gap-8 lg:px-5 lg:-mx-5"
                 >
-                  <p className="font-serif text-6xl font-normal leading-none tracking-[-0.04em] text-[#29241d]/22 transition-colors group-hover:text-[#fbf8f1]/24 sm:text-7xl">
+                  <p className="font-serif text-6xl font-normal leading-none tracking-[-0.04em] text-[#29241d]/22 transition-colors group-hover:text-[#fbf8f1]/24 sm:text-6xl">
                     {entry.number}
                   </p>
 
@@ -180,7 +208,9 @@ export default function EditorialHubPage() {
                     </p>
                     <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm text-[#8d7d67] transition-colors group-hover:text-[#cbbda8]">
                       <span>{entry.meta}</span>
-                      <span className="underline underline-offset-4 transition-transform group-hover:translate-x-1">Read the guide →</span>
+                      <span className="underline underline-offset-4 transition-transform group-hover:translate-x-1">
+                        Read the guide →
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -190,45 +220,87 @@ export default function EditorialHubPage() {
         </div>
       </section>
 
-      <section className="surface-band-stone px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="shortlists-heading">
+      <section
+        className="surface-band-stone px-5 py-12 sm:px-6 sm:py-16"
+        aria-labelledby="shortlists-heading"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="mb-8 grid gap-4 md:grid-cols-[0.75fr_1.25fr] md:items-end">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">Venue shortlists</p>
-              <h2 id="shortlists-heading" className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl">Compare by use case.</h2>
+              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
+                Venue shortlists
+              </p>
+              <h2
+                id="shortlists-heading"
+                className="mt-4 font-serif text-4xl font-normal leading-none tracking-[-0.04em] sm:text-5xl"
+              >
+                Compare by use case.
+              </h2>
             </div>
-            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">Start with the outcome or experience you want. Each shortlist explains why a venue belongs and what may make another option better for you.</p>
+            <p className="max-w-2xl text-sm leading-7 text-[#5f574c] md:justify-self-end sm:text-base">
+              Start with the outcome or experience you want. Each shortlist
+              explains why a venue belongs and what may make another option
+              better for you.
+            </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {collections.map((collection) => (
-              <Link key={collection.slug} href={collection.href} className="surface-paper group flex min-h-64 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]">
+              <Link
+                key={collection.slug}
+                href={collection.href}
+                className="surface-paper group flex min-h-64 flex-col justify-between rounded-[1rem] p-5 transition hover:-translate-y-0.5 hover:bg-[#f5f0e7]"
+              >
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">{collection.eyebrow}</p>
-                  <h3 className="mt-5 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">{collection.title}</h3>
-                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-[#5f574c]">{collection.heroText}</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] text-[#8d7d67]">
+                    {collection.eyebrow}
+                  </p>
+                  <h3 className="mt-5 font-serif text-3xl font-normal leading-none tracking-[-0.035em]">
+                    {collection.title}
+                  </h3>
+                  <p className="mt-4 line-clamp-3 text-sm leading-6 text-[#5f574c]">
+                    {collection.heroText}
+                  </p>
                 </div>
-                <span className="mt-5 text-sm underline underline-offset-4">View shortlist →</span>
+                <span className="mt-5 text-sm underline underline-offset-4">
+                  View shortlist →
+                </span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="surface-band-sage px-5 py-12 sm:px-6 sm:py-16" aria-labelledby="editorial-standards-heading">
+      <section
+        className="surface-band-sage px-5 py-12 sm:px-6 sm:py-16"
+        aria-labelledby="editorial-standards-heading"
+      >
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-8 border-t border-[#29241d]/22 pt-9 lg:grid-cols-[0.36fr_0.64fr]">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">Standards</p>
-              <h2 id="editorial-standards-heading" className="mt-4 max-w-xs font-serif text-4xl font-normal leading-[1] tracking-[-0.02em]">
+              <p className="text-[11px] uppercase tracking-[0.26em] text-[#8d7d67]">
+                Standards
+              </p>
+              <h2
+                id="editorial-standards-heading"
+                className="mt-4 max-w-xs font-serif text-4xl font-normal leading-[1] tracking-[-0.02em]"
+              >
                 How this section is made.
               </h2>
             </div>
 
             <div className="grid gap-px overflow-hidden bg-[#29241d]/16 sm:grid-cols-2">
               {standardsEntries.map((entry) => (
-                <Link key={entry.href} href={entry.href} className="surface-paper group p-6 transition hover:bg-[#fffdf8]">
-                  <h3 className="font-serif text-2xl font-normal leading-[1.05] tracking-[-0.02em]">{entry.title}</h3>
-                  <p className="mt-3 text-sm leading-6 text-[#5f574c]">{entry.description}</p>
+                <Link
+                  key={entry.href}
+                  href={entry.href}
+                  className="surface-paper group p-6 transition hover:bg-[#fffdf8]"
+                >
+                  <h3 className="font-serif text-2xl font-normal leading-[1.05] tracking-[-0.02em]">
+                    {entry.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-[#5f574c]">
+                    {entry.description}
+                  </p>
                   <p className="mt-5 text-sm text-[#8d7d67] underline underline-offset-4 transition group-hover:translate-x-1 group-hover:text-[#29241d]">
                     Read →
                   </p>
@@ -242,16 +314,24 @@ export default function EditorialHubPage() {
       <section className="px-5 pb-16 sm:px-6 sm:pb-24">
         <div className="mx-auto grid max-w-6xl gap-7 bg-[#29241d] p-6 text-[#fbf8f1] sm:p-9 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/52">From editorial to the directory</p>
+            <p className="text-[11px] uppercase tracking-[0.24em] text-[#fbf8f1]/52">
+              From editorial to the directory
+            </p>
             <h2 className="mt-4 max-w-xl font-serif text-4xl font-normal leading-[1] tracking-[-0.02em] sm:text-5xl">
               Every edit points back to live venue profiles.
             </h2>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
-            <Link href="/explore" className="rounded-full border border-[#fbf8f1]/24 px-5 py-2.5 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">
+            <Link
+              href="/explore"
+              className="rounded-full border border-[#fbf8f1]/24 px-5 py-2.5 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]"
+            >
               Explore the directory
             </Link>
-            <Link href="/sauna-london" className="rounded-full border border-[#fbf8f1]/24 px-5 py-2.5 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]">
+            <Link
+              href="/sauna-london"
+              className="rounded-full border border-[#fbf8f1]/24 px-5 py-2.5 text-sm text-[#fbf8f1] transition hover:bg-[#fbf8f1] hover:text-[#29241d]"
+            >
               Sauna in London
             </Link>
           </div>
