@@ -23,8 +23,10 @@ export const LOCATION_HUBS: Record<string, string> = {
   Richmond: "/neighbourhoods/richmond",
   Soho: "/neighbourhoods/soho",
   Victoria: "/neighbourhoods/victoria",
+  Walthamstow: "/neighbourhoods/walthamstow",
   Wandsworth: "/neighbourhoods/wandsworth",
   "White City": "/neighbourhoods/white-city",
+  Wimbledon: "/neighbourhoods/wimbledon",
 };
 
 export type LondonRegion = {
@@ -62,14 +64,14 @@ export const londonRegions: LondonRegion[] = [
     href: "/north-london-wellness",
     copy: "Restorative spaces, neighbourhood studios and slower wellness routines.",
     areaValues: ["North London", "North East London"],
-    neighbourhoodSlugs: ["hampstead", "islington"],
+    neighbourhoodSlugs: ["hampstead", "islington", "walthamstow"],
   },
   {
     name: "South London",
     href: "/south-london-wellness",
     copy: "Community sauna, recovery studios and accessible local rituals.",
     areaValues: ["South London"],
-    neighbourhoodSlugs: ["peckham", "wandsworth"],
+    neighbourhoodSlugs: ["peckham", "wandsworth", "wimbledon"],
   },
 ];
 
@@ -105,6 +107,8 @@ export const supportedNeighbourhoodHubLinks = [
   { href: "/neighbourhoods/richmond", label: "Richmond wellness spaces", region: "West London" },
   { href: "/neighbourhoods/soho", label: "Soho wellness spaces", region: "Central London" },
   { href: "/neighbourhoods/victoria", label: "Victoria wellness spaces", region: "Central London" },
+  { href: "/neighbourhoods/walthamstow", label: "Walthamstow wellness spaces", region: "North London" },
   { href: "/neighbourhoods/wandsworth", label: "Wandsworth wellness spaces", region: "South London" },
   { href: "/neighbourhoods/white-city", label: "White City wellness spaces", region: "West London" },
+  { href: "/neighbourhoods/wimbledon", label: "Wimbledon wellness spaces", region: "South London" },
 ];

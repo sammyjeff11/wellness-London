@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-08T12:28:54.511Z",
+  "generatedAt": "2026-09-08T20:14:22.057Z",
   "source": {
     "base": "Wellness Listings",
     "table": "Wellness London"
@@ -506,6 +506,109 @@
         "Booking Link": "https://gobanya.co.uk/",
         "Email": "hoxton@gobanya.co.uk",
         "Venue Type Standardized": "Bathhouse"
+      }
+    },
+    {
+      "id": "recN8URfPSYWD2HAq",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Biome by Corinthia London",
+        "Business Name": "Biome by Corinthia London",
+        "Brand / Operator": "Corinthia London",
+        "Slug": "biome-corinthia-london",
+        "Website": "https://www.corinthia.com/en-gb/london/spa-at-corinthia-london/",
+        "Booking Link": "https://www.corinthia.com/en-gb/london/spa-at-corinthia-london/",
+        "Address": "Corinthia London, Whitehall Place, London SW1A 2BD",
+        "Phone": "020 7321 3050",
+        "Email": "biome.london@corinthia.com",
+        "Description": "Corinthia London’s spa offers a publicly bookable thermal experience built around a vitality pool, amphitheatre sauna, steam room and cold plunge. Guided thermal-path and sauna treatments are available alongside massages, facials and other spa services.",
+        "Editorial Summary": "High-end Whitehall spa with a genuine hot-and-cold circuit and day access: vitality pool, amphitheatre sauna, steam room and cold plunge. Useful for visitors who want hotel-spa polish without needing to stay overnight.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Spa",
+          "Massage"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences",
+          "Recovery Treatments"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy",
+          "Massage"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Relaxation"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Couples",
+          "Stress Relief"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Couples",
+          "Guided",
+          "Luxury"
+        ],
+        "Access Type": "Hotel guests + public bookings",
+        "Access Model": "Mixed access",
+        "Overall Price Range": "££££",
+        "Price From": 175,
+        "Neighborhood": "Westminster",
+        "Area of London": "Central London",
+        "Experience Type": "Guided / Group",
+        "Showers Available": true,
+        "Towels Included": true,
+        "Atmosphere": "Large, high-service hotel spa with a structured thermal area, treatment rooms and dedicated relaxation spaces.",
+        "Best For": [
+          "Luxury experience",
+          "Couples",
+          "Quiet recovery",
+          "Visitors to London"
+        ],
+        "Well Suited For": [
+          "Luxury thermal bathing",
+          "Spa experience",
+          "Couples wellness"
+        ],
+        "Good To Know": "Day-spa access includes the thermal floor and starts from £175 on weekdays. Treatments and guided thermal experiences have separate prices and inclusions, so check the selected package before booking.",
+        "Opening Hours": "Spa: daily 07:00–21:00. Treatments: daily 10:00–20:00.",
+        "Editorial Verdict": "A strong central option for a polished, publicly bookable thermal circuit with both self-directed facilities and guided heat-and-cold treatments.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal",
+          "Group-led"
+        ],
+        "Community Features": [
+          "Guided contrast sessions"
+        ]
       }
     },
     {
@@ -3439,6 +3542,105 @@
       }
     },
     {
+      "id": "rectPfwCKj8cAmC8l",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "New Docklands Steam Baths",
+        "Business Name": "New Docklands Steam Baths",
+        "Brand / Operator": "Popular Baths",
+        "Slug": "new-docklands-steam-baths",
+        "Website": "https://newdocklands.uk/",
+        "Booking Link": "https://new-docklands-steam-baths.appointedd.com/",
+        "Address": "30a Stephenson Street, Canning Town, London E16 4SA",
+        "Email": "info@newdocklands.uk",
+        "Description": "A long-running communal bathhouse in Canning Town centred on four Hammam-style steam rooms, a traditional cedar sauna and a refrigerated indoor plunge pool. Sessions follow a practical, self-directed format, with male, female and mixed time slots published separately.",
+        "Editorial Summary": "Traditional, no-frills East London bathhouse with variable-temperature steam rooms, a cedar sauna and a refrigerated plunge pool. Best suited to people who value serious heat and communal bathing over a polished hotel-spa setting.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Combined Experiences"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Contrast Therapy"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Sauna & Cold Plunge"
+        ],
+        "Venue Type Standardized": "Bathhouse",
+        "Theme Tags Standardized": [
+          "Community",
+          "Recovery",
+          "Relaxation"
+        ],
+        "Best For Standardized": [
+          "Community Experience",
+          "Stress Relief",
+          "Groups"
+        ],
+        "Type of Experience": [
+          "Shared",
+          "Self-Guided",
+          "Social"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "££",
+        "Price From": 27,
+        "Neighborhood": "Canning Town",
+        "Area of London": "East London",
+        "Experience Type": "Self-led",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Functional, communal and rooted in traditional bathhouse practice, with heat rooms, plunge facilities and an on-site bistro rather than treatment-led luxury.",
+        "Best For": [
+          "Sauna",
+          "Cold plunge",
+          "Community wellness",
+          "Budget-conscious users"
+        ],
+        "Well Suited For": [
+          "Heat therapy",
+          "Cold exposure",
+          "Community wellness",
+          "Budget-friendly recovery"
+        ],
+        "Good To Know": "Advance booking is recommended; walk-ins are subject to capacity. Sessions are scheduled as male, female or mixed. Bring swimwear, suitable footwear, a towel and a £10 cash locker deposit.",
+        "Opening Hours": "Mon: closed. Tue–Sun: scheduled male, female and mixed sessions; see the live booking calendar for the applicable session.",
+        "Editorial Verdict": "One of the directory’s clearest traditional bathhouse options and a useful counterpoint to London’s newer boutique contrast studios.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Communal sauna",
+          "Cafe / social space",
+          "Recurring group sessions"
+        ],
+        "Social & Community Note": "Bathing takes place in shared sessions, with separate male, female and mixed slots. The bathhouse also has an on-site bistro."
+      }
+    },
+    {
       "id": "reczqsvl3bTBHg00n",
       "fields": {
         "Publish Status": "Published",
@@ -4602,6 +4804,203 @@
       }
     },
     {
+      "id": "recCj4qgw5wLHqWhJ",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Sea Lanes Canary Wharf",
+        "Business Name": "Sea Lanes Canary Wharf",
+        "Brand / Operator": "Sea Lanes",
+        "Slug": "sea-lanes-canary-wharf",
+        "Website": "https://sealanescanarywharf.co.uk/",
+        "Booking Link": "https://sealanescanarywharf.co.uk/sauna/",
+        "Address": "15 Newfoundland Place, Canary Wharf, London E14 4BH",
+        "Phone": "020 3051 6056",
+        "Description": "A year-round outdoor swimming destination at Eden Dock with a 50-metre floating pool and waterfront saunas. The sauna is paired with a swim through pay-per-visit tickets or memberships; sauna-only bookings are not offered.",
+        "Editorial Summary": "Outdoor swim-and-sauna experience at Eden Dock, combining a lifeguarded 50-metre floating pool with glass-fronted waterfront saunas. It is accessible without membership, but every sauna visit must be booked with swimming.",
+        "Services Offered": [
+          "Sauna",
+          "Lap Pool"
+        ],
+        "Primary Service": "Sauna",
+        "Secondary Services": [
+          "Gym / Performance"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna"
+        ],
+        "Activity Display Labels": [
+          "Sauna"
+        ],
+        "Venue Type Standardized": "Community Sauna",
+        "Theme Tags Standardized": [
+          "Community",
+          "Recovery",
+          "Social"
+        ],
+        "Best For Standardized": [
+          "Community Experience",
+          "Groups",
+          "Stress Relief"
+        ],
+        "Type of Experience": [
+          "Outdoor",
+          "Shared",
+          "Social",
+          "Self-Guided"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "£",
+        "Price From": 18,
+        "Neighborhood": "Canary Wharf",
+        "Area of London": "East London",
+        "Experience Type": "Shared",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Open-air, waterside and social, with saunas looking across the floating pool and Canary Wharf skyline.",
+        "Best For": [
+          "Sauna",
+          "Social wellness",
+          "Groups"
+        ],
+        "Well Suited For": [
+          "Sauna",
+          "Social wellness",
+          "Cold exposure"
+        ],
+        "Good To Know": "Sauna-only access is not available. A £18 pay-per-visit ticket combines swimming and sauna. Create an account before booking and bring a padlock, towel, shower gel and swimwear suitable for the current water temperature.",
+        "Opening Hours": "Mon–Fri: 06:00–21:00. Sat–Sun: 07:00–19:00.",
+        "Editorial Verdict": "A distinctive, relatively affordable option for people who want outdoor swimming and sauna together rather than an indoor contrast circuit.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ],
+        "Community Features": [
+          "Communal sauna",
+          "Community events",
+          "Cafe / social space"
+        ],
+        "Social & Community Note": "The floating pool and waterfront saunas operate as shared facilities, with a café and event programme adding to the social setting."
+      }
+    },
+    {
+      "id": "rect7OFDlupjwlgkg",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Six Senses London Spa",
+        "Business Name": "Six Senses London",
+        "Brand / Operator": "Six Senses / IHG",
+        "Slug": "six-senses-london-spa",
+        "Website": "https://www.sixsenses.com/en/hotels-resorts/europe/united-kingdom/london/wellness-spa/",
+        "Booking Link": "https://www.sixsenses.com/en/hotels-resorts/europe/united-kingdom/london/wellness-spa/wellness-inquiry/",
+        "Address": "1 Redan Place, London W2 4SA",
+        "Phone": "+44 20 3278 8050",
+        "Email": "spa-london@sixsenses.com",
+        "Description": "A 2,300-square-metre hotel spa at The Whiteley combining a bio sauna, steam room, Turkish hammam, indoor pool, magnesium plunge pool and cold plunge with flotation, cryotherapy, massage and technology-supported recovery. A HUM2N clinic operates within the spa, while personalised wellness programmes are available separately.",
+        "Editorial Summary": "Large Bayswater hotel spa combining a substantial thermal circuit with flotation, cryotherapy, compression-led biohacking and personalised wellness programmes. Hotel guests, members and external treatment clients may receive different levels of facility access.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Cold Plunge",
+          "Floatation Therapy",
+          "Cryotherapy",
+          "Compression Therapy",
+          "Spa",
+          "Massage"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "Cryotherapy",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery",
+          "Longevity",
+          "Combined Experiences"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Cold Plunge",
+          "Cryotherapy",
+          "Compression Therapy",
+          "Massage",
+          "Health Optimisation"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Ice Bath & Cold Plunge",
+          "Cryotherapy",
+          "Compression Therapy",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Longevity",
+          "Relaxation"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Biohackers",
+          "Stress Relief"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Couples",
+          "Guided",
+          "Luxury",
+          "Wellness"
+        ],
+        "Access Type": "Hotel guests + public bookings",
+        "Access Model": "Mixed access",
+        "Overall Price Range": "££££",
+        "Neighborhood": "Bayswater",
+        "Area of London": "West London",
+        "Experience Type": "Guided / Group",
+        "Showers Available": true,
+        "Towels Included": true,
+        "Atmosphere": "Large, carefully designed hotel spa with extensive wet facilities, treatment rooms and a separate social-club element within The Whiteley.",
+        "Best For": [
+          "Luxury experience",
+          "Thermal bathing",
+          "Recovery technology",
+          "Visitors to London"
+        ],
+        "Well Suited For": [
+          "Hotel spa visits",
+          "Contrast therapy",
+          "Personalised wellness programmes"
+        ],
+        "Good To Know": "Access varies between hotel guests, Six Senses Place members and external treatment clients. Confirm whether a treatment or programme includes the pool and thermal facilities; HUM2N clinical services are booked separately.",
+        "Opening Hours": "Spa facilities and treatment times vary by access route; confirm current hours when booking.",
+        "Editorial Verdict": "A broad, high-end spa whose strongest point is the combination of a proper thermal circuit with treatments and recovery technology; exact access depends on the booking route.",
+        "Primary Pillar": "Wellness Clubs",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal"
+        ]
+      }
+    },
+    {
       "id": "recpit7TEV8SwwnDq",
       "fields": {
         "Publish Status": "Published",
@@ -4905,6 +5304,361 @@
         "Opening Hours": "Mon–Wed: 08:00–00:00\nThu–Sat: 08:00–03:00\nSun: 08:00–00:00",
         "Booking Link": "https://www.sohohouse.com/en-us/houses/white-city-house",
         "Venue Type Standardized": "Wellness Club"
+      }
+    },
+    {
+      "id": "recHtZrgqHRphpaWV",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Spa Experience Kensington",
+        "Business Name": "Spa Experience Kensington",
+        "Brand / Operator": "Spa Experience by Better",
+        "Slug": "spa-experience-kensington",
+        "Website": "https://www.spaexperience.org.uk/locations/kensington",
+        "Booking Link": "https://www.spaexperience.org.uk/locations/kensington",
+        "Address": "Kensington Leisure Centre, Bomore Road, London W10 6EX",
+        "Phone": "020 3793 8220",
+        "Description": "Spa Experience Kensington is a publicly bookable thermal spa inside a Better leisure centre, with sauna and steam facilities, plus massages and facials. It offers a practical local spa format rather than hotel-style day-spa luxury.",
+        "Editorial Summary": "Accessible neighbourhood spa with sauna, steam, plus bookable massage and facial treatments. Public access and leisure-centre surroundings make it a practical alternative to a private health club.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Spa",
+          "Massage Therapy",
+          "Facials"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Relaxation",
+          "Recovery",
+          "Beginner Friendly"
+        ],
+        "Best For Standardized": [
+          "Stress Relief",
+          "First Timers",
+          "Solo Recovery"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "££",
+        "Neighborhood": "Kensington",
+        "Area of London": "West London",
+        "Experience Type": "Shared",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Straightforward leisure-centre spa with shared thermal facilities and separate treatment rooms.",
+        "Best For": [
+          "Sauna",
+          "Steam room",
+          "Affordable spa access",
+          "First-timers"
+        ],
+        "Well Suited For": [
+          "Heat therapy",
+          "Stress relief",
+          "Local spa visits"
+        ],
+        "Good To Know": "This is a public, bookable spa within a leisure centre. Thermal facilities and treatments use separate timetables, so check the exact session before travelling.",
+        "Opening Hours": "See the live booking timetable for current spa-session availability.",
+        "Editorial Verdict": "A useful local option when you want bookable sauna, steam and treatments without committing to a private-club membership.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ]
+      }
+    },
+    {
+      "id": "recpHksRsaKWLF32K",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Spa Experience Waltham Forest",
+        "Business Name": "Spa Experience Waltham Forest",
+        "Brand / Operator": "Spa Experience by Better",
+        "Slug": "spa-experience-waltham-forest",
+        "Website": "https://www.spaexperience.org.uk/locations/waltham-forest",
+        "Booking Link": "https://www.spaexperience.org.uk/locations/waltham-forest",
+        "Address": "Waltham Forest Feel Good Centre, 170 Chingford Road, Walthamstow, London E17 5AA",
+        "Description": "Spa Experience Waltham Forest is a publicly bookable thermal spa inside a Better leisure centre, with sauna and steam facilities, a hammam, plus massages and facials. It offers a practical local spa format rather than hotel-style day-spa luxury.",
+        "Editorial Summary": "Accessible neighbourhood spa with sauna, steam and hammam, plus bookable massage and facial treatments. Public access and leisure-centre surroundings make it a practical alternative to a private health club.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Spa",
+          "Massage Therapy",
+          "Facials"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Massage"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Relaxation",
+          "Recovery",
+          "Beginner Friendly"
+        ],
+        "Best For Standardized": [
+          "Stress Relief",
+          "First Timers",
+          "Solo Recovery"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "££",
+        "Neighborhood": "Walthamstow",
+        "Area of London": "North East London",
+        "Experience Type": "Shared",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Straightforward leisure-centre spa with shared thermal facilities and separate treatment rooms.",
+        "Best For": [
+          "Sauna",
+          "Steam room",
+          "Affordable spa access",
+          "First-timers"
+        ],
+        "Well Suited For": [
+          "Heat therapy",
+          "Stress relief",
+          "Local spa visits"
+        ],
+        "Good To Know": "This is a public, bookable spa within a leisure centre. Thermal facilities and treatments use separate timetables, so check the exact session before travelling.",
+        "Opening Hours": "Mon–Thu: 12:00–21:00. Fri: 10:00–21:00. Sat–Sun: 09:00–19:30.",
+        "Editorial Verdict": "A useful local option when you want bookable sauna, steam and treatments without committing to a private-club membership.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ]
+      }
+    },
+    {
+      "id": "recg8LuSNtoVXhW6B",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Spa Experience Wimbledon",
+        "Business Name": "Spa Experience Wimbledon",
+        "Brand / Operator": "Spa Experience by Better",
+        "Slug": "spa-experience-wimbledon",
+        "Website": "https://www.spaexperience.org.uk/locations/wimbledon",
+        "Booking Link": "https://www.spaexperience.org.uk/locations/wimbledon",
+        "Address": "Wimbledon Leisure Centre and Spa, Latimer Road, London SW19 1EW",
+        "Phone": "020 8540 9419",
+        "Description": "Spa Experience Wimbledon is a publicly bookable thermal spa inside a Better leisure centre, with sauna and steam facilities, a hammam, plus massages and facials. It offers a practical local spa format rather than hotel-style day-spa luxury.",
+        "Editorial Summary": "Accessible neighbourhood spa with sauna, steam and hammam, plus bookable massage and facial treatments. Public access and leisure-centre surroundings make it a practical alternative to a private health club.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Spa",
+          "Massage Therapy",
+          "Facials"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Massage"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Relaxation",
+          "Recovery",
+          "Beginner Friendly"
+        ],
+        "Best For Standardized": [
+          "Stress Relief",
+          "First Timers",
+          "Solo Recovery"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "££",
+        "Neighborhood": "Wimbledon",
+        "Area of London": "South London",
+        "Experience Type": "Shared",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Straightforward leisure-centre spa with shared thermal facilities and separate treatment rooms.",
+        "Best For": [
+          "Sauna",
+          "Steam room",
+          "Affordable spa access",
+          "First-timers"
+        ],
+        "Well Suited For": [
+          "Heat therapy",
+          "Stress relief",
+          "Local spa visits"
+        ],
+        "Good To Know": "This is a public, bookable spa within a leisure centre. Thermal facilities and treatments use separate timetables, so check the exact session before travelling.",
+        "Opening Hours": "Mon–Fri: 11:00–20:00. Sat–Sun: 09:00–17:00.",
+        "Editorial Verdict": "A useful local option when you want bookable sauna, steam and treatments without committing to a private-club membership.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ]
+      }
+    },
+    {
+      "id": "reco8P4KZMht9HYzR",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Spa Experience Woolwich Waves",
+        "Business Name": "Spa Experience Woolwich Waves",
+        "Brand / Operator": "Spa Experience by Better",
+        "Slug": "spa-experience-woolwich-waves",
+        "Website": "https://www.spaexperience.org.uk/locations/woolwich-waves",
+        "Booking Link": "https://www.spaexperience.org.uk/locations/woolwich-waves",
+        "Address": "Woolwich Waves, 49 Woolwich New Road, London SE18 6EU",
+        "Phone": "01823 217111",
+        "Description": "Spa Experience Woolwich Waves is a publicly bookable thermal spa inside a Better leisure centre, with sauna and steam facilities, plus massages and facials. It offers a practical local spa format rather than hotel-style day-spa luxury.",
+        "Editorial Summary": "Accessible neighbourhood spa with sauna, steam, plus bookable massage and facial treatments. Public access and leisure-centre surroundings make it a practical alternative to a private health club.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Spa",
+          "Massage Therapy",
+          "Facials"
+        ],
+        "Primary Service": "Spa / Bathhouse",
+        "Secondary Services": [
+          "Sauna",
+          "Massage"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage"
+        ],
+        "Venue Type Standardized": "Spa",
+        "Theme Tags Standardized": [
+          "Relaxation",
+          "Recovery",
+          "Beginner Friendly"
+        ],
+        "Best For Standardized": [
+          "Stress Relief",
+          "First Timers",
+          "Solo Recovery"
+        ],
+        "Type of Experience": [
+          "Solo",
+          "Shared",
+          "Self-Guided"
+        ],
+        "Access Type": "Public",
+        "Access Model": "Public / pay as you go",
+        "Overall Price Range": "££",
+        "Neighborhood": "Woolwich",
+        "Area of London": "South London",
+        "Experience Type": "Shared",
+        "Showers Available": true,
+        "Towels Included": false,
+        "Atmosphere": "Straightforward leisure-centre spa with shared thermal facilities and separate treatment rooms.",
+        "Best For": [
+          "Sauna",
+          "Steam room",
+          "Affordable spa access",
+          "First-timers"
+        ],
+        "Well Suited For": [
+          "Heat therapy",
+          "Stress relief",
+          "Local spa visits"
+        ],
+        "Good To Know": "This is a public, bookable spa within a leisure centre. Thermal facilities and treatments use separate timetables, so check the exact session before travelling. The official listing does not advertise a cold plunge.",
+        "Opening Hours": "Centre hours: Mon–Fri 06:30–22:00; Sat–Sun 08:00–20:00. Check the booking page for spa-session times.",
+        "Editorial Verdict": "A useful local option when you want bookable sauna, steam and treatments without committing to a private-club membership.",
+        "Primary Pillar": "Recovery & Performance",
+        "Social Format": [
+          "Shared / communal"
+        ]
       }
     },
     {
@@ -5488,6 +6242,119 @@
         "Opening Hours": "Monday–Friday 10:00–20:00; Saturday–Sunday 10:00–18:00",
         "Booking Link": "https://stretch-lab.co.uk/",
         "Venue Type Standardized": "Assisted Stretching Studio"
+      }
+    },
+    {
+      "id": "recu8bGZJEdthuJEq",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Surrenne Belgravia",
+        "Business Name": "Surrenne Belgravia",
+        "Brand / Operator": "Maybourne",
+        "Slug": "surrenne",
+        "Website": "https://www.surrenne.com/en/destinations/surrenne-belgravia",
+        "Booking Link": "https://www.surrenne.com/en/membership",
+        "Address": "The Emory, Old Barrack Yard, Belgravia, London SW1X 7NP",
+        "Description": "A private health and wellbeing club beneath The Emory, with a 22-metre pool, sauna, steam room, hammam, treatment rooms, gym and movement studios. Services span massage and spa treatments, personal training, Pilates, nutrition and longevity-led assessment.",
+        "Editorial Summary": "Maybourne’s members’ health club in Belgravia, combining a serious pool and thermal suite with spa treatments, training, movement and longevity support. Access is for Surrenne members and eligible hotel guests rather than general day visitors.",
+        "Services Offered": [
+          "Sauna",
+          "Steam Room",
+          "Hammam",
+          "Lap Pool",
+          "Spa",
+          "Massage",
+          "Fitness",
+          "Pilates",
+          "Personal Training",
+          "Longevity",
+          "Health Optimisation"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Sauna",
+          "Spa / Bathhouse",
+          "Massage",
+          "Gym / Performance"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Recovery Treatments",
+          "Longevity",
+          "Recovery"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Steam Room",
+          "Massage",
+          "Longevity Testing",
+          "Health Optimisation"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Steam Room",
+          "Massage",
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Wellness Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Longevity",
+          "Performance",
+          "Social"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Executive Health",
+          "Performance Optimisation",
+          "Stress Relief"
+        ],
+        "Type of Experience": [
+          "Private",
+          "Gym",
+          "Wellness",
+          "Luxury"
+        ],
+        "Access Type": "Members + hotel guests",
+        "Access Model": "Private members’ club",
+        "Overall Price Range": "££££",
+        "Neighborhood": "Belgravia",
+        "Area of London": "Central London",
+        "Experience Type": "Private / Group",
+        "Showers Available": true,
+        "Towels Included": true,
+        "Atmosphere": "Discreet and highly serviced, with a private-club rhythm rather than a public day-spa turnover.",
+        "Best For": [
+          "Luxury experience",
+          "Ongoing training",
+          "Pool and thermal facilities",
+          "Integrated health support"
+        ],
+        "Well Suited For": [
+          "Private-club wellness",
+          "Long-term programmes",
+          "Hotel guests"
+        ],
+        "Good To Know": "General public day access is not advertised. Facilities are available through Surrenne membership and eligible Maybourne hotel stays; treatments and specialist services may require separate booking.",
+        "Opening Hours": "Mon–Fri: 06:00–22:00. Sat–Sun: 07:00–21:00.",
+        "Editorial Verdict": "A comprehensive private-club offer for people seeking repeated access to training, thermal, treatment and longevity services rather than a one-off spa visit.",
+        "Primary Pillar": "Wellness Clubs",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal",
+          "Members-club setting"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming",
+          "Cafe / social space"
+        ],
+        "Social & Community Note": "Shared facilities, classes and members’ spaces support ongoing use, but entry is restricted to members and eligible hotel guests."
       }
     },
     {
@@ -7377,6 +8244,129 @@
         "Opening Hours": "Mon–Fri: 05:30–22:30\nSat–Sun: 08:00–20:00\nBank holidays: 08:00–20:00",
         "Booking Link": "https://www.thirdspace.london/clubs/wood-wharf/",
         "Venue Type Standardized": "Fitness & Recovery Club"
+      }
+    },
+    {
+      "id": "recweaQsBXqiGZDQh",
+      "fields": {
+        "Publish Status": "Published",
+        "Indexable": true,
+        "Verification Status": "Public information",
+        "Last Checked": "2026-09-08",
+        "Name": "Tramp Health",
+        "Business Name": "Tramp Health",
+        "Brand / Operator": "Tramp",
+        "Slug": "tramp-health",
+        "Website": "https://www.tramphealth.co.uk/",
+        "Booking Link": "https://www.tramphealth.co.uk/",
+        "Address": "Grosvenor Square, Mayfair, London W1K",
+        "Email": "th@tramphealth.co.uk",
+        "Description": "A private health and performance club beneath Grosvenor Square, combining training and diagnostics with sauna, cold plunge, hyperbaric oxygen, red light, IV therapy, physiotherapy and Reformer Pilates. Access is membership-led rather than pay as you go.",
+        "Editorial Summary": "High-spec Mayfair members’ club spanning performance training, recovery technology, medical testing and social space. The broad facility list is notable, but access and pricing make it relevant mainly to users seeking an ongoing private-club relationship.",
+        "Services Offered": [
+          "Sauna",
+          "Cold Plunge",
+          "HBOT",
+          "Red Light Therapy",
+          "IV Therapy",
+          "Physiotherapy",
+          "Reformer Pilates",
+          "Diagnostics",
+          "Health Optimisation",
+          "Fitness"
+        ],
+        "Primary Service": "Wellness Club",
+        "Secondary Services": [
+          "Sauna",
+          "Cold Plunge",
+          "HBOT",
+          "Red Light Therapy",
+          "IV Therapy",
+          "Gym / Performance"
+        ],
+        "Activity Category": [
+          "Heat Therapy",
+          "Cold Therapy",
+          "Recovery",
+          "Longevity",
+          "Combined Experiences"
+        ],
+        "Activity Tags Standardized": [
+          "Sauna",
+          "Cold Plunge",
+          "HBOT",
+          "Red Light Therapy",
+          "IV Therapy",
+          "Physiotherapy",
+          "Health Optimisation"
+        ],
+        "Activity Display Labels": [
+          "Sauna",
+          "Ice Bath & Cold Plunge",
+          "Hyperbaric Oxygen Therapy",
+          "Red Light Therapy",
+          "IV Therapy",
+          "Diagnostics"
+        ],
+        "Venue Type Standardized": "Wellness Club",
+        "Theme Tags Standardized": [
+          "Luxury",
+          "Recovery",
+          "Longevity",
+          "Performance",
+          "Social"
+        ],
+        "Best For Standardized": [
+          "Luxury Seekers",
+          "Biohackers",
+          "Executive Health",
+          "Performance Optimisation"
+        ],
+        "Type of Experience": [
+          "Private",
+          "Gym",
+          "Recovery",
+          "Wellness",
+          "Luxury"
+        ],
+        "Access Type": "Members only",
+        "Access Model": "Private members’ club",
+        "Overall Price Range": "££££",
+        "Price From": 390,
+        "Neighborhood": "Mayfair",
+        "Area of London": "Central London",
+        "Experience Type": "Private / Group",
+        "Showers Available": true,
+        "Towels Included": true,
+        "Atmosphere": "Highly serviced and club-like, pairing clinical and performance facilities with lounges, food and a strong social component.",
+        "Best For": [
+          "Luxury experience",
+          "Performance optimisation",
+          "Executive health",
+          "Ongoing recovery"
+        ],
+        "Well Suited For": [
+          "Private-club wellness",
+          "Diagnostics",
+          "Integrated training and recovery"
+        ],
+        "Good To Know": "Access is membership-led and the operator does not publish a complete street address or standard opening hours on its public website. Enquire directly for current membership terms, facility access and appointment availability.",
+        "Opening Hours": "Contact the club for current member and treatment hours.",
+        "Editorial Verdict": "One of Mayfair’s broadest integrated health-and-performance offers, but it is a private-club commitment rather than a venue for an occasional public recovery session.",
+        "Primary Pillar": "Wellness Clubs",
+        "Social Format": [
+          "Private / individual",
+          "Shared / communal",
+          "Group-led",
+          "Members-club setting"
+        ],
+        "Community Features": [
+          "Members lounge",
+          "Group classes",
+          "Member programming",
+          "Cafe / social space"
+        ],
+        "Social & Community Note": "Membership combines training, recovery and health services with lounges, dining and regular group programming."
       }
     },
     {

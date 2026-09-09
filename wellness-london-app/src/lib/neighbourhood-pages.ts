@@ -58,17 +58,18 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "East London",
     metaTitle: "Wellness in Canary Wharf | Sauna & Cold Plunge | Well+",
     metaDescription:
-      "Compare Canary Wharf sauna, cold plunge and contrast therapy venues, including Arc and Third Space, with access and booking details.",
+      "Compare Canary Wharf outdoor swimming, sauna, cold plunge, contrast therapy and health clubs, with access and booking details.",
     eyebrow: "Docklands recovery",
     intro:
-      "Canary Wharf has public sauna and cold-water sessions alongside two Third Space health clubs and a separately bookable recovery spa.",
+      "Canary Wharf has six listings spanning public contrast sessions, dockside sauna, outdoor swimming with sauna, two Third Space health clubs and a separately bookable recovery spa.",
     summary:
-      "Arc offers guided and self-directed communal contrast sessions. Skuna provides shared or private dockside sauna. Third Space Canary Wharf and Wood Wharf are members' clubs, while selected Recovery Spa treatments at Canada Square can be booked by non-members.",
-    bestFor: ["Post-work recovery", "Sauna", "Cold plunge", "Contrast therapy", "Premium wellness"],
+      "Arc offers guided and self-directed communal contrast sessions. Skuna provides shared or private dockside sauna. Sea Lanes pairs its floating 50-metre pool with waterfront sauna. Third Space Canary Wharf and Wood Wharf are members' clubs, while selected Recovery Spa treatments at Canada Square can be booked by non-members.",
+    bestFor: ["Outdoor swimming", "Post-work recovery", "Sauna", "Cold plunge", "Contrast therapy"],
     character:
-      "The formats differ more than the addresses suggest: communal contrast at Arc, a dockside sauna at Skuna, and full health-club facilities at Third Space.",
+      "The formats differ more than the addresses suggest: communal contrast at Arc, dockside sauna at Skuna, swim-and-sauna at Sea Lanes, and full health-club facilities at Third Space.",
     visitNotes: [
-      "Arc and Skuna can be booked publicly; the Third Space clubs require membership.",
+      "Arc, Skuna and Sea Lanes can be booked publicly; the Third Space clubs require membership.",
+      "Sea Lanes does not sell sauna-only visits: its pay-per-visit ticket combines swimming and sauna.",
       "A Recovery Spa booking does not include access to Third Space's gym, pool or wet facilities.",
       "Check whether your booking is at Crossrail Place, West India Quay, Canada Square or Wood Wharf before travelling.",
     ],
@@ -80,7 +81,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/east-london-wellness", label: "East London wellness spaces" },
     ],
     editorNote:
-      "Arc is the clearest public contrast-therapy option; Skuna is the sauna-specific alternative. Third Space suits members seeking wider training and pool facilities, while its Canada Square Recovery Spa has separate treatment access.",
+      "Arc is the clearest public contrast-therapy option; Skuna is the sauna-specific alternative; Sea Lanes is for outdoor swimming and sauna together. Third Space suits members seeking wider training and pool facilities, while its Canada Square Recovery Spa has separate treatment access.",
   },
   {
     slug: "kensington",
@@ -90,19 +91,19 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "West London",
     metaTitle: "Wellness in Kensington | Spa, Steam & Fitness | Well+",
     metaDescription:
-      "Explore the currently verified Kensington wellness listing, with spa, steam, fitness, movement and access details.",
+      "Compare Kensington public thermal-spa sessions with membership-led fitness, steam, movement and bookable spa treatments.",
     eyebrow: "West London recovery",
     intro:
-      "The current Kensington page is deliberately narrow: Equinox Kensington is the only published venue that can be matched to the neighbourhood with confidence.",
+      "Kensington's two listings provide different access routes: Spa Experience offers public thermal-spa sessions, while Equinox combines fitness, movement, steam and treatments within a membership-led health club.",
     summary:
-      "Its verified offer combines a steam room and full-service spa with gym, personal training, yoga and Pilates. It is not currently evidence for a local cryotherapy, red-light or HBOT cluster.",
-    bestFor: ["Spa treatments", "Steam room", "Personal training", "Yoga", "Pilates"],
+      "Spa Experience Kensington is the straightforward option for shared sauna, steam and treatments without a club commitment. Equinox has the broader training offer, including personal training, yoga and Pilates; non-members can book spa appointments, but wider club access is separate.",
+    bestFor: ["Sauna", "Steam room", "Spa treatments", "Personal training", "Yoga"],
     character:
-      "This is a large health-club setting rather than a dedicated recovery studio. Wider club facilities are membership-led; the operator states that spa appointments can be booked by non-members.",
+      "The local choice is between an accessible leisure-centre spa and a premium full-service health club. Neither listing currently supports claims of a Kensington cryotherapy, red-light or HBOT cluster.",
     visitNotes: [
-      "Do not assume a spa appointment includes access to the gym, steam room or classes.",
+      "Spa Experience thermal sessions and treatments use separate timetables; check the exact booking before travelling.",
+      "At Equinox, do not assume a spa appointment includes access to the gym, steam room or classes.",
       "The current directory does not verify a Kensington cold-plunge, cryotherapy, red-light or HBOT venue.",
-      "Use the wider West London guide if you want more than one option to compare.",
     ],
     relatedAreas: ["Notting Hill", "West London", "Central London"],
     relatedLinks: [
@@ -113,7 +114,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
     editorNote:
-      "Equinox Kensington is currently the only verified local listing. It is useful for a combined fitness, steam and spa offer, but club access and publicly bookable spa treatments follow different rules.",
+      "Choose Spa Experience for public sauna, steam and a straightforward local spa visit. Choose Equinox when ongoing fitness and movement facilities matter, noting that club access and publicly bookable spa treatments follow different rules.",
   },
   {
     slug: "marylebone",
@@ -314,15 +315,16 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       "Compare Mayfair hotel spas, recovery circuits, preventive medicine and members' club facilities with access details.",
     eyebrow: "Hotel spas to preventive medicine",
     intro:
-      "Mayfair's five listings span two hotel spas, a multidisciplinary medical clinic, a members-only health club and a publicly bookable recovery circuit.",
+      "Mayfair's six listings span two hotel spas, a multidisciplinary medical clinic, two members-only health clubs and a publicly bookable recovery circuit.",
     summary:
-      "Claridge's and Mandarin Oriental suit treatment or spa-day bookings. Lanserhof is the assessment and medical option. Third Space offers sauna, steam, ice bath and compression within membership. Vidavii packages several modalities into one circuit.",
+      "Claridge's and Mandarin Oriental suit treatment or spa-day bookings. Lanserhof is the assessment and medical option. Third Space offers sauna, steam, ice bath and compression within membership. Tramp Health adds diagnostics, training and a broad technology-led recovery menu. Vidavii packages several modalities into one public circuit.",
     bestFor: ["Hotel spa", "Health screening", "Sauna", "Ice bath", "Recovery circuit"],
     character:
       "The common factor is premium pricing, but the formats are not comparable: hotel treatment, clinical appointment, club membership and sequenced recovery each solve a different need.",
     visitNotes: [
       "A hotel treatment or spa-day booking may not include every pool or thermal facility; check the package.",
       "Lanserhof's clinic can be booked publicly, while its gym and classes require the relevant club access.",
+      "Tramp Health is membership-led and does not publish a complete address or standard hours; enquire before planning a visit.",
       "Third Space Mayfair is excluded from standard Group membership; verify current club access before joining.",
     ],
     relatedAreas: ["Marylebone", "Soho", "Covent Garden & Strand", "Chelsea"],
@@ -333,7 +335,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/central-london-wellness", label: "Central London wellness spaces" },
     ],
     editorNote:
-      "Claridge's and Mandarin Oriental are the spa choices; Lanserhof is the clinic-led option; Third Space is for members wanting training and contrast facilities; Vidavii is the straightforward public recovery circuit.",
+      "Claridge's and Mandarin Oriental are the spa choices; Lanserhof is clinic-led; Third Space and Tramp Health are membership options with different depths of training, diagnostics and recovery; Vidavii is the straightforward public circuit.",
   },
   {
     slug: "chelsea",
@@ -408,19 +410,20 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "West London",
     metaTitle: "Wellness in Bayswater | Spa, Sauna & Cold Plunge | Well+",
     metaDescription:
-      "Compare Bayswater's public traditional spa with a members-only health club offering sauna, ice bath and recovery technology.",
-    eyebrow: "Two contrasting thermal options",
+      "Compare Bayswater public thermal bathing, a members-only health club and a hotel spa with sauna, cold plunge and recovery technology.",
+    eyebrow: "Three different thermal routes",
     intro:
-      "Bayswater has two substantial but very different thermal-wellness listings: the publicly bookable Porchester Spa and Third Space The Whiteley for members.",
+      "Bayswater has three substantial but very different thermal-wellness listings: public sessions at Porchester Spa, Third Space The Whiteley for members, and the Six Senses London hotel spa.",
     summary:
-      "Porchester is the more accessible traditional bathing option, with sauna, steam, cold plunge and scheduled session formats. The Whiteley has a broader recovery list—including infrared sauna, ice bath, red light and cryotherapy—but requires club membership.",
+      "Porchester is the accessible traditional bathhouse, with sauna, steam, cold plunge and scheduled session formats. Third Space combines training with a broad members-only recovery suite. Six Senses adds a hotel-spa thermal circuit, flotation, cryotherapy, treatments and personalised programmes through mixed access routes.",
     bestFor: ["Sauna", "Steam room", "Cold plunge", "Infrared sauna", "Cryotherapy"],
     character:
-      "The choice is principally about access and budget: public historic spa sessions at Porchester or an ongoing premium health-club membership at The Whiteley.",
+      "The decision is principally about format and access: historic public bathing, an ongoing premium gym membership, or a high-service hotel-spa booking whose facility inclusions vary.",
     visitNotes: [
       "Porchester's timetable includes male-only, female-only and mixed sessions; check the day before booking.",
       "Porchester asks visitors to bring clean towels and coins for lockers.",
       "Some Whiteley recovery services may require separate appointments or charges beyond membership.",
+      "At Six Senses, confirm whether your hotel stay, treatment or programme includes the pool and thermal facilities; HUM2N services are separate.",
     ],
     relatedAreas: ["Notting Hill", "Kensington", "Marylebone", "Chelsea"],
     relatedLinks: [
@@ -430,7 +433,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/west-london-wellness", label: "West London wellness spaces" },
     ],
     editorNote:
-      "Choose Porchester for affordable public thermal bathing and The Whiteley for a much wider recovery facility list within a premium members' club.",
+      "Choose Porchester for affordable public thermal bathing, Third Space for training plus repeated members-only recovery access, or Six Senses for a treatment-led hotel-spa visit with a substantial thermal circuit.",
   },
   {
     slug: "belgravia",
@@ -440,18 +443,19 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     region: "Central London",
     metaTitle: "Wellness in Belgravia | Banya, Cryotherapy & HBOT | Well+",
     metaDescription:
-      "Compare Belgravia banya and thermal bathing with cryotherapy, infrared sauna, red light and HBOT appointments.",
-    eyebrow: "Bathhouse or recovery clinic",
+      "Compare Belgravia banya, recovery-clinic appointments and a private health club with pool, thermal, spa and longevity services.",
+    eyebrow: "Three distinct access models",
     intro:
-      "Belgravia's two listings answer different needs: The Bath House provides a bookable banya experience, while London Cryo offers individual recovery treatments.",
+      "Belgravia's three listings answer different needs: The Bath House provides a bookable banya experience, London Cryo offers individual recovery treatments, and Surrenne is a private health club for members and eligible hotel guests.",
     summary:
-      "The Bath House combines sauna, steam, bathing rituals and massage across public and private packages. London Cryo lists cryotherapy, infrared sauna, red light, compression, HBOT, IV therapy and massage.",
+      "The Bath House combines sauna, steam, bathing rituals and massage across public and private packages. London Cryo lists appointment-led recovery treatments. Surrenne combines a 22-metre pool, sauna, steam, hammam, spa, training and longevity support within an ongoing club model.",
     bestFor: ["Sauna", "Steam room", "Cryotherapy", "Red light therapy", "HBOT"],
     character:
-      "Both are publicly bookable, but one is a communal or private bathing experience and the other is an appointment-led treatment menu.",
+      "The Bath House and London Cryo are publicly bookable in different session formats. Surrenne is materially different: general day access is not advertised.",
     visitNotes: [
       "Check whether The Bath House package is public or private and what it includes.",
       "London Cryo services vary by branch, so select Belgravia and the exact treatment when booking.",
+      "Surrenne access is for members and eligible Maybourne hotel guests; specialist services may still require separate booking.",
       "Do not compare headline prices without checking session format and duration.",
     ],
     relatedAreas: ["Victoria", "Chelsea", "Mayfair", "Soho"],
@@ -462,7 +466,7 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
       { href: "/central-london-wellness", label: "Central London wellness spaces" },
     ],
     editorNote:
-      "The Bath House is the social thermal-bathing choice; London Cryo is the focused option when you already know which recovery treatment you want to book.",
+      "The Bath House is the social thermal-bathing choice; London Cryo suits a focused public treatment; Surrenne is for repeated private-club access across training, pool, thermal, spa and health services.",
   },
   {
     slug: "fitzrovia",
@@ -685,6 +689,68 @@ export const neighbourhoodPages: NeighbourhoodPage[] = [
     ],
     editorNote:
       "White City House is useful only when its private-club model fits; StretchLAB is the accessible public choice for a focused one-to-one mobility session.",
+  },
+  {
+    slug: "walthamstow",
+    title: "Wellness in Walthamstow",
+    shortTitle: "Walthamstow",
+    href: "/neighbourhoods/walthamstow",
+    region: "North London",
+    metaTitle: "Wellness in Walthamstow | Sauna, Steam & Spa | Well+",
+    metaDescription:
+      "Compare Walthamstow communal sauna and cold plunge with a public leisure-centre spa offering sauna, steam, hammam and treatments.",
+    eyebrow: "Community sauna or local spa",
+    intro:
+      "Walthamstow now has two publicly bookable thermal options: Community Sauna Baths for communal sauna and cold plunge, and Spa Experience Waltham Forest for sauna, steam, hammam and treatments.",
+    summary:
+      "Community Sauna Baths is centred on shared heat-and-cold sessions. Spa Experience sits inside the Feel Good Centre and offers a more conventional, self-directed thermal-spa visit with massages and facials booked separately.",
+    bestFor: ["Sauna", "Cold plunge", "Steam room", "Hammam", "Affordable spa access"],
+    character:
+      "Both are practical neighbourhood venues rather than hotel spas. Choose by whether cold exposure and communal atmosphere matter more than steam, hammam and treatment availability.",
+    visitNotes: [
+      "Check Community Sauna Baths' live session format and timetable before booking.",
+      "Spa Experience thermal sessions and treatments use separate timetables.",
+      "Neither listing requires a private health-club membership.",
+    ],
+    relatedAreas: ["Islington", "Hackney", "Shoreditch", "North London"],
+    relatedLinks: [
+      { href: "/sauna-london", label: "Saunas in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/north-london-wellness", label: "North London wellness spaces" },
+    ],
+    editorNote:
+      "Choose Community Sauna Baths for social sauna and cold plunge, or Spa Experience Waltham Forest for sauna, steam, hammam and optional treatments in a leisure-centre setting.",
+  },
+  {
+    slug: "wimbledon",
+    title: "Wellness in Wimbledon",
+    shortTitle: "Wimbledon",
+    href: "/neighbourhoods/wimbledon",
+    region: "South London",
+    metaTitle: "Wellness in Wimbledon | Spa, Sauna & Cold Plunge | Well+",
+    metaDescription:
+      "Compare Wimbledon public sauna, steam, hammam and spa treatments with a members-only health club and extensive thermal suite.",
+    eyebrow: "Public spa or premium club",
+    intro:
+      "Wimbledon's two listings offer similar thermal basics through very different access models: public sessions at Spa Experience, or an ongoing Third Space membership.",
+    summary:
+      "Spa Experience Wimbledon provides sauna, steam, hammam and treatments inside the local leisure centre. Third Space has the deeper facility list—including Finnish and Löyly saunas, steam, cold plunge, hydropool and lap pool—alongside gym and sports-medicine services.",
+    bestFor: ["Sauna", "Steam room", "Hammam", "Cold plunge", "Spa treatments"],
+    character:
+      "Spa Experience is the accessible option for an occasional visit. Third Space is a much larger training-and-recovery environment, but its wet spa is a club amenity rather than a public day-spa session.",
+    visitNotes: [
+      "Spa Experience thermal sessions and treatments use separate timetables; select the exact booking you need.",
+      "Third Space's pool and thermal suite require the appropriate membership.",
+      "Only the Third Space listing currently verifies a Wimbledon cold plunge.",
+    ],
+    relatedAreas: ["Wandsworth", "Richmond", "Fulham", "South London"],
+    relatedLinks: [
+      { href: "/sauna-london", label: "Saunas in London" },
+      { href: "/cold-plunge-london", label: "Cold Plunge in London" },
+      { href: "/south-london-wellness", label: "South London wellness spaces" },
+    ],
+    editorNote:
+      "Choose Spa Experience for public sauna, steam, hammam and treatments; choose Third Space when you want repeated access to a broader thermal suite alongside training and pool facilities.",
   },
 ];
 
