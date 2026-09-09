@@ -69,7 +69,7 @@ function normaliseSingle(value: ClinicalFieldValue) {
 }
 
 function getClinicalFields() {
-  const clinicalBySlug = new Map<string, Omit<LongevityFacility, keyof AirtableFacility>>();
+  const clinicalBySlug = new Map<string, Omit<LongevityFacility, Exclude<keyof AirtableFacility, "confirmedDiagnostics">>>();
 
   (getDirectorySnapshotRecords() as ClinicalRecord[]).forEach((record) => {
       const slug = record.fields.Slug?.trim();

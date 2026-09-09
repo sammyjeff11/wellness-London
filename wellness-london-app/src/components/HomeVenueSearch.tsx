@@ -51,18 +51,19 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
       <label htmlFor="homepage-venue-search" className="mb-2 block text-[10px] uppercase tracking-[0.22em] text-[#fbf8f1]/62">
         Search the directory
       </label>
-      <div className="relative">
+      <form action="/explore" method="get" className="relative" onSubmit={() => trackEvent(results.length ? "venue_search_submitted" : "venue_search_no_results", { search_length: trimmedQuery.length, source: "homepage" })}>
         <input
           id="homepage-venue-search"
           type="search"
+          name="q"
           value={query}
           onChange={(event) => updateQuery(event.target.value)}
           placeholder="Try Shoreditch, sauna or a venue name"
           autoComplete="off"
-          className="block w-full rounded-full border border-[#fbf8f1]/40 bg-[#fbf8f1] px-5 py-3.5 pr-12 text-[16px] leading-6 text-[#29241d] shadow-[0_12px_32px_rgba(0,0,0,0.16)] outline-none transition placeholder:text-[#8d7d67] focus:border-white focus:ring-2 focus:ring-[#fbf8f1]/38 sm:py-4"
+          className="block w-full rounded-full border border-[#fbf8f1]/40 bg-[#fbf8f1] px-5 py-3.5 pr-24 text-[16px] leading-6 text-[#29241d] shadow-[0_12px_32px_rgba(0,0,0,0.16)] outline-none transition placeholder:text-[#8d7d67] focus:border-white focus:ring-2 focus:ring-[#fbf8f1]/38 sm:py-4"
         />
-        <span aria-hidden="true" className="pointer-events-none absolute right-5 top-1/2 -translate-y-1/2 text-lg text-[#6f6048]">⌕</span>
-      </div>
+        <button type="submit" className="absolute right-2 top-1/2 min-h-11 -translate-y-1/2 rounded-full bg-[#29241d] px-4 text-sm text-[#fbf8f1]">Search</button>
+      </form>
 
       {trimmedQuery ? (
         <div id="homepage-search-results" className="mt-2 overflow-hidden rounded-[1rem] border border-[#d8cebf] bg-[#fbf8f1] p-2 text-[#29241d] shadow-[0_24px_60px_rgba(0,0,0,0.28)]">
@@ -94,6 +95,7 @@ export default function HomeVenueSearch({ facilities }: HomeVenueSearchProps) {
               <p className="mt-1 text-xs leading-5 text-[#5f574c]">Try a venue, service or London neighbourhood.</p>
             </div>
           )}
+          <Link href={`/explore?q=${encodeURIComponent(trimmedQuery)}`} className="mt-2 block rounded-lg px-3 py-3 text-sm font-medium underline underline-offset-4">View all matching venues →</Link>
         </div>
       ) : null}
 

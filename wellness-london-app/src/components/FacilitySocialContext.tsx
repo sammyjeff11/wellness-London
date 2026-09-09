@@ -95,7 +95,7 @@ export default async function FacilitySocialContext({ slug }: { slug: string }) 
                     This is different from a standard paid membership. Joining a private members&apos; club normally involves an application and approval process; paying a fee alone does not guarantee access.
                   </p>
                 ) : null}
-                {profile.goodToKnow ? <p className="mt-4 text-base leading-7 text-[#5f574c]">{profile.goodToKnow}</p> : null}
+
               </div>
             </div>
           </div>

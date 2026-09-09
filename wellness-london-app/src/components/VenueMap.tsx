@@ -1,5 +1,7 @@
 "use client";
 
+import { venuePrice } from "@/lib/venue-pricing";
+
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { CircleMarker, MapContainer, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
@@ -70,7 +72,7 @@ function resultLocation(facility: ServiceDirectoryFacility) {
 }
 
 function resultPrice(facility: ServiceDirectoryFacility) {
-  return facility.priceFrom || facility.priceRange || "Price not confirmed";
+  return venuePrice(facility).label;
 }
 
 export default function VenueMap({ facilities, selectedSlug, userLocation, distanceBySlug = {}, mapAreaActive = false, onSelect, onSearchArea }: VenueMapProps) {

@@ -35,6 +35,8 @@ export type AirtableFacility = {
   description: string;
   images: AirtableImage[];
   servicesOffered: string[];
+  confirmedDiagnostics?: string[];
+  sessionDuration?: string;
   serviceNames: string[];
   primaryService: string;
   secondaryServices: string[];
@@ -137,6 +139,9 @@ export type AirtableRecord = {
     "Opening Hours"?: string;
     "Editorial Summary"?: string;
     "Good To Know"?: string;
+    "Confirmed Diagnostics"?: AirtableFieldValue;
+    "Social Format"?: AirtableFieldValue;
+    "Session Duration"?: AirtableFieldValue;
     Neighbourhood?: string[] | string;
     Neighborhood?: string[] | string;
     "Neighbourhood / Area"?: string[] | string;
@@ -395,6 +400,8 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     description: record.fields.Description || "",
     images: normaliseImages([...(record.fields["Cover Image"] || []), ...(record.fields.Images || [])]),
     servicesOffered,
+    confirmedDiagnostics: normaliseList(record.fields["Confirmed Diagnostics"]),
+    sessionDuration: normaliseSingle(record.fields["Session Duration"]),
     serviceNames,
     primaryService,
     secondaryServices,
@@ -431,7 +438,7 @@ function mapRecordToFacility(record: AirtableRecord): AirtableFacility {
     priceFrom: formatPriceFrom(normaliseSingle(priceFromValue)),
     priceNotes: firstDefined(record.fields["Price Notes"], record.fields.price_notes) || "",
     bookingRequired: normaliseSingle(firstDefined(record.fields["Booking Required"], record.fields.booking_required)) || "Booking details unclear",
-    privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared)) || "Private/shared not confirmed",
+    privateOrShared: normaliseSingle(firstDefined(record.fields["Private or Shared"], record.fields.private_or_shared)) || normaliseList(record.fields["Social Format"]).filter((value) => /shared|private/i.test(value)).join(" · ") || "Private/shared not confirmed",
     towelsIncluded: normaliseBooleanLabel(firstDefined(record.fields["Towels Included"], record.fields.towels_included), "Details not yet confirmed"),
     showersAvailable: normaliseBooleanLabel(firstDefined(record.fields["Showers Available"], record.fields.showers_available), "Details not yet confirmed"),
     changingRooms: normaliseBooleanLabel(firstDefined(record.fields["Changing Rooms"], record.fields.changing_rooms), "Details not yet confirmed"),

@@ -166,7 +166,7 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
       <JsonLd data={breadcrumbSchema} />
 
       <section className="px-4 pt-4 sm:px-5 md:px-8 md:pt-8">
-        <div className="relative mx-auto flex min-h-[58vh] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[68vh] sm:px-6 sm:py-12 md:px-14 md:py-16">
+        <div className="relative mx-auto flex min-h-[20rem] max-w-[1400px] items-end overflow-hidden bg-[#8f806b] px-5 py-10 sm:min-h-[22rem] sm:px-6 sm:py-12 md:px-14 md:py-10">
           {heroImage ? <SafeImage src={heroImage.url} alt={`${page.label} provider in London`} fill priority sizes="100vw" className="object-cover" /> : null}
           <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/34 to-black/10" />
           <div className="relative max-w-5xl text-[#fbf8f1]">
@@ -178,7 +178,7 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
               <span aria-current="page" className="text-white">{page.label}</span>
             </nav>
             <p className="mb-6 text-[10px] uppercase leading-5 tracking-[0.24em] text-[#fbf8f1]/78 sm:mb-8 sm:text-[11px] sm:tracking-[0.3em]">Well+ / {page.eyebrow}</p>
-            <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-[7rem]">{page.title}</h1>
+            <h1 className="font-serif text-5xl font-normal leading-[0.96] tracking-normal sm:text-[4rem] sm:leading-[0.92] md:text-6xl">{page.title}</h1>
             <p className="mt-6 max-w-2xl text-base leading-7 text-[#fbf8f1]/88 sm:mt-8 sm:leading-8 md:text-lg">{page.heroText}</p>
           </div>
         </div>
@@ -207,6 +207,14 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
         </div>
       </section>
 
+      <ServiceDirectorySection
+        facilities={directoryFacilities}
+        serviceType={page.slug.replace(/-london$/, "")}
+        prioritisedService={page.label}
+        emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`}
+        emptyText="We are still checking London providers for this guide. A venue will only appear when the matching diagnostic or assessment is explicitly stated or recorded as confirmed."
+      />
+
       <ServiceIntroSection
         eyebrow={`${page.label} guide`}
         title={page.question}
@@ -219,13 +227,7 @@ export default async function LongevityServicePage({ page }: { page: LongevitySe
       <DiagnosticInfoSection eyebrow="What is measured" title={`Understand what ${page.label.toLowerCase()} actually covers.`} panels={page.measurementAreas} />
       <DiagnosticInfoSection eyebrow="Results and interpretation" title="Know what you should receive after the assessment." panels={page.resultOutputs} dark />
 
-      <ServiceDirectorySection
-        facilities={directoryFacilities}
-        serviceType={page.slug.replace(/-london$/, "")}
-        prioritisedService={page.label}
-        emptyTitle={`No confirmed ${page.label.toLowerCase()} listings yet`}
-        emptyText="We are still checking London providers for this guide. A venue will only appear when the matching diagnostic or assessment is explicitly stated or recorded as confirmed."
-      />
+
 
       <DiagnosticInfoSection eyebrow="Tracking over time" title="Repeat the useful measurement, not the whole package." panels={page.trackingNotes} />
       <ServiceEvidenceSection notes={page.evidenceNotes} />

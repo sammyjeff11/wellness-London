@@ -15,6 +15,15 @@ const excludedSuitabilityLabels = new Set([
 const excludedServiceLabels = new Set(["other", "wellness", "wellness club"]);
 
 const supplementaryDirectoryServices: Record<string, string> = {
+  "dexa scan": "DEXA Scan",
+  "dexa": "DEXA Scan",
+  "vo2 max": "VO2 Max Testing",
+  "vo2 max testing": "VO2 Max Testing",
+  "health screening": "Health Screening",
+  "blood biomarkers": "Blood Biomarkers",
+  "cardiovascular screening": "Cardiovascular Screening",
+  "skin screening": "Skin Screening",
+  "medical imaging": "Medical Imaging",
   "assisted stretch": "Assisted Stretching",
   "assisted stretching": "Assisted Stretching",
   "compression therapy": "Compression Therapy",
@@ -35,6 +44,7 @@ const supplementaryDirectoryServices: Record<string, string> = {
 
 function normaliseLabel(value: string) {
   return value
+    .normalize("NFKD")
     .toLowerCase()
     .replace(/[–—]/g, "-")
     .replace(/\bfirst[- ]timers?\b/g, "first timers")

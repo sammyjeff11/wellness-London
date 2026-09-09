@@ -53,28 +53,28 @@ export default async function ExplorePage() {
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
       <JsonLd data={schema} />
 
-      <section className="px-5 py-12 sm:px-6 sm:py-16 md:py-20">
+      <section className="px-5 py-6 sm:px-6 sm:py-8">
         <div className="mx-auto max-w-6xl">
-          <nav aria-label="Breadcrumb" className="mb-10 flex items-center gap-2 text-sm text-[#6f6048]">
+          <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-2 text-sm text-[#6f6048]">
             <Link href="/" className="underline-offset-4 hover:underline">Home</Link>
             <span aria-hidden="true">/</span>
             <span aria-current="page" className="text-[#29241d]">Venues</span>
           </nav>
           <p className="editorial-eyebrow mb-4">The London directory</p>
-          <h1 className="max-w-4xl font-serif text-[3.4rem] font-normal leading-[0.92] tracking-[-0.05em] sm:text-7xl md:text-8xl">
+          <h1 className="max-w-4xl font-serif text-4xl font-normal leading-[0.92] tracking-[-0.05em] sm:text-5xl">
             London wellness venues.
           </h1>
-          <p className="mt-7 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-8 text-[#5f574c] sm:text-lg">
             Compare published saunas, cold plunges, recovery studios, spas and longevity clinics. Search by venue, service or neighbourhood, then narrow the directory using the details that matter before you book.
           </p>
         </div>
       </section>
 
-      <section className="surface-band-stone px-5 py-12 sm:px-6 sm:py-16 md:py-20" aria-labelledby="directory-heading">
+      <section className="surface-band-stone px-5 py-6 sm:px-6 sm:py-8" aria-labelledby="directory-heading">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8 max-w-3xl">
+          <div className="mb-5 max-w-3xl">
             <p className="editorial-eyebrow mb-3">Search and compare</p>
-            <h2 id="directory-heading" className="font-serif text-4xl font-normal leading-[0.98] tracking-[-0.04em] sm:text-5xl">
+            <h2 id="directory-heading" className="font-serif text-2xl font-normal leading-tight sm:text-3xl">
             Compare {facilities.length} London wellness venues.
             </h2>
           </div>

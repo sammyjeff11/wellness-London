@@ -164,7 +164,7 @@ function getProviderDetail(facility: DirectoryFacility): ProviderDetail {
     providerDetails[facility.slug] || {
       format: "Provider confirms HBOT availability",
       session: "Confirm the current appointment duration",
-      price: facility.priceFrom || facility.priceRange || "Check current price",
+      price: "HBOT session price not confirmed",
       publishedDetail: "Ask for chamber type, pressure, oxygen-delivery method, screening and supervision before booking.",
     }
   );

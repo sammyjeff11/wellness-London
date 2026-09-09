@@ -1,7 +1,10 @@
 "use client";
 
+import { venuePrice } from "@/lib/venue-pricing";
+
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
+import TrackedExternalLink from "@/components/TrackedExternalLink";
 import SafeImage from "@/components/SafeImage";
 import type { FacilityCardFacility } from "@/components/FacilityCard";
 import { getUsefulServiceLabels } from "@/lib/discovery-labels";
@@ -34,7 +37,8 @@ const comparisonGroups: ComparisonGroup[] = [
     rows: [
       { label: "Location", value: (facility) => facility.neighbourhood || facility.location },
       { label: "Nearest station", value: (facility) => facility.nearestStation },
-      { label: "Price", value: (facility) => facility.priceFrom || facility.priceRange },
+      { label: "Price", value: (facility) => venuePrice(facility).label },
+      { label: "Price details", value: (facility) => facility.priceNotes },
       { label: "Access", value: (facility) => facility.accessType },
       { label: "Venue type", value: (facility) => facility.venueType },
     ],
@@ -42,7 +46,9 @@ const comparisonGroups: ComparisonGroup[] = [
   {
     title: "Experience",
     rows: [
-      { label: "Services", value: (facility) => getUsefulServiceLabels(facility.services, undefined, 8) },
+      { label: "Services", value: (facility) => getUsefulServiceLabels(facility.services, undefined, Infinity) },
+      { label: "Session duration", value: (facility) => facility.sessionDuration },
+      { label: "Inclusions & conditions", value: (facility) => facility.goodToKnow },
       { label: "Session format", value: (facility) => facility.privateOrShared },
       { label: "Booking", value: (facility) => facility.bookingRequired },
       { label: "Guided sessions", value: (facility) => facility.guidedSessionsAvailable },
@@ -69,10 +75,6 @@ function displayValue(value: string | string[] | undefined) {
   return values.join(" · ");
 }
 
-function hasComparisonValue(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value.some(isUsefulValue) : isUsefulValue(value);
-}
-
 export default function VenueComparison({ facilities, initialSlugs }: VenueComparisonProps) {
   const savedSnapshot = useSyncExternalStore(subscribeToSavedVenues, getSavedVenueSnapshot, () => "[]");
   const savedSlugs = useMemo(() => parseSavedVenueSlugs(savedSnapshot), [savedSnapshot]);
@@ -89,10 +91,10 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
   );
 
   useEffect(() => {
-    if (selectedSlugs.length === 0) return;
     const url = new URL(window.location.href);
-    url.searchParams.set("venues", selectedSlugs.join(","));
-    window.history.replaceState({}, "", url);
+    if (selectedSlugs.length) url.searchParams.set("venues", selectedSlugs.join(","));
+    else url.searchParams.delete("venues");
+    window.history.replaceState(window.history.state, "", url);
   }, [selectedSlugs]);
 
   useEffect(() => {
@@ -109,15 +111,8 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
   const selectedFacilities = selectedSlugs
     .map((slug) => facilities.find((facility) => facility.slug === slug))
     .filter((facility): facility is FacilityCardFacility => Boolean(facility));
-  const visibleGroups = comparisonGroups
-    .map((group) => ({ ...group, rows: group.rows.filter((row) => selectedFacilities.some((facility) => hasComparisonValue(row.value(facility)))) }))
-    .filter((group) => group.rows.length > 0);
+  const visibleGroups = comparisonGroups;
   const availableFacilities = facilities.filter((facility) => !selectedSlugs.includes(facility.slug));
-  const columnStyle = {
-    gridTemplateColumns: `minmax(9rem, 0.7fr) repeat(${Math.max(selectedFacilities.length, 1)}, minmax(13.5rem, 1fr))`,
-    minWidth: `${152 + Math.max(selectedFacilities.length, 1) * 224}px`,
-  };
-
   function addVenue() {
     if (!addSlug || selectedSlugs.includes(addSlug) || selectedSlugs.length >= 4) return;
     setChosenSlugs([...selectedSlugs, addSlug]);
@@ -178,39 +173,30 @@ export default function VenueComparison({ facilities, initialSlugs }: VenueCompa
         </section>
       ) : (
         <section className="overflow-hidden rounded-[1.35rem] border border-[#b9ab97] bg-[#fbf8f1] shadow-[0_20px_52px_rgba(41,36,29,0.08)]" aria-label={`Comparison of ${selectedFacilities.length} venues`}>
-          <div className="overflow-x-auto">
-            <div className="grid" style={columnStyle}>
-              <div className="sticky left-0 z-20 border-b border-r border-[#d8cebf] bg-[#eee7dc] p-4 sm:p-5">
-                <p className="text-sm font-medium">{selectedFacilities.length} selected</p>
-                <p className="mt-1 text-xs leading-5 text-[#70695d]"><span className="sm:hidden">Swipe across</span><span className="hidden sm:inline">Read down each column</span></p>
-              </div>
-              {selectedFacilities.map((facility) => (
-                <div key={`${facility.slug}-heading`} className="border-b border-r border-[#d8cebf] bg-[#eee7dc] p-4 sm:p-5">
-                  <div className="relative mb-4 aspect-[1.65/1] overflow-hidden rounded-[0.8rem] bg-[#d8cebf]">
-                    {facility.imageUrl ? <SafeImage src={facility.imageUrl} alt={facility.imageAlt || facility.name} fill sizes="240px" className="object-cover" /> : <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_18%,rgba(251,248,241,0.72),transparent_30%),linear-gradient(145deg,#ded4c5,#9f907b)]" />}
+          <div className="overflow-x-auto focus-visible:ring-2 focus-visible:ring-[#6f6048]" tabIndex={0} role="region" aria-label="Venue comparison table; scroll horizontally for all venues">
+            <table className="w-full border-collapse text-left" style={{ minWidth: `${160 + selectedFacilities.length * 240}px` }}>
+              <caption className="sr-only">Compare venue prices, access, services and practical details. Not confirmed means information is unavailable.</caption>
+              <thead><tr>
+                <th scope="col" className="sticky left-0 z-10 w-40 bg-[#eee7dc] p-4 text-sm">{selectedFacilities.length} venues<br /><span className="font-normal">Scroll across to compare</span></th>
+                {selectedFacilities.map((facility) => <th key={facility.slug} scope="col" className="min-w-60 border-l border-[#d8cebf] bg-[#eee7dc] p-4 align-top">
+                  {facility.imageUrl ? <div className="relative mb-3 aspect-[2/1]"><SafeImage src={facility.imageUrl} alt={facility.imageAlt || facility.name} fill sizes="240px" className="rounded-lg object-cover" /></div> : null}
+                  <Link href={`/facility/${facility.slug}`} className="text-xl font-medium underline-offset-4 hover:underline">{facility.name}</Link>
+                  <p className="mt-2 text-sm font-normal">{facility.neighbourhood || facility.location}</p>
+                  <div className="mt-3 flex flex-col items-start gap-2 text-sm font-normal">
+                    {(facility.bookingLink || facility.website) && (facility.bookingLink || facility.website)?.startsWith("http") ? <TrackedExternalLink href={(facility.bookingLink || facility.website)!} eventName="listing_cta_click" properties={{ facility_slug: facility.slug, source: "comparison", cta_type: facility.bookingLink ? "booking" : "website" }} className="inline-flex min-h-11 items-center underline underline-offset-4">Check prices & availability ↗</TrackedExternalLink> : null}
+                    <button type="button" onClick={() => removeVenue(facility.slug)} className="min-h-11 underline underline-offset-4" aria-label={`Remove ${facility.name} from comparison`}>Remove</button>
                   </div>
-                  <h2 className="text-xl font-medium leading-6 tracking-[-0.03em]">{facility.name}</h2>
-                  <p className="mt-1 text-sm text-[#6f6048]">{facility.neighbourhood || facility.location || "London"}</p>
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    <Link href={`/facility/${facility.slug}`} onClick={() => trackEvent("comparison_venue_open", { facility_slug: facility.slug, comparison_size: selectedFacilities.length, page_path: window.location.pathname })} className="text-sm font-medium underline underline-offset-4">View profile</Link>
-                    <button type="button" onClick={() => removeVenue(facility.slug)} className="text-sm text-[#70695d] underline underline-offset-4" aria-label={`Remove ${facility.name} from comparison`}>Remove</button>
-                  </div>
-                </div>
-              ))}
-
-              {visibleGroups.flatMap((group) => [
-                <div key={`${group.title}-label`} className="sticky left-0 z-10 border-b border-r border-[#d8cebf] bg-[#29241d] px-4 py-3 text-sm font-medium text-[#fbf8f1] sm:px-5">{group.title}</div>,
-                ...selectedFacilities.map((facility) => <div key={`${group.title}-${facility.slug}`} className="border-b border-r border-[#3f382f] bg-[#29241d] px-4 py-3 sm:px-5" aria-hidden="true" />),
-                ...group.rows.flatMap((row) => [
-                  <div key={`${group.title}-${row.label}-label`} className="sticky left-0 z-10 border-b border-r border-[#e3d9cb] bg-[#f5f0e7] px-4 py-4 text-sm font-medium text-[#5f574c] sm:px-5">{row.label}</div>,
-                  ...selectedFacilities.map((facility) => (
-                    <div key={`${group.title}-${row.label}-${facility.slug}`} className="border-b border-r border-[#e3d9cb] px-4 py-4 text-sm leading-6 text-[#29241d] sm:px-5">
-                      {displayValue(row.value(facility))}
-                    </div>
-                  )),
-                ]),
-              ])}
-            </div>
+                </th>)}
+              </tr></thead>
+              {visibleGroups.map((group) => <tbody key={group.title}>
+                <tr><th colSpan={selectedFacilities.length + 1} scope="colgroup" className="bg-[#29241d] px-4 py-3 text-sm text-[#fbf8f1]">{group.title}</th></tr>
+                {group.rows.map((row) => <tr key={row.label}>
+                  <th scope="row" className="sticky left-0 z-10 border-b border-r border-[#d8cebf] bg-[#f5f0e7] p-4 text-sm font-medium">{row.label}</th>
+                  {selectedFacilities.map((facility) => <td key={facility.slug} className="border-b border-r border-[#e3d9cb] p-4 align-top text-sm leading-6">{displayValue(row.value(facility))}</td>)}
+                </tr>)}
+              </tbody>)}
+              <tbody><tr><th scope="row" className="sticky left-0 bg-[#f5f0e7] p-4 text-sm font-medium">Published source</th>{selectedFacilities.map((facility) => <td key={facility.slug} className="p-4 text-sm">{facility.website?.startsWith("http") ? <a href={facility.website} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">Operator website ↗</a> : "Not confirmed"}</td>)}</tr></tbody>
+            </table>
           </div>
         </section>
       )}

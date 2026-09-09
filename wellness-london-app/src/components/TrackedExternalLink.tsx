@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { trackEvent, type AnalyticsProperties } from "@/lib/analytics";
+import { trackEvent, trackVenueReferral, type AnalyticsProperties } from "@/lib/analytics";
 
 type TrackedExternalLinkProps = {
   href: string;
@@ -16,9 +16,9 @@ export default function TrackedExternalLink({ href, eventName, properties, class
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       className={className}
-      onClick={() => trackEvent(eventName, properties)}
+      onClick={() => { trackEvent(eventName, properties); if (eventName === "listing_cta_click") trackVenueReferral(properties); }}
     >
       {children}
     </a>
