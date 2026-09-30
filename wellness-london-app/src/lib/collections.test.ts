@@ -3,6 +3,7 @@ import test from "node:test";
 import type { ServiceDirectoryFacility } from "../components/ServiceDirectory.tsx";
 import {
   collections,
+  diversifyCollectionFacilities,
   facilityMatchesFeaturedSection,
   getCuratedPicks,
   type CollectionFeaturedSection,
@@ -79,4 +80,29 @@ test("recognises a high price band as a premium signal", () => {
     ),
     true,
   );
+});
+
+
+test("editorial collections limit repeated branches from the same operator", () => {
+  const diversified = diversifyCollectionFacilities(
+    [
+      facility("third-space-one", ["Sauna"], { brandOperator: "Third Space" }),
+      facility("third-space-two", ["Sauna"], { brandOperator: "Third Space" }),
+      facility("third-space-three", ["Sauna"], { brandOperator: "Third Space" }),
+      facility("arc", ["Sauna", "Cold Plunge"], { brandOperator: "Arc" }),
+    ],
+    { maxPerBrand: 2, limit: 10 },
+  );
+
+  assert.deepEqual(
+    diversified.map((item) => item.slug),
+    ["third-space-one", "third-space-two", "arc"],
+  );
+});
+
+test("every collection points back to a broader discovery route", () => {
+  collections.forEach((collection) => {
+    assert.match(collection.directoryHref, /^\//, collection.slug);
+    assert.ok(collection.directoryLabel.length > 0, collection.slug);
+  });
 });
