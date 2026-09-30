@@ -31,6 +31,8 @@ export type CuratedPick = {
 export type CollectionConfig = {
   slug: string;
   href: string;
+  directoryHref: string;
+  directoryLabel: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
@@ -57,6 +59,8 @@ export const collections = [
   {
     slug: "social-wellness-london",
     href: "/collections/social-wellness-london",
+    directoryHref: "/explore",
+    directoryLabel: "Explore the full London directory",
     title: "Social wellness in London",
     metaTitle: "Social Wellness in London (2026) | Well+",
     metaDescription:
@@ -132,6 +136,8 @@ export const collections = [
   {
     slug: "best-cold-plunge-london",
     href: "/collections/best-cold-plunge-london",
+    directoryHref: "/cold-plunge-london",
+    directoryLabel: "See all cold plunge venues",
     title: "Best cold plunges in London",
     metaTitle: "Best Cold Plunges in London (2026) | Well+",
     metaDescription:
@@ -188,6 +194,8 @@ export const collections = [
   {
     slug: "best-contrast-therapy-london",
     href: "/collections/best-contrast-therapy-london",
+    directoryHref: "/contrast-therapy-london",
+    directoryLabel: "See all contrast therapy venues",
     title: "Best contrast therapy in London",
     metaTitle: "Best Contrast Therapy in London (2026) | Well+",
     metaDescription:
@@ -252,6 +260,8 @@ export const collections = [
   {
     slug: "best-recovery-clubs-london",
     href: "/collections/best-recovery-clubs-london",
+    directoryHref: "/recovery-london",
+    directoryLabel: "See the full recovery directory",
     title: "Best recovery clubs in London",
     metaTitle: "Best Recovery Clubs in London (2026) | Well+",
     metaDescription:
@@ -513,6 +523,33 @@ export function facilityMatchesFeaturedSection(
     return false;
 
   return true;
+}
+
+
+export function diversifyCollectionFacilities(
+  facilities: ServiceDirectoryFacility[],
+  options: { maxPerBrand?: number; limit?: number } = {},
+) {
+  const maxPerBrand = options.maxPerBrand ?? 2;
+  const limit = options.limit ?? 18;
+  const brandCounts = new Map<string, number>();
+  const selected: ServiceDirectoryFacility[] = [];
+
+  for (const facility of facilities) {
+    const brandKey = normaliseText(
+      facility.brandOperator || facility.businessName || facility.name,
+    );
+    const seen = brandCounts.get(brandKey) || 0;
+
+    if (seen >= maxPerBrand) continue;
+
+    selected.push(facility);
+    brandCounts.set(brandKey, seen + 1);
+
+    if (selected.length >= limit) break;
+  }
+
+  return selected;
 }
 
 export function directoryFacilityScore(
