@@ -8,6 +8,7 @@ import { getFacilities } from "@/lib/airtable";
 import {
   collections,
   directoryFacilityScore,
+  diversifyCollectionFacilities,
   facilityMatchesCollection,
   getCollection,
   getCuratedPicks,
@@ -111,10 +112,14 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       )
   );
   const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections, socialProfiles);
+  const browseFacilities = diversifyCollectionFacilities(collectionFacilities, {
+    maxPerBrand: 2,
+    limit: 18,
+  });
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <JsonLd data={[itemListJsonLd(collection.title, collection.href, collectionFacilities), breadcrumbJsonLd(collection.title, collection.href)]} />
+      <JsonLd data={[itemListJsonLd(collection.title, collection.href, browseFacilities), breadcrumbJsonLd(collection.title, collection.href)]} />
 
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
@@ -142,7 +147,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     : "Compare current London venues using confirmed services, practical details and suitability for this particular experience."}
                 </p>
                 <p className="mt-4 text-[2rem] font-serif leading-none tracking-[-0.045em]">
-                  {collectionFacilities.length} London spaces
+                  {collectionFacilities.length} matching London spaces
                 </p>
               </div>
             </div>
@@ -203,13 +208,22 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
-            <p className="editorial-eyebrow mb-3">Full directory</p>
+            <p className="editorial-eyebrow mb-3">Focused directory</p>
             <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
-              Compare every matching venue.
+              Compare a useful spread of matching venues.
             </h2>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-[#5f574c] sm:text-base">
+              To keep this editorial collection distinct from the full service directory, repeated chains are limited to two branches here. The broader directory remains available when you want every matching location.
+            </p>
+            <Link
+              href={collection.directoryHref}
+              className="mt-5 inline-flex text-sm font-semibold underline underline-offset-4"
+            >
+              {collection.directoryLabel} →
+            </Link>
           </div>
           <ServiceDirectory
-            facilities={collectionFacilities}
+            facilities={browseFacilities}
             serviceType={`collection_${collection.slug}`}
             emptyTitle="No matching collection venues yet."
             emptyText="The Well+ directory does not currently include a live venue that matches this collection. Check back as the directory expands."

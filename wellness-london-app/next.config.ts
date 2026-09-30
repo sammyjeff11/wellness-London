@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/best-sauna-cold-plunge-london",
+        destination: "/collections/best-contrast-therapy-london",
+        permanent: true,
+      },
+      {
         source: "/journal",
         destination: "/editorial",
         permanent: true,
