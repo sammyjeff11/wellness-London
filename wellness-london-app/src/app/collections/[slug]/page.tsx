@@ -11,6 +11,7 @@ import {
   facilityMatchesCollection,
   getCollection,
   getCuratedPicks,
+  limitCollectionFacilities,
 } from "@/lib/collections";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
@@ -102,7 +103,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
     isSocialDiscovery ? getSocialWellnessProfiles() : Promise.resolve(new Map<string, SocialWellnessProfile>()),
   ]);
   const directoryFacilities = dedupeFacilities(facilities.map(toDirectoryFacility));
-  const collectionFacilities = dedupeFacilities(
+  const eligibleCollectionFacilities = dedupeFacilities(
     directoryFacilities
       .filter((facility) => facilityMatchesCollection(facility, collection, socialProfiles.get(facility.slug)))
       .sort((a, b) =>
@@ -110,7 +111,11 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         directoryFacilityScore(a, undefined, socialProfiles.get(a.slug))
       )
   );
+  const collectionFacilities = limitCollectionFacilities(eligibleCollectionFacilities, collection);
   const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections, socialProfiles);
+  const isCuratedShortlist = "maxResults" in collection && Boolean(collection.maxResults);
+  const directoryPrioritisedService =
+    "directoryPrioritisedService" in collection ? collection.directoryPrioritisedService : undefined;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -142,7 +147,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
                     : "Compare current London venues using confirmed services, practical details and suitability for this particular experience."}
                 </p>
                 <p className="mt-4 text-[2rem] font-serif leading-none tracking-[-0.045em]">
-                  {collectionFacilities.length} London spaces
+                  {collectionFacilities.length} {isCuratedShortlist ? "selected spaces" : "London spaces"}
                 </p>
               </div>
             </div>
@@ -173,7 +178,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             <p className="max-w-xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
               {isSocialDiscovery
                 ? "Editorial selections use observable programming such as recurring sessions, events, communal sauna and social spaces."
-                : "Each selection is set editorially and must continue to satisfy the confirmed service and format requirements for its use case."}
+                : isCuratedShortlist
+                  ? "Best-of pages are deliberately capped and limit repeated branches from the same operator. Full branch coverage stays on the service and brand pages."
+                  : "Each selection is set editorially and must continue to satisfy the confirmed service and format requirements for its use case."}
             </p>
           </div>
 
@@ -203,9 +210,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
-            <p className="editorial-eyebrow mb-3">Full directory</p>
+            <p className="editorial-eyebrow mb-3">{isCuratedShortlist ? "Curated shortlist" : "Full directory"}</p>
             <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
-              Compare every matching venue.
+              {isCuratedShortlist ? "Compare selected matching venues." : "Compare every matching venue."}
             </h2>
           </div>
           <ServiceDirectory
@@ -213,6 +220,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             serviceType={`collection_${collection.slug}`}
             emptyTitle="No matching collection venues yet."
             emptyText="The Well+ directory does not currently include a live venue that matches this collection. Check back as the directory expands."
+            prioritisedService={directoryPrioritisedService}
           />
         </div>
       </section>
