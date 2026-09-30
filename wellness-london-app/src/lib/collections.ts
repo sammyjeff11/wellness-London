@@ -41,6 +41,7 @@ export type CollectionConfig = {
   allServiceKeys?: ServiceSlug[];
   venueTypeIncludes?: string[];
   socialDiscovery?: boolean;
+  prioritisedService?: string;
   featuredSections: CollectionFeaturedSection[];
 };
 
@@ -144,6 +145,7 @@ export const collections = [
       "Contrast therapy usually means alternating sauna with a cold plunge or ice bath. This shortlist separates standalone cold sessions from full hot-and-cold setups and highlights whether the experience is guided, shared or private and whether sauna access is included.",
     ],
     serviceKeys: ["cold-plunge", "contrast-therapy"],
+    prioritisedService: "Cold Plunge",
     featuredSections: [
       {
         label: "Selected shared-session venue",
@@ -202,6 +204,7 @@ export const collections = [
     ],
     serviceKeys: ["sauna", "cold-plunge"],
     allServiceKeys: ["sauna", "cold-plunge"],
+    prioritisedService: "Contrast Therapy",
     featuredSections: [
       {
         label: "Selected contrast-therapy venue",
@@ -272,6 +275,7 @@ export const collections = [
       "hyperbaric-oxygen-therapy",
     ],
     venueTypeIncludes: ["recovery", "club", "studio", "clinic", "wellness"],
+    prioritisedService: "Recovery",
     featuredSections: [
       {
         label: "Selected multi-service club",
@@ -454,11 +458,19 @@ export function facilityMatchesCollection(
     collection.venueTypeIncludes,
   );
 
+  const hasVenueTypeRequirement = Boolean(collection.venueTypeIncludes?.length);
+
   if (collection.allServiceKeys?.length) {
-    return Boolean(allServicesMatch || venueTypeMatch);
+    return Boolean(
+      allServicesMatch && (!hasVenueTypeRequirement || venueTypeMatch),
+    );
   }
 
-  return serviceMatch || venueTypeMatch;
+  if (hasVenueTypeRequirement) {
+    return Boolean(serviceMatch && venueTypeMatch);
+  }
+
+  return serviceMatch;
 }
 
 export function facilityMatchesFeaturedSection(
