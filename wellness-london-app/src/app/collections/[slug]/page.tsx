@@ -97,6 +97,9 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
   if (!collection) notFound();
 
   const isSocialDiscovery = "socialDiscovery" in collection && collection.socialDiscovery === true;
+  const isBestCollection = collection.slug.startsWith("best-");
+  const prioritisedService =
+    "prioritisedService" in collection ? collection.prioritisedService : undefined;
   const [facilities, socialProfiles] = await Promise.all([
     getFacilities(),
     isSocialDiscovery ? getSocialWellnessProfiles() : Promise.resolve(new Map<string, SocialWellnessProfile>()),
@@ -203,14 +206,24 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
-            <p className="editorial-eyebrow mb-3">Full directory</p>
+            <p className="editorial-eyebrow mb-3">
+              {isBestCollection ? "Other matching venues" : "Full directory"}
+            </p>
             <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
-              Compare every matching venue.
+              {isBestCollection
+                ? "Compare more venues that meet the criteria."
+                : "Compare every matching venue."}
             </h2>
+            {isBestCollection ? (
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
+                The selections above are the editorial shortlist. The directory below is broader and includes other venues with the required service signals.
+              </p>
+            ) : null}
           </div>
           <ServiceDirectory
             facilities={collectionFacilities}
             serviceType={`collection_${collection.slug}`}
+            prioritisedService={prioritisedService}
             emptyTitle="No matching collection venues yet."
             emptyText="The Well+ directory does not currently include a live venue that matches this collection. Check back as the directory expands."
           />
