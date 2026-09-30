@@ -748,7 +748,6 @@ function matchesStructuredActivityField(
     ...facility.servicesOffered,
     ...facility.activityTagsStandardized,
     ...facility.activityDisplayLabels,
-    ...facility.activityCategories,
     ...facility.saunaType,
     facility.coldPlungeType,
     facility.cryoType,
