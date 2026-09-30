@@ -5,6 +5,8 @@ import {
   collections,
   facilityMatchesFeaturedSection,
   getCuratedPicks,
+  limitCollectionFacilities,
+  type CollectionConfig,
   type CollectionFeaturedSection,
 } from "./collections.ts";
 
@@ -78,5 +80,38 @@ test("recognises a high price band as a premium signal", () => {
       { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
     ),
     true,
+  );
+});
+
+
+test("caps best-of results and limits repeated branches from the same operator", () => {
+  const collection: CollectionConfig = {
+    slug: "test",
+    href: "/collections/test",
+    title: "Test",
+    metaTitle: "Test",
+    metaDescription: "Test",
+    eyebrow: "Test",
+    heroText: "Test",
+    introParagraphs: ["Test"],
+    serviceKeys: ["sauna"],
+    featuredSections: [],
+    maxResults: 3,
+    maxPerBrand: 1,
+  };
+
+  const result = limitCollectionFacilities(
+    [
+      facility("chain-one", ["Sauna"], { brandOperator: "Chain" }),
+      facility("chain-two", ["Sauna"], { brandOperator: "Chain" }),
+      facility("independent-one", ["Sauna"], { brandOperator: "Independent One" }),
+      facility("independent-two", ["Sauna"], { brandOperator: "Independent Two" }),
+    ],
+    collection,
+  );
+
+  assert.deepEqual(
+    result.map((item) => item.slug),
+    ["chain-one", "independent-one", "independent-two"],
   );
 });
