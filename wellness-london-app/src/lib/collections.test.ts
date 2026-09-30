@@ -3,8 +3,11 @@ import test from "node:test";
 import type { ServiceDirectoryFacility } from "../components/ServiceDirectory.tsx";
 import {
   collections,
+  curateCollectionDirectoryFacilities,
+  facilityMatchesCollection,
   facilityMatchesFeaturedSection,
   getCuratedPicks,
+  type CollectionConfig,
   type CollectionFeaturedSection,
 } from "./collections.ts";
 
@@ -78,5 +81,72 @@ test("recognises a high price band as a premium signal", () => {
       { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
     ),
     true,
+  );
+});
+
+
+test("all-service collection requirements cannot be bypassed by venue type", () => {
+  const collection: CollectionConfig = {
+    slug: "strict-contrast",
+    href: "/strict-contrast",
+    title: "Strict contrast",
+    metaTitle: "Strict contrast",
+    metaDescription: "Test",
+    eyebrow: "Test",
+    heroText: "Test",
+    introParagraphs: ["Test"],
+    serviceKeys: ["sauna", "cold-plunge"],
+    allServiceKeys: ["sauna", "cold-plunge"],
+    venueTypeIncludes: ["wellness"],
+    featuredSections: [],
+  };
+
+  assert.equal(
+    facilityMatchesCollection(
+      facility("sauna-only", ["Sauna"], { venueType: "Wellness Club" }),
+      collection,
+    ),
+    false,
+  );
+  assert.equal(
+    facilityMatchesCollection(
+      facility("full-contrast", ["Sauna", "Cold Plunge"], {
+        venueType: "Wellness Club",
+      }),
+      collection,
+    ),
+    true,
+  );
+});
+
+test("focused best-of directories collapse repeated operators and cap results", () => {
+  const collection: CollectionConfig = {
+    slug: "focused",
+    href: "/focused",
+    title: "Focused",
+    metaTitle: "Focused",
+    metaDescription: "Test",
+    eyebrow: "Test",
+    heroText: "Test",
+    introParagraphs: ["Test"],
+    serviceKeys: ["sauna"],
+    oneVenuePerBrand: true,
+    maxDirectoryResults: 2,
+    featuredSections: [],
+  };
+
+  const result = curateCollectionDirectoryFacilities(
+    [
+      facility("brand-a-one", ["Sauna"], { brandOperator: "Brand A" }),
+      facility("brand-a-two", ["Sauna"], { brandOperator: "Brand A" }),
+      facility("brand-b", ["Sauna"], { brandOperator: "Brand B" }),
+      facility("brand-c", ["Sauna"], { brandOperator: "Brand C" }),
+    ],
+    collection,
+  );
+
+  assert.deepEqual(
+    result.map((item) => item.slug),
+    ["brand-a-one", "brand-b"],
   );
 });
