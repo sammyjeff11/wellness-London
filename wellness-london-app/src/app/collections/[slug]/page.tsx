@@ -7,6 +7,7 @@ import ServiceDirectory, { type ServiceDirectoryFacility } from "@/components/Se
 import { getFacilities } from "@/lib/airtable";
 import {
   collections,
+  curateCollectionDirectoryFacilities,
   directoryFacilityScore,
   facilityMatchesCollection,
   getCollection,
@@ -110,11 +111,18 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         directoryFacilityScore(a, undefined, socialProfiles.get(a.slug))
       )
   );
+  const displayFacilities = curateCollectionDirectoryFacilities(
+    collectionFacilities,
+    collection,
+  );
   const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections, socialProfiles);
+  const isFocusedShortlist = Boolean(
+    collection.maxDirectoryResults || collection.oneVenuePerBrand,
+  );
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
-      <JsonLd data={[itemListJsonLd(collection.title, collection.href, collectionFacilities), breadcrumbJsonLd(collection.title, collection.href)]} />
+      <JsonLd data={[itemListJsonLd(collection.title, collection.href, displayFacilities), breadcrumbJsonLd(collection.title, collection.href)]} />
 
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-16">
         <div className="mx-auto max-w-6xl">
@@ -203,14 +211,24 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
-            <p className="editorial-eyebrow mb-3">Full directory</p>
+            <p className="editorial-eyebrow mb-3">
+              {isFocusedShortlist ? "More matching venues" : "Full directory"}
+            </p>
             <h2 className="font-serif text-[2.35rem] font-normal leading-[1.02] tracking-[-0.02em] sm:text-5xl">
-              Compare every matching venue.
+              {isFocusedShortlist
+                ? "A focused set of relevant options."
+                : "Compare every matching venue."}
             </h2>
+            {isFocusedShortlist ? (
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-[#5f574c] sm:text-base">
+                To keep this editorial page distinct from the service directories, this browse set is capped and shows one representative location per multi-location operator where the brand is known.
+              </p>
+            ) : null}
           </div>
           <ServiceDirectory
-            facilities={collectionFacilities}
+            facilities={displayFacilities}
             serviceType={`collection_${collection.slug}`}
+            prioritisedService={collection.directoryPrioritisedService}
             emptyTitle="No matching collection venues yet."
             emptyText="The Well+ directory does not currently include a live venue that matches this collection. Check back as the directory expands."
           />

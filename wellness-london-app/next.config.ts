@@ -34,6 +34,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/best-sauna-cold-plunge-london",
+        destination: "/collections/best-contrast-therapy-london",
+        permanent: true,
+      },
+      {
         source: "/beginner-friendly-wellness-london",
         destination: "/explore",
         permanent: true,

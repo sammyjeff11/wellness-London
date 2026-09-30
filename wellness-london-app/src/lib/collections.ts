@@ -41,6 +41,9 @@ export type CollectionConfig = {
   allServiceKeys?: ServiceSlug[];
   venueTypeIncludes?: string[];
   socialDiscovery?: boolean;
+  directoryPrioritisedService?: string;
+  maxDirectoryResults?: number;
+  oneVenuePerBrand?: boolean;
   featuredSections: CollectionFeaturedSection[];
 };
 
@@ -144,6 +147,9 @@ export const collections = [
       "Contrast therapy usually means alternating sauna with a cold plunge or ice bath. This shortlist separates standalone cold sessions from full hot-and-cold setups and highlights whether the experience is guided, shared or private and whether sauna access is included.",
     ],
     serviceKeys: ["cold-plunge", "contrast-therapy"],
+    directoryPrioritisedService: "Cold Plunge",
+    maxDirectoryResults: 12,
+    oneVenuePerBrand: true,
     featuredSections: [
       {
         label: "Selected shared-session venue",
@@ -202,6 +208,9 @@ export const collections = [
     ],
     serviceKeys: ["sauna", "cold-plunge"],
     allServiceKeys: ["sauna", "cold-plunge"],
+    directoryPrioritisedService: "Contrast Therapy",
+    maxDirectoryResults: 12,
+    oneVenuePerBrand: true,
     featuredSections: [
       {
         label: "Selected contrast-therapy venue",
@@ -272,6 +281,8 @@ export const collections = [
       "hyperbaric-oxygen-therapy",
     ],
     venueTypeIncludes: ["recovery", "club", "studio", "clinic", "wellness"],
+    maxDirectoryResults: 12,
+    oneVenuePerBrand: true,
     featuredSections: [
       {
         label: "Selected multi-service club",
@@ -351,7 +362,7 @@ export const collections = [
 
 export type CollectionSlug = (typeof collections)[number]["slug"];
 
-export function getCollection(slug: string) {
+export function getCollection(slug: string): CollectionConfig | undefined {
   return collections.find((collection) => collection.slug === slug);
 }
 
@@ -455,10 +466,34 @@ export function facilityMatchesCollection(
   );
 
   if (collection.allServiceKeys?.length) {
-    return Boolean(allServicesMatch || venueTypeMatch);
+    return Boolean(allServicesMatch);
   }
 
   return serviceMatch || venueTypeMatch;
+}
+
+export function curateCollectionDirectoryFacilities(
+  facilities: ServiceDirectoryFacility[],
+  collection: CollectionConfig,
+) {
+  let curated = facilities;
+
+  if (collection.oneVenuePerBrand) {
+    const seenBrands = new Set<string>();
+    curated = curated.filter((facility) => {
+      const brand = normaliseText(facility.brandOperator);
+      if (!brand) return true;
+      if (seenBrands.has(brand)) return false;
+      seenBrands.add(brand);
+      return true;
+    });
+  }
+
+  if (collection.maxDirectoryResults) {
+    curated = curated.slice(0, collection.maxDirectoryResults);
+  }
+
+  return curated;
 }
 
 export function facilityMatchesFeaturedSection(

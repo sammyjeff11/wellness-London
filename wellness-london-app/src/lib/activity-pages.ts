@@ -743,16 +743,16 @@ function matchesStructuredActivityField(
   facility: AirtableFacility,
   activity: ActivityPageConfig,
 ) {
+  // Use service-level fields for eligibility. Broad activity categories such as
+  // "Cold Therapy" are discovery groupings and must not make a cryotherapy
+  // venue eligible for a cold-plunge page (or vice versa).
   const structuredValues = [
-    ...facility.serviceKeys,
     ...facility.servicesOffered,
     ...facility.activityTagsStandardized,
     ...facility.activityDisplayLabels,
-    ...facility.activityCategories,
     ...facility.saunaType,
     facility.coldPlungeType,
     facility.cryoType,
-    facility.contrastTherapyAvailable,
   ]
     .filter(Boolean)
     .join(" ")
