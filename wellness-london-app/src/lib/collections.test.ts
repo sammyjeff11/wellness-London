@@ -3,7 +3,9 @@ import test from "node:test";
 import type { ServiceDirectoryFacility } from "../components/ServiceDirectory.tsx";
 import {
   collections,
+  facilityMatchesCollection,
   facilityMatchesFeaturedSection,
+  getCollection,
   getCuratedPicks,
   type CollectionFeaturedSection,
 } from "./collections.ts";
@@ -76,6 +78,47 @@ test("recognises a high price band as a premium signal", () => {
     facilityMatchesFeaturedSection(
       facility("premium", ["Sauna", "Cold Plunge"], { priceRange: "££££" }),
       { allServiceKeys: ["sauna", "cold-plunge"], premiumLevelIncludes: ["premium", "luxury"] },
+    ),
+    true,
+  );
+});
+
+
+test("a venue type alone cannot qualify a best recovery collection", () => {
+  const collection = getCollection("best-recovery-clubs-london");
+  assert.ok(collection);
+
+  assert.equal(
+    facilityMatchesCollection(
+      facility("clinic-without-recovery-service", ["Blood Testing"], {
+        venueType: "Clinic",
+      }),
+      collection,
+    ),
+    false,
+  );
+
+  assert.equal(
+    facilityMatchesCollection(
+      facility("recovery-clinic", ["Cryotherapy"], { venueType: "Clinic" }),
+      collection,
+    ),
+    true,
+  );
+});
+
+test("best contrast collection requires both sauna and cold plunge", () => {
+  const collection = getCollection("best-contrast-therapy-london");
+  assert.ok(collection);
+
+  assert.equal(
+    facilityMatchesCollection(facility("sauna-only", ["Sauna"]), collection),
+    false,
+  );
+  assert.equal(
+    facilityMatchesCollection(
+      facility("sauna-and-cold", ["Sauna", "Cold Plunge"]),
+      collection,
     ),
     true,
   );
