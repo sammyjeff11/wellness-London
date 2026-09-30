@@ -50,8 +50,10 @@ export function toDirectoryFacility(
     areaOfLondon: facility.areaOfLondon,
     areaGroup: facility.areaGroup,
     services: canonicaliseServiceList([
-      ...(facility.confirmedDiagnostics || []),
+      facility.primaryService,
+      ...facility.secondaryServices,
       ...facility.servicesOffered,
+      ...(facility.confirmedDiagnostics || []),
     ]),
     serviceKeys: facility.serviceKeys,
     priceRange: facility.overallPriceRange,

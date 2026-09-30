@@ -42,6 +42,9 @@ export type CollectionConfig = {
   venueTypeIncludes?: string[];
   socialDiscovery?: boolean;
   featuredSections: CollectionFeaturedSection[];
+  maxResults?: number;
+  maxPerBrand?: number;
+  directoryPrioritisedService?: string;
 };
 
 const saunaAndColdPlungeMatch: CollectionMatch = {
@@ -144,6 +147,9 @@ export const collections = [
       "Contrast therapy usually means alternating sauna with a cold plunge or ice bath. This shortlist separates standalone cold sessions from full hot-and-cold setups and highlights whether the experience is guided, shared or private and whether sauna access is included.",
     ],
     serviceKeys: ["cold-plunge", "contrast-therapy"],
+    maxResults: 12,
+    maxPerBrand: 2,
+    directoryPrioritisedService: "Cold Plunge",
     featuredSections: [
       {
         label: "Selected shared-session venue",
@@ -202,6 +208,9 @@ export const collections = [
     ],
     serviceKeys: ["sauna", "cold-plunge"],
     allServiceKeys: ["sauna", "cold-plunge"],
+    maxResults: 12,
+    maxPerBrand: 2,
+    directoryPrioritisedService: "Contrast Therapy",
     featuredSections: [
       {
         label: "Selected contrast-therapy venue",
@@ -272,6 +281,9 @@ export const collections = [
       "hyperbaric-oxygen-therapy",
     ],
     venueTypeIncludes: ["recovery", "club", "studio", "clinic", "wellness"],
+    maxResults: 12,
+    maxPerBrand: 2,
+    directoryPrioritisedService: "Recovery",
     featuredSections: [
       {
         label: "Selected multi-service club",
@@ -539,6 +551,33 @@ export function directoryFacilityScore(
     : 0;
 
   return serviceMatchCount * 20 + premiumBonus + completeness + socialBonus;
+}
+
+export function limitCollectionFacilities(
+  facilities: ServiceDirectoryFacility[],
+  collection: CollectionConfig,
+) {
+  const maxResults = collection.maxResults ?? facilities.length;
+  const maxPerBrand = collection.maxPerBrand ?? Number.POSITIVE_INFINITY;
+  const brandCounts = new Map<string, number>();
+  const selected: ServiceDirectoryFacility[] = [];
+
+  for (const facility of facilities) {
+    const brandKey =
+      normaliseText(facility.brandOperator) ||
+      normaliseText(facility.businessName) ||
+      facility.slug;
+    const currentCount = brandCounts.get(brandKey) || 0;
+
+    if (currentCount >= maxPerBrand) continue;
+
+    selected.push(facility);
+    brandCounts.set(brandKey, currentCount + 1);
+
+    if (selected.length >= maxResults) break;
+  }
+
+  return selected;
 }
 
 export function getCuratedPicks(
