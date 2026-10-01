@@ -29,7 +29,6 @@ const staticRoutes: SitemapRoute[] = [
   { path: "/assisted-stretching-london", priority: 0.78 },
   { path: "/collections", priority: 0.82 },
   ...collections.map((collection) => ({ path: collection.href, priority: 0.8 })),
-  { path: "/best-sauna-cold-plunge-london", priority: 0.84 },
   { path: "/quiet-wellness-spaces-london", priority: 0.72 },
   { path: "/luxury-wellness-spaces-london", priority: 0.72 },
   { path: "/editorial", priority: 0.72 },

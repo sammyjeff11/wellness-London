@@ -743,16 +743,18 @@ function matchesStructuredActivityField(
   facility: AirtableFacility,
   activity: ActivityPageConfig,
 ) {
+  // Keep modality landing pages tied to explicit service signals. Broad
+  // categories such as "Cold Therapy" can otherwise place cryotherapy venues
+  // on the cold-plunge page, while "Heat Therapy" can place steam-only venues
+  // on the sauna page.
   const structuredValues = [
     ...facility.serviceKeys,
     ...facility.servicesOffered,
     ...facility.activityTagsStandardized,
     ...facility.activityDisplayLabels,
-    ...facility.activityCategories,
     ...facility.saunaType,
     facility.coldPlungeType,
     facility.cryoType,
-    facility.contrastTherapyAvailable,
   ]
     .filter(Boolean)
     .join(" ")
