@@ -12,7 +12,8 @@ export function venuePrice(venue: PriceInput) {
   const slug = venue.slug || "";
   let basis = "basis unconfirmed";
   let comparable = Infinity;
-  if (slug === "bxr-lab") { basis = "introductory 45-minute LAB session"; comparable = amount; }
+  if (slug === "arc-canary-wharf") basis = "introductory three-class pack · new customers";
+  else if (slug === "bxr-lab") { basis = "introductory 45-minute LAB session"; }
   else if (slug === "cloud-twelve") { basis = "30-minute infrared sauna"; comparable = amount; }
   else if (slug === "sael-spa") basis = "annual membership · £250 joining fee";
   else if (slug === "the-method-club-notting-hill") basis = "monthly membership · £530 joining fee · 12-month minimum";
@@ -42,4 +43,13 @@ export function venuePrice(venue: PriceInput) {
 export function sessionPriceBand(venue: PriceInput) {
   const price = venuePrice(venue).comparable;
   return !Number.isFinite(price) ? "" : price <= 25 ? "Up to £25" : price <= 50 ? "£25–£50" : price <= 100 ? "£50–£100" : "Over £100";
+}
+
+/** Booking categories describe the published offer, never inferred public access. */
+export function bookingType(venue: PriceInput) {
+  const price = venuePrice(venue);
+  if (/membership/i.test(price.basis) || /members only|members \+ hotel guests/i.test(venue.accessType || "")) return "membership";
+  if (/introductory|concession/i.test(price.basis)) return "offer";
+  if (Number.isFinite(price.comparable)) return "session";
+  return "unconfirmed";
 }
