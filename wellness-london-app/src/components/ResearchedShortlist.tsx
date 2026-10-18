@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { venuePrice } from "@/lib/venue-pricing";
+import { sessionDuration } from "@/lib/venue-facts";
+import { normaliseSessionFormat } from "@/lib/comparison-values";
 import FacilityCard from "@/components/FacilityCard";
 import JsonLd from "@/components/JsonLd";
 import { getFacilities } from "@/lib/airtable";
@@ -77,6 +80,24 @@ export default async function ResearchedShortlist({
             Read our sourcing and commercial standards
           </Link>
         </details>
+        <section className="mt-8" aria-labelledby="shortlist-comparison">
+          <h2 id="shortlist-comparison" className="font-serif text-3xl">Compare the shortlist</h2>
+          <p className="mt-3 text-sm leading-7 text-[#5f574c]">Compare the booking, not just the amount: offers and memberships have different conditions. A listed cold plunge is not confirmation that it is included in your ticket.</p>
+          <div className="mt-4 overflow-x-auto rounded-lg border border-[#d8cebf]" role="region" aria-label="Venue comparison table" tabIndex={0}>
+            <table className="w-full min-w-[850px] text-left text-sm">
+              <caption className="sr-only">Published prices, session formats and booking considerations</caption>
+              <thead className="bg-[#e9e0d3]"><tr>{["Venue / area", "Published price & basis", "Duration", "Format / access", "Cold plunge", "Why choose / check"].map((heading) => <th scope="col" key={heading} className="p-4 font-medium">{heading}</th>)}</tr></thead>
+              <tbody>{selected.map(({ facility, pick }) => <tr key={facility.slug} className="border-t border-[#d8cebf] align-top">
+                <th scope="row" className="p-4 font-medium"><Link href={`/facility/${facility.slug}`} className="underline underline-offset-4">{facility.name}</Link><span className="mt-1 block font-normal">{facility.neighbourhood}</span></th>
+                <td className="p-4">{venuePrice(facility).label || "Check current booking price"}</td>
+                <td className="p-4">{sessionDuration(facility) || "Check selected session"}</td>
+                <td className="p-4">{normaliseSessionFormat(facility.privateOrShared) || "Format unconfirmed"}<span className="mt-1 block">{facility.accessType}</span></td>
+                <td className="p-4">{facility.servicesOffered.some((service) => /cold plunge/i.test(service)) ? "Listed — check ticket inclusion" : "Not confirmed for this listing"}</td>
+                <td className="p-4"><p>{pick.reason}</p><p className="mt-2"><strong>Check:</strong> {pick.check}</p></td>
+              </tr>)}</tbody>
+            </table>
+          </div>
+        </section>
         <div className="mt-8 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
           {selected.map(({ pick, facility }) => (
             <section key={facility.slug} className="min-w-0">

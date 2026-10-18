@@ -109,10 +109,12 @@ export async function generateMetadata({
 
   const description = getMetaDescription(facility);
   const image = facility.images.find((item) => cleanUrl(item.url));
-  const title = truncateMetaText(
-    `${facility.name}${facility.name.toLowerCase().includes(getCleanLocation(facility).toLowerCase()) ? "" : ` in ${getCleanLocation(facility)}`} | Well+`,
-    70,
-  );
+  const location = getCleanLocation(facility);
+  const venueName = `${facility.name}${facility.name.toLowerCase().includes(location.toLowerCase()) ? "" : ` ${location}`}`;
+  const services = getUsefulServiceLabels(
+    [...facility.servicesOffered, ...(facility.confirmedDiagnostics || [])], undefined, 2,
+  ).join(" & ");
+  const title = `${venueName}${services ? ` – ${services}` : " – Booking Details"} | Well+`;
 
   return {
     title,

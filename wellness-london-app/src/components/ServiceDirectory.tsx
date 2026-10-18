@@ -10,7 +10,7 @@ import {
 import { guidanceOptions } from "@/lib/venue-facts";
 import { useDirectoryUrl } from "@/lib/use-directory-url";
 import { normaliseSessionFormat } from "@/lib/comparison-values";
-import { venuePrice, sessionPriceBand } from "@/lib/venue-pricing";
+import { venuePrice, sessionPriceBand, bookingType } from "@/lib/venue-pricing";
 import OverlayDialog from "@/components/OverlayDialog";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -56,6 +56,7 @@ type FilterState = {
   venueType: string;
   accessType: string;
   priceBand: string;
+  bookingType: string;
   premiumLevel: string;
   experienceType: string;
   privateOrShared: string;
@@ -76,6 +77,7 @@ const initialFilters: FilterState = {
   venueType: "",
   accessType: "",
   priceBand: "",
+  bookingType: "",
   premiumLevel: "",
   experienceType: "",
   privateOrShared: "",
@@ -235,6 +237,7 @@ export default function ServiceDirectory({
         (!filters.venueType || facility.venueType === filters.venueType) &&
         (!filters.accessType || facility.accessType === filters.accessType) &&
         (!filters.priceBand || priceBand === filters.priceBand) &&
+        (!filters.bookingType || bookingType(facility) === filters.bookingType) &&
         (!filters.premiumLevel ||
           facility.premiumLevel === filters.premiumLevel) &&
         (!filters.experienceType ||
@@ -462,8 +465,19 @@ export default function ServiceDirectory({
     );
   }
 
+  const bookingTypeControl = (
+    <FilterSelect label="Booking type" value={filters.bookingType} onChange={(value) => updateFilter("bookingType", value)}>
+      <option value="">All booking types</option>
+      <option value="session">Confirmed session prices</option>
+      <option value="membership">Memberships & members’ clubs</option>
+      <option value="offer">Introductory & concession offers</option>
+      <option value="unconfirmed">Other / price basis unconfirmed</option>
+    </FilterSelect>
+  );
+
   const filterControls = (
     <>
+      {bookingTypeControl}
       <FilterSelect
         label="Area"
         value={filters.area}
@@ -623,6 +637,8 @@ export default function ServiceDirectory({
             {activeFilters.length ? ` (${activeFilters.length})` : ""}
           </button>
         </div>
+        <div className="mt-4 max-w-sm">{bookingTypeControl}</div>
+        {sort === "price-low" ? <p className="mt-3 text-sm text-[#5f574c]">Confirmed session prices appear first. Introductory offers, concessions, memberships and unconfirmed prices are not ranked against them. Check duration, inclusions and off-peak conditions before comparing.</p> : null}
         {directoryMode ? (
           <details className="mt-3">
             <summary className="w-fit cursor-pointer py-2 text-sm underline underline-offset-4">
