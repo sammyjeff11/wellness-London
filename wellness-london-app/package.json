@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test src/lib/*.test.ts",
+    "test": "node --experimental-strip-types --test src/lib/*.test.ts && npm run test:photos",
     "sync:airtable": "node scripts/sync-airtable.mjs",
     "validate:directory": "node scripts/sync-airtable.mjs --validate-only",
     "insights:directory": "node scripts/generate-directory-insights.mjs",
