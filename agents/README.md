@@ -8,6 +8,7 @@ The six roles below are **role instructions**, not independently running AI serv
 | Engineering | engineering.md | Tested PRs |
 | Growth/SEO | growth-seo.md | Validated search fixes and experiments |
 | Directory intelligence | directory.md | Source-backed research and draft changes |
+| Venue photography (directory sub-agent) | photography.md | Photo gap audit, official-site candidate queue, rights review |
 | Commercial partnerships | commercial.md | Pipeline, draft offers, approved outreach |
 | Quality assurance | qa.md | Independent pass/fail PR evidence |
 

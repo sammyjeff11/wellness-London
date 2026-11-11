@@ -1,0 +1,35 @@
+name: Agent photo discovery queue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "40 9 * * 2"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent-photo-discovery
+  cancel-in-progress: false
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        working-directory: wellness-london-app
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node --test scripts/photo-queue.test.mjs
+      - run: npm run photos:discover
+      - uses: actions/upload-artifact@v4
+        with:
+          name: venue-photo-review-queue
+          path: wellness-london-app/photo-review/venue-photo-queue.json
+          retention-days: 14
