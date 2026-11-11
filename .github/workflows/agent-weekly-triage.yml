@@ -1,0 +1,48 @@
+name: Agent weekly triage
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 8 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: agent-weekly-triage
+  cancel-in-progress: false
+
+jobs:
+  backlog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Maintain single weekly review issue
+        shell: bash
+        run: |
+          set -euo pipefail
+          title="[Agent Ops] Weekly commercial progress and blockers"
+          existing="$(gh issue list --repo "$GH_REPO" --state open --search "$title in:title" --json number,title --jq '.[] | select(.title == "[Agent Ops] Weekly commercial progress and blockers") | .number' | head -n 1)"
+          body="$(cat <<'EOF'
+          ## Weekly operating review
+          This issue is a **coordination checklist**, not an automated AI execution or approval.
+
+          - [ ] Inspect open PRs, failing checks and existing Issues (avoid duplicates)
+          - [ ] Report 7/28-day organic clicks and indexing status, or mark data unavailable
+          - [ ] Report verified venue outbound/booking clicks and measurement coverage, or mark unknown
+          - [ ] Report qualified partner prospects, conversations, paid pilots and contracted MRR (no assumptions)
+          - [ ] Identify the top three impact-ranked tasks with owners and acceptance criteria
+          - [ ] Record blockers, evidence, decisions and any costs needing founder approval
+          - [ ] QA changes independently; no production merge, publish, outreach or paid API invocation
+          EOF
+          )"
+          if [ -n "$existing" ]; then
+            gh issue edit "$existing" --repo "$GH_REPO" --body "$body"
+            echo "Refreshed existing triage issue #$existing"
+          else
+            gh issue create --repo "$GH_REPO" --title "$title" --body "$body"
+          fi
