@@ -8,10 +8,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "node --experimental-strip-types --test src/lib/*.test.ts",
+    "test": "node --experimental-strip-types --test src/lib/*.test.ts && npm run test:photos",
     "sync:airtable": "node scripts/sync-airtable.mjs",
     "validate:directory": "node scripts/sync-airtable.mjs --validate-only",
-    "insights:directory": "node scripts/generate-directory-insights.mjs"
+    "insights:directory": "node scripts/generate-directory-insights.mjs",
+    "photos:audit": "node scripts/photo-queue.mjs",
+    "photos:discover": "node scripts/photo-queue.mjs --discover",
+    "test:photos": "node --test scripts/photo-queue.test.mjs"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
