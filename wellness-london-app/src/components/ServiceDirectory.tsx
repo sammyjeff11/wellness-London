@@ -11,7 +11,7 @@ import { guidanceOptions } from "@/lib/venue-facts";
 import { useDirectoryUrl } from "@/lib/use-directory-url";
 import { normaliseSessionFormat } from "@/lib/comparison-values";
 import { venuePrice, sessionPriceBand, bookingType } from "@/lib/venue-pricing";
-import { isMembershipRestricted, venueAccessPriority } from "@/lib/venue-access";
+import { isMembershipRestricted, venueBookingPriority } from "@/lib/venue-access";
 import OverlayDialog from "@/components/OverlayDialog";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -275,7 +275,7 @@ export default function ServiceDirectory({
       // For service searches, show accessible bookings first without removing clubs.
       // A known public access field is not evidence of live availability.
       if (!directoryMode && sort === "recommended") {
-        const accessDelta = venueAccessPriority(a.accessType) - venueAccessPriority(b.accessType);
+        const accessDelta = venueBookingPriority({ accessType: a.accessType, bookingCategory: bookingType(a) }) - venueBookingPriority({ accessType: b.accessType, bookingCategory: bookingType(b) });
         if (accessDelta !== 0) return accessDelta;
       }
       return (
