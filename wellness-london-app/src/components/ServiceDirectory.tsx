@@ -11,7 +11,7 @@ import { guidanceOptions } from "@/lib/venue-facts";
 import { useDirectoryUrl } from "@/lib/use-directory-url";
 import { normaliseSessionFormat } from "@/lib/comparison-values";
 import { venuePrice, sessionPriceBand, bookingType } from "@/lib/venue-pricing";
-import { isMembershipRestricted } from "@/lib/venue-access";
+import { isMembershipRestricted, venueAccessPriority } from "@/lib/venue-access";
 import OverlayDialog from "@/components/OverlayDialog";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -272,6 +272,12 @@ export default function ServiceDirectory({
         );
       if (sort === "recently-checked")
         return checkedTime(b.lastCheckedDate) - checkedTime(a.lastCheckedDate);
+      // For service searches, show accessible bookings first without removing clubs.
+      // A known public access field is not evidence of live availability.
+      if (!directoryMode && sort === "recommended") {
+        const accessDelta = venueAccessPriority(a.accessType) - venueAccessPriority(b.accessType);
+        if (accessDelta !== 0) return accessDelta;
+      }
       return (
         (b.profileCompletenessScore || 0) - (a.profileCompletenessScore || 0)
       );
@@ -279,6 +285,7 @@ export default function ServiceDirectory({
   }, [
     uniqueFacilities,
     filters,
+    directoryMode,
     sort,
     searchValue,
     mapAreaSlugs,
@@ -789,7 +796,7 @@ export default function ServiceDirectory({
             onChange={(event) => updateSort(event.target.value)}
             className="min-h-11 max-w-52 rounded-lg border border-[#b9ab97] bg-[#fbf8f1] px-2"
           >
-            <option value="recommended">Recommended</option>
+            <option value="recommended">Best match</option>
             {userLocation ? (
               <option value="nearest">Nearest first</option>
             ) : null}
