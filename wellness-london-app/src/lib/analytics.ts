@@ -14,9 +14,17 @@ export function trackEvent(eventName: string, properties: AnalyticsProperties = 
     Object.entries(properties).filter(([, value]) => value !== undefined && value !== null && value !== ""),
   ) as Record<string, string | number | boolean>;
 
-  window.gtag?.("event", eventName, cleanProperties);
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({ event: eventName, ...cleanProperties });
+  // gtag itself uses dataLayer as its transport. Do not push a second event
+  // object when gtag exists: that would duplicate the same user action if
+  // Google Tag Manager also listens for named dataLayer events.
+  if (typeof window.gtag === "function") {
+    window.gtag("event", eventName, cleanProperties);
+  } else {
+    // Queue for a possible tag manager/analytics bootstrap. This is not proof
+    // the event reached GA4; the production measurement ID must be configured.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, ...cleanProperties });
+  }
 }
 
 export function trackVenueReferral(properties: AnalyticsProperties = {}) {
