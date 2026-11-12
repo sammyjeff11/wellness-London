@@ -14,3 +14,14 @@ export function venueAccessPriority(value?: string | null): number {
   if (!value) return 1;
   return /\bpublic\b|\bnon.members?\b|\bday pass\b|\bdrop.in\b/i.test(value) ? 0 : 1;
 }
+
+/** Service discovery ordering must account for the actual offer, not just an
+ * "Public" access flag: a publicly contactable club may sell memberships only.
+ * Conservative unknowns stay visible between single-session and membership
+ * listings; this is not real-time booking availability.
+ */
+export function venueBookingPriority(venue: { accessType?: string; bookingCategory: "membership" | "session" | "offer" | "unconfirmed" }): number {
+  if (venue.bookingCategory === "membership" || isMembershipRestricted(venue.accessType)) return 2;
+  if (venueAccessPriority(venue.accessType) === 0) return 0;
+  return 1;
+}
