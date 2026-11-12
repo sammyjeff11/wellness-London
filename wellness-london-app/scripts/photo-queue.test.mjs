@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import { strict as assert } from "node:assert";
-import { allowedWebsite, imageCandidates, makeQueue, selectDiscoveryBatch } from "./photo-queue.mjs";
+import { allowedWebsite, imageCandidates, makeQueue, selectDiscoveryBatch, commonsMediaSearchUrl } from "./photo-queue.mjs";
 
 test("only safe-looking public HTTPS websites are eligible", () => {
   assert.equal(allowedWebsite("https://venue.example/photos"), true);
@@ -44,4 +44,17 @@ test("weekly discovery batches cover every eligible missing-cover venue rather t
   assert.equal(seen.size, 49);
   assert.equal(seen.has("has-cover"), false);
   assert.deepEqual(selectDiscoveryBatch(venues, 20, monday), selectDiscoveryBatch(venues, 20, monday));
+});
+
+test("creative-commons discovery exposes search only, never false rights approval", () => {
+  const query = new URL(commonsMediaSearchUrl("Ironmonger Row Baths — Spa Experience", "Old Street"));
+  assert.equal(query.hostname, "commons.wikimedia.org");
+  assert.equal(query.searchParams.get("type"), "image");
+  assert.match(query.searchParams.get("search"), /Ironmonger Row Baths Old Street London/);
+  const queue = makeQueue({ records: [{
+    id: "x", fields: { Name: "Ironmonger Row Baths — Spa Experience", Slug: "ironmonger-row-baths-spa-experience", "Publish Status": "Published", Indexable: true },
+  }] });
+  assert.equal(queue.venues[0].approvedToPublish, false);
+  assert.equal(queue.venues[0].rightsStatus, "not_reviewed");
+  assert.ok(queue.venues[0].commonsSearchUrl.startsWith("https://commons.wikimedia.org/"));
 });

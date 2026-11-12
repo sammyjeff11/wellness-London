@@ -61,6 +61,21 @@ async function inspectWebsite(url) {
     return { status: "candidates_only", candidates: imageCandidates(html, url) };
   } catch { return { status: "request_failed", candidates: [] }; }
 }
+/** Search-link only: Commons images must still be individually checked for
+ * exact venue, source, licence, composition and historical accuracy.
+ */
+export function commonsMediaSearchUrl(venueName, neighbourhood = "") {
+  const cleaned = String(venueName || "")
+    .replace(/\s*[—–-]\s*(?:Spa Experience|London|Branch)\s*$/i, "")
+    .trim();
+  const query = [cleaned, neighbourhood, "London"].filter(Boolean).join(" ");
+  const url = new URL("https://commons.wikimedia.org/w/index.php");
+  url.searchParams.set("title", "Special:MediaSearch");
+  url.searchParams.set("type", "image");
+  url.searchParams.set("search", query);
+  return url.toString();
+}
+
 export function makeQueue(snapshot) {
   const records = Array.isArray(snapshot?.records) ? snapshot.records : [];
   const published = records.filter((r) => r.fields?.["Publish Status"] === "Published" && r.fields?.Indexable === true);
@@ -71,6 +86,7 @@ export function makeQueue(snapshot) {
     return {
       recordId: record.id, slug: f.Slug, venue: f.Name, neighbourhood: f.Neighborhood || "",
       officialWebsite: f.Website || "", coverCount, galleryCount,
+      commonsSearchUrl: commonsMediaSearchUrl(f.Name, f.Neighborhood),
       priority: coverCount === 0 ? "P0_missing_cover" : galleryCount === 0 ? "P1_missing_gallery" : "P2_existing_photos",
       rightsStatus: "not_reviewed", approvedToPublish: false, candidates: []
     };
