@@ -6,6 +6,7 @@ import { getFacilities } from "@/lib/airtable";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
 import { absoluteUrl } from "@/lib/site";
+import { hasExplicitAssistedStretching } from "@/lib/assisted-stretching";
 
 export const metadata: Metadata = {
   title: "Assisted Stretching London | Mobility Studios & Sessions | Well+",
@@ -14,8 +15,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/assisted-stretching-london" },
 };
 
-// Only explicit service evidence qualifies a venue for this page.
-import { hasExplicitAssistedStretching } from "@/lib/assisted-stretching";
 
 export default async function AssistedStretchingPage() {
   const allFacilities = await getFacilities();
