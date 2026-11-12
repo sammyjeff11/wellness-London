@@ -355,6 +355,54 @@ export default function VenueComparison({
       </section>
 
       {selectedFacilities.length >= 2 ? (
+        <section aria-labelledby="comparison-quick-heading" className="mb-6">
+          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+            <h2 id="comparison-quick-heading" className="text-lg font-semibold text-[#29241d]">
+              At a glance
+            </h2>
+            <p className="text-xs text-[#5f574c]">
+              Check price basis and access rules before booking.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {selectedFacilities.map((facility) => (
+              <article key={facility.slug} className="min-w-0 rounded-xl border border-[#d8cebf] bg-[#fbf8f1] p-3 sm:p-4">
+                <h3 className="text-sm font-semibold leading-5">
+                  <Link href={`/facility/${facility.slug}`} className="underline-offset-4 hover:underline">
+                    {facility.name}
+                  </Link>
+                </h3>
+                <p className="mt-1 text-xs leading-5 text-[#5f574c]">
+                  {facility.neighbourhood || facility.location || "London"}
+                </p>
+                <dl className="mt-3 space-y-2 border-t border-[#d8cebf] pt-3 text-sm">
+                  <div>
+                    <dt className="text-xs font-medium text-[#70695d]">Published price</dt>
+                    <dd className="mt-1 font-semibold leading-5">
+                      {venuePrice(facility).label || "Not confirmed"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-medium text-[#70695d]">Access</dt>
+                    <dd className="mt-1 leading-5">{useful(facility.accessType) || "Not confirmed"}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-medium text-[#70695d]">Session</dt>
+                    <dd className="mt-1 leading-5">
+                      {useful(facility.sessionDuration) || "Duration not confirmed"}
+                    </dd>
+                  </div>
+                </dl>
+                <Link href={`/facility/${facility.slug}`} className="mt-3 inline-flex min-h-10 items-center text-sm font-medium underline underline-offset-4">
+                  View details
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
+      {selectedFacilities.length >= 2 ? (
         <div className="mb-4 flex flex-wrap gap-5 text-sm">
           <label className="flex min-h-11 items-center gap-2">
             <input
