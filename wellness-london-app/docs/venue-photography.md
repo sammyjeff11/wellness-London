@@ -22,3 +22,17 @@ If licensing is unknown, mark `permission_pending` and request venue-approved me
 
 ## Metrics
 Weekly: published venues missing cover image, published venues without gallery, candidates discovered, rights verified, approved additions, images successfully shown on the site. Never count URLs found as published imagery.
+
+## Visual curation and brand-fit gate
+Well Edit should feel considered, editorial, clear and quietly premium, not like an indiscriminate image search result. For a cover choose the most compelling *true* view of the particular venue: where the user would spend time, what facilities exist, and how the environment actually feels. Prefer clean composition, natural light, real textures, crisp images and a consistent restrained colour treatment. Preserve venue character; don't impose an inaccurate luxury aesthetic on community-focused spaces.
+
+Reject despite valid licensing if an image is dated/unrepresentative, low resolution, heavily branded, generic stock, a crowded promotional collage, badly cropped, or misleading. An exterior is a useful secondary image but usually inferior to a genuine interior cover. Do not trade factual accuracy for beauty or invent replacement venue imagery with AI.
+
+**Photo-selection checklist (must be recorded per candidate):**
+1. Venue identity and correct branch/location: PASS/REVIEW/REJECT
+2. Rights to host, resize and use commercially, plus credit terms: PASS/REVIEW/REJECT
+3. Practical relevance (depicts what visitors can expect): PASS/REVIEW/REJECT
+4. Visual fit (composition, clarity, lighting, colour, resolution, mobile crop): PASS/REVIEW/REJECT
+5. Best use: cover / gallery / reject; suggested crop and text alternative; reviewer/date
+
+Only all-PASS images may be proposed for founder-approved upload. Keep a historical image as secondary context only when it still accurately depicts the location. Where nothing passes, leave the existing fallback and seek approved photography from the operator.
