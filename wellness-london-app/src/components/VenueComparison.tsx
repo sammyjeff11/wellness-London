@@ -153,7 +153,7 @@ export default function VenueComparison({
     return validInitialSlugs.length > 0 ? validInitialSlugs : null;
   });
   const [query, setQuery] = useState("");
-  const [differencesOnly, setDifferencesOnly] = useState(false);
+  const [differencesOnly, setDifferencesOnly] = useState(true);
   const [showAllMobile, setShowAllMobile] = useState(false);
   const [shareStatus, setShareStatus] = useState("");
   const lastTrackedComparison = useRef("");
@@ -360,10 +360,22 @@ export default function VenueComparison({
             <input
               type="checkbox"
               checked={differencesOnly}
-              onChange={(event) => setDifferencesOnly(event.target.checked)}
+              onChange={(event) => {
+                setDifferencesOnly(event.target.checked);
+                trackEvent("comparison_differences_toggled", {
+                  enabled: event.target.checked,
+                  comparison_size: selectedFacilities.length,
+                  page_path: window.location.pathname,
+                });
+              }}
             />
-            Show differences only
+            Highlight differences only
           </label>
+          <p className="self-center text-xs leading-5 text-[#5f574c]">
+            {differencesOnly
+              ? "Showing only details that vary between these venues."
+              : "Showing all available information, including shared details."}
+          </p>
           {selectedFacilities.length > 2 ? (
             <label className="flex min-h-11 items-center gap-2 md:hidden">
               <input
@@ -398,6 +410,13 @@ export default function VenueComparison({
           className="overflow-hidden rounded-[1.35rem] border border-[#b9ab97] bg-[#fbf8f1] shadow-[0_20px_52px_rgba(41,36,29,0.08)]"
           aria-label={`Comparison of ${selectedFacilities.length} venues`}
         >
+          {differencesOnly && selectedFacilities.length >= 2 && visibleGroups.length === 0 ? (
+            <div className="border-b border-[#d8cebf] p-5 text-sm leading-6 text-[#5f574c]">
+              No differences are recorded for these fields. This does not establish that
+              the venues offer identical bookings. Turn off “Highlight differences only”
+              to review the available details and check unconfirmed information.
+            </div>
+          ) : null}
           <div
             className={`max-h-[75dvh] overflow-auto ${showAllMobile ? "" : "comparison-pair"} focus-visible:ring-2 focus-visible:ring-[#6f6048]`}
             tabIndex={0}
