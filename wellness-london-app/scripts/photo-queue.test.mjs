@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import { strict as assert } from "node:assert";
-import { allowedWebsite, imageCandidates, makeQueue } from "./photo-queue.mjs";
+import { allowedWebsite, imageCandidates, makeQueue, selectDiscoveryBatch } from "./photo-queue.mjs";
 
 test("only safe-looking public HTTPS websites are eligible", () => {
   assert.equal(allowedWebsite("https://venue.example/photos"), true);
@@ -23,4 +23,25 @@ test("prioritises published venues without cover, without modifying source data"
   assert.equal(queue.venues[0].slug, "no-cover");
   assert.equal(queue.venues[0].approvedToPublish, false);
   assert.equal(snapshot.records[1].fields["Cover Image"], undefined);
+});
+
+test("weekly discovery batches cover every eligible missing-cover venue rather than repeating the first 20", () => {
+  const venues = Array.from({ length: 49 }, (_, i) => ({
+    slug: `venue-${i}`, officialWebsite: `https://venue${i}.example`, coverCount: 0,
+  }));
+  venues.push({ slug: "has-cover", officialWebsite: "https://covered.example", coverCount: 1 });
+  const monday = new Date("2026-11-09T12:00:00Z");
+  const seen = new Set();
+  for (let offset = 0; offset < 3; offset++) {
+    const date = new Date(monday.getTime() + offset * 7 * 86400000);
+    const batch = selectDiscoveryBatch(venues, 20, date);
+    assert.ok(batch.length <= 20);
+    for (const venue of batch) {
+      assert.equal(seen.has(venue.slug), false, `repeated ${venue.slug} before cycle finished`);
+      seen.add(venue.slug);
+    }
+  }
+  assert.equal(seen.size, 49);
+  assert.equal(seen.has("has-cover"), false);
+  assert.deepEqual(selectDiscoveryBatch(venues, 20, monday), selectDiscoveryBatch(venues, 20, monday));
 });

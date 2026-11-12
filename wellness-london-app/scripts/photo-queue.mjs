@@ -84,17 +84,30 @@ export function makeQueue(snapshot) {
     }, venues: queue
   };
 }
+/** Rotate the weekly bounded review across the complete missing-cover queue.
+ * Without rotation, every weekly run rechecks the same first 20 venues.
+ * Week zero starts at the Unix epoch, giving stable batches across reruns.
+ */
+export function selectDiscoveryBatch(venues, batchSize = maxSites, at = new Date()) {
+  const eligible = venues.filter((venue) => !venue.coverCount && venue.officialWebsite);
+  if (eligible.length <= batchSize) return eligible;
+  const week = Math.floor(at.getTime() / (7 * 86400000));
+  const pages = Math.ceil(eligible.length / batchSize);
+  const page = ((week % pages) + pages) % pages;
+  return eligible.slice(page * batchSize, (page + 1) * batchSize);
+}
+
 async function main() {
   const queue = makeQueue(JSON.parse(await readFile(source, "utf8")));
   if (discover) {
-    let attempted = 0;
-    for (const venue of queue.venues) {
-      if (venue.coverCount || !venue.officialWebsite || attempted >= maxSites) continue;
+    const batch = selectDiscoveryBatch(queue.venues);
+    for (const venue of batch) {
       venue.discovery = await inspectWebsite(venue.officialWebsite);
-      attempted++;
     }
-    queue.summary.officialSitesChecked = attempted;
+    queue.summary.officialSitesEligible = queue.venues.filter((v) => !v.coverCount && v.officialWebsite).length;
+    queue.summary.officialSitesChecked = batch.length;
     queue.summary.candidateUrls = queue.venues.reduce((n, v) => n + (v.discovery?.candidates?.length || 0), 0);
+    queue.summary.discoveryNote = "Bounded weekly rotating batch; candidate metadata only, not licensed images";
   }
   await mkdir(resolve(app, "photo-review"), { recursive: true });
   await writeFile(out, JSON.stringify(queue, null, 2) + "\n");
