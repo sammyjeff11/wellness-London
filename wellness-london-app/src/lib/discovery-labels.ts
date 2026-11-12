@@ -1,4 +1,4 @@
-import { canonicalServiceName, canonicalServiceSlug, prioritiseCanonicalServiceList } from "./taxonomy.ts";
+import { canonicalServiceName, canonicalServiceSlug } from "./taxonomy.ts";
 
 const excludedSuitabilityLabels = new Set([
   "solo",
@@ -74,7 +74,11 @@ export function toDirectoryServiceLabel(value?: string | null) {
 }
 
 export function getUsefulServiceLabels(values: string[] = [], preferredService?: string | null, limit = 3) {
-  const ordered = prioritiseCanonicalServiceList(values, preferredService);
-  const labels = ordered.map(toDirectoryServiceLabel).filter(Boolean);
-  return Array.from(new Set(labels)).slice(0, limit);
+  // Page context may reorder confirmed services, never invent a service.
+  const labels = Array.from(new Set(values.map(toDirectoryServiceLabel).filter(Boolean)));
+  const preferred = toDirectoryServiceLabel(preferredService);
+  if (preferred && labels.includes(preferred)) {
+    return [preferred, ...labels.filter((label) => label !== preferred)].slice(0, limit);
+  }
+  return labels.slice(0, limit);
 }

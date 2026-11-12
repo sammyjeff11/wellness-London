@@ -14,24 +14,14 @@ export const metadata: Metadata = {
   alternates: { canonical: "/assisted-stretching-london" },
 };
 
-const matchingTerms = ["assisted stretch", "stretching", "stretch therapy", "mobility", "flexibility", "physiotherapy", "movement screening"];
+// Only explicit service evidence qualifies a venue for this page.
+import { hasExplicitAssistedStretching } from "@/lib/assisted-stretching";
 
 export default async function AssistedStretchingPage() {
   const allFacilities = await getFacilities();
   const facilities = dedupeFacilities(
     allFacilities
-      .filter((facility) => {
-        const text = [
-          facility.primaryService,
-          ...facility.secondaryServices,
-          ...facility.servicesOffered,
-          ...facility.activityDisplayLabels,
-          ...facility.activityTagsStandardized,
-          facility.description,
-          facility.editorialSummary,
-        ].join(" ").toLowerCase();
-        return matchingTerms.some((term) => text.includes(term));
-      })
+      .filter(hasExplicitAssistedStretching)
       .map(toDirectoryFacility),
   );
 
