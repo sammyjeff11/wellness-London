@@ -7,6 +7,7 @@ import {
   facilityMatchesFeaturedSection,
   getCollection,
   getCuratedPicks,
+  excludeSelectedPicks,
   type CollectionFeaturedSection,
 } from "./collections.ts";
 
@@ -122,4 +123,10 @@ test("best contrast collection requires both sauna and cold plunge", () => {
     ),
     true,
   );
+});
+
+test("other matches do not repeat editorial picks", () => {
+  const items = [facility("a", ["Sauna"]), facility("b", ["Sauna"]), facility("c", ["Sauna"])];
+  assert.deepEqual(excludeSelectedPicks(items, ["a", "c"]).map((venue) => venue.slug), ["b"]);
+  assert.equal(excludeSelectedPicks(items, []).length, 3);
 });

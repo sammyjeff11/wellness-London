@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import TopicalPathways from "@/components/TopicalPathways";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Sauna in London: Complete Guide | Well+",
+  title: "How to Choose a Sauna in London | Well+",
   description:
-    "A practical guide to London sauna, including infrared and traditional heat, contrast therapy, recovery rituals and what to check before booking.",
+    "Understand traditional versus infrared sauna, shared versus private access, session pricing and what to check before choosing a London venue.",
   alternates: {
     canonical: "/guides/sauna-london-guide",
   },
@@ -70,13 +71,31 @@ export default function SaunaLondonGuidePage() {
               </p>
 
               <p>
-                The best sauna experience depends less on the word sauna itself and more on the outcome you are looking for. Some spaces are built around calm nervous-system recovery and slower pacing, while others are designed for post-training recovery, social sessions or premium wellness routines.
+                Start with the booking format. A sauna might be included in a gym membership, offered as a shared timed session, or reserved privately. Confirm which option is available to you before comparing prices.
               </p>
 
               <p>
-                This guide places sauna within the wider London recovery landscape, helping you understand when heat therapy makes sense, how it pairs with cold exposure and what to look for before choosing a space.
+                Before choosing, check the heat type, session length, whether towels and showers are included, and if cold-water facilities come with the same ticket. A venue-wide starting price may not apply to the sauna session you want.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#fbf8f1] px-5 pb-10 sm:px-6 sm:pb-14">
+        <div className="mx-auto max-w-5xl rounded-[1.2rem] border border-[#d8cebf] p-5 sm:p-7">
+          <h2 className="font-serif text-3xl sm:text-4xl">Ready to choose a venue?</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5f574c]">
+            This guide explains the options. The directory lets you filter venues by area,
+            access, price basis and session format, then compare practical details.
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/sauna-london#venues" className="inline-flex min-h-11 items-center rounded-full bg-[#29241d] px-5 text-sm font-medium text-[#fbf8f1]">
+              Find and compare sauna venues
+            </Link>
+            <Link href="/editorial/best-saunas-london" className="inline-flex min-h-11 items-center rounded-full border border-[#b9ab97] px-5 text-sm font-medium">
+              Read the researched shortlist
+            </Link>
           </div>
         </div>
       </section>
@@ -94,7 +113,7 @@ export default function SaunaLondonGuidePage() {
         relatedModalities={[
           {
             href: "/sauna-london",
-            label: "Best Saunas in London",
+            label: "Find sauna venues in London",
             description:
               "Compare London sauna venues, including infrared, Finnish and contrast therapy studios.",
           },
@@ -152,7 +171,7 @@ export default function SaunaLondonGuidePage() {
             </div>
 
             <p className="max-w-xl text-sm leading-7 text-[#5f574c] md:justify-self-end">
-              Sauna increasingly overlaps with recovery science, contrast therapy, nervous-system regulation and modern longevity culture.
+              The same venue may offer several services, but not necessarily within the same booking. Check what the ticket includes.
             </p>
           </div>
 
