@@ -11,6 +11,7 @@ import {
   facilityMatchesCollection,
   getCollection,
   getCuratedPicks,
+  excludeSelectedPicks,
 } from "@/lib/collections";
 import { dedupeFacilities } from "@/lib/dedupe-facilities";
 import { toDirectoryFacility } from "@/lib/facility-presenters";
@@ -114,6 +115,12 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
       )
   );
   const curatedPicks = getCuratedPicks(collectionFacilities, collection.featuredSections, socialProfiles);
+  const otherFacilities = isBestCollection
+    ? excludeSelectedPicks(
+        collectionFacilities,
+        curatedPicks.flatMap((pick) => (pick.facility ? [pick.facility.slug] : [])),
+      )
+    : collectionFacilities;
 
   return (
     <main className="min-h-screen bg-[#f4efe6] text-[#29241d]">
@@ -180,6 +187,11 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             </p>
           </div>
 
+          {isBestCollection && otherFacilities.length > 0 ? (
+            <a href="#other-venues" className="mb-5 inline-flex min-h-11 items-center text-sm font-medium underline underline-offset-4">
+              Browse {otherFacilities.length} other matching venues
+            </a>
+          ) : null}
           <div className="grid gap-6 md:grid-cols-2">
             {curatedPicks.map(({ section, facility }) => (
               <article key={section.label} className="rounded-[1.35rem] border border-[#d8cebf]/75 bg-[#fbf8f1] p-5 sm:p-6">
@@ -203,7 +215,7 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
         </div>
       </section>
 
-      <section className="px-5 py-8 sm:px-6 sm:py-12 md:py-14">
+      <section id="other-venues" className="scroll-mt-24 px-5 py-8 sm:px-6 sm:py-12 md:py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-7">
             <p className="editorial-eyebrow mb-3">
@@ -216,12 +228,12 @@ export default async function CollectionPage({ params }: CollectionPageProps) {
             </h2>
             {isBestCollection ? (
               <p className="mt-4 max-w-2xl text-sm leading-6 text-[#5f574c] sm:text-base sm:leading-7">
-                The selections above are the editorial shortlist. The directory below is broader and includes other venues with the required service signals.
+                The selections above are the editorial shortlist. Browse other matching venues below without repeating those picks.
               </p>
             ) : null}
           </div>
           <ServiceDirectory
-            facilities={collectionFacilities}
+            facilities={otherFacilities}
             serviceType={`collection_${collection.slug}`}
             prioritisedService={prioritisedService}
             emptyTitle="No matching collection venues yet."

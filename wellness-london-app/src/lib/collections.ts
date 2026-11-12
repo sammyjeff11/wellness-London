@@ -574,3 +574,11 @@ export function getCuratedPicks(
     return matches ? { section, facility } : { section };
   });
 }
+
+/** Exclude editorial picks from the separate "other matching" results while
+ * preserving the complete collection for schema and counts.
+ */
+export function excludeSelectedPicks<T extends { slug: string }>(facilities: T[], selectedSlugs: string[]): T[] {
+  const selected = new Set(selectedSlugs);
+  return facilities.filter((facility) => !selected.has(facility.slug));
+}
