@@ -65,6 +65,7 @@ type FacilityCardProps = {
   showSaveButton?: boolean;
   distanceKm?: number;
   variant?: "feature" | "directory";
+  compareWithSlugs?: string[];
 };
 
 export default function FacilityCard({
@@ -75,6 +76,7 @@ export default function FacilityCard({
   showSaveButton = true,
   distanceKm,
   variant = "directory",
+  compareWithSlugs = [],
 }: FacilityCardProps) {
   const location =
     cleanValue(facility.neighbourhood) ||
@@ -87,11 +89,11 @@ export default function FacilityCard({
   );
   const photo = facility.imageUrl || facility.galleryImages?.[0]?.url;
   const price = venuePrice(facility);
-  const facts = [
-    cleanValue(facility.accessType),
-    cleanValue(normaliseSessionFormat(facility.privateOrShared)),
-    cleanValue(facility.sessionDuration),
-  ].filter(Boolean);
+  const access = cleanValue(facility.accessType);
+  const format = cleanValue(normaliseSessionFormat(facility.privateOrShared));
+  const duration = cleanValue(facility.sessionDuration);
+  const comparisonSlugs = [facility.slug, ...compareWithSlugs.filter((slug) => slug !== facility.slug)].slice(0, 4);
+  const compareHref = `/compare?venues=${encodeURIComponent(comparisonSlugs.join(","))}`;
   const date = facility.lastCheckedDate && new Date(facility.lastCheckedDate);
   const checked =
     date && !Number.isNaN(date.getTime())
@@ -154,19 +156,15 @@ export default function FacilityCard({
             cleanValue(facility.venueType) ||
             "Wellness venue"}
         </p>
-        {price.label ? (
-          <p className="mt-5 text-base font-semibold leading-6">
-            {price.label}
-          </p>
-        ) : null}
-        <ul className={`${price.label ? "mt-3" : "mt-5"} space-y-1 text-sm leading-6 text-[#5f574c]`}>
-          {Array.from(new Set(facts)).map((fact) => (
-            <li key={fact}>{fact}</li>
-          ))}
-          {facts.length === 0 ? (
-            <li>Check session format and access with the venue.</li>
-          ) : null}
-        </ul>
+        <div className="mt-4 space-y-2 border-t border-[#d8cebf] pt-4 text-sm leading-6">
+          <p className="font-semibold text-[#29241d]">{price.label || "Price not yet confirmed"}</p>
+          <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-1 text-[#5f574c]">
+            <dt className="font-medium">Access</dt>
+            <dd className="text-[#29241d]">{access || "Check with venue"}</dd>
+            {format ? <><dt className="font-medium">Format</dt><dd className="text-[#29241d]">{format}</dd></> : null}
+            {duration ? <><dt className="font-medium">Duration</dt><dd className="text-[#29241d]">{duration}</dd></> : null}
+          </dl>
+        </div>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-[#d8cebf] pt-4">
           <Link
             href={`/facility/${facility.slug}`}
@@ -175,10 +173,19 @@ export default function FacilityCard({
           >
             View venue →
           </Link>
-          <span className="text-xs text-[#5f574c]">
-            {checked ? `Checked ${checked}` : "Researched profile"}
-          </span>
+          <Link
+            href={compareHref}
+            onClick={() => trackEvent("comparison_cta_click", {
+              facility_slug: facility.slug,
+              comparison_size: comparisonSlugs.length,
+              source: "listing_card",
+              page_path: window.location.pathname,
+            })}
+            className="inline-flex min-h-11 items-center text-sm underline underline-offset-4 hover:no-underline"
+            aria-label={`Compare ${facility.name} with other venues`}
+          >Compare</Link>
         </div>
+        <p className="mt-2 text-xs text-[#5f574c]">{checked ? `Information checked ${checked}` : "Details may need confirmation"}</p>
       </div>
     </article>
   );

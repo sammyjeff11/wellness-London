@@ -11,6 +11,7 @@ import { guidanceOptions } from "@/lib/venue-facts";
 import { useDirectoryUrl } from "@/lib/use-directory-url";
 import { normaliseSessionFormat } from "@/lib/comparison-values";
 import { venuePrice, sessionPriceBand, bookingType } from "@/lib/venue-pricing";
+import { isMembershipRestricted } from "@/lib/venue-access";
 import OverlayDialog from "@/components/OverlayDialog";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -153,6 +154,7 @@ export default function ServiceDirectory({
   const [selectedMapSlug, setSelectedMapSlug] = useState<string>();
   const [mapAreaSlugs, setMapAreaSlugs] = useState<string[]>();
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [hideMembersOnly, setHideMembersOnly] = useState(false);
   const [postcode, setPostcode] = useState("");
   const [locationStatus, setLocationStatus] = useState("");
   const [userLocation, setUserLocation] = useState<{
@@ -228,6 +230,7 @@ export default function ServiceDirectory({
 
       return (
         matchesVenueSearch(facility, searchValue) &&
+        (!hideMembersOnly || !isMembershipRestricted(facility.accessType)) &&
         (!mapAreaSlugs || mapAreaSlugs.includes(facility.slug)) &&
         (!filters.area || area === filters.area) &&
         (!filters.service ||
@@ -279,6 +282,7 @@ export default function ServiceDirectory({
     sort,
     searchValue,
     mapAreaSlugs,
+    hideMembersOnly,
     userLocation,
     distanceBySlug,
   ]);
@@ -298,6 +302,7 @@ export default function ServiceDirectory({
   function clearFilters() {
     updateUrl({ ...initialFilters, q: "", sort: "", view: "" });
     setMapAreaSlugs(undefined);
+    setHideMembersOnly(false);
     trackEvent("filter_cleared", {
       filter_name: "all",
       service_type: serviceType,
@@ -637,7 +642,16 @@ export default function ServiceDirectory({
             {activeFilters.length ? ` (${activeFilters.length})` : ""}
           </button>
         </div>
-        <div className="mt-4 max-w-sm">{bookingTypeControl}</div>
+        <div className="mt-4 flex flex-wrap items-end gap-x-6 gap-y-3">
+          <div className="w-full max-w-sm">{bookingTypeControl}</div>
+          <label className="inline-flex min-h-11 cursor-pointer items-center gap-3 text-sm text-[#29241d]">
+            <input type="checkbox" checked={hideMembersOnly} onChange={(event) => {
+              setHideMembersOnly(event.target.checked);
+              trackEvent("filter_applied", { filter_name: "hide_members_only", filter_value: event.target.checked ? "on" : "off", service_type: serviceType });
+            }} className="size-4 accent-[#29241d]" />
+            Hide members-only venues
+          </label>
+        </div>
         {sort === "price-low" ? <p className="mt-3 text-sm text-[#5f574c]">Confirmed session prices appear first. Introductory offers, concessions, memberships and unconfirmed prices are not ranked against them. Check duration, inclusions and off-peak conditions before comparing.</p> : null}
         {directoryMode ? (
           <details className="mt-3">
@@ -692,7 +706,7 @@ export default function ServiceDirectory({
             {locationStatus}
           </p>
         ) : null}
-        {activeFilters.length || hasActiveSearch || mapAreaSlugs ? (
+        {activeFilters.length || hasActiveSearch || mapAreaSlugs || hideMembersOnly ? (
           <div
             className="mt-3 flex flex-wrap gap-2"
             aria-label="Selected filters"
@@ -718,6 +732,9 @@ export default function ServiceDirectory({
                 {filters[key as keyof FilterState]} ×
               </button>
             ))}
+            {hideMembersOnly ? (
+              <button type="button" onClick={() => setHideMembersOnly(false)} className="min-h-11 rounded-full border border-[#b9ab97] px-3 text-sm">Excluding members-only ×</button>
+            ) : null}
             {mapAreaSlugs ? (
               <button
                 type="button"
@@ -858,6 +875,7 @@ export default function ServiceDirectory({
                   source={serviceType}
                   prioritisedService={prioritisedService}
                   showSaveButton
+                  compareWithSlugs={savedSlugs}
                   distanceKm={distanceBySlug[facility.slug]}
                 />
               ))}
