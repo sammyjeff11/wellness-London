@@ -23,3 +23,8 @@ test("removes generic services and keeps the preferred service first", () => {
     ["Cold Plunge", "Sauna"],
   );
 });
+
+test("a page preference must not invent a service missing from a venue", () => {
+  assert.deepEqual(getUsefulServiceLabels(["Sauna", "Steam Room"], "Assisted Stretching"), ["Sauna", "Steam Room"]);
+  assert.deepEqual(getUsefulServiceLabels(["Assisted Stretch", "Sauna"], "Assisted Stretching"), ["Assisted Stretching", "Sauna"]);
+});
